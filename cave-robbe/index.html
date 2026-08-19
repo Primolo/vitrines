@@ -1,0 +1,324 @@
+<!--
+PLAN DE DESIGN — Cave Robbe (Saint-Point-Lac)
+Concept (1 phrase) : « Une étiquette de grande garde » — l'esthétique de
+l'étiquette de vin (doubles filets dorés, petites capitales, millésime 1936)
+transposée en site, dans les tons lie-de-vin et or de vin jaune, pour
+remplacer avec dignité un site HTTP vieillissant.
+Palette (thème sombre unique, assumé — la pénombre de la cave) :
+  --lie      #431722  lie-de-vin (fond des panneaux)
+  --nuit-vin #26141A  bordeaux-noir (fond général)
+  --or-jaune #C9A94E  or de clavelin / vin jaune (filets, titres)
+  --ivoire   #F0E8D8  ivoire d'étiquette (texte, cartouches)
+  --bouteille #3A4A36 vert bouteille (touches secondaires)
+  --rose-lie #B4808C  rosé de dépôt (légendes)
+Typographies (système + fallbacks, identité tout-serif de maison de vin) :
+  Display : Baskerville, "Baskerville Old Face", "Libre Baskerville", "Times New Roman", serif
+  Texte   : "Hoefler Text", "Iowan Old Style", Baskerville, Georgia, serif
+Élément signature : le CLAVELIN (SVG inline) — la bouteille trapue de 62 cl du
+vin jaune, en majesté dans le héros, déclinée en frise de silhouettes de
+bouteilles (clavelin, bourguignonne, flûte) et en cul-de-lampe du pied.
+Layout : cartouches à doubles filets façon étiquette ; héros en cartouche,
+sections en colonnes asymétriques — pas de centrage systématique.
+Contenu : faits vérifiés (maison familiale depuis 1936, frères Patrice et
+Xavier Robbe, 16 rue de Damvauthier à Saint-Point-Lac, entre Pontarlier,
+Métabief et Mouthe, vins de toute la France, bières, whiskies, coffrets,
+tireuses et accessoires de brassage, tél. 03 81 69 62 13, horaires relevés) ;
+généralités vérifiables sur le vin jaune (savagnin, 6 ans et 3 mois sous
+voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Cave Robbe — maquette</title>
+<style>
+  :root{
+    --lie:#431722; --nuit:#26141A; --or:#C9A94E; --ivoire:#F0E8D8;
+    --bouteille:#3A4A36; --rose:#B4808C;
+    --display:Baskerville,"Baskerville Old Face","Libre Baskerville","Times New Roman",serif;
+    --texte:"Hoefler Text","Iowan Old Style",Baskerville,Georgia,serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--nuit);color:var(--ivoire);font-family:var(--texte);line-height:1.7}
+  .demo-band{background:var(--ivoire);color:var(--nuit);font-size:.8rem;padding:.5rem 1.25rem;font-family:var(--texte)}
+  a{color:var(--or)}
+  svg{max-width:100%}
+
+  header.site{padding:1.5rem 6vw 1.2rem;display:flex;align-items:baseline;gap:1rem 2rem;
+    flex-wrap:wrap;border-bottom:1px solid var(--or)}
+  .marque{font-family:var(--display);font-size:1.6rem;letter-spacing:.06em;color:var(--or)}
+  .marque .depuis{display:block;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--rose);margin-top:.1rem}
+  nav.principale{margin-left:auto;display:flex;gap:1.6rem;flex-wrap:wrap}
+  nav.principale a{text-decoration:none;font-variant:small-caps;letter-spacing:.14em;
+    font-size:.95rem;color:var(--ivoire)}
+  nav.principale a:hover{color:var(--or)}
+
+  .hero{padding:4rem 6vw;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);
+    gap:3.5rem;align-items:center}
+  .etiquette{border:1px solid var(--or);outline:4px double var(--or);outline-offset:6px;
+    background:var(--lie);padding:3rem 3rem 2.6rem;position:relative}
+  .etiquette .appellation{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--rose);margin-bottom:1.2rem}
+  .etiquette h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4.5vw,3.3rem);
+    line-height:1.1;color:var(--ivoire);max-width:18ch}
+  .etiquette h1 em{color:var(--or);font-style:italic}
+  .millesime{display:flex;align-items:center;gap:1rem;margin:1.6rem 0 1.2rem}
+  .millesime::before,.millesime::after{content:"";height:1px;background:var(--or);flex:1}
+  .millesime b{font-family:var(--display);font-weight:400;font-size:1.5rem;color:var(--or);letter-spacing:.2em}
+  .etiquette p.chapo{max-width:52ch;color:#e3d5be}
+  .etiquette .actions{margin-top:1.8rem;display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-variant:small-caps;letter-spacing:.16em;
+    font-size:.95rem;padding:.65rem 1.5rem;border:1px solid var(--or);color:var(--or)}
+  .btn:hover{background:rgba(201,169,78,.12)}
+  .btn.plein{background:var(--or);color:var(--nuit)}
+  .btn.plein:hover{background:#b3933e}
+  .hero figure{justify-self:center;text-align:left}
+  .hero figcaption{font-size:.75rem;color:var(--rose);font-style:italic;margin-top:.6rem;max-width:26ch}
+
+  .frise-bouteilles{border-top:1px solid var(--or);border-bottom:1px solid var(--or);
+    background:var(--lie);padding:.9rem 6vw;overflow:hidden}
+  .frise-bouteilles svg{display:block;height:44px;width:auto;margin:0;opacity:.85}
+
+  section.bloc{padding:4rem 6vw}
+  .cartouche-titre{display:inline-block;border-top:1px solid var(--or);border-bottom:1px solid var(--or);
+    padding:.35rem 0;font-size:.72rem;letter-spacing:.38em;text-transform:uppercase;color:var(--rose)}
+  h2{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,3.2vw,2.4rem);
+    color:var(--or);margin:1rem 0 1.4rem;max-width:28ch}
+  .deux-col{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:start}
+  .deux-col p+p{margin-top:1rem}
+  .deux-col p{color:#e3d5be}
+
+  .rayons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.6rem;margin-top:1.6rem}
+  .rayon{border:1px solid var(--or);padding:1.6rem 1.5rem;background:var(--lie);position:relative}
+  .rayon::after{content:"";position:absolute;inset:5px;border:1px solid rgba(201,169,78,.4);pointer-events:none}
+  .rayon h3{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--ivoire)}
+  .rayon .region{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--rose);margin:.25rem 0 .9rem}
+  .rayon p{font-size:.93rem;color:#e3d5be}
+  .note-prix{margin-top:1.4rem;font-size:.85rem;font-style:italic;color:var(--rose)}
+
+  .vin-jaune{background:var(--lie);border-top:1px solid var(--or);border-bottom:1px solid var(--or)}
+  .vin-jaune .deux-col{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}
+  .fiche-jaune{border-left:1px solid var(--or);padding-left:2rem}
+  .fiche-jaune dt{font-variant:small-caps;letter-spacing:.14em;color:var(--or);margin-top:1rem}
+  .fiche-jaune dd{color:#e3d5be;font-size:.95rem}
+
+  .visite{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:3rem;align-items:start}
+  .comptoir{border:1px solid var(--or);outline:3px double var(--or);outline-offset:5px;
+    background:var(--lie);padding:1.8rem 1.7rem}
+  .comptoir h3{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--or);margin-bottom:.8rem}
+  .comptoir dl{font-size:.95rem}
+  .comptoir dt{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);margin-top:.9rem}
+  .comptoir dd{margin-top:.15rem;color:#e3d5be}
+  .avertissement{font-size:.8rem;font-style:italic;color:var(--rose);margin-top:1.2rem}
+
+  footer.site{background:#1B0E12;padding:2.6rem 6vw;color:#cbb9a0;border-top:1px solid var(--or)}
+  footer.site p{font-size:.85rem;max-width:66ch}
+  .alcool{margin-top:1.2rem;font-size:.85rem;color:var(--ivoire);border:1px solid var(--rose);
+    display:inline-block;padding:.5rem .9rem}
+  .mention-primo{margin-top:1.25rem;border-top:1px solid #4a2a33;padding-top:1rem;font-size:.8rem;color:var(--rose)}
+  .mention-primo a{color:var(--or)}
+
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:2.5rem}
+    .hero figure{order:-1;max-width:180px}
+    .deux-col,.visite,.vin-jaune .deux-col{grid-template-columns:1fr}
+    .fiche-jaune{border-left:none;padding-left:0;border-top:1px solid var(--or);padding-top:1.5rem}
+    .etiquette{padding:2rem 1.5rem}
+  }
+</style>
+
+<div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<header class="site">
+  <div class="marque">Cave Robbe
+    <span class="depuis">Caviste à Saint-Point-Lac · depuis 1936</span>
+  </div>
+  <nav class="principale">
+    <a href="#maison">La maison</a>
+    <a href="#rayons">La cave</a>
+    <a href="#vinjaune">Le vin jaune</a>
+    <a href="#visite">Nous rendre visite</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="etiquette">
+    <p class="appellation">Grande réserve familiale — mise en bouteille au bord du lac</p>
+    <h1>Quatre générations de cavistes, <em>un seul métier</em> : bien vous faire boire.</h1>
+    <div class="millesime"><b>1936</b></div>
+    <p class="chapo">Sur les rives du lac de Saint-Point, entre Pontarlier,
+    Métabief et Mouthe, la famille Robbe tient cave depuis 1936. Aujourd'hui,
+    Patrice et Xavier perpétuent la maison : vins du Jura et de toute la
+    France, bières, whiskies — et le conseil en prime.</p>
+    <div class="actions">
+      <a class="btn plein" href="#visite">Venir à la cave</a>
+      <a class="btn" href="#rayons">Parcourir nos rayons</a>
+    </div>
+  </div>
+  <figure>
+    <!-- Élément signature : le clavelin de vin jaune -->
+    <svg viewBox="0 0 180 340" width="180" role="img" aria-label="Clavelin, la bouteille trapue de 62 centilitres du vin jaune">
+      <defs>
+        <linearGradient id="verre" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#5a4a1e"/>
+          <stop offset=".45" stop-color="#8a742f"/>
+          <stop offset="1" stop-color="#4a3c16"/>
+        </linearGradient>
+      </defs>
+      <!-- cire -->
+      <path d="M74 18 h32 v20 h-32 z" fill="#C9A94E"/>
+      <path d="M70 16 h40 v8 h-40 z" fill="#b3933e"/>
+      <!-- col court -->
+      <path d="M76 38 v34 q0 10 -10 18 q-26 18 -26 52 v150 a12 12 0 0 0 12 12 h76 a12 12 0 0 0 12 -12 v-150 q0 -34 -26 -52 q-10 -8 -10 -18 v-34 z" fill="url(#verre)"/>
+      <!-- épaule marquée du clavelin -->
+      <path d="M42 142 h96" stroke="#3a2f10" stroke-width="2" opacity=".5"/>
+      <!-- reflet -->
+      <path d="M56 150 v130" stroke="#d6c887" stroke-width="6" stroke-linecap="round" opacity=".5"/>
+      <!-- étiquette -->
+      <rect x="52" y="176" width="76" height="72" fill="#F0E8D8"/>
+      <rect x="56" y="180" width="68" height="64" fill="none" stroke="#C9A94E" stroke-width="1.6"/>
+      <text x="90" y="203" text-anchor="middle" font-family="Baskerville,Georgia,serif" font-size="13" fill="#431722">VIN JAUNE</text>
+      <path d="M64 212 h52" stroke="#C9A94E" stroke-width="1"/>
+      <text x="90" y="230" text-anchor="middle" font-family="Baskerville,Georgia,serif" font-size="10" fill="#26141A">62 cl — savagnin</text>
+      <!-- socle -->
+      <path d="M30 332 h120" stroke="#C9A94E" stroke-width="2"/>
+    </svg>
+    <figcaption>Le clavelin : 62 centilitres, la part restante d'un litre après six ans de voile.</figcaption>
+  </figure>
+</section>
+
+<div class="frise-bouteilles" aria-hidden="true">
+  <svg viewBox="0 0 900 60">
+    <g fill="#C9A94E" opacity=".9">
+      <path d="M40 12 h8 v10 q0 6 6 10 q8 6 8 16 v10 h-36 v-10 q0 -10 8 -16 q6 -4 6 -10 z"/>
+      <path d="M140 6 h6 v22 q10 8 10 20 v10 h-26 v-10 q0 -12 10 -20 z"/>
+      <path d="M240 4 h5 v26 q7 6 7 18 v10 h-19 v-10 q0 -12 7 -18 z"/>
+      <path d="M340 12 h8 v10 q0 6 6 10 q8 6 8 16 v10 h-36 v-10 q0 -10 8 -16 q6 -4 6 -10 z"/>
+      <path d="M440 6 h6 v22 q10 8 10 20 v10 h-26 v-10 q0 -12 10 -20 z"/>
+      <path d="M540 4 h5 v26 q7 6 7 18 v10 h-19 v-10 q0 -12 7 -18 z"/>
+      <path d="M640 12 h8 v10 q0 6 6 10 q8 6 8 16 v10 h-36 v-10 q0 -10 8 -16 q6 -4 6 -10 z"/>
+      <path d="M740 6 h6 v22 q10 8 10 20 v10 h-26 v-10 q0 -12 10 -20 z"/>
+      <path d="M840 4 h5 v26 q7 6 7 18 v10 h-19 v-10 q0 -12 7 -18 z"/>
+    </g>
+  </svg>
+</div>
+
+<section class="bloc" id="maison">
+  <span class="cartouche-titre">La maison</span>
+  <h2>Une cave de famille, au bord du lac</h2>
+  <div class="deux-col">
+    <div>
+      <p>Tout commence en 1936, quand la famille Robbe reprend une cave à
+      Saint-Point-Lac. Près de quatre-vingt-dix ans plus tard, la maison n'a
+      pas bougé — et elle est toujours de la famille. Patrice et Xavier,
+      les frères Robbe, y font ce que leurs aînés faisaient avant eux :
+      goûter, choisir, conseiller.</p>
+      <p>À mi-chemin entre Pontarlier, Métabief et Mouthe, la cave est le
+      caviste de tout le Haut-Doubs : les habitués y remplissent leur cave
+      de l'hiver, les vacanciers du lac y trouvent la bouteille du soir.</p>
+    </div>
+    <div>
+      <p>On vient chez Robbe pour le vin — on y revient pour le reste :
+      bières de caractère et tireuses, whiskies, coffrets à offrir,
+      accessoires de brassage pour les amateurs qui veulent mettre la main
+      à la cuve.</p>
+      <p>Et surtout pour un conseil sans chichis : dites-nous le plat, le
+      budget, l'occasion — la bouteille suivra.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc" id="rayons" style="padding-top:0">
+  <span class="cartouche-titre">La cave</span>
+  <h2>Nos rayons</h2>
+  <div class="rayons">
+    <div class="rayon">
+      <h3>Vins du Jura</h3>
+      <p class="region">Arbois · Côtes du Jura</p>
+      <p>Le vignoble voisin, notre première fierté : savagnin et chardonnay,
+      trousseau et poulsard, vins ouillés ou typés — jusqu'au vin jaune,
+      roi de la cave.</p>
+    </div>
+    <div class="rayon">
+      <h3>Toute la France</h3>
+      <p class="region">Grandes et petites appellations</p>
+      <p>Une large sélection de vins de tout le pays, choisis bouteille par
+      bouteille : de quoi accorder chaque table, du quotidien aux grandes
+      occasions.</p>
+    </div>
+    <div class="rayon">
+      <h3>Bières &amp; brassage</h3>
+      <p class="region">Tireuses · accessoires</p>
+      <p>Bières à la bouteille, tireuses pour les fêtes et accessoires de
+      brassage pour les brasseurs amateurs du Haut-Doubs.</p>
+    </div>
+    <div class="rayon">
+      <h3>Whiskies &amp; coffrets</h3>
+      <p class="region">À offrir ou à garder</p>
+      <p>Whiskies choisis et coffrets composés à la demande : le cadeau
+      tout trouvé, préparé au comptoir.</p>
+    </div>
+  </div>
+  <p class="note-prix">Prix en magasin — la sélection évolue au fil des arrivages.</p>
+</section>
+
+<section class="bloc vin-jaune" id="vinjaune">
+  <div class="deux-col">
+    <div>
+      <span class="cartouche-titre">Le trésor du Jura</span>
+      <h2>Le vin jaune, notre or local</h2>
+      <p style="color:#e3d5be">Il naît à quelques lieues d'ici, dans le
+      vignoble jurassien, et n'a d'équivalent nulle part : élevé sous un
+      voile de levures, sans ouillage, il gagne ses arômes de noix, de curry
+      et de pomme verte au prix d'une patience rare. À la cave, on vous
+      aide à choisir le vôtre — et à décider s'il faut l'ouvrir ou
+      l'attendre encore.</p>
+    </div>
+    <dl class="fiche-jaune">
+      <dt>Cépage</dt>
+      <dd>Savagnin, seul autorisé.</dd>
+      <dt>Élevage</dt>
+      <dd>Six ans et trois mois minimum en fût, sous voile.</dd>
+      <dt>Bouteille</dt>
+      <dd>Le clavelin de 62 cl — ce qu'il reste d'un litre après l'évaporation, la « part des anges ».</dd>
+      <dt>À table</dt>
+      <dd>Poulet aux morilles, comté très affiné, ou pour lui-même, chambré.</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="bloc" id="visite">
+  <span class="cartouche-titre">Au comptoir</span>
+  <h2>Nous rendre visite</h2>
+  <div class="visite">
+    <div>
+      <p style="color:#e3d5be">La cave vous accueille toute l'année à
+      Saint-Point-Lac, à deux pas des rives du lac. Parking aisé, coffres
+      chargés avec le sourire — et une bouteille se goûte toujours mieux
+      quand on repart avec l'histoire qui va avec.</p>
+      <p class="avertissement">Horaires relevés dans les annuaires — à confirmer
+      ensemble avant mise en ligne.</p>
+    </div>
+    <div class="comptoir">
+      <h3>Cave Robbe — Robbe Frères</h3>
+      <dl>
+        <dt>Adresse</dt>
+        <dd>16 rue de Damvauthier<br>25160 Saint-Point-Lac</dd>
+        <dt>Téléphone</dt>
+        <dd><a href="tel:+33381696213">03 81 69 62 13</a></dd>
+        <dt>Horaires relevés</dt>
+        <dd>Lundi 13 h 30 – 18 h 30<br>Mardi – samedi 9 h – 12 h / 13 h 30 – 18 h 30</dd>
+        <dt>Itinéraire</dt>
+        <dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Cave+Robbe+Saint-Point-Lac">Ouvrir dans Google Maps</a></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <p><strong>Cave Robbe</strong> — caviste familial à Saint-Point-Lac depuis 1936.
+  Vins du Jura et de toute la France, vin jaune, bières, whiskies, coffrets et conseils de famille.</p>
+  <p class="alcool">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
+  <p class="mention-primo">Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle</p>
+</footer>

@@ -1,0 +1,216 @@
+<!--
+PLAN DE DESIGN — Le Tremplin (restaurant, Métabief)
+Palette : neige #F4F2ED · nuit d'altitude #101D2E · rouge télésiège #E03E2D · bleu piste #2F6DA3 · jaune fart #F0A72E
+Typo : titres Futura / "Century Gothic" / "Avenir Next" (géométrique sportive, capitales inclinées) — texte "Helvetica Neue" / Helvetica / Arial
+Concept : blocs pleine largeur taillés en diagonale comme une pente, énergie d'après-ski, tout part en dévers.
+ÉLÉMENT SIGNATURE : SVG "ligne de télésiège" (câble, pylônes, cabines suspendues) + courbe de tremplin dans le hero.
+Thème : unique, clair et vif (assumé) — neige éclatante, aplats rouges et bleus francs.
+Recherche (guides en ligne) : ~4,3/5 sur plus de 500 avis ; burgers et frites maison plébiscités, salade César citée,
+fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation conseillée en période de vacances.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Le Tremplin — maquette</title>
+<style>
+  :root{
+    --neige:#F4F2ED; --nuit:#101D2E; --rouge:#E03E2D; --piste:#2F6DA3; --fart:#F0A72E;
+    --titres:Futura,"Century Gothic","Avenir Next","Arial",sans-serif;
+    --texte:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--neige);color:var(--nuit);font-family:var(--texte);line-height:1.6}
+  .demo-band{
+    background:var(--nuit);color:var(--neige);font-size:.85rem;letter-spacing:.02em;
+    padding:.6rem 1.2rem;text-align:left;border-bottom:4px solid var(--fart);
+  }
+  .demo-band strong{color:var(--fart);font-weight:700}
+  header.top{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
+    padding:1rem 6vw;background:var(--neige);border-bottom:3px solid var(--nuit);
+    position:sticky;top:0;z-index:50;
+  }
+  .logo{font-family:var(--titres);font-weight:800;font-size:1.35rem;text-transform:uppercase;
+    letter-spacing:.06em;transform:skewX(-8deg);display:inline-block}
+  .logo em{font-style:normal;color:var(--rouge)}
+  nav.main a{
+    font-family:var(--titres);text-transform:uppercase;font-size:.85rem;letter-spacing:.1em;
+    color:var(--nuit);text-decoration:none;margin-left:1.4rem;border-bottom:3px solid transparent;padding-bottom:.2rem;
+  }
+  nav.main a:hover{border-color:var(--rouge)}
+  /* HERO */
+  .hero{position:relative;background:var(--piste);color:#fff;overflow:hidden;
+    padding:5rem 6vw 8rem;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
+  .hero h1{font-family:var(--titres);font-size:clamp(2.6rem,7vw,5rem);line-height:1;
+    text-transform:uppercase;transform:skewX(-8deg);letter-spacing:.02em;max-width:14ch}
+  .hero h1 span{color:var(--fart)}
+  .hero p.pitch{margin-top:1.2rem;font-size:1.15rem;max-width:34rem;font-weight:500}
+  .hero .cta-row{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{font-family:var(--titres);text-transform:uppercase;letter-spacing:.08em;font-weight:700;
+    text-decoration:none;padding:.85rem 1.6rem;display:inline-block;transform:skewX(-8deg)}
+  .btn > span{display:inline-block;transform:skewX(8deg)}
+  .btn-rouge{background:var(--rouge);color:#fff}
+  .btn-neige{background:var(--neige);color:var(--nuit)}
+  .btn:hover{translate:0 -2px}
+  .hero svg.remontee{position:absolute;right:-2vw;bottom:-1rem;width:min(640px,80vw);opacity:.9}
+  /* bandes diagonales */
+  .strip{padding:4.5rem 6vw}
+  .strip-rouge{background:var(--rouge);color:#fff;clip-path:polygon(0 8%,100% 0,100% 100%,0 100%);padding-top:6rem}
+  .strip-nuit{background:var(--nuit);color:var(--neige);clip-path:polygon(0 0,100% 6%,100% 100%,0 94%);padding-bottom:6rem}
+  h2{font-family:var(--titres);text-transform:uppercase;font-size:clamp(1.6rem,4vw,2.4rem);
+    transform:skewX(-8deg);margin-bottom:1.6rem;letter-spacing:.04em}
+  h2 .tick{display:inline-block;width:.6em;height:.18em;background:var(--fart);vertical-align:middle;margin-right:.4em}
+  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;margin-top:2rem}
+  .plat{border:3px solid currentColor;padding:1.4rem;position:relative}
+  .plat::before{content:"";position:absolute;top:-3px;left:-3px;width:2.2rem;height:.6rem;background:var(--fart)}
+  .plat h3{font-family:var(--titres);text-transform:uppercase;letter-spacing:.06em;font-size:1.05rem;margin-bottom:.6rem}
+  .plat ul{list-style:none;margin-top:.4rem}
+  .plat li{padding-left:1.1rem;position:relative;margin:.35rem 0}
+  .plat li::before{content:"";position:absolute;left:0;top:.55em;width:.55em;height:.18em;background:var(--fart);transform:skewX(-20deg)}
+  .note-carte{margin-top:1.6rem;font-size:.9rem;opacity:.85;max-width:46rem}
+  /* deux saisons */
+  .saisons{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
+  .saison{padding:1.6rem;background:rgba(255,255,255,.06);border-left:.5rem solid var(--fart)}
+  .saison.hiver{border-color:var(--piste)}
+  .saison.ete{border-color:var(--rouge)}
+  .saison h3{font-family:var(--titres);text-transform:uppercase;font-size:1.2rem;letter-spacing:.08em;margin-bottom:.6rem}
+  /* comptoir */
+  .comptoir{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:1.6rem}
+  .fait{background:var(--nuit);color:var(--neige);padding:1.2rem 1.3rem;transform:skewX(-4deg)}
+  .fait > div{transform:skewX(4deg)}
+  .fait b{color:var(--fart);font-family:var(--titres);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:.3rem}
+  /* réservation */
+  .resa{background:var(--fart);color:var(--nuit);padding:4rem 6vw;clip-path:polygon(0 12%,100% 0,100% 100%,0 100%)}
+  .resa .tel{font-family:var(--titres);font-size:clamp(1.8rem,5vw,3rem);font-weight:800;letter-spacing:.04em;
+    color:var(--nuit);text-decoration:none;border-bottom:5px solid var(--rouge)}
+  .resa p{max-width:40rem;margin-top:1rem}
+  /* accès */
+  .acces{padding:4rem 6vw;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;align-items:start}
+  .acces a{color:var(--piste);font-weight:700}
+  .acces .bloc h3{font-family:var(--titres);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem;font-size:1rem}
+  footer{background:var(--nuit);color:var(--neige);padding:1.4rem 6vw;font-size:.85rem;border-top:5px solid var(--rouge)}
+  footer a{color:var(--fart)}
+  @media (max-width:720px){
+    header.top{position:static}
+    nav.main{width:100%}
+    nav.main a{margin:0 1.2rem 0 0}
+    .hero{padding-bottom:11rem}
+    .hero svg.remontee{width:110vw;right:-15vw}
+  }
+</style>
+
+<div class="demo-band"><strong>Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</strong></div>
+
+<header class="top">
+  <span class="logo">Le <em>Tremplin</em></span>
+  <nav class="main">
+    <a href="#carte">La carte</a>
+    <a href="#saisons">Deux saisons</a>
+    <a href="#reserver">Réserver</a>
+    <a href="#acces">Accès</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Au pied des pistes,<br>plein <span>gaz</span>.</h1>
+  <p class="pitch">Burgers maison, pizzas généreuses et spécialités comtoises, à Métabief — le point de ralliement des skieurs l'hiver et des vététistes l'été.</p>
+  <div class="cta-row">
+    <a class="btn btn-rouge" href="tel:+33381491066"><span>03 81 49 10 66</span></a>
+    <a class="btn btn-neige" href="#carte"><span>Voir la carte</span></a>
+  </div>
+  <!-- signature : ligne de télésiège -->
+  <svg class="remontee" viewBox="0 0 640 220" fill="none" aria-hidden="true">
+    <path d="M0 60 L640 130" stroke="#F4F2ED" stroke-width="3"/>
+    <g stroke="#F4F2ED" stroke-width="4">
+      <path d="M120 73 L120 200 M100 200 L140 200"/>
+      <path d="M420 106 L420 200 M400 200 L440 200"/>
+    </g>
+    <g>
+      <g transform="translate(230,84)"><line x1="0" y1="0" x2="0" y2="26" stroke="#F0A72E" stroke-width="4"/><rect x="-16" y="26" width="32" height="22" fill="#E03E2D"/><rect x="-12" y="31" width="24" height="8" fill="#F4F2ED"/></g>
+      <g transform="translate(330,95)"><line x1="0" y1="0" x2="0" y2="26" stroke="#F0A72E" stroke-width="4"/><rect x="-16" y="26" width="32" height="22" fill="#F0A72E"/><rect x="-12" y="31" width="24" height="8" fill="#101D2E"/></g>
+      <g transform="translate(530,117)"><line x1="0" y1="0" x2="0" y2="26" stroke="#F0A72E" stroke-width="4"/><rect x="-16" y="26" width="32" height="22" fill="#E03E2D"/><rect x="-12" y="31" width="24" height="8" fill="#F4F2ED"/></g>
+    </g>
+    <path d="M0 205 Q170 205 300 168 Q420 134 470 60" stroke="#F0A72E" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+</section>
+
+<section class="strip strip-rouge" id="carte">
+  <h2><span class="tick"></span>La carte, façon station</h2>
+  <div class="cols">
+    <div class="plat">
+      <h3>Burgers</h3>
+      <p>La spécialité de la maison, celle que les habitués recommandent.</p>
+      <ul>
+        <li>Burgers maison</li>
+        <li>Frites maison</li>
+        <li>Salade César</li>
+      </ul>
+    </div>
+    <div class="plat">
+      <h3>Pizzas</h3>
+      <p>Généreuses, à partager en tablée après une journée dehors.</p>
+      <ul>
+        <li>Pizzas à la carte</li>
+        <li>Sur place ou à emporter — à préciser ensemble</li>
+      </ul>
+    </div>
+    <div class="plat">
+      <h3>Côté Comté</h3>
+      <p>Le terroir du Haut-Doubs, comme il se doit à Métabief.</p>
+      <ul>
+        <li>Fondue comtoise</li>
+        <li>Spécialités régionales</li>
+        <li>Crêpes en douceur</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note-carte">Carte présentée à titre indicatif d'après les plats cités par vos clients en ligne — la carte réelle et les tarifs seront repris avec vous lors de la validation.</p>
+</section>
+
+<section class="strip strip-nuit" id="saisons">
+  <h2><span class="tick"></span>Deux saisons, une adresse</h2>
+  <div class="saisons">
+    <div class="saison hiver">
+      <h3>L'hiver — skis au râtelier</h3>
+      <p>Au pied des pistes de Métabief : on déchausse, on s'attable. Le repaire des skieurs pour la pause de midi comme pour l'après-ski.</p>
+    </div>
+    <div class="saison ete">
+      <h3>L'été — VTT au portique</h3>
+      <p>Quand la station passe en mode VTT, Le Tremplin reste le camp de base : une table solide avant de remonter, une terrasse pour souffler après la descente.</p>
+    </div>
+  </div>
+</section>
+
+<section class="strip">
+  <h2><span class="tick"></span>Ce qu'on entend au comptoir</h2>
+  <div class="comptoir">
+    <div class="fait"><div><b>Accueil</b>Une équipe souriante, présente toute l'année, saison après saison.</div></div>
+    <div class="fait"><div><b>Réputation</b>Environ 4,3/5 sur les guides en ligne, sur plusieurs centaines d'avis.</div></div>
+    <div class="fait"><div><b>Ambiance</b>Un décor de station apprécié, où l'on s'attarde volontiers.</div></div>
+  </div>
+</section>
+
+<section class="resa" id="reserver">
+  <h2><span class="tick"></span>Réservez votre table</h2>
+  <a class="tel" href="tel:+33381491066">03 81 49 10 66</a>
+  <p>En période de vacances scolaires, la salle se remplit vite : un coup de fil avant de descendre des pistes, et votre table vous attend. Vous pouvez aussi écrire à <a href="mailto:restoletremplin@gmail.com">restoletremplin@gmail.com</a>.</p>
+</section>
+
+<section class="acces" id="acces">
+  <div class="bloc">
+    <h3>Où nous trouver</h3>
+    <p>Le Tremplin<br>3 place Xavier Authier<br>25370 Métabief — au pied des pistes</p>
+  </div>
+  <div class="bloc">
+    <h3>Itinéraire</h3>
+    <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Tremplin+M%C3%A9tabief">Ouvrir dans Google Maps</a></p>
+  </div>
+  <div class="bloc">
+    <h3>Contact</h3>
+    <p>Tél. <a href="tel:+33381491066">03 81 49 10 66</a><br><a href="mailto:restoletremplin@gmail.com">restoletremplin@gmail.com</a></p>
+  </div>
+</section>
+
+<footer>
+  Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle
+</footer>

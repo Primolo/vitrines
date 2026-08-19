@@ -1,0 +1,322 @@
+<!doctype html>
+<!-- PLAN DE DESIGN — Chez JP (Les Fourgs)
+     Concept : la façade du village — enseigne émaillée de bar-tabac, ticket de caisse et ardoise à la craie.
+     Palette (thème clair « papier journal » unique, assumé, avec une section ardoise sombre) :
+       rouge-carotte #B3312D  (rouge d'enseigne tabac — bandeaux, marqueurs)
+       zinc          #67757E  (gris du comptoir — filets, sous-titres)
+       papier-journal#F1ECE0  (fond général)
+       ardoise       #2E3336  (fond de la section carte, à la craie)
+       craie         #F4F2EA  (texte sur ardoise)
+       laiton        #BE9C4E  (poignées de porte — petits accents)
+     Typographie : titres en American Typewriter / Rockwell / Courier (slab d'enseigne et de ticket) ·
+       corps en Helvetica Neue / Arial (neutre de brasserie).
+     Mise en page : héros = enseigne émaillée pleine largeur à double liseré blanc (pas de photo,
+       de la typo peinte), puis bande-ticket d'infos pratiques, triptyque bar/table/tabac en colonnes
+       à filets carrés, et grande ardoise sombre pour la carte de la semaine.
+     ÉLÉMENT SIGNATURE : la CAROTTE DE TABAC — losange rouge à double pointe redessiné en SVG,
+       posé sur l'enseigne et repris en petit comme marqueur de liste ; double liseré émaillé
+       (deux filets blancs) sur tous les encadrés. Aucune crête de sapins, aucune ellipse
+       topographique, pas de cartes arrondies.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Chez JP — maquette</title>
+<style>
+  :root{
+    --rouge:#B3312D; --zinc:#67757E; --papier:#F1ECE0;
+    --ardoise:#2E3336; --craie:#F4F2EA; --laiton:#BE9C4E;
+    --encre:#26292B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--papier); color:var(--encre);
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:1.05rem; line-height:1.6;
+  }
+  h1,h2,h3,.slab{font-family:"American Typewriter","Rockwell","Courier New",monospace}
+  a{color:var(--rouge)}
+
+  .demo-banner{
+    background:var(--ardoise); color:var(--craie);
+    padding:.65rem 1.25rem; font-size:.85rem;
+    border-bottom:3px solid var(--rouge);
+  }
+  .demo-banner strong{color:#F2C97E}
+
+  .wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+
+  /* ENSEIGNE ÉMAILLÉE */
+  .enseigne{
+    background:var(--rouge);
+    color:#fff;
+    padding:2.2rem 1.25rem 2.4rem;
+    box-shadow:inset 0 0 0 8px var(--rouge), inset 0 0 0 10px #fff, inset 0 0 0 18px var(--rouge), inset 0 0 0 20px #fff;
+    text-align:left;
+  }
+  .enseigne .inner{
+    max-width:1040px;margin:0 auto;padding:1.6rem 1.5rem;
+    display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;
+  }
+  .enseigne h1{
+    font-size:clamp(2.6rem,7vw,4.6rem); letter-spacing:.06em; line-height:1;
+    text-transform:uppercase; text-shadow:3px 3px 0 rgba(0,0,0,.28);
+  }
+  .enseigne .sous{
+    margin-top:.9rem; display:inline-block; background:#fff; color:var(--rouge);
+    font-family:"American Typewriter","Rockwell","Courier New",monospace;
+    font-size:clamp(.8rem,2vw,1.05rem); letter-spacing:.28em; text-transform:uppercase;
+    padding:.4rem .9rem;
+  }
+  .enseigne .depuis{margin-top:.9rem;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+
+  /* Bande ticket */
+  .ticket{
+    background:#fff; border-bottom:1px solid #cfc8b8;
+    font-family:"American Typewriter","Rockwell","Courier New",monospace;
+  }
+  .ticket .wrap{
+    display:flex; flex-wrap:wrap; gap:.4rem 2.4rem;
+    padding:.9rem 1.25rem; font-size:.92rem;
+  }
+  .ticket b{color:var(--rouge)}
+  .ticket a{text-decoration:none}
+  .ticket a:hover{text-decoration:underline}
+
+  /* Sections */
+  section{padding:3.2rem 0}
+  .kicker{
+    display:inline-block; background:var(--rouge); color:#fff;
+    font-family:"American Typewriter","Rockwell","Courier New",monospace;
+    font-size:.75rem; letter-spacing:.22em; text-transform:uppercase;
+    padding:.3rem .8rem; margin-bottom:1rem;
+  }
+  h2{font-size:clamp(1.7rem,3.6vw,2.5rem); line-height:1.15; margin-bottom:1rem}
+
+  /* Triptyque */
+  .triptyque{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:2rem;border:2px solid var(--encre)}
+  .triptyque article{
+    padding:1.7rem 1.5rem; border-left:2px solid var(--encre); background:#fff;
+    box-shadow:inset 0 0 0 4px #fff, inset 0 0 0 5px var(--zinc);
+  }
+  .triptyque article:first-child{border-left:none}
+  .triptyque h3{font-size:1.15rem;letter-spacing:.06em;text-transform:uppercase;margin:.9rem 0 .5rem}
+  .triptyque p{font-size:.95rem}
+  .triptyque .num{
+    font-family:"American Typewriter","Rockwell","Courier New",monospace;
+    color:var(--zinc); font-size:.85rem; letter-spacing:.2em;
+  }
+
+  /* Carotte marqueur */
+  .carotte-li{list-style:none}
+  .carotte-li li{position:relative;padding:.55rem 0 .55rem 1.7rem}
+  .carotte-li li::before{
+    content:""; position:absolute; left:0; top:.98rem; width:1.05rem; height:.6rem;
+    background:var(--rouge);
+    clip-path:polygon(0% 50%, 18% 0%, 82% 0%, 100% 50%, 82% 100%, 18% 100%);
+  }
+
+  /* ARDOISE */
+  .ardoise{background:var(--ardoise); color:var(--craie)}
+  .ardoise .cadre{
+    border:3px solid #55605f; outline:1px solid #1d2224; outline-offset:-8px;
+    padding:2.4rem 2rem; background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.05), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(255,255,255,.04), transparent 50%);
+  }
+  .ardoise .kicker{background:var(--craie);color:var(--ardoise)}
+  .ardoise h2{color:#fff}
+  .ardoise .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.8rem}
+  .ardoise h3{
+    font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:#F2C97E;
+    border-bottom:2px dashed rgba(244,242,234,.4); padding-bottom:.5rem; margin-bottom:.7rem;
+  }
+  .ardoise li{border-bottom:1px dotted rgba(244,242,234,.25)}
+  .ardoise li:last-child{border-bottom:none}
+  .ardoise li b{display:block;font-family:"American Typewriter","Rockwell","Courier New",monospace;font-weight:700}
+  .ardoise li span{font-size:.88rem;color:#cdd3d0}
+  .ardoise .carotte-li li::before{background:#F2C97E}
+  .ardoise .mention{
+    margin-top:1.8rem;font-family:"American Typewriter","Rockwell","Courier New",monospace;
+    font-size:.9rem;color:#F2C97E;
+  }
+  .ardoise .mention + .mention{margin-top:.4rem;color:#cdd3d0}
+
+  /* Horaires */
+  .horaires table{width:100%;border-collapse:collapse;margin-top:1.6rem;background:#fff;border:2px solid var(--encre)}
+  .horaires caption{caption-side:bottom;font-size:.85rem;font-style:italic;padding-top:.7rem;color:var(--zinc);text-align:left}
+  .horaires th,.horaires td{padding:.7rem .9rem;border-bottom:1px solid #ddd6c6;text-align:left;font-size:.95rem}
+  .horaires th{font-family:"American Typewriter","Rockwell","Courier New",monospace;letter-spacing:.05em;width:34%}
+  .horaires tr.ferme td{color:var(--rouge);font-weight:600}
+  .horaires td small{display:block;color:var(--zinc)}
+
+  /* Contact */
+  .contact .fiche{
+    background:#fff;border:2px solid var(--encre);
+    box-shadow:6px 6px 0 var(--rouge);
+    padding:2rem 1.8rem; display:grid; grid-template-columns:1.1fr .9fr; gap:2rem;
+  }
+  .contact dt{font-family:"American Typewriter","Rockwell","Courier New",monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc)}
+  .contact dd{font-size:1.1rem;margin:.15rem 0 1rem}
+  .contact .fiche p{font-size:.95rem}
+  .contact .fiche .note{font-style:italic;color:var(--zinc);margin-top:1rem}
+
+  footer.credit{
+    background:var(--encre);color:#cfc8b8;font-size:.82rem;
+    padding:1.1rem 1.25rem;text-align:center;
+  }
+
+  @media (max-width:820px){
+    .enseigne .inner{grid-template-columns:1fr;gap:1.2rem;text-align:center;justify-items:center}
+    .triptyque{grid-template-columns:1fr}
+    .triptyque article{border-left:none;border-top:2px solid var(--encre)}
+    .triptyque article:first-child{border-top:none}
+    .ardoise .menu-grid{grid-template-columns:1fr}
+    .contact .fiche{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner"><strong>Maquette de démonstration réalisée par Primo (Montperreux)</strong> — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<header class="enseigne">
+  <div class="inner">
+    <!-- SIGNATURE : la carotte de tabac -->
+    <svg width="150" height="96" viewBox="0 0 150 96" role="img" aria-label="Carotte de tabac, enseigne de village">
+      <polygon points="4,48 30,6 120,6 146,48 120,90 30,90" fill="#8E1F1C" stroke="#fff" stroke-width="4"/>
+      <polygon points="18,48 38,18 112,18 132,48 112,78 38,78" fill="none" stroke="#fff" stroke-width="2.5"/>
+      <text x="75" y="57" text-anchor="middle" font-family="American Typewriter, Rockwell, Courier New, monospace"
+            font-size="26" letter-spacing="4" fill="#fff">TABAC</text>
+    </svg>
+    <div>
+      <h1>Chez JP</h1>
+      <span class="sous">Bar &middot; Restaurant &middot; Tabac</span>
+      <p class="depuis">74 Grande Rue — Les Fourgs · l'institution du village</p>
+    </div>
+  </div>
+</header>
+
+<div class="ticket">
+  <div class="wrap">
+    <span><b>Tél.</b> <a href="tel:+33381694196">03 81 69 41 96</a></span>
+    <span><b>Adresse</b> 74 Grande Rue, 25300 Les Fourgs</span>
+    <span><b>Fermeture</b> lundi &amp; mercredi</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="maison">
+    <span class="kicker">La maison</span>
+    <h2>Trois comptoirs, une seule adresse</h2>
+    <p>Sur la Grande Rue des Fourgs, Chez JP tient tous les rôles du village :
+    le café du matin, la table de midi et du soir, le tabac de dépannage.
+    Cuisine traditionnelle à base de produits frais, cadre chaleureux, décoration contemporaine —
+    et des soirées à thème qui rassemblent le plateau.</p>
+
+    <div class="triptyque">
+      <article>
+        <span class="num">N° 1</span>
+        <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true">
+          <path d="M10 16 h28 v18 a10 10 0 0 1 -10 10 h-8 a10 10 0 0 1 -10 -10 z" fill="none" stroke="#B3312D" stroke-width="3"/>
+          <path d="M38 20 h5 a6 6 0 0 1 0 12 h-6" fill="none" stroke="#B3312D" stroke-width="3"/>
+          <path d="M16 10 q3 -4 0 -8 M25 10 q3 -4 0 -8" stroke="#67757E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <h3>Le bar</h3>
+        <p>Ouvert dès le matin : café serré, journal, nouvelles du village.
+        Le comptoir où tout Les Fourgs finit par passer.</p>
+      </article>
+      <article>
+        <span class="num">N° 2</span>
+        <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true">
+          <circle cx="27" cy="27" r="16" fill="none" stroke="#B3312D" stroke-width="3"/>
+          <circle cx="27" cy="27" r="9" fill="none" stroke="#B3312D" stroke-width="2"/>
+          <path d="M6 12 v14 M3 12 v6 q0 3 3 3 M9 12 v6 q0 3 -3 3" stroke="#67757E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M48 12 v14 M48 12 q-5 1 -5 8 q0 4 5 4" stroke="#67757E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <h3>La table</h3>
+        <p>Une carte courte qui change chaque semaine, des produits frais,
+        et les classiques francs-comtois quand revient la neige.</p>
+      </article>
+      <article>
+        <span class="num">N° 3</span>
+        <svg width="54" height="34" viewBox="0 0 54 34" aria-hidden="true">
+          <polygon points="2,17 12,3 42,3 52,17 42,31 12,31" fill="#B3312D"/>
+          <polygon points="8,17 15,7 39,7 46,17 39,27 15,27" fill="none" stroke="#fff" stroke-width="2"/>
+        </svg>
+        <h3>Le tabac</h3>
+        <p>Tabac et dépannage du quotidien : le service qui fait d'un
+        bar-restaurant une vraie institution de village.</p>
+      </article>
+    </div>
+  </section>
+</div>
+
+<section class="ardoise" id="carte">
+  <div class="wrap">
+    <div class="cadre">
+      <span class="kicker">À l'ardoise</span>
+      <h2>La carte change chaque semaine</h2>
+      <div class="menu-grid">
+        <div>
+          <h3>Côté hiver</h3>
+          <ul class="carotte-li">
+            <li><b>Fondue</b><span>au fromage du pays, pour les soirs de neige</span></li>
+            <li><b>Tartiflette</b><span>généreuse, comme après une journée de piste</span></li>
+            <li><b>Mont d'Or chaud</b><span>le fromage-roi du Haut-Doubs, passé au four</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Côté été</h3>
+          <ul class="carotte-li">
+            <li><b>Filet mignon à la moutarde de cassis</b><span>la spécialité qui a ses habitués</span></li>
+            <li><b>Filet de bœuf sauce morilles</b><span>le grand classique comtois</span></li>
+            <li><b>Poissons &amp; carte de saison</b><span>selon le marché et l'humeur de la semaine</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mention">Prix à l'ardoise — nous consulter.</p>
+      <p class="mention">Soirées à thème régulières : annoncées au bar et sur la page Facebook de la maison.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="horaires" id="horaires">
+    <span class="kicker">Horaires</span>
+    <h2>Du café du matin au dernier service</h2>
+    <table>
+      <caption>Horaires relevés — à confirmer ensemble avant mise en ligne.</caption>
+      <tr><th>Mardi &amp; jeudi</th><td>9 h 30 – 14 h <small>puis 18 h – 23 h</small></td></tr>
+      <tr><th>Vendredi &amp; samedi</th><td>9 h 30 – 14 h <small>puis 18 h – 1 h</small></td></tr>
+      <tr><th>Dimanche</th><td>9 h 30 – 14 h <small>puis 18 h – 23 h</small></td></tr>
+      <tr class="ferme"><th>Lundi &amp; mercredi</th><td>Fermé</td></tr>
+    </table>
+  </section>
+
+  <section class="contact" id="contact">
+    <span class="kicker">Contact</span>
+    <h2>On se retrouve au 74 ?</h2>
+    <div class="fiche">
+      <dl>
+        <dt>Adresse</dt><dd>74 Grande Rue, 25300 Les Fourgs</dd>
+        <dt>Téléphone</dt><dd><a href="tel:+33381694196">03 81 69 41 96</a></dd>
+        <dt>Itinéraire</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Chez+JP+Les+Fourgs" rel="noopener">Ouvrir dans Google Maps</a></dd>
+      </dl>
+      <div>
+        <p>Réservation conseillée le week-end et pendant les vacances scolaires.
+        Groupes et soirées à thème : téléphonez-nous, on en parle au comptoir.</p>
+        <p class="note">Photos de la salle et menus définitifs à intégrer avec vous lors de la validation.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="credit">
+  Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
+</footer>
+
+</body>
+</html>

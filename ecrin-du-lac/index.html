@@ -1,0 +1,186 @@
+<!--
+PLAN DE DESIGN — L'Écrin du Lac (chambres d'hôtes, Saint-Point-Lac)
+Palette : lac profond #266A6C · brume #EFF5F4 · encre d'eau #1F3235 · sable gris #CBD6D2 · genêt #D9A441
+Typo : titres "Palatino Linotype" / Palatino / "Book Antiqua" / Georgia (serif humaniste, calme) — texte "Gill Sans" / "Gill Sans MT" / "Segoe UI" / sans-serif
+Concept : rail de navigation vertical fixé à gauche + longues sections éditoriales asymétriques, comme une promenade lente le long de la rive.
+ÉLÉMENT SIGNATURE : SVG "ondes concentriques" — cercles d'une goutte tombée dans le lac, repris en ponctuation de sections.
+Thème : unique, clair et brumeux (assumé) — vert d'eau, lumière douce du matin sur le lac.
+Recherche (fiches et plateformes en ligne) : ancienne ferme entièrement rénovée, ~870 m d'altitude, au cœur du village sur la rive du lac
+Saint-Point ; 4 chambres d'hôtes + un gîte ; note ~9,5/10 sur plateforme ; les hôtes saluent l'accueil très disponible, les chambres
+propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et faits maison ; jardin, parking privé gratuit, wifi.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>L'Écrin du Lac — maquette</title>
+<style>
+  :root{
+    --lac:#266A6C; --brume:#EFF5F4; --encre:#1F3235; --sable:#CBD6D2; --genet:#D9A441;
+    --serif:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Gill Sans","Gill Sans MT","Segoe UI","Helvetica Neue",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--brume);color:var(--encre);font-family:var(--sans);line-height:1.7}
+  .demo-band{background:var(--genet);color:var(--encre);padding:.6rem 1.2rem;font-size:.85rem;font-weight:600}
+  .cadre{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+  /* rail gauche */
+  aside.rail{
+    border-right:1px solid var(--sable);padding:2.2rem 1.6rem;position:sticky;top:0;height:100vh;
+    display:flex;flex-direction:column;gap:2rem;background:var(--brume);
+  }
+  .marque{font-family:var(--serif);font-size:1.5rem;line-height:1.25}
+  .marque small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lac);margin-top:.5rem}
+  aside.rail nav{display:flex;flex-direction:column;gap:.9rem}
+  aside.rail nav a{color:var(--encre);text-decoration:none;font-size:.9rem;letter-spacing:.05em}
+  aside.rail nav a::before{content:"";display:inline-block;width:.5rem;height:.5rem;border:1px solid var(--lac);border-radius:50%;margin-right:.6rem;vertical-align:middle}
+  aside.rail nav a:hover{color:var(--lac)}
+  aside.rail nav a:hover::before{background:var(--lac)}
+  .rail-pied{margin-top:auto;font-size:.78rem;color:var(--lac)}
+  main{min-width:0}
+  section{padding:5rem 7vw;border-bottom:1px solid var(--sable)}
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:center;min-height:78vh}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.15;max-width:18ch}
+  .hero h1 em{font-style:italic;color:var(--lac)}
+  .hero .sous{margin-top:1.4rem;max-width:36rem;font-size:1.05rem}
+  .hero .direct{margin-top:2rem;display:inline-block;background:var(--lac);color:var(--brume);text-decoration:none;
+    padding:.9rem 1.8rem;letter-spacing:.08em;font-size:.9rem;text-transform:uppercase}
+  .hero .direct:hover{background:var(--encre)}
+  svg.ondes{width:100%;max-width:380px;justify-self:center}
+  .ponctuation{display:block;margin:0 0 1.4rem}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,3.6vw,2.3rem);margin-bottom:1.2rem}
+  .duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:3rem}
+  .duo .colonne-titre{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lac)}
+  /* chambres */
+  .chambres{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--sable);border:1px solid var(--sable);margin-top:2rem}
+  .chambre{background:var(--brume);padding:1.8rem}
+  .chambre h3{font-family:var(--serif);font-weight:400;font-size:1.2rem;margin-bottom:.5rem}
+  .chambre p{font-size:.95rem}
+  .filet{width:2.4rem;height:2px;background:var(--genet);margin-bottom:.9rem}
+  /* louanges */
+  .louanges{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.4rem;margin-top:1.6rem}
+  .louange strong{font-family:var(--serif);font-weight:400;font-size:1.15rem;display:block;margin-bottom:.4rem}
+  .note-plateforme{margin-top:2.2rem;padding:1.2rem 1.5rem;border-left:3px solid var(--genet);background:#fff;max-width:44rem;font-size:.95rem}
+  /* résa directe */
+  .resa{background:var(--lac);color:var(--brume)}
+  .resa h2{color:#fff}
+  .resa .accroche{font-family:var(--serif);font-size:clamp(1.2rem,2.6vw,1.6rem);font-style:italic;max-width:38rem}
+  .resa .argu{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:2.4rem}
+  .resa .argu div{border-top:1px solid rgba(239,245,244,.4);padding-top:1rem}
+  .resa .argu b{display:block;margin-bottom:.3rem;letter-spacing:.06em}
+  .resa .badge{display:inline-block;margin-top:2.4rem;background:var(--genet);color:var(--encre);padding:.9rem 1.6rem;
+    font-weight:700;letter-spacing:.04em}
+  /* contact */
+  .contact dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:1.6rem}
+  .contact dt{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lac);margin-bottom:.4rem}
+  .contact a{color:var(--lac)}
+  footer{padding:1.4rem 7vw;font-size:.83rem;color:var(--encre);background:var(--sable)}
+  footer a{color:var(--encre)}
+  @media (max-width:860px){
+    .cadre{grid-template-columns:1fr}
+    aside.rail{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;border-right:0;border-bottom:1px solid var(--sable)}
+    aside.rail nav{flex-direction:row;flex-wrap:wrap;gap:1rem}
+    .rail-pied{display:none}
+    .hero{grid-template-columns:1fr;min-height:0}
+    .duo{grid-template-columns:1fr}
+    section{padding:3.5rem 6vw}
+  }
+</style>
+
+<div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<div class="cadre">
+  <aside class="rail">
+    <div class="marque">L'Écrin<br>du Lac<small>Saint-Point-Lac</small></div>
+    <nav>
+      <a href="#maison">La maison</a>
+      <a href="#chambres">Les chambres</a>
+      <a href="#table">Le petit-déjeuner</a>
+      <a href="#direct">Réservez en direct</a>
+      <a href="#venir">Venir</a>
+    </nav>
+    <div class="rail-pied">Rive du lac<br>de Saint-Point<br>~870 m d'altitude</div>
+  </aside>
+
+  <main>
+    <section class="hero" id="maison">
+      <div>
+        <h1>Une ancienne ferme posée <em>au bord du lac</em>, quatre chambres, un seul mot d'ordre&nbsp;: prendre le temps.</h1>
+        <p class="sous">Au cœur du village de Saint-Point-Lac, sur la rive du lac Saint-Point, L'Écrin du Lac vous reçoit dans une ferme comtoise entièrement rénovée&nbsp;: quatre chambres d'hôtes décorées avec soin, un gîte indépendant, un jardin pour les fins de journée.</p>
+        <a class="direct" href="#direct">Réserver en direct</a>
+      </div>
+      <!-- signature : ondes concentriques -->
+      <svg class="ondes" viewBox="0 0 380 380" fill="none" aria-hidden="true">
+        <circle cx="190" cy="190" r="30" stroke="#266A6C" stroke-width="2"/>
+        <circle cx="190" cy="190" r="70" stroke="#266A6C" stroke-width="1.6" opacity=".75"/>
+        <circle cx="190" cy="190" r="112" stroke="#266A6C" stroke-width="1.3" opacity=".5"/>
+        <circle cx="190" cy="190" r="156" stroke="#266A6C" stroke-width="1" opacity=".3"/>
+        <circle cx="190" cy="190" r="186" stroke="#266A6C" stroke-width="1" opacity=".15"/>
+        <circle cx="190" cy="190" r="6" fill="#D9A441"/>
+      </svg>
+    </section>
+
+    <section id="chambres">
+      <svg class="ponctuation" width="72" height="24" viewBox="0 0 72 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" stroke="#266A6C" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="#266A6C" opacity=".4"/>
+        <line x1="30" y1="12" x2="72" y2="12" stroke="#CBD6D2"/>
+      </svg>
+      <h2>Quatre chambres, et un gîte pour les séjours longs</h2>
+      <div class="duo">
+        <p class="colonne-titre">Dormir</p>
+        <p>Des chambres spacieuses et impeccablement tenues — c'est ce que vos hôtes soulignent le plus souvent —, décorées avec style et raffinement dans les volumes de l'ancienne ferme. Le gîte tout équipé complète l'offre pour ceux qui posent leurs valises plus longtemps.</p>
+      </div>
+      <div class="chambres">
+        <div class="chambre"><div class="filet"></div><h3>Les chambres</h3><p>Quatre chambres d'hôtes, chacune avec son caractère — noms, capacités et détails à reprendre ensemble.</p></div>
+        <div class="chambre"><div class="filet"></div><h3>Le gîte</h3><p>Un logement indépendant tout équipé, idéal pour un séjour en famille au bord du lac.</p></div>
+        <div class="chambre"><div class="filet"></div><h3>Les à-côtés</h3><p>Jardin, parking privé gratuit, wifi — et le lac à quelques pas de la porte.</p></div>
+      </div>
+    </section>
+
+    <section id="table">
+      <svg class="ponctuation" width="72" height="24" viewBox="0 0 72 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" stroke="#266A6C" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="#266A6C" opacity=".4"/>
+        <line x1="30" y1="12" x2="72" y2="12" stroke="#CBD6D2"/>
+      </svg>
+      <h2>Le matin commence bien</h2>
+      <div class="duo">
+        <p class="colonne-titre">Petit-déjeuner</p>
+        <p>Un petit-déjeuner copieux, où les produits régionaux côtoient le fait maison — l'un des moments que vos visiteurs citent le plus volontiers. Il est compris dans la nuitée, comme le wifi et le parking.</p>
+      </div>
+      <div class="louanges">
+        <div class="louange"><strong>L'accueil</strong>Une maîtresse de maison décrite comme chaleureuse et très disponible, du premier contact au départ.</div>
+        <div class="louange"><strong>Le calme</strong>Le cœur d'un village de rive, l'eau à deux pas, la montagne autour.</div>
+        <div class="louange"><strong>Le soin</strong>Propreté et confort relevés séjour après séjour.</div>
+      </div>
+      <p class="note-plateforme">Les voyageurs attribuent à la maison une note d'environ 9,5/10 sur les grandes plateformes de réservation. C'est précisément pour cela qu'ils peuvent — et devraient — réserver chez vous en direct.</p>
+    </section>
+
+    <section class="resa" id="direct">
+      <h2>Réservez en direct</h2>
+      <p class="accroche">Réservation en direct, sans commission de plateforme.</p>
+      <div class="argu">
+        <div><b>Le juste circuit</b>En réservant auprès de la maison, chaque euro de votre séjour reste dans la maison — aucun intermédiaire ne prélève sa part.</div>
+        <div><b>Le bon interlocuteur</b>Vous échangez directement avec vos hôtes&nbsp;: demandes particulières, conseils de saison, arrivées tardives — tout se règle simplement.</div>
+        <div><b>La même chambre</b>Mêmes chambres, même petit-déjeuner, même vue — simplement réservés en circuit court.</div>
+      </div>
+      <span class="badge">Contactez la maison — coordonnées directes à insérer lors de la validation</span>
+    </section>
+
+    <section class="contact" id="venir">
+      <svg class="ponctuation" width="72" height="24" viewBox="0 0 72 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" stroke="#266A6C" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="#266A6C" opacity=".4"/>
+        <line x1="30" y1="12" x2="72" y2="12" stroke="#CBD6D2"/>
+      </svg>
+      <h2>Venir à Saint-Point-Lac</h2>
+      <dl>
+        <div><dt>Commune</dt><dd>Saint-Point-Lac (Doubs), rive du lac Saint-Point, Haut-Doubs.</dd></div>
+        <div><dt>Itinéraire</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=L%27%C3%89crin+du+Lac+Saint-Point-Lac">Ouvrir dans Google Maps</a></dd></div>
+        <div><dt>Contact direct</dt><dd>Téléphone et adresse exacte à reprendre avec vous lors de la validation de la maquette.</dd></div>
+      </dl>
+    </section>
+
+    <footer>
+      Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle
+    </footer>
+  </main>
+</div>

@@ -1,0 +1,309 @@
+<!--
+PLAN DE DESIGN — Fromagerie de Vaux-et-Chantegrue
+Concept (1 phrase) : « Le matin à la fruitière » — la lumière de l'aube sur le lait
+et le cuivre des cuves, une identité claire, laiteuse et chaleureuse, à l'opposé
+de l'univers cave/affinage de la seconde fromagerie.
+Palette (thème clair unique, assumé) :
+  --lait      #FBF7EE  blanc lait (fond)
+  --creme-cru #F3EAD6  crème crue (fonds de section)
+  --paille    #C98F2E  paille dorée (accents, titres secondaires)
+  --cuivre    #B4653C  cuivre de cuve (élément signature, liens)
+  --pature    #5C7A4E  vert pâture (touches, tampon coop)
+  --encre     #2E2820  brun encre (texte)
+  + --cendre  #6E6459  raie cendrée du morbier (filets, légendes)
+Typographies (système + fallbacks) :
+  Display : Palatino, "Palatino Linotype", "URW Palladio L", Georgia, serif
+  Texte   : Seravek, "Gill Sans", "Gill Sans MT", "Segoe UI", Verdana, sans-serif
+Élément signature : le CHAUDRON DE CUIVRE de la fruitière (SVG inline), décliné
+en grand dans le héros, en pictogrammes de section et en filigrane du pied.
+Second motif : la frise de bidons de lait. Layout éditorial aligné à gauche,
+rien de systématiquement centré.
+Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe)
++ généralités AOP vérifiables ; aucune coordonnée inventée, prix en magasin.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Fromagerie de Vaux-et-Chantegrue — maquette</title>
+<style>
+  :root{
+    --lait:#FBF7EE; --creme-cru:#F3EAD6; --paille:#C98F2E; --cuivre:#B4653C;
+    --pature:#5C7A4E; --encre:#2E2820; --cendre:#6E6459;
+    --serif:Palatino,"Palatino Linotype","URW Palladio L",Georgia,serif;
+    --sans:Seravek,"Gill Sans","Gill Sans MT","Segoe UI",Verdana,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--lait);color:var(--encre);font-family:var(--sans);line-height:1.6}
+  .demo-band{background:var(--encre);color:var(--lait);font-size:.8rem;padding:.5rem 1.25rem;text-align:left;letter-spacing:.02em}
+  a{color:var(--cuivre)}
+  img,svg{max-width:100%}
+
+  header.site{display:flex;flex-wrap:wrap;align-items:baseline;gap:1rem 2rem;
+    padding:1.25rem 5vw;border-bottom:3px double var(--paille)}
+  .marque{font-family:var(--serif);font-size:1.25rem;letter-spacing:.02em}
+  .marque small{display:block;font-family:var(--sans);font-size:.72rem;color:var(--cendre);
+    text-transform:uppercase;letter-spacing:.18em}
+  nav.principale{margin-left:auto;display:flex;gap:1.4rem;flex-wrap:wrap}
+  nav.principale a{text-decoration:none;font-size:.85rem;text-transform:uppercase;
+    letter-spacing:.12em;color:var(--encre);border-bottom:2px solid transparent;padding-bottom:.15rem}
+  nav.principale a:hover{border-color:var(--cuivre);color:var(--cuivre)}
+
+  .hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;
+    align-items:center;padding:4rem 5vw 3.5rem;
+    background:linear-gradient(180deg,var(--lait) 55%,var(--creme-cru) 55%)}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.6vw,3.4rem);
+    line-height:1.12;max-width:15ch}
+  .hero h1 em{font-style:italic;color:var(--cuivre)}
+  .sur-titre{text-transform:uppercase;letter-spacing:.24em;font-size:.75rem;
+    color:var(--pature);margin-bottom:1rem}
+  .hero p.chapo{margin-top:1.25rem;max-width:46ch;font-size:1.02rem;color:#4a4238}
+  .hero .actions{margin-top:1.75rem;display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-size:.85rem;text-transform:uppercase;
+    letter-spacing:.12em;padding:.75rem 1.4rem;border:1.5px solid var(--cuivre)}
+  .btn.plein{background:var(--cuivre);color:var(--lait)}
+  .btn.plein:hover{background:#9a552f}
+  .btn.vide{color:var(--cuivre)}
+  .btn.vide:hover{background:rgba(180,101,60,.08)}
+  .hero figure{justify-self:center}
+  .hero figcaption{font-size:.75rem;color:var(--cendre);margin-top:.6rem;font-style:italic}
+
+  .frise-bidons{background:var(--creme-cru);padding:0 5vw 1rem;overflow:hidden}
+  .frise-bidons svg{display:block;width:100%;height:auto}
+
+  section.bloc{padding:3.5rem 5vw}
+  .num{font-family:var(--serif);color:var(--paille);font-size:1rem;letter-spacing:.1em}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3vw,2.2rem);
+    margin:.35rem 0 1.2rem;max-width:24ch}
+  .deux-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem}
+  .deux-col p+p{margin-top:1rem}
+  .encart{border-left:4px solid var(--pature);background:var(--creme-cru);
+    padding:1.25rem 1.5rem;font-size:.95rem}
+  .encart strong{color:var(--pature)}
+
+  .produits{background:var(--creme-cru);border-top:3px double var(--paille);
+    border-bottom:3px double var(--paille)}
+  .rang-produit{display:grid;grid-template-columns:90px minmax(0,1fr) minmax(0,2fr);
+    gap:1.5rem;align-items:start;padding:1.75rem 0;border-bottom:1px solid #ddceb2}
+  .rang-produit:last-of-type{border-bottom:none}
+  .rang-produit h3{font-family:var(--serif);font-weight:400;font-size:1.35rem}
+  .rang-produit .aop{display:inline-block;font-size:.68rem;text-transform:uppercase;
+    letter-spacing:.16em;color:var(--lait);background:var(--pature);
+    padding:.15rem .5rem;margin-top:.4rem}
+  .rang-produit p{font-size:.95rem;color:#4a4238}
+  .note-prix{font-size:.85rem;color:var(--cendre);font-style:italic;margin-top:1.5rem}
+
+  .magasin{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:2.5rem;align-items:start}
+  .carte-acces{border:1.5px solid var(--cendre);padding:1.5rem 1.75rem;background:#fff}
+  .carte-acces h3{font-family:var(--serif);font-weight:400;font-size:1.2rem;margin-bottom:.75rem}
+  .carte-acces dl{font-size:.95rem}
+  .carte-acces dt{text-transform:uppercase;font-size:.7rem;letter-spacing:.16em;
+    color:var(--cendre);margin-top:.9rem}
+  .carte-acces dd{margin-top:.15rem}
+
+  footer.site{background:var(--encre);color:#d9cfbf;padding:2.5rem 5vw;position:relative;overflow:hidden}
+  footer.site .filigrane{position:absolute;right:-30px;bottom:-40px;opacity:.12;width:240px}
+  footer.site p{font-size:.85rem;max-width:60ch}
+  footer.site a{color:var(--paille)}
+  .mention-primo{margin-top:1.25rem;border-top:1px solid #55493c;padding-top:1rem;font-size:.8rem}
+
+  @media (max-width:820px){
+    .hero,.deux-col,.magasin{grid-template-columns:1fr}
+    .hero{gap:2rem}
+    .hero figure{order:-1;max-width:260px}
+    .rang-produit{grid-template-columns:64px minmax(0,1fr)}
+    .rang-produit p{grid-column:1/-1}
+  }
+</style>
+
+<div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<header class="site">
+  <div class="marque">Fromagerie de Vaux-et-Chantegrue
+    <small>Coopérative fromagère · Haut-Doubs</small>
+  </div>
+  <nav class="principale">
+    <a href="#fruitiere">La fruitière</a>
+    <a href="#fromages">Nos fromages</a>
+    <a href="#magasin">Vente directe</a>
+    <a href="#acces">Accès</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <p class="sur-titre">Coopérative de village · Vaux-et-Chantegrue (25160)</p>
+    <h1>Le lait de l'aube devient <em>comté</em>.</h1>
+    <p class="chapo">Chaque matin, le lait cru des fermes du village arrive à la
+    fromagerie. Dans les cuves de cuivre, il devient comté, morbier et, à la
+    saison froide, mont d'or — des fromages d'appellation, vendus directement
+    au magasin de la coopérative.</p>
+    <div class="actions">
+      <a class="btn plein" href="#fromages">Découvrir nos fromages</a>
+      <a class="btn vide" href="#magasin">Le magasin</a>
+    </div>
+  </div>
+  <figure>
+    <!-- Élément signature : le chaudron de cuivre -->
+    <svg viewBox="0 0 340 320" width="340" role="img" aria-label="Chaudron de cuivre de la fruitière, rempli de lait">
+      <defs>
+        <linearGradient id="cuivreG" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#c97a4b"/>
+          <stop offset=".55" stop-color="#B4653C"/>
+          <stop offset="1" stop-color="#8a4a28"/>
+        </linearGradient>
+      </defs>
+      <!-- soleil d'aube -->
+      <circle cx="262" cy="64" r="40" fill="#C98F2E" opacity=".35"/>
+      <circle cx="262" cy="64" r="26" fill="#C98F2E" opacity=".55"/>
+      <!-- potence -->
+      <path d="M40 22 v250" stroke="#6E6459" stroke-width="9" fill="none"/>
+      <path d="M40 30 h150" stroke="#6E6459" stroke-width="9" fill="none"/>
+      <path d="M186 26 v34" stroke="#6E6459" stroke-width="7" fill="none"/>
+      <!-- chaudron -->
+      <path d="M96 96 h180 l-14 96 a76 60 0 0 1 -152 0 z" fill="url(#cuivreG)"/>
+      <ellipse cx="186" cy="96" rx="90" ry="16" fill="#e2a877"/>
+      <ellipse cx="186" cy="96" rx="74" ry="11" fill="#FBF7EE"/>
+      <!-- reflet -->
+      <path d="M116 118 q6 60 30 84" stroke="#f0c29b" stroke-width="7" fill="none" stroke-linecap="round" opacity=".8"/>
+      <!-- vapeur -->
+      <path d="M158 74 q-8 -14 2 -26 q9 -11 2 -22" stroke="#6E6459" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55"/>
+      <path d="M206 76 q9 -13 0 -25 q-8 -12 0 -23" stroke="#6E6459" stroke-width="4" fill="none" stroke-linecap="round" opacity=".4"/>
+      <!-- tranche-caillé -->
+      <path d="M232 40 l38 74" stroke="#5C7A4E" stroke-width="6" stroke-linecap="round"/>
+      <path d="M256 88 l24 -12" stroke="#5C7A4E" stroke-width="6" stroke-linecap="round"/>
+      <!-- sol -->
+      <path d="M18 292 h304" stroke="#6E6459" stroke-width="3" opacity=".5"/>
+    </svg>
+    <figcaption>La cuve de cuivre, cœur battant de la fruitière.</figcaption>
+  </figure>
+</section>
+
+<div class="frise-bidons" aria-hidden="true">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="xMidYMax meet">
+    <g fill="none" stroke="#6E6459" stroke-width="3" opacity=".55">
+      <g transform="translate(60,8)"><path d="M0 52 v-30 q0 -8 8 -10 q6 -6 6 -8 h8 q0 2 6 8 q8 2 8 10 v30"/><path d="M-4 22 h44" stroke-width="2.5"/></g>
+      <g transform="translate(210,8)"><path d="M0 52 v-30 q0 -8 8 -10 q6 -6 6 -8 h8 q0 2 6 8 q8 2 8 10 v30"/><path d="M-4 22 h44" stroke-width="2.5"/></g>
+      <g transform="translate(360,8)"><path d="M0 52 v-30 q0 -8 8 -10 q6 -6 6 -8 h8 q0 2 6 8 q8 2 8 10 v30"/><path d="M-4 22 h44" stroke-width="2.5"/></g>
+      <g transform="translate(510,8)"><path d="M0 52 v-30 q0 -8 8 -10 q6 -6 6 -8 h8 q0 2 6 8 q8 2 8 10 v30"/><path d="M-4 22 h44" stroke-width="2.5"/></g>
+      <g transform="translate(660,8)"><path d="M0 52 v-30 q0 -8 8 -10 q6 -6 6 -8 h8 q0 2 6 8 q8 2 8 10 v30"/><path d="M-4 22 h44" stroke-width="2.5"/></g>
+      <g transform="translate(810,8)"><path d="M0 52 v-30 q0 -8 8 -10 q6 -6 6 -8 h8 q0 2 6 8 q8 2 8 10 v30"/><path d="M-4 22 h44" stroke-width="2.5"/></g>
+      <g transform="translate(960,8)"><path d="M0 52 v-30 q0 -8 8 -10 q6 -6 6 -8 h8 q0 2 6 8 q8 2 8 10 v30"/><path d="M-4 22 h44" stroke-width="2.5"/></g>
+      <g transform="translate(1110,8)"><path d="M0 52 v-30 q0 -8 8 -10 q6 -6 6 -8 h8 q0 2 6 8 q8 2 8 10 v30"/><path d="M-4 22 h44" stroke-width="2.5"/></g>
+    </g>
+    <path d="M0 59 h1200" stroke="#C98F2E" stroke-width="2"/>
+  </svg>
+</div>
+
+<section class="bloc" id="fruitiere">
+  <p class="num">01 —</p>
+  <h2>Une fruitière, c'est le village qui fait fromage ensemble</h2>
+  <div class="deux-col">
+    <div>
+      <p>La Fromagerie de Vaux-et-Chantegrue est une coopérative : les
+      producteurs de lait du village en sont les sociétaires. C'est le modèle
+      des « fruitières » du massif jurassien, où l'on met le lait en commun
+      pour fabriquer des fromages qu'une ferme seule ne pourrait pas produire —
+      à commencer par le comté, dont chaque meule demande environ 400 litres
+      de lait.</p>
+      <p>Le lait est collecté dans les fermes voisines, travaillé cru, sans
+      transport inutile : du pré à la cuve, il ne quitte pas le pays.</p>
+    </div>
+    <div class="encart">
+      <p><strong>Du pré au magasin, en circuit court.</strong> Ici, le fromage
+      que vous achetez a été fabriqué sur place, avec le lait des fermes du
+      village. La vente directe rémunère les producteurs au juste prix — et
+      vous garantit la fraîcheur.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc produits" id="fromages">
+  <p class="num">02 —</p>
+  <h2>Trois fromages d'appellation, un seul terroir</h2>
+
+  <div class="rang-produit">
+    <svg viewBox="0 0 90 90" width="90" role="img" aria-label="Meule de comté entamée">
+      <path d="M8 58 a37 16 0 0 1 74 0 v10 a37 16 0 0 1 -74 0 z" fill="#C98F2E"/>
+      <ellipse cx="45" cy="58" rx="37" ry="16" fill="#e8c977"/>
+      <path d="M45 58 L78 50 a37 16 0 0 0 -33 -8 z" fill="#FBF7EE" stroke="#C98F2E" stroke-width="1.5"/>
+    </svg>
+    <div>
+      <h3>Comté</h3>
+      <span class="aop">AOP · lait cru</span>
+    </div>
+    <p>Fabriqué chaque jour dans nos cuves de cuivre à partir du lait cru de
+    vaches montbéliardes, puis confié à l'affinage sur épicéa. Fruité ou
+    doux selon l'affinage : demandez à goûter avant de choisir, c'est
+    l'usage au magasin.</p>
+  </div>
+
+  <div class="rang-produit">
+    <svg viewBox="0 0 90 90" width="90" role="img" aria-label="Morbier et sa raie cendrée">
+      <path d="M10 34 h70 v34 a10 6 0 0 1 -10 6 h-50 a10 6 0 0 1 -10 -6 z" fill="#F3EAD6" stroke="#C98F2E" stroke-width="2"/>
+      <path d="M10 52 h70" stroke="#6E6459" stroke-width="5"/>
+      <ellipse cx="45" cy="34" rx="35" ry="9" fill="#FBF7EE" stroke="#C98F2E" stroke-width="2"/>
+    </svg>
+    <div>
+      <h3>Morbier</h3>
+      <span class="aop">AOP · lait cru</span>
+    </div>
+    <p>Reconnaissable entre tous à sa fine raie de cendre végétale, héritage
+    du temps où l'on protégeait le caillé du matin en attendant celui du
+    soir. Pâte souple, parfum de crème et de noisette.</p>
+  </div>
+
+  <div class="rang-produit">
+    <svg viewBox="0 0 90 90" width="90" role="img" aria-label="Mont d'or dans sa boîte d'épicéa">
+      <ellipse cx="45" cy="52" rx="36" ry="18" fill="#d9b98a"/>
+      <ellipse cx="45" cy="46" rx="36" ry="18" fill="none" stroke="#8a6b3f" stroke-width="3"/>
+      <ellipse cx="45" cy="44" rx="28" ry="12" fill="#F3EAD6"/>
+      <path d="M25 41 q10 8 20 0 q10 -8 20 0" stroke="#C98F2E" stroke-width="2" fill="none"/>
+    </svg>
+    <div>
+      <h3>Mont d'or</h3>
+      <span class="aop">AOP · saisonnier</span>
+    </div>
+    <p>Le fromage de la saison froide : cerclé d'une sangle d'épicéa et
+    servi dans sa boîte, à la cuillère ou chaud au four. Disponible au
+    magasin de l'automne au printemps, le temps de sa saison d'appellation.</p>
+  </div>
+
+  <p class="note-prix">Prix en magasin — l'équipe vous conseille sur place selon les affinages disponibles.</p>
+</section>
+
+<section class="bloc" id="magasin">
+  <p class="num">03 —</p>
+  <h2>La vente directe, au magasin de la coopérative</h2>
+  <div class="magasin">
+    <div>
+      <p>Le magasin de la fromagerie vous accueille à Vaux-et-Chantegrue pour
+      la vente directe : comté de nos cuves, morbier, mont d'or en saison,
+      et une sélection de produits du terroir pour compléter votre plateau.</p>
+      <p style="margin-top:1rem">Vous passez par le Haut-Doubs, entre lacs et
+      montagnes ? La fromagerie est une halte gourmande toute trouvée sur la
+      route des vacances comme au quotidien.</p>
+    </div>
+    <div class="carte-acces" id="acces">
+      <h3>Nous trouver</h3>
+      <dl>
+        <dt>Adresse</dt>
+        <dd>Fromagerie de Vaux-et-Chantegrue<br>25160 Vaux-et-Chantegrue, Doubs</dd>
+        <dt>Itinéraire</dt>
+        <dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Fromagerie+de+Vaux-et-Chantegrue+Vaux-et-Chantegrue">Ouvrir dans Google Maps</a></dd>
+        <dt>Horaires &amp; téléphone</dt>
+        <dd>À compléter avec vous lors de la mise en ligne.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <svg class="filigrane" viewBox="0 0 340 320" aria-hidden="true">
+    <path d="M96 96 h180 l-14 96 a76 60 0 0 1 -152 0 z" fill="#FBF7EE"/>
+    <ellipse cx="186" cy="96" rx="90" ry="16" fill="#FBF7EE"/>
+  </svg>
+  <p><strong>Fromagerie de Vaux-et-Chantegrue</strong> — coopérative fromagère du Haut-Doubs.
+  Comté, morbier et mont d'or fabriqués au village, vendus en direct.</p>
+  <p class="mention-primo">Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle</p>
+</footer>

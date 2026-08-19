@@ -1,0 +1,372 @@
+<!--
+PLAN DE DESIGN — La Ruch'Bio (épicerie bio, Jougne)
+Palette (la ruche au col de Jougne) :
+  - Cire claire      #f7f2e6 (fond clair, cire d'opercule)
+  - Miel ambré       #cf9433 (accents, alvéoles pleines)
+  - Propolis         #4a3a24 (texte, bois sombre de la ruche)
+  - Vert de prairie  #6c8f3f (le bio, tiges et feuilles)
+  - Nuit de rucher   #241d12 (fond du thème sombre)
+  - Lait d'avoine    #efe6d2 (texte du thème sombre)
+Typographie : Futura / "Century Gothic" (titres géométriques, cousins de l'hexagone) +
+Charter / Georgia / serif (courant, chaleur d'épicerie de village).
+Concept : la ruche discrète — un hexagone jamais criard : en poinçon, en puce, en trame
+légère, pendant que le contenu parle de vrac, de producteurs et de frontière toute proche.
+ÉLÉMENT SIGNATURE : alvéoles SVG en nid discret (coin de hero) + trajet pointillé d'une
+abeille qui traverse la page + puces hexagonales.
+Thème : double thème par tokens — clair par défaut, sombre automatique via
+prefers-color-scheme (les deux palettes ci-dessus).
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>La Ruch'Bio — maquette</title>
+<style>
+  :root{
+    --fond:#f7f2e6;
+    --fond2:#efe6d2;
+    --texte:#4a3a24;
+    --texte2:#6d5c42;
+    --miel:#cf9433;
+    --miel-fonce:#a97722;
+    --vert:#6c8f3f;
+    --carte:#fffdf6;
+    --trait:#e0d4b8;
+    --titres:Futura,"Century Gothic",Verdana,sans-serif;
+    --courant:Charter,Georgia,"Times New Roman",serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --fond:#241d12;
+      --fond2:#1c160d;
+      --texte:#efe6d2;
+      --texte2:#c8b795;
+      --miel:#d9a648;
+      --miel-fonce:#e8bc66;
+      --vert:#8fae62;
+      --carte:#2e2617;
+      --trait:#453a25;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--fond);color:var(--texte);font-family:var(--courant);line-height:1.7}
+
+  .demo-banner{
+    background:var(--texte);color:var(--fond);
+    font-family:var(--titres);font-size:.78rem;text-align:center;padding:.55rem 1rem;
+  }
+  @media (prefers-color-scheme: dark){
+    .demo-banner{background:#efe6d2;color:#241d12}
+  }
+
+  header.site{
+    padding:1.1rem 6vw;display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 2rem;
+    border-bottom:1px solid var(--trait);
+  }
+  .logo{display:flex;align-items:center;gap:.7rem}
+  .logo svg{width:38px;height:42px;flex:none}
+  .logo .nom{font-family:var(--titres);font-weight:700;font-size:1.25rem;letter-spacing:.02em}
+  .logo .nom small{display:block;font-weight:400;font-size:.7rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--vert)}
+  nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:1.5rem;
+    font-family:var(--titres);font-size:.85rem}
+  nav.haut a{color:var(--texte);text-decoration:none}
+  nav.haut a:hover{color:var(--miel-fonce)}
+
+  /* ---- HERO avec nid d'alvéoles en coin ---- */
+  .hero{position:relative;overflow:hidden;padding:4rem 6vw 3.6rem;background:var(--fond)}
+  .alveoles{position:absolute;top:-40px;right:-60px;width:420px;height:auto;opacity:.9;pointer-events:none}
+  .hero-texte{position:relative;max-width:58ch}
+  .hero .lieu{font-family:var(--titres);font-size:.8rem;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--vert)}
+  .hero h1{
+    font-family:var(--titres);font-weight:700;
+    font-size:clamp(2rem,4.8vw,3.3rem);line-height:1.1;margin:.8rem 0 1.2rem;
+  }
+  .hero h1 mark{background:none;color:var(--miel-fonce)}
+  .hero p{max-width:52ch;color:var(--texte2);font-size:1.05rem}
+  .actions{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.9rem}
+  .btn{
+    display:inline-block;text-decoration:none;font-family:var(--titres);font-weight:600;
+    font-size:.9rem;padding:.8rem 1.6rem;
+    background:var(--miel);color:#2a2113;
+    clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,10px 100%,0 50%);
+  }
+  .btn:hover{background:var(--miel-fonce);color:#221a0e}
+  .btn.vert{background:var(--vert);color:#f7f2e6}
+  /* trajet d'abeille */
+  .vol{display:block;width:min(680px,90%);height:46px;margin:2.2rem 0 0}
+
+  section{padding:3.2rem 6vw}
+  h2{font-family:var(--titres);font-weight:700;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.4rem}
+  .sous-titre{color:var(--texte2);max-width:60ch;margin-bottom:1.8rem}
+
+  /* ---- rayons : cartes hexagones discrets ---- */
+  .rayons{background:var(--fond2)}
+  .grille-rayons{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.3rem}
+  .rayon{
+    background:var(--carte);border:1px solid var(--trait);border-radius:10px;
+    padding:1.4rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;
+  }
+  .rayon .hex{width:30px;height:34px;flex:none;margin-top:.15rem}
+  .rayon h3{font-family:var(--titres);font-size:1rem;margin-bottom:.3rem}
+  .rayon p{font-size:.88rem;color:var(--texte2)}
+
+  /* ---- vrac & producteurs : bandes alternées ---- */
+  .bande{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem;align-items:center;padding:2.2rem 0;border-top:1px solid var(--trait)}
+  .bande:first-of-type{border-top:none;padding-top:0}
+  .bande h3{font-family:var(--titres);font-size:1.3rem;margin-bottom:.6rem}
+  .bande p{color:var(--texte2);font-size:.98rem}
+  ul.hexliste{list-style:none;margin-top:.9rem}
+  ul.hexliste li{position:relative;padding:.35rem 0 .35rem 1.6rem;font-size:.95rem}
+  ul.hexliste li::before{
+    content:"";position:absolute;left:0;top:.72rem;width:11px;height:12px;background:var(--miel);
+    clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
+  }
+  .illus{width:100%;max-width:330px;height:auto;justify-self:center}
+
+  /* ---- bandeau frontière ---- */
+  .frontiere{
+    background:var(--vert);color:#f7f2e6;
+    padding:2.6rem 6vw;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);
+    gap:2rem;align-items:center;
+  }
+  .frontiere h2{color:#fff}
+  .frontiere p{opacity:.95;max-width:58ch}
+  .borne{width:120px;height:auto;justify-self:center}
+
+  /* ---- pratique ---- */
+  .pratique-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+  .carte-info{background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:1.5rem}
+  .carte-info h3{font-family:var(--titres);font-size:.78rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--miel-fonce);margin-bottom:.7rem}
+  .carte-info p{font-size:.95rem}
+  .carte-info a{color:var(--texte)}
+  .a-completer{font-style:italic;color:var(--texte2)}
+  a.maps{
+    display:inline-block;margin-top:.8rem;text-decoration:none;
+    font-family:var(--titres);font-size:.82rem;font-weight:600;
+    background:var(--miel);color:#2a2113;padding:.5rem 1.2rem;
+    clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 50%,calc(100% - 8px) 100%,8px 100%,0 50%);
+  }
+  a.maps:hover{background:var(--miel-fonce)}
+
+  footer.pied{
+    border-top:1px solid var(--trait);color:var(--texte2);
+    font-size:.78rem;text-align:center;padding:1.2rem 6vw;font-family:var(--titres);
+  }
+
+  @media (max-width:800px){
+    .alveoles{width:260px;top:-30px;right:-50px;opacity:.5}
+    .bande{grid-template-columns:1fr}
+    .illus{max-width:240px}
+    .frontiere{grid-template-columns:1fr}
+    .borne{display:none}
+    nav.haut{margin-left:0}
+  }
+</style>
+
+<div class="demo-banner">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<header class="site">
+  <div class="logo">
+    <!-- poinçon : alvéole unique, abeille en creux -->
+    <svg viewBox="0 0 38 42" aria-hidden="true">
+      <polygon points="19,1 36,11 36,31 19,41 2,31 2,11" fill="none" stroke="#cf9433" stroke-width="2.6"/>
+      <ellipse cx="19" cy="22" rx="6.5" ry="8" fill="#cf9433"/>
+      <line x1="13" y1="19" x2="25" y2="19" stroke="#f7f2e6" stroke-width="2"/>
+      <line x1="13" y1="24" x2="25" y2="24" stroke="#f7f2e6" stroke-width="2"/>
+      <circle cx="19" cy="11.5" r="3" fill="#cf9433"/>
+    </svg>
+    <div class="nom">La Ruch'Bio<small>Épicerie bio · Jougne</small></div>
+  </div>
+  <nav class="haut">
+    <a href="#rayons">Les rayons</a>
+    <a href="#vrac">Vrac &amp; producteurs</a>
+    <a href="#pratique">Horaires &amp; accès</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <!-- ÉLÉMENT SIGNATURE : nid d'alvéoles en coin, à demi rempli -->
+  <svg class="alveoles" viewBox="0 0 420 300" aria-hidden="true">
+    <g fill="none" stroke="#cf9433" stroke-width="2" opacity=".55">
+      <polygon points="210,10 250,33 250,79 210,102 170,79 170,33"/>
+      <polygon points="290,10 330,33 330,79 290,102 250,79 250,33"/>
+      <polygon points="370,10 410,33 410,79 370,102 330,79 330,33"/>
+      <polygon points="250,79 290,102 290,148 250,171 210,148 210,102"/>
+      <polygon points="330,79 370,102 370,148 330,171 290,148 290,102"/>
+      <polygon points="290,148 330,171 330,217 290,240 250,217 250,171"/>
+      <polygon points="370,148 410,171 410,217 370,240 330,217 330,171"/>
+    </g>
+    <g fill="#cf9433" opacity=".28">
+      <polygon points="290,10 330,33 330,79 290,102 250,79 250,33"/>
+      <polygon points="330,79 370,102 370,148 330,171 290,148 290,102"/>
+      <polygon points="370,148 410,171 410,217 370,240 330,217 330,171"/>
+    </g>
+  </svg>
+  <div class="hero-texte">
+    <p class="lieu">1 place du Tunnel — Jougne, col de la frontière</p>
+    <h1>Le bio qui butine <mark>tout près</mark></h1>
+    <p>
+      Fruits et légumes frais, vrac, crèmerie, pain, cosmétiques : à Jougne, sur la route
+      du col, La Ruch'Bio rassemble le meilleur des producteurs locaux et du bio
+      certifié — pour les habitants du Haut-Doubs comme pour les voisins suisses.
+    </p>
+    <div class="actions">
+      <a class="btn" href="#rayons">Découvrir les rayons</a>
+      <a class="btn vert" href="#pratique">Venir au magasin</a>
+    </div>
+  </div>
+  <!-- trajet d'abeille (signature) -->
+  <svg class="vol" viewBox="0 0 680 46" preserveAspectRatio="xMinYMid meet" aria-hidden="true">
+    <path d="M4 36 C 90 6 150 44 230 22 C 310 0 370 42 450 24 C 520 9 580 34 640 18"
+          fill="none" stroke="#cf9433" stroke-width="2" stroke-dasharray="1 9" stroke-linecap="round"/>
+    <g transform="translate(645 12)">
+      <ellipse cx="0" cy="6" rx="9" ry="6" fill="#cf9433"/>
+      <line x1="-5" y1="4" x2="5" y2="4" stroke="#241d12" stroke-width="1.6"/>
+      <line x1="-5" y1="8" x2="5" y2="8" stroke="#241d12" stroke-width="1.6"/>
+      <ellipse cx="-3" cy="-2" rx="6" ry="3.4" fill="#6c8f3f" transform="rotate(-30 -3 -2)" opacity=".85"/>
+    </g>
+  </svg>
+</div>
+
+<section class="rayons" id="rayons">
+  <h2>Les rayons de la ruche</h2>
+  <p class="sous-titre">Une alimentation bio complète, du panier de légumes au produit d'entretien.</p>
+  <div class="grille-rayons">
+    <div class="rayon">
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="none" stroke="#6c8f3f" stroke-width="2.4"/></svg>
+      <div><h3>Fruits &amp; légumes</h3><p>Frais, de saison, au plus près des maraîchers de la région.</p></div>
+    </div>
+    <div class="rayon">
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="#cf9433" opacity=".85"/></svg>
+      <div><h3>Vrac</h3><p>Céréales, légumineuses, oléagineux et fruits secs, au poids et sans emballage.</p></div>
+    </div>
+    <div class="rayon">
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="none" stroke="#cf9433" stroke-width="2.4"/></svg>
+      <div><h3>Pain &amp; douceurs</h3><p>Pains, biscuits et chocolats pour les goûters de la maison.</p></div>
+    </div>
+    <div class="rayon">
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="#6c8f3f" opacity=".85"/></svg>
+      <div><h3>Crèmerie, œufs &amp; viandes</h3><p>Produits laitiers, œufs et viandes issus de l'agriculture biologique.</p></div>
+    </div>
+    <div class="rayon">
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="none" stroke="#6c8f3f" stroke-width="2.4"/></svg>
+      <div><h3>Thés, cafés &amp; infusions</h3><p>Avec les plantes séchées, épices et aromates du rayon voisin.</p></div>
+    </div>
+    <div class="rayon">
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="#cf9433" opacity=".55"/></svg>
+      <div><h3>Bien-être &amp; entretien</h3><p>Cosmétiques, huiles essentielles, compléments et produits d'entretien écologiques.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="vrac">
+  <div class="bande">
+    <div>
+      <h3>Le vrac, sans cérémonie</h3>
+      <p>On vient avec ses bocaux ou ses sacs, on pèse, on ne paie que ce qu'on emporte.
+      Moins d'emballages, des quantités justes, et une cave d'épicerie qui change au fil
+      des saisons.</p>
+      <ul class="hexliste">
+        <li>Apportez vos contenants — des sacs sont disponibles sur place</li>
+        <li>Quantités libres, du sachet d'essai au bocal de réserve</li>
+      </ul>
+    </div>
+    <svg class="illus" viewBox="0 0 300 220" aria-hidden="true">
+      <!-- bocaux de vrac -->
+      <g stroke="#4a3a24" stroke-width="3" opacity=".9">
+        <rect x="30" y="80" width="64" height="110" rx="8" fill="#f1e2bd"/>
+        <rect x="24" y="66" width="76" height="18" rx="6" fill="#cf9433"/>
+        <rect x="122" y="52" width="64" height="138" rx="8" fill="#e5cf9d"/>
+        <rect x="116" y="38" width="76" height="18" rx="6" fill="#6c8f3f"/>
+        <rect x="214" y="98" width="58" height="92" rx="8" fill="#f1e2bd"/>
+        <rect x="208" y="84" width="70" height="18" rx="6" fill="#cf9433"/>
+      </g>
+      <g fill="#a97722">
+        <circle cx="48" cy="168" r="5"/><circle cx="62" cy="176" r="5"/><circle cx="76" cy="167" r="5"/>
+        <circle cx="55" cy="156" r="5"/><circle cx="70" cy="155" r="5"/>
+      </g>
+      <g fill="#5d7a35">
+        <circle cx="140" cy="170" r="4"/><circle cx="154" cy="176" r="4"/><circle cx="168" cy="169" r="4"/>
+        <circle cx="147" cy="160" r="4"/><circle cx="161" cy="158" r="4"/><circle cx="154" cy="148" r="4"/>
+      </g>
+      <g fill="#c88b2e">
+        <rect x="226" y="160" width="34" height="8" rx="4"/>
+        <rect x="230" y="146" width="26" height="8" rx="4"/>
+        <rect x="228" y="174" width="30" height="8" rx="4"/>
+      </g>
+    </svg>
+  </div>
+  <div class="bande">
+    <svg class="illus" viewBox="0 0 300 220" aria-hidden="true">
+      <!-- cagette de producteur -->
+      <g stroke="#4a3a24" stroke-width="3">
+        <path d="M40 110 L 260 110 L 240 190 L 60 190 Z" fill="#d9b878"/>
+        <line x1="70" y1="110" x2="82" y2="190"/>
+        <line x1="150" y1="110" x2="150" y2="190"/>
+        <line x1="230" y1="110" x2="218" y2="190"/>
+      </g>
+      <g>
+        <circle cx="95" cy="96" r="22" fill="#c8552f"/>
+        <path d="M95 74 q 4 -10 12 -12" stroke="#6c8f3f" stroke-width="4" fill="none"/>
+        <circle cx="150" cy="88" r="26" fill="#e8a03c"/>
+        <circle cx="205" cy="96" r="22" fill="#8fae62"/>
+        <path d="M205 74 q -2 -8 -10 -10" stroke="#4a3a24" stroke-width="4" fill="none"/>
+      </g>
+      <path d="M60 205 h180" stroke="#cf9433" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h3>Les producteurs d'à côté</h3>
+      <p>La ruche travaille d'abord avec les fermes et ateliers du Haut-Doubs et des
+      environs : ce qui peut venir de près vient de près, le reste est choisi en bio
+      certifié auprès de fournisseurs de confiance.</p>
+      <ul class="hexliste">
+        <li>Produits fermiers locaux selon les saisons et les arrivages</li>
+        <li>Une équipe qui connaît ses rayons et ses producteurs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="frontiere">
+  <div>
+    <h2>À deux pas de la frontière</h2>
+    <p>Jougne est le dernier village avant la douane : les frontaliers et voisins de
+    Vallorbe, Ballaigues ou Lausanne s'arrêtent place du Tunnel sur la route du col.
+    La Ruch'Bio est aussi présente à Pontarlier.</p>
+  </div>
+  <svg class="borne" viewBox="0 0 120 140" aria-hidden="true">
+    <!-- borne frontière stylisée -->
+    <path d="M25 140 V56 a35 35 0 0 1 70 0 V140 Z" fill="#f7f2e6"/>
+    <path d="M25 140 V56 a35 35 0 0 1 70 0 V140" fill="none" stroke="#4a3a24" stroke-width="4"/>
+    <line x1="60" y1="21" x2="60" y2="140" stroke="#4a3a24" stroke-width="3" stroke-dasharray="7 6"/>
+    <text x="41" y="95" font-family="Futura,'Century Gothic',sans-serif" font-size="17" fill="#4a3a24" text-anchor="middle">F</text>
+    <text x="79" y="95" font-family="Futura,'Century Gothic',sans-serif" font-size="17" fill="#4a3a24" text-anchor="middle">CH</text>
+  </svg>
+</div>
+
+<section id="pratique">
+  <h2>Horaires &amp; accès</h2>
+  <p class="sous-titre">Le magasin vous accueille toute la semaine, du lundi au samedi.</p>
+  <div class="pratique-grille">
+    <div class="carte-info">
+      <h3>Horaires</h3>
+      <p>Du lundi au samedi<br>9 h – 19 h</p>
+    </div>
+    <div class="carte-info">
+      <h3>Adresse</h3>
+      <p>La Ruch'Bio<br>1 place du Tunnel<br>25370 Jougne</p>
+      <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=La+Ruch%27Bio+Jougne">Ouvrir dans Google Maps</a>
+    </div>
+    <div class="carte-info">
+      <h3>Téléphone</h3>
+      <p class="a-completer">Numéro à compléter avec vous avant mise en ligne.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="pied">
+  Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
+</footer>

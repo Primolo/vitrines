@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!--
+PLAN DE DESIGN — La Petite Forge (Oye-et-Pallet)
+Palette (univers réel : le nom d'une ancienne forge — charbon, fonte, braise, cendre) :
+  - Charbon    #171310  (fond, noir chaud de foyer éteint)
+  - Fonte      #241E19  (panneaux, métal sombre)
+  - Cendre     #E3D9CC  (texte clair, cendre chaude)
+  - Braise     #C75B28  (accent principal, orange de braise couvée)
+  - Étincelle  #EFA463  (accent secondaire, éclat bref)
+  - Fer        #8C857C  (gris métal pour le texte secondaire et les traits)
+Typographie : titres Rockwell / "Roboto Slab" / "Courier New" (mécane à empattements carrés,
+poids du métal) · corps Seravek / "Gill Sans" / Calibri / Verdana (sans humaniste, lisible sur sombre).
+Concept : la chaleur du feu tenue par la retenue du métal — fond charbon, typographie d'atelier,
+braise dosée comme un point chaud, jamais en aplat criard.
+ÉLÉMENT SIGNATURE : le "fer chauffé au centre" — barre horizontale dont le milieu passe au rouge
+braise (dégradé fer-braise-fer), utilisée en séparateur ; déclinée en gerbe d'étincelles SVG
+(petites croix à quatre branches, tailles et opacités décroissantes) dans le hero et le monogramme
+enclume. Aucune photo : tout est forgé en SVG.
+Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du foyer, pas au néon.
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>La Petite Forge — maquette</title>
+<style>
+  :root{
+    --charbon:#171310; --fonte:#241E19; --cendre:#E3D9CC; --braise:#C75B28;
+    --etincelle:#EFA463; --fer:#8C857C; --trait:rgba(227,217,204,.16);
+    --slab:Rockwell,"Roboto Slab","Courier New",Georgia,serif;
+    --sans:Seravek,"Gill Sans","Gill Sans MT",Calibri,Verdana,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--charbon);color:var(--cendre);font-family:var(--sans);
+       font-size:16.5px;line-height:1.75;}
+  ::selection{background:var(--braise);color:var(--charbon);}
+  a{color:var(--etincelle);text-decoration:none;border-bottom:1px solid rgba(239,164,99,.35);}
+  a:hover{border-color:var(--etincelle);}
+  svg{display:block;max-width:100%;}
+  .demo-band{background:var(--etincelle);color:#241E19;font-size:.8rem;font-weight:600;
+             padding:.65rem 1.5rem;letter-spacing:.02em;}
+  .cadre{max-width:1080px;margin:0 auto;padding:0 1.5rem;}
+  h1,h2,h3{font-family:var(--slab);color:var(--cendre);line-height:1.12;font-weight:700;}
+  h2{font-size:clamp(1.6rem,3.2vw,2.3rem);margin-bottom:1.3rem;}
+  .braise-mot{color:var(--braise);}
+  .sur-label{display:inline-block;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
+             color:var(--braise);border:1px solid rgba(199,91,40,.45);padding:.35rem .9rem;
+             margin-bottom:1.4rem;}
+  header.haut{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+              padding:1.4rem 0;border-bottom:1px solid var(--trait);flex-wrap:wrap;}
+  .marque{display:flex;align-items:center;gap:.9rem;}
+  .marque .nom{font-family:var(--slab);font-weight:700;font-size:1.3rem;letter-spacing:.02em;}
+  .marque .ou{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--fer);}
+  nav.haut-nav{display:flex;gap:1.6rem;flex-wrap:wrap;}
+  nav.haut-nav a{border:none;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cendre);}
+  nav.haut-nav a:hover{color:var(--etincelle);}
+  /* séparateur signature : fer chauffé au centre */
+  .fer-chauffe{height:2px;border:none;margin:0;
+    background:linear-gradient(90deg,var(--fer) 0%,#5C554C 30%,var(--braise) 46%,var(--etincelle) 50%,var(--braise) 54%,#5C554C 70%,var(--fer) 100%);}
+  /* HERO */
+  .hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;
+        align-items:center;padding:4.5rem 0 4rem;}
+  .hero h1{font-size:clamp(2.4rem,6vw,4.1rem);margin:0 0 1.6rem;}
+  .hero .amorce{color:#BFB4A5;max-width:50ch;margin-bottom:2.4rem;font-size:1.05rem;}
+  .btn{display:inline-block;font-family:var(--slab);font-weight:700;font-size:.85rem;
+       letter-spacing:.14em;text-transform:uppercase;padding:.9rem 1.9rem;border:1px solid var(--braise);
+       color:var(--cendre);transition:all .25s;}
+  .btn:hover{background:var(--braise);color:var(--charbon);}
+  .btn.feu{background:var(--braise);color:var(--charbon);}
+  .btn.feu:hover{background:var(--etincelle);border-color:var(--etincelle);}
+  .cta-rang{display:flex;gap:1.2rem;flex-wrap:wrap;}
+  section{padding:4.5rem 0;}
+  .deux{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3.5rem;}
+  .atouts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--trait);
+          border:1px solid var(--trait);margin-top:2.8rem;}
+  .atout{background:var(--fonte);padding:1.7rem 1.6rem;}
+  .atout h3{font-size:1.02rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.65rem;}
+  .atout p{color:#B7AC9D;font-size:.93rem;line-height:1.6;}
+  .etinc{flex:0 0 auto;}
+  /* bloc lac : bandeau pleine largeur, braise sur charbon inversé */
+  .bandeau-lac{background:var(--fonte);border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);}
+  .bandeau-lac .int{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:center;padding:4rem 0;}
+  .grand-chiffre{font-family:var(--slab);font-weight:700;font-size:clamp(3rem,7vw,4.6rem);color:var(--braise);line-height:1;}
+  .liste-fer{list-style:none;margin-top:1.4rem;}
+  .liste-fer li{padding:.7rem 0;border-bottom:1px solid var(--trait);color:#CFC5B6;display:flex;gap:.9rem;align-items:baseline;}
+  .liste-fer li::before{content:"";flex:0 0 14px;height:2px;background:var(--braise);transform:translateY(-4px);}
+  /* voix */
+  .parole{border-left:2px solid var(--braise);padding-left:2rem;max-width:58ch;}
+  .parole .grande{font-family:var(--slab);font-size:clamp(1.25rem,2.4vw,1.7rem);line-height:1.5;
+                  color:var(--etincelle);font-weight:400;margin-bottom:1rem;}
+  .parole .src{font-size:.85rem;color:var(--fer);}
+  /* réservation directe */
+  .direct{background:linear-gradient(180deg,#241E19 0%,#2B211A 100%);border:1px solid rgba(199,91,40,.5);
+          padding:3.2rem;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:2.5rem;align-items:center;}
+  .direct .phrase{font-size:1.08rem;color:#CFC5B6;max-width:46ch;}
+  .direct .droite{display:flex;flex-direction:column;gap:1rem;align-items:flex-start;}
+  .sans-comm{font-family:var(--slab);color:var(--etincelle);font-size:1.05rem;}
+  /* contact */
+  .contact-rangs{margin-top:2.2rem;border-top:1px solid var(--trait);}
+  .c-rang{display:grid;grid-template-columns:minmax(120px,1fr) minmax(0,3fr);gap:1.5rem;
+          padding:1.4rem 0;border-bottom:1px solid var(--trait);align-items:baseline;}
+  .c-rang .cle{font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;color:var(--braise);}
+  .c-rang p{color:#CFC5B6;}
+  footer.bas{padding:2.4rem 0 3rem;font-size:.8rem;color:var(--fer);}
+  @media (max-width:840px){
+    .hero,.deux,.bandeau-lac .int,.direct{grid-template-columns:1fr;gap:2rem;}
+    .atouts{grid-template-columns:1fr;}
+    .direct{padding:2rem;}
+    section{padding:3.2rem 0;}
+    .hero{padding:3rem 0 2.5rem;}
+  }
+</style>
+</head>
+<body>
+<div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<div class="cadre">
+<header class="haut">
+  <div class="marque">
+    <!-- monogramme : enclume et trois étincelles -->
+    <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+      <path d="M8 26 h20 c5 0 8-3 9-6 h-7 c-1 2-3 3-5 3 H8 Z" fill="#C75B28"/>
+      <path d="M14 29 l-2 6 h16 l-2-6 Z" fill="#8C857C"/>
+      <path d="M10 37 h20 v2 H10 Z" fill="#8C857C"/>
+      <g stroke="#EFA463" stroke-width="1.4" stroke-linecap="round">
+        <path d="M31 12 v5 M28.5 14.5 h5"/>
+        <path d="M37 7 v3.4 M35.3 8.7 h3.4"/>
+        <path d="M24 6 v2.6 M22.7 7.3 h2.6"/>
+      </g>
+    </svg>
+    <div>
+      <div class="nom">La Petite Forge</div>
+      <div class="ou">Oye-et-Pallet · Haut-Doubs</div>
+    </div>
+  </div>
+  <nav class="haut-nav">
+    <a href="#maison">La maison</a>
+    <a href="#autour">Autour</a>
+    <a href="#direct">Réserver</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+</div>
+
+<main>
+<div class="cadre">
+<div class="hero">
+  <div>
+    <span class="sur-label">Maison d'hôtes — Oye-et-Pallet</span>
+    <h1>Un nom de <span class="braise-mot">forge</span>, une maison qui tient chaud</h1>
+    <p class="amorce">Dans un hameau calme d'Oye-et-Pallet, La Petite Forge porte le nom
+    d'une forge d'autrefois — l'histoire exacte, on vous la laisse raconter. Aujourd'hui,
+    c'est une maison où l'on pose ses sacs, à cinq minutes du lac Saint-Point.</p>
+    <div class="cta-rang">
+      <a class="btn feu" href="#direct">Réserver en direct</a>
+      <a class="btn" href="#maison">Voir la maison</a>
+    </div>
+  </div>
+  <!-- gerbe d'étincelles signature -->
+  <div aria-hidden="true">
+    <svg viewBox="0 0 380 340" style="width:100%;height:auto;">
+      <!-- foyer -->
+      <path d="M110 300 h160 v6 H110 Z" fill="#8C857C"/>
+      <path d="M130 300 c0-30 24-46 60-46 s60 16 60 46 Z" fill="#241E19" stroke="#8C857C" stroke-width="1"/>
+      <path d="M170 300 c0-16 8-26 20-26 s20 10 20 26 Z" fill="#C75B28"/>
+      <path d="M181 300 c0-9 4-15 9-15 s9 6 9 15 Z" fill="#EFA463"/>
+      <!-- gerbe : croix d'étincelles montantes, opacité décroissante -->
+      <g stroke="#EFA463" stroke-linecap="round">
+        <g stroke-width="2"><path d="M190 236 v10 M185 241 h10"/></g>
+        <g stroke-width="1.8" opacity=".9"><path d="M158 214 v8 M154 218 h8"/><path d="M224 208 v8 M220 212 h8"/></g>
+        <g stroke-width="1.6" opacity=".75"><path d="M136 178 v7 M132.5 181.5 h7"/><path d="M196 170 v7 M192.5 173.5 h7"/><path d="M251 176 v7 M247.5 179.5 h7"/></g>
+        <g stroke-width="1.4" opacity=".55"><path d="M118 138 v6 M115 141 h6"/><path d="M172 126 v6 M169 129 h6"/><path d="M232 122 v6 M229 125 h6"/><path d="M282 140 v6 M279 143 h6"/></g>
+        <g stroke-width="1.2" opacity=".38"><path d="M104 96 v5 M101.5 98.5 h5"/><path d="M150 78 v5 M147.5 80.5 h5"/><path d="M206 66 v5 M203.5 68.5 h5"/><path d="M262 76 v5 M259.5 78.5 h5"/><path d="M304 98 v5 M301.5 100.5 h5"/></g>
+        <g stroke-width="1" opacity=".22"><path d="M126 44 v4 M124 46 h4"/><path d="M186 28 v4 M184 30 h4"/><path d="M248 34 v4 M246 36 h4"/><path d="M296 52 v4 M294 54 h4"/></g>
+      </g>
+    </svg>
+  </div>
+</div>
+</div>
+
+<hr class="fer-chauffe" aria-hidden="true">
+
+<div class="cadre">
+<section id="maison">
+  <div class="deux">
+    <div>
+      <span class="sur-label">La maison</span>
+      <h2>Le confort, <span class="braise-mot">sans façons</span></h2>
+      <p style="color:#BFB4A5;">Une maison indépendante, une décoration que les hôtes
+      remarquent, un jardin et une terrasse pour finir les journées dehors.
+      Le nécessaire est là — le superflu, on l'a laissé à la ville.</p>
+    </div>
+    <div>
+      <div class="atouts" style="margin-top:0;">
+        <div class="atout">
+          <h3><svg class="etinc" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1 v12 M1 7 h12" stroke="#C75B28" stroke-width="1.6" stroke-linecap="round"/></svg>Cuisine équipée</h3>
+          <p>Tout pour cuisiner sur place, avec un coin repas — et une boulangerie et une épicerie dans le village.</p>
+        </div>
+        <div class="atout">
+          <h3><svg class="etinc" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1 v12 M1 7 h12" stroke="#C75B28" stroke-width="1.6" stroke-linecap="round"/></svg>Terrasse et jardin</h3>
+          <p>La terrasse ouvre sur le jardin et la campagne du Haut-Doubs, au calme d'un hameau.</p>
+        </div>
+        <div class="atout">
+          <h3><svg class="etinc" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1 v12 M1 7 h12" stroke="#C75B28" stroke-width="1.6" stroke-linecap="round"/></svg>Linge fourni, télévision</h3>
+          <p>Linge de lit et serviettes fournis, salle de bain privative, télévision par satellite.</p>
+        </div>
+        <div class="atout">
+          <h3><svg class="etinc" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1 v12 M1 7 h12" stroke="#C75B28" stroke-width="1.6" stroke-linecap="round"/></svg>Wi-Fi et parking gratuits</h3>
+          <p>Connexion offerte et stationnement privé sur place — on arrive, on coupe le moteur, c'est fini.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="bandeau-lac" id="autour">
+  <div class="cadre">
+    <div class="int">
+      <div>
+        <div class="grand-chiffre">5 min</div>
+        <p style="font-family:var(--slab);font-size:1.2rem;margin-top:.6rem;">du lac Saint-Point</p>
+        <p style="color:#B7AC9D;max-width:44ch;margin-top:1rem;">La maison est posée entre
+        le lac et les crêtes frontalières : baignade et rives l'été, raquettes et ski
+        de Métabief l'hiver, sentiers toute l'année.</p>
+      </div>
+      <div>
+        <ul class="liste-fer">
+          <li>Lac Saint-Point : rives, baignade, tour du lac à pied ou à vélo</li>
+          <li>Randonnées balisées au départ du village</li>
+          <li>Station de Métabief et Mont d'Or à courte route</li>
+          <li>Pontarlier et la Suisse voisine pour les excursions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cadre">
+<section>
+  <div class="parole">
+    <p class="grande">Ce que les hôtes redisent le plus souvent : le calme du lieu,
+    la propreté, la décoration — et un accueil qui met tout de suite à l'aise.</p>
+    <p class="src">Synthèse des thèmes d'avis publiés sur les plateformes de réservation
+    (note moyenne constatée : 9,2/10). Citations exactes à choisir et valider avec vous.</p>
+  </div>
+</section>
+
+<section id="direct">
+  <div class="direct">
+    <div>
+      <span class="sur-label">Réservez en direct</span>
+      <h2>Frappez <span class="braise-mot">à la bonne porte</span></h2>
+      <p class="phrase">Réservation en direct, sans commission de plateforme.
+      Un message ou un appel, et vous parlez directement à la maison : vraies
+      disponibilités, vrais conseils, prix sans intermédiaire.</p>
+    </div>
+    <div class="droite">
+      <span class="sans-comm">0 % de commission</span>
+      <a class="btn feu" href="#contact">Écrire à la maison</a>
+      <span style="font-size:.8rem;color:var(--fer);">Téléphone (lien d'appel direct) et e-mail à insérer après validation.</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <span class="sur-label">Contact</span>
+  <h2>À Oye-et-Pallet, <span class="braise-mot">Haut-Doubs</span></h2>
+  <div class="contact-rangs">
+    <div class="c-rang">
+      <span class="cle">Commune</span>
+      <p>La Petite Forge — 25160 Oye-et-Pallet, Doubs (entre Pontarlier et le lac Saint-Point)</p>
+    </div>
+    <div class="c-rang">
+      <span class="cle">Itinéraire</span>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=La+Petite+Forge+Oye-et-Pallet" rel="noopener">Ouvrir dans Google Maps</a></p>
+    </div>
+    <div class="c-rang">
+      <span class="cle">Téléphone</span>
+      <p>À insérer — il apparaîtra ici en lien d'appel direct (tel:) pour les mobiles.</p>
+    </div>
+  </div>
+</section>
+</div>
+</main>
+
+<hr class="fer-chauffe" aria-hidden="true">
+<div class="cadre">
+<footer class="bas">
+  Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
+</footer>
+</div>
+</body>
+</html>

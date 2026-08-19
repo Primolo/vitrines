@@ -1,0 +1,318 @@
+<!doctype html>
+<!--
+  PLAN DE DESIGN — La Semilla, Distillerie Aymonier (Les Fourgs)
+  Palette : Noir-fée #14231B (fond) · Vert bouteille #22412F · Cuivre #B87333 · Cuivre clair #D89A5B ·
+            Ambre #D9A441 · Parchemin #F1E7D0
+  Typo    : Titres = Didot, "Bodoni 72", "Bodoni MT", "Playfair Display", Georgia, serif (didone d'étiquette) ·
+            Corps = "Hoefler Text", "Cochin", Georgia, "Times New Roman", serif ·
+            Étiquettes = "Gill Sans", "Gill Sans MT", Calibri, sans-serif (petites capitales espacées)
+  Concept : une étiquette d'apothicaire grand format — la boutique du paysan-distillateur, cuivre et verre
+            posés sur le vert profond de l'absinthe.
+  Élément signature : alambic en cuivre + brin d'absinthe en SVG inline ; cadres d'étiquette à double filet.
+  Thème   : SOMBRE UNIQUE ASSUMÉ (pas de version claire — c'est la pénombre de l'atelier de distillation).
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>La Semilla — Distillerie Aymonier — maquette</title>
+<style>
+  :root{
+    --fond:#14231B; --bouteille:#22412F; --cuivre:#B87333; --cuivre-clair:#D89A5B;
+    --ambre:#D9A441; --parchemin:#F1E7D0; --parchemin-doux:rgba(241,231,208,.78);
+    --filet:rgba(184,115,51,.55);
+    --serif-titre:Didot,"Bodoni 72","Bodoni MT","Playfair Display",Georgia,serif;
+    --serif-corps:"Hoefler Text",Cochin,Georgia,"Times New Roman",serif;
+    --sans-etiquette:"Gill Sans","Gill Sans MT",Calibri,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--fond);color:var(--parchemin);font-family:var(--serif-corps);line-height:1.65;font-size:1.05rem}
+  .demo-banner{background:var(--ambre);color:#231703;font-family:var(--sans-etiquette);
+    font-size:.85rem;letter-spacing:.02em;text-align:center;padding:.55rem 1rem;font-weight:600}
+  a{color:var(--cuivre-clair)}
+  .lede{max-width:60ch}
+
+  header.site{border-bottom:1px solid var(--filet);padding:1.1rem 5vw;display:flex;flex-wrap:wrap;
+    align-items:baseline;gap:1rem 2rem;background:rgba(0,0,0,.18)}
+  .marque{font-family:var(--serif-titre);font-size:1.5rem;letter-spacing:.06em;color:var(--parchemin)}
+  .marque small{display:block;font-family:var(--sans-etiquette);font-size:.68rem;letter-spacing:.34em;
+    text-transform:uppercase;color:var(--cuivre-clair);margin-top:.15rem}
+  nav.site{margin-left:auto;display:flex;flex-wrap:wrap;gap:1.4rem;font-family:var(--sans-etiquette);
+    font-size:.8rem;letter-spacing:.22em;text-transform:uppercase}
+  nav.site a{color:var(--parchemin-doux);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
+  nav.site a:hover{color:var(--ambre);border-bottom-color:var(--ambre)}
+
+  /* ——— Héro : la grande étiquette ——— */
+  .hero{padding:4.5rem 5vw 3.5rem;display:grid;place-items:center;
+    background:radial-gradient(ellipse at 50% 0%, rgba(34,65,47,.9), var(--fond) 70%)}
+  .etiquette{max-width:820px;width:100%;border:1px solid var(--filet);outline:4px double var(--filet);
+    outline-offset:7px;padding:3rem clamp(1.2rem,5vw,4rem);text-align:center;
+    background:linear-gradient(180deg, rgba(241,231,208,.04), rgba(241,231,208,.01))}
+  .etiquette .sur-titre{font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--cuivre-clair)}
+  .etiquette h1{font-family:var(--serif-titre);font-size:clamp(2.4rem,7vw,4.4rem);font-weight:400;
+    letter-spacing:.04em;margin:.7rem 0 .2rem;color:var(--parchemin)}
+  .etiquette .sous-titre{font-family:var(--serif-titre);font-style:italic;font-size:1.15rem;color:var(--ambre)}
+  .etiquette .devise{margin-top:1.6rem;font-size:1.02rem;color:var(--parchemin-doux);max-width:52ch;
+    margin-left:auto;margin-right:auto}
+  .filigrane{margin:1.8rem auto 0;display:block}
+  .hero-actions{margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .bouton{font-family:var(--sans-etiquette);font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;
+    text-decoration:none;padding:.8rem 1.6rem;border:1px solid var(--cuivre);color:var(--parchemin)}
+  .bouton.plein{background:var(--cuivre);color:#1c1108}
+  .bouton:hover{background:var(--cuivre-clair);border-color:var(--cuivre-clair);color:#1c1108}
+
+  section{padding:4rem 5vw;border-top:1px solid rgba(184,115,51,.25)}
+  .cartouche{font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--cuivre-clair);display:flex;align-items:center;gap:1rem}
+  .cartouche::after{content:"";height:1px;flex:0 0 72px;background:var(--filet)}
+  h2{font-family:var(--serif-titre);font-weight:400;font-size:clamp(1.7rem,4vw,2.5rem);margin:.6rem 0 1.2rem}
+
+  .deux-colonnes{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:start;max-width:1100px}
+  .aparte{border-left:2px solid var(--cuivre);padding:1rem 1.4rem;background:rgba(34,65,47,.5);
+    font-style:italic;color:var(--parchemin-doux)}
+  .aparte strong{font-style:normal;color:var(--ambre)}
+
+  /* ——— Catalogue d'apothicaire : entrées volontairement inégales, pas de cartes clonées ——— */
+  .officine{max-width:980px}
+  .flacon{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1.2rem;align-items:baseline;
+    padding:1.35rem 0;border-bottom:1px dotted var(--filet)}
+  .flacon:first-of-type{border-top:1px dotted var(--filet)}
+  .flacon .num{font-family:var(--serif-titre);font-style:italic;color:var(--cuivre);font-size:1.1rem;min-width:2.2rem}
+  .flacon h3{font-family:var(--serif-titre);font-weight:400;font-size:1.35rem;color:var(--parchemin)}
+  .flacon .degre{font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.2em;color:var(--ambre);
+    border:1px solid var(--filet);padding:.25rem .6rem;white-space:nowrap}
+  .flacon p{grid-column:2/3;color:var(--parchemin-doux);font-size:.98rem;max-width:58ch}
+  .flacon .prix{grid-column:2/3;font-family:var(--sans-etiquette);font-size:.7rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--cuivre-clair);margin-top:.35rem}
+  .mention-officine{margin-top:1.4rem;font-style:italic;color:var(--parchemin-doux);font-size:.95rem}
+
+  .ferme-liste{list-style:none;margin-top:1rem;columns:2;column-gap:3rem;max-width:640px}
+  .ferme-liste li{padding:.45rem 0 .45rem 1.4rem;position:relative;break-inside:avoid}
+  .ferme-liste li::before{content:"";position:absolute;left:0;top:.95rem;width:.55rem;height:.55rem;
+    border:1px solid var(--cuivre);transform:rotate(45deg)}
+
+  .visite{background:var(--bouteille);border:1px solid var(--filet);max-width:1100px;
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center;padding:2.2rem clamp(1.2rem,4vw,3rem)}
+  .visite h2{margin-top:0}
+
+  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.5rem;max-width:1100px}
+  .contact-grille h3{font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.34em;
+    text-transform:uppercase;color:var(--cuivre-clair);margin-bottom:.7rem}
+  .contact-grille p{color:var(--parchemin-doux)}
+  .tel{font-family:var(--serif-titre);font-size:1.5rem;color:var(--parchemin);text-decoration:none}
+  .tel:hover{color:var(--ambre)}
+
+  footer{border-top:1px solid var(--filet);padding:2rem 5vw 2.6rem;font-size:.85rem;color:var(--parchemin-doux)}
+  footer .alcool{font-family:var(--sans-etiquette);letter-spacing:.06em;text-transform:uppercase;
+    font-size:.72rem;color:var(--ambre);margin-bottom:.9rem}
+  footer .primo{margin-top:.5rem;font-style:italic}
+
+  @media (max-width:760px){
+    .deux-colonnes{grid-template-columns:1fr}
+    .ferme-liste{columns:1}
+    .visite{grid-template-columns:1fr}
+    .flacon{grid-template-columns:auto minmax(0,1fr)}
+    .flacon .degre{grid-column:2/3;justify-self:start}
+    nav.site{margin-left:0}
+  }
+</style>
+</head>
+<body>
+<div class="demo-banner">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<header class="site">
+  <div class="marque">La Semilla<small>Distillerie Aymonier · Les Fourgs</small></div>
+  <nav class="site" aria-label="Navigation principale">
+    <a href="#atelier">L’atelier</a>
+    <a href="#officine">Absinthes &amp; élixirs</a>
+    <a href="#ferme">La ferme</a>
+    <a href="#visites">Visites</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="etiquette">
+      <p class="sur-titre">Ferme de montagne biologique · pays de l’absinthe</p>
+      <h1>La Semilla</h1>
+      <p class="sous-titre">Distillerie Aymonier — Les Fourgs, Haut-Doubs</p>
+
+      <!-- Élément signature : l'alambic de cuivre et le brin d'absinthe -->
+      <svg class="filigrane" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Alambic en cuivre et brin d'absinthe">
+        <defs>
+          <linearGradient id="cuivre" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#D89A5B"/><stop offset="1" stop-color="#8C5323"/>
+          </linearGradient>
+        </defs>
+        <!-- cucurbite -->
+        <path d="M55 132c-20-8-28-28-24-47 4-18 18-30 39-30s35 12 39 30c4 19-4 39-24 47z" fill="url(#cuivre)" stroke="#F1E7D0" stroke-width="1.4"/>
+        <rect x="58" y="44" width="24" height="14" fill="url(#cuivre)" stroke="#F1E7D0" stroke-width="1.2"/>
+        <!-- chapiteau et col de cygne -->
+        <path d="M58 44c0-12 5-20 12-20s12 8 12 20" fill="url(#cuivre)" stroke="#F1E7D0" stroke-width="1.2"/>
+        <path d="M70 24c0-8 8-12 22-10 22 3 34 18 36 40l3 44" fill="none" stroke="url(#cuivre)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M70 24c0-8 8-12 22-10 22 3 34 18 36 40l3 44" fill="none" stroke="#F1E7D0" stroke-width="1" opacity=".5"/>
+        <!-- serpentin -->
+        <path d="M131 100c8 0 8 10 0 10s-8 10 0 10 8 10 0 10" fill="none" stroke="url(#cuivre)" stroke-width="4.5" stroke-linecap="round"/>
+        <!-- goutte -->
+        <circle cx="131" cy="140" r="3.4" fill="#D9A441"/>
+        <!-- socle -->
+        <rect x="34" y="132" width="72" height="5" fill="#8C5323"/>
+        <!-- brin d'absinthe -->
+        <g stroke="#7FA37A" fill="none" stroke-width="1.6" stroke-linecap="round">
+          <path d="M196 138c-4-34 2-66 14-94"/>
+          <path d="M203 116c-9-4-15-11-17-21M203 116c8-6 12-14 13-24"/>
+          <path d="M207 88c-8-3-13-9-15-17M207 88c7-5 10-12 11-21"/>
+          <path d="M211 62c-6-3-10-8-11-14M211 62c6-4 9-10 10-17"/>
+        </g>
+        <circle cx="210" cy="44" r="2.6" fill="#D9A441"/><circle cx="215" cy="36" r="2.2" fill="#D9A441"/>
+      </svg>
+
+      <p class="devise">Première distillerie artisanale certifiée bio de la zone historique de l’absinthe,
+        au pays de Pontarlier. Des plantes cultivées à 1 100 m d’altitude, un alambic de cuivre,
+        et le geste retrouvé des paysans-distillateurs du massif du Jura.</p>
+      <div class="hero-actions">
+        <a class="bouton plein" href="#officine">Découvrir les élixirs</a>
+        <a class="bouton" href="#visites">Réserver une visite</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="atelier">
+    <p class="cartouche">L’atelier de distillation</p>
+    <h2>Au fond de la grange, le cuivre chauffe</h2>
+    <div class="deux-colonnes">
+      <div>
+        <p class="lede">L’atelier de distillation est installé dans une pièce aménagée au fond de la grange de la
+          ferme. On y renoue avec la tradition des <em>paysans-distillateurs</em> : les alambics en cuivre
+          transforment les plantes de la ferme en alcools francs, hérités des savoir-faire populaires
+          des montagnes jurassiennes.</p>
+        <p style="margin-top:1rem">Ici, pas d’arômes ajoutés ni de raccourcis : on sème, on cultive, on cueille,
+          on distille — dans cet ordre, et sur place.</p>
+      </div>
+      <div class="aparte">
+        <p><strong>Seize recettes d’absinthe</strong> sont distillées à la ferme, aux côtés d’anisés,
+          d’une vodka, d’un apéritif de gentiane et de liqueurs. La distillerie est membre du réseau
+          <strong>« Les Amis de la Route de l’Absinthe »</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="officine">
+    <p class="cartouche">Absinthes &amp; élixirs</p>
+    <h2>Le catalogue de l’officine</h2>
+    <div class="officine">
+      <article class="flacon">
+        <span class="num">N° 1</span>
+        <h3>La Faucille — absinthe verte</h3>
+        <span class="degre">72°</span>
+        <p>Distillée à la ferme à partir de plantes d’absinthe cultivées sur nos parcelles à 1 100 m
+          d’altitude. Le caractère herbacé typique des grandes vertes.</p>
+        <span class="prix">Prix en boutique</span>
+      </article>
+      <article class="flacon">
+        <span class="num">N° 2</span>
+        <h3>Lynx — absinthe bio solidaire</h3>
+        <span class="degre">Bio</span>
+        <p>Une absinthe engagée, à l’image du discret voisin des forêts du Haut-Doubs.</p>
+        <span class="prix">Prix en boutique</span>
+      </article>
+      <article class="flacon">
+        <span class="num">N° 3</span>
+        <h3>Liqueur d’absinthe</h3>
+        <span class="degre">Liqueur</span>
+        <p>Une seule distillation de notre plante d’absinthe : sans amertume, avec tout le bouquet
+          aromatique de la plante cultivée en bio.</p>
+        <span class="prix">Prix en boutique</span>
+      </article>
+      <article class="flacon">
+        <span class="num">N° 4</span>
+        <h3>La Pioche — apéritif de gentiane</h3>
+        <span class="degre">16°</span>
+        <p>Racines de gentiane du massif jurassien. Fruité, moins sucré que bien des gentianes —
+          l’amertume juste.</p>
+        <span class="prix">Prix en boutique</span>
+      </article>
+      <article class="flacon">
+        <span class="num">&amp; c.</span>
+        <h3>Anisés, vodka, liqueurs</h3>
+        <span class="degre">À la ferme</span>
+        <p>Et les douze autres recettes d’absinthe — la gamme complète se découvre à la distillerie,
+          au fil des saisons de cueillette.</p>
+        <span class="prix">Prix en boutique</span>
+      </article>
+    </div>
+    <p class="mention-officine">Tarifs affichés à la distillerie et sur les marchés — cette maquette n’affiche
+      volontairement aucun prix.</p>
+  </section>
+
+  <section id="ferme">
+    <p class="cartouche">La ferme de montagne</p>
+    <h2>Tout commence par une graine</h2>
+    <div class="deux-colonnes">
+      <div>
+        <p class="lede"><em>La Semilla</em> — « la graine ». Avant d’être une distillerie, c’est une ferme
+          biologique de montagne, aux Fourgs, plus haut village du Doubs. Les plantes qui entrent dans
+          l’alambic poussent dans nos champs ; le reste de la récolte devient une gamme gourmande,
+          élaborée à la ferme :</p>
+        <ul class="ferme-liste">
+          <li>Confitures artisanales</li>
+          <li>Sirops de plantes</li>
+          <li>Tisanes de montagne</li>
+          <li>Chocolats</li>
+        </ul>
+      </div>
+      <div class="aparte">
+        <p>Des installations <strong>à la taille de la ferme</strong> : on ne distille que ce que l’on
+          cultive, pour des produits d’une qualité que seule permet la plante fraîche et entière.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visites">
+    <div class="visite">
+      <div>
+        <p class="cartouche">Visites &amp; dégustations</p>
+        <h2>Venez voir couler l’absinthe</h2>
+        <p class="lede">Visite de l’atelier de distillation et dégustation des absinthes et liqueurs de la
+          ferme, <strong>sur réservation obligatoire</strong>. Le rituel de la fontaine, la louche à
+          sucre, l’eau glacée : tout s’apprend mieux sur place.</p>
+      </div>
+      <a class="bouton plein" href="#contact">Réserver</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="cartouche">Contact</p>
+    <h2>La distillerie vous ouvre sa grange</h2>
+    <div class="contact-grille">
+      <div>
+        <h3>Adresse</h3>
+        <p>La Semilla — Distillerie Aymonier<br>80 Grande Rue<br>25300 Les Fourgs</p>
+        <p style="margin-top:.6rem"><a href="https://www.google.com/maps/search/?api=1&amp;query=La+Semilla+Distillerie+Aymonier+Les+Fourgs">Voir sur Google Maps</a></p>
+      </div>
+      <div>
+        <h3>Téléphone</h3>
+        <p><a class="tel" href="tel:+33787245745">07 87 24 57 45</a></p>
+        <p style="margin-top:.6rem">Visites et dégustations sur réservation.</p>
+      </div>
+      <div>
+        <h3>Où nous trouver</h3>
+        <p>À la ferme, sur les marchés du Haut-Doubs et chez les revendeurs locaux.
+          Aux Fourgs, plus haut village du Doubs, à quelques minutes de Pontarlier,
+          capitale historique de l’absinthe.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p class="alcool">L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</p>
+  <p>La consommation d’alcool est interdite aux mineurs.</p>
+  <p class="primo">Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle</p>
+</footer>
+</body>
+</html>

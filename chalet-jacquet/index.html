@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!--
+PLAN DE DESIGN — Le Chalet Jacquet
+Palette : papier-épicerie #F9F3E6 · bois-fumé #2E241B · jaune-comté #E2A63D · rouge-morteau #9C3D2E · vert-bouteille #46603C · kraft #C9A87A
+Typo : titres Rockwell (slab d'étiquette de bocal) / "Roboto Slab" / "Courier New", serif — texte Seravek / "Gill Sans" / "Segoe UI", Verdana, sans-serif
+Concept : le comptoir d'une épicerie de chalet — étiquettes kraft ficelées, tampons ronds, planche de dégustation.
+ÉLÉMENT SIGNATURE : meule de Comté entamée + saucisse de Morteau en SVG, répétés en tampons et sur la planche du hero ; bordures "ficelle" en pointillés.
+Thème : UN SEUL thème clair chaleureux assumé (papier d'épicerie), pas de variante sombre.
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Le Chalet Jacquet — maquette</title>
+<style>
+:root{
+  --papier:#F9F3E6; --bois:#2E241B; --comte:#E2A63D; --morteau:#9C3D2E;
+  --bouteille:#46603C; --kraft:#C9A87A; --encre:#3A2E22;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--papier);color:var(--encre);font-family:Seravek,"Gill Sans","Segoe UI",Verdana,sans-serif;line-height:1.6}
+h1,h2,h3,.slab{font-family:Rockwell,"Rockwell Nova","Roboto Slab","Courier New",serif;font-weight:700}
+.demo-band{background:var(--morteau);color:#FCEFE0;text-align:center;padding:.6rem 1rem;font-size:.85rem;letter-spacing:.02em}
+header.top{background:var(--bois);color:var(--papier);padding:1rem 5vw;display:flex;flex-wrap:wrap;align-items:center;gap:1rem;justify-content:space-between}
+header.top .marque{display:flex;align-items:center;gap:.7rem}
+header.top nav{display:flex;gap:1.4rem;flex-wrap:wrap;font-size:.95rem}
+header.top nav a{color:var(--comte);text-decoration:none;border-bottom:2px dotted transparent;padding-bottom:2px}
+header.top nav a:hover{border-bottom-color:var(--comte)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:4rem 5vw 3rem;max-width:1200px;margin:0 auto}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;color:var(--bois)}
+.hero h1 em{font-style:normal;color:var(--morteau)}
+.hero p.accroche{margin:1.2rem 0 1.8rem;font-size:1.1rem;max-width:32rem}
+.sticker{display:inline-block;background:var(--comte);color:var(--bois);border-radius:50%;width:7.2rem;height:7.2rem;text-align:center;transform:rotate(-8deg);font-size:.8rem;line-height:1.25;padding-top:1.9rem;box-shadow:2px 3px 0 rgba(46,36,27,.25);margin-right:1rem;vertical-align:middle}
+.sticker strong{display:block;font-size:1.15rem;font-family:Rockwell,"Roboto Slab",serif}
+.btn{display:inline-block;background:var(--bois);color:var(--papier);text-decoration:none;padding:.75rem 1.5rem;border-radius:4px;font-weight:600;vertical-align:middle}
+.btn:hover{background:var(--morteau)}
+.hero-svg{width:100%;height:auto}
+section{padding:3.2rem 5vw;max-width:1200px;margin:0 auto}
+.ficelle{border-top:3px dashed var(--kraft)}
+h2{font-size:clamp(1.6rem,3.4vw,2.3rem);color:var(--bois);margin-bottom:.4rem}
+.sous{color:var(--morteau);font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem}
+.etiquettes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem;margin-top:2rem}
+.etiquette{background:#FFFDF6;border:1px solid var(--kraft);border-radius:6px;padding:1.5rem 1.3rem 1.3rem;position:relative;box-shadow:2px 3px 0 rgba(201,168,122,.35)}
+.etiquette::before{content:"";position:absolute;top:-9px;left:50%;width:44px;height:16px;margin-left:-22px;background:var(--comte);opacity:.85;transform:rotate(-2deg)}
+.etiquette:nth-child(2){transform:rotate(.6deg)}
+.etiquette:nth-child(3){transform:rotate(-.6deg)}
+.etiquette h3{color:var(--morteau);margin-bottom:.5rem;font-size:1.15rem}
+.etiquette ul{list-style:none;font-size:.95rem}
+.etiquette li{padding:.28rem 0;border-bottom:1px dotted var(--kraft)}
+.etiquette li:last-child{border-bottom:none}
+.histoire{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start}
+.tampon{width:120px;height:120px;flex:none}
+.deux-col{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+.encart{background:var(--bois);color:var(--papier);border-radius:8px;padding:2rem}
+.encart h2{color:var(--comte)}
+.encart a{color:var(--comte)}
+.reseaux{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.2rem}
+.reseau{display:flex;align-items:center;gap:.6rem;background:#FFFDF6;border:1px solid var(--kraft);border-radius:6px;padding:.7rem 1.1rem;text-decoration:none;color:var(--encre);font-weight:600}
+.reseau:hover{border-color:var(--morteau)}
+.note{font-size:.8rem;color:#7A6A55}
+.contact dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.2rem;margin-top:1rem}
+.contact dt{font-weight:700;color:var(--morteau)}
+.contact a{color:var(--bouteille)}
+footer{background:var(--bois);color:#CBB894;text-align:center;padding:1.4rem 5vw;font-size:.82rem;margin-top:3rem}
+@media(max-width:820px){.hero,.deux-col{grid-template-columns:1fr}.histoire{grid-template-columns:1fr}.tampon{margin:0 auto}}
+</style>
+</head>
+<body>
+<div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<header class="top">
+  <div class="marque">
+    <svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="26" r="18" fill="#E2A63D"/><path d="M24 26 L42 26 A18 18 0 0 0 33 10.4 Z" fill="#F9F3E6" stroke="#2E241B" stroke-width="1.5"/><circle cx="24" cy="26" r="18" fill="none" stroke="#2E241B" stroke-width="2"/><circle cx="17" cy="22" r="1.6" fill="#C9862B"/><circle cx="24" cy="33" r="1.4" fill="#C9862B"/><circle cx="14" cy="31" r="1.2" fill="#C9862B"/></svg>
+    <div><strong class="slab" style="font-size:1.2rem">Le Chalet Jacquet</strong><br><span style="font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--comte)">Épicerie de terroir · La Cluse-et-Mijoux</span></div>
+  </div>
+  <nav>
+    <a href="#comptoir">Le comptoir</a>
+    <a href="#histoire">Notre histoire</a>
+    <a href="#paniers">Paniers &amp; expédition</a>
+    <a href="#reseaux">Suivez-nous</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div>
+    <h1>Le terroir du Haut-Doubs, <em>tranché au comptoir</em>.</h1>
+    <p class="accroche">Fromages affinés, salaisons fumées au tuyé, vins du Jura et paniers garnis : au pied du château de Joux, le Chalet Jacquet sélectionne le meilleur des fermes et des caves de la région.</p>
+    <span class="sticker"><strong>7 j / 7</strong>ouvert<br>toute l'année</span>
+    <a class="btn" href="#comptoir">Découvrir le comptoir</a>
+  </div>
+  <svg class="hero-svg" viewBox="0 0 420 320" role="img" aria-label="Planche de dégustation : meule de comté, saucisse de Morteau et bouteille de vin du Jura">
+    <ellipse cx="210" cy="268" rx="190" ry="30" fill="#C9A87A" opacity=".5"/>
+    <rect x="40" y="238" width="340" height="18" rx="9" fill="#8A6A44"/>
+    <!-- meule de comté entamée : élément signature -->
+    <g>
+      <ellipse cx="150" cy="205" rx="105" ry="42" fill="#D89B2F"/>
+      <rect x="45" y="150" width="210" height="55" fill="#E2A63D"/>
+      <ellipse cx="150" cy="150" rx="105" ry="42" fill="#F3D089"/>
+      <path d="M150 150 L255 150 A105 42 0 0 0 216 116 Z" fill="#F9EBC8" stroke="#C9862B" stroke-width="2"/>
+      <path d="M150 150 L216 116 L216 171 L150 205 Z" fill="#F6E3B2"/>
+      <circle cx="110" cy="145" r="4" fill="#D89B2F"/><circle cx="80" cy="158" r="3" fill="#D89B2F"/><circle cx="140" cy="132" r="3.4" fill="#D89B2F"/>
+      <ellipse cx="150" cy="205" rx="105" ry="42" fill="none" stroke="#B27B22" stroke-width="2.5" stroke-dasharray="0 0"/>
+    </g>
+    <!-- saucisse de Morteau -->
+    <g transform="rotate(-14 320 190)">
+      <rect x="268" y="172" width="104" height="34" rx="17" fill="#9C3D2E"/>
+      <rect x="268" y="172" width="104" height="12" rx="6" fill="#B5533F" opacity=".8"/>
+      <path d="M270 189 h100 M283 175 v28 M303 175 v28 M323 175 v28 M343 175 v28" stroke="#5E1F16" stroke-width="2" fill="none"/>
+      <circle cx="374" cy="189" r="5" fill="#5E1F16"/><rect x="376" y="185" width="14" height="8" rx="4" fill="#C9A87A"/>
+    </g>
+    <!-- bouteille vin du Jura -->
+    <g>
+      <path d="M318 60 h14 v34 c14 8 20 18 20 34 v104 h-54 V128 c0-16 6-26 20-34 Z" fill="#46603C"/>
+      <rect x="304" y="150" width="42" height="52" fill="#F9F3E6" stroke="#C9A87A"/>
+      <text x="325" y="172" text-anchor="middle" font-family="Rockwell,serif" font-size="11" fill="#46603C">JURA</text>
+      <text x="325" y="188" text-anchor="middle" font-family="Seravek,sans-serif" font-size="8" fill="#9C3D2E">savagnin</text>
+      <rect x="318" y="52" width="14" height="10" fill="#9C3D2E"/>
+    </g>
+    <!-- petit chalet en fond -->
+    <g opacity=".9">
+      <rect x="52" y="70" width="76" height="44" fill="#6B4F33"/>
+      <path d="M40 72 L90 34 L140 72 Z" fill="#4A3421"/>
+      <rect x="80" y="88" width="20" height="26" fill="#E2A63D"/>
+      <rect x="60" y="82" width="14" height="14" fill="#F3D089"/>
+    </g>
+  </svg>
+</div>
+
+<section id="comptoir" class="ficelle">
+  <span class="sous">Au comptoir</span>
+  <h2>Ce que vous trouverez sur nos planches</h2>
+  <p>Une sélection rigoureuse, en direct des producteurs franc-comtois — servie à la coupe, sous vide sur demande.</p>
+  <div class="etiquettes">
+    <div class="etiquette">
+      <h3>Fromages</h3>
+      <ul><li>Comté de nos fruitières</li><li>Morbier au lait cru</li><li>Mont d'Or en saison</li><li>Tommes &amp; spécialités locales</li></ul>
+    </div>
+    <div class="etiquette">
+      <h3>Salaisons</h3>
+      <ul><li>Saucisse de Morteau</li><li>Jambon &amp; brési fumés</li><li>Terrines artisanales</li><li>Charcuteries du tuyé</li></ul>
+    </div>
+    <div class="etiquette">
+      <h3>Vins du Jura &amp; cave</h3>
+      <ul><li>Savagnin, chardonnay, poulsard</li><li>Vin jaune &amp; macvin</li><li>Bières et sirops artisanaux</li><li>Conseil accords au comptoir</li></ul>
+    </div>
+    <div class="etiquette">
+      <h3>Épicerie fine</h3>
+      <ul><li>Miels et confitures du massif</li><li>Biscuits &amp; douceurs</li><li>Moutardes, condiments</li><li>Idées cadeaux gourmandes</li></ul>
+    </div>
+  </div>
+  <p class="note" style="margin-top:1.2rem">Tarifs à la coupe et disponibilités saisonnières : nous consulter en boutique ou par téléphone.</p>
+</section>
+
+<section id="histoire" class="ficelle">
+  <div class="histoire">
+    <svg class="tampon" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="56" fill="none" stroke="#9C3D2E" stroke-width="3" stroke-dasharray="6 4"/>
+      <circle cx="60" cy="60" r="44" fill="none" stroke="#9C3D2E" stroke-width="1.5"/>
+      <text x="60" y="50" text-anchor="middle" font-family="Rockwell,serif" font-size="13" fill="#9C3D2E">MAISON</text>
+      <text x="60" y="68" text-anchor="middle" font-family="Rockwell,serif" font-size="13" fill="#9C3D2E">JACQUET</text>
+      <text x="60" y="84" text-anchor="middle" font-family="Seravek,sans-serif" font-size="9" fill="#9C3D2E">Haut-Doubs</text>
+    </svg>
+    <div>
+      <span class="sous">Notre histoire</span>
+      <h2>Une maison de famille du Haut-Doubs</h2>
+      <p>Installé au lieu-dit La Gauffre, à La Cluse-et-Mijoux, le Chalet Jacquet a été fondé par Martine et Michel Jacquet, figures locales de la salaison. Depuis juillet 2021, Yanis Paget a repris le comptoir avec la même exigence : des produits frais, des fournisseurs choisis un par un, et le goût du conseil.</p>
+      <p style="margin-top:.8rem">Sur la route du château de Joux, la boutique est devenue une halte gourmande pour les habitants comme pour les visiteurs de passage — ouverte tous les jours, toute l'année.</p>
+    </div>
+  </div>
+</section>
+
+<section id="paniers" class="ficelle">
+  <div class="deux-col">
+    <div>
+      <span class="sous">Pour offrir ou emporter</span>
+      <h2>Paniers garnis &amp; expédition sous vide</h2>
+      <p>Composez votre panier garni au comptoir — fromages, salaisons, vins et douceurs — ou confiez-nous un budget : nous l'assemblons pour vous. Comités d'entreprise et cadeaux de fin d'année : nous consulter.</p>
+      <p style="margin-top:.8rem">Vos produits voyagent bien : nous les conditionnons <strong>sous vide</strong> pour préserver leur fraîcheur, et le <strong>Click &amp; Collect</strong> vous permet de commander à l'avance et de retirer en boutique.</p>
+    </div>
+    <div class="encart">
+      <h2 style="font-size:1.4rem">Le bon réflexe</h2>
+      <p style="margin-top:.6rem">Un repas de famille, une raclette entre amis, un cadeau à expédier&nbsp;?</p>
+      <p style="margin-top:.6rem">Appelez-nous au <a href="tel:+33381397540">03 81 39 75 40</a> — on prépare, vous passez prendre.</p>
+    </div>
+  </div>
+</section>
+
+<section id="reseaux" class="ficelle">
+  <span class="sous">Suivez-nous</span>
+  <h2>Le comptoir, côté réseaux</h2>
+  <p>Arrivages, idées recettes, coulisses de la boutique : la maison est très active sur les réseaux — rejoignez les 677 abonnés de notre page Instagram.</p>
+  <div class="reseaux">
+    <a class="reseau" href="https://www.facebook.com/lechaletjacquet/" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="5" fill="#2E241B"/><path d="M13.5 8.5h2V5.8h-2.3c-2 0-3 1.3-3 3.1v1.8H8v2.6h2.2V19h2.7v-5.7h2.2l.4-2.6h-2.6V9.3c0-.5.2-.8.6-.8Z" fill="#F9F3E6"/></svg>
+      Facebook — Le Chalet Jacquet
+    </a>
+    <a class="reseau" href="#" aria-disabled="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="none" stroke="#2E241B" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="#2E241B" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.4" fill="#9C3D2E"/></svg>
+      Instagram — 677 abonnés
+    </a>
+  </div>
+  <p class="note" style="margin-top:.8rem">Liens exacts des profils à confirmer ensemble avant mise en ligne.</p>
+</section>
+
+<section id="contact" class="ficelle contact">
+  <span class="sous">Infos pratiques</span>
+  <h2>Venir au Chalet</h2>
+  <dl>
+    <dt>Adresse</dt><dd>Lieu-dit La Gauffre, 25300 La Cluse-et-Mijoux — sur la route du château de Joux</dd>
+    <dt>Téléphone</dt><dd><a href="tel:+33381397540">03 81 39 75 40</a></dd>
+    <dt>Ouverture</dt><dd>7 jours sur 7, toute l'année</dd>
+    <dt>Itinéraire</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Chalet+Jacquet+La+Cluse-et-Mijoux" rel="noopener">Ouvrir dans Google Maps</a></dd>
+  </dl>
+</section>
+
+<footer>Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle</footer>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!--
+PLAN DE DESIGN — Le Gîte musical (secteur Métabief)
+Recherche : aucune fiche fiable trouvée en ligne pour cet hébergement précis → contenu
+crédible-générique (faits vérifiables sur le secteur Métabief uniquement, équipements du gîte
+présentés comme "partition à écrire ensemble", rien d'inventé).
+Palette (univers réel : papier de partition, encre, velours de salle de concert, laiton des cuivres) :
+  - Papier    #FBF7EE  (fond clair, papier à musique)
+  - Encre     #2A2733  (texte, encre de copiste)
+  - Pupitre   #F1EAD9  (panneaux, carton à partitions)
+  - Velours   #8E3B42  (accent principal, rideau de salle de concert)
+  - Laiton    #B98A2F  (accent secondaire, cuivres)
+  - Bleu nuit #33415C  (contrepoint froid, soir de concert)
+Typographie : titres Baskerville / "Palatino Linotype" / "Book Antiqua" / Georgia (serif gravée
+des éditions musicales, italiques expressives) · corps Optima / Candara / "Segoe UI" (sans
+humaniste, douce). Boutons en pilule, coins doux : la rondeur d'une note.
+Concept : un refuge de montagne qui donne le la — la page se lit comme un programme de concert,
+en mouvements numérotés.
+ÉLÉMENT SIGNATURE : la portée ondulante — cinq lignes fines qui traversent le hero comme une
+colline, portant rondes et croches dessinées en SVG ; clef de sol stylisée au trait dans le
+monogramme ; séparateurs en portée courte avec note unique. Pas d'emoji, pas de kitsch : du trait.
+Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et prefers-color-scheme.
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Le Gîte musical — maquette</title>
+<style>
+  :root{
+    --papier:#FBF7EE; --encre:#2A2733; --pupitre:#F1EAD9; --velours:#8E3B42;
+    --laiton:#B98A2F; --nuit:#33415C; --doux:#6A6474; --filet:rgba(42,39,51,.18);
+    --serif:Baskerville,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    --sans:Optima,Candara,"Segoe UI",Verdana,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --papier:#221F2B; --encre:#EFE9DA; --pupitre:#2B2837; --velours:#C97B80;
+      --laiton:#D9B45C; --nuit:#9DB0D0; --doux:#A79FB0; --filet:rgba(239,233,218,.2);
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--papier);color:var(--encre);font-family:var(--sans);
+       font-size:16.5px;line-height:1.75;}
+  ::selection{background:var(--laiton);color:#2A2733;}
+  a{color:var(--velours);text-decoration:none;border-bottom:1px dotted var(--velours);}
+  a:hover{border-bottom-style:solid;}
+  svg{display:block;max-width:100%;}
+  .demo-band{background:var(--nuit);color:var(--papier);font-size:.8rem;
+             padding:.65rem 1.5rem;letter-spacing:.03em;}
+  @media (prefers-color-scheme: dark){ .demo-band{background:#141220;color:#EFE9DA;} }
+  .portee-page{max-width:1040px;margin:0 auto;padding:0 1.5rem;}
+  h1,h2,h3{font-family:var(--serif);color:var(--encre);line-height:1.18;font-weight:600;}
+  h2{font-size:clamp(1.65rem,3.2vw,2.4rem);margin-bottom:1.2rem;}
+  h1 em,h2 em{font-style:italic;color:var(--velours);font-weight:400;}
+  .mouvement{display:flex;align-items:center;gap:.7rem;font-size:.74rem;letter-spacing:.3em;
+             text-transform:uppercase;color:var(--laiton);margin-bottom:1.3rem;font-weight:600;}
+  header.tete{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+              padding:1.5rem 0;flex-wrap:wrap;}
+  .marque{display:flex;align-items:center;gap:.9rem;}
+  .marque .nom{font-family:var(--serif);font-size:1.35rem;font-weight:600;}
+  .marque .ou{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--doux);}
+  nav.tete-nav{display:flex;gap:1.6rem;flex-wrap:wrap;}
+  nav.tete-nav a{border:none;font-size:.83rem;letter-spacing:.1em;text-transform:uppercase;color:var(--encre);}
+  nav.tete-nav a:hover{color:var(--velours);}
+  /* HERO : la portée ondulante traverse toute la largeur */
+  .hero{padding:3.5rem 0 1rem;}
+  .hero h1{font-size:clamp(2.5rem,6vw,4.2rem);max-width:16ch;margin-bottom:1.6rem;}
+  .hero .la{color:var(--doux);max-width:52ch;font-size:1.08rem;margin-bottom:2.2rem;}
+  .btn{display:inline-block;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;
+       padding:.9rem 2rem;border-radius:999px;border:1.5px solid var(--velours);
+       color:var(--velours);transition:all .25s;font-weight:600;}
+  .btn:hover{background:var(--velours);color:var(--papier);}
+  .btn.forte{background:var(--velours);color:var(--papier);}
+  .btn.forte:hover{background:var(--nuit);border-color:var(--nuit);}
+  .cta-mesure{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;}
+  .grande-portee{margin:0 0 2rem;}
+  section{padding:4.2rem 0;}
+  /* séparateur signature : portée courte + note */
+  .cadence{display:flex;justify-content:flex-start;padding:0;}
+  .deux-voix{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3.5rem;align-items:start;}
+  .pupitre-bloc{background:var(--pupitre);border-radius:14px;padding:2.2rem;}
+  .pupitre-bloc h3{font-size:1.05rem;margin-bottom:.5rem;}
+  .pupitre-bloc p{color:var(--doux);font-size:.95rem;}
+  .partition-note{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--velours);
+                  margin-top:1.4rem;}
+  /* programme en quatre mouvements */
+  .programme{list-style:none;counter-reset:mvt;border-top:1px solid var(--filet);margin-top:2.4rem;}
+  .programme li{counter-increment:mvt;display:grid;grid-template-columns:minmax(90px,1fr) minmax(0,3fr) minmax(0,6fr);
+                gap:1.6rem;padding:1.7rem 0;border-bottom:1px solid var(--filet);align-items:baseline;}
+  .programme li::before{content:counter(mvt,upper-roman) ".";font-family:var(--serif);font-style:italic;
+                        font-size:1.3rem;color:var(--laiton);}
+  .programme .tempo{font-family:var(--serif);font-size:1.2rem;font-weight:600;}
+  .programme .detail{color:var(--doux);font-size:.97rem;}
+  /* autour : deux colonnes avec liste à puce-note */
+  ul.notes{list-style:none;}
+  ul.notes li{padding:.75rem 0;display:flex;gap:.9rem;align-items:baseline;border-bottom:1px solid var(--filet);}
+  ul.notes li svg{flex:0 0 auto;transform:translateY(2px);}
+  /* réservation directe */
+  .direct{background:var(--pupitre);border-radius:18px;padding:3rem;
+          display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:2.5rem;align-items:center;
+          border:1px solid var(--filet);}
+  .direct .phrase{color:var(--doux);font-size:1.06rem;max-width:46ch;}
+  .direct .droite{display:flex;flex-direction:column;gap:1rem;align-items:flex-start;}
+  .accord{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--laiton);}
+  /* contact */
+  .coordonnees{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem;margin-top:2.2rem;}
+  .coordonnees h3{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;font-family:var(--sans);
+                  color:var(--laiton);margin-bottom:.7rem;}
+  .coordonnees p{color:var(--doux);font-size:.96rem;}
+  footer.coda{border-top:1px solid var(--filet);padding:2.3rem 0 3rem;font-size:.8rem;color:var(--doux);}
+  @media (max-width:840px){
+    .deux-voix,.direct{grid-template-columns:1fr;gap:2rem;}
+    .programme li{grid-template-columns:minmax(46px,auto) 1fr;grid-template-rows:auto auto;}
+    .programme .detail{grid-column:2;}
+    .coordonnees{grid-template-columns:1fr;gap:1.8rem;}
+    .direct{padding:2rem;}
+    section{padding:3.2rem 0;}
+  }
+</style>
+</head>
+<body>
+<div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<div class="portee-page">
+<header class="tete">
+  <div class="marque">
+    <!-- monogramme : clef de sol stylisée au trait -->
+    <svg width="40" height="52" viewBox="0 0 60 120" aria-hidden="true">
+      <path d="M38 10 C47 17 48 27 40 35 L26 78 C22 89 29 97 37 96 C46 95 50 85 44 79 C38 73 28 77 29 87 L32 105 C33 112 26 116 21 111"
+            fill="none" style="stroke:var(--laiton)" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="24" cy="110" r="3.4" style="fill:var(--velours)"/>
+    </svg>
+    <div>
+      <div class="nom">Le Gîte musical</div>
+      <div class="ou">Secteur Métabief · Haut-Doubs</div>
+    </div>
+  </div>
+  <nav class="tete-nav">
+    <a href="#gite">Le gîte</a>
+    <a href="#saisons">Les saisons</a>
+    <a href="#autour">Autour</a>
+    <a href="#direct">Réserver</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+</div>
+
+<main>
+<div class="portee-page">
+<div class="hero">
+  <div class="mouvement">Ouverture
+    <svg width="70" height="10" viewBox="0 0 70 10" aria-hidden="true"><path d="M0 5 H70" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+  </div>
+  <h1>Un gîte qui <em>donne le la</em>, au pied des pistes</h1>
+  <p class="la">Dans le secteur de Métabief, entre les monts du Haut-Doubs et le lac
+  Saint-Point, Le Gîte musical porte bien son nom : on y vient chercher le silence
+  de la montagne — et on repart avec une mélodie en tête.</p>
+  <div class="cta-mesure">
+    <a class="btn forte" href="#direct">Réserver en direct</a>
+    <a class="btn" href="#gite">Lire le programme</a>
+  </div>
+</div>
+</div>
+
+<!-- portée signature : cinq lignes qui ondulent comme la ligne des monts, notes posées dessus -->
+<div class="grande-portee" aria-hidden="true">
+  <svg viewBox="0 0 1200 190" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;">
+    <g fill="none" style="stroke:var(--laiton)" stroke-width="1.1" opacity=".85">
+      <path d="M0 78  C180 58 320 108 520 96 C720 84 860 44 1030 58 C1100 64 1160 72 1200 70"/>
+      <path d="M0 92  C180 72 320 122 520 110 C720 98 860 58 1030 72 C1100 78 1160 86 1200 84"/>
+      <path d="M0 106 C180 86 320 136 520 124 C720 112 860 72 1030 86 C1100 92 1160 100 1200 98"/>
+      <path d="M0 120 C180 100 320 150 520 138 C720 126 860 86 1030 100 C1100 106 1160 114 1200 112"/>
+      <path d="M0 134 C180 114 320 164 520 152 C720 140 860 100 1030 114 C1100 120 1160 128 1200 126"/>
+    </g>
+    <!-- clef de sol posée au départ de la portée -->
+    <path d="M64 52 C73 59 74 69 66 77 L52 118 C48 129 55 137 63 136 C72 135 76 125 70 119 C64 113 54 117 55 127 L58 146 C59 153 52 157 47 152"
+          fill="none" style="stroke:var(--velours)" stroke-width="3.4" stroke-linecap="round"/>
+    <!-- notes : rondes et croches sur la portée -->
+    <g class="notes-encre" style="fill:var(--encre)">
+      <g transform="translate(300,95) rotate(-18)"><ellipse rx="9" ry="6.5"/></g>
+      <path d="M308 92 V52" style="stroke:var(--encre)" stroke-width="2"/>
+      <g transform="translate(470,116) rotate(-18)"><ellipse rx="9" ry="6.5"/></g>
+      <path d="M478 113 V73 C486 78 492 74 496 68" style="stroke:var(--encre)" stroke-width="2" fill="none"/>
+      <g transform="translate(640,102) rotate(-18)"><ellipse rx="9" ry="6.5" fill="none" style="stroke:var(--encre)" stroke-width="2"/></g>
+      <path d="M649 100 V60" style="stroke:var(--encre)" stroke-width="2"/>
+      <g transform="translate(840,72) rotate(-18)"><ellipse rx="9" ry="6.5"/></g>
+      <path d="M848 69 V29" style="stroke:var(--encre)" stroke-width="2"/>
+      <g transform="translate(1010,86) rotate(-18)"><ellipse rx="9" ry="6.5" fill="none" style="stroke:var(--encre)" stroke-width="2"/></g>
+      <path d="M1002 89 V129" style="stroke:var(--encre)" stroke-width="2"/>
+    </g>
+  </svg>
+</div>
+
+<div class="portee-page">
+<section id="gite">
+  <div class="deux-voix">
+    <div>
+      <div class="mouvement">Premier mouvement
+        <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+      </div>
+      <h2>La maison, <em>thème principal</em></h2>
+      <p style="color:var(--doux);max-width:46ch;">Un gîte de montagne dans le secteur de
+      Métabief : un point de départ pour la station et les crêtes, un refuge pour les
+      soirées. L'esprit du lieu est dans son nom — on y accorde les détails comme
+      on accorde un instrument.</p>
+      <p class="partition-note">La partition exacte — capacité, pièces, équipements —
+      s'écrira avec vous : cette maquette pose le décor, vos informations feront la musique.</p>
+    </div>
+    <div style="display:grid;gap:1.2rem;">
+      <div class="pupitre-bloc">
+        <h3>Le cadre</h3>
+        <p>Le village de Métabief et ses hameaux voisins, à plus de 900 mètres d'altitude,
+        au pied du Mont d'Or — le sommet du Doubs.</p>
+      </div>
+      <div class="pupitre-bloc">
+        <h3>L'esprit</h3>
+        <p>Un hébergement pensé pour les séjours en famille ou entre amis, hiver comme été,
+        avec la station et les sentiers à portée de main.</p>
+      </div>
+      <div class="pupitre-bloc">
+        <h3>La promesse</h3>
+        <p>Du repos bien orchestré : on skie, on marche, on pédale — puis la maison
+        reprend son rôle de refuge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="saisons" style="padding-top:1rem;">
+  <div class="mouvement">Deuxième mouvement
+    <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+  </div>
+  <h2>Quatre saisons, <em>quatre tempos</em></h2>
+  <ol class="programme">
+    <li>
+      <span class="tempo">Allegro — l'hiver</span>
+      <span class="detail">Ski alpin et nordique à la station de Métabief, raquettes
+      sur les crêtes du Mont d'Or, retour au chaud à la tombée du jour.</span>
+    </li>
+    <li>
+      <span class="tempo">Andante — le printemps</span>
+      <span class="detail">Les alpages reverdissent, les sentiers se rouvrent,
+      les villages du Haut-Doubs se visitent sans hâte.</span>
+    </li>
+    <li>
+      <span class="tempo">Vivace — l'été</span>
+      <span class="detail">VTT sur les pistes de la station, baignade au lac
+      Saint-Point tout proche, grandes traversées à pied.</span>
+    </li>
+    <li>
+      <span class="tempo">Adagio — l'automne</span>
+      <span class="detail">Brumes sur les combes, forêts rousses, fruitées et bonnes
+      tables comtoises : la saison la plus confidentielle.</span>
+    </li>
+  </ol>
+</section>
+
+<section id="autour" style="padding-top:1rem;">
+  <div class="deux-voix">
+    <div>
+      <div class="mouvement">Troisième mouvement
+        <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+      </div>
+      <h2>Autour du gîte, <em>en accords</em></h2>
+      <p style="color:var(--doux);max-width:44ch;">Le secteur de Métabief est une des
+      portes des Montagnes du Jura : tout se joue à courte distance.</p>
+    </div>
+    <ul class="notes">
+      <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
+        La station de Métabief : ski l'hiver, VTT et luge d'été à la belle saison</li>
+      <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
+        Le Mont d'Or et son panorama sur les Alpes par temps clair</li>
+      <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
+        Le lac Saint-Point et ses plages, à courte route</li>
+      <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
+        Pontarlier, le château de Joux et la Suisse voisine</li>
+    </ul>
+  </div>
+</section>
+
+<section id="direct" style="padding-top:1rem;">
+  <div class="direct">
+    <div>
+      <div class="mouvement">Finale
+        <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+      </div>
+      <h2>Réservez <em>en direct</em></h2>
+      <p class="phrase">Réservation en direct, sans commission de plateforme.
+      Vous écrivez, la maison répond : disponibilités réelles, conseils de saison,
+      et un accueil qui commence avant l'arrivée.</p>
+    </div>
+    <div class="droite">
+      <span class="accord">Sans intermédiaire, sans fausse note</span>
+      <a class="btn forte" href="#contact">Demander les disponibilités</a>
+      <span style="font-size:.8rem;color:var(--doux);">Téléphone (en lien d'appel direct) et
+      e-mail à insérer après validation.</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:1rem;">
+  <div class="mouvement">Coda
+    <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+  </div>
+  <h2>Nous trouver, <em>secteur Métabief</em></h2>
+  <div class="coordonnees">
+    <div>
+      <h3>Localisation</h3>
+      <p>Le Gîte musical<br>Secteur Métabief — 25370, Doubs<br>Montagnes du Jura</p>
+    </div>
+    <div>
+      <h3>Itinéraire</h3>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+G%C3%AEte+musical+M%C3%A9tabief" rel="noopener">Ouvrir dans Google Maps</a></p>
+      <p style="margin-top:.6rem;">À 20 minutes de Pontarlier,<br>aux portes de la Suisse.</p>
+    </div>
+    <div>
+      <h3>Joindre le gîte</h3>
+      <p>Numéro de téléphone et e-mail<br>à ajouter ensemble<br>(lien d'appel direct prévu).</p>
+    </div>
+  </div>
+</section>
+</div>
+</main>
+
+<div class="portee-page">
+<footer class="coda">
+  Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
+</footer>
+</div>
+</body>
+</html>

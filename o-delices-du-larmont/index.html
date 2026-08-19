@@ -1,0 +1,350 @@
+<!--
+PLAN DE DESIGN — Ô Délices du Larmont (traiteur, Malbuisson)
+Palette (réception du soir, nappe et argenterie) :
+  - Prune de fête    #3a2334 (fond, velours du soir)
+  - Prune profonde   #2a1826 (fonds appuyés)
+  - Champagne        #e6d3a3 (titres, lueur des coupes)
+  - Ivoire de nappe  #f4eee2 (texte courant)
+  - Sauge d'herbes   #8ba081 (accents végétaux, herbes du buffet)
+  - Cuivre de cuisine #b57a4e (casseroles, filets chauds — utilisé avec parcimonie)
+Typographie : Baskerville / "Times New Roman" (titres à l'italienne, carte de banquet) +
+"Gill Sans" / "Century Gothic" / sans-serif (courant, service impeccable).
+Concept : la carte d'un banquet — un site qui se déroule comme un menu de réception,
+du vin d'honneur au dessert, cloche de service en emblème.
+ÉLÉMENT SIGNATURE : cloche de service SVG (dôme de plat soulevé, volutes de fumet) +
+filets doubles champagne facon carte de menu.
+Thème : un seul thème sombre assumé (lumière de salle de réception) — pas de version claire.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ô Délices du Larmont — maquette</title>
+<style>
+  :root{
+    --prune:#3a2334;
+    --prune-fonce:#2a1826;
+    --champagne:#e6d3a3;
+    --ivoire:#f4eee2;
+    --sauge:#8ba081;
+    --cuivre:#b57a4e;
+    --serif:Baskerville,"Baskerville Old Face","Times New Roman",serif;
+    --sans:"Gill Sans","Century Gothic","Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--prune);color:var(--ivoire);font-family:var(--sans);line-height:1.65}
+
+  .demo-banner{
+    background:var(--champagne);color:#3a2334;font-weight:600;
+    font-size:.8rem;text-align:center;padding:.5rem 1rem;
+  }
+
+  header.site{
+    text-align:left;padding:1.2rem 7vw;
+    display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 2rem;
+    border-bottom:1px solid rgba(230,211,163,.3);
+  }
+  .marque{font-family:var(--serif);font-size:1.45rem;letter-spacing:.03em}
+  .marque .o{color:var(--champagne);font-style:italic}
+  .marque small{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--sauge)}
+  nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:1.6rem;font-size:.85rem;letter-spacing:.06em}
+  nav.haut a{color:var(--ivoire);text-decoration:none}
+  nav.haut a:hover{color:var(--champagne)}
+
+  /* filets doubles façon carte de menu */
+  .filets{border-top:1px solid var(--champagne);border-bottom:3px double var(--champagne);
+    height:8px;max-width:190px;margin:1.2rem 0}
+
+  /* ---- HERO ---- */
+  .hero{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);
+    gap:2.5rem;align-items:center;padding:4rem 7vw 3.5rem;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(230,211,163,.12) 0%, rgba(58,35,52,0) 45%),
+      var(--prune);
+  }
+  .hero .sur{font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;color:var(--sauge)}
+  .hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.14;margin-top:.8rem;max-width:20ch;
+  }
+  .hero h1 em{color:var(--champagne)}
+  .hero p{margin:1.4rem 0 2rem;max-width:52ch;color:#dccfc4}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:600;font-size:.92rem;
+    letter-spacing:.06em;padding:.85rem 1.9rem;
+    background:var(--champagne);color:#3a2334;
+  }
+  .btn:hover{background:#f0e2ba}
+  .btn.ghost{background:transparent;color:var(--champagne);border:1px solid var(--champagne);margin-left:.7rem}
+  .btn.ghost:hover{background:rgba(230,211,163,.1)}
+  .cloche-svg{width:100%;max-width:360px;height:auto;justify-self:center}
+
+  section{padding:3.4rem 7vw}
+  h2{font-family:var(--serif);font-weight:500;color:var(--champagne);
+    font-size:clamp(1.5rem,3vw,2.2rem)}
+  .sous{color:#dccfc4;max-width:60ch;margin-top:.8rem}
+
+  /* ---- prestations : menu déroulé ---- */
+  .services{margin-top:2rem;display:grid;gap:0}
+  .service{
+    display:grid;grid-template-columns:minmax(90px,140px) minmax(0,1fr);
+    gap:1.5rem;padding:1.8rem 0;border-top:1px solid rgba(230,211,163,.25);
+  }
+  .service:last-child{border-bottom:1px solid rgba(230,211,163,.25)}
+  .service .plat{font-family:var(--serif);font-style:italic;color:var(--sauge);font-size:.95rem;padding-top:.2rem}
+  .service h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;margin-bottom:.4rem}
+  .service p{font-size:.95rem;color:#dccfc4;max-width:62ch}
+
+  /* ---- terroir ---- */
+  .terroir{background:var(--prune-fonce)}
+  .terroir-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.6rem;margin-top:1.8rem}
+  .produit-t{border-left:3px solid var(--sauge);padding:.2rem 0 .2rem 1.2rem}
+  .produit-t h3{font-family:var(--serif);font-weight:500;font-size:1.05rem;color:var(--ivoire);margin-bottom:.3rem}
+  .produit-t p{font-size:.88rem;color:#c9bcb1}
+  .mention{font-style:italic;color:#b8a89c;font-size:.88rem;margin-top:1.6rem}
+
+  /* ---- devis ---- */
+  .devis{background:
+    radial-gradient(ellipse at 85% 15%, rgba(139,160,129,.16) 0%, rgba(58,35,52,0) 50%),
+    var(--prune)}
+  .devis-int{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:3rem;align-items:start}
+  form.formulaire{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .champ{display:flex;flex-direction:column;gap:.3rem}
+  .champ.large{grid-column:1 / -1}
+  .champ label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sauge)}
+  .champ input,.champ select,.champ textarea{
+    background:rgba(244,238,226,.06);border:1px solid rgba(230,211,163,.4);
+    color:var(--ivoire);font-family:var(--sans);font-size:.95rem;
+    padding:.7rem .8rem;border-radius:0;
+  }
+  .champ textarea{min-height:110px;resize:vertical}
+  .champ input:focus,.champ select:focus,.champ textarea:focus{outline:2px solid var(--champagne)}
+  .champ select option{color:#3a2334}
+  .note-demo{
+    grid-column:1 / -1;font-size:.8rem;font-style:italic;color:#b8a89c;
+    border:1px dashed rgba(230,211,163,.4);padding:.6rem .9rem;
+  }
+  .envoyer{grid-column:1 / -1;justify-self:start}
+
+  /* ---- contact ---- */
+  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:1.6rem;font-size:.94rem}
+  .contact-grille h3{font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--sauge);margin-bottom:.6rem}
+  .contact-grille a{color:var(--ivoire)}
+  a.maps{display:inline-block;margin-top:.7rem;text-decoration:none;font-size:.85rem;
+    border:1px solid var(--champagne);color:var(--champagne);padding:.5rem 1.2rem}
+  a.maps:hover{background:rgba(230,211,163,.1)}
+
+  footer.pied{
+    background:var(--prune-fonce);color:#a4948a;font-size:.78rem;text-align:center;
+    padding:1.2rem 7vw;border-top:1px solid rgba(230,211,163,.2);
+  }
+
+  @media (max-width:840px){
+    .hero{grid-template-columns:1fr}
+    .cloche-svg{max-width:270px}
+    .devis-int{grid-template-columns:1fr}
+    form.formulaire{grid-template-columns:1fr}
+    .service{grid-template-columns:1fr;gap:.3rem}
+    nav.haut{margin-left:0}
+  }
+</style>
+
+<div class="demo-banner">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<header class="site">
+  <div class="marque"><span class="o">Ô</span> Délices du Larmont
+    <small>Traiteur · Malbuisson — Haut-Doubs</small>
+  </div>
+  <nav class="haut">
+    <a href="#receptions">Réceptions</a>
+    <a href="#terroir">Terroir</a>
+    <a href="#devis">Demander un devis</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div>
+    <p class="sur">Mariages · Fêtes · Entreprises</p>
+    <h1>Le jour où tout doit être <em>parfait</em>, la table est notre affaire</h1>
+    <div class="filets" aria-hidden="true"></div>
+    <p>
+      Traiteur du Haut-Doubs, Ô Délices du Larmont compose vins d'honneur, buffets et
+      repas servis à table pour vos grands jours — avec les produits francs-comtois que
+      la maison sélectionne aussi pour son épicerie fine.
+    </p>
+    <div>
+      <a class="btn" href="#devis">Demander un devis</a>
+      <a class="btn ghost" href="tel:+33381387977">03 81 38 79 77</a>
+    </div>
+  </div>
+  <!-- ÉLÉMENT SIGNATURE : la cloche de service soulevée -->
+  <svg class="cloche-svg" viewBox="0 0 340 300" role="img" aria-label="Cloche de service soulevée au-dessus d'un plat, volutes de fumet">
+    <defs>
+      <linearGradient id="dome" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#8a6a3a"/>
+        <stop offset=".5" stop-color="#e6d3a3"/>
+        <stop offset="1" stop-color="#8a6a3a"/>
+      </linearGradient>
+    </defs>
+    <!-- volutes de fumet -->
+    <g stroke="#8ba081" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".9">
+      <path d="M140 172 C 128 152 152 146 140 126 C 130 110 148 102 142 88"/>
+      <path d="M172 176 C 160 154 186 148 174 126 C 164 108 184 100 178 84"/>
+      <path d="M204 172 C 194 154 216 148 206 128"/>
+    </g>
+    <!-- dôme soulevé, incliné -->
+    <g transform="rotate(-14 210 96)">
+      <path d="M110 118 a100 78 0 0 1 200 0 Z" fill="url(#dome)"/>
+      <path d="M104 118 h212" stroke="#3a2334" stroke-width="0" />
+      <rect x="104" y="114" width="212" height="9" rx="4" fill="#b57a4e"/>
+      <circle cx="210" cy="34" r="9" fill="#b57a4e"/>
+      <rect x="206" y="40" width="8" height="10" fill="#b57a4e"/>
+    </g>
+    <!-- plat -->
+    <ellipse cx="170" cy="222" rx="128" ry="16" fill="#2a1826" stroke="#e6d3a3" stroke-width="3"/>
+    <ellipse cx="170" cy="214" rx="96" ry="11" fill="none" stroke="#e6d3a3" stroke-width="2" opacity=".7"/>
+    <!-- mets stylisé -->
+    <ellipse cx="170" cy="206" rx="44" ry="10" fill="#8ba081"/>
+    <circle cx="152" cy="200" r="7" fill="#b57a4e"/>
+    <circle cx="176" cy="197" r="8" fill="#b57a4e"/>
+    <circle cx="194" cy="202" r="6" fill="#e6d3a3"/>
+    <!-- pied de table nappée -->
+    <path d="M62 236 Q 170 260 278 236 L 268 292 Q 170 306 72 292 Z" fill="#f4eee2" opacity=".14"/>
+  </svg>
+</div>
+
+<section id="receptions">
+  <h2>Nos réceptions, servies comme un menu</h2>
+  <p class="sous">Du premier toast au dernier café, une seule équipe et une seule exigence,
+  pour vingt convives comme pour deux cents.</p>
+  <div class="services">
+    <article class="service">
+      <div class="plat">En ouverture</div>
+      <div>
+        <h3>Mariages</h3>
+        <p>Vin d'honneur, buffets élégants ou repas servis à table, pièce montée et
+        menus enfants : la maison accompagne les mariés de la dégustation au grand soir,
+        en salle, sous chapiteau ou au bord des lacs du Haut-Doubs.</p>
+      </div>
+    </article>
+    <article class="service">
+      <div class="plat">Pour continuer</div>
+      <div>
+        <h3>Fêtes de famille</h3>
+        <p>Baptêmes, communions, anniversaires, retrouvailles : des formules buffet ou
+        cocktail à composer selon vos envies et le nombre de convives.</p>
+      </div>
+    </article>
+    <article class="service">
+      <div class="plat">Pour conclure</div>
+      <div>
+        <h3>Entreprises</h3>
+        <p>Cocktails, plateaux-repas, séminaires et fêtes de fin d'année : une
+        organisation précise et discrète, à la hauteur de vos invités.</p>
+      </div>
+    </article>
+  </div>
+  <p class="mention">Chaque événement est unique : tarifs sur devis — nous consulter.</p>
+</section>
+
+<section class="terroir" id="terroir">
+  <h2>Le terroir franc-comtois en cuisine</h2>
+  <p class="sous">Ô Délices du Larmont, c'est aussi une épicerie fine de produits régionaux
+  (boutique en ligne oddl.fr) : les mêmes maisons et les mêmes terroirs se retrouvent
+  dans nos buffets.</p>
+  <div class="terroir-grille">
+    <div class="produit-t">
+      <h3>Fromages affinés</h3>
+      <p>Comté et fromages du massif jurassien, choisis chez les affineurs de la région.</p>
+    </div>
+    <div class="produit-t">
+      <h3>Salaisons fumées</h3>
+      <p>Charcuteries et fumaisons du Haut-Doubs pour les plateaux et buffets campagnards.</p>
+    </div>
+    <div class="produit-t">
+      <h3>Morilles &amp; champignons</h3>
+      <p>Les sous-bois du Jura dans les sauces des grands jours.</p>
+    </div>
+    <div class="produit-t">
+      <h3>Vins &amp; champagnes</h3>
+      <p>Une cave choisie pour accorder chaque service, du vin d'honneur au dessert.</p>
+    </div>
+  </div>
+</section>
+
+<section class="devis" id="devis">
+  <div class="devis-int">
+    <div>
+      <h2>Demandez un devis</h2>
+      <div class="filets" aria-hidden="true"></div>
+      <p class="sous">Parlez-nous de votre événement : date, lieu, nombre de convives,
+      envies. Nous vous rappelons pour composer une proposition sur mesure.</p>
+      <p class="sous" style="margin-top:1rem">Vous préférez le téléphone ?<br>
+      <a href="tel:+33381387977" style="color:var(--champagne)">03 81 38 79 77</a></p>
+    </div>
+    <form class="formulaire">
+      <p class="note-demo">Formulaire de démonstration — actif sur le site final.</p>
+      <div class="champ">
+        <label for="nom">Votre nom</label>
+        <input id="nom" type="text" autocomplete="off">
+      </div>
+      <div class="champ">
+        <label for="tel">Téléphone</label>
+        <input id="tel" type="tel" autocomplete="off">
+      </div>
+      <div class="champ">
+        <label for="email">Courriel</label>
+        <input id="email" type="email" autocomplete="off">
+      </div>
+      <div class="champ">
+        <label for="date">Date envisagée</label>
+        <input id="date" type="date">
+      </div>
+      <div class="champ">
+        <label for="type">Type d'événement</label>
+        <select id="type">
+          <option>Mariage</option>
+          <option>Fête de famille</option>
+          <option>Réception d'entreprise</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="champ">
+        <label for="convives">Nombre de convives</label>
+        <input id="convives" type="number" min="1">
+      </div>
+      <div class="champ large">
+        <label for="message">Votre projet</label>
+        <textarea id="message"></textarea>
+      </div>
+      <button class="btn envoyer" type="button">Envoyer ma demande</button>
+    </form>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-grille">
+    <div>
+      <h3>Nous trouver</h3>
+      <p>Ô Délices du Larmont<br>Malbuisson · Haut-Doubs</p>
+      <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=%C3%94+D%C3%A9lices+du+Larmont+Malbuisson">Ouvrir dans Google Maps</a>
+    </div>
+    <div>
+      <h3>Nous joindre</h3>
+      <p>Téléphone : <a href="tel:+33381387977">03 81 38 79 77</a></p>
+    </div>
+    <div>
+      <h3>Épicerie fine</h3>
+      <p>Retrouvez nos produits régionaux sur la boutique en ligne
+      <a href="https://www.oddl.fr">oddl.fr</a>.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="pied">
+  Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
+</footer>
