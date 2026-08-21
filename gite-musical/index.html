@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
+<head>
+<meta charset="utf-8">
+<!-- charset en tout premier : au-delà de 1024 octets le navigateur ne le lit plus
+     et les accents partent en mojibake. Le plan de design suit juste après. -->
 <!--
 PLAN DE DESIGN — Le Gîte musical (secteur Métabief)
 Recherche : aucune fiche fiable trouvée en ligne pour cet hébergement précis → contenu
@@ -22,41 +26,48 @@ colline, portant rondes et croches dessinées en SVG ; clef de sol stylisée au 
 monogramme ; séparateurs en portée courte avec note unique. Pas d'emoji, pas de kitsch : du trait.
 Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et prefers-color-scheme.
 -->
-<head>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Le Gîte musical — maquette</title>
 <style>
   :root{
     --papier:#FBF7EE; --encre:#2A2733; --pupitre:#F1EAD9; --velours:#8E3B42;
-    --laiton:#B98A2F; --nuit:#33415C; --doux:#6A6474; --filet:rgba(42,39,51,.18);
+    --laiton:#B98A2F; --nuit:#33415C; --doux:#5F5969; --filet:rgba(42,39,51,.18);
+    /* le laiton est un ton de trait : trop clair pour du texte sur papier.
+       --laiton-texte est sa version lisible, seule utilisée pour les mots. */
+    --laiton-texte:#7F5C11;
+    --selection-encre:#2A2733;
     --serif:Baskerville,"Palatino Linotype","Book Antiqua",Georgia,serif;
     --sans:Optima,Candara,"Segoe UI",Verdana,sans-serif;
   }
   @media (prefers-color-scheme: dark){
     :root{
       --papier:#221F2B; --encre:#EFE9DA; --pupitre:#2B2837; --velours:#C97B80;
-      --laiton:#D9B45C; --nuit:#9DB0D0; --doux:#A79FB0; --filet:rgba(239,233,218,.2);
+      --laiton:#D9B45C; --laiton-texte:#DCBA68; --nuit:#9DB0D0; --doux:#ADA5B7;
+      --filet:rgba(239,233,218,.2); --selection-encre:#221F2B;
     }
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
   body{background:var(--papier);color:var(--encre);font-family:var(--sans);
-       font-size:16.5px;line-height:1.75;}
-  ::selection{background:var(--laiton);color:#2A2733;}
+       font-size:16.5px;line-height:1.75;overflow-x:hidden;}
+  ::selection{background:var(--laiton);color:var(--selection-encre);}
   a{color:var(--velours);text-decoration:none;border-bottom:1px dotted var(--velours);}
   a:hover{border-bottom-style:solid;}
+  :focus-visible{outline:2px solid var(--velours);outline-offset:3px;}
+  p{overflow-wrap:break-word;}
   svg{display:block;max-width:100%;}
   .demo-band{background:var(--nuit);color:var(--papier);font-size:.8rem;
              padding:.65rem 1.5rem;letter-spacing:.03em;}
   @media (prefers-color-scheme: dark){ .demo-band{background:#141220;color:#EFE9DA;} }
   .portee-page{max-width:1040px;margin:0 auto;padding:0 1.5rem;}
-  h1,h2,h3{font-family:var(--serif);color:var(--encre);line-height:1.18;font-weight:600;}
+  h1,h2,h3{font-family:var(--serif);color:var(--encre);line-height:1.18;font-weight:600;
+           text-wrap:balance;overflow-wrap:break-word;}
   h2{font-size:clamp(1.65rem,3.2vw,2.4rem);margin-bottom:1.2rem;}
   h1 em,h2 em{font-style:italic;color:var(--velours);font-weight:400;}
-  .mouvement{display:flex;align-items:center;gap:.7rem;font-size:.74rem;letter-spacing:.3em;
-             text-transform:uppercase;color:var(--laiton);margin-bottom:1.3rem;font-weight:600;}
+  .mouvement{display:flex;align-items:center;gap:.7rem;font-size:.76rem;letter-spacing:.28em;
+             text-transform:uppercase;color:var(--laiton-texte);margin-bottom:1.3rem;font-weight:600;}
   header.tete{display:flex;align-items:center;justify-content:space-between;gap:1rem;
               padding:1.5rem 0;flex-wrap:wrap;}
   .marque{display:flex;align-items:center;gap:.9rem;}
@@ -77,13 +88,22 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
   .btn.forte:hover{background:var(--nuit);border-color:var(--nuit);}
   .cta-mesure{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;}
   .grande-portee{margin:0 0 2rem;}
+  /* La portée est le motif signature : sur un téléphone, réduite à 57 px de haut,
+     elle devenait un fil illisible. On la recadre (slice) au lieu de la rétrécir. */
+  .grande-portee svg{width:100%;height:auto;display:block;}
+  @media (max-width:760px){ .grande-portee svg{height:130px;} }
+  @media (max-width:460px){ .grande-portee svg{height:112px;} }
   section{padding:4.2rem 0;}
   /* séparateur signature : portée courte + note */
   .cadence{display:flex;justify-content:flex-start;padding:0;}
   .deux-voix{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3.5rem;align-items:start;}
   .pupitre-bloc{background:var(--pupitre);border-radius:14px;padding:2.2rem;}
-  .pupitre-bloc h3{font-size:1.05rem;margin-bottom:.5rem;}
-  .pupitre-bloc p{color:var(--doux);font-size:.95rem;}
+  .pupitre-bloc h3{font-size:1.08rem;margin-bottom:.5rem;}
+  .pupitre-bloc p{color:var(--doux);font-size:1rem;line-height:1.7;}
+  .pupitre-bloc ul{list-style:none;margin-top:.5rem;color:var(--doux);font-size:1rem;}
+  .pupitre-bloc ul li{padding:.2rem 0 .2rem 1.1rem;position:relative;}
+  .pupitre-bloc ul li::before{content:"";position:absolute;left:0;top:.85rem;width:.45rem;height:.45rem;
+                              border-radius:50%;background:var(--velours);}
   .partition-note{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--velours);
                   margin-top:1.4rem;}
   /* programme en quatre mouvements */
@@ -91,9 +111,9 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
   .programme li{counter-increment:mvt;display:grid;grid-template-columns:minmax(90px,1fr) minmax(0,3fr) minmax(0,6fr);
                 gap:1.6rem;padding:1.7rem 0;border-bottom:1px solid var(--filet);align-items:baseline;}
   .programme li::before{content:counter(mvt,upper-roman) ".";font-family:var(--serif);font-style:italic;
-                        font-size:1.3rem;color:var(--laiton);}
+                        font-size:1.3rem;color:var(--laiton-texte);}
   .programme .tempo{font-family:var(--serif);font-size:1.2rem;font-weight:600;}
-  .programme .detail{color:var(--doux);font-size:.97rem;}
+  .programme .detail{color:var(--doux);font-size:1rem;line-height:1.7;}
   /* autour : deux colonnes avec liste à puce-note */
   ul.notes{list-style:none;}
   ul.notes li{padding:.75rem 0;display:flex;gap:.9rem;align-items:baseline;border-bottom:1px solid var(--filet);}
@@ -104,20 +124,29 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
           border:1px solid var(--filet);}
   .direct .phrase{color:var(--doux);font-size:1.06rem;max-width:46ch;}
   .direct .droite{display:flex;flex-direction:column;gap:1rem;align-items:flex-start;}
-  .accord{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--laiton);}
+  .accord{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--laiton-texte);}
   /* contact */
   .coordonnees{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem;margin-top:2.2rem;}
-  .coordonnees h3{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;font-family:var(--sans);
-                  color:var(--laiton);margin-bottom:.7rem;}
-  .coordonnees p{color:var(--doux);font-size:.96rem;}
+  .coordonnees h3{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-family:var(--sans);
+                  color:var(--laiton-texte);margin-bottom:.7rem;}
+  .coordonnees p{color:var(--doux);font-size:1rem;}
   footer.coda{border-top:1px solid var(--filet);padding:2.3rem 0 3rem;font-size:.8rem;color:var(--doux);}
   @media (max-width:840px){
     .deux-voix,.direct{grid-template-columns:1fr;gap:2rem;}
-    .programme li{grid-template-columns:minmax(46px,auto) 1fr;grid-template-rows:auto auto;}
+    .programme li{grid-template-columns:minmax(46px,auto) 1fr;grid-template-rows:auto auto;gap:.4rem 1rem;}
     .programme .detail{grid-column:2;}
     .coordonnees{grid-template-columns:1fr;gap:1.8rem;}
     .direct{padding:2rem;}
     section{padding:3.2rem 0;}
+  }
+  @media (max-width:520px){
+    .portee-page{padding:0 1.15rem;}
+    .demo-band{padding:.65rem 1.15rem;}
+    .direct{padding:1.6rem;border-radius:14px;}
+    .pupitre-bloc{padding:1.5rem 1.35rem;}
+    nav.tete-nav{gap:.9rem 1.1rem;}
+    .cta-mesure .btn{padding:.85rem 1.4rem;}
+    .coordonnees{padding-top:.4rem;border-top:1px solid var(--filet);}
   }
 </style>
 </head>
@@ -167,7 +196,7 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
 
 <!-- portée signature : cinq lignes qui ondulent comme la ligne des monts, notes posées dessus -->
 <div class="grande-portee" aria-hidden="true">
-  <svg viewBox="0 0 1200 190" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;">
+  <svg viewBox="0 0 1200 190" preserveAspectRatio="xMinYMid slice">
     <g fill="none" style="stroke:var(--laiton)" stroke-width="1.1" opacity=".85">
       <path d="M0 78  C180 58 320 108 520 96 C720 84 860 44 1030 58 C1100 64 1160 72 1200 70"/>
       <path d="M0 92  C180 72 320 122 520 110 C720 98 860 58 1030 72 C1100 78 1160 86 1200 84"/>
@@ -202,28 +231,36 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
         <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
       </div>
       <h2>La maison, <em>thème principal</em></h2>
-      <p style="color:var(--doux);max-width:46ch;">Un gîte de montagne dans le secteur de
-      Métabief : un point de départ pour la station et les crêtes, un refuge pour les
-      soirées. L'esprit du lieu est dans son nom — on y accorde les détails comme
-      on accorde un instrument.</p>
-      <p class="partition-note">La partition exacte — capacité, pièces, équipements —
-      s'écrira avec vous : cette maquette pose le décor, vos informations feront la musique.</p>
+      <p style="color:var(--doux);max-width:46ch;">Un gîte dans le secteur de Métabief :
+      on chausse le matin, on marche ou on skie la journée, on rentre le soir dans une
+      maison chauffée. C'est ce que les gens viennent chercher ici, et c'est ce que
+      cette page doit dire — avec vos mots.</p>
+      <p class="partition-note">Ce que vous lisez à droite, c'est ce que j'ai pu vérifier
+      sur le secteur. Ce qui manque, c'est vous qui l'avez : je n'ai rien inventé.</p>
     </div>
     <div style="display:grid;gap:1.2rem;">
       <div class="pupitre-bloc">
-        <h3>Le cadre</h3>
-        <p>Le village de Métabief et ses hameaux voisins, à plus de 900 mètres d'altitude,
-        au pied du Mont d'Or — le sommet du Doubs.</p>
+        <h3>Où l'on est</h3>
+        <p>Métabief, plus de 900 mètres d'altitude, au pied du Mont d'Or — point culminant
+        du Doubs à 1 463 m. Pontarlier à une vingtaine de minutes, la frontière suisse
+        juste derrière la crête.</p>
       </div>
       <div class="pupitre-bloc">
-        <h3>L'esprit</h3>
-        <p>Un hébergement pensé pour les séjours en famille ou entre amis, hiver comme été,
-        avec la station et les sentiers à portée de main.</p>
+        <h3>Ce qu'il y a à faire, à pied du gîte</h3>
+        <p>La station de Métabief (ski alpin et nordique l'hiver, VTT de descente et luge
+        d'été à la belle saison), les sentiers des crêtes, et le lac Saint-Point à courte
+        route pour la baignade.</p>
       </div>
       <div class="pupitre-bloc">
-        <h3>La promesse</h3>
-        <p>Du repos bien orchestré : on skie, on marche, on pédale — puis la maison
-        reprend son rôle de refuge.</p>
+        <h3>Ce qu'il reste à écrire avec vous</h3>
+        <p>Cette maquette ne prétend rien savoir de votre maison. Sur le site réel,
+        ce bloc portera :</p>
+        <ul>
+          <li>Capacité, chambres et couchages</li>
+          <li>Équipements : cuisine, linge, Wi-Fi, local à skis, parking</li>
+          <li>Tarifs par saison et durée minimale</li>
+          <li>Vos photos, l'hiver et l'été</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -252,7 +289,7 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
     </li>
     <li>
       <span class="tempo">Adagio — l'automne</span>
-      <span class="detail">Brumes sur les combes, forêts rousses, fruitées et bonnes
+      <span class="detail">Brumes sur les combes, forêts rousses, fruitières et bonnes
       tables comtoises : la saison la plus confidentielle.</span>
     </li>
   </ol>
@@ -295,8 +332,8 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
     <div class="droite">
       <span class="accord">Sans intermédiaire, sans fausse note</span>
       <a class="btn forte" href="#contact">Demander les disponibilités</a>
-      <span style="font-size:.8rem;color:var(--doux);">Téléphone (en lien d'appel direct) et
-      e-mail à insérer après validation.</span>
+      <span style="font-size:.85rem;color:var(--doux);line-height:1.6;">Sur téléphone,
+      ce bouton composera votre numéro d'un seul geste — dès que vous me l'aurez donné.</span>
     </div>
   </div>
 </section>
@@ -318,7 +355,8 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
     </div>
     <div>
       <h3>Joindre le gîte</h3>
-      <p>Numéro de téléphone et e-mail<br>à ajouter ensemble<br>(lien d'appel direct prévu).</p>
+      <p>Téléphone et e-mail à ajouter : le numéro deviendra un lien d'appel direct,
+      cliquable depuis un mobile. Aucun formulaire, aucune boîte noire.</p>
     </div>
   </div>
 </section>

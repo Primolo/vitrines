@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<!-- charset déclaré en tout premier : au-delà de 1024 octets, le navigateur ne le voit
+     plus et affiche les accents en mojibake. Le plan de design suit juste après. -->
 <!--
 PLAN DE DESIGN — Cave Robbe (Saint-Point-Lac)
 Concept (1 phrase) : « Une étiquette de grande garde » — l'esthétique de
@@ -26,7 +32,6 @@ tireuses et accessoires de brassage, tél. 03 81 69 62 13, horaires relevés) ;
 généralités vérifiables sur le vin jaune (savagnin, 6 ans et 3 mois sous
 voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
 -->
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Cave Robbe — maquette</title>
@@ -34,14 +39,22 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   :root{
     --lie:#431722; --nuit:#26141A; --or:#C9A94E; --ivoire:#F0E8D8;
     --bouteille:#3A4A36; --rose:#B4808C;
+    /* déclinaisons : plus de hex en dur dans les composants */
+    --ivoire-doux:#E3D5BE; --or-sombre:#B3933E; --nuit-profonde:#1B0E12;
+    --pied-texte:#CBB9A0; --filet-pied:#4A2A33;
     --display:Baskerville,"Baskerville Old Face","Libre Baskerville","Times New Roman",serif;
     --texte:"Hoefler Text","Iowan Old Style",Baskerville,Georgia,serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--nuit);color:var(--ivoire);font-family:var(--texte);line-height:1.7}
-  .demo-band{background:var(--ivoire);color:var(--nuit);font-size:.8rem;padding:.5rem 1.25rem;font-family:var(--texte)}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--nuit);color:var(--ivoire);font-family:var(--texte);
+    line-height:1.7;font-size:1.02rem;overflow-x:hidden}
+  .demo-band{background:var(--ivoire);color:var(--nuit);font-size:.82rem;padding:.5rem 1.25rem;
+    font-family:var(--texte);line-height:1.5}
   a{color:var(--or)}
+  :focus-visible{outline:2px solid var(--or);outline-offset:3px}
+  p{overflow-wrap:break-word}
   svg{max-width:100%}
 
   header.site{padding:1.5rem 6vw 1.2rem;display:flex;align-items:baseline;gap:1rem 2rem;
@@ -66,15 +79,15 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   .millesime{display:flex;align-items:center;gap:1rem;margin:1.6rem 0 1.2rem}
   .millesime::before,.millesime::after{content:"";height:1px;background:var(--or);flex:1}
   .millesime b{font-family:var(--display);font-weight:400;font-size:1.5rem;color:var(--or);letter-spacing:.2em}
-  .etiquette p.chapo{max-width:52ch;color:#e3d5be}
+  .etiquette p.chapo{max-width:52ch;color:var(--ivoire-doux)}
   .etiquette .actions{margin-top:1.8rem;display:flex;gap:1rem;flex-wrap:wrap}
   .btn{display:inline-block;text-decoration:none;font-variant:small-caps;letter-spacing:.16em;
     font-size:.95rem;padding:.65rem 1.5rem;border:1px solid var(--or);color:var(--or)}
   .btn:hover{background:rgba(201,169,78,.12)}
   .btn.plein{background:var(--or);color:var(--nuit)}
-  .btn.plein:hover{background:#b3933e}
+  .btn.plein:hover{background:var(--or-sombre)}
   .hero figure{justify-self:center;text-align:left}
-  .hero figcaption{font-size:.75rem;color:var(--rose);font-style:italic;margin-top:.6rem;max-width:26ch}
+  .hero figcaption{font-size:.82rem;color:var(--rose);font-style:italic;margin-top:.6rem;max-width:26ch;line-height:1.55}
 
   .frise-bouteilles{border-top:1px solid var(--or);border-bottom:1px solid var(--or);
     background:var(--lie);padding:.9rem 6vw;overflow:hidden}
@@ -84,39 +97,50 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   .cartouche-titre{display:inline-block;border-top:1px solid var(--or);border-bottom:1px solid var(--or);
     padding:.35rem 0;font-size:.72rem;letter-spacing:.38em;text-transform:uppercase;color:var(--rose)}
   h2{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,3.2vw,2.4rem);
-    color:var(--or);margin:1rem 0 1.4rem;max-width:28ch}
+    color:var(--or);margin:1rem 0 1.4rem;max-width:28ch;line-height:1.18;text-wrap:balance}
+  h1,h3{text-wrap:balance}
   .deux-col{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:start}
   .deux-col p+p{margin-top:1rem}
-  .deux-col p{color:#e3d5be}
+  .deux-col p{color:var(--ivoire-doux)}
+
+  /* Trois repères pour que « La maison » ne soit pas quatre paragraphes nus */
+  .reperes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.6rem;
+    margin-top:2.4rem;border-top:1px solid var(--or);padding-top:1.4rem}
+  .reperes div{border-left:1px solid rgba(201,169,78,.35);padding-left:1.1rem}
+  .reperes div:first-child{border-left:none;padding-left:0}
+  .reperes b{display:block;font-family:var(--display);font-weight:400;font-size:1.7rem;
+    color:var(--or);line-height:1.15}
+  .reperes span{display:block;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--rose);margin-top:.4rem;line-height:1.6}
 
   .rayons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.6rem;margin-top:1.6rem}
   .rayon{border:1px solid var(--or);padding:1.6rem 1.5rem;background:var(--lie);position:relative}
   .rayon::after{content:"";position:absolute;inset:5px;border:1px solid rgba(201,169,78,.4);pointer-events:none}
   .rayon h3{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--ivoire)}
   .rayon .region{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--rose);margin:.25rem 0 .9rem}
-  .rayon p{font-size:.93rem;color:#e3d5be}
+  .rayon p{font-size:.98rem;color:var(--ivoire-doux);line-height:1.65}
   .note-prix{margin-top:1.4rem;font-size:.85rem;font-style:italic;color:var(--rose)}
 
   .vin-jaune{background:var(--lie);border-top:1px solid var(--or);border-bottom:1px solid var(--or)}
   .vin-jaune .deux-col{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}
   .fiche-jaune{border-left:1px solid var(--or);padding-left:2rem}
   .fiche-jaune dt{font-variant:small-caps;letter-spacing:.14em;color:var(--or);margin-top:1rem}
-  .fiche-jaune dd{color:#e3d5be;font-size:.95rem}
+  .fiche-jaune dd{color:var(--ivoire-doux);font-size:1rem}
 
   .visite{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:3rem;align-items:start}
   .comptoir{border:1px solid var(--or);outline:3px double var(--or);outline-offset:5px;
     background:var(--lie);padding:1.8rem 1.7rem}
   .comptoir h3{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--or);margin-bottom:.8rem}
-  .comptoir dl{font-size:.95rem}
+  .comptoir dl{font-size:1rem}
   .comptoir dt{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);margin-top:.9rem}
-  .comptoir dd{margin-top:.15rem;color:#e3d5be}
-  .avertissement{font-size:.8rem;font-style:italic;color:var(--rose);margin-top:1.2rem}
+  .comptoir dd{margin-top:.15rem;color:var(--ivoire-doux)}
+  .avertissement{font-size:.92rem;font-style:italic;color:var(--rose);margin-top:1.2rem;line-height:1.6}
 
-  footer.site{background:#1B0E12;padding:2.6rem 6vw;color:#cbb9a0;border-top:1px solid var(--or)}
-  footer.site p{font-size:.85rem;max-width:66ch}
+  footer.site{background:var(--nuit-profonde);padding:2.6rem 6vw;color:var(--pied-texte);border-top:1px solid var(--or)}
+  footer.site p{font-size:.92rem;max-width:66ch;line-height:1.65}
   .alcool{margin-top:1.2rem;font-size:.85rem;color:var(--ivoire);border:1px solid var(--rose);
     display:inline-block;padding:.5rem .9rem}
-  .mention-primo{margin-top:1.25rem;border-top:1px solid #4a2a33;padding-top:1rem;font-size:.8rem;color:var(--rose)}
+  .mention-primo{margin-top:1.25rem;border-top:1px solid var(--filet-pied);padding-top:1rem;font-size:.8rem;color:var(--rose)}
   .mention-primo a{color:var(--or)}
 
   @media (max-width:880px){
@@ -125,8 +149,24 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
     .deux-col,.visite,.vin-jaune .deux-col{grid-template-columns:1fr}
     .fiche-jaune{border-left:none;padding-left:0;border-top:1px solid var(--or);padding-top:1.5rem}
     .etiquette{padding:2rem 1.5rem}
+    .reperes{grid-template-columns:1fr;gap:1.1rem}
+    .reperes div{border-left:none;padding-left:0;border-top:1px solid rgba(201,169,78,.28);padding-top:.9rem}
+    .reperes div:first-child{border-top:none;padding-top:0}
+  }
+  /* petits téléphones : 6vw = 21 px de marge, et le cartouche du héros étouffe */
+  @media (max-width:520px){
+    header.site,.hero,section.bloc,footer.site{padding-left:1.15rem;padding-right:1.15rem}
+    .frise-bouteilles{padding-left:1.15rem;padding-right:1.15rem}
+    .etiquette{padding:1.6rem 1.15rem;outline-offset:4px}
+    h2{max-width:none}
+    nav.principale{gap:.7rem 1.2rem}
+    .comptoir{padding:1.4rem 1.2rem;outline-offset:4px}
+    .rayon{padding:1.35rem 1.2rem}
+    .millesime{margin:1.2rem 0 1rem}
   }
 </style>
+</head>
+<body>
 
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
 
@@ -168,7 +208,7 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
       </defs>
       <!-- cire -->
       <path d="M74 18 h32 v20 h-32 z" fill="#C9A94E"/>
-      <path d="M70 16 h40 v8 h-40 z" fill="#b3933e"/>
+      <path d="M70 16 h40 v8 h-40 z" fill="var(--or-sombre)"/>
       <!-- col court -->
       <path d="M76 38 v34 q0 10 -10 18 q-26 18 -26 52 v150 a12 12 0 0 0 12 12 h76 a12 12 0 0 0 12 -12 v-150 q0 -34 -26 -52 q-10 -8 -10 -18 v-34 z" fill="url(#verre)"/>
       <!-- épaule marquée du clavelin -->
@@ -227,6 +267,20 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
       budget, l'occasion — la bouteille suivra.</p>
     </div>
   </div>
+  <div class="reperes">
+    <div>
+      <b>1936</b>
+      <span>La famille reprend la cave</span>
+    </div>
+    <div>
+      <b>Patrice &amp; Xavier</b>
+      <span>Les frères Robbe, aujourd'hui au comptoir</span>
+    </div>
+    <div>
+      <b>Saint-Point-Lac</b>
+      <span>Entre Pontarlier, Métabief et Mouthe</span>
+    </div>
+  </div>
 </section>
 
 <section class="bloc" id="rayons" style="padding-top:0">
@@ -268,7 +322,7 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
     <div>
       <span class="cartouche-titre">Le trésor du Jura</span>
       <h2>Le vin jaune, notre or local</h2>
-      <p style="color:#e3d5be">Il naît à quelques lieues d'ici, dans le
+      <p style="color:var(--ivoire-doux)">Il naît à quelques lieues d'ici, dans le
       vignoble jurassien, et n'a d'équivalent nulle part : élevé sous un
       voile de levures, sans ouillage, il gagne ses arômes de noix, de curry
       et de pomme verte au prix d'une patience rare. À la cave, on vous
@@ -293,7 +347,7 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   <h2>Nous rendre visite</h2>
   <div class="visite">
     <div>
-      <p style="color:#e3d5be">La cave vous accueille toute l'année à
+      <p style="color:var(--ivoire-doux)">La cave vous accueille toute l'année à
       Saint-Point-Lac, à deux pas des rives du lac. Parking aisé, coffres
       chargés avec le sourire — et une bouteille se goûte toujours mieux
       quand on repart avec l'histoire qui va avec.</p>
@@ -322,3 +376,5 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   <p class="alcool">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
   <p class="mention-primo">Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle</p>
 </footer>
+</body>
+</html>

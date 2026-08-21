@@ -1,4 +1,9 @@
 <!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<!-- charset en tout premier : au-delà de 1024 octets le navigateur ne le lit plus
+     et les accents partent en mojibake. Le plan de design suit juste après. -->
 <!--
   PLAN DE DESIGN — La Semilla, Distillerie Aymonier (Les Fourgs)
   Palette : Noir-fée #14231B (fond) · Vert bouteille #22412F · Cuivre #B87333 · Cuivre clair #D89A5B ·
@@ -11,9 +16,6 @@
   Élément signature : alambic en cuivre + brin d'absinthe en SVG inline ; cadres d'étiquette à double filet.
   Thème   : SOMBRE UNIQUE ASSUMÉ (pas de version claire — c'est la pénombre de l'atelier de distillation).
 -->
-<html lang="fr">
-<head>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>La Semilla — Distillerie Aymonier — maquette</title>
@@ -27,11 +29,15 @@
     --sans-etiquette:"Gill Sans","Gill Sans MT",Calibri,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--fond);color:var(--parchemin);font-family:var(--serif-corps);line-height:1.65;font-size:1.05rem}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--fond);color:var(--parchemin);font-family:var(--serif-corps);
+    line-height:1.65;font-size:1.05rem;overflow-x:hidden}
   .demo-banner{background:var(--ambre);color:#231703;font-family:var(--sans-etiquette);
-    font-size:.85rem;letter-spacing:.02em;text-align:center;padding:.55rem 1rem;font-weight:600}
+    font-size:.85rem;letter-spacing:.02em;text-align:center;padding:.55rem 1rem;font-weight:600;line-height:1.5}
   a{color:var(--cuivre-clair)}
+  :focus-visible{outline:2px solid var(--ambre);outline-offset:3px}
+  p{overflow-wrap:break-word}
   .lede{max-width:60ch}
 
   header.site{border-bottom:1px solid var(--filet);padding:1.1rem 5vw;display:flex;flex-wrap:wrap;
@@ -68,7 +74,8 @@
   .cartouche{font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;
     color:var(--cuivre-clair);display:flex;align-items:center;gap:1rem}
   .cartouche::after{content:"";height:1px;flex:0 0 72px;background:var(--filet)}
-  h2{font-family:var(--serif-titre);font-weight:400;font-size:clamp(1.7rem,4vw,2.5rem);margin:.6rem 0 1.2rem}
+  h2{font-family:var(--serif-titre);font-weight:400;font-size:clamp(1.7rem,4vw,2.5rem);
+    margin:.6rem 0 1.2rem;line-height:1.16;text-wrap:balance;max-width:22ch}
 
   .deux-colonnes{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:start;max-width:1100px}
   .aparte{border-left:2px solid var(--cuivre);padding:1rem 1.4rem;background:rgba(34,65,47,.5);
@@ -80,14 +87,14 @@
   .flacon{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1.2rem;align-items:baseline;
     padding:1.35rem 0;border-bottom:1px dotted var(--filet)}
   .flacon:first-of-type{border-top:1px dotted var(--filet)}
-  .flacon .num{font-family:var(--serif-titre);font-style:italic;color:var(--cuivre);font-size:1.1rem;min-width:2.2rem}
-  .flacon h3{font-family:var(--serif-titre);font-weight:400;font-size:1.35rem;color:var(--parchemin)}
-  .flacon .degre{font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.2em;color:var(--ambre);
+  .flacon .num{font-family:var(--serif-titre);font-style:italic;color:var(--cuivre-clair);font-size:1.1rem;min-width:2.2rem}
+  .flacon h3{font-family:var(--serif-titre);font-weight:400;font-size:1.35rem;color:var(--parchemin);
+    line-height:1.25;text-wrap:balance}
+  .flacon .degre{font-family:var(--sans-etiquette);font-size:.74rem;letter-spacing:.18em;color:var(--ambre);
     border:1px solid var(--filet);padding:.25rem .6rem;white-space:nowrap}
-  .flacon p{grid-column:2/3;color:var(--parchemin-doux);font-size:.98rem;max-width:58ch}
-  .flacon .prix{grid-column:2/3;font-family:var(--sans-etiquette);font-size:.7rem;letter-spacing:.24em;
-    text-transform:uppercase;color:var(--cuivre-clair);margin-top:.35rem}
-  .mention-officine{margin-top:1.4rem;font-style:italic;color:var(--parchemin-doux);font-size:.95rem}
+  .flacon p{grid-column:2/3;color:var(--parchemin-doux);font-size:1rem;max-width:58ch}
+  .mention-officine{margin-top:1.6rem;font-style:italic;color:var(--parchemin-doux);font-size:.98rem;
+    border-left:2px solid var(--cuivre);padding-left:1.2rem;max-width:64ch}
 
   .ferme-liste{list-style:none;margin-top:1rem;columns:2;column-gap:3rem;max-width:640px}
   .ferme-liste li{padding:.45rem 0 .45rem 1.4rem;position:relative;break-inside:avoid}
@@ -113,10 +120,24 @@
   @media (max-width:760px){
     .deux-colonnes{grid-template-columns:1fr}
     .ferme-liste{columns:1}
-    .visite{grid-template-columns:1fr}
-    .flacon{grid-template-columns:auto minmax(0,1fr)}
+    .visite{grid-template-columns:1fr;align-items:start}
+    .visite .bouton{justify-self:start}
+    .flacon{grid-template-columns:auto minmax(0,1fr);gap:.5rem 1.2rem}
     .flacon .degre{grid-column:2/3;justify-self:start}
     nav.site{margin-left:0}
+    h2{max-width:none}
+  }
+  /* petits téléphones : 5vw ne fait plus que 18 px de marge — on repasse à une gouttière fixe */
+  @media (max-width:520px){
+    section,header.site,footer{padding-left:1.15rem;padding-right:1.15rem}
+    .hero{padding-left:1.15rem;padding-right:1.15rem}
+    .etiquette{padding:2.1rem 1.1rem;outline-offset:5px}
+    .cartouche{flex-wrap:wrap;gap:.5rem}
+    .cartouche::after{flex:0 0 48px}
+    nav.site{gap:.8rem 1.1rem;font-size:.76rem;letter-spacing:.16em}
+    .flacon .num{min-width:1.9rem}
+    .tel{font-size:1.35rem}
+    .contact-grille{gap:2rem}
   }
 </style>
 </head>
@@ -211,14 +232,12 @@
         <span class="degre">72°</span>
         <p>Distillée à la ferme à partir de plantes d’absinthe cultivées sur nos parcelles à 1 100 m
           d’altitude. Le caractère herbacé typique des grandes vertes.</p>
-        <span class="prix">Prix en boutique</span>
       </article>
       <article class="flacon">
         <span class="num">N° 2</span>
         <h3>Lynx — absinthe bio solidaire</h3>
         <span class="degre">Bio</span>
         <p>Une absinthe engagée, à l’image du discret voisin des forêts du Haut-Doubs.</p>
-        <span class="prix">Prix en boutique</span>
       </article>
       <article class="flacon">
         <span class="num">N° 3</span>
@@ -226,7 +245,6 @@
         <span class="degre">Liqueur</span>
         <p>Une seule distillation de notre plante d’absinthe : sans amertume, avec tout le bouquet
           aromatique de la plante cultivée en bio.</p>
-        <span class="prix">Prix en boutique</span>
       </article>
       <article class="flacon">
         <span class="num">N° 4</span>
@@ -234,7 +252,6 @@
         <span class="degre">16°</span>
         <p>Racines de gentiane du massif jurassien. Fruité, moins sucré que bien des gentianes —
           l’amertume juste.</p>
-        <span class="prix">Prix en boutique</span>
       </article>
       <article class="flacon">
         <span class="num">&amp; c.</span>
@@ -242,11 +259,11 @@
         <span class="degre">À la ferme</span>
         <p>Et les douze autres recettes d’absinthe — la gamme complète se découvre à la distillerie,
           au fil des saisons de cueillette.</p>
-        <span class="prix">Prix en boutique</span>
       </article>
     </div>
-    <p class="mention-officine">Tarifs affichés à la distillerie et sur les marchés — cette maquette n’affiche
-      volontairement aucun prix.</p>
+    <p class="mention-officine">Les prix sont affichés à la distillerie et sur les marchés : cette maquette
+      n’en avance aucun, et la gamme complète — seize absinthes, anisés, vodka, liqueurs — reste à
+      détailler avec vous, bouteille par bouteille.</p>
   </section>
 
   <section id="ferme">

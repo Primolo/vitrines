@@ -29,15 +29,25 @@
     --lait:#F5EFE3; --encre:#2C2318; --bois:#5C4530;
     --comte:#C6892F; --pature:#4C6B45; --braise:#9E4B26;
     --papier:#FDFAF2;
+    /* dorés lisibles sur fond brun foncé */
+    --paille:#F0D9A8; --paille-2:#E8DCC4; --paille-3:#D9C49A;
+    --filet-bois:rgba(92,69,48,.25); --filet-bois-clair:rgba(92,69,48,.18);
+    /* échelle d'espacement */
+    --pas-section:3.4rem;
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  html{overflow-x:hidden}
   body{
     background:var(--lait); color:var(--encre);
     font-family:"Avenir Next","Avenir","Gill Sans","Gill Sans MT",Verdana,sans-serif;
-    font-size:1.0625rem; line-height:1.65;
+    font-size:1.0625rem; line-height:1.65; overflow-wrap:break-word;
   }
   h1,h2,h3,.serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+  h1,h2{text-wrap:balance}
+  p{text-wrap:pretty}
   a{color:var(--pature)}
+  a:focus-visible{outline:3px solid var(--braise); outline-offset:3px}
+  .contact a:focus-visible,.demo-banner a:focus-visible,.btn:focus-visible{outline-color:var(--comte)}
   img,svg{max-width:100%;height:auto}
 
   /* Bandeau maquette */
@@ -46,7 +56,7 @@
     padding:.65rem 1.25rem; font-size:.85rem; letter-spacing:.02em;
     border-bottom:3px solid var(--comte); text-align:left;
   }
-  .demo-banner strong{color:#F0D9A8}
+  .demo-banner strong{color:var(--paille)}
 
   .wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
 
@@ -107,7 +117,7 @@
   .strip p{font-size:.92rem}
 
   /* Sections */
-  section.block{padding:3.4rem 0 3rem}
+  section.block{padding:var(--pas-section) 0 calc(var(--pas-section) - .4rem)}
   .kicker{
     font-size:.78rem; text-transform:uppercase; letter-spacing:.22em; color:var(--braise);
     margin-bottom:.5rem;
@@ -154,19 +164,20 @@
 
   /* Contact */
   .contact{background:var(--bois); color:var(--lait)}
-  .contact .kicker{color:#F0D9A8}
-  .contact h2{color:#fff}
-  .contact a{color:#F0D9A8}
+  .contact .kicker{color:var(--paille)}
+  .contact h2{color:#FFFDF7}
+  .contact a{color:var(--paille)}
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem}
   .contact dl div{padding:.8rem 0;border-bottom:1px solid rgba(245,239,227,.25)}
-  .contact dt{font-size:.75rem;text-transform:uppercase;letter-spacing:.18em;color:#D9C49A}
+  .contact dt{font-size:.75rem;text-transform:uppercase;letter-spacing:.18em;color:var(--paille-3)}
   .contact dd{font-size:1.05rem;margin-top:.15rem}
-  .contact .note{font-size:.85rem;font-style:italic;margin-top:1.2rem;color:#E8DCC4}
+  .contact .note{font-size:.88rem;font-style:italic;margin-top:1.2rem;color:var(--paille-2)}
 
   footer.credit{
-    background:var(--encre); color:#CBBFA8; font-size:.82rem;
+    background:var(--encre); color:#D2C6AF; font-size:.82rem;
     padding:1.1rem 1.25rem; text-align:center; letter-spacing:.03em;
   }
+  footer.credit a:focus-visible{outline-color:var(--comte)}
 
   @media (max-width:820px){
     .hero{grid-template-columns:1fr; gap:1.8rem; padding-top:2.4rem}
@@ -180,6 +191,12 @@
     .contact-grid{grid-template-columns:1fr}
     nav.main{display:flex;flex-wrap:wrap;gap:.2rem .1rem}
     nav.main a{margin-left:0;margin-right:1.1rem}
+  }
+  @media (max-width:560px){
+    :root{--pas-section:2.6rem}
+    .volet{padding:1.4rem 1.2rem 1.2rem}
+    .strip article{padding:1.3rem 0}
+    .btn{padding:.8rem 1.15rem;letter-spacing:.08em}
   }
 </style>
 </head>

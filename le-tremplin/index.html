@@ -1,3 +1,6 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
 <!--
 PLAN DE DESIGN — Le Tremplin (restaurant, Métabief)
 Palette : neige #F4F2ED · nuit d'altitude #101D2E · rouge télésiège #E03E2D · bleu piste #2F6DA3 · jaune fart #F0A72E
@@ -8,13 +11,15 @@ Thème : unique, clair et vif (assumé) — neige éclatante, aplats rouges et b
 Recherche (guides en ligne) : ~4,3/5 sur plus de 500 avis ; burgers et frites maison plébiscités, salade César citée,
 fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation conseillée en période de vacances.
 -->
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Le Tremplin — maquette</title>
 <style>
   :root{
     --neige:#F4F2ED; --nuit:#101D2E; --rouge:#E03E2D; --piste:#2F6DA3; --fart:#F0A72E;
+    /* même rouge, un cran plus profond : réservé aux aplats qui portent du texte blanc
+       (le rouge vif reste sur les boutons, les filets et les survols) */
+    --rouge-aplat:#CE3521;
     --titres:Futura,"Century Gothic","Avenir Next","Arial",sans-serif;
     --texte:"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
@@ -52,13 +57,21 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   .btn-rouge{background:var(--rouge);color:#fff}
   .btn-neige{background:var(--neige);color:var(--nuit)}
   .btn:hover{translate:0 -2px}
-  .hero svg.remontee{position:absolute;right:-2vw;bottom:-1rem;width:min(640px,80vw);opacity:.9}
+  /* le titre, l'accroche et les boutons passent AU-DESSUS du décor ; la remontée
+     est purement décorative et ne doit jamais intercepter un clic sur le numéro */
+  .hero > h1,.hero > p.pitch,.hero > .cta-row{position:relative;z-index:2}
+  .hero svg.remontee{position:absolute;right:-2vw;bottom:-1rem;width:min(640px,80vw);opacity:.9;
+    z-index:1;pointer-events:none}
   /* bandes diagonales */
   .strip{padding:4.5rem 6vw}
-  .strip-rouge{background:var(--rouge);color:#fff;clip-path:polygon(0 8%,100% 0,100% 100%,0 100%);padding-top:6rem}
+  .strip-rouge{background:var(--rouge-aplat);color:#fff;clip-path:polygon(0 8%,100% 0,100% 100%,0 100%);padding-top:6rem}
   .strip-nuit{background:var(--nuit);color:var(--neige);clip-path:polygon(0 0,100% 6%,100% 100%,0 94%);padding-bottom:6rem}
   h2{font-family:var(--titres);text-transform:uppercase;font-size:clamp(1.6rem,4vw,2.4rem);
-    transform:skewX(-8deg);margin-bottom:1.6rem;letter-spacing:.04em}
+    transform:skewX(-8deg);margin-bottom:1.6rem;letter-spacing:.04em;text-wrap:balance}
+  .hero h1{text-wrap:balance}
+  svg{max-width:100%}
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--nuit);outline-offset:4px}
+  .hero a:focus-visible,.strip-rouge a:focus-visible,.strip-nuit a:focus-visible{outline-color:var(--fart)}
   h2 .tick{display:inline-block;width:.6em;height:.18em;background:var(--fart);vertical-align:middle;margin-right:.4em}
   .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;margin-top:2rem}
   .plat{border:3px solid currentColor;padding:1.4rem;position:relative}
@@ -67,7 +80,7 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   .plat ul{list-style:none;margin-top:.4rem}
   .plat li{padding-left:1.1rem;position:relative;margin:.35rem 0}
   .plat li::before{content:"";position:absolute;left:0;top:.55em;width:.55em;height:.18em;background:var(--fart);transform:skewX(-20deg)}
-  .note-carte{margin-top:1.6rem;font-size:.9rem;opacity:.85;max-width:46rem}
+  .note-carte{margin-top:1.6rem;font-size:.95rem;max-width:46rem}
   /* deux saisons */
   .saisons{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
   .saison{padding:1.6rem;background:rgba(255,255,255,.06);border-left:.5rem solid var(--fart)}
@@ -85,17 +98,27 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
     color:var(--nuit);text-decoration:none;border-bottom:5px solid var(--rouge)}
   .resa p{max-width:40rem;margin-top:1rem}
   /* accès */
-  .acces{padding:4rem 6vw;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;align-items:start}
-  .acces a{color:var(--piste);font-weight:700}
+  .acces{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;align-items:start;margin-top:2rem}
+  .acces a{color:var(--piste);font-weight:700;overflow-wrap:anywhere}
+  .acces .bloc{border-top:4px solid var(--nuit);padding-top:1rem}
   .acces .bloc h3{font-family:var(--titres);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem;font-size:1rem}
+  .a-completer{margin-top:2rem;font-size:.95rem;color:#3B4A5C;max-width:46rem}
+  /* rappel de la signature télésiège en séparateur de section */
+  .cable{display:block;width:100%;max-width:520px;margin:0 0 1.6rem}
   footer{background:var(--nuit);color:var(--neige);padding:1.4rem 6vw;font-size:.85rem;border-top:5px solid var(--rouge)}
   footer a{color:var(--fart)}
   @media (max-width:720px){
-    header.top{position:static}
+    header.top{position:static;padding:1rem max(1.25rem,6vw)}
     nav.main{width:100%}
-    nav.main a{margin:0 1.2rem 0 0}
-    .hero{padding-bottom:11rem}
+    nav.main a{margin:0 1.2rem .4rem 0}
+    .hero{padding:5rem max(1.25rem,6vw) 11rem}
     .hero svg.remontee{width:110vw;right:-15vw}
+    .strip{padding:3.5rem max(1.25rem,6vw)}
+    .strip-rouge{padding-top:5rem}
+    .strip-nuit{padding-bottom:5rem}
+    .resa{padding:3.5rem max(1.25rem,6vw)}
+    footer{padding:1.4rem max(1.25rem,6vw)}
+    .cols,.saisons,.comptoir,.acces{gap:1.2rem}
   }
 </style>
 
@@ -182,12 +205,23 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
 </section>
 
 <section class="strip">
+  <!-- rappel de la signature : le câble et sa cabine -->
+  <svg class="cable" viewBox="0 0 520 60" fill="none" aria-hidden="true">
+    <path d="M0 18 L520 42" stroke="#101D2E" stroke-width="2"/>
+    <g transform="translate(300,31)">
+      <line x1="0" y1="0" x2="0" y2="16" stroke="#101D2E" stroke-width="3"/>
+      <rect x="-14" y="16" width="28" height="19" fill="#E03E2D"/>
+      <rect x="-10" y="20" width="20" height="7" fill="#F4F2ED"/>
+    </g>
+    <path d="M96 22 L96 56 M80 56 L112 56" stroke="#101D2E" stroke-width="3"/>
+  </svg>
   <h2><span class="tick"></span>Ce qu'on entend au comptoir</h2>
   <div class="comptoir">
-    <div class="fait"><div><b>Accueil</b>Une équipe souriante, présente toute l'année, saison après saison.</div></div>
-    <div class="fait"><div><b>Réputation</b>Environ 4,3/5 sur les guides en ligne, sur plusieurs centaines d'avis.</div></div>
-    <div class="fait"><div><b>Ambiance</b>Un décor de station apprécié, où l'on s'attarde volontiers.</div></div>
+    <div class="fait"><div><b>Ce qui revient le plus</b>Les burgers et les frites maison — c'est le premier plat que vos clients citent dans leurs avis.</div></div>
+    <div class="fait"><div><b>La note</b>Environ 4,3/5 sur les guides en ligne, sur plus de 500 avis publiés.</div></div>
+    <div class="fait"><div><b>L'accueil</b>Le deuxième compliment le plus fréquent : une équipe souriante, l'hiver comme l'été.</div></div>
   </div>
+  <p class="note-carte">Tendances relevées dans vos avis en ligne. Les citations exactes, et les avis que vous voudrez mettre en avant, seront choisis avec vous.</p>
 </section>
 
 <section class="resa" id="reserver">
@@ -196,19 +230,23 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   <p>En période de vacances scolaires, la salle se remplit vite : un coup de fil avant de descendre des pistes, et votre table vous attend. Vous pouvez aussi écrire à <a href="mailto:restoletremplin@gmail.com">restoletremplin@gmail.com</a>.</p>
 </section>
 
-<section class="acces" id="acces">
-  <div class="bloc">
-    <h3>Où nous trouver</h3>
-    <p>Le Tremplin<br>3 place Xavier Authier<br>25370 Métabief — au pied des pistes</p>
+<section class="strip" id="acces">
+  <h2><span class="tick"></span>Venir au Tremplin</h2>
+  <div class="acces">
+    <div class="bloc">
+      <h3>Où nous trouver</h3>
+      <p>Le Tremplin<br>3 place Xavier Authier<br>25370 Métabief — au pied des pistes</p>
+    </div>
+    <div class="bloc">
+      <h3>Itinéraire</h3>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Tremplin+M%C3%A9tabief">Ouvrir dans Google Maps</a></p>
+    </div>
+    <div class="bloc">
+      <h3>Contact</h3>
+      <p>Tél. <a href="tel:+33381491066">03 81 49 10 66</a><br><a href="mailto:restoletremplin@gmail.com">restoletremplin@gmail.com</a></p>
+    </div>
   </div>
-  <div class="bloc">
-    <h3>Itinéraire</h3>
-    <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Tremplin+M%C3%A9tabief">Ouvrir dans Google Maps</a></p>
-  </div>
-  <div class="bloc">
-    <h3>Contact</h3>
-    <p>Tél. <a href="tel:+33381491066">03 81 49 10 66</a><br><a href="mailto:restoletremplin@gmail.com">restoletremplin@gmail.com</a></p>
-  </div>
+  <p class="a-completer">Jours et horaires d'ouverture, saison par saison : à intégrer avec vous — c'est la première chose que les clients cherchent sur un site de restaurant.</p>
 </section>
 
 <footer>

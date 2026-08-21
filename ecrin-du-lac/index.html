@@ -1,3 +1,6 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
 <!--
 PLAN DE DESIGN — L'Écrin du Lac (chambres d'hôtes, Saint-Point-Lac)
 Palette : lac profond #266A6C · brume #EFF5F4 · encre d'eau #1F3235 · sable gris #CBD6D2 · genêt #D9A441
@@ -9,18 +12,22 @@ Recherche (fiches et plateformes en ligne) : ancienne ferme entièrement rénov�
 Saint-Point ; 4 chambres d'hôtes + un gîte ; note ~9,5/10 sur plateforme ; les hôtes saluent l'accueil très disponible, les chambres
 propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et faits maison ; jardin, parking privé gratuit, wifi.
 -->
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>L'Écrin du Lac — maquette</title>
 <style>
   :root{
     --lac:#266A6C; --brume:#EFF5F4; --encre:#1F3235; --sable:#CBD6D2; --genet:#D9A441;
+    /* même genêt, éclairci : version lisible sur le fond vert-lac */
+    --genet-clair:#F0C77A;
     --serif:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
     --sans:"Gill Sans","Gill Sans MT","Segoe UI","Helvetica Neue",sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--brume);color:var(--encre);font-family:var(--sans);line-height:1.7}
+  svg{max-width:100%;height:auto}
+  a:focus-visible{outline:3px solid var(--lac);outline-offset:3px}
+  .resa a:focus-visible,.resa .badge:focus-visible{outline-color:var(--genet)}
   .demo-band{background:var(--genet);color:var(--encre);padding:.6rem 1.2rem;font-size:.85rem;font-weight:600}
   .cadre{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
   /* rail gauche */
@@ -48,8 +55,12 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
   .hero .direct:hover{background:var(--encre)}
   svg.ondes{width:100%;max-width:380px;justify-self:center}
   .ponctuation{display:block;margin:0 0 1.4rem}
-  h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,3.6vw,2.3rem);margin-bottom:1.2rem}
-  .duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:3rem}
+  h1,h2{text-wrap:balance}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,3.6vw,2.3rem);margin-bottom:1.2rem;max-width:30ch}
+  /* colonne d'étiquette étroite + colonne de lecture calibrée : sans plafond de mesure,
+     les paragraphes atteignaient 130 caractères par ligne sur un grand écran */
+  .duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:2.5rem}
+  .duo p{max-width:62ch}
   .duo .colonne-titre{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lac)}
   /* chambres */
   .chambres{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--sable);border:1px solid var(--sable);margin-top:2rem}
@@ -58,7 +69,9 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
   .chambre p{font-size:.95rem}
   .filet{width:2.4rem;height:2px;background:var(--genet);margin-bottom:.9rem}
   /* louanges */
-  .louanges{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.4rem;margin-top:1.6rem}
+  .sur-louanges{margin-top:2.8rem}
+  .louanges{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.4rem;margin-top:1rem}
+  .louange{border-top:1px solid var(--sable);padding-top:1rem;max-width:34ch}
   .louange strong{font-family:var(--serif);font-weight:400;font-size:1.15rem;display:block;margin-bottom:.4rem}
   .note-plateforme{margin-top:2.2rem;padding:1.2rem 1.5rem;border-left:3px solid var(--genet);background:#fff;max-width:44rem;font-size:.95rem}
   /* résa directe */
@@ -68,13 +81,17 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
   .resa .argu{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:2.4rem}
   .resa .argu div{border-top:1px solid rgba(239,245,244,.4);padding-top:1rem}
   .resa .argu b{display:block;margin-bottom:.3rem;letter-spacing:.06em}
-  .resa .badge{display:inline-block;margin-top:2.4rem;background:var(--genet);color:var(--encre);padding:.9rem 1.6rem;
-    font-weight:700;letter-spacing:.04em}
+  /* emplacement réservé, pas un faux bouton : le trait tireté dit clairement
+     « vos coordonnées viennent ici » plutôt que de simuler une action qui n'existe pas */
+  .resa .badge{display:inline-block;margin-top:2.4rem;border:2px dashed var(--genet-clair);color:var(--brume);
+    padding:.9rem 1.5rem;font-weight:600;letter-spacing:.03em;font-size:.95rem;max-width:38rem}
+  .resa .badge b{color:var(--genet-clair);display:block;letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;margin-bottom:.35rem}
   /* contact */
   .contact dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:1.6rem}
   .contact dt{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lac);margin-bottom:.4rem}
+  .contact dd{overflow-wrap:anywhere;max-width:34ch}
   .contact a{color:var(--lac)}
-  footer{padding:1.4rem 7vw;font-size:.83rem;color:var(--encre);background:var(--sable)}
+  footer{padding:1.4rem 7vw;font-size:.9rem;color:var(--encre);background:var(--sable);overflow-wrap:anywhere}
   footer a{color:var(--encre)}
   @media (max-width:860px){
     .cadre{grid-template-columns:1fr}
@@ -82,8 +99,14 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
     aside.rail nav{flex-direction:row;flex-wrap:wrap;gap:1rem}
     .rail-pied{display:none}
     .hero{grid-template-columns:1fr;min-height:0}
-    .duo{grid-template-columns:1fr}
-    section{padding:3.5rem 6vw}
+    .duo{grid-template-columns:1fr;gap:.6rem}
+    section{padding:3.2rem max(1.25rem,6vw)}
+    footer{padding:1.4rem max(1.25rem,6vw)}
+    aside.rail{padding:1.5rem max(1.25rem,6vw)}
+    .louanges{gap:1.4rem}
+    .resa .argu{gap:1.4rem;margin-top:1.8rem}
+    .chambres{gap:1px}
+    .chambre{padding:1.4rem}
   }
 </style>
 
@@ -128,10 +151,10 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
       <h2>Quatre chambres, et un gîte pour les séjours longs</h2>
       <div class="duo">
         <p class="colonne-titre">Dormir</p>
-        <p>Des chambres spacieuses et impeccablement tenues — c'est ce que vos hôtes soulignent le plus souvent —, décorées avec style et raffinement dans les volumes de l'ancienne ferme. Le gîte tout équipé complète l'offre pour ceux qui posent leurs valises plus longtemps.</p>
+        <p>Spacieuses et impeccablement tenues : c'est ce qui revient le plus souvent dans les commentaires de vos hôtes, avec le soin de la décoration. Le gîte indépendant prend le relais pour ceux qui restent plus de deux ou trois nuits.</p>
       </div>
       <div class="chambres">
-        <div class="chambre"><div class="filet"></div><h3>Les chambres</h3><p>Quatre chambres d'hôtes, chacune avec son caractère — noms, capacités et détails à reprendre ensemble.</p></div>
+        <div class="chambre"><div class="filet"></div><h3>Les quatre chambres</h3><p>Chacune a son caractère dans les volumes de la ferme rénovée. Noms, capacités, tarifs et photos : c'est la partie qu'on remplira ensemble.</p></div>
         <div class="chambre"><div class="filet"></div><h3>Le gîte</h3><p>Un logement indépendant tout équipé, idéal pour un séjour en famille au bord du lac.</p></div>
         <div class="chambre"><div class="filet"></div><h3>Les à-côtés</h3><p>Jardin, parking privé gratuit, wifi — et le lac à quelques pas de la porte.</p></div>
       </div>
@@ -147,6 +170,7 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
         <p class="colonne-titre">Petit-déjeuner</p>
         <p>Un petit-déjeuner copieux, où les produits régionaux côtoient le fait maison — l'un des moments que vos visiteurs citent le plus volontiers. Il est compris dans la nuitée, comme le wifi et le parking.</p>
       </div>
+      <p class="colonne-titre sur-louanges">Et aussi, dans leurs commentaires</p>
       <div class="louanges">
         <div class="louange"><strong>L'accueil</strong>Une maîtresse de maison décrite comme chaleureuse et très disponible, du premier contact au départ.</div>
         <div class="louange"><strong>Le calme</strong>Le cœur d'un village de rive, l'eau à deux pas, la montagne autour.</div>
@@ -157,13 +181,13 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
 
     <section class="resa" id="direct">
       <h2>Réservez en direct</h2>
-      <p class="accroche">Réservation en direct, sans commission de plateforme.</p>
+      <p class="accroche">Ici, la réservation ne passe par personne d'autre que la maison.</p>
       <div class="argu">
         <div><b>Le juste circuit</b>En réservant auprès de la maison, chaque euro de votre séjour reste dans la maison — aucun intermédiaire ne prélève sa part.</div>
         <div><b>Le bon interlocuteur</b>Vous échangez directement avec vos hôtes&nbsp;: demandes particulières, conseils de saison, arrivées tardives — tout se règle simplement.</div>
         <div><b>La même chambre</b>Mêmes chambres, même petit-déjeuner, même vue — simplement réservés en circuit court.</div>
       </div>
-      <span class="badge">Contactez la maison — coordonnées directes à insérer lors de la validation</span>
+      <p class="badge"><b>Emplacement réservé</b>Téléphone, e-mail et formulaire de demande de la maison viendront ici, en gros et cliquables — nous les mettrons en place ensemble au moment de la validation.</p>
     </section>
 
     <section class="contact" id="venir">
@@ -174,6 +198,7 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
       <h2>Venir à Saint-Point-Lac</h2>
       <dl>
         <div><dt>Commune</dt><dd>Saint-Point-Lac (Doubs), rive du lac Saint-Point, Haut-Doubs.</dd></div>
+        <div><dt>Altitude</dt><dd>Environ 870 m, au cœur du village, à quelques pas de l'eau.</dd></div>
         <div><dt>Itinéraire</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=L%27%C3%89crin+du+Lac+Saint-Point-Lac">Ouvrir dans Google Maps</a></dd></div>
         <div><dt>Contact direct</dt><dd>Téléphone et adresse exacte à reprendre avec vous lors de la validation de la maquette.</dd></div>
       </dl>

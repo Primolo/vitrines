@@ -32,21 +32,32 @@ Prix en magasin, aucune récompense inventée.
   :root{
     --neige:#F5F8FA; --givre:#DCE7EE; --ciel:#46759E; --nuit:#1F3A52;
     --safran:#E9A13B; --zinc:#97A6B2;
+    /* --zinc n'est lisible que sur fond sombre : version assombrie pour le texte
+       posé sur neige/givre/blanc (ratio ≥ 4.6:1) */
+    --zinc-texte:#526779;
+    --corps:#3c526a;      /* gris-bleu du corps de texte */
+    --filet-nuit:#35516d; /* filets sur fond bleu nuit */
+    --clair:#b8c8d6;      /* texte secondaire sur fond bleu nuit */
+    --blanc:#ffffff;
     --display:Futura,"Avenir Next","Century Gothic",AppleGothic,sans-serif;
     --texte:"Avenir Next",Avenir,Corbel,"Helvetica Neue",Arial,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--neige);color:var(--nuit);font-family:var(--texte);line-height:1.6}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{background:var(--neige);color:var(--nuit);font-family:var(--texte);line-height:1.65}
   .demo-band{background:var(--nuit);color:var(--neige);font-size:.8rem;padding:.5rem 1.25rem}
   a{color:var(--ciel)}
-  svg{max-width:100%}
+  img,svg{max-width:100%}
+  h1,h2{text-wrap:balance}
+  p{text-wrap:pretty}
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--safran);outline-offset:3px}
+  nav.principale a:focus-visible{outline-color:var(--ciel)}
 
   header.site{display:flex;align-items:center;gap:1rem 2rem;flex-wrap:wrap;
     padding:1.1rem 5vw;border-bottom:4px solid var(--ciel)}
   .marque{font-family:var(--display);font-weight:600;font-size:1.15rem;
     text-transform:uppercase;letter-spacing:.14em;color:var(--ciel)}
-  .marque .cote{display:block;font-size:.68rem;letter-spacing:.3em;color:var(--zinc);font-weight:400}
+  .marque .cote{display:block;font-size:.7rem;letter-spacing:.28em;color:var(--zinc-texte);font-weight:400}
   nav.principale{margin-left:auto;display:flex;gap:1.4rem;flex-wrap:wrap}
   nav.principale a{font-family:var(--display);text-decoration:none;font-size:.78rem;
     text-transform:uppercase;letter-spacing:.16em;color:var(--nuit)}
@@ -59,23 +70,24 @@ Prix en magasin, aucune récompense inventée.
   .cote-altitude sup{font-size:.32em;vertical-align:.9em;letter-spacing:.08em;color:var(--safran)}
   .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(1.15rem,2.2vw,1.6rem);
     text-transform:uppercase;letter-spacing:.12em;margin-top:1rem;max-width:24ch}
-  .hero p.chapo{margin-top:1.25rem;max-width:44ch;color:#3c526a}
+  .hero p.chapo{margin-top:1.25rem;max-width:44ch;color:var(--corps)}
   .hero .actions{margin-top:1.8rem;display:flex;gap:1rem;flex-wrap:wrap}
   .btn{font-family:var(--display);display:inline-block;text-decoration:none;font-size:.8rem;
     text-transform:uppercase;letter-spacing:.16em;padding:.8rem 1.4rem}
-  .btn.plein{background:var(--ciel);color:#fff}
+  .btn.plein{background:var(--ciel);color:var(--blanc)}
   .btn.plein:hover{background:#38618a}
   .btn.trait{border:2px solid var(--ciel);color:var(--ciel)}
   .btn.trait:hover{background:var(--givre)}
   .hero .vitrine{background:var(--givre);display:flex;align-items:center;
     justify-content:center;padding:2.5rem 5vw 2.5rem 2.5rem;border-left:4px solid var(--ciel)}
 
-  .bandeau-faits{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  .bandeau-faits{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));
     background:var(--nuit);color:var(--neige)}
-  .bandeau-faits div{padding:1.4rem 1.6rem;border-right:1px solid #35516d}
-  .bandeau-faits div:last-child{border-right:none}
+  .bandeau-faits div{padding:1.4rem 1.6rem;border-right:1px solid var(--filet-nuit);
+    border-bottom:1px solid var(--filet-nuit)}
+  .bandeau-faits div:last-child{border-right:none;border-bottom:none}
   .bandeau-faits b{font-family:var(--display);display:block;font-size:1.5rem;color:var(--safran);font-weight:600}
-  .bandeau-faits span{font-size:.8rem;color:#b8c8d6}
+  .bandeau-faits span{font-size:.82rem;color:var(--clair)}
 
   section.bloc{padding:4rem 5vw}
   .repere{font-family:var(--display);font-size:.75rem;letter-spacing:.3em;
@@ -84,26 +96,35 @@ Prix en magasin, aucune récompense inventée.
     text-transform:uppercase;letter-spacing:.06em;color:var(--ciel);margin:.5rem 0 1.3rem;max-width:28ch}
   .deux-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem}
   .deux-col p+p{margin-top:1rem}
+  .deux-col p{color:var(--corps)}
 
-  .affinages{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:1.5rem}
-  .affinages article{border-top:6px solid var(--ciel);background:#fff;padding:1.4rem 1.4rem 1.6rem;
+  /* l'épicerie de terroir : une liste de rayons, pas un paragraphe fourre-tout */
+  .rayons{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+  .rayons li{font-size:.85rem;background:var(--givre);color:var(--nuit);
+    padding:.35rem .8rem;border-left:3px solid var(--ciel)}
+
+  .affinages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1.5rem;margin-top:1.5rem}
+  .affinages article{border-top:6px solid var(--ciel);background:var(--blanc);padding:1.4rem 1.4rem 1.6rem;
     box-shadow:0 1px 0 var(--givre)}
   .affinages article:nth-child(2){border-top-color:var(--safran)}
   .affinages article:nth-child(3){border-top-color:var(--nuit)}
   .affinages h3{font-family:var(--display);font-weight:600;text-transform:uppercase;
-    letter-spacing:.1em;font-size:1rem}
-  .affinages .type{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc);margin:.25rem 0 .8rem}
-  .affinages p{font-size:.92rem;color:#3c526a}
-  .saison{margin-top:1.5rem;background:var(--givre);border-left:6px solid var(--safran);
+    letter-spacing:.1em;font-size:1.05rem}
+  .affinages .type{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc-texte);margin:.25rem 0 .8rem}
+  .affinages p{font-size:.95rem;color:var(--corps)}
+  .saison{margin-top:1.5rem;background:var(--blanc);border-left:6px solid var(--safran);
     padding:1.2rem 1.5rem;font-size:.95rem;max-width:70ch}
-  .note-prix{margin-top:1.2rem;font-size:.85rem;font-style:italic;color:var(--zinc)}
+  .note-prix{margin-top:1.2rem;font-size:.88rem;font-style:italic;color:var(--zinc-texte)}
+  .conseil{font-size:.9rem;color:var(--zinc-texte);margin-top:.9rem;font-style:italic}
 
   .horaires-grille{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3rem;align-items:start}
-  table.horaires{border-collapse:collapse;width:100%;background:#fff}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table.horaires{border-collapse:collapse;width:100%;min-width:19rem;background:var(--blanc)}
   table.horaires th,table.horaires td{border:1px solid var(--givre);padding:.7rem 1rem;
     text-align:left;font-size:.92rem}
   table.horaires th{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;
-    font-size:.72rem;background:var(--ciel);color:#fff}
+    font-size:.72rem;background:var(--ciel);color:var(--blanc)}
   table.horaires td:first-child{font-weight:600}
   .panneau-acces{background:var(--nuit);color:var(--neige);padding:1.8rem 1.7rem}
   .panneau-acces h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;
@@ -113,15 +134,21 @@ Prix en magasin, aucune récompense inventée.
   .panneau-acces dd{margin-top:.15rem}
   .panneau-acces a{color:var(--safran)}
 
-  footer.site{background:var(--nuit);color:#b8c8d6;padding:2.5rem 5vw;margin-top:2rem}
-  footer.site p{font-size:.85rem;max-width:64ch}
+  footer.site{background:var(--nuit);color:var(--clair);padding:2.5rem 5vw;margin-top:2rem}
+  footer.site p{font-size:.88rem;max-width:64ch}
   footer.site a{color:var(--safran)}
-  .mention-primo{margin-top:1.25rem;border-top:1px solid #35516d;padding-top:1rem;font-size:.8rem}
+  .mention-primo{margin-top:1.25rem;border-top:1px solid var(--filet-nuit);padding-top:1rem;font-size:.82rem}
 
   @media (max-width:860px){
     .hero{grid-template-columns:1fr;min-height:0}
-    .hero .vitrine{border-left:none;border-top:4px solid var(--ciel)}
-    .deux-col,.horaires-grille{grid-template-columns:1fr}
+    .hero .texte{padding:3rem 5vw 2.5rem}
+    .hero .vitrine{border-left:none;border-top:4px solid var(--ciel);padding:2rem 5vw}
+    .deux-col,.horaires-grille{grid-template-columns:1fr;gap:2rem}
+    nav.principale{margin-left:0;gap:1rem 1.2rem}
+  }
+  @media (max-width:520px){
+    section.bloc{padding:2.75rem 5vw}
+    .bandeau-faits div{padding:1.1rem 5vw}
   }
 </style>
 
@@ -219,10 +246,17 @@ Prix en magasin, aucune récompense inventée.
       <p>Les Fourgs, village le plus haut du Doubs, culmine à environ
       1 100 mètres. Prés d'altitude, hivers francs, lait riche : le décor
       n'est pas qu'un paysage, c'est la recette.</p>
-      <p>Au magasin, la production de la fruitière — comté et mont d'or en
-      saison — voisine avec une épicerie de terroir : beurre, yaourts,
-      miel, charcuterie, fromage de chèvre bio et d'autres fromages
-      d'appellation de la région.</p>
+      <p>À côté du comté et du mont d'or de la maison, le magasin fait
+      aussi épicerie de terroir. De quoi remplir le panier sans redescendre
+      dans la vallée&nbsp;:</p>
+      <ul class="rayons">
+        <li>Beurre</li>
+        <li>Yaourts</li>
+        <li>Miel</li>
+        <li>Charcuterie</li>
+        <li>Chèvre bio</li>
+        <li>Fromages d'appellation de la région</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -272,13 +306,16 @@ Prix en magasin, aucune récompense inventée.
       </dl>
     </div>
     <div>
-      <table class="horaires">
-        <tr><th>Jour</th><th>Matin</th><th>Après-midi</th></tr>
-        <tr><td>Lundi – samedi</td><td>10 h – 12 h</td><td>14 h 30 – 18 h</td></tr>
-        <tr><td>Dimanche &amp; jours fériés</td><td>10 h – 12 h</td><td>—</td></tr>
-      </table>
-      <p style="font-size:.85rem;color:var(--zinc);margin-top:.8rem;font-style:italic">
-      Le conseil du sommet : passez en fin de matinée, quand la fabrication bat son plein derrière les vitres.</p>
+      <div class="table-scroll">
+        <table class="horaires">
+          <caption class="sr-only">Horaires d'ouverture du magasin</caption>
+          <tr><th scope="col">Jour</th><th scope="col">Matin</th><th scope="col">Après-midi</th></tr>
+          <tr><td>Lundi – samedi</td><td>10 h – 12 h</td><td>14 h 30 – 18 h</td></tr>
+          <tr><td>Dimanche &amp; jours fériés</td><td>10 h – 12 h</td><td>Fermé</td></tr>
+        </table>
+      </div>
+      <p class="conseil">Le conseil du sommet : passez en fin de matinée, quand la
+      fabrication bat son plein derrière les vitres.</p>
     </div>
   </div>
 </section>

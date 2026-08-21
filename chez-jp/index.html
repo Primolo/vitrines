@@ -29,31 +29,42 @@
     --rouge:#B3312D; --zinc:#67757E; --papier:#F1ECE0;
     --ardoise:#2E3336; --craie:#F4F2EA; --laiton:#BE9C4E;
     --encre:#26292B;
+    /* gris de comptoir assombri pour le TEXTE (le zinc clair ne passait pas sur papier journal) */
+    --zinc-texte:#55636B;
+    --blanc:#FFFFFF; --craie-2:#CDD3D0; --or-craie:#F2C97E; --trait:#CFC8B8;
+    /* échelle d'espacement */
+    --pas-section:3.2rem;
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  html{overflow-x:hidden}
   body{
     background:var(--papier); color:var(--encre);
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size:1.05rem; line-height:1.6;
+    font-size:1.05rem; line-height:1.6; overflow-wrap:break-word;
   }
   h1,h2,h3,.slab{font-family:"American Typewriter","Rockwell","Courier New",monospace}
+  h1,h2{text-wrap:balance}
+  p{text-wrap:pretty}
+  img,svg{max-width:100%;height:auto}
   a{color:var(--rouge)}
+  a:focus-visible{outline:3px solid var(--encre); outline-offset:3px}
+  .ardoise a:focus-visible,.enseigne a:focus-visible,.demo-banner a:focus-visible{outline-color:var(--or-craie)}
 
   .demo-banner{
     background:var(--ardoise); color:var(--craie);
     padding:.65rem 1.25rem; font-size:.85rem;
     border-bottom:3px solid var(--rouge);
   }
-  .demo-banner strong{color:#F2C97E}
+  .demo-banner strong{color:var(--or-craie)}
 
   .wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
 
   /* ENSEIGNE ÉMAILLÉE */
   .enseigne{
     background:var(--rouge);
-    color:#fff;
+    color:var(--blanc);
     padding:2.2rem 1.25rem 2.4rem;
-    box-shadow:inset 0 0 0 8px var(--rouge), inset 0 0 0 10px #fff, inset 0 0 0 18px var(--rouge), inset 0 0 0 20px #fff;
+    box-shadow:inset 0 0 0 8px var(--rouge), inset 0 0 0 10px var(--blanc), inset 0 0 0 18px var(--rouge), inset 0 0 0 20px var(--blanc);
     text-align:left;
   }
   .enseigne .inner{
@@ -65,7 +76,7 @@
     text-transform:uppercase; text-shadow:3px 3px 0 rgba(0,0,0,.28);
   }
   .enseigne .sous{
-    margin-top:.9rem; display:inline-block; background:#fff; color:var(--rouge);
+    margin-top:.9rem; display:inline-block; background:var(--blanc); color:var(--rouge);
     font-family:"American Typewriter","Rockwell","Courier New",monospace;
     font-size:clamp(.8rem,2vw,1.05rem); letter-spacing:.28em; text-transform:uppercase;
     padding:.4rem .9rem;
@@ -74,7 +85,7 @@
 
   /* Bande ticket */
   .ticket{
-    background:#fff; border-bottom:1px solid #cfc8b8;
+    background:var(--blanc); border-bottom:1px solid var(--trait);
     font-family:"American Typewriter","Rockwell","Courier New",monospace;
   }
   .ticket .wrap{
@@ -86,9 +97,9 @@
   .ticket a:hover{text-decoration:underline}
 
   /* Sections */
-  section{padding:3.2rem 0}
+  section{padding:var(--pas-section) 0}
   .kicker{
-    display:inline-block; background:var(--rouge); color:#fff;
+    display:inline-block; background:var(--rouge); color:var(--blanc);
     font-family:"American Typewriter","Rockwell","Courier New",monospace;
     font-size:.75rem; letter-spacing:.22em; text-transform:uppercase;
     padding:.3rem .8rem; margin-bottom:1rem;
@@ -98,15 +109,15 @@
   /* Triptyque */
   .triptyque{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:2rem;border:2px solid var(--encre)}
   .triptyque article{
-    padding:1.7rem 1.5rem; border-left:2px solid var(--encre); background:#fff;
-    box-shadow:inset 0 0 0 4px #fff, inset 0 0 0 5px var(--zinc);
+    padding:1.7rem 1.5rem; border-left:2px solid var(--encre); background:var(--blanc);
+    box-shadow:inset 0 0 0 4px var(--blanc), inset 0 0 0 5px var(--zinc);
   }
   .triptyque article:first-child{border-left:none}
   .triptyque h3{font-size:1.15rem;letter-spacing:.06em;text-transform:uppercase;margin:.9rem 0 .5rem}
   .triptyque p{font-size:.95rem}
   .triptyque .num{
     font-family:"American Typewriter","Rockwell","Courier New",monospace;
-    color:var(--zinc); font-size:.85rem; letter-spacing:.2em;
+    color:var(--zinc-texte); font-size:.85rem; letter-spacing:.2em;
   }
 
   /* Carotte marqueur */
@@ -127,44 +138,45 @@
       radial-gradient(ellipse at 85% 90%, rgba(255,255,255,.04), transparent 50%);
   }
   .ardoise .kicker{background:var(--craie);color:var(--ardoise)}
-  .ardoise h2{color:#fff}
+  .ardoise h2{color:var(--blanc)}
   .ardoise .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.8rem}
   .ardoise h3{
-    font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:#F2C97E;
+    font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or-craie);
     border-bottom:2px dashed rgba(244,242,234,.4); padding-bottom:.5rem; margin-bottom:.7rem;
   }
   .ardoise li{border-bottom:1px dotted rgba(244,242,234,.25)}
   .ardoise li:last-child{border-bottom:none}
   .ardoise li b{display:block;font-family:"American Typewriter","Rockwell","Courier New",monospace;font-weight:700}
-  .ardoise li span{font-size:.88rem;color:#cdd3d0}
-  .ardoise .carotte-li li::before{background:#F2C97E}
+  .ardoise li span{font-size:.9rem;color:var(--craie-2)}
+  .ardoise .carotte-li li::before{background:var(--or-craie)}
   .ardoise .mention{
     margin-top:1.8rem;font-family:"American Typewriter","Rockwell","Courier New",monospace;
-    font-size:.9rem;color:#F2C97E;
+    font-size:.9rem;color:var(--or-craie);
   }
-  .ardoise .mention + .mention{margin-top:.4rem;color:#cdd3d0}
+  .ardoise .mention + .mention{margin-top:.4rem;color:var(--craie-2)}
 
   /* Horaires */
-  .horaires table{width:100%;border-collapse:collapse;margin-top:1.6rem;background:#fff;border:2px solid var(--encre)}
-  .horaires caption{caption-side:bottom;font-size:.85rem;font-style:italic;padding-top:.7rem;color:var(--zinc);text-align:left}
-  .horaires th,.horaires td{padding:.7rem .9rem;border-bottom:1px solid #ddd6c6;text-align:left;font-size:.95rem}
-  .horaires th{font-family:"American Typewriter","Rockwell","Courier New",monospace;letter-spacing:.05em;width:34%}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.6rem}
+  .horaires table{width:100%;min-width:19rem;border-collapse:collapse;background:var(--blanc);border:2px solid var(--encre)}
+  .horaires caption{caption-side:bottom;font-size:.88rem;font-style:italic;padding-top:.7rem;color:var(--zinc-texte);text-align:left}
+  .horaires th,.horaires td{padding:.7rem .9rem;border-bottom:1px solid #DDD6C6;text-align:left;font-size:.95rem;vertical-align:top}
+  .horaires th{font-family:"American Typewriter","Rockwell","Courier New",monospace;letter-spacing:.05em;width:38%}
   .horaires tr.ferme td{color:var(--rouge);font-weight:600}
-  .horaires td small{display:block;color:var(--zinc)}
+  .horaires td small{display:block;color:var(--zinc-texte);font-size:.88rem}
 
   /* Contact */
   .contact .fiche{
-    background:#fff;border:2px solid var(--encre);
+    background:var(--blanc);border:2px solid var(--encre);
     box-shadow:6px 6px 0 var(--rouge);
-    padding:2rem 1.8rem; display:grid; grid-template-columns:1.1fr .9fr; gap:2rem;
+    padding:2rem 1.8rem; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:2rem;
   }
-  .contact dt{font-family:"American Typewriter","Rockwell","Courier New",monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc)}
+  .contact dt{font-family:"American Typewriter","Rockwell","Courier New",monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc-texte)}
   .contact dd{font-size:1.1rem;margin:.15rem 0 1rem}
   .contact .fiche p{font-size:.95rem}
-  .contact .fiche .note{font-style:italic;color:var(--zinc);margin-top:1rem}
+  .contact .fiche .note{font-style:italic;color:var(--zinc-texte);margin-top:1rem}
 
   footer.credit{
-    background:var(--encre);color:#cfc8b8;font-size:.82rem;
+    background:var(--encre);color:#D6CFBE;font-size:.82rem;
     padding:1.1rem 1.25rem;text-align:center;
   }
 
@@ -175,6 +187,15 @@
     .triptyque article:first-child{border-top:none}
     .ardoise .menu-grid{grid-template-columns:1fr}
     .contact .fiche{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    :root{--pas-section:2.5rem}
+    .enseigne{padding:1.8rem .9rem 2rem;
+      box-shadow:inset 0 0 0 5px var(--rouge), inset 0 0 0 7px var(--blanc), inset 0 0 0 12px var(--rouge), inset 0 0 0 14px var(--blanc)}
+    .enseigne .inner{padding:1.1rem .6rem}
+    .ardoise .cadre{padding:1.6rem 1.1rem}
+    .contact .fiche{padding:1.5rem 1.2rem;box-shadow:5px 5px 0 var(--rouge)}
+    .ticket .wrap{gap:.3rem 1.2rem}
   }
 </style>
 </head>
@@ -247,8 +268,8 @@
           <polygon points="8,17 15,7 39,7 46,17 39,27 15,27" fill="none" stroke="#fff" stroke-width="2"/>
         </svg>
         <h3>Le tabac</h3>
-        <p>Tabac et dépannage du quotidien : le service qui fait d'un
-        bar-restaurant une vraie institution de village.</p>
+        <p>Tabac et dépannage du quotidien — le troisième métier de la maison,
+        celui qui fait qu'on pousse la porte même sans avoir faim.</p>
       </article>
     </div>
   </section>
@@ -287,13 +308,17 @@
   <section class="horaires" id="horaires">
     <span class="kicker">Horaires</span>
     <h2>Du café du matin au dernier service</h2>
-    <table>
-      <caption>Horaires relevés — à confirmer ensemble avant mise en ligne.</caption>
-      <tr><th>Mardi &amp; jeudi</th><td>9 h 30 – 14 h <small>puis 18 h – 23 h</small></td></tr>
-      <tr><th>Vendredi &amp; samedi</th><td>9 h 30 – 14 h <small>puis 18 h – 1 h</small></td></tr>
-      <tr><th>Dimanche</th><td>9 h 30 – 14 h <small>puis 18 h – 23 h</small></td></tr>
-      <tr class="ferme"><th>Lundi &amp; mercredi</th><td>Fermé</td></tr>
-    </table>
+    <div class="table-scroll">
+      <table>
+        <caption>Horaires relevés — à confirmer ensemble avant mise en ligne.</caption>
+        <tbody>
+          <tr><th scope="row">Mardi &amp; jeudi</th><td>9 h 30 – 14 h <small>puis 18 h – 23 h</small></td></tr>
+          <tr><th scope="row">Vendredi &amp; samedi</th><td>9 h 30 – 14 h <small>puis 18 h – 1 h</small></td></tr>
+          <tr><th scope="row">Dimanche</th><td>9 h 30 – 14 h <small>puis 18 h – 23 h</small></td></tr>
+          <tr class="ferme"><th scope="row">Lundi &amp; mercredi</th><td>Fermé</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="contact" id="contact">

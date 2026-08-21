@@ -29,15 +29,26 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   :root{
     --lait:#FBF7EE; --creme-cru:#F3EAD6; --paille:#C98F2E; --cuivre:#B4653C;
     --pature:#5C7A4E; --encre:#2E2820; --cendre:#6E6459;
+    --encre-doux:#4a4238;  /* corps de texte adouci */
+    --paille-texte:#8A5F14; /* la paille dorée n'est pas lisible sur le lait :
+                               version assombrie pour les textes (ratio 5,3:1) */
+    --filet:#ddceb2;       /* filets sur crème */
+    --filet-nuit:#55493c;  /* filets sur fond encre */
+    --blanc:#ffffff;
+    --pas-section:3.5rem;  /* échelle d'espacement unique entre sections */
     --serif:Palatino,"Palatino Linotype","URW Palladio L",Georgia,serif;
     --sans:Seravek,"Gill Sans","Gill Sans MT","Segoe UI",Verdana,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--lait);color:var(--encre);font-family:var(--sans);line-height:1.6}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{background:var(--lait);color:var(--encre);font-family:var(--sans);line-height:1.65}
   .demo-band{background:var(--encre);color:var(--lait);font-size:.8rem;padding:.5rem 1.25rem;text-align:left;letter-spacing:.02em}
   a{color:var(--cuivre)}
   img,svg{max-width:100%}
+  h1,h2,h3{text-wrap:balance}
+  p{text-wrap:pretty}
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--cuivre);outline-offset:3px}
+  footer.site a:focus-visible{outline-color:var(--paille)}
 
   header.site{display:flex;flex-wrap:wrap;align-items:baseline;gap:1rem 2rem;
     padding:1.25rem 5vw;border-bottom:3px double var(--paille)}
@@ -57,7 +68,7 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   .hero h1 em{font-style:italic;color:var(--cuivre)}
   .sur-titre{text-transform:uppercase;letter-spacing:.24em;font-size:.75rem;
     color:var(--pature);margin-bottom:1rem}
-  .hero p.chapo{margin-top:1.25rem;max-width:46ch;font-size:1.02rem;color:#4a4238}
+  .hero p.chapo{margin-top:1.25rem;max-width:46ch;font-size:1.02rem;color:var(--encre-doux)}
   .hero .actions{margin-top:1.75rem;display:flex;gap:1rem;flex-wrap:wrap}
   .btn{display:inline-block;text-decoration:none;font-size:.85rem;text-transform:uppercase;
     letter-spacing:.12em;padding:.75rem 1.4rem;border:1.5px solid var(--cuivre)}
@@ -71,41 +82,50 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   .frise-bidons{background:var(--creme-cru);padding:0 5vw 1rem;overflow:hidden}
   .frise-bidons svg{display:block;width:100%;height:auto}
 
-  section.bloc{padding:3.5rem 5vw}
-  .num{font-family:var(--serif);color:var(--paille);font-size:1rem;letter-spacing:.1em}
+  section.bloc{padding:var(--pas-section) 5vw}
+  .num{font-family:var(--serif);color:var(--paille-texte);font-size:1.05rem;letter-spacing:.1em}
   h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3vw,2.2rem);
     margin:.35rem 0 1.2rem;max-width:24ch}
   .deux-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem}
   .deux-col p+p{margin-top:1rem}
+  .deux-col p{color:var(--encre-doux)}
   .encart{border-left:4px solid var(--pature);background:var(--creme-cru);
-    padding:1.25rem 1.5rem;font-size:.95rem}
+    padding:1.25rem 1.5rem;font-size:.97rem}
+  .encart p{color:var(--encre)}
   .encart strong{color:var(--pature)}
 
   .produits{background:var(--creme-cru);border-top:3px double var(--paille);
     border-bottom:3px double var(--paille)}
   .rang-produit{display:grid;grid-template-columns:90px minmax(0,1fr) minmax(0,2fr);
-    gap:1.5rem;align-items:start;padding:1.75rem 0;border-bottom:1px solid #ddceb2}
+    gap:1.5rem;align-items:start;padding:1.75rem 0;border-bottom:1px solid var(--filet)}
   .rang-produit:last-of-type{border-bottom:none}
   .rang-produit h3{font-family:var(--serif);font-weight:400;font-size:1.35rem}
-  .rang-produit .aop{display:inline-block;font-size:.68rem;text-transform:uppercase;
+  .rang-produit .aop{display:inline-block;font-size:.7rem;text-transform:uppercase;
     letter-spacing:.16em;color:var(--lait);background:var(--pature);
-    padding:.15rem .5rem;margin-top:.4rem}
-  .rang-produit p{font-size:.95rem;color:#4a4238}
-  .note-prix{font-size:.85rem;color:var(--cendre);font-style:italic;margin-top:1.5rem}
+    padding:.2rem .5rem;margin-top:.4rem}
+  .rang-produit p{font-size:.97rem;color:var(--encre-doux)}
+  .note-prix{font-size:.9rem;color:var(--cendre);font-style:italic;margin-top:1.5rem}
 
   .magasin{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:2.5rem;align-items:start}
-  .carte-acces{border:1.5px solid var(--cendre);padding:1.5rem 1.75rem;background:#fff}
-  .carte-acces h3{font-family:var(--serif);font-weight:400;font-size:1.2rem;margin-bottom:.75rem}
-  .carte-acces dl{font-size:.95rem}
-  .carte-acces dt{text-transform:uppercase;font-size:.7rem;letter-spacing:.16em;
+  .magasin>div>p{color:var(--encre-doux)}
+  /* l'offre du magasin en rayons lisibles plutôt qu'en énumération dans un paragraphe */
+  .rayons{list-style:none;margin-top:1.25rem;border-top:1px solid var(--filet)}
+  .rayons li{padding:.7rem 0;border-bottom:1px solid var(--filet);display:flex;
+    flex-wrap:wrap;gap:.2rem 1rem;align-items:baseline}
+  .rayons b{font-family:var(--serif);font-weight:400;font-size:1.05rem;min-width:11ch}
+  .rayons span{font-size:.9rem;color:var(--cendre)}
+  .carte-acces{border:1.5px solid var(--cendre);padding:1.5rem 1.75rem;background:var(--blanc)}
+  .carte-acces h3{font-family:var(--serif);font-weight:400;font-size:1.25rem;margin-bottom:.75rem}
+  .carte-acces dl{font-size:.97rem}
+  .carte-acces dt{text-transform:uppercase;font-size:.72rem;letter-spacing:.16em;
     color:var(--cendre);margin-top:.9rem}
   .carte-acces dd{margin-top:.15rem}
 
   footer.site{background:var(--encre);color:#d9cfbf;padding:2.5rem 5vw;position:relative;overflow:hidden}
   footer.site .filigrane{position:absolute;right:-30px;bottom:-40px;opacity:.12;width:240px}
-  footer.site p{font-size:.85rem;max-width:60ch}
+  footer.site p{font-size:.88rem;max-width:60ch}
   footer.site a{color:var(--paille)}
-  .mention-primo{margin-top:1.25rem;border-top:1px solid #55493c;padding-top:1rem;font-size:.8rem}
+  .mention-primo{margin-top:1.25rem;border-top:1px solid var(--filet-nuit);padding-top:1rem;font-size:.82rem}
 
   @media (max-width:820px){
     .hero,.deux-col,.magasin{grid-template-columns:1fr}
@@ -113,6 +133,14 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
     .hero figure{order:-1;max-width:260px}
     .rang-produit{grid-template-columns:64px minmax(0,1fr)}
     .rang-produit p{grid-column:1/-1}
+    nav.principale{margin-left:0;gap:1rem 1.2rem}
+  }
+  @media (max-width:520px){
+    :root{--pas-section:2.75rem}
+    .hero{padding:2.5rem 5vw 2.5rem}
+    .rang-produit{grid-template-columns:52px minmax(0,1fr);gap:1rem}
+    .carte-acces{padding:1.25rem}
+    .rayons b{min-width:0}
   }
 </style>
 
@@ -277,12 +305,15 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   <h2>La vente directe, au magasin de la coopérative</h2>
   <div class="magasin">
     <div>
-      <p>Le magasin de la fromagerie vous accueille à Vaux-et-Chantegrue pour
-      la vente directe : comté de nos cuves, morbier, mont d'or en saison,
-      et une sélection de produits du terroir pour compléter votre plateau.</p>
-      <p style="margin-top:1rem">Vous passez par le Haut-Doubs, entre lacs et
-      montagnes ? La fromagerie est une halte gourmande toute trouvée sur la
-      route des vacances comme au quotidien.</p>
+      <p>Au magasin de la coopérative, le fromage se vend là où il se fabrique.
+      Pas d'intermédiaire, pas de camion : la meule que l'on vous coupe sort de
+      la cave d'à côté.</p>
+      <ul class="rayons">
+        <li><b>Comté</b><span>coupé à la demande, selon les affinages du moment</span></li>
+        <li><b>Morbier</b><span>au lait cru, toute l'année</span></li>
+        <li><b>Mont d'or</b><span>de l'automne au printemps, le temps de sa saison</span></li>
+        <li><b>Terroir</b><span>une sélection de produits de la région pour compléter le plateau</span></li>
+      </ul>
     </div>
     <div class="carte-acces" id="acces">
       <h3>Nous trouver</h3>

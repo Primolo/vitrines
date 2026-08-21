@@ -31,18 +31,30 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   :root{
     --nuit:#1B1310; --cave:#2B211A; --croute:#C08A45; --or:#E0B368;
     --pate:#F2E3C3; --pierre:#8C8177;
+    /* --pierre passe tout juste sur le fond nuit mais pas sur les panneaux
+       de cave : version éclaircie pour les légendes posées sur --cave */
+    --pierre-clair:#A3978B;
+    --texte-doux:#e4d6b8;   /* corps de texte sur fond sombre */
+    --texte-chapo:#d8c8a8;  /* second niveau */
+    --filet:#4a3b2c;        /* filets et bordures de cave */
+    --nuit-pied:#140e0b; --filet-pied:#3a2e22; --pied:#bfae8e;
+    --pas-section:4rem;     /* échelle d'espacement unique entre travées */
     --serif:"Bodoni 72",Didot,"Didot LT STD","Playfair Display",Georgia,serif;
     --sans:Optima,Candara,"Segoe UI",Tahoma,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:hidden}
   body{background:var(--nuit);color:var(--pate);font-family:var(--sans);line-height:1.65}
   .demo-band{background:var(--or);color:var(--nuit);font-size:.8rem;padding:.5rem 1.25rem;letter-spacing:.02em}
   a{color:var(--or)}
-  svg{max-width:100%}
+  img,svg{max-width:100%}
+  h1,h2,h3{text-wrap:balance}
+  p{text-wrap:pretty}
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+  .demo-band a:focus-visible{outline-color:var(--nuit)}
 
   header.site{padding:1.4rem 6vw;display:flex;flex-wrap:wrap;align-items:center;gap:1rem 2rem;
-    border-bottom:1px solid #4a3b2c}
+    border-bottom:1px solid var(--filet)}
   .marque{font-family:var(--serif);font-size:1.5rem;color:var(--or);letter-spacing:.03em}
   .marque small{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.22em;
     text-transform:uppercase;color:var(--pierre)}
@@ -57,7 +69,7 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
     font-size:clamp(2.1rem,5vw,3.8rem);line-height:1.08;max-width:14ch}
   .sur-titre{font-size:.75rem;letter-spacing:.26em;text-transform:uppercase;
     color:var(--croute);margin-bottom:1.1rem}
-  .hero p.chapo{margin-top:1.4rem;max-width:48ch;color:#d8c8a8}
+  .hero p.chapo{margin-top:1.4rem;max-width:48ch;color:var(--texte-chapo)}
   .hero .actions{margin:2rem 0 3rem;display:flex;gap:1rem;flex-wrap:wrap}
   .btn{display:inline-block;text-decoration:none;font-size:.82rem;letter-spacing:.14em;
     text-transform:uppercase;padding:.8rem 1.5rem;border:1px solid var(--or);color:var(--or)}
@@ -67,11 +79,11 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   .hero figure{align-self:end}
   .hero figcaption{font-size:.72rem;color:var(--pierre);font-style:italic;padding:.5rem 0 1rem}
 
-  .separateur{overflow:hidden;line-height:0;border-top:1px solid #4a3b2c;border-bottom:1px solid #4a3b2c;
+  .separateur{overflow:hidden;line-height:0;border-top:1px solid var(--filet);border-bottom:1px solid var(--filet);
     background:var(--cave);padding:.6rem 6vw}
   .separateur svg{height:26px;width:auto;opacity:.7}
 
-  section.bloc{padding:4rem 6vw}
+  section.bloc{padding:var(--pas-section) 6vw}
   .plaque{display:inline-block;border:1px solid var(--croute);color:var(--croute);
     font-family:var(--serif);font-size:.95rem;letter-spacing:.28em;padding:.3rem .9rem .2rem;
     text-transform:uppercase}
@@ -79,41 +91,56 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
     font-size:clamp(1.6rem,3.4vw,2.5rem);margin:1rem 0 1.4rem;max-width:26ch}
   .deux-col{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:start}
   .deux-col p+p{margin-top:1rem}
-  .deux-col p{color:#e4d6b8}
+  .deux-col p{color:var(--texte-doux)}
 
-  .chiffres{border:1px solid #4a3b2c;background:var(--cave)}
-  .chiffres li{list-style:none;padding:1.1rem 1.4rem;border-bottom:1px solid #4a3b2c;
-    display:flex;align-items:baseline;gap:1rem}
+  .chiffres{border:1px solid var(--filet);background:var(--cave)}
+  .chiffres li{list-style:none;padding:1.1rem 1.4rem;border-bottom:1px solid var(--filet);
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem 1rem}
   .chiffres li:last-child{border-bottom:none}
-  .chiffres b{font-family:var(--serif);font-size:1.7rem;color:var(--or);font-weight:400;min-width:5.5ch}
-  .chiffres span{font-size:.85rem;color:var(--pierre)}
+  .chiffres b{font-family:var(--serif);font-size:clamp(1.35rem,4.5vw,1.7rem);color:var(--or);
+    font-weight:400;min-width:5.5ch}
+  .chiffres span{font-size:.88rem;color:var(--pierre-clair)}
 
-  .comtes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;
-    background:#4a3b2c;border:1px solid #4a3b2c;margin-top:1.5rem}
+  /* Travée III — l'étal du magasin */
+  .comtes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1px;
+    background:var(--filet);border:1px solid var(--filet);margin-top:1.5rem}
   .comtes article{background:var(--cave);padding:1.6rem 1.5rem}
   .comtes h3{font-family:var(--serif);font-weight:400;font-size:1.3rem;color:var(--or)}
-  .comtes .duree{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  .comtes .duree{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
     color:var(--croute);margin:.3rem 0 .8rem}
-  .comtes p{font-size:.92rem;color:#d8c8a8}
-  .note-prix{margin-top:1.4rem;font-size:.85rem;font-style:italic;color:var(--pierre)}
+  .comtes p{font-size:.95rem;color:var(--texte-chapo)}
+  .note-prix{margin-top:1.4rem;font-size:.9rem;font-style:italic;color:var(--pierre-clair)}
+  .etal{list-style:none;margin-top:1.6rem;border-top:1px solid var(--filet)}
+  .etal li{padding:.75rem 0;border-bottom:1px solid var(--filet);display:flex;
+    flex-wrap:wrap;gap:.2rem 1rem;align-items:baseline}
+  .etal b{font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--or);min-width:9ch}
+  .etal span{font-size:.92rem;color:var(--texte-chapo)}
 
-  .magasins{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:2rem;margin-top:1.5rem}
+  .magasins{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:2rem;margin-top:1.5rem}
   .magasin{border:1px solid var(--croute);padding:1.8rem 1.7rem;background:linear-gradient(180deg,var(--cave),#241b15)}
   .magasin h3{font-family:var(--serif);font-weight:400;font-size:1.35rem;color:var(--or)}
-  .magasin .lieu{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--croute);margin:.2rem 0 1rem}
-  .magasin dl{font-size:.92rem}
-  .magasin dt{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--pierre);margin-top:.9rem}
-  .magasin dd{margin-top:.15rem;color:#e4d6b8}
-  .avertissement{font-size:.8rem;color:var(--pierre);margin-top:1.5rem;font-style:italic}
+  .magasin .lieu{font-size:.77rem;letter-spacing:.2em;text-transform:uppercase;color:var(--croute);margin:.2rem 0 1rem}
+  .magasin dl{font-size:.95rem}
+  .magasin dt{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--pierre-clair);margin-top:.9rem}
+  .magasin dd{margin-top:.15rem;color:var(--texte-doux)}
+  .avertissement{font-size:.88rem;color:var(--pierre-clair);margin-top:1.5rem;font-style:italic}
 
-  footer.site{border-top:1px solid #4a3b2c;background:#140e0b;padding:2.5rem 6vw;color:#bfae8e}
-  footer.site p{font-size:.85rem;max-width:64ch}
-  .mention-primo{margin-top:1.25rem;border-top:1px solid #3a2e22;padding-top:1rem;font-size:.8rem;color:var(--pierre)}
+  footer.site{border-top:1px solid var(--filet);background:var(--nuit-pied);padding:2.5rem 6vw;color:var(--pied)}
+  footer.site p{font-size:.88rem;max-width:64ch}
+  .mention-primo{margin-top:1.25rem;border-top:1px solid var(--filet-pied);padding-top:1rem;font-size:.82rem;color:var(--pierre-clair)}
   .mention-primo a{color:var(--croute)}
 
   @media (max-width:860px){
     .hero,.deux-col{grid-template-columns:1fr}
     .hero figure{order:-1;max-width:420px}
+    nav.principale{margin-left:0;gap:1rem 1.2rem}
+  }
+  @media (max-width:520px){
+    :root{--pas-section:2.9rem}
+    .hero{padding:3rem 6vw 0}
+    .magasin{padding:1.4rem 1.2rem}
+    .chiffres li{padding:1rem 1.1rem}
+    .etal b{min-width:0}
   }
 </style>
 
@@ -126,6 +153,7 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   <nav class="principale">
     <a href="#altitude">Le comté d'altitude</a>
     <a href="#fruitiere">La fruitière</a>
+    <a href="#etal">L'étal</a>
     <a href="#magasins">Nos magasins</a>
   </nav>
 </header>
@@ -232,7 +260,7 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   </div>
 </section>
 
-<section class="bloc" id="fruitiere" style="background:var(--cave);border-top:1px solid #4a3b2c;border-bottom:1px solid #4a3b2c">
+<section class="bloc" id="fruitiere" style="background:var(--cave);border-top:1px solid var(--filet);border-bottom:1px solid var(--filet)">
   <span class="plaque">Travée II</span>
   <h2>Deux villages, une seule fruitière</h2>
   <div class="deux-col">
@@ -247,9 +275,24 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
       fermes, et le savoir-faire reste au village.</p>
     </div>
     <div>
-      <p>Au magasin, retrouvez aussi le beurre cru et la crème crue de la
-      fruitière, des yaourts artisanaux, et une sélection d'autres fromages
-      d'appellation de la région.</p>
+      <p>Quatre kilomètres séparent les deux villages : c'est toute la
+      distance qui sépare le lait de sa cuve, et le fromage de son
+      acheteur.</p>
+      <p>Ce que cette réunion a permis de garder, c'est le plus difficile à
+      faire revenir une fois perdu — une fabrication quotidienne au pays, et
+      des portes ouvertes dans les deux villages.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc" id="etal">
+  <span class="plaque">Travée III</span>
+  <h2>Ce qu'il y a sur le banc</h2>
+  <div class="deux-col">
+    <div>
+      <p>Le comté de la fruitière se coupe à la demande, dans l'affinage que
+      vous préférez. Demandez à goûter les deux avant de choisir : c'est le
+      meilleur moyen de savoir lequel est le vôtre.</p>
       <div class="comtes">
         <article>
           <h3>Comté doux</h3>
@@ -264,13 +307,31 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
           plateaux et des soirées d'hiver.</p>
         </article>
       </div>
-      <p class="note-prix">Prix en magasin — coupe à la demande.</p>
+      <p class="note-prix">Prix affichés en magasin, selon les meules ouvertes du moment.</p>
+    </div>
+    <div>
+      <p>À côté du comté, ce que la maison fabrique et ce qu'elle a choisi
+      d'accueillir sur son banc&nbsp;:</p>
+      <ul class="etal">
+        <li><b>Beurre cru</b><span>de la fruitière</span></li>
+        <li><b>Crème crue</b><span>de la fruitière</span></li>
+        <li><b>Yaourts</b><span>artisanaux</span></li>
+        <li><b>Fromages</b><span>d'autres appellations de la région</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
+<div class="separateur" aria-hidden="true">
+  <svg viewBox="0 0 900 40">
+    <g fill="none" stroke="#C08A45" stroke-width="2.5">
+      <path d="M20 32 a30 22 0 0 1 60 0 z M120 32 a30 22 0 0 1 60 0 z M220 32 a30 22 0 0 1 60 0 z M320 32 a30 22 0 0 1 60 0 z M420 32 a30 22 0 0 1 60 0 z M520 32 a30 22 0 0 1 60 0 z M620 32 a30 22 0 0 1 60 0 z M720 32 a30 22 0 0 1 60 0 z M820 32 a30 22 0 0 1 60 0 z"/>
+    </g>
+  </svg>
+</div>
+
 <section class="bloc" id="magasins">
-  <span class="plaque">Travée III</span>
+  <span class="plaque">Travée IV</span>
   <h2>Deux magasins de vente directe</h2>
   <div class="magasins">
     <div class="magasin">

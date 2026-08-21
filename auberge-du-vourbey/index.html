@@ -41,7 +41,13 @@
     font-family:"Futura","Avenir Next Condensed","Century Gothic","Apple SD Gothic Neo",sans-serif;
     text-transform:uppercase; letter-spacing:.14em; font-weight:600;
   }
+  h1,h2{text-wrap:balance}
   a{color:var(--lanterne)}
+  svg{max-width:100%}
+  a:focus-visible,.btn:focus-visible{
+    outline:3px solid var(--lanterne); outline-offset:3px;
+  }
+  .btn:focus-visible{outline-color:var(--neige)}
 
   .demo-banner{
     background:var(--lanterne); color:#1B1408;
@@ -134,7 +140,7 @@
     border-bottom:1px dotted rgba(127,163,191,.4);padding:.75rem 0;
   }
   .plats b{font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;letter-spacing:.08em;text-transform:uppercase;font-size:.92rem;font-weight:600}
-  .plats span{color:var(--givre);font-size:.9rem;text-align:right}
+  .plats span{color:var(--givre);font-size:.95rem;text-align:right}
   .prix-note{margin-top:1.2rem;font-style:italic;color:var(--givre)}
   .lanterne-fig{text-align:center;background:var(--congere);padding:2rem 1rem 1.4rem}
   .lanterne-fig figcaption{font-size:.85rem;color:var(--givre);font-style:italic;margin-top:.7rem}
@@ -147,7 +153,8 @@
   }
 
   /* Infos + contact */
-  .infos{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.8rem}
+  .infos-kicker{margin-top:2.8rem}
+  .infos{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1rem}
   .infos article{border-left:3px solid var(--givre);padding-left:1.1rem}
   .infos h3{font-size:.82rem;letter-spacing:.22em;color:var(--lanterne);margin-bottom:.4rem}
   .infos p{font-size:.92rem;color:var(--neige)}
@@ -156,7 +163,7 @@
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.4rem}
   .contact dl div{padding:.75rem 0;border-bottom:1px solid rgba(236,242,248,.18)}
   .contact dt{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--givre);font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif}
-  .contact dd{font-size:1.05rem;margin-top:.2rem}
+  .contact dd{font-size:1.05rem;margin-top:.2rem;overflow-wrap:anywhere}
   .contact .note{font-size:.9rem;font-style:italic;color:var(--givre);margin-top:1rem}
 
   footer.credit{
@@ -168,11 +175,23 @@
     .hero .titre{position:static;background:var(--nuit);padding:2rem 0 0}
     .hero svg.scene{margin-top:1rem}
     .saisons,.carte,.contact-grid{grid-template-columns:1fr}
-    .infos{grid-template-columns:1fr}
-    .fete{grid-template-columns:1fr;text-align:left}
+    .saisons{gap:1.2rem}
+    .infos{grid-template-columns:1fr;gap:1.1rem}
+    .fete{grid-template-columns:1fr;text-align:left;padding:1.8rem 1.4rem;gap:1.2rem}
     nav.main{display:flex;flex-wrap:wrap}
     nav.main a{margin-left:0;margin-right:1.2rem}
     .btn.ghost{margin-left:0;margin-top:.8rem}
+    section.block{padding:2.8rem 0 2.2rem}
+    .saison{padding:1.5rem 1.25rem}
+    .lanterne-fig{padding:1.6rem 1rem 1.2rem}
+    /* la carte des plats : plat au-dessus, description en dessous — deux colonnes
+       serrées deviendraient illisibles sur un téléphone */
+    .plats li{flex-direction:column;align-items:flex-start;gap:.15rem}
+    .plats span{text-align:left}
+  }
+  @media (max-width:520px){
+    .btn{display:block;text-align:center}
+    .btn.ghost{margin-left:0;margin-top:.7rem}
   }
 </style>
 </head>
@@ -318,7 +337,7 @@
     <div class="carte">
       <div>
         <p class="kicker">La table</p>
-        <h2>Le fromage a le premier rôle</h2>
+        <h2>Le fromage&nbsp;a le premier rôle</h2>
         <p>Cuisine régionale, spécialités franc-comtoises et franco-suisses,
         produits choisis chez les producteurs du coin. Ici, on mange ce que la montagne sait faire.</p>
         <ul class="plats">
@@ -350,6 +369,14 @@
     </div>
   </section>
 
+  <svg class="trace" width="120" height="46" viewBox="0 0 120 46" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="2 5">
+      <ellipse cx="30" cy="30" rx="9" ry="14"/>
+      <ellipse cx="60" cy="16" rx="9" ry="14"/>
+      <ellipse cx="90" cy="30" rx="9" ry="14"/>
+    </g>
+  </svg>
+
   <section class="block" id="fetes">
     <div class="fete">
       <svg width="90" height="90" viewBox="0 0 90 90" aria-hidden="true">
@@ -362,12 +389,15 @@
       <div>
         <p class="kicker">Anniversaires, familles, équipes</p>
         <h2>Une salle pour vos fêtes</h2>
-        <p>L'auberge met sa salle à disposition pour vos fêtes et repas de groupe :
-        un lieu à part, loin de la route, où l'on privatise la montagne le temps d'une soirée.
-        Formules et disponibilités : <a href="tel:+33770913333">07 70 91 33 33</a>.</p>
+        <p>Anniversaire, repas de famille, sortie de club ou d'équipe : la salle du Vourbey
+        se privatise. L'été, on vous accueille à partir de huit personnes, terrasse et jardin
+        compris ; l'hiver, tout le monde monte à ski ou en raquettes — dites-nous simplement
+        combien vous serez et à quelle heure vous arriverez, on cale le reste au téléphone.</p>
+        <p>Formules et disponibilités : <a href="tel:+33770913333">07 70 91 33 33</a>.</p>
       </div>
     </div>
 
+    <p class="kicker infos-kicker">Bon à savoir avant de monter</p>
     <div class="infos">
       <article><h3>Paiement</h3><p>Carte bleue et espèces acceptées.</p></article>
       <article><h3>Avec les enfants</h3><p>Jeux pour enfants, jardin, tablées familiales bienvenues.</p></article>

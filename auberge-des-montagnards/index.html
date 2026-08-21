@@ -23,18 +23,30 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
   :root{
     --parchemin:#F4ECDD; --encre:#2A2118; --morille:#7A5230; --lac:#3E6F78;
     --cuivre:#B0722C; --panneau:#FBF6EA; --filet:#D8CBB2; --sourdine:#6B5B47;
+    /* cuivre assombri pour le TEXTE (le cuivre clair ne passe pas le contraste sur parchemin) */
+    --cuivre-texte:#8A5518;
+    /* échelle d'espacement : 1 = .6rem */
+    --pas-section:2.8rem; --pas-bloc:1.6rem;
   }
   @media (prefers-color-scheme: dark){
     :root{
       --parchemin:#221B12; --encre:#EDE3D0; --morille:#C29468; --lac:#7FB3BC;
       --cuivre:#D9A45B; --panneau:#2C2417; --filet:#4A3E2C; --sourdine:#B3A48C;
+      --cuivre-texte:#D9A45B;
     }
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  html{overflow-x:hidden}
   body{
     background:var(--parchemin); color:var(--encre);
     font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
-    line-height:1.65;
+    line-height:1.65; overflow-wrap:break-word;
+  }
+  img,svg{max-width:100%;height:auto}
+  h1,h2{text-wrap:balance}
+  p{text-wrap:pretty}
+  a:focus-visible,[href]:focus-visible{
+    outline:3px solid var(--lac); outline-offset:3px;
   }
   .demo-bandeau{
     background:var(--encre); color:var(--parchemin);
@@ -75,11 +87,11 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
   .cartouche figcaption{font-size:.85rem; font-style:italic; color:var(--sourdine); margin-top:1rem}
   .sep{display:flex; align-items:center; gap:1rem; padding:0 6vw; margin:1.2rem 0}
   .sep::before,.sep::after{content:""; flex:1; border-top:1px solid var(--filet)}
-  section.bloc{padding:2.6rem 6vw}
-  section.bloc h2{font-size:1.7rem; margin-bottom:.4rem}
-  .surtitre{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.7rem;
-    letter-spacing:.26em; text-transform:uppercase; color:var(--cuivre); margin-bottom:.5rem}
-  .colonnes{display:grid; grid-template-columns:1fr 1fr; gap:2.5rem 4rem; margin-top:1.6rem}
+  section.bloc{padding:var(--pas-section) 6vw}
+  section.bloc h2{font-size:clamp(1.45rem,3.6vw,1.9rem); line-height:1.2; margin-bottom:.4rem}
+  .surtitre{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.72rem;
+    letter-spacing:.26em; text-transform:uppercase; color:var(--cuivre-texte); margin-bottom:.5rem}
+  .colonnes{display:grid; grid-template-columns:1fr 1fr; gap:2.5rem 4rem; margin-top:var(--pas-bloc)}
   .carte-liste{list-style:none; max-width:44rem}
   .carte-liste li{display:flex; align-items:baseline; gap:.6rem; padding:.55rem 0; border-bottom:1px dotted var(--filet)}
   .carte-liste .plat{font-weight:700}
@@ -88,19 +100,39 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
     letter-spacing:.1em; text-transform:uppercase; color:var(--sourdine); white-space:nowrap}
   .carte-liste li p{flex-basis:100%; font-size:.92rem; font-style:italic; color:var(--sourdine); padding-left:0}
   .carte-liste li{flex-wrap:wrap}
-  .rando{background:var(--panneau); border-left:5px solid var(--lac); padding:1.6rem 1.8rem; max-width:46rem; margin-top:1.4rem}
+  .rando-grille{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);
+    gap:2rem; align-items:start; margin-top:var(--pas-bloc)}
+  .rando{background:var(--panneau); border-left:5px solid var(--lac); padding:1.6rem 1.8rem}
   .rando strong{color:var(--lac)}
+  .services{list-style:none; font-family:"Avenir Next",Avenir,Helvetica,sans-serif;
+    font-size:.86rem; line-height:1.45}
+  .services li{display:flex; gap:.7rem; align-items:baseline; padding:.6rem 0; border-bottom:1px solid var(--filet)}
+  .services li:last-child{border-bottom:none}
+  .services li::before{content:""; flex:none; width:.48rem; height:.48rem;
+    background:var(--cuivre); transform:rotate(45deg) translateY(-1px)}
   address{font-style:normal}
-  .contact-grille{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; margin-top:1.4rem}
+  .contact-grille{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; margin-top:var(--pas-bloc)}
   .contact-grille h3{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.72rem;
     letter-spacing:.22em; text-transform:uppercase; color:var(--sourdine); margin-bottom:.5rem}
-  a{color:var(--cuivre)}
-  footer.site{border-top:3px double var(--cuivre); margin-top:2.5rem; padding:1.6rem 6vw 2.4rem;
-    font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.78rem; color:var(--sourdine)}
+  .fine{font-size:.85rem; color:var(--sourdine)}
+  a{color:var(--cuivre-texte)}
+  footer.site{border-top:3px double var(--cuivre); margin-top:var(--pas-section); padding:1.6rem 6vw 2.4rem;
+    font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.82rem; color:var(--sourdine)}
   @media (max-width:760px){
     .hero{grid-template-columns:1fr; gap:2.2rem; padding-top:2.5rem}
     .colonnes{grid-template-columns:1fr}
-    nav.site{margin-left:0}
+    .rando-grille{grid-template-columns:1fr}
+    nav.site{margin-left:0; margin-top:.5rem}
+    nav.site a{margin-left:0; margin-right:1.3rem; display:inline-block; margin-bottom:.3rem}
+  }
+  /* Sur petit écran la ligne de carte s'empile : plus de points de conduite orphelins */
+  @media (max-width:560px){
+    .carte-liste li{flex-direction:column; align-items:flex-start; gap:.15rem}
+    .carte-liste .points{display:none}
+    .carte-liste .note{white-space:normal}
+    /* en colonne, flex-basis:100% vaudrait 100% de la HAUTEUR : on le neutralise */
+    .carte-liste li p{flex-basis:auto}
+    .cartouche{padding:1.6rem 1.1rem 1rem; box-shadow:4px 4px 0 var(--filet)}
   }
 </style>
 </head>
@@ -189,30 +221,45 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
     <p class="surtitre">La carte</p>
     <h2>Ce qui fait la réputation de la maison</h2>
     <ul class="carte-liste">
-      <li><span class="plat">Croûte aux morilles</span><span class="points"></span><span class="note">nous consulter</span>
-        <p>Le plat-signature : morilles à la crème sur croûte dorée.</p></li>
-      <li><span class="plat">Filet de bœuf aux morilles</span><span class="points"></span><span class="note">nous consulter</span></li>
-      <li><span class="plat">Truite au vin jaune</span><span class="points"></span><span class="note">nous consulter</span></li>
+      <li><span class="plat">Croûte aux morilles</span><span class="points"></span><span class="note">la spécialité</span>
+        <p>Morilles à la crème sur une croûte dorée. Le plat pour lequel on monte à Montperreux.</p></li>
+      <li><span class="plat">Filet de bœuf aux morilles</span><span class="points"></span>
+        <p>La même sauce, sur une pièce de bœuf.</p></li>
+      <li><span class="plat">Truite au vin jaune</span><span class="points"></span>
+        <p>La truite et le vin jaune : deux classiques du Jura dans la même assiette.</p></li>
       <li><span class="plat">Cuisses de grenouilles</span><span class="points"></span><span class="note">en saison</span></li>
-      <li><span class="plat">Salade comtoise</span><span class="points"></span><span class="note">nous consulter</span></li>
-      <li><span class="plat">Fondue &amp; plats du terroir</span><span class="points"></span><span class="note">nous consulter</span></li>
       <li><span class="plat">Gibier</span><span class="points"></span><span class="note">en saison</span></li>
-      <li><span class="plat">Desserts maison</span><span class="points"></span><span class="note">nous consulter</span></li>
+      <li><span class="plat">Salade comtoise</span><span class="points"></span></li>
+      <li><span class="plat">Fondue &amp; plats du terroir</span><span class="points"></span></li>
+      <li><span class="plat">Desserts maison</span><span class="points"></span>
+        <p>Faits sur place.</p></li>
     </ul>
-    <p style="margin-top:1rem; font-style:italic; color:var(--sourdine); font-size:.95rem">
-      Carte selon le marché et la cueillette — prix et menus à valider ensemble avant mise en ligne.</p>
+    <p class="fine" style="margin-top:1.2rem; font-style:italic">
+      La carte suit le marché et la cueillette. Les prix et les menus ne sont pas affichés ici :
+      ils seront repris de votre carte, tels quels, avant la mise en ligne.</p>
   </section>
+
+  <div class="sep" aria-hidden="true"><svg width="28" height="40" viewBox="0 0 28 40"><use href="#morille-mini"/></svg></div>
 
   <section class="bloc" id="randonneurs">
     <p class="surtitre">Randonneurs &amp; promeneurs</p>
     <h2>L'étape du tour du lac</h2>
-    <div class="rando">
-      <p><strong>Le tour du lac Saint-Point passe par ici.</strong> Montperreux domine le plus grand lac
-      naturel du Haut-Doubs : l'auberge est la halte naturelle des marcheurs — une salade comtoise,
-      une croûte, un café au coin du feu, et on repart. Parking sur place, accès facilité aux
-      personnes à mobilité réduite.</p>
+    <div class="rando-grille">
+      <div class="rando">
+        <p><strong>Le tour du lac Saint-Point passe par ici.</strong> Montperreux domine le plus grand lac
+        naturel du Haut-Doubs : l'auberge est la halte naturelle des marcheurs — une salade comtoise,
+        une croûte, un café au coin du feu, et on repart.</p>
+      </div>
+      <ul class="services">
+        <li>Parking sur place</li>
+        <li>Accès facilité aux personnes à mobilité réduite</li>
+        <li>Chiens bienvenus</li>
+        <li>Cheminée en salle l'hiver</li>
+      </ul>
     </div>
   </section>
+
+  <div class="sep" aria-hidden="true"><svg width="28" height="40" viewBox="0 0 28 40"><use href="#morille-mini"/></svg></div>
 
   <section class="bloc" id="contact">
     <p class="surtitre">Contact</p>
@@ -226,11 +273,13 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
       <div>
         <h3>Réservations</h3>
         <p>Téléphone : <em>à compléter</em></p>
-        <p style="font-size:.85rem; color:var(--sourdine)">Le numéro sera ajouté avec vous à la validation de la maquette.</p>
+        <p class="fine">Le numéro sera ajouté avec vous à la validation de la maquette.</p>
       </div>
       <div>
-        <h3>Bon à savoir</h3>
-        <p>Parking sur place · accès PMR · animaux bienvenus · au-dessus du lac Saint-Point</p>
+        <h3>Horaires</h3>
+        <p><em>à compléter</em></p>
+        <p class="fine">Jours d'ouverture et services (midi, soir) seront relevés avec vous — rien n'est
+        affiché tant que ce n'est pas vérifié.</p>
       </div>
     </div>
   </section>

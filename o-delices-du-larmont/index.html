@@ -25,6 +25,8 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
     --prune-fonce:#2a1826;
     --champagne:#e6d3a3;
     --ivoire:#f4eee2;
+    --ivoire-doux:#dccfc4;   /* ivoire adouci pour le texte courant */
+    --ivoire-tenu:#c3b6ab;   /* mentions et légendes */
     --sauge:#8ba081;
     --cuivre:#b57a4e;
     --serif:Baskerville,"Baskerville Old Face","Times New Roman",serif;
@@ -32,7 +34,12 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--prune);color:var(--ivoire);font-family:var(--sans);line-height:1.65}
+  body{background:var(--prune);color:var(--ivoire);font-family:var(--sans);
+    line-height:1.65;overflow-wrap:break-word;-webkit-text-size-adjust:100%}
+  img,svg{max-width:100%}
+  h1,h2,h3{text-wrap:balance}
+  p{text-wrap:pretty}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--champagne);outline-offset:3px}
 
   .demo-banner{
     background:var(--champagne);color:#3a2334;font-weight:600;
@@ -40,7 +47,7 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   }
 
   header.site{
-    text-align:left;padding:1.2rem 7vw;
+    padding:1.2rem max(7vw,1.15rem);
     display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 2rem;
     border-bottom:1px solid rgba(230,211,163,.3);
   }
@@ -59,7 +66,7 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   /* ---- HERO ---- */
   .hero{
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);
-    gap:2.5rem;align-items:center;padding:4rem 7vw 3.5rem;
+    gap:2.5rem;align-items:center;padding:4rem max(7vw,1.15rem) 3.5rem;
     background:
       radial-gradient(ellipse at 20% 0%, rgba(230,211,163,.12) 0%, rgba(58,35,52,0) 45%),
       var(--prune);
@@ -70,21 +77,22 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
     font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.14;margin-top:.8rem;max-width:20ch;
   }
   .hero h1 em{color:var(--champagne)}
-  .hero p{margin:1.4rem 0 2rem;max-width:52ch;color:#dccfc4}
+  .hero p{margin:1.4rem 0 2rem;max-width:52ch;color:var(--ivoire-doux)}
+  .actions{display:flex;flex-wrap:wrap;gap:.8rem}
   .btn{
     display:inline-block;text-decoration:none;font-weight:600;font-size:.92rem;
     letter-spacing:.06em;padding:.85rem 1.9rem;
-    background:var(--champagne);color:#3a2334;
+    background:var(--champagne);color:var(--prune);border:1px solid var(--champagne);
   }
   .btn:hover{background:#f0e2ba}
-  .btn.ghost{background:transparent;color:var(--champagne);border:1px solid var(--champagne);margin-left:.7rem}
+  .btn.ghost{background:transparent;color:var(--champagne)}
   .btn.ghost:hover{background:rgba(230,211,163,.1)}
   .cloche-svg{width:100%;max-width:360px;height:auto;justify-self:center}
 
-  section{padding:3.4rem 7vw}
+  section{padding:3.4rem max(7vw,1.15rem)}
   h2{font-family:var(--serif);font-weight:500;color:var(--champagne);
     font-size:clamp(1.5rem,3vw,2.2rem)}
-  .sous{color:#dccfc4;max-width:60ch;margin-top:.8rem}
+  .sous{color:var(--ivoire-doux);max-width:60ch;margin-top:.8rem}
 
   /* ---- prestations : menu déroulé ---- */
   .services{margin-top:2rem;display:grid;gap:0}
@@ -93,17 +101,18 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
     gap:1.5rem;padding:1.8rem 0;border-top:1px solid rgba(230,211,163,.25);
   }
   .service:last-child{border-bottom:1px solid rgba(230,211,163,.25)}
-  .service .plat{font-family:var(--serif);font-style:italic;color:var(--sauge);font-size:.95rem;padding-top:.2rem}
+  .service .plat{font-family:var(--serif);font-style:italic;color:var(--sauge);font-size:.95rem;
+    padding-top:.35rem;line-height:1.4}
   .service h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;margin-bottom:.4rem}
-  .service p{font-size:.95rem;color:#dccfc4;max-width:62ch}
+  .service p{font-size:.97rem;color:var(--ivoire-doux);max-width:62ch}
 
   /* ---- terroir ---- */
   .terroir{background:var(--prune-fonce)}
   .terroir-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.6rem;margin-top:1.8rem}
   .produit-t{border-left:3px solid var(--sauge);padding:.2rem 0 .2rem 1.2rem}
-  .produit-t h3{font-family:var(--serif);font-weight:500;font-size:1.05rem;color:var(--ivoire);margin-bottom:.3rem}
-  .produit-t p{font-size:.88rem;color:#c9bcb1}
-  .mention{font-style:italic;color:#b8a89c;font-size:.88rem;margin-top:1.6rem}
+  .produit-t h3{font-family:var(--serif);font-weight:500;font-size:1.1rem;color:var(--ivoire);margin-bottom:.3rem}
+  .produit-t p{font-size:.95rem;color:var(--ivoire-doux)}
+  .mention{font-style:italic;color:var(--ivoire-tenu);font-size:.92rem;margin-top:1.8rem;max-width:60ch}
 
   /* ---- devis ---- */
   .devis{background:
@@ -123,8 +132,8 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   .champ input:focus,.champ select:focus,.champ textarea:focus{outline:2px solid var(--champagne)}
   .champ select option{color:#3a2334}
   .note-demo{
-    grid-column:1 / -1;font-size:.8rem;font-style:italic;color:#b8a89c;
-    border:1px dashed rgba(230,211,163,.4);padding:.6rem .9rem;
+    grid-column:1 / -1;font-size:.85rem;font-style:italic;color:var(--ivoire-tenu);
+    border:1px dashed rgba(230,211,163,.4);padding:.7rem .9rem;
   }
   .envoyer{grid-column:1 / -1;justify-self:start}
 
@@ -137,17 +146,23 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   a.maps:hover{background:rgba(230,211,163,.1)}
 
   footer.pied{
-    background:var(--prune-fonce);color:#a4948a;font-size:.78rem;text-align:center;
-    padding:1.2rem 7vw;border-top:1px solid rgba(230,211,163,.2);
+    background:var(--prune-fonce);color:#b3a397;font-size:.82rem;text-align:center;
+    padding:1.3rem max(7vw,1.15rem);border-top:1px solid rgba(230,211,163,.2);
   }
 
   @media (max-width:840px){
     .hero{grid-template-columns:1fr}
     .cloche-svg{max-width:270px}
-    .devis-int{grid-template-columns:1fr}
+    .devis-int{grid-template-columns:1fr;gap:2rem}
     form.formulaire{grid-template-columns:1fr}
-    .service{grid-template-columns:1fr;gap:.3rem}
+    .service{grid-template-columns:1fr;gap:.35rem}
+    .service .plat{padding-top:0;font-size:.9rem}
     nav.haut{margin-left:0}
+  }
+  @media (max-width:520px){
+    section{padding:2.8rem max(7vw,1.15rem)}
+    .service{padding:1.4rem 0}
+    .envoyer{justify-self:stretch;text-align:center}
   }
 </style>
 
@@ -175,7 +190,7 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
       repas servis à table pour vos grands jours — avec les produits francs-comtois que
       la maison sélectionne aussi pour son épicerie fine.
     </p>
-    <div>
+    <div class="actions">
       <a class="btn" href="#devis">Demander un devis</a>
       <a class="btn ghost" href="tel:+33381387977">03 81 38 79 77</a>
     </div>
@@ -218,11 +233,11 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
 
 <section id="receptions">
   <h2>Nos réceptions, servies comme un menu</h2>
-  <p class="sous">Du premier toast au dernier café, une seule équipe et une seule exigence,
-  pour vingt convives comme pour deux cents.</p>
+  <p class="sous">Du vin d'honneur au dernier café, la même maison compose le menu, cuisine
+  et sert — pour vingt convives comme pour deux cents.</p>
   <div class="services">
     <article class="service">
-      <div class="plat">En ouverture</div>
+      <div class="plat">Vin d'honneur · buffet · service à table</div>
       <div>
         <h3>Mariages</h3>
         <p>Vin d'honneur, buffets élégants ou repas servis à table, pièce montée et
@@ -231,7 +246,7 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
       </div>
     </article>
     <article class="service">
-      <div class="plat">Pour continuer</div>
+      <div class="plat">Buffet · cocktail</div>
       <div>
         <h3>Fêtes de famille</h3>
         <p>Baptêmes, communions, anniversaires, retrouvailles : des formules buffet ou
@@ -239,15 +254,16 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
       </div>
     </article>
     <article class="service">
-      <div class="plat">Pour conclure</div>
+      <div class="plat">Cocktail · plateaux-repas</div>
       <div>
         <h3>Entreprises</h3>
-        <p>Cocktails, plateaux-repas, séminaires et fêtes de fin d'année : une
-        organisation précise et discrète, à la hauteur de vos invités.</p>
+        <p>Cocktails, plateaux-repas, séminaires et fêtes de fin d'année, livrés et
+        dressés sur le lieu de votre choix : dans vos locaux, en salle ou sous chapiteau.</p>
       </div>
     </article>
   </div>
-  <p class="mention">Chaque événement est unique : tarifs sur devis — nous consulter.</p>
+  <p class="mention">Pas de tarif affiché au menu : le devis se construit avec vous, selon la
+  formule, le nombre de convives et le lieu de la réception.</p>
 </section>
 
 <section class="terroir" id="terroir">
@@ -331,6 +347,7 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
     <div>
       <h3>Nous trouver</h3>
       <p>Ô Délices du Larmont<br>Malbuisson · Haut-Doubs</p>
+      <p class="mention" style="margin-top:.5rem">Adresse complète à compléter avec vous.</p>
       <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=%C3%94+D%C3%A9lices+du+Larmont+Malbuisson">Ouvrir dans Google Maps</a>
     </div>
     <div>

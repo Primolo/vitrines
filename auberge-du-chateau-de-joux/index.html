@@ -33,7 +33,13 @@ joue la lumière du calcaire.
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--parchemin);color:var(--encre);font-family:var(--sans);line-height:1.6}
+  body{background:var(--parchemin);color:var(--encre);font-family:var(--sans);
+    line-height:1.65;overflow-wrap:break-word;-webkit-text-size-adjust:100%}
+  img,svg{max-width:100%}
+  h1,h2,h3{text-wrap:balance}
+  p{text-wrap:pretty}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--etendard);outline-offset:3px}
+  .contact a:focus-visible,.pied a:focus-visible{outline-color:var(--or)}
 
   .demo-banner{
     background:var(--encre);color:var(--parchemin);
@@ -43,7 +49,7 @@ joue la lumière du calcaire.
   header.site{
     background:var(--parchemin);
     border-bottom:3px double var(--or);
-    padding:1rem 5vw;
+    padding:1rem max(5vw,1.15rem);
     display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 2rem;
   }
   .marque{font-family:var(--serif);font-size:1.35rem;font-weight:600;letter-spacing:.02em}
@@ -57,7 +63,7 @@ joue la lumière du calcaire.
   .hero{
     display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
     gap:2rem;align-items:center;
-    padding:3.5rem 5vw 3rem;
+    padding:3.5rem max(5vw,1.15rem) 3rem;
     background:
       linear-gradient(180deg, var(--parchemin) 0%, #e9e3d4 100%);
   }
@@ -91,13 +97,14 @@ joue la lumière du calcaire.
   /* ---- bande repères ---- */
   .reperes{
     background:var(--encre);color:var(--pierre);
-    display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem 2.5rem;
-    padding:1.3rem 5vw;font-size:.9rem;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:1.4rem 2.5rem;
+    padding:1.7rem max(5vw,1.15rem);font-size:.95rem;
   }
-  .reperes b{color:#fff;font-family:var(--serif);font-size:1.05rem;display:block}
-  .reperes span{display:block;max-width:20ch}
+  .reperes b{color:#fff;font-family:var(--serif);font-size:1.08rem;display:block;margin-bottom:.15rem}
+  .reperes span{display:block;max-width:24ch}
 
-  section{padding:3.5rem 5vw}
+  section{padding:3.5rem max(5vw,1.15rem)}
   section h2{
     font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;
     margin-bottom:.4rem;
@@ -109,7 +116,7 @@ joue la lumière du calcaire.
   .encart{
     background:#fff;border:1px solid var(--ombre);
     border-top:6px solid var(--etendard);
-    padding:1.6rem;font-size:.94rem;
+    padding:1.6rem;font-size:.97rem;
   }
   .encart h3{font-family:var(--serif);margin-bottom:.6rem;font-size:1.15rem}
   ul.sobre{list-style:none;margin-top:1rem}
@@ -122,7 +129,11 @@ joue la lumière du calcaire.
     width:10px;height:10px;background:var(--etendard);
     clip-path:polygon(0 0,100% 50%,0 100%); /* petit fanion */
   }
-  .mention-prix{font-size:.85rem;color:#6b6e76;font-style:italic;margin-top:1rem}
+  .mention-prix{font-size:.9rem;color:#55585f;font-style:italic;margin-top:1.2rem}
+  .marquant{
+    font-family:var(--serif);font-size:1.12rem;line-height:1.45;color:#3b3e46;
+    border-left:4px solid var(--or);padding-left:1rem;margin-top:1.3rem;
+  }
 
   /* ---- chambres ---- */
   .chambres{background:#e9e3d4}
@@ -131,14 +142,19 @@ joue la lumière du calcaire.
   .carte-ch:nth-child(2){border-top:6px solid var(--or)}
   .carte-ch:nth-child(1){border-top:6px solid var(--etendard)}
   .carte-ch:nth-child(3){border-top:6px solid var(--encre)}
-  .carte-ch h3{font-family:var(--serif);font-size:1.08rem;margin-bottom:.5rem}
-  .carte-ch p{font-size:.9rem;color:#4a4d55}
+  .carte-ch h3{font-family:var(--serif);font-size:1.12rem;margin-bottom:.5rem}
+  .carte-ch p{font-size:.95rem;color:#464951}
 
   /* ---- château / alentours ---- */
-  .alentours .deux-col{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
-  table.distances{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:1rem}
-  table.distances td{padding:.6rem .4rem;border-bottom:1px solid #d8d2c1}
-  table.distances td:last-child{text-align:right;font-family:var(--serif);white-space:nowrap}
+  .alentours .deux-col{grid-template-columns:minmax(0,6fr) minmax(0,6fr)}
+  .titre-tableau{
+    font-family:var(--sans);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--etendard);font-weight:600;
+  }
+  table.distances{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:.9rem}
+  table.distances td{padding:.7rem .4rem;border-bottom:1px solid #d8d2c1;vertical-align:top}
+  table.distances td:first-child{padding-right:1rem}
+  table.distances td:last-child{text-align:right;font-family:var(--serif);color:#464951}
 
   /* ---- contact ---- */
   .contact{background:var(--encre);color:var(--pierre)}
@@ -155,8 +171,8 @@ joue la lumière du calcaire.
   .contact-grille a.maps:hover{background:rgba(179,137,74,.15)}
 
   footer.pied{
-    background:#22252b;color:#9ea3ad;font-size:.78rem;text-align:center;
-    padding:1.2rem 5vw;
+    background:#22252b;color:#a5aab4;font-size:.82rem;text-align:center;
+    padding:1.3rem max(5vw,1.15rem);
   }
 
   @media (max-width:820px){
@@ -164,6 +180,11 @@ joue la lumière du calcaire.
     .fort-svg{max-width:420px;margin:0 auto}
     .deux-col,.alentours .deux-col{grid-template-columns:1fr;gap:1.8rem}
     nav.principale{margin-left:0}
+  }
+  @media (max-width:520px){
+    section{padding:2.6rem max(5vw,1.15rem)}
+    .encart{padding:1.2rem}
+    table.distances td{padding:.65rem .2rem}
   }
 </style>
 
@@ -275,9 +296,9 @@ joue la lumière du calcaire.
       <p>
         La salle sert une cuisine régionale généreuse, où le terroir du Haut-Doubs tient
         le premier rôle : fromages et salaisons du pays, plats mijotés, desserts maison.
-        Les habitués comme les visiteurs du château y retrouvent un accueil chaleureux
-        et des assiettes copieuses, suivies d'un petit-déjeuner buffet apprécié des
-        voyageurs de passage.
+        Le midi, on y croise des habitués de la vallée et des visiteurs qui redescendent
+        du fort ; le lendemain, le petit-déjeuner se prend au buffet avant de reprendre
+        la route.
       </p>
       <ul class="sobre">
         <li>Cuisine franc-comtoise et plats du marché — carte à valider ensemble</li>
@@ -301,11 +322,11 @@ joue la lumière du calcaire.
 <section class="chambres" id="chambres">
   <h2>Les chambres</h2>
   <div class="filet"></div>
-  <p>Quinze chambres simples et confortables, pensées pour l'étape comme pour le séjour.</p>
+  <p>Quinze chambres, pour la nuit d'étape entre deux cols comme pour la semaine au pied du fort.</p>
   <div class="grille-ch">
     <article class="carte-ch">
       <h3>Chambres familiales</h3>
-      <p>Des configurations adaptées aux tribus en vadrouille, à deux pas du château et des pistes de Métabief.</p>
+      <p>Des chambres prévues pour dormir à plusieurs, entre la montée du château et la route de Métabief.</p>
     </article>
     <article class="carte-ch">
       <h3>Confort d'étape</h3>
@@ -326,20 +347,26 @@ joue la lumière du calcaire.
     <div>
       <p>
         Depuis plus de mille ans, le Château de Joux verrouille la cluse entre la France
-        et la Suisse. Fort de montagne, prison d'État, mémoire de Toussaint Louverture :
-        c'est l'un des grands sites du Doubs, et l'auberge vit à son rythme, au premier
-        virage de la montée.
+        et la Suisse. L'auberge se tient au premier virage de la montée, entre la route
+        de Pontarlier et le chemin qui grimpe au fort : on y arrive avant la visite, ou
+        on s'y arrête en redescendant.
+      </p>
+      <p class="marquant">
+        Fort de montagne, prison d'État, mémoire de Toussaint Louverture : l'un des
+        grands sites du Doubs.
       </p>
     </div>
     <div>
+      <p class="titre-tableau">Depuis la porte de l'auberge</p>
       <table class="distances">
-        <tr><td>Château de Joux</td><td>à pied depuis l'auberge</td></tr>
+        <tr><td>Château de Joux</td><td>à pied</td></tr>
         <tr><td>Sentiers de la Grande Traversée du Jura</td><td>500 m</td></tr>
         <tr><td>Lac de Saint-Point</td><td>≈ 5 km</td></tr>
         <tr><td>Pontarlier</td><td>≈ 5 km</td></tr>
         <tr><td>Les Fourgs, premières pistes</td><td>≈ 7 km</td></tr>
         <tr><td>Station de Métabief</td><td>≈ 14 km</td></tr>
       </table>
+      <p class="mention-prix">Distances indicatives par la route, à préciser ensemble.</p>
     </div>
   </div>
 </section>

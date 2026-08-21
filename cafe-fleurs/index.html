@@ -21,8 +21,10 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
 <title>Café Fleurs — maquette</title>
 <style>
   :root{
-    --petale:#d96a84;
-    --feuille:#5e8c5a;
+    --petale:#d96a84;        /* géranium vif — décor, fleurs, filets */
+    --petale-fonce:#bf4463;  /* même géranium, assombri : fonds et textes lisibles */
+    --feuille:#5e8c5a;       /* feuillage — décor */
+    --feuille-fonce:#41693d; /* feuillage assombri : boutons et titres lisibles */
     --lac:#9fc4d6;
     --mimosa:#e9b84c;
     --lin:#fdf6f0;
@@ -32,7 +34,13 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--lin);color:var(--encre);font-family:var(--sans);line-height:1.65}
+  body{background:var(--lin);color:var(--encre);font-family:var(--sans);
+    line-height:1.65;overflow-wrap:break-word;-webkit-text-size-adjust:100%}
+  img,svg{max-width:100%}
+  h1,h2,h3{text-wrap:balance}
+  p{text-wrap:pretty}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--feuille-fonce);outline-offset:3px}
+  header.site a:focus-visible,.ardoise a:focus-visible,.pied a:focus-visible{outline-color:#fff}
 
   .demo-banner{
     background:var(--encre);color:var(--lin);
@@ -43,13 +51,13 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   .store{display:block;width:100%;height:26px;margin-bottom:-1px}
 
   header.site{
-    background:var(--petale);color:#fff;padding:1rem 6vw 1.3rem;
+    background:var(--petale-fonce);color:#fff;padding:1rem max(6vw,1.15rem) 1.3rem;
     display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 2rem;
   }
   .marque{font-family:var(--serif);font-style:italic;font-size:1.6rem}
   .marque small{
     display:block;font-family:var(--sans);font-style:normal;font-size:.7rem;
-    letter-spacing:.28em;text-transform:uppercase;opacity:.9;
+    letter-spacing:.28em;text-transform:uppercase;opacity:.95;
   }
   nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:1.4rem;font-size:.88rem}
   nav.haut a{color:#fff;text-decoration:none;border-bottom:2px dotted transparent}
@@ -59,7 +67,7 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   .hero{
     position:relative;overflow:hidden;
     background:linear-gradient(180deg,#fdf6f0 0%, #eaf2f6 78%, var(--lac) 100%);
-    padding:3.6rem 6vw 5rem;
+    padding:3.6rem max(6vw,1.15rem) 5rem;
   }
   .hero-int{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:2rem;align-items:center}
   .hero h1{
@@ -69,22 +77,23 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   .hero h1 span{color:var(--petale)}
   .hero p.chapo{margin:1.3rem 0 2rem;max-width:50ch;font-size:1.02rem}
   .pastille{
-    display:inline-block;background:#fff;border:1px solid var(--petale);color:var(--petale);
-    border-radius:999px;padding:.35rem 1.1rem;font-size:.78rem;letter-spacing:.14em;
+    display:inline-block;background:#fff;border:1px solid var(--petale);color:var(--petale-fonce);
+    border-radius:999px;padding:.35rem 1.1rem;font-size:.8rem;letter-spacing:.14em;
     text-transform:uppercase;margin-bottom:1.2rem;
   }
+  .actions{display:flex;flex-wrap:wrap;gap:.7rem}
   .btn{
     display:inline-block;text-decoration:none;font-weight:600;font-size:.95rem;
-    background:var(--feuille);color:#fff;border-radius:999px;padding:.8rem 1.7rem;
+    background:var(--feuille-fonce);color:#fff;border-radius:999px;padding:.8rem 1.7rem;
   }
-  .btn:hover{background:#4d7549}
-  .btn.contour{background:transparent;color:var(--feuille);border:2px solid var(--feuille);margin-left:.6rem}
-  .btn.contour:hover{background:rgba(94,140,90,.1)}
+  .btn:hover{background:#35562f}
+  .btn.contour{background:transparent;color:var(--feuille-fonce);border:2px solid var(--feuille-fonce)}
+  .btn.contour:hover{background:rgba(65,105,61,.1)}
   .bouquet-svg{width:100%;max-width:340px;height:auto;justify-self:center}
   /* vaguelettes du lac en bas de hero */
   .vagues{position:absolute;left:0;right:0;bottom:0;height:38px;width:100%}
 
-  section{padding:3.2rem 6vw}
+  section{padding:3.2rem max(6vw,1.15rem)}
   h2{
     font-family:var(--serif);font-style:italic;font-weight:500;
     font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:.3rem;
@@ -93,14 +102,14 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   .tige svg{width:70px;height:16px}
 
   /* ---- concept : deux moitiés ---- */
-  .moities{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+  .moities{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.6rem}
   .moitie{border-radius:18px;padding:1.8rem;position:relative}
   .moitie.fleurs{background:#fbe9ee;border:1px solid #efc3cf}
   .moitie.cafe{background:#eef4ee;border:1px solid #cfe0cd}
-  .moitie h3{font-family:var(--serif);font-size:1.25rem;margin-bottom:.6rem}
-  .moitie.fleurs h3{color:var(--petale)}
-  .moitie.cafe h3{color:var(--feuille)}
-  .moitie ul{list-style:none;margin-top:.8rem;font-size:.93rem}
+  .moitie h3{font-family:var(--serif);font-size:1.3rem;margin-bottom:.6rem}
+  .moitie.fleurs h3{color:var(--petale-fonce)}
+  .moitie.cafe h3{color:var(--feuille-fonce)}
+  .moitie ul{list-style:none;margin-top:.9rem;font-size:.96rem}
   .moitie li{padding:.4rem 0 .4rem 1.5rem;position:relative}
   .moitie li::before{
     content:"";position:absolute;left:0;top:.78rem;width:9px;height:9px;border-radius:50% 50% 50% 0;
@@ -110,41 +119,66 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
 
   /* ---- ardoise ---- */
   .ardoise-fond{background:var(--lac)}
-  .ardoise{
-    max-width:560px;background:#33403a;color:#f4efe6;border-radius:8px;
-    border:8px solid #7a5a3a;padding:2rem 2.2rem;
-    box-shadow:0 12px 30px rgba(47,70,48,.35);
-    transform:rotate(-1.2deg);margin:0 0 0 4vw;
+  .ardoise-int{
+    display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);
+    gap:2.2rem;align-items:center;margin-top:.4rem;
   }
-  .ardoise h2{color:#fff;font-style:italic;margin-bottom:1rem}
-  .ardoise ul{list-style:none;font-size:.98rem}
-  .ardoise li{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;border-bottom:1px dotted rgba(244,239,230,.35)}
+  .ardoise{
+    background:#33403a;color:#f4efe6;border-radius:8px;
+    border:8px solid #7a5a3a;padding:1.9rem 2rem;
+    box-shadow:0 12px 30px rgba(47,70,48,.35);
+    transform:rotate(-1.2deg);
+  }
+  .ardoise h3{
+    font-family:var(--serif);font-style:italic;font-size:1.35rem;color:#fff;
+    margin-bottom:.2rem;
+  }
+  .ardoise .sur-ardoise{
+    font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+    color:#bcd0c2;margin-bottom:1rem;
+  }
+  .ardoise ul{list-style:none;font-size:1rem}
+  .ardoise li{padding:.55rem 0;border-bottom:1px dotted rgba(244,239,230,.35)}
   .ardoise li:last-child{border-bottom:none}
-  .ardoise .note{font-size:.8rem;font-style:italic;opacity:.85;margin-top:1rem}
+  .ardoise .note{font-size:.85rem;font-style:italic;color:#cfd8cf;margin-top:1.1rem}
+  .a-cote{
+    background:#fff;border-radius:18px;padding:1.7rem;border:1px solid #cfe0ea;
+  }
+  .a-cote h3{font-family:var(--serif);font-size:1.2rem;color:var(--petale-fonce);margin-bottom:.5rem}
+  .a-cote p{font-size:.96rem}
+  .a-cote .btn{margin-top:1rem}
 
   /* ---- infos pratiques ---- */
   .pratique{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.6rem;margin-top:.4rem}
   .carte-p{background:#fff;border-radius:18px;padding:1.6rem;border:1px solid #ecdcd2}
-  .carte-p h3{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--petale);margin-bottom:.7rem}
-  .carte-p p{font-size:.94rem}
+  .carte-p h3{font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--petale-fonce);margin-bottom:.7rem}
+  .carte-p p{font-size:.97rem}
   .carte-p a{color:var(--encre)}
   a.maps{
-    display:inline-block;margin-top:.7rem;text-decoration:none;font-size:.85rem;font-weight:600;
-    color:#fff;background:var(--lac);border-radius:999px;padding:.5rem 1.2rem;
-    background:var(--petale);
+    display:inline-block;margin-top:.9rem;text-decoration:none;font-size:.86rem;font-weight:600;
+    color:#fff;background:var(--petale-fonce);border-radius:999px;padding:.55rem 1.2rem;
   }
-  a.maps:hover{background:#c25570}
+  a.maps:hover{background:#9d3450}
 
   footer.pied{
-    background:var(--encre);color:#cfe0cd;font-size:.78rem;text-align:center;padding:1.2rem 6vw;
+    background:var(--encre);color:#d7e6d5;font-size:.82rem;text-align:center;
+    padding:1.3rem max(6vw,1.15rem);
   }
 
   @media (max-width:780px){
     .hero-int{grid-template-columns:1fr}
     .bouquet-svg{max-width:260px}
     .moities{grid-template-columns:1fr}
-    .ardoise{margin:0 auto;transform:rotate(0)}
+    .ardoise-int{grid-template-columns:1fr;gap:1.6rem}
+    .ardoise{transform:rotate(0)}
     nav.haut{margin-left:0}
+  }
+  @media (max-width:520px){
+    section{padding:2.6rem max(6vw,1.15rem)}
+    .hero{padding-bottom:4rem}
+    .moitie{padding:1.4rem}
+    .ardoise{padding:1.4rem 1.3rem;border-width:6px}
+    .a-cote{padding:1.4rem}
   }
 </style>
 
@@ -162,7 +196,7 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
 <!-- store à festons (signature) -->
 <svg class="store" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
   <path d="M0 0 H1200 V6 C1170 6 1170 24 1140 24 C1110 24 1110 6 1080 6 C1050 6 1050 24 1020 24 C990 24 990 6 960 6 C930 6 930 24 900 24 C870 24 870 6 840 6 C810 6 810 24 780 24 C750 24 750 6 720 6 C690 6 690 24 660 24 C630 24 630 6 600 6 C570 6 570 24 540 24 C510 24 510 6 480 6 C450 6 450 24 420 24 C390 24 390 6 360 6 C330 6 330 24 300 24 C270 24 270 6 240 6 C210 6 210 24 180 24 C150 24 150 6 120 6 C90 6 90 24 60 24 C30 24 30 6 0 6 Z"
-        fill="#d96a84"/>
+        fill="#bf4463"/>
 </svg>
 
 <div class="hero">
@@ -175,7 +209,7 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
         marie deux plaisirs : les créations de Nathalie, fleuriste, et une pause
         gourmande — thés bio, chocolats viennois et crêpes — au milieu des fleurs.
       </p>
-      <div>
+      <div class="actions">
         <a class="btn" href="tel:+33381397026">03 81 39 70 26</a>
         <a class="btn contour" href="#carte">Voir l'ardoise</a>
       </div>
@@ -240,8 +274,8 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   <div class="moities">
     <div class="moitie fleurs">
       <h3>Côté fleurs</h3>
-      <p>Des créations originales pour toutes les occasions — le bouquet du dimanche
-      comme les grands jours.</p>
+      <p>Le bouquet du dimanche, la composition d'un grand jour, la plante qu'on emporte
+      en passant : Nathalie compose à la demande, avec ce qui est beau ce matin-là.</p>
       <ul>
         <li>Bouquets et compositions sur mesure</li>
         <li>Plantes, terrariums et objets de décoration</li>
@@ -262,17 +296,31 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
 </section>
 
 <div class="ardoise-fond">
-  <section id="carte" style="padding-top:3rem;padding-bottom:3rem">
-    <div class="ardoise">
-      <h2>L'ardoise du salon</h2>
-      <ul>
-        <li><span>Thés bio — plus de 70 références</span><span>·</span></li>
-        <li><span>Cappuccino</span><span>·</span></li>
-        <li><span>Chocolat viennois</span><span>·</span></li>
-        <li><span>« L'Unicorne », la boisson gourmande de la maison</span><span>·</span></li>
-        <li><span>Crêpes &amp; biscuits</span><span>·</span></li>
-      </ul>
-      <p class="note">Carte et prix affichés en boutique — nous consulter. Contenu à valider avec vous.</p>
+  <section id="carte">
+    <h2>Ce qu'on boit, ce qu'on grignote</h2>
+    <div class="tige" aria-hidden="true">
+      <svg viewBox="0 0 70 16"><path d="M0 8 H70" stroke="#5e8c5a" stroke-width="2"/><path d="M18 8 q 6 -8 12 0 M40 8 q 6 8 12 0" stroke="#5e8c5a" stroke-width="2" fill="none"/><circle cx="70" cy="8" r="4" fill="#bf4463"/></svg>
+    </div>
+    <div class="ardoise-int">
+      <div class="ardoise">
+        <h3>L'ardoise du salon</h3>
+        <p class="sur-ardoise">Sur place, entre les bouquets</p>
+        <ul>
+          <li>Thés bio — plus de 70 références</li>
+          <li>Cappuccino</li>
+          <li>Chocolat viennois</li>
+          <li>« L'Unicorne », la boisson gourmande de la maison</li>
+          <li>Crêpes &amp; biscuits</li>
+        </ul>
+        <p class="note">Prix affichés en boutique. Ardoise à compléter ensemble avant la mise en ligne.</p>
+      </div>
+      <aside class="a-cote">
+        <h3>Et de l'autre côté du comptoir</h3>
+        <p>C'est le même comptoir qui prend les commandes de fleurs : bouquet à composer,
+        plante à emporter, click &amp; collect ou livraison autour du lac. Un coup de fil
+        suffit pour réserver l'un ou l'autre.</p>
+        <a class="btn" href="tel:+33381397026">03 81 39 70 26</a>
+      </aside>
     </div>
   </section>
 </div>

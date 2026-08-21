@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
+<head>
+<meta charset="utf-8">
+<!-- charset en tout premier : au-delà de 1024 octets le navigateur ne le lit plus
+     et les accents partent en mojibake. Le plan de design suit juste après. -->
 <!--
 PLAN DE DESIGN — La Petite Forge (Oye-et-Pallet)
 Palette (univers réel : le nom d'une ancienne forge — charbon, fonte, braise, cendre) :
@@ -19,8 +23,6 @@ braise (dégradé fer-braise-fer), utilisée en séparateur ; déclinée en gerb
 enclume. Aucune photo : tout est forgé en SVG.
 Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du foyer, pas au néon.
 -->
-<head>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>La Petite Forge — maquette</title>
@@ -28,25 +30,37 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
   :root{
     --charbon:#171310; --fonte:#241E19; --cendre:#E3D9CC; --braise:#C75B28;
     --etincelle:#EFA463; --fer:#8C857C; --trait:rgba(227,217,204,.16);
+    /* déclinaisons de cendre : plus jamais de hex en dur dans les composants */
+    --cendre-doux:#CFC5B6; --cendre-mate:#BFB4A5; --cendre-sourde:#B7AC9D;
+    /* La braise pure donne 4,36:1 sur le charbon — juste sous le seuil AA (4,5).
+       --braise-texte est sa version lisible : réservée aux MOTS et au bouton plein.
+       --braise reste la couleur des traits, des filets et du dessin. */
+    --braise-texte:#D9682F;
+    /* échelle d'espacement — une seule série, pas de valeurs au hasard */
+    --e1:.9rem; --e2:1.4rem; --e3:2.2rem; --e4:3rem; --e5:4.5rem;
     --slab:Rockwell,"Roboto Slab","Courier New",Georgia,serif;
     --sans:Seravek,"Gill Sans","Gill Sans MT",Calibri,Verdana,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
   body{background:var(--charbon);color:var(--cendre);font-family:var(--sans);
-       font-size:16.5px;line-height:1.75;}
+       font-size:16.5px;line-height:1.75;overflow-x:hidden;}
   ::selection{background:var(--braise);color:var(--charbon);}
   a{color:var(--etincelle);text-decoration:none;border-bottom:1px solid rgba(239,164,99,.35);}
   a:hover{border-color:var(--etincelle);}
+  :focus-visible{outline:2px solid var(--etincelle);outline-offset:3px;}
   svg{display:block;max-width:100%;}
-  .demo-band{background:var(--etincelle);color:#241E19;font-size:.8rem;font-weight:600;
-             padding:.65rem 1.5rem;letter-spacing:.02em;}
+  .demo-band{background:var(--etincelle);color:var(--fonte);font-size:.82rem;font-weight:600;
+             padding:.65rem 1.5rem;letter-spacing:.02em;line-height:1.5;}
   .cadre{max-width:1080px;margin:0 auto;padding:0 1.5rem;}
-  h1,h2,h3{font-family:var(--slab);color:var(--cendre);line-height:1.12;font-weight:700;}
+  h1,h2,h3{font-family:var(--slab);color:var(--cendre);line-height:1.12;font-weight:700;
+           text-wrap:balance;overflow-wrap:break-word;}
   h2{font-size:clamp(1.6rem,3.2vw,2.3rem);margin-bottom:1.3rem;}
+  p{overflow-wrap:break-word;}
   .braise-mot{color:var(--braise);}
-  .sur-label{display:inline-block;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
-             color:var(--braise);border:1px solid rgba(199,91,40,.45);padding:.35rem .9rem;
+  .sur-label{display:inline-block;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;
+             color:var(--braise-texte);border:1px solid rgba(199,91,40,.45);padding:.35rem .9rem;
              margin-bottom:1.4rem;}
   header.haut{display:flex;align-items:center;justify-content:space-between;gap:1rem;
               padding:1.4rem 0;border-bottom:1px solid var(--trait);flex-wrap:wrap;}
@@ -63,12 +77,12 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
   .hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;
         align-items:center;padding:4.5rem 0 4rem;}
   .hero h1{font-size:clamp(2.4rem,6vw,4.1rem);margin:0 0 1.6rem;}
-  .hero .amorce{color:#BFB4A5;max-width:50ch;margin-bottom:2.4rem;font-size:1.05rem;}
+  .hero .amorce{color:var(--cendre-mate);max-width:50ch;margin-bottom:2.4rem;font-size:1.05rem;}
   .btn{display:inline-block;font-family:var(--slab);font-weight:700;font-size:.85rem;
        letter-spacing:.14em;text-transform:uppercase;padding:.9rem 1.9rem;border:1px solid var(--braise);
        color:var(--cendre);transition:all .25s;}
   .btn:hover{background:var(--braise);color:var(--charbon);}
-  .btn.feu{background:var(--braise);color:var(--charbon);}
+  .btn.feu{background:var(--braise-texte);border-color:var(--braise-texte);color:var(--charbon);}
   .btn.feu:hover{background:var(--etincelle);border-color:var(--etincelle);}
   .cta-rang{display:flex;gap:1.2rem;flex-wrap:wrap;}
   section{padding:4.5rem 0;}
@@ -77,39 +91,62 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
           border:1px solid var(--trait);margin-top:2.8rem;}
   .atout{background:var(--fonte);padding:1.7rem 1.6rem;}
   .atout h3{font-size:1.02rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.65rem;}
-  .atout p{color:#B7AC9D;font-size:.93rem;line-height:1.6;}
+  .atout p{color:var(--cendre-sourde);font-size:.95rem;line-height:1.65;}
   .etinc{flex:0 0 auto;}
   /* bloc lac : bandeau pleine largeur, braise sur charbon inversé */
   .bandeau-lac{background:var(--fonte);border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);}
   .bandeau-lac .int{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:center;padding:4rem 0;}
   .grand-chiffre{font-family:var(--slab);font-weight:700;font-size:clamp(3rem,7vw,4.6rem);color:var(--braise);line-height:1;}
   .liste-fer{list-style:none;margin-top:1.4rem;}
-  .liste-fer li{padding:.7rem 0;border-bottom:1px solid var(--trait);color:#CFC5B6;display:flex;gap:.9rem;align-items:baseline;}
+  .liste-fer li{padding:.7rem 0;border-bottom:1px solid var(--trait);color:var(--cendre-doux);display:flex;gap:.9rem;align-items:baseline;}
   .liste-fer li::before{content:"";flex:0 0 14px;height:2px;background:var(--braise);transform:translateY(-4px);}
-  /* voix */
+  /* voix : la note chiffrée tient la colonne, la citation l'autre — pas un bloc de texte seul */
+  .parole-bloc{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--e4);align-items:center;}
+  .note-globale{font-family:var(--slab);font-weight:700;font-size:clamp(2.9rem,6vw,4.2rem);
+                color:var(--braise);line-height:1;}
+  .note-globale span{font-size:.4em;color:var(--fer);letter-spacing:.02em;}
+  .note-legende{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--fer);
+                margin-top:.6rem;max-width:18ch;line-height:1.5;}
   .parole{border-left:2px solid var(--braise);padding-left:2rem;max-width:58ch;}
   .parole .grande{font-family:var(--slab);font-size:clamp(1.25rem,2.4vw,1.7rem);line-height:1.5;
                   color:var(--etincelle);font-weight:400;margin-bottom:1rem;}
-  .parole .src{font-size:.85rem;color:var(--fer);}
+  .parole .src{font-size:.92rem;color:var(--fer);line-height:1.65;}
   /* réservation directe */
   .direct{background:linear-gradient(180deg,#241E19 0%,#2B211A 100%);border:1px solid rgba(199,91,40,.5);
           padding:3.2rem;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:2.5rem;align-items:center;}
-  .direct .phrase{font-size:1.08rem;color:#CFC5B6;max-width:46ch;}
+  .direct .phrase{font-size:1.08rem;color:var(--cendre-doux);max-width:46ch;}
   .direct .droite{display:flex;flex-direction:column;gap:1rem;align-items:flex-start;}
   .sans-comm{font-family:var(--slab);color:var(--etincelle);font-size:1.05rem;}
   /* contact */
   .contact-rangs{margin-top:2.2rem;border-top:1px solid var(--trait);}
   .c-rang{display:grid;grid-template-columns:minmax(120px,1fr) minmax(0,3fr);gap:1.5rem;
           padding:1.4rem 0;border-bottom:1px solid var(--trait);align-items:baseline;}
-  .c-rang .cle{font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;color:var(--braise);}
-  .c-rang p{color:#CFC5B6;}
-  footer.bas{padding:2.4rem 0 3rem;font-size:.8rem;color:var(--fer);}
+  .c-rang .cle{font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--braise-texte);}
+  .c-rang p{color:var(--cendre-doux);}
+  .c-rang ul{list-style:none;color:var(--cendre-doux);}
+  .c-rang ul li{padding:.15rem 0;}
+  .c-rang ul li::before{content:"— ";color:var(--fer);}
+  footer.bas{padding:var(--e3) 0 var(--e4);font-size:.9rem;color:var(--fer);line-height:1.6;}
   @media (max-width:840px){
-    .hero,.deux,.bandeau-lac .int,.direct{grid-template-columns:1fr;gap:2rem;}
+    .hero,.deux,.bandeau-lac .int,.direct,.parole-bloc{grid-template-columns:1fr;gap:2rem;}
     .atouts{grid-template-columns:1fr;}
     .direct{padding:2rem;}
     section{padding:3.2rem 0;}
     .hero{padding:3rem 0 2.5rem;}
+    .bandeau-lac .int{padding:3.2rem 0;}
+  }
+  /* petits téléphones : rien ne doit être compressé en colonnes de 120px */
+  @media (max-width:520px){
+    .cadre{padding:0 1.15rem;}
+    .demo-band{padding:.65rem 1.15rem;}
+    .c-rang{grid-template-columns:1fr;gap:.3rem;padding:1.1rem 0;}
+    .direct{padding:1.5rem;}
+    .parole{padding-left:1.2rem;}
+    .parole-bloc{gap:1.6rem;}
+    .atout{padding:1.4rem 1.25rem;}
+    nav.haut-nav{gap:1rem 1.1rem;}
+    .liste-fer li{align-items:flex-start;}
+    .liste-fer li::before{transform:translateY(11px);}
   }
 </style>
 </head>
@@ -189,7 +226,7 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
     <div>
       <span class="sur-label">La maison</span>
       <h2>Le confort, <span class="braise-mot">sans façons</span></h2>
-      <p style="color:#BFB4A5;">Une maison indépendante, une décoration que les hôtes
+      <p style="color:var(--cendre-mate);">Une maison indépendante, une décoration que les hôtes
       remarquent, un jardin et une terrasse pour finir les journées dehors.
       Le nécessaire est là — le superflu, on l'a laissé à la ville.</p>
     </div>
@@ -223,7 +260,7 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
       <div>
         <div class="grand-chiffre">5 min</div>
         <p style="font-family:var(--slab);font-size:1.2rem;margin-top:.6rem;">du lac Saint-Point</p>
-        <p style="color:#B7AC9D;max-width:44ch;margin-top:1rem;">La maison est posée entre
+        <p style="color:var(--cendre-sourde);max-width:44ch;margin-top:1rem;">La maison est posée entre
         le lac et les crêtes frontalières : baignade et rives l'été, raquettes et ski
         de Métabief l'hiver, sentiers toute l'année.</p>
       </div>
@@ -241,11 +278,18 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
 
 <div class="cadre">
 <section>
-  <div class="parole">
-    <p class="grande">Ce que les hôtes redisent le plus souvent : le calme du lieu,
-    la propreté, la décoration — et un accueil qui met tout de suite à l'aise.</p>
-    <p class="src">Synthèse des thèmes d'avis publiés sur les plateformes de réservation
-    (note moyenne constatée : 9,2/10). Citations exactes à choisir et valider avec vous.</p>
+  <div class="parole-bloc">
+    <div>
+      <div class="note-globale">9,2<span>/10</span></div>
+      <div class="note-legende">Note moyenne constatée</div>
+    </div>
+    <div class="parole">
+      <p class="grande">Ce que les hôtes redisent le plus souvent : le calme du lieu,
+      la propreté, la décoration — et un accueil qui met tout de suite à l'aise.</p>
+      <p class="src">Note et thèmes relevés sur les avis publiés des plateformes de
+      réservation. Les citations exactes seront choisies et validées avec vous avant
+      mise en ligne — on ne publie que ce que vos clients ont vraiment écrit.</p>
+    </div>
   </div>
 </section>
 
@@ -261,7 +305,8 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
     <div class="droite">
       <span class="sans-comm">0 % de commission</span>
       <a class="btn feu" href="#contact">Écrire à la maison</a>
-      <span style="font-size:.8rem;color:var(--fer);">Téléphone (lien d'appel direct) et e-mail à insérer après validation.</span>
+      <span style="font-size:.92rem;color:var(--fer);line-height:1.6;">Sur mobile, ce bouton
+      deviendra un appel en un geste dès que vous m'aurez donné le numéro.</span>
     </div>
   </div>
 </section>
@@ -279,8 +324,20 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
       <p><a href="https://www.google.com/maps/search/?api=1&amp;query=La+Petite+Forge+Oye-et-Pallet" rel="noopener">Ouvrir dans Google Maps</a></p>
     </div>
     <div class="c-rang">
-      <span class="cle">Téléphone</span>
-      <p>À insérer — il apparaîtra ici en lien d'appel direct (tel:) pour les mobiles.</p>
+      <span class="cle">Nous joindre</span>
+      <p>Téléphone et e-mail à insérer : le numéro apparaîtra ici en lien d'appel direct,
+      cliquable depuis un téléphone.</p>
+    </div>
+    <div class="c-rang">
+      <span class="cle">À compléter ensemble</span>
+      <ul>
+        <li>Capacité, nombre de chambres et de couchages</li>
+        <li>Tarifs par saison, durée minimale de séjour</li>
+        <li>Horaires d'arrivée et de départ, animaux, ménage</li>
+        <li>Photos de la maison, du jardin et de la terrasse</li>
+      </ul>
+      <p style="margin-top:.7rem;font-size:.92rem;color:var(--fer);line-height:1.65;">Rien n'est inventé ici :
+      cette maquette ne dit que ce qui a pu être vérifié. Le reste, c'est vous qui l'écrivez.</p>
     </div>
   </div>
 </section>

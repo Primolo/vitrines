@@ -27,8 +27,14 @@ prefers-color-scheme (les deux palettes ci-dessus).
     --texte:#4a3a24;
     --texte2:#6d5c42;
     --miel:#cf9433;
-    --miel-fonce:#a97722;
-    --vert:#6c8f3f;
+    --miel-fonce:#96681c;      /* miel assombri : texte lisible sur fond clair */
+    --vert:#6c8f3f;            /* vert décoratif (puces, traits, illustrations) */
+    --vert-texte:#4f6c2c;      /* vert lisible en texte sur fond clair */
+    --vert-fonce:#4f6c2c;      /* fond des bandeaux et boutons verts */
+    --sur-vert:#f4f8ea;        /* texte posé sur le vert foncé */
+    --sur-miel:#2a2113;        /* texte posé sur le miel */
+    --miel-survol:#e0a63f;
+    --vert-survol:#5d7f39;
     --carte:#fffdf6;
     --trait:#e0d4b8;
     --titres:Futura,"Century Gothic",Verdana,sans-serif;
@@ -43,42 +49,52 @@ prefers-color-scheme (les deux palettes ci-dessus).
       --miel:#d9a648;
       --miel-fonce:#e8bc66;
       --vert:#8fae62;
+      --vert-texte:#9dbb70;
+      --vert-fonce:#4f6c2c;
+      --sur-vert:#f4f8ea;
+      --sur-miel:#2a2113;
+      --miel-survol:#e8bc66;
+      --vert-survol:#5d7f39;
       --carte:#2e2617;
       --trait:#453a25;
     }
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--fond);color:var(--texte);font-family:var(--courant);line-height:1.7}
+  body{background:var(--fond);color:var(--texte);font-family:var(--courant);
+    line-height:1.7;overflow-wrap:break-word;-webkit-text-size-adjust:100%}
+  img,svg{max-width:100%}
+  h1,h2,h3{text-wrap:balance}
+  p{text-wrap:pretty}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--miel-fonce);outline-offset:3px}
+  .frontiere a:focus-visible{outline-color:var(--sur-vert)}
 
+  /* le bandeau se retourne tout seul : --texte et --fond s'inversent en thème sombre */
   .demo-banner{
     background:var(--texte);color:var(--fond);
-    font-family:var(--titres);font-size:.78rem;text-align:center;padding:.55rem 1rem;
-  }
-  @media (prefers-color-scheme: dark){
-    .demo-banner{background:#efe6d2;color:#241d12}
+    font-family:var(--titres);font-size:.8rem;text-align:center;padding:.55rem 1rem;
   }
 
   header.site{
-    padding:1.1rem 6vw;display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 2rem;
+    padding:1.1rem max(6vw,1.15rem);display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 2rem;
     border-bottom:1px solid var(--trait);
   }
   .logo{display:flex;align-items:center;gap:.7rem}
   .logo svg{width:38px;height:42px;flex:none}
   .logo .nom{font-family:var(--titres);font-weight:700;font-size:1.25rem;letter-spacing:.02em}
-  .logo .nom small{display:block;font-weight:400;font-size:.7rem;letter-spacing:.24em;
-    text-transform:uppercase;color:var(--vert)}
+  .logo .nom small{display:block;font-weight:400;font-size:.72rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--vert-texte)}
   nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:1.5rem;
     font-family:var(--titres);font-size:.85rem}
   nav.haut a{color:var(--texte);text-decoration:none}
   nav.haut a:hover{color:var(--miel-fonce)}
 
   /* ---- HERO avec nid d'alvéoles en coin ---- */
-  .hero{position:relative;overflow:hidden;padding:4rem 6vw 3.6rem;background:var(--fond)}
+  .hero{position:relative;overflow:hidden;padding:4rem max(6vw,1.15rem) 3.6rem;background:var(--fond)}
   .alveoles{position:absolute;top:-40px;right:-60px;width:420px;height:auto;opacity:.9;pointer-events:none}
   .hero-texte{position:relative;max-width:58ch}
   .hero .lieu{font-family:var(--titres);font-size:.8rem;letter-spacing:.3em;
-    text-transform:uppercase;color:var(--vert)}
+    text-transform:uppercase;color:var(--vert-texte)}
   .hero h1{
     font-family:var(--titres);font-weight:700;
     font-size:clamp(2rem,4.8vw,3.3rem);line-height:1.1;margin:.8rem 0 1.2rem;
@@ -89,15 +105,16 @@ prefers-color-scheme (les deux palettes ci-dessus).
   .btn{
     display:inline-block;text-decoration:none;font-family:var(--titres);font-weight:600;
     font-size:.9rem;padding:.8rem 1.6rem;
-    background:var(--miel);color:#2a2113;
+    background:var(--miel);color:var(--sur-miel);
     clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,10px 100%,0 50%);
   }
-  .btn:hover{background:var(--miel-fonce);color:#221a0e}
-  .btn.vert{background:var(--vert);color:#f7f2e6}
+  .btn:hover{background:var(--miel-survol);color:var(--sur-miel)}
+  .btn.vert{background:var(--vert-fonce);color:var(--sur-vert)}
+  .btn.vert:hover{background:var(--vert-survol)}
   /* trajet d'abeille */
   .vol{display:block;width:min(680px,90%);height:46px;margin:2.2rem 0 0}
 
-  section{padding:3.2rem 6vw}
+  section{padding:3.2rem max(6vw,1.15rem)}
   h2{font-family:var(--titres);font-weight:700;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.4rem}
   .sous-titre{color:var(--texte2);max-width:60ch;margin-bottom:1.8rem}
 
@@ -109,8 +126,14 @@ prefers-color-scheme (les deux palettes ci-dessus).
     padding:1.4rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;
   }
   .rayon .hex{width:30px;height:34px;flex:none;margin-top:.15rem}
-  .rayon h3{font-family:var(--titres);font-size:1rem;margin-bottom:.3rem}
-  .rayon p{font-size:.88rem;color:var(--texte2)}
+  /* les puces hexagonales prennent leurs couleurs dans les tokens : elles suivent le thème */
+  .hex-vert{fill:none;stroke:var(--vert-texte);stroke-width:2.4}
+  .hex-vert-plein{fill:var(--vert-texte)}
+  .hex-miel{fill:none;stroke:var(--miel-fonce);stroke-width:2.4}
+  .hex-miel-plein{fill:var(--miel)}
+  .hex-miel-doux{fill:var(--miel);opacity:.6}
+  .rayon h3{font-family:var(--titres);font-size:1.02rem;margin-bottom:.3rem}
+  .rayon p{font-size:.94rem;color:var(--texte2)}
 
   /* ---- vrac & producteurs : bandes alternées ---- */
   .bande{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem;align-items:center;padding:2.2rem 0;border-top:1px solid var(--trait)}
@@ -127,12 +150,12 @@ prefers-color-scheme (les deux palettes ci-dessus).
 
   /* ---- bandeau frontière ---- */
   .frontiere{
-    background:var(--vert);color:#f7f2e6;
-    padding:2.6rem 6vw;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);
+    background:var(--vert-fonce);color:var(--sur-vert);
+    padding:3rem max(6vw,1.15rem);display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);
     gap:2rem;align-items:center;
   }
-  .frontiere h2{color:#fff}
-  .frontiere p{opacity:.95;max-width:58ch}
+  .frontiere h2{color:var(--sur-vert)}
+  .frontiere p{max-width:58ch}
   .borne{width:120px;height:auto;justify-self:center}
 
   /* ---- pratique ---- */
@@ -140,29 +163,38 @@ prefers-color-scheme (les deux palettes ci-dessus).
   .carte-info{background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:1.5rem}
   .carte-info h3{font-family:var(--titres);font-size:.78rem;letter-spacing:.24em;
     text-transform:uppercase;color:var(--miel-fonce);margin-bottom:.7rem}
-  .carte-info p{font-size:.95rem}
+  .carte-info p{font-size:.98rem}
   .carte-info a{color:var(--texte)}
   .a-completer{font-style:italic;color:var(--texte2)}
   a.maps{
-    display:inline-block;margin-top:.8rem;text-decoration:none;
-    font-family:var(--titres);font-size:.82rem;font-weight:600;
-    background:var(--miel);color:#2a2113;padding:.5rem 1.2rem;
+    display:inline-block;margin-top:.9rem;text-decoration:none;
+    font-family:var(--titres);font-size:.84rem;font-weight:600;
+    background:var(--miel);color:var(--sur-miel);padding:.55rem 1.2rem;
     clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 50%,calc(100% - 8px) 100%,8px 100%,0 50%);
   }
-  a.maps:hover{background:var(--miel-fonce)}
+  a.maps:hover{background:var(--miel-survol)}
 
   footer.pied{
     border-top:1px solid var(--trait);color:var(--texte2);
-    font-size:.78rem;text-align:center;padding:1.2rem 6vw;font-family:var(--titres);
+    font-size:.82rem;text-align:center;padding:1.3rem max(6vw,1.15rem);font-family:var(--titres);
   }
 
   @media (max-width:800px){
     .alveoles{width:260px;top:-30px;right:-50px;opacity:.5}
-    .bande{grid-template-columns:1fr}
+    .bande{grid-template-columns:1fr;gap:1.6rem}
+    /* le texte passe toujours avant l'illustration sur petit écran */
+    .bande > div{order:1}
+    .bande > .illus{order:2}
     .illus{max-width:240px}
     .frontiere{grid-template-columns:1fr}
     .borne{display:none}
     nav.haut{margin-left:0}
+  }
+  @media (max-width:520px){
+    section{padding:2.6rem max(6vw,1.15rem)}
+    .hero{padding-top:2.8rem}
+    .rayon{padding:1.2rem 1.1rem}
+    .carte-info{padding:1.3rem}
   }
 </style>
 
@@ -236,27 +268,27 @@ prefers-color-scheme (les deux palettes ci-dessus).
   <p class="sous-titre">Une alimentation bio complète, du panier de légumes au produit d'entretien.</p>
   <div class="grille-rayons">
     <div class="rayon">
-      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="none" stroke="#6c8f3f" stroke-width="2.4"/></svg>
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-vert" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
       <div><h3>Fruits &amp; légumes</h3><p>Frais, de saison, au plus près des maraîchers de la région.</p></div>
     </div>
     <div class="rayon">
-      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="#cf9433" opacity=".85"/></svg>
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-miel-plein" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
       <div><h3>Vrac</h3><p>Céréales, légumineuses, oléagineux et fruits secs, au poids et sans emballage.</p></div>
     </div>
     <div class="rayon">
-      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="none" stroke="#cf9433" stroke-width="2.4"/></svg>
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-miel" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
       <div><h3>Pain &amp; douceurs</h3><p>Pains, biscuits et chocolats pour les goûters de la maison.</p></div>
     </div>
     <div class="rayon">
-      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="#6c8f3f" opacity=".85"/></svg>
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-vert-plein" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
       <div><h3>Crèmerie, œufs &amp; viandes</h3><p>Produits laitiers, œufs et viandes issus de l'agriculture biologique.</p></div>
     </div>
     <div class="rayon">
-      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="none" stroke="#6c8f3f" stroke-width="2.4"/></svg>
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-vert" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
       <div><h3>Thés, cafés &amp; infusions</h3><p>Avec les plantes séchées, épices et aromates du rayon voisin.</p></div>
     </div>
     <div class="rayon">
-      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="#cf9433" opacity=".55"/></svg>
+      <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-miel-doux" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
       <div><h3>Bien-être &amp; entretien</h3><p>Cosmétiques, huiles essentielles, compléments et produits d'entretien écologiques.</p></div>
     </div>
   </div>
@@ -324,7 +356,7 @@ prefers-color-scheme (les deux palettes ci-dessus).
       certifié auprès de fournisseurs de confiance.</p>
       <ul class="hexliste">
         <li>Produits fermiers locaux selon les saisons et les arrivages</li>
-        <li>Une équipe qui connaît ses rayons et ses producteurs</li>
+        <li>Demandez d'où vient un produit : la provenance se dit au comptoir</li>
       </ul>
     </div>
   </div>
