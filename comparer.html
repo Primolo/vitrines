@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Avant / Après — revue de qualité</title>
+<style>
+  :root{
+    --bg:#12161A; --panneau:#1B2127; --bord:#2C353E;
+    --texte:#E8EDF2; --doux:#9AA8B4;
+    --avant:#C2603F; --apres:#4E9A6A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--texte);
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+  header{padding:22px 20px 18px;border-bottom:1px solid var(--bord);background:var(--panneau)}
+  h1{margin:0 0 6px;font-size:1.25rem;letter-spacing:-.01em}
+  header p{margin:0;color:var(--doux);font-size:.88rem;max-width:70ch}
+  .barre{display:flex;flex-wrap:wrap;gap:8px;padding:14px 20px;background:var(--panneau);
+    border-bottom:1px solid var(--bord);position:sticky;top:0;z-index:10}
+  .onglet{padding:8px 14px;border:1px solid var(--bord);border-radius:6px;background:transparent;
+    color:var(--doux);font:inherit;font-size:.85rem;cursor:pointer}
+  .onglet:hover{border-color:var(--doux);color:var(--texte)}
+  .onglet[aria-selected="true"]{background:var(--texte);color:var(--bg);border-color:var(--texte);font-weight:600}
+  .onglet:focus-visible{outline:2px solid var(--apres);outline-offset:2px}
+  .reglages{display:flex;gap:14px;align-items:center;margin-left:auto;color:var(--doux);font-size:.82rem}
+  .reglages label{display:flex;gap:6px;align-items:center;cursor:pointer}
+  .note{padding:12px 20px;color:var(--doux);font-size:.85rem;border-bottom:1px solid var(--bord)}
+  .note b{color:var(--texte)}
+  .duo{display:grid;grid-template-columns:1fr;gap:18px;padding:18px 20px 40px}
+  @media(min-width:900px){.duo{grid-template-columns:1fr 1fr}}
+  .volet{border:1px solid var(--bord);border-radius:10px;overflow:hidden;background:var(--panneau)}
+  .etiquette{padding:9px 14px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+    font-weight:700;display:flex;justify-content:space-between;align-items:center}
+  .etiquette.a{background:rgba(194,96,63,.16);color:#E89272}
+  .etiquette.b{background:rgba(78,154,106,.16);color:#7BC79A}
+  .etiquette span{font-weight:400;letter-spacing:0;text-transform:none;color:var(--doux);font-size:.76rem}
+  .cadre{background:#fff;position:relative}
+  iframe{display:block;width:100%;height:78vh;border:0;background:#fff}
+  body.mobile iframe{width:390px;margin:0 auto;height:78vh}
+  body.mobile .cadre{background:#0C0F12;padding:10px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Revue de qualité — avant / après</h1>
+  <p>À gauche la première version, à droite la version corrigée. Les deux pages défilent
+     indépendamment&nbsp;: faites défiler jusqu'en bas pour voir les sections retravaillées.</p>
+</header>
+
+<div class="barre" role="tablist" id="onglets"></div>
+
+<div class="note" id="note"></div>
+
+<div class="duo">
+  <div class="volet">
+    <div class="etiquette a">Avant <span id="lib-a"></span></div>
+    <div class="cadre"><iframe id="fa" title="version avant"></iframe></div>
+  </div>
+  <div class="volet">
+    <div class="etiquette b">Après <span id="lib-b"></span></div>
+    <div class="cadre"><iframe id="fb" title="version après"></iframe></div>
+  </div>
+</div>
+
+<script>
+const SITES = [
+  {slug:'auberge-des-montagnards', nom:"Auberge des Montagnards", note:'6/10',
+   quoi:"La carte affichait six fois « nous consulter » à la suite — un tableau de prix vide qui signale « site pas fini ». Réécrite avec des mentions vraies. Les sur-titres et liens cuivre passaient à 3,3 de contraste (illisibles au soleil) : couleur de texte assombrie. Section randonneurs restructurée, bloc horaires ajouté."},
+  {slug:'le-tremplin', nom:"Le Tremplin", note:'6/10',
+   quoi:"Le mot « GAZ » du titre et le bouton téléphone rouge passaient sous le seuil de lisibilité. Jaune éclairci et rouge du bouton assombri — l'impact visuel est conservé. Sections du bas retravaillées."},
+  {slug:'la-fontaine-ronde', nom:"La Fontaine Ronde", note:'6,5/10',
+   quoi:"Les intitulés de la fiche contact (Adresse, Téléphone, Itinéraire) étaient en gris trop clair. Assombris pour les deux thèmes, clair et sombre."},
+  {slug:'toit-du-doubs', nom:"Fruitière le Toit du Doubs", note:'—',
+   quoi:"Le pire cas de tous : du texte safran sur fond glacé à 1,74 de contraste, quasi invisible (il en faut 4,5). Une couleur de texte dédiée a été créée ; le safran reste vif sur les éléments décoratifs."},
+  {slug:'chalet-du-lac', nom:"Chalet du Lac", note:'8,5/10',
+   quoi:"Treize éléments en laiton clair sous le seuil : intitulés, numéros de rangée, titres de contact. Un ton laiton foncé a été introduit pour le texte seulement — l'épure haut de gamme est intacte."},
+  {slug:'ecrin-du-lac', nom:"L'Écrin du Lac", note:'7/10',
+   quoi:"Mise en page du bas de page renforcée et finitions mobile."},
+  {slug:'auberge-du-vourbey', nom:"L'Auberge du Vourbey", note:'7/10',
+   quoi:"La carte des plats se disloquait en deux colonnes hachées sur téléphone — désormais empilée et lisible. Boutons pleine largeur sur petit écran, deuxième trace de raquettes ajoutée, paragraphe « fêtes » réécrit en concret."},
+];
+
+const barre = document.getElementById('onglets');
+const fa = document.getElementById('fa'), fb = document.getElementById('fb');
+const note = document.getElementById('note');
+let courant = 0;
+
+SITES.forEach((s, i) => {
+  const b = document.createElement('button');
+  b.className = 'onglet'; b.role = 'tab'; b.textContent = s.nom;
+  b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+  b.onclick = () => choisir(i);
+  barre.appendChild(b);
+});
+
+const reglages = document.createElement('div');
+reglages.className = 'reglages';
+reglages.innerHTML = '<label><input type="checkbox" id="mob"> Vue téléphone (390 px)</label>';
+barre.appendChild(reglages);
+document.getElementById('mob').onchange = e => document.body.classList.toggle('mobile', e.target.checked);
+
+function choisir(i){
+  courant = i;
+  const s = SITES[i];
+  [...barre.querySelectorAll('.onglet')].forEach((b, j) =>
+    b.setAttribute('aria-selected', j === i ? 'true' : 'false'));
+  fa.src = '_avant/' + s.slug + '/';
+  fb.src = s.slug + '/';
+  document.getElementById('lib-a').textContent = s.note !== '—' ? 'noté ' + s.note : '';
+  document.getElementById('lib-b').textContent = 'corrigé';
+  note.innerHTML = '<b>Ce qui a changé :</b> ' + s.quoi;
+}
+choisir(0);
+</script>
+</body>
+</html>

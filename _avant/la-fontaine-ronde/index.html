@@ -1,0 +1,370 @@
+<!doctype html>
+<!-- PLAN DE DESIGN — La Fontaine Ronde (La Cluse-et-Mijoux)
+     Concept : le relais sur la route de la Suisse — une étape élégante au pied du château de Joux,
+       qui porte le nom d'une source intermittente voisine.
+     Palette (DOUBLE THÈME clair/sombre par tokens CSS, bascule via prefers-color-scheme) :
+       bleu-source   #1E4E5F  (eau profonde — titres, liens en clair / surfaces en sombre)
+       pierre-de-joux#8C8377  (gris pierre du fort — filets, textes secondaires)
+       ecume         #EFF3F2  (fond clair)
+       nuit-du-fort  #13232B  (fond sombre)
+       or-vauban     #B78C3E  (laiton d'étape — accents, borne)
+       ardoise-froide#31424B  (surfaces secondaires)
+     Typographie : titres en Baskerville / Hoefler Text (serif classique de relais) ·
+       corps en Optima / Candara / Segoe UI (humaniste incisée).
+     Mise en page : héros asymétrique — une « borne d'étape » verticale à gauche (N57, château,
+       frontière) et le grand titre à droite posé sur les anneaux de la source ; sections en
+       alternance texte large / colonne étroite, aucun bloc centré.
+     ÉLÉMENT SIGNATURE : les ANNEAUX INTERMITTENTS — cercles concentriques réguliers dont un arc
+       s'interrompt (la source qui s'arrête puis repart), avec une goutte au centre ; repris en
+       grand dans le héros, en petit comme pictogrammes. Cercles parfaits et interrompus :
+       rien à voir avec des ellipses topographiques, et aucune crête de sapins nulle part.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>La Fontaine Ronde — maquette</title>
+<style>
+  :root{
+    --fond:#EFF3F2;
+    --surface:#FFFFFF;
+    --texte:#1C2B31;
+    --texte-2:#5C6660;
+    --source:#1E4E5F;
+    --pierre:#8C8377;
+    --or:#B78C3E;
+    --filet:rgba(30,78,95,.25);
+    --borne-fond:#1E4E5F;
+    --borne-texte:#EFF3F2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --fond:#13232B;
+      --surface:#1B3038;
+      --texte:#E8EEEC;
+      --texte-2:#A9B4AE;
+      --source:#8FC3D4;
+      --pierre:#A79D8F;
+      --or:#D2A855;
+      --filet:rgba(143,195,212,.3);
+      --borne-fond:#0E1A20;
+      --borne-texte:#E8EEEC;
+    }
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--fond); color:var(--texte);
+    font-family:"Optima","Candara","Segoe UI",Verdana,sans-serif;
+    font-size:1.06rem; line-height:1.7;
+  }
+  h1,h2,h3{font-family:"Baskerville","Libre Baskerville","Hoefler Text","Times New Roman",serif;font-weight:600}
+  a{color:var(--source)}
+
+  .demo-banner{
+    background:var(--source); color:#EFF3F2;
+    padding:.65rem 1.25rem; font-size:.85rem;
+    border-bottom:3px solid var(--or);
+  }
+  @media (prefers-color-scheme: dark){
+    .demo-banner{background:#0E1A20}
+  }
+  .demo-banner strong{color:#E4C98A}
+
+  .wrap{max-width:1060px;margin:0 auto;padding:0 1.25rem}
+
+  header.site{
+    display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;
+    padding:1.4rem 0 1.2rem;border-bottom:1px solid var(--filet);
+  }
+  .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--texte)}
+  .brand b{font-family:"Baskerville","Hoefler Text",serif;font-size:1.35rem;font-weight:600;letter-spacing:.02em}
+  .brand small{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pierre)}
+  nav.main a{
+    color:var(--texte);text-decoration:none;font-size:.84rem;letter-spacing:.16em;text-transform:uppercase;
+    margin-left:1.4rem;padding-bottom:.2rem;border-bottom:1px solid transparent;
+  }
+  nav.main a:hover{border-bottom-color:var(--or)}
+
+  /* Héros asymétrique : borne + titre sur anneaux */
+  .hero{
+    display:grid;grid-template-columns:250px 1fr;gap:2.6rem;align-items:stretch;
+    padding:3rem 0 3.2rem;
+  }
+  .borne{
+    background:var(--borne-fond); color:var(--borne-texte);
+    border-top:10px solid var(--or);
+    padding:1.6rem 1.4rem; display:flex; flex-direction:column; gap:1.1rem;
+  }
+  .borne h3{font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--or);font-family:"Optima","Candara","Segoe UI",sans-serif;font-weight:700}
+  .borne p{font-size:.95rem;line-height:1.5}
+  .borne .km{font-family:"Baskerville","Hoefler Text",serif;font-size:1.5rem;line-height:1.2}
+  .borne hr{border:none;border-top:1px solid rgba(255,255,255,.22)}
+  .hero-main{position:relative}
+  .hero-main .rings{position:absolute;right:-20px;top:-24px;opacity:.9;pointer-events:none}
+  .hero-main .eyebrow{
+    font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;
+  }
+  .hero-main h1{font-size:clamp(2.4rem,5.4vw,3.7rem);line-height:1.05;max-width:14ch;position:relative}
+  .hero-main .lede{margin:1.3rem 0 1.9rem;max-width:36rem;font-size:1.14rem;position:relative}
+  .btn{
+    display:inline-block;text-decoration:none;letter-spacing:.14em;text-transform:uppercase;font-size:.84rem;
+    padding:.85rem 1.6rem;color:var(--fond);background:var(--source);border:1px solid var(--source);
+  }
+  .btn.ghost{background:transparent;color:var(--source)}
+  .btn:hover{background:var(--or);border-color:var(--or);color:#13232B}
+  .btns{display:flex;gap:.9rem;flex-wrap:wrap;position:relative}
+
+  section.block{padding:3rem 0;border-top:1px solid var(--filet)}
+  .cols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:3rem;align-items:start}
+  .cols.inverse{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}
+  .kicker{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--or);margin-bottom:.6rem}
+  section.block h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:1rem;color:var(--source)}
+  section.block p+p{margin-top:1rem}
+  .aside{
+    border-left:3px solid var(--or); padding:0.2rem 0 .2rem 1.4rem;
+    color:var(--texte-2); font-size:.98rem;
+  }
+  .aside b{color:var(--texte)}
+  .aside p+p{margin-top:.9rem}
+
+  /* La table */
+  .table-liste{list-style:none;margin-top:1.4rem;max-width:38rem}
+  .table-liste li{
+    display:flex;gap:1rem;align-items:baseline;
+    padding:.8rem 0;border-bottom:1px dotted var(--filet);
+  }
+  .table-liste li::before{
+    content:""; flex:none; width:.85rem;height:.85rem;border-radius:50%;
+    border:2px solid var(--or); transform:translateY(.1rem);
+    box-shadow:0 0 0 3px var(--fond), 0 0 0 4px var(--filet);
+  }
+  .table-liste b{font-family:"Baskerville","Hoefler Text",serif;font-size:1.08rem}
+  .table-liste span{color:var(--texte-2);font-size:.95rem}
+  .prix-note{margin-top:1.4rem;font-style:italic;font-family:"Baskerville","Hoefler Text",serif;color:var(--texte-2)}
+
+  /* Source */
+  .source-fig{background:var(--surface);border:1px solid var(--filet);padding:1.8rem;text-align:left}
+  .source-fig figcaption{font-size:.85rem;color:var(--texte-2);margin-top:.8rem;font-style:italic}
+
+  /* En chemin */
+  .etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.8rem}
+  .etapes article{background:var(--surface);border:1px solid var(--filet);border-bottom:4px solid var(--or);padding:1.4rem 1.3rem}
+  .etapes h3{font-size:1.12rem;margin-bottom:.4rem;color:var(--source)}
+  .etapes p{font-size:.93rem;color:var(--texte-2)}
+  .etapes .dist{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or)}
+
+  /* Contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:1.5rem}
+  .contact-grid dl div{padding:.75rem 0;border-bottom:1px solid var(--filet)}
+  .contact-grid dt{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pierre)}
+  .contact-grid dd{font-size:1.05rem;margin-top:.15rem}
+  .contact-grid .note{font-size:.9rem;font-style:italic;color:var(--texte-2);margin-top:1.1rem}
+
+  footer.credit{
+    border-top:1px solid var(--filet);
+    color:var(--texte-2);font-size:.82rem;padding:1.2rem 1.25rem;text-align:center;
+  }
+
+  @media (max-width:840px){
+    .hero{grid-template-columns:1fr;gap:1.8rem}
+    .borne{flex-direction:row;flex-wrap:wrap;align-items:center;gap:1rem 2rem;order:2}
+    .borne hr{display:none}
+    .hero-main .rings{position:static;display:block;margin:0 0 1rem;opacity:1}
+    .cols,.cols.inverse{grid-template-columns:1fr;gap:1.6rem}
+    .etapes{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr}
+    nav.main{display:flex;flex-wrap:wrap}
+    nav.main a{margin-left:0;margin-right:1.2rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner"><strong>Maquette de démonstration réalisée par Primo (Montperreux)</strong> — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<div class="wrap">
+  <header class="site">
+    <a class="brand" href="#">
+      <!-- anneaux intermittents miniatures -->
+      <svg width="42" height="42" viewBox="0 0 42 42" aria-hidden="true">
+        <circle cx="21" cy="21" r="18" fill="none" stroke="var(--source)" stroke-width="2" stroke-dasharray="80 20" stroke-linecap="round" transform="rotate(-50 21 21)"/>
+        <circle cx="21" cy="21" r="11" fill="none" stroke="var(--or)" stroke-width="2" stroke-dasharray="48 14" stroke-linecap="round" transform="rotate(70 21 21)"/>
+        <path d="M21 15 q4 5 0 9 q-4 -4 0 -9" fill="var(--source)"/>
+      </svg>
+      <span><b>La Fontaine Ronde</b><small>La Cluse-et-Mijoux</small></span>
+    </a>
+    <nav class="main">
+      <a href="#etape">L'étape</a>
+      <a href="#table">La table</a>
+      <a href="#source">La source</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <aside class="borne" aria-label="Borne d'étape">
+      <div>
+        <h3>Route N57</h3>
+        <p class="km">Vers la Suisse</p>
+        <p>Sur l'axe Pontarlier – Vallorbe, au passage de la cluse.</p>
+      </div>
+      <hr>
+      <div>
+        <h3>À proximité</h3>
+        <p>Château de Joux, sentinelle de la cluse depuis mille ans.</p>
+      </div>
+      <hr>
+      <div>
+        <h3>Le nom</h3>
+        <p>Celui d'une source intermittente voisine, curiosité du pays.</p>
+      </div>
+    </aside>
+
+    <div class="hero-main">
+      <!-- SIGNATURE : grands anneaux intermittents -->
+      <svg class="rings" width="300" height="300" viewBox="0 0 300 300" aria-hidden="true">
+        <g fill="none" stroke-linecap="round">
+          <circle cx="150" cy="150" r="132" stroke="var(--filet)" stroke-width="2"/>
+          <circle cx="150" cy="150" r="108" stroke="var(--source)" stroke-width="2.5" stroke-dasharray="560 120" transform="rotate(-30 150 150)"/>
+          <circle cx="150" cy="150" r="84" stroke="var(--or)" stroke-width="2.5" stroke-dasharray="420 105" transform="rotate(80 150 150)"/>
+          <circle cx="150" cy="150" r="60" stroke="var(--source)" stroke-width="2.5" stroke-dasharray="290 85" transform="rotate(190 150 150)"/>
+          <circle cx="150" cy="150" r="36" stroke="var(--or)" stroke-width="2.5" stroke-dasharray="170 55" transform="rotate(-100 150 150)"/>
+        </g>
+        <path d="M150 128 q13 16 0 30 q-13 -14 0 -30" fill="var(--source)"/>
+      </svg>
+      <p class="eyebrow">Restaurant d'étape — Haut-Doubs</p>
+      <h1>Le relais de la route de la Suisse</h1>
+      <p class="lede">Entre Pontarlier et la frontière, au pied du château de Joux,
+      La Fontaine Ronde accueille depuis la N57 les voyageurs, les frontaliers et les gens du pays.
+      Une halte traditionnelle, du café du matin au plat du jour.</p>
+      <div class="btns">
+        <a class="btn" href="#table">Passer à table</a>
+        <a class="btn ghost" href="#contact">Préparer l'étape</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="etape">
+    <div class="cols">
+      <div>
+        <p class="kicker">L'étape</p>
+        <h2>Une maison de bord de route, au sens noble</h2>
+        <p>Il y a des adresses qui existent parce que la route existe. La Fontaine Ronde est
+        de celles-là : posée au lieu-dit La Gauffre, à La Cluse-et-Mijoux, là où la montagne
+        se resserre et laisse tout juste passer la route, le rail et le Doubs.</p>
+        <p>On s'y arrête en allant travailler en Suisse, en montant visiter le fort,
+        en redescendant de Métabief. On y revient parce qu'on y a été bien reçu :
+        service soigné, cuisine traditionnelle, et ce calme particulier des salles
+        qui ont vu passer des générations de voyageurs.</p>
+      </div>
+      <aside class="aside">
+        <p><b>Pratique voyageurs</b></p>
+        <p>Halte sur l'axe Pontarlier – frontière suisse, accès direct depuis la N57.</p>
+        <p>Service du midi apprécié des habitués de la route ; pensez à réserver en saison.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="table">
+    <div class="cols inverse">
+      <aside class="aside">
+        <p><b>L'esprit de la carte</b></p>
+        <p>Une cuisine traditionnelle française, ancrée dans le Haut-Doubs, servie sans chichis
+        et avec sérieux.</p>
+        <p>Carte et menus du moment : <b>nous consulter</b> — ils seront détaillés avec vous
+        pour la version définitive du site.</p>
+      </aside>
+      <div>
+        <p class="kicker">La table</p>
+        <h2>La tradition, au rythme de la route</h2>
+        <p>Du déjeuner des frontaliers au repas des visiteurs du château, la maison sert
+        une cuisine de tradition : produits du pays, plats généreux, desserts de toujours.</p>
+        <ul class="table-liste">
+          <li><b>Le plat du jour</b><span>l'étape rapide et sérieuse du midi</span></li>
+          <li><b>Les classiques comtois</b><span>fromages et recettes du Haut-Doubs selon la saison</span></li>
+          <li><b>La table du dimanche</b><span>le temps long, pour les familles et les tablées</span></li>
+        </ul>
+        <p class="prix-note">Tarifs : nous consulter.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="source">
+    <div class="cols">
+      <div>
+        <p class="kicker">Le nom</p>
+        <h2>La source qui s'arrête, puis repart</h2>
+        <p>À deux pas de la maison, cachée entre la voie ferrée et la N57, jaillit la
+        Fontaine Ronde : une source intermittente observée depuis 1827, qui monte au milieu
+        de sa petite vasque, s'interrompt, puis reprend — des intermittences de quelques minutes,
+        au gré des caprices du karst jurassien.</p>
+        <p>Le restaurant lui a emprunté son nom et, un peu, son caractère : un lieu discret
+        au bord de la route, que l'on découvre en s'arrêtant — et qui vaut l'arrêt.</p>
+      </div>
+      <figure class="source-fig">
+        <svg viewBox="0 0 240 200" width="100%" role="img" aria-label="La vasque de la source intermittente">
+          <ellipse cx="120" cy="150" rx="100" ry="32" fill="none" stroke="var(--pierre)" stroke-width="3"/>
+          <ellipse cx="120" cy="150" rx="72" ry="22" fill="none" stroke="var(--source)" stroke-width="2.5" stroke-dasharray="120 40" stroke-linecap="round"/>
+          <ellipse cx="120" cy="150" rx="44" ry="13" fill="none" stroke="var(--or)" stroke-width="2.5" stroke-dasharray="70 28" stroke-linecap="round"/>
+          <path d="M120 132 q10 12 0 22 q-10 -10 0 -22" fill="var(--source)"/>
+          <g fill="none" stroke="var(--source)" stroke-width="2.5" stroke-linecap="round">
+            <path d="M120 118 q6 -10 0 -20"/>
+            <path d="M108 112 q-5 -8 0 -16" opacity=".6"/>
+            <path d="M132 112 q5 -8 0 -16" opacity=".6"/>
+          </g>
+        </svg>
+        <figcaption>Les anneaux du logo racontent l'intermittence : le cercle s'interrompt, l'eau revient.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="chemin">
+    <p class="kicker">En chemin</p>
+    <h2>Ce qui vous attend autour de l'assiette</h2>
+    <div class="etapes">
+      <article>
+        <span class="dist">Au-dessus de la maison</span>
+        <h3>Le château de Joux</h3>
+        <p>La forteresse qui verrouille la cluse : mille ans d'histoire militaire,
+        de Vauban aux prisonniers célèbres.</p>
+      </article>
+      <article>
+        <span class="dist">Direction nord</span>
+        <h3>Pontarlier</h3>
+        <p>La capitale du Haut-Doubs et de l'absinthe, ses commerces et son marché.</p>
+      </article>
+      <article>
+        <span class="dist">Direction sud</span>
+        <h3>La Suisse</h3>
+        <p>La frontière est à quelques minutes : la N57 file vers Vallorbe
+        et le vallon de Joux.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <p class="kicker">Contact</p>
+    <h2>Préparer votre halte</h2>
+    <div class="contact-grid">
+      <dl>
+        <div><dt>Adresse</dt><dd>Lieu-dit La Gauffre, 25300 La Cluse-et-Mijoux</dd></div>
+        <div><dt>Téléphone</dt><dd>à compléter</dd></div>
+        <div><dt>Itinéraire</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=La+Fontaine+Ronde+La+Cluse-et-Mijoux" rel="noopener">Ouvrir dans Google Maps</a></dd></div>
+      </dl>
+      <div>
+        <p>Sur la N57, entre Pontarlier et la frontière suisse, au pied du château de Joux.
+        Parking le long de la route.</p>
+        <p class="note">Téléphone, horaires et carte définitive seront complétés avec vous
+        avant toute mise en ligne.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="credit">
+  Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
+</footer>
+
+</body>
+</html>

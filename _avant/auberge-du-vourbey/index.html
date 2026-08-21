@@ -1,0 +1,405 @@
+<!doctype html>
+<!-- PLAN DE DESIGN — L'Auberge du Vourbey (lieu-dit Le Vourbey, Les Fourgs)
+     Concept : le refuge qui se mérite — une nuit d'hiver, des traces de raquettes qui mènent
+       à un chalet éclairé ; on raconte l'accès autant que l'assiette.
+     Palette (THÈME SOMBRE UNIQUE, assumé — c'est la nuit polaire du plateau) :
+       nuit-polaire  #101B2A  (fond général, ciel)
+       bleu-congere  #223449  (surfaces, congères)
+       neige         #ECF2F8  (texte, neige)
+       lueur-lanterne#E5A13D  (accent chaud — fenêtres, boutons, titres secondaires)
+       braise-fondue #BC5B2E  (second accent, petites touches)
+       givre         #7FA3BF  (texte secondaire, traits froids)
+     Typographie : titres en Futura / Avenir Next Condensed / Century Gothic
+       (capitales espacées, écriteau de refuge) · corps en Palatino / Georgia (serif de veillée).
+     Mise en page : héros pleine largeur = scène SVG nocturne (congères arrondies, chalet aux
+       fenêtres allumées, traces de raquettes en pointillés, étoiles), texte calé à gauche ;
+       puis récit vertical : « on y va » (accès en deux saisons), « on y mange », « on y fête »,
+       ponctué par la trace de raquettes qui descend entre les sections.
+     ÉLÉMENT SIGNATURE : la TRACE DE RAQUETTES — paires d'empreintes ovales pointillées qui
+       serpentent du haut de la page jusqu'à la porte du chalet, reprises en séparateurs de
+       sections. Pas de crête de sapins (congères arrondies uniquement), pas d'ellipses
+       topographiques, pas d'Impact/Trebuchet.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>L'Auberge du Vourbey — maquette</title>
+<style>
+  :root{
+    --nuit:#101B2A; --congere:#223449; --neige:#ECF2F8;
+    --lanterne:#E5A13D; --braise:#BC5B2E; --givre:#7FA3BF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--nuit); color:var(--neige);
+    font-family:"Palatino","Palatino Linotype",Georgia,serif;
+    font-size:1.06rem; line-height:1.7;
+  }
+  h1,h2,h3,.caps{
+    font-family:"Futura","Avenir Next Condensed","Century Gothic","Apple SD Gothic Neo",sans-serif;
+    text-transform:uppercase; letter-spacing:.14em; font-weight:600;
+  }
+  a{color:var(--lanterne)}
+
+  .demo-banner{
+    background:var(--lanterne); color:#1B1408;
+    padding:.65rem 1.25rem; font-size:.85rem; font-family:"Avenir Next","Futura","Century Gothic",sans-serif;
+  }
+  .demo-banner strong{text-transform:uppercase;letter-spacing:.04em}
+
+  .wrap{max-width:1020px;margin:0 auto;padding:0 1.25rem}
+
+  header.site{
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+    padding:1.3rem 0;
+  }
+  .brand{display:flex;align-items:center;gap:.8rem;color:var(--neige);text-decoration:none}
+  .brand b{font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:1.05rem}
+  .brand small{display:block;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--givre)}
+  nav.main a{
+    color:var(--neige);text-decoration:none;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+    font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;
+    margin-left:1.4rem;border-bottom:1px solid transparent;padding-bottom:.2rem;
+  }
+  nav.main a:hover{border-bottom-color:var(--lanterne)}
+
+  /* HÉROS : scène nocturne */
+  .hero{position:relative;overflow:hidden}
+  .hero svg.scene{display:block;width:100%;height:auto}
+  .hero .titre{
+    position:absolute;left:0;right:0;top:8%;
+  }
+  .hero .titre .wrap{max-width:1020px}
+  .hero .eyebrow{
+    display:inline-block;color:var(--lanterne);font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
+    font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;
+    border:1px solid rgba(229,161,61,.5);padding:.35rem .8rem;margin-bottom:1rem;
+  }
+  .hero h1{
+    font-size:clamp(1.9rem,5.4vw,3.4rem);line-height:1.12;letter-spacing:.1em;color:#fff;
+    max-width:15ch; text-shadow:0 2px 18px rgba(16,27,42,.9);
+  }
+  .hero .lede{
+    margin-top:1rem;max-width:30rem;font-size:clamp(.95rem,2.2vw,1.15rem);color:var(--neige);
+    text-shadow:0 1px 12px rgba(16,27,42,.95);
+  }
+  .btn{
+    display:inline-block;text-decoration:none;font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;
+    font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;
+    background:var(--lanterne);color:#1B1408;padding:.9rem 1.6rem;margin-top:1.5rem;
+  }
+  .btn:hover{background:var(--braise);color:#fff}
+  .btn.ghost{background:transparent;color:var(--lanterne);border:1px solid var(--lanterne);margin-left:.8rem}
+
+  /* Séparateur trace de raquettes */
+  .trace{display:block;margin:0 auto;color:var(--givre)}
+
+  section.block{padding:3.4rem 0 2.6rem}
+  .kicker{
+    color:var(--lanterne);font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;
+    font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;margin-bottom:.7rem;
+  }
+  section.block h2{font-size:clamp(1.5rem,3.2vw,2.2rem);letter-spacing:.12em;margin-bottom:1.1rem;color:#fff}
+  section.block p+p{margin-top:1rem}
+  .muted{color:var(--givre)}
+
+  /* Deux saisons */
+  .saisons{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:2rem}
+  .saison{
+    background:var(--congere); padding:1.9rem 1.7rem;
+    border-top:5px solid var(--givre);
+  }
+  .saison.hiver{border-top-color:var(--lanterne)}
+  .saison h3{font-size:1rem;letter-spacing:.24em;margin-bottom:1rem;color:var(--lanterne)}
+  .saison.ete h3{color:var(--givre)}
+  .saison p{font-size:.98rem}
+  .saison ul{list-style:none;margin-top:1rem}
+  .saison li{
+    padding:.5rem 0 .5rem 1.6rem;position:relative;font-size:.95rem;
+  }
+  .saison li::before{ /* double empreinte de raquette */
+    content:""; position:absolute;left:0;top:.95rem;width:.5rem;height:.8rem;
+    border:2px dotted var(--lanterne); border-radius:50%;
+  }
+  .saison.ete li::before{border-color:var(--givre)}
+  .saison .tel-inline{font-weight:bold}
+
+  /* La table */
+  .carte{display:grid;grid-template-columns:1.1fr .9fr;gap:2.6rem;align-items:start}
+  .plats{list-style:none;margin-top:1.2rem}
+  .plats li{
+    display:flex;justify-content:space-between;gap:1rem;align-items:baseline;
+    border-bottom:1px dotted rgba(127,163,191,.4);padding:.75rem 0;
+  }
+  .plats b{font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;letter-spacing:.08em;text-transform:uppercase;font-size:.92rem;font-weight:600}
+  .plats span{color:var(--givre);font-size:.9rem;text-align:right}
+  .prix-note{margin-top:1.2rem;font-style:italic;color:var(--givre)}
+  .lanterne-fig{text-align:center;background:var(--congere);padding:2rem 1rem 1.4rem}
+  .lanterne-fig figcaption{font-size:.85rem;color:var(--givre);font-style:italic;margin-top:.7rem}
+
+  /* Fêtes */
+  .fete{
+    border:1px solid rgba(229,161,61,.45);
+    padding:2.2rem 2rem; display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:center;
+    background:linear-gradient(180deg, rgba(229,161,61,.08), transparent);
+  }
+
+  /* Infos + contact */
+  .infos{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.8rem}
+  .infos article{border-left:3px solid var(--givre);padding-left:1.1rem}
+  .infos h3{font-size:.82rem;letter-spacing:.22em;color:var(--lanterne);margin-bottom:.4rem}
+  .infos p{font-size:.92rem;color:var(--neige)}
+
+  .contact{background:var(--congere)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.4rem}
+  .contact dl div{padding:.75rem 0;border-bottom:1px solid rgba(236,242,248,.18)}
+  .contact dt{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--givre);font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif}
+  .contact dd{font-size:1.05rem;margin-top:.2rem}
+  .contact .note{font-size:.9rem;font-style:italic;color:var(--givre);margin-top:1rem}
+
+  footer.credit{
+    background:#0A121D;color:#8FA5B8;font-size:.82rem;
+    padding:1.2rem 1.25rem;text-align:center;font-family:"Avenir Next","Futura","Century Gothic",sans-serif;
+  }
+
+  @media (max-width:840px){
+    .hero .titre{position:static;background:var(--nuit);padding:2rem 0 0}
+    .hero svg.scene{margin-top:1rem}
+    .saisons,.carte,.contact-grid{grid-template-columns:1fr}
+    .infos{grid-template-columns:1fr}
+    .fete{grid-template-columns:1fr;text-align:left}
+    nav.main{display:flex;flex-wrap:wrap}
+    nav.main a{margin-left:0;margin-right:1.2rem}
+    .btn.ghost{margin-left:0;margin-top:.8rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner"><strong>Maquette de démonstration réalisée par Primo (Montperreux)</strong> — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<div class="wrap">
+  <header class="site">
+    <a class="brand" href="#">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+        <ellipse cx="14" cy="20" rx="7" ry="12" fill="none" stroke="#E5A13D" stroke-width="2" stroke-dasharray="3 3"/>
+        <ellipse cx="27" cy="24" rx="7" ry="12" fill="none" stroke="#7FA3BF" stroke-width="2" stroke-dasharray="3 3"/>
+      </svg>
+      <span><b>L'Auberge du Vourbey</b><small>Chalet d'alpage · Les Fourgs</small></span>
+    </a>
+    <nav class="main">
+      <a href="#acces">Y aller</a>
+      <a href="#table">La table</a>
+      <a href="#fetes">Vos fêtes</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+</div>
+
+<section class="hero">
+  <div class="titre">
+    <div class="wrap">
+      <span class="eyebrow">Accessible l'hiver uniquement à ski ou en raquettes</span>
+      <h1>L'auberge qui se mérite</h1>
+      <p class="lede">Un chalet d'alpage au creux d'une combe des Fourgs. Pas de route dégagée
+      l'hiver : on chausse, on trace, on arrive — et la fondue n'en est que meilleure.</p>
+      <a class="btn" href="tel:+33770913333">Réserver&nbsp;: 07 70 91 33 33</a><a class="btn ghost" href="#acces">Comment venir</a>
+    </div>
+  </div>
+  <!-- SIGNATURE : scène nocturne, traces de raquettes vers le chalet -->
+  <svg class="scene" viewBox="0 0 1440 620" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Nuit d'hiver : des traces de raquettes mènent au chalet éclairé du Vourbey">
+    <rect width="1440" height="620" fill="#101B2A"/>
+    <!-- étoiles -->
+    <g fill="#ECF2F8">
+      <circle cx="140" cy="70" r="2"/><circle cx="320" cy="130" r="1.5"/><circle cx="520" cy="60" r="2"/>
+      <circle cx="760" cy="110" r="1.5"/><circle cx="980" cy="50" r="2"/><circle cx="1180" cy="120" r="1.5"/>
+      <circle cx="1340" cy="70" r="2"/><circle cx="640" cy="170" r="1.2"/><circle cx="1080" cy="180" r="1.2"/>
+      <circle cx="220" cy="200" r="1.2"/><circle cx="1400" cy="180" r="1.3"/><circle cx="60" cy="140" r="1.4"/>
+    </g>
+    <!-- lune -->
+    <circle cx="1200" cy="120" r="42" fill="#ECF2F8" opacity=".9"/>
+    <circle cx="1214" cy="110" r="38" fill="#101B2A"/>
+    <!-- congères arrondies (aucune crête de sapins) -->
+    <path d="M0 430 q240 -70 480 -18 q240 52 480 6 q240 -46 480 18 v184 h-1440 z" fill="#223449"/>
+    <path d="M0 500 q260 -54 520 -8 q260 46 520 0 q200 -34 400 16 v112 h-1440 z" fill="#31517A" opacity=".55"/>
+    <path d="M0 560 q360 -40 720 -6 q360 34 720 -6 v72 h-1440 z" fill="#ECF2F8"/>
+    <!-- chalet éclairé -->
+    <g transform="translate(1010 330)">
+      <rect x="-14" y="96" width="228" height="18" fill="#0A121D" opacity=".55"/>
+      <rect x="0" y="40" width="200" height="66" fill="#3A2A1C"/>
+      <path d="M-22 44 L100 -28 L222 44 z" fill="#241A10"/>
+      <path d="M-22 44 L100 -28 L222 44" fill="none" stroke="#ECF2F8" stroke-width="10" stroke-linecap="round"/>
+      <rect x="26" y="58" width="30" height="26" fill="#E5A13D"/>
+      <rect x="86" y="58" width="30" height="48" fill="#E5A13D"/>
+      <rect x="146" y="58" width="30" height="26" fill="#E5A13D"/>
+      <line x1="41" y1="58" x2="41" y2="84" stroke="#3A2A1C" stroke-width="3"/>
+      <line x1="161" y1="58" x2="161" y2="84" stroke="#3A2A1C" stroke-width="3"/>
+      <!-- lanterne au pignon -->
+      <circle cx="100" cy="18" r="9" fill="#E5A13D"/>
+      <circle cx="100" cy="18" r="16" fill="#E5A13D" opacity=".25"/>
+      <circle cx="100" cy="18" r="24" fill="#E5A13D" opacity=".12"/>
+      <!-- cheminée et fumée -->
+      <rect x="150" y="-20" width="18" height="30" fill="#241A10"/>
+      <g fill="none" stroke="#8FA5B8" stroke-width="4" stroke-linecap="round" opacity=".6">
+        <path d="M159 -30 q10 -14 0 -28"/>
+        <path d="M164 -60 q8 -12 0 -22"/>
+      </g>
+    </g>
+    <!-- traces de raquettes : paires d'empreintes en pointillés vers la porte -->
+    <g fill="none" stroke-dasharray="1 10" stroke-linecap="round">
+      <g stroke="#7FA3BF" stroke-width="7">
+        <path d="M120 612 q160 -36 320 -22 q200 16 380 -22 q140 -28 240 -32"/>
+      </g>
+      <g stroke="#E5A13D" stroke-width="7">
+        <path d="M170 618 q160 -30 320 -18 q200 16 380 -24 q140 -30 236 -34"/>
+      </g>
+    </g>
+    <g fill="#7FA3BF" opacity=".9">
+      <ellipse cx="180" cy="596" rx="7" ry="12" transform="rotate(-14 180 596)"/>
+      <ellipse cx="240" cy="586" rx="7" ry="12" transform="rotate(-10 240 586)"/>
+      <ellipse cx="305" cy="580" rx="7" ry="12" transform="rotate(-6 305 580)"/>
+      <ellipse cx="372" cy="577" rx="7" ry="12"/>
+      <ellipse cx="440" cy="577" rx="7" ry="12" transform="rotate(5 440 577)"/>
+      <ellipse cx="510" cy="580" rx="7" ry="12" transform="rotate(8 510 580)"/>
+      <ellipse cx="580" cy="580" rx="7" ry="12" transform="rotate(4 580 580)"/>
+      <ellipse cx="650" cy="574" rx="7" ry="12" transform="rotate(-6 650 574)"/>
+      <ellipse cx="720" cy="564" rx="7" ry="12" transform="rotate(-10 720 564)"/>
+      <ellipse cx="790" cy="553" rx="7" ry="12" transform="rotate(-12 790 553)"/>
+      <ellipse cx="860" cy="543" rx="7" ry="12" transform="rotate(-10 860 543)"/>
+      <ellipse cx="930" cy="536" rx="7" ry="12" transform="rotate(-8 930 536)"/>
+      <ellipse cx="1000" cy="530" rx="7" ry="12" transform="rotate(-6 1000 530)"/>
+      <ellipse cx="1063" cy="513" rx="7" ry="12" transform="rotate(-16 1063 513)"/>
+    </g>
+  </svg>
+</section>
+
+<div class="wrap">
+  <section class="block" id="acces">
+    <p class="kicker">Y aller — c'est la moitié du plaisir</p>
+    <h2>Deux saisons, deux chemins</h2>
+    <p>Le Vourbey est un vrai chalet d'alpage, au cœur du domaine nordique des Fourgs.
+    Il accueille les skieurs et les raquetteurs depuis l'hiver 2010 — et ne triche pas
+    avec son isolement.</p>
+    <div class="saisons">
+      <article class="saison hiver">
+        <h3>L'hiver — à ski ou en raquettes</h3>
+        <p>Aucun accès routier : on rejoint l'auberge par les pistes de ski nordique
+        ou par l'itinéraire raquettes du Tourillot, au départ de la station des Fourgs.</p>
+        <ul>
+          <li>Réservation par téléphone uniquement&nbsp;: <span class="tel-inline"><a href="tel:+33770913333">07 70 91 33 33</a></span></li>
+          <li>Pensez à la frontale pour redescendre après la fondue du soir</li>
+          <li>L'arrivée&nbsp;: les fenêtres allumées au creux de la combe</li>
+        </ul>
+      </article>
+      <article class="saison ete">
+        <h3>L'été — pour les groupes</h3>
+        <p>À la belle saison, l'auberge ouvre sur réservation pour les groupes
+        à partir de 8 personnes : familles, clubs, randonnées, repas d'équipe.</p>
+        <ul>
+          <li>Terrasse avec vue sur le Chasseron, côté suisse</li>
+          <li>Jardin, jeux pour enfants, parking privé</li>
+          <li>Animaux bienvenus</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <svg class="trace" width="120" height="46" viewBox="0 0 120 46" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="2 5">
+      <ellipse cx="30" cy="16" rx="9" ry="14"/>
+      <ellipse cx="60" cy="30" rx="9" ry="14"/>
+      <ellipse cx="90" cy="16" rx="9" ry="14"/>
+    </g>
+  </svg>
+
+  <section class="block" id="table">
+    <div class="carte">
+      <div>
+        <p class="kicker">La table</p>
+        <h2>Le fromage a le premier rôle</h2>
+        <p>Cuisine régionale, spécialités franc-comtoises et franco-suisses,
+        produits choisis chez les producteurs du coin. Ici, on mange ce que la montagne sait faire.</p>
+        <ul class="plats">
+          <li><b>Croûte au fromage</b><span>la spécialité maison, à la mode d'ici et d'en face</span></li>
+          <li><b>Fondues</b><span>l'incontournable des soirs d'hiver</span></li>
+          <li><b>Boîte chaude</b><span>Mont d'Or au four dans sa sangle d'épicéa</span></li>
+          <li><b>Tartines</b><span>copieuses, façon casse-croûte d'alpage</span></li>
+          <li><b>Charcuterie de pays</b><span>fumée comme il se doit dans le Haut-Doubs</span></li>
+          <li><b>Desserts maison</b><span>pour finir avant de rechausser</span></li>
+        </ul>
+        <p class="prix-note">Tarifs : nous consulter au moment de la réservation.</p>
+      </div>
+      <figure class="lanterne-fig">
+        <svg viewBox="0 0 200 240" width="180" role="img" aria-label="Lanterne d'auberge">
+          <path d="M100 10 v18" stroke="#7FA3BF" stroke-width="4" stroke-linecap="round"/>
+          <path d="M70 40 h60 l8 14 h-76 z" fill="#223449" stroke="#7FA3BF" stroke-width="3"/>
+          <rect x="66" y="54" width="68" height="100" fill="none" stroke="#7FA3BF" stroke-width="4"/>
+          <line x1="100" y1="54" x2="100" y2="154" stroke="#7FA3BF" stroke-width="2.5"/>
+          <rect x="72" y="60" width="56" height="88" fill="#E5A13D" opacity=".9"/>
+          <ellipse cx="100" cy="104" rx="12" ry="20" fill="#BC5B2E"/>
+          <ellipse cx="100" cy="112" rx="6" ry="10" fill="#ECF2F8"/>
+          <path d="M62 154 h76 l-8 14 h-60 z" fill="#223449" stroke="#7FA3BF" stroke-width="3"/>
+          <circle cx="100" cy="104" r="78" fill="#E5A13D" opacity=".1"/>
+          <circle cx="100" cy="104" r="56" fill="#E5A13D" opacity=".12"/>
+          <path d="M60 214 h80" stroke="#7FA3BF" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 8"/>
+        </svg>
+        <figcaption>La lanterne reste allumée tant qu'il y a des tablées.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="fetes">
+    <div class="fete">
+      <svg width="90" height="90" viewBox="0 0 90 90" aria-hidden="true">
+        <rect x="12" y="34" width="66" height="44" fill="none" stroke="#E5A13D" stroke-width="3"/>
+        <path d="M6 34 L45 10 L84 34" fill="none" stroke="#E5A13D" stroke-width="3" stroke-linecap="round"/>
+        <rect x="24" y="46" width="12" height="12" fill="#E5A13D"/>
+        <rect x="54" y="46" width="12" height="12" fill="#E5A13D"/>
+        <path d="M39 78 v-16 h12 v16" fill="none" stroke="#E5A13D" stroke-width="3"/>
+      </svg>
+      <div>
+        <p class="kicker">Anniversaires, familles, équipes</p>
+        <h2>Une salle pour vos fêtes</h2>
+        <p>L'auberge met sa salle à disposition pour vos fêtes et repas de groupe :
+        un lieu à part, loin de la route, où l'on privatise la montagne le temps d'une soirée.
+        Formules et disponibilités : <a href="tel:+33770913333">07 70 91 33 33</a>.</p>
+      </div>
+    </div>
+
+    <div class="infos">
+      <article><h3>Paiement</h3><p>Carte bleue et espèces acceptées.</p></article>
+      <article><h3>Avec les enfants</h3><p>Jeux pour enfants, jardin, tablées familiales bienvenues.</p></article>
+      <article><h3>Avec le chien</h3><p>Les animaux sont les bienvenus à l'auberge.</p></article>
+    </div>
+  </section>
+</div>
+
+<section class="contact block" id="contact">
+  <div class="wrap">
+    <p class="kicker">Contact</p>
+    <h2>On vous garde une table près du feu&nbsp;?</h2>
+    <div class="contact-grid">
+      <dl>
+        <div><dt>Adresse</dt><dd>Lieu-dit Le Vourbey, 25300 Les Fourgs</dd></div>
+        <div><dt>Téléphone (réservation)</dt><dd><a href="tel:+33770913333">07 70 91 33 33</a></dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:aubergeduvourbey@outlook.com">aubergeduvourbey@outlook.com</a></dd></div>
+        <div><dt>Itinéraire (été)</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Auberge+du+Vourbey+Les+Fourgs" rel="noopener">Ouvrir dans Google Maps</a></dd></div>
+      </dl>
+      <div>
+        <p>L'hiver, ne suivez pas le GPS : suivez les pistes. Départ depuis la station
+        des Fourgs, itinéraire raquettes du Tourillot ou pistes nordiques.</p>
+        <p class="note">Périodes d'ouverture, plans d'accès détaillés et photos seront
+        intégrés avec vous lors de la validation de cette maquette.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="credit">
+  Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
+</footer>
+
+</body>
+</html>

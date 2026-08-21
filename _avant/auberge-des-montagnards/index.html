@@ -1,0 +1,241 @@
+<!--
+PLAN DE DESIGN — L'Auberge des Montagnards (chez Walter), Montperreux
+Palette : parchemin #F4ECDD (fond) · encre-poutre #2A2118 (texte) · morille #7A5230 (accent brun) ·
+          lac #3E6F78 (accent froid) · cuivre #B0722C (filets, liens) · panneau #FBF6EA (cartouches)
+Typo    : Iowan Old Style / Palatino / Georgia (titres & texte) + Avenir Next / Avenir / Helvetica Neue (kicker, nav, UI)
+Concept : un "carnet d'auberge" en page asymétrique — hero fendu texte/cartouche, carte à points de conduite,
+          tout aligné à gauche comme une page de registre.
+Élément signature : LA MORILLE — grand SVG de morille (chapeau alvéolé dessiné à la main) en cartouche du hero,
+          reprise en petit glyphe de séparation de sections. Clin d'œil direct à la croûte aux morilles de Walter.
+Thème   : sombre + clair par tokens (clair par défaut, bascule via prefers-color-scheme).
+Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morilles, filet de bœuf aux morilles,
+          truite au vin jaune, salade comtoise, grenouilles, gibier en saison ; salle rustique, poutres, cheminée ;
+          6 rue du Centre. Aucun prix inventé.
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>L'Auberge des Montagnards — maquette</title>
+<style>
+  :root{
+    --parchemin:#F4ECDD; --encre:#2A2118; --morille:#7A5230; --lac:#3E6F78;
+    --cuivre:#B0722C; --panneau:#FBF6EA; --filet:#D8CBB2; --sourdine:#6B5B47;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --parchemin:#221B12; --encre:#EDE3D0; --morille:#C29468; --lac:#7FB3BC;
+      --cuivre:#D9A45B; --panneau:#2C2417; --filet:#4A3E2C; --sourdine:#B3A48C;
+    }
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--parchemin); color:var(--encre);
+    font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    line-height:1.65;
+  }
+  .demo-bandeau{
+    background:var(--encre); color:var(--parchemin);
+    font-family:"Avenir Next",Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:.82rem; letter-spacing:.03em; padding:.6rem 1.2rem; text-align:center;
+  }
+  header.site{
+    display:flex; align-items:baseline; gap:2rem; flex-wrap:wrap;
+    padding:1.4rem 6vw .9rem; border-bottom:3px double var(--cuivre);
+  }
+  .marque{font-size:1.25rem; font-weight:700; letter-spacing:.01em}
+  .marque small{display:block; font-family:"Avenir Next",Avenir,Helvetica,sans-serif;
+    font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color:var(--sourdine); font-weight:500}
+  nav.site{margin-left:auto; font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.8rem;
+    letter-spacing:.14em; text-transform:uppercase}
+  nav.site a{color:var(--encre); text-decoration:none; margin-left:1.4rem; border-bottom:2px solid transparent; padding-bottom:2px}
+  nav.site a:hover{border-color:var(--cuivre)}
+  .hero{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:3.5rem;
+    padding:4rem 6vw 3.5rem; align-items:center;
+  }
+  .kicker{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.75rem;
+    letter-spacing:.28em; text-transform:uppercase; color:var(--lac); margin-bottom:1.1rem}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.6rem); line-height:1.08; font-weight:700; margin-bottom:1.3rem}
+  .hero h1 em{font-style:italic; color:var(--morille)}
+  .hero p.chapeau{font-size:1.08rem; max-width:34rem; margin-bottom:1.8rem}
+  .actions a{
+    display:inline-block; font-family:"Avenir Next",Avenir,Helvetica,sans-serif;
+    font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; text-decoration:none;
+    padding:.75rem 1.5rem; margin:0 1rem .8rem 0;
+  }
+  .actions .plein{background:var(--morille); color:var(--parchemin)}
+  .actions .ligne{border:1.5px solid var(--cuivre); color:var(--encre)}
+  .cartouche{
+    background:var(--panneau); border:1.5px solid var(--filet); padding:2.2rem 1.6rem 1.2rem;
+    box-shadow:6px 6px 0 var(--filet); text-align:center;
+  }
+  .cartouche figcaption{font-size:.85rem; font-style:italic; color:var(--sourdine); margin-top:1rem}
+  .sep{display:flex; align-items:center; gap:1rem; padding:0 6vw; margin:1.2rem 0}
+  .sep::before,.sep::after{content:""; flex:1; border-top:1px solid var(--filet)}
+  section.bloc{padding:2.6rem 6vw}
+  section.bloc h2{font-size:1.7rem; margin-bottom:.4rem}
+  .surtitre{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.7rem;
+    letter-spacing:.26em; text-transform:uppercase; color:var(--cuivre); margin-bottom:.5rem}
+  .colonnes{display:grid; grid-template-columns:1fr 1fr; gap:2.5rem 4rem; margin-top:1.6rem}
+  .carte-liste{list-style:none; max-width:44rem}
+  .carte-liste li{display:flex; align-items:baseline; gap:.6rem; padding:.55rem 0; border-bottom:1px dotted var(--filet)}
+  .carte-liste .plat{font-weight:700}
+  .carte-liste .points{flex:1; border-bottom:1px dotted var(--sourdine); transform:translateY(-4px)}
+  .carte-liste .note{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.72rem;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--sourdine); white-space:nowrap}
+  .carte-liste li p{flex-basis:100%; font-size:.92rem; font-style:italic; color:var(--sourdine); padding-left:0}
+  .carte-liste li{flex-wrap:wrap}
+  .rando{background:var(--panneau); border-left:5px solid var(--lac); padding:1.6rem 1.8rem; max-width:46rem; margin-top:1.4rem}
+  .rando strong{color:var(--lac)}
+  address{font-style:normal}
+  .contact-grille{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; margin-top:1.4rem}
+  .contact-grille h3{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.72rem;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--sourdine); margin-bottom:.5rem}
+  a{color:var(--cuivre)}
+  footer.site{border-top:3px double var(--cuivre); margin-top:2.5rem; padding:1.6rem 6vw 2.4rem;
+    font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.78rem; color:var(--sourdine)}
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr; gap:2.2rem; padding-top:2.5rem}
+    .colonnes{grid-template-columns:1fr}
+    nav.site{margin-left:0}
+  }
+</style>
+</head>
+<body>
+<div class="demo-bandeau">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="morille-mini">
+      <path d="M10,38 C9,30 9.5,26 11,22 L17,22 C18.5,26 19,30 18,38 Z" fill="var(--panneau)" stroke="var(--sourdine)" stroke-width="1"/>
+      <path d="M14,2 C8,4 5,10 5.5,15 C6,19.5 9.5,22.5 14,22.5 C18.5,22.5 22,19.5 22.5,15 C23,10 20,4 14,2 Z" fill="var(--morille)"/>
+      <path d="M9,8 l3,1 M17,6 l2,3 M8,14 l3,-1 M14,10 l0,3 M18,13 l2,2 M12,17 l3,1" stroke="var(--encre)" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".55"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="site">
+  <div class="marque">L'Auberge des Montagnards
+    <small>dite « chez Walter » — Montperreux</small>
+  </div>
+  <nav class="site">
+    <a href="#maison">La maison</a>
+    <a href="#carte">La carte</a>
+    <a href="#randonneurs">Randonneurs</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div>
+      <p class="kicker">Montperreux · au-dessus du lac Saint-Point</p>
+      <h1>La table du village,<br>où la <em>morille</em> est reine.</h1>
+      <p class="chapeau">Une auberge de village comme on n'en fait plus : poutres, cheminée, et la cuisine
+      franc-comtoise de Walter — croûte aux morilles, truite au vin jaune, grenouilles en saison.
+      À deux pas du sentier du tour du lac.</p>
+      <div class="actions">
+        <a class="plein" href="#contact">Réserver une table</a>
+        <a class="ligne" href="#carte">Voir la carte</a>
+      </div>
+    </div>
+    <figure class="cartouche">
+      <svg viewBox="0 0 200 260" width="100%" style="max-width:230px" role="img" aria-label="Morille dessinée, emblème de la maison">
+        <path d="M84,252 C79,214 81,192 88,168 L112,168 C119,192 121,214 116,252 Z"
+              fill="var(--parchemin)" stroke="var(--sourdine)" stroke-width="2"/>
+        <path d="M90,180 c4,3 16,3 20,0" stroke="var(--sourdine)" stroke-width="1.5" fill="none" opacity=".6"/>
+        <path d="M100,16 C58,26 42,78 48,118 C52,148 70,166 100,166 C130,166 148,148 152,118 C158,78 142,26 100,16 Z"
+              fill="var(--morille)"/>
+        <g stroke="var(--encre)" stroke-width="3" stroke-linecap="round" fill="none" opacity=".5">
+          <path d="M72,44 q10,-6 20,-2"/>
+          <path d="M112,34 q12,4 16,14"/>
+          <path d="M58,80 q8,-10 20,-8"/>
+          <path d="M92,62 q12,-4 20,4"/>
+          <path d="M126,70 q10,6 10,18"/>
+          <path d="M64,116 q4,-12 16,-14"/>
+          <path d="M96,96 q14,-2 20,8"/>
+          <path d="M128,110 q8,8 4,20"/>
+          <path d="M80,140 q10,-8 22,-4"/>
+          <path d="M112,146 q12,-2 18,-12"/>
+        </g>
+        <path d="M40,256 q60,10 120,0" stroke="var(--filet)" stroke-width="3" fill="none"/>
+      </svg>
+      <figcaption>La morille, fil rouge de la carte — de la croûte au filet de bœuf.</figcaption>
+    </figure>
+  </div>
+
+  <div class="sep" aria-hidden="true"><svg width="28" height="40" viewBox="0 0 28 40"><use href="#morille-mini"/></svg></div>
+
+  <section class="bloc" id="maison">
+    <p class="surtitre">La maison</p>
+    <h2>Une auberge de village, une vraie</h2>
+    <div class="colonnes">
+      <p>Au centre de Montperreux, sur les hauteurs du lac Saint-Point, l'Auberge des Montagnards est de ces
+      maisons que l'on se transmet de bouche à oreille. Salle rustique et chaleureuse, tables et chaises de bois,
+      poutres apparentes, cheminée qui crépite l'hiver : le décor ne triche pas, la cuisine non plus.</p>
+      <p>Derrière les fourneaux, <strong>Walter Poulain</strong> — tout le pays dit simplement
+      « chez Walter » — défend une cuisine franc-comtoise de produits frais et locaux :
+      morilles, truite, gibier en saison, desserts maison. Accueil familial, conseils francs,
+      et les chiens sont les bienvenus.</p>
+    </div>
+  </section>
+
+  <div class="sep" aria-hidden="true"><svg width="28" height="40" viewBox="0 0 28 40"><use href="#morille-mini"/></svg></div>
+
+  <section class="bloc" id="carte">
+    <p class="surtitre">La carte</p>
+    <h2>Ce qui fait la réputation de la maison</h2>
+    <ul class="carte-liste">
+      <li><span class="plat">Croûte aux morilles</span><span class="points"></span><span class="note">nous consulter</span>
+        <p>Le plat-signature : morilles à la crème sur croûte dorée.</p></li>
+      <li><span class="plat">Filet de bœuf aux morilles</span><span class="points"></span><span class="note">nous consulter</span></li>
+      <li><span class="plat">Truite au vin jaune</span><span class="points"></span><span class="note">nous consulter</span></li>
+      <li><span class="plat">Cuisses de grenouilles</span><span class="points"></span><span class="note">en saison</span></li>
+      <li><span class="plat">Salade comtoise</span><span class="points"></span><span class="note">nous consulter</span></li>
+      <li><span class="plat">Fondue &amp; plats du terroir</span><span class="points"></span><span class="note">nous consulter</span></li>
+      <li><span class="plat">Gibier</span><span class="points"></span><span class="note">en saison</span></li>
+      <li><span class="plat">Desserts maison</span><span class="points"></span><span class="note">nous consulter</span></li>
+    </ul>
+    <p style="margin-top:1rem; font-style:italic; color:var(--sourdine); font-size:.95rem">
+      Carte selon le marché et la cueillette — prix et menus à valider ensemble avant mise en ligne.</p>
+  </section>
+
+  <section class="bloc" id="randonneurs">
+    <p class="surtitre">Randonneurs &amp; promeneurs</p>
+    <h2>L'étape du tour du lac</h2>
+    <div class="rando">
+      <p><strong>Le tour du lac Saint-Point passe par ici.</strong> Montperreux domine le plus grand lac
+      naturel du Haut-Doubs : l'auberge est la halte naturelle des marcheurs — une salade comtoise,
+      une croûte, un café au coin du feu, et on repart. Parking sur place, accès facilité aux
+      personnes à mobilité réduite.</p>
+    </div>
+  </section>
+
+  <section class="bloc" id="contact">
+    <p class="surtitre">Contact</p>
+    <h2>Venir chez Walter</h2>
+    <div class="contact-grille">
+      <address>
+        <h3>Adresse</h3>
+        6 rue du Centre<br>25160 Montperreux<br>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Auberge+des+Montagnards+Montperreux">Itinéraire (Google Maps)</a>
+      </address>
+      <div>
+        <h3>Réservations</h3>
+        <p>Téléphone : <em>à compléter</em></p>
+        <p style="font-size:.85rem; color:var(--sourdine)">Le numéro sera ajouté avec vous à la validation de la maquette.</p>
+      </div>
+      <div>
+        <h3>Bon à savoir</h3>
+        <p>Parking sur place · accès PMR · animaux bienvenus · au-dessus du lac Saint-Point</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle</footer>
+</body>
+</html>

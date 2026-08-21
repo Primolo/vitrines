@@ -1,0 +1,291 @@
+<!--
+PLAN DE DESIGN — Fruitière le Toit du Doubs (Les Fourgs)
+Concept (1 phrase) : « 1 100 mètres » — un modernisme alpin froid et lumineux
+(ciel d'hiver, givre, verre) où la baie vitrée du magasin devient l'interface
+entre le visiteur et la fabrication, avec l'altitude en très grands chiffres.
+Palette (thème clair froid unique, assumé) :
+  --neige   #F5F8FA  blanc neige (fond)
+  --givre   #DCE7EE  givre (panneaux, cadres)
+  --ciel    #46759E  bleu ciel d'hiver (titres, structures)
+  --nuit-bleue #1F3A52  bleu nuit (texte fort, pied)
+  --safran  #E9A13B  jaune comté (accent rare, repères)
+  --zinc    #97A6B2  zinc de toiture (légendes, filets)
+Typographies (système + fallbacks) :
+  Display : Futura, "Avenir Next", "Century Gothic", AppleGothic, sans-serif
+  Texte   : "Avenir Next", Avenir, Corbel, "Helvetica Neue", Arial, sans-serif
+Élément signature : la BAIE VITRÉE (SVG inline) — quadrillage de carreaux
+derrière lesquels on devine cuves de cuivre et meules ; déclinée en héros,
+en pictogramme de section et en motif du panneau horaires (grille vitrée).
+Second motif : la cote d'altitude « 1 100 m » en très grands chiffres, façon
+panneau de sommet. Grille moderniste, bandes horizontales, hero scindé
+gauche/droite — aucun centrage systématique.
+Contenu : faits fournis par le client (11 fermes, 2017, bâtiment mairie/poste,
+baies vitrées, 3 affinages de comté + mont d'or en saison, horaires, ~1 100 m)
++ recherche (adresse 2B Grande Rue, tél. 03 81 39 54 24, épicerie de terroir).
+Prix en magasin, aucune récompense inventée.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Fruitière le Toit du Doubs — maquette</title>
+<style>
+  :root{
+    --neige:#F5F8FA; --givre:#DCE7EE; --ciel:#46759E; --nuit:#1F3A52;
+    --safran:#E9A13B; --zinc:#97A6B2;
+    --display:Futura,"Avenir Next","Century Gothic",AppleGothic,sans-serif;
+    --texte:"Avenir Next",Avenir,Corbel,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--neige);color:var(--nuit);font-family:var(--texte);line-height:1.6}
+  .demo-band{background:var(--nuit);color:var(--neige);font-size:.8rem;padding:.5rem 1.25rem}
+  a{color:var(--ciel)}
+  svg{max-width:100%}
+
+  header.site{display:flex;align-items:center;gap:1rem 2rem;flex-wrap:wrap;
+    padding:1.1rem 5vw;border-bottom:4px solid var(--ciel)}
+  .marque{font-family:var(--display);font-weight:600;font-size:1.15rem;
+    text-transform:uppercase;letter-spacing:.14em;color:var(--ciel)}
+  .marque .cote{display:block;font-size:.68rem;letter-spacing:.3em;color:var(--zinc);font-weight:400}
+  nav.principale{margin-left:auto;display:flex;gap:1.4rem;flex-wrap:wrap}
+  nav.principale a{font-family:var(--display);text-decoration:none;font-size:.78rem;
+    text-transform:uppercase;letter-spacing:.16em;color:var(--nuit)}
+  nav.principale a:hover{color:var(--ciel)}
+
+  .hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:62vh}
+  .hero .texte{padding:4rem 3rem 4rem 5vw;display:flex;flex-direction:column;justify-content:center}
+  .cote-altitude{font-family:var(--display);font-weight:700;color:var(--ciel);
+    font-size:clamp(3.2rem,9vw,6.5rem);line-height:.95;letter-spacing:-.01em}
+  .cote-altitude sup{font-size:.32em;vertical-align:.9em;letter-spacing:.08em;color:var(--safran)}
+  .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(1.15rem,2.2vw,1.6rem);
+    text-transform:uppercase;letter-spacing:.12em;margin-top:1rem;max-width:24ch}
+  .hero p.chapo{margin-top:1.25rem;max-width:44ch;color:#3c526a}
+  .hero .actions{margin-top:1.8rem;display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{font-family:var(--display);display:inline-block;text-decoration:none;font-size:.8rem;
+    text-transform:uppercase;letter-spacing:.16em;padding:.8rem 1.4rem}
+  .btn.plein{background:var(--ciel);color:#fff}
+  .btn.plein:hover{background:#38618a}
+  .btn.trait{border:2px solid var(--ciel);color:var(--ciel)}
+  .btn.trait:hover{background:var(--givre)}
+  .hero .vitrine{background:var(--givre);display:flex;align-items:center;
+    justify-content:center;padding:2.5rem 5vw 2.5rem 2.5rem;border-left:4px solid var(--ciel)}
+
+  .bandeau-faits{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    background:var(--nuit);color:var(--neige)}
+  .bandeau-faits div{padding:1.4rem 1.6rem;border-right:1px solid #35516d}
+  .bandeau-faits div:last-child{border-right:none}
+  .bandeau-faits b{font-family:var(--display);display:block;font-size:1.5rem;color:var(--safran);font-weight:600}
+  .bandeau-faits span{font-size:.8rem;color:#b8c8d6}
+
+  section.bloc{padding:4rem 5vw}
+  .repere{font-family:var(--display);font-size:.75rem;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--safran)}
+  h2{font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,3vw,2.1rem);
+    text-transform:uppercase;letter-spacing:.06em;color:var(--ciel);margin:.5rem 0 1.3rem;max-width:28ch}
+  .deux-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem}
+  .deux-col p+p{margin-top:1rem}
+
+  .affinages{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:1.5rem}
+  .affinages article{border-top:6px solid var(--ciel);background:#fff;padding:1.4rem 1.4rem 1.6rem;
+    box-shadow:0 1px 0 var(--givre)}
+  .affinages article:nth-child(2){border-top-color:var(--safran)}
+  .affinages article:nth-child(3){border-top-color:var(--nuit)}
+  .affinages h3{font-family:var(--display);font-weight:600;text-transform:uppercase;
+    letter-spacing:.1em;font-size:1rem}
+  .affinages .type{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc);margin:.25rem 0 .8rem}
+  .affinages p{font-size:.92rem;color:#3c526a}
+  .saison{margin-top:1.5rem;background:var(--givre);border-left:6px solid var(--safran);
+    padding:1.2rem 1.5rem;font-size:.95rem;max-width:70ch}
+  .note-prix{margin-top:1.2rem;font-size:.85rem;font-style:italic;color:var(--zinc)}
+
+  .horaires-grille{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3rem;align-items:start}
+  table.horaires{border-collapse:collapse;width:100%;background:#fff}
+  table.horaires th,table.horaires td{border:1px solid var(--givre);padding:.7rem 1rem;
+    text-align:left;font-size:.92rem}
+  table.horaires th{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;
+    font-size:.72rem;background:var(--ciel);color:#fff}
+  table.horaires td:first-child{font-weight:600}
+  .panneau-acces{background:var(--nuit);color:var(--neige);padding:1.8rem 1.7rem}
+  .panneau-acces h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;
+    font-size:.95rem;color:var(--safran);margin-bottom:1rem}
+  .panneau-acces dl{font-size:.92rem}
+  .panneau-acces dt{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc);margin-top:.9rem}
+  .panneau-acces dd{margin-top:.15rem}
+  .panneau-acces a{color:var(--safran)}
+
+  footer.site{background:var(--nuit);color:#b8c8d6;padding:2.5rem 5vw;margin-top:2rem}
+  footer.site p{font-size:.85rem;max-width:64ch}
+  footer.site a{color:var(--safran)}
+  .mention-primo{margin-top:1.25rem;border-top:1px solid #35516d;padding-top:1rem;font-size:.8rem}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;min-height:0}
+    .hero .vitrine{border-left:none;border-top:4px solid var(--ciel)}
+    .deux-col,.horaires-grille{grid-template-columns:1fr}
+  }
+</style>
+
+<div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<header class="site">
+  <div class="marque">Fruitière le Toit du Doubs
+    <span class="cote">Les Fourgs · 25300</span>
+  </div>
+  <nav class="principale">
+    <a href="#fabrication">La fabrication</a>
+    <a href="#comtes">Les trois comtés</a>
+    <a href="#magasin">Magasin &amp; horaires</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="texte">
+    <div class="cote-altitude">1 100<sup>M D'ALTITUDE</sup></div>
+    <h1>La fruitière du plus haut village du Doubs</h1>
+    <p class="chapo">Aux Fourgs, onze fermes se sont réunies en coopérative
+    pour fabriquer leur comté au village. Le magasin partage le bâtiment de
+    la mairie et de la poste — et à travers ses baies vitrées, on regarde
+    le fromage se faire.</p>
+    <div class="actions">
+      <a class="btn plein" href="#magasin">Horaires &amp; accès</a>
+      <a class="btn trait" href="#comtes">Choisir son comté</a>
+    </div>
+  </div>
+  <div class="vitrine">
+    <!-- Élément signature : la baie vitrée sur la fabrication -->
+    <svg viewBox="0 0 520 340" role="img" aria-label="Baie vitrée du magasin ouvrant sur l'atelier de fabrication : cuves de cuivre et meules de comté">
+      <!-- toit -->
+      <path d="M10 78 L260 18 L510 78" fill="none" stroke="#1F3A52" stroke-width="8" stroke-linejoin="round"/>
+      <!-- cadre de la baie -->
+      <rect x="40" y="92" width="440" height="216" fill="#eef4f8" stroke="#1F3A52" stroke-width="6"/>
+      <!-- scène derrière la vitre : cuves -->
+      <g>
+        <path d="M76 240 h84 l-8 44 a34 18 0 0 1 -68 0 z" fill="#B96F45"/>
+        <ellipse cx="118" cy="240" rx="42" ry="9" fill="#d99a6c"/>
+        <path d="M196 240 h84 l-8 44 a34 18 0 0 1 -68 0 z" fill="#B96F45"/>
+        <ellipse cx="238" cy="240" rx="42" ry="9" fill="#d99a6c"/>
+        <!-- meules sur étagère -->
+        <rect x="316" y="228" width="140" height="5" fill="#8fa3b1"/>
+        <g fill="#E9A13B" stroke="#c07f1d" stroke-width="1.4">
+          <ellipse cx="346" cy="218" rx="26" ry="10"/>
+          <ellipse cx="404" cy="218" rx="26" ry="10"/>
+          <ellipse cx="346" cy="204" rx="26" ry="10"/>
+          <ellipse cx="404" cy="204" rx="26" ry="10"/>
+        </g>
+        <rect x="316" y="278" width="140" height="5" fill="#8fa3b1"/>
+        <g fill="#E9A13B" stroke="#c07f1d" stroke-width="1.4">
+          <ellipse cx="346" cy="268" rx="26" ry="10"/>
+          <ellipse cx="404" cy="268" rx="26" ry="10"/>
+        </g>
+        <!-- vapeur -->
+        <path d="M118 228 q-6 -12 2 -22 q7 -9 1 -18" stroke="#97A6B2" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".7"/>
+        <path d="M238 228 q6 -12 -2 -22 q-7 -9 -1 -18" stroke="#97A6B2" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".7"/>
+      </g>
+      <!-- croisillons de la baie -->
+      <g stroke="#1F3A52" stroke-width="5">
+        <path d="M150 92 v216 M260 92 v216 M370 92 v216 M40 164 h440"/>
+      </g>
+      <!-- reflets -->
+      <g stroke="#ffffff" stroke-width="7" opacity=".5" stroke-linecap="round">
+        <path d="M70 200 l52 -76 M96 236 l70 -104"/>
+      </g>
+      <!-- appui -->
+      <rect x="26" y="308" width="468" height="10" fill="#46759E"/>
+    </svg>
+  </div>
+</section>
+
+<div class="bandeau-faits">
+  <div><b>11 fermes</b><span>réunies en coopérative</span></div>
+  <div><b>2017</b><span>ouverture du magasin au village</span></div>
+  <div><b>3 affinages</b><span>de comté à la coupe</span></div>
+  <div><b>Mont d'or</b><span>fabriqué en saison</span></div>
+</div>
+
+<section class="bloc" id="fabrication">
+  <p class="repere">Derrière la vitre</p>
+  <h2>On fabrique sous vos yeux</h2>
+  <div class="deux-col">
+    <div>
+      <p>Depuis novembre 2017, la coopérative des Fourgs et ses onze fermes
+      tiennent leur magasin au centre du village, dans le même bâtiment que
+      la mairie et la poste. Une adresse qui dit tout : ici, la fruitière
+      est un service public du goût.</p>
+      <p>L'atelier ne se visite pas — il se regarde. De grandes baies
+      vitrées ouvrent le magasin sur la salle de fabrication : cuves,
+      moulage, soins des meules. Venez le matin, c'est là que tout se passe.</p>
+    </div>
+    <div>
+      <p>Les Fourgs, village le plus haut du Doubs, culmine à environ
+      1 100 mètres. Prés d'altitude, hivers francs, lait riche : le décor
+      n'est pas qu'un paysage, c'est la recette.</p>
+      <p>Au magasin, la production de la fruitière — comté et mont d'or en
+      saison — voisine avec une épicerie de terroir : beurre, yaourts,
+      miel, charcuterie, fromage de chèvre bio et d'autres fromages
+      d'appellation de la région.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc" id="comtes" style="background:var(--givre)">
+  <p class="repere">À la coupe</p>
+  <h2>Trois affinages, trois caractères</h2>
+  <div class="affinages">
+    <article>
+      <h3>Doux</h3>
+      <p class="type">Le tendre</p>
+      <p>Jeune et souple, des notes de lait frais et de beurre. Celui que
+      l'on rachète chaque semaine, pour tous les jours et tous les âges.</p>
+    </article>
+    <article>
+      <h3>Fruité</h3>
+      <p class="type">Le généreux</p>
+      <p>L'affinage s'allonge, les arômes s'affirment : fruits secs,
+      torréfaction. L'équilibre préféré des plateaux.</p>
+    </article>
+    <article>
+      <h3>Altitude</h3>
+      <p class="type">Le signature</p>
+      <p>Le comté qui porte le nom du village : celui du lait des hauteurs,
+      à la personnalité la plus marquée. À goûter sur place pour choisir.</p>
+    </article>
+  </div>
+  <p class="saison"><strong>Et l'hiver, le mont d'or.</strong> Fabriqué en
+  saison seulement, cerclé d'épicéa, à la cuillère ou passé au four : le
+  fromage des soirées d'altitude.</p>
+  <p class="note-prix">Prix en magasin — dégustation et conseil à la coupe.</p>
+</section>
+
+<section class="bloc" id="magasin">
+  <p class="repere">Nous rendre visite</p>
+  <h2>Le magasin, place du village</h2>
+  <div class="horaires-grille">
+    <div class="panneau-acces">
+      <h3>Accès</h3>
+      <dl>
+        <dt>Adresse</dt>
+        <dd>Fruitière le Toit du Doubs<br>2B Grande Rue — bâtiment mairie / poste<br>25300 Les Fourgs</dd>
+        <dt>Téléphone</dt>
+        <dd><a href="tel:+33381395424">03 81 39 54 24</a></dd>
+        <dt>Itinéraire</dt>
+        <dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Fruiti%C3%A8re+le+Toit+du+Doubs+Les+Fourgs">Ouvrir dans Google Maps</a></dd>
+      </dl>
+    </div>
+    <div>
+      <table class="horaires">
+        <tr><th>Jour</th><th>Matin</th><th>Après-midi</th></tr>
+        <tr><td>Lundi – samedi</td><td>10 h – 12 h</td><td>14 h 30 – 18 h</td></tr>
+        <tr><td>Dimanche &amp; jours fériés</td><td>10 h – 12 h</td><td>—</td></tr>
+      </table>
+      <p style="font-size:.85rem;color:var(--zinc);margin-top:.8rem;font-style:italic">
+      Le conseil du sommet : passez en fin de matinée, quand la fabrication bat son plein derrière les vitres.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <p><strong>Fruitière le Toit du Doubs</strong> — la coopérative des onze fermes des Fourgs,
+  village le plus haut du Doubs. Comté en trois affinages, mont d'or en saison, fabrication
+  visible depuis le magasin.</p>
+  <p class="mention-primo">Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle</p>
+</footer>

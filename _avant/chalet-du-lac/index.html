@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!--
+PLAN DE DESIGN — Chalet du Lac (Les Grangettes)
+Palette (univers réel : lac Saint-Point au petit matin, bois clair du chalet, laiton discret) :
+  - Brume        #F7F5F0  (fond ivoire froid, lumière de matin calme)
+  - Encre du lac #22333B  (texte, bleu-noir d'eau profonde)
+  - Eau profonde #4E6E7E  (bleu-gris du lac, liens et traits forts)
+  - Reflet       #AEC3CB  (bleu pâle des reflets, traits fins)
+  - Grève        #ECE7DC  (sable clair de la plage privée, panneaux)
+  - Laiton       #A8874F  (accent précieux, très dosé — 4 étoiles sans ostentation)
+Typographie : titres Didot / "Bodoni 72" / "Playfair Display" / Georgia (serif fine, graisse légère,
+italiques) · corps "Avenir Next" / Avenir / "Segoe UI" / Helvetica Neue (sans humaniste, léger).
+Concept : le silence du lac au petit matin — beaucoup d'air, filets d'un pixel, tout aligné à gauche
+sur une marge stricte, aucune carte, aucun aplat criard.
+ÉLÉMENT SIGNATURE : la "ride d'eau" — fine ligne sinusoïdale horizontale (reflet du lac), déclinée en
+séparateurs de sections, en fond du panorama du hero (ponton + ligne d'eau) et dans le monogramme
+(cercle coupé par la ligne d'eau, moitié basse en rides = le chalet et son reflet).
+Thème : UN SEUL thème clair assumé — l'épure du lieu est une lumière de matin, on ne la double pas
+d'une version sombre.
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Chalet du Lac — maquette</title>
+<style>
+  :root{
+    --brume:#F7F5F0; --encre:#22333B; --eau:#4E6E7E; --reflet:#AEC3CB;
+    --greve:#ECE7DC; --laiton:#A8874F;
+    --serif:Didot,"Bodoni 72","Playfair Display",Georgia,serif;
+    --sans:"Avenir Next",Avenir,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--brume);color:var(--encre);font-family:var(--sans);
+       font-size:16px;line-height:1.8;font-weight:400;}
+  ::selection{background:var(--reflet);color:var(--encre);}
+  a{color:var(--eau);text-decoration:none;border-bottom:1px solid var(--reflet);transition:border-color .2s;}
+  a:hover{border-color:var(--laiton);}
+  svg{display:block;max-width:100%;}
+  .demo-band{background:var(--encre);color:var(--brume);font-size:.8rem;letter-spacing:.04em;
+             padding:.65rem 1.5rem;text-align:left;}
+  .col{max-width:1060px;margin:0 auto;padding:0 1.5rem;}
+  /* étiquettes en petites capitales espacées */
+  .label{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--laiton);
+         font-weight:500;display:block;margin-bottom:1.2rem;}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--encre);line-height:1.15;}
+  h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin-bottom:1.4rem;letter-spacing:.01em;}
+  h2 em, h1 em{font-style:italic;color:var(--eau);}
+  header.site{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+              padding:1.6rem 0;border-bottom:1px solid var(--reflet);flex-wrap:wrap;}
+  .marque{display:flex;align-items:center;gap:.85rem;}
+  .marque .nom{font-family:var(--serif);font-size:1.25rem;letter-spacing:.05em;}
+  .marque .lieu{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--eau);}
+  nav.principale{display:flex;gap:1.8rem;flex-wrap:wrap;}
+  nav.principale a{border:none;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--encre);}
+  nav.principale a:hover{color:var(--eau);}
+  /* HERO */
+  .hero{padding:5.5rem 0 0;}
+  .hero .surtitre{font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:var(--eau);margin-bottom:2rem;}
+  .hero h1{font-size:clamp(2.6rem,6.5vw,4.6rem);max-width:14ch;margin-bottom:2.2rem;}
+  .hero p.accroche{max-width:52ch;font-size:1.06rem;color:#42535C;margin-bottom:2.8rem;}
+  .etoiles{display:inline-flex;gap:.35rem;vertical-align:baseline;margin-left:.6rem;}
+  .cta-ligne{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;margin-bottom:4rem;}
+  .btn{display:inline-block;border:1px solid var(--encre);padding:.85rem 2.2rem;font-size:.8rem;
+       letter-spacing:.22em;text-transform:uppercase;color:var(--encre);transition:all .25s;}
+  .btn:hover{background:var(--encre);color:var(--brume);border-color:var(--encre);}
+  .btn.plein{background:var(--encre);color:var(--brume);}
+  .btn.plein:hover{background:var(--eau);border-color:var(--eau);}
+  .panorama{border-top:1px solid var(--reflet);}
+  /* séparateur signature : ride d'eau */
+  .ride{padding:3.5rem 0 0;}
+  section{padding:5rem 0;}
+  .deux-col{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4rem;align-items:start;}
+  .trois-faits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--reflet);
+               border-bottom:1px solid var(--reflet);margin-top:3.5rem;}
+  .fait{padding:2rem 1.5rem 2rem 0;}
+  .fait + .fait{border-left:1px solid var(--reflet);padding-left:2rem;}
+  .fait .chiffre{font-family:var(--serif);font-size:2.1rem;color:var(--eau);line-height:1;margin-bottom:.5rem;}
+  .fait .quoi{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#5A6B74;}
+  /* chambres : rangées numérotées, pas de cartes */
+  .rangee{display:grid;grid-template-columns:minmax(60px,1fr) minmax(0,4fr) minmax(0,7fr);gap:2rem;
+          padding:2.6rem 0;border-top:1px solid var(--reflet);align-items:baseline;}
+  .rangee:last-of-type{border-bottom:1px solid var(--reflet);}
+  .rangee .num{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--laiton);}
+  .rangee h3{font-size:1.35rem;}
+  .rangee p{color:#42535C;max-width:56ch;}
+  /* plage */
+  .plage-bloc{background:var(--greve);padding:4.5rem 0;}
+  .plage-int{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:4rem;align-items:center;}
+  ul.sobre{list-style:none;}
+  ul.sobre li{padding:.85rem 0;border-bottom:1px solid var(--reflet);display:flex;gap:1rem;align-items:baseline;}
+  ul.sobre li::before{content:"";flex:0 0 22px;height:1px;background:var(--laiton);transform:translateY(-4px);}
+  /* voix des hôtes */
+  .voix{max-width:60ch;}
+  .voix .grande{font-family:var(--serif);font-size:clamp(1.4rem,2.6vw,1.9rem);font-style:italic;
+                color:var(--eau);line-height:1.45;margin:1.5rem 0;}
+  .note-plateformes{font-size:.85rem;color:#5A6B74;}
+  /* réservation directe */
+  .direct{border:1px solid var(--laiton);padding:3.5rem;display:grid;
+          grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:3rem;align-items:center;background:#FBFAF6;}
+  .direct h2{margin-bottom:1rem;}
+  .direct .grande-ligne{font-size:1.05rem;color:#42535C;max-width:48ch;}
+  .direct .encadre-cta{text-align:left;display:flex;flex-direction:column;gap:1rem;align-items:flex-start;}
+  .mention-direct{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--laiton);}
+  /* contact */
+  .contact-grille{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3rem;margin-top:2.5rem;}
+  .contact-grille h3{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-family:var(--sans);
+                     color:var(--laiton);margin-bottom:.8rem;font-weight:500;}
+  .contact-grille p{color:#42535C;font-size:.95rem;}
+  footer.pied{border-top:1px solid var(--reflet);padding:2.5rem 0 3rem;font-size:.8rem;color:#5A6B74;letter-spacing:.03em;}
+  @media (max-width:840px){
+    .deux-col,.plage-int,.direct{grid-template-columns:1fr;gap:2rem;}
+    .trois-faits{grid-template-columns:1fr;}
+    .fait + .fait{border-left:none;border-top:1px solid var(--reflet);padding-left:0;padding-top:2rem;}
+    .rangee{grid-template-columns:1fr;gap:.6rem;padding:2rem 0;}
+    .contact-grille{grid-template-columns:1fr;gap:2rem;}
+    .direct{padding:2rem;}
+    section{padding:3.5rem 0;}
+  }
+</style>
+</head>
+<body>
+<div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
+
+<div class="col">
+<header class="site">
+  <div class="marque">
+    <!-- monogramme signature : cercle coupé par la ligne d'eau, reflet en rides -->
+    <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+      <circle cx="23" cy="23" r="21" fill="none" stroke="#4E6E7E" stroke-width="1.2"/>
+      <path d="M6 23 H40" stroke="#A8874F" stroke-width="1"/>
+      <path d="M14 12 L23 6 L32 12 M17 12 V20 M29 12 V20" fill="none" stroke="#22333B" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M10 29 q3-2 6 0 t6 0 t6 0 t6 0" fill="none" stroke="#AEC3CB" stroke-width="1.1"/>
+      <path d="M12 35 q3-2 6 0 t6 0 t6 0" fill="none" stroke="#AEC3CB" stroke-width="1.1"/>
+    </svg>
+    <div>
+      <div class="nom">Chalet du Lac</div>
+      <div class="lieu">Les Grangettes · Lac Saint-Point</div>
+    </div>
+  </div>
+  <nav class="principale">
+    <a href="#maison">La maison</a>
+    <a href="#chambres">Les chambres</a>
+    <a href="#plage">La plage</a>
+    <a href="#direct">Réserver</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+</div>
+
+<main>
+<div class="col">
+<div class="hero">
+  <p class="surtitre">Maison d'hôtes quatre étoiles, les pieds dans l'eau</p>
+  <h1>Le lac Saint-Point, <em>au réveil,</em> depuis votre terrasse</h1>
+  <p class="accroche">Aux Grangettes, à cinquante mètres de la rive, le Chalet du Lac ouvre
+  ses chambres sur l'eau calme du matin. Une plage privée, un jardin, un petit-déjeuner
+  servi en buffet — et le reste de la journée qui peut attendre.</p>
+  <div class="cta-ligne">
+    <a class="btn plein" href="#direct">Réserver en direct</a>
+    <a class="btn" href="#chambres">Découvrir les chambres</a>
+  </div>
+</div>
+</div>
+
+<!-- panorama signature : ligne d'eau, ponton, rides -->
+<div class="panorama" aria-hidden="true">
+  <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" style="width:100%;height:auto;">
+    <rect width="1200" height="300" fill="#F7F5F0"/>
+    <!-- rive lointaine, un seul trait calme -->
+    <path d="M0 118 C200 106 420 122 640 112 C860 102 1050 118 1200 110" fill="none" stroke="#AEC3CB" stroke-width="1.4"/>
+    <!-- soleil bas, cercle laiton -->
+    <circle cx="885" cy="82" r="26" fill="none" stroke="#A8874F" stroke-width="1.2"/>
+    <path d="M845 130 q10-4 20 0 t20 0 t20 0 t20 0" fill="none" stroke="#A8874F" stroke-width="1" opacity=".6"/>
+    <!-- ligne d'eau -->
+    <path d="M0 138 H1200" stroke="#4E6E7E" stroke-width="1.6"/>
+    <!-- rides signature, de plus en plus espacées vers le bas -->
+    <path d="M0 160 q25-7 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0" fill="none" stroke="#AEC3CB" stroke-width="1.2"/>
+    <path d="M0 186 q30-8 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" fill="none" stroke="#AEC3CB" stroke-width="1.1" opacity=".8"/>
+    <path d="M0 220 q40-9 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0" fill="none" stroke="#AEC3CB" stroke-width="1" opacity=".55"/>
+    <path d="M0 262 q50-10 100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0" fill="none" stroke="#AEC3CB" stroke-width="1" opacity=".35"/>
+    <!-- ponton -->
+    <path d="M120 138 L360 150 L360 154 L120 141 Z" fill="#22333B" opacity=".85"/>
+    <g stroke="#22333B" stroke-width="3" opacity=".85">
+      <path d="M150 141 V168"/><path d="M215 144 V176"/><path d="M285 147 V186"/><path d="M352 151 V198"/>
+    </g>
+    <!-- reflets des piquets -->
+    <g stroke="#4E6E7E" stroke-width="2" opacity=".3">
+      <path d="M150 174 V190"/><path d="M215 182 V200"/><path d="M285 192 V212"/><path d="M352 204 V228"/>
+    </g>
+  </svg>
+</div>
+
+<div class="col">
+<section id="maison">
+  <div class="deux-col">
+    <div>
+      <span class="label">La maison</span>
+      <h2>Un chalet posé <em>face à l'eau</em></h2>
+    </div>
+    <div>
+      <p>Le Chalet du Lac est une maison d'hôtes classée quatre étoiles, chemin du Lac,
+      aux Grangettes. La rive du lac Saint-Point est à cinquante mètres ; entre elle et vous,
+      un jardin, une terrasse, et la plage privée de la maison. À l'intérieur : une cheminée,
+      un coin repas, et une décoration dont chaque détail a été choisi — c'est ce que les
+      voyageurs retiennent le plus souvent, avec la chaleur de l'accueil.</p>
+      <p style="margin-top:1.2rem;">Le Wi-Fi et le parking privé sont offerts. Autour de la maison,
+      le tour du lac, les sentiers du Haut-Doubs et les itinéraires à vélo partent de la porte.</p>
+    </div>
+  </div>
+  <div class="trois-faits">
+    <div class="fait"><div class="chiffre">50 m</div><div class="quoi">de la rive du lac Saint-Point</div></div>
+    <div class="fait"><div class="chiffre">4<span style="font-size:1.1rem;">&#9733;</span></div><div class="quoi">classement de la maison</div></div>
+    <div class="fait"><div class="chiffre">1</div><div class="quoi">plage privée, pour les hôtes seulement</div></div>
+  </div>
+</section>
+
+<div class="ride" aria-hidden="true">
+  <svg viewBox="0 0 1060 14" style="width:100%;height:14px;">
+    <path d="M0 7 q30-6 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" fill="none" stroke="#AEC3CB" stroke-width="1.2"/>
+  </svg>
+</div>
+
+<section id="chambres">
+  <span class="label">Les chambres</span>
+  <h2>Peu de chambres, <em>beaucoup de soin</em></h2>
+  <p style="max-width:58ch;color:#42535C;margin-bottom:1rem;">Chaque chambre a sa salle de bain
+  privée et donne sur l'extérieur — patio ou terrasse, avec le lac en ligne de mire.
+  Le linge de lit et les serviettes sont fournis.</p>
+  <div class="rangee">
+    <div class="num">— 01</div>
+    <h3>Côté lac</h3>
+    <p>Terrasse ou patio privatif tourné vers l'eau, bureau, télévision à écran plat.
+    Le matin, le petit-déjeuner en buffet vous attend en bas.</p>
+  </div>
+  <div class="rangee">
+    <div class="num">— 02</div>
+    <h3>Avec coin cuisine</h3>
+    <p>Certaines chambres disposent d'une cuisine équipée — lave-vaisselle, micro-ondes,
+    réfrigérateur — pour les séjours qui s'étirent.</p>
+  </div>
+  <div class="rangee">
+    <div class="num">— 03</div>
+    <h3>Les espaces partagés</h3>
+    <p>Le salon et sa cheminée, le coin repas, le jardin et la terrasse commune :
+    la maison se prête autant aux soirées d'hiver qu'aux fins de journée d'été.</p>
+  </div>
+</section>
+</div>
+
+<div class="plage-bloc" id="plage">
+  <div class="col">
+    <div class="plage-int">
+      <div>
+        <span class="label">La plage privée</span>
+        <h2>Votre entrée <em>dans le lac</em></h2>
+        <p style="color:#42535C;max-width:54ch;">Le lac Saint-Point est l'un des grands lacs
+        naturels du Jura français. La maison y a son accès direct : une plage réservée aux hôtes,
+        posée entre le jardin et l'eau.</p>
+        <ul class="sobre" style="margin-top:1.8rem;">
+          <li>Baignade et activités nautiques depuis la plage</li>
+          <li>Tour du lac à pied ou à vélo au départ de la maison</li>
+          <li>Sentiers de randonnée du Haut-Doubs à proximité</li>
+          <li>Métabief, Pontarlier et la Suisse voisine à courte route</li>
+        </ul>
+      </div>
+      <div aria-hidden="true">
+        <svg viewBox="0 0 380 300" style="width:100%;height:auto;">
+          <rect width="380" height="300" fill="#ECE7DC"/>
+          <path d="M20 60 H360" stroke="#4E6E7E" stroke-width="1.4"/>
+          <path d="M20 84 q22-6 44 0 t44 0 t44 0 t44 0 t44 0 t44 0 t44 0 t44 0" fill="none" stroke="#AEC3CB" stroke-width="1.2"/>
+          <path d="M20 112 q28-7 56 0 t56 0 t56 0 t56 0 t56 0 t56 0" fill="none" stroke="#AEC3CB" stroke-width="1.1" opacity=".7"/>
+          <path d="M20 146 q34-8 68 0 t68 0 t68 0 t68 0 t68 0" fill="none" stroke="#AEC3CB" stroke-width="1" opacity=".5"/>
+          <!-- grève : pointillé de sable -->
+          <path d="M20 200 C120 188 260 210 360 196" fill="none" stroke="#A8874F" stroke-width="1.2" stroke-dasharray="1 7" stroke-linecap="round"/>
+          <path d="M20 224 C120 212 260 234 360 220" fill="none" stroke="#A8874F" stroke-width="1.2" stroke-dasharray="1 9" stroke-linecap="round" opacity=".6"/>
+          <path d="M20 248 C120 236 260 258 360 244" fill="none" stroke="#A8874F" stroke-width="1.2" stroke-dasharray="1 11" stroke-linecap="round" opacity=".35"/>
+          <!-- barque -->
+          <path d="M236 52 q14 10 34 0 l-5 8 q-12 6 -24 0 Z" fill="#22333B"/>
+          <path d="M244 66 q10 4 18 0" fill="none" stroke="#4E6E7E" stroke-width="1" opacity=".5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+<section>
+  <div class="voix">
+    <span class="label">Ce que les hôtes retiennent</span>
+    <p class="grande">L'accueil, la vue dégagée sur le lac, et cette impression
+    que chaque détail de la maison a été pensé.</p>
+    <p class="note-plateformes">Thèmes qui reviennent dans les avis publiés sur les plateformes
+    de réservation — emplacement noté 10/10 par les voyageurs. Sources et citations exactes
+    à valider ensemble avant mise en ligne.</p>
+  </div>
+</section>
+
+<section id="direct">
+  <div class="direct">
+    <div>
+      <span class="label">Réservez en direct</span>
+      <h2>Le meilleur accueil <em>commence ici</em></h2>
+      <p class="grande-ligne">Réservation en direct, sans commission de plateforme.
+      En écrivant ou en téléphonant à la maison, vous obtenez la réponse la plus juste :
+      disponibilités réelles, conseils de saison, demandes particulières.</p>
+    </div>
+    <div class="encadre-cta">
+      <span class="mention-direct">Sans intermédiaire</span>
+      <a class="btn plein" href="#contact">Demander les disponibilités</a>
+      <span style="font-size:.8rem;color:#5A6B74;">Téléphone et adresse e-mail de la maison
+      à insérer ici après validation.</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <span class="label">Contact</span>
+  <h2>Aux Grangettes, <em>chemin du Lac</em></h2>
+  <div class="contact-grille">
+    <div>
+      <h3>Adresse</h3>
+      <p>Chalet du Lac<br>Chemin du Lac<br>25160 Les Grangettes<br>Doubs — Haut-Doubs</p>
+    </div>
+    <div>
+      <h3>Itinéraire</h3>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Chalet+du+Lac+Les+Grangettes" rel="noopener">Ouvrir dans Google Maps</a></p>
+      <p style="margin-top:.6rem;">À 10 minutes de Malbuisson,<br>25 minutes de Pontarlier.</p>
+    </div>
+    <div>
+      <h3>Joindre la maison</h3>
+      <p>Numéro de téléphone et e-mail<br>à ajouter avec vous<br>(lien d'appel direct prévu).</p>
+    </div>
+  </div>
+</section>
+</div>
+</main>
+
+<div class="col">
+<footer class="pied">
+  Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
+</footer>
+</div>
+</body>
+</html>
