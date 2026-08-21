@@ -30,8 +30,8 @@ Prix en magasin, aucune récompense inventée.
 <title>Fruitière le Toit du Doubs — maquette</title>
 <style>
   :root{
-    --neige:#F5F8FA; --givre:#DCE7EE; --ciel:#46759E; --nuit:#1F3A52;
-    --safran:#E9A13B; --zinc:#97A6B2;
+    --neige:#F5F8FA; --givre:#DCE7EE; --ciel:#46759E; --ciel-texte:#2E5578; --nuit:#1F3A52;
+    --safran:#E9A13B; --safran-texte:#8A5600; --zinc:#97A6B2;
     /* --zinc n'est lisible que sur fond sombre : version assombrie pour le texte
        posé sur neige/givre/blanc (ratio ≥ 4.6:1) */
     --zinc-texte:#526779;
@@ -91,7 +91,7 @@ Prix en magasin, aucune récompense inventée.
 
   section.bloc{padding:4rem 5vw}
   .repere{font-family:var(--display);font-size:.75rem;letter-spacing:.3em;
-    text-transform:uppercase;color:var(--safran)}
+    text-transform:uppercase;color:var(--safran-texte)}
   h2{font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,3vw,2.1rem);
     text-transform:uppercase;letter-spacing:.06em;color:var(--ciel);margin:.5rem 0 1.3rem;max-width:28ch}
   .deux-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem}
@@ -150,6 +150,9 @@ Prix en magasin, aucune récompense inventée.
     section.bloc{padding:2.75rem 5vw}
     .bandeau-faits div{padding:1.1rem 5vw}
   }
+
+  /* contraste AA : titres de section assombris */
+  section.bloc h2{color:var(--ciel-texte)}
 </style>
 
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>

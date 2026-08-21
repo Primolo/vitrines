@@ -27,7 +27,7 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
 <title>Fromagerie de Vaux-et-Chantegrue — maquette</title>
 <style>
   :root{
-    --lait:#FBF7EE; --creme-cru:#F3EAD6; --paille:#C98F2E; --cuivre:#B4653C;
+    --lait:#FBF7EE; --creme-cru:#F3EAD6; --paille:#C98F2E; --cuivre:#B4653C; --cuivre-texte:#93502F; --pature-texte:#456039;
     --pature:#5C7A4E; --encre:#2E2820; --cendre:#6E6459;
     --encre-doux:#4a4238;  /* corps de texte adouci */
     --paille-texte:#8A5F14; /* la paille dorée n'est pas lisible sur le lait :
@@ -67,14 +67,14 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
     line-height:1.12;max-width:15ch}
   .hero h1 em{font-style:italic;color:var(--cuivre)}
   .sur-titre{text-transform:uppercase;letter-spacing:.24em;font-size:.75rem;
-    color:var(--pature);margin-bottom:1rem}
+    color:var(--pature-texte);margin-bottom:1rem}
   .hero p.chapo{margin-top:1.25rem;max-width:46ch;font-size:1.02rem;color:var(--encre-doux)}
   .hero .actions{margin-top:1.75rem;display:flex;gap:1rem;flex-wrap:wrap}
   .btn{display:inline-block;text-decoration:none;font-size:.85rem;text-transform:uppercase;
     letter-spacing:.12em;padding:.75rem 1.4rem;border:1.5px solid var(--cuivre)}
-  .btn.plein{background:var(--cuivre);color:var(--lait)}
+  .btn.plein{background:var(--cuivre-texte);color:var(--lait)}
   .btn.plein:hover{background:#9a552f}
-  .btn.vide{color:var(--cuivre)}
+  .btn.vide{color:var(--cuivre-texte)}
   .btn.vide:hover{background:rgba(180,101,60,.08)}
   .hero figure{justify-self:center}
   .hero figcaption{font-size:.75rem;color:var(--cendre);margin-top:.6rem;font-style:italic}
@@ -142,6 +142,10 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
     .carte-acces{padding:1.25rem}
     .rayons b{min-width:0}
   }
+
+  /* contraste AA : texte coloré assombri (les aplats gardent la teinte vive) */
+  .encart p strong{color:var(--pature-texte)}
+  dd a{color:var(--cuivre-texte)}
 </style>
 
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>

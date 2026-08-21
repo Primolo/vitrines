@@ -16,7 +16,7 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
 <title>Le Tremplin — maquette</title>
 <style>
   :root{
-    --neige:#F4F2ED; --nuit:#101D2E; --rouge:#E03E2D; --piste:#2F6DA3; --fart:#F0A72E;
+    --neige:#F4F2ED; --nuit:#101D2E; --rouge:#E03E2D; --piste:#2F6DA3; --fart:#F0A72E; --fart-clair:#F9C066;
     /* même rouge, un cran plus profond : réservé aux aplats qui portent du texte blanc
        (le rouge vif reste sur les boutons, les filets et les survols) */
     --rouge-aplat:#CE3521;
@@ -48,13 +48,13 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
     padding:5rem 6vw 8rem;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
   .hero h1{font-family:var(--titres);font-size:clamp(2.6rem,7vw,5rem);line-height:1;
     text-transform:uppercase;transform:skewX(-8deg);letter-spacing:.02em;max-width:14ch}
-  .hero h1 span{color:var(--fart)}
+  .hero h1 span{color:var(--fart-clair)}
   .hero p.pitch{margin-top:1.2rem;font-size:1.15rem;max-width:34rem;font-weight:500}
   .hero .cta-row{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
   .btn{font-family:var(--titres);text-transform:uppercase;letter-spacing:.08em;font-weight:700;
     text-decoration:none;padding:.85rem 1.6rem;display:inline-block;transform:skewX(-8deg)}
   .btn > span{display:inline-block;transform:skewX(8deg)}
-  .btn-rouge{background:var(--rouge);color:#fff}
+  .btn-rouge{background:var(--rouge-aplat);color:#fff}
   .btn-neige{background:var(--neige);color:var(--nuit)}
   .btn:hover{translate:0 -2px}
   /* le titre, l'accroche et les boutons passent AU-DESSUS du décor ; la remontée
