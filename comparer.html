@@ -106,7 +106,7 @@ function choisir(i){
   const s = SITES[i];
   [...barre.querySelectorAll('.onglet')].forEach((b, j) =>
     b.setAttribute('aria-selected', j === i ? 'true' : 'false'));
-  fa.src = '_avant/' + s.slug + '/';
+  fa.src = 'avant/' + s.slug + '/';
   fb.src = s.slug + '/';
   document.getElementById('lib-a').textContent = s.note !== '—' ? 'noté ' + s.note : '';
   document.getElementById('lib-b').textContent = 'corrigé';
