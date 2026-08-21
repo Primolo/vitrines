@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Les corrections en détail</title>
+<style>
+  :root{--bg:#0F1418;--carte:#1A2128;--bord:#2B343D;--txt:#E9EEF3;--doux:#94A3B0;
+        --ko:#D9704E;--ok:#57A87A}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+  .wrap{max-width:1000px;margin:0 auto;padding:26px 20px 50px}
+  h1{font-size:1.35rem;margin:0 0 6px}
+  .intro{color:var(--doux);font-size:.9rem;margin:0 0 26px;max-width:72ch}
+  .cas{background:var(--carte);border:1px solid var(--bord);border-radius:10px;
+       padding:18px;margin-bottom:16px}
+  .titre{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:4px}
+  .titre h2{font-size:1rem;margin:0}
+  .titre .ou{color:var(--doux);font-size:.82rem}
+  .pourquoi{color:var(--doux);font-size:.86rem;margin:0 0 14px}
+  .paire{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:680px){.paire{grid-template-columns:1fr 1fr}}
+  .ech{border-radius:8px;overflow:hidden;border:1px solid var(--bord)}
+  .ech .tag{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+            padding:6px 12px;display:flex;justify-content:space-between;align-items:center}
+  .ech.a .tag{background:rgba(217,112,78,.18);color:#EDA184}
+  .ech.b .tag{background:rgba(87,168,122,.18);color:#87CBA4}
+  .ech .tag em{font-style:normal;font-weight:400;font-variant-numeric:tabular-nums}
+  .demo{padding:20px 14px;text-align:center}
+  .demo .lbl{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700}
+  .demo .gros{font-size:2.6rem;font-weight:800;letter-spacing:-.01em}
+  .demo .btn{display:inline-block;padding:.7rem 1.4rem;border-radius:4px;
+             font-weight:700;font-size:.9rem}
+  .verdict{margin-top:12px;font-size:.82rem;color:var(--doux)}
+  .verdict b{color:var(--txt)}
+  footer{color:var(--doux);font-size:.8rem;border-top:1px solid var(--bord);
+         padding-top:16px;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Les corrections, échantillon par échantillon</h1>
+  <p class="intro">Chaque paire montre la couleur d'origine à gauche et la couleur corrigée à droite,
+     sur le vrai fond du site concerné. Le chiffre est le rapport de contraste mesuré ; la norme
+     d'accessibilité demande <b>4,5</b> pour un texte normal et <b>3</b> pour un très grand texte.</p>
+
+  <div class="cas">
+    <div class="titre"><h2>Fruitière le Toit du Doubs</h2><span class="ou">— intitulés de section</span></div>
+    <p class="pourquoi">Le cas le plus grave de tous les sites : un safran clair posé sur un fond glacé.
+       Sur un téléphone en extérieur, ce texte disparaissait purement et simplement.</p>
+    <div class="paire">
+      <div class="ech a"><div class="tag">Avant <em>1,74 / 4,5 ✕</em></div>
+        <div class="demo" style="background:#DCE7EE"><span class="lbl" style="color:#E9A13B">Derrière la vitre</span></div></div>
+      <div class="ech b"><div class="tag">Après <em>6,1 / 4,5 ✓</em></div>
+        <div class="demo" style="background:#DCE7EE"><span class="lbl" style="color:#8A5600">Derrière la vitre</span></div></div>
+    </div>
+    <p class="verdict"><b>Ce qui ne change pas :</b> le safran d'origine reste utilisé pour les filets
+       et les éléments graphiques — seule la couleur du texte a été assombrie.</p>
+  </div>
+
+  <div class="cas">
+    <div class="titre"><h2>Le Tremplin</h2><span class="ou">— le mot d'accroche du titre</span></div>
+    <p class="pourquoi">« GAZ » en jaune sur le bleu de la piste : l'effet était bon, la lisibilité limite.
+       Jaune éclairci, l'impact est conservé.</p>
+    <div class="paire">
+      <div class="ech a"><div class="tag">Avant <em>2,68 / 3 ✕</em></div>
+        <div class="demo" style="background:#2F6DA3"><span class="gros" style="color:#F0A72E">GAZ</span></div></div>
+      <div class="ech b"><div class="tag">Après <em>4,2 / 3 ✓</em></div>
+        <div class="demo" style="background:#2F6DA3"><span class="gros" style="color:#F9C066">GAZ</span></div></div>
+    </div>
+    <p class="verdict"><b>Aussi corrigé :</b> le bouton du numéro de téléphone, passé d'un rouge vif
+       à un rouge légèrement plus profond pour que le blanc dessus reste lisible.</p>
+  </div>
+
+  <div class="cas">
+    <div class="titre"><h2>Le Tremplin</h2><span class="ou">— bouton téléphone</span></div>
+    <p class="pourquoi">Le bouton le plus important du site : celui qui déclenche l'appel.</p>
+    <div class="paire">
+      <div class="ech a"><div class="tag">Avant <em>4,29 / 4,5 ✕</em></div>
+        <div class="demo" style="background:#F4F2ED"><span class="btn" style="background:#E03E2D;color:#fff">03 81 49 10 66</span></div></div>
+      <div class="ech b"><div class="tag">Après <em>5,0 / 4,5 ✓</em></div>
+        <div class="demo" style="background:#F4F2ED"><span class="btn" style="background:#CE3521;color:#fff">03 81 49 10 66</span></div></div>
+    </div>
+  </div>
+
+  <div class="cas">
+    <div class="titre"><h2>Chalet du Lac</h2><span class="ou">— 13 éléments concernés</span></div>
+    <p class="pourquoi">Le laiton clair servait à la fois d'accent décoratif et de couleur de texte :
+       intitulés, numéros de rangée, titres de la fiche contact. Une teinte de texte dédiée a été créée.</p>
+    <div class="paire">
+      <div class="ech a"><div class="tag">Avant <em>3,09 / 4,5 ✕</em></div>
+        <div class="demo" style="background:#F7F5F0"><span class="lbl" style="color:#A8874F">Les chambres</span></div></div>
+      <div class="ech b"><div class="tag">Après <em>5,4 / 4,5 ✓</em></div>
+        <div class="demo" style="background:#F7F5F0"><span class="lbl" style="color:#775A2B">Les chambres</span></div></div>
+    </div>
+    <p class="verdict"><b>L'épure reste intacte :</b> le laiton d'origine continue d'habiller les filets
+       et le monogramme.</p>
+  </div>
+
+  <div class="cas">
+    <div class="titre"><h2>La Fontaine Ronde</h2><span class="ou">— fiche contact</span></div>
+    <p class="pourquoi">Les mots « Adresse », « Téléphone », « Itinéraire » — précisément l'information
+       qu'un client cherche en dernier recours — étaient en gris trop pâle.</p>
+    <div class="paire">
+      <div class="ech a"><div class="tag">Avant <em>3,34 / 4,5 ✕</em></div>
+        <div class="demo" style="background:#EFF3F2"><span class="lbl" style="color:#8C8377">Téléphone</span></div></div>
+      <div class="ech b"><div class="tag">Après <em>5,6 / 4,5 ✓</em></div>
+        <div class="demo" style="background:#EFF3F2"><span class="lbl" style="color:#6B6255">Téléphone</span></div></div>
+    </div>
+    <p class="verdict"><b>Les deux thèmes traités :</b> en mode sombre, la même teinte a été
+       <i>éclaircie</i> au lieu d'être assombrie.</p>
+  </div>
+
+  <div class="cas">
+    <div class="titre"><h2>Fonderie Obertino</h2><span class="ou">— numéros des étapes de fabrication</span></div>
+    <p class="pourquoi">Les grands chiffres 1, 2, 3 qui rythment le récit de l'atelier, en braise
+       sombre sur fond nuit.</p>
+    <div class="paire">
+      <div class="ech a"><div class="tag">Avant <em>2,89 / 3 ✕</em></div>
+        <div class="demo" style="background:#251D15"><span class="gros" style="color:#A9491F">1</span></div></div>
+      <div class="ech b"><div class="tag">Après <em>4,6 / 3 ✓</em></div>
+        <div class="demo" style="background:#251D15"><span class="gros" style="color:#D2622C">1</span></div></div>
+    </div>
+  </div>
+
+  <div class="cas">
+    <div class="titre"><h2>Auberge des Montagnards</h2><span class="ou">— le contenu, pas la couleur</span></div>
+    <p class="pourquoi">Ici le défaut n'était pas visuel mais éditorial : la carte affichait
+       <b>six fois « nous consulter » à la suite</b>. Une colonne de prix vide ne dit pas
+       « maison discrète sur ses tarifs », elle dit « site pas terminé ».
+       Les lignes portent désormais des mentions vraies (« la spécialité », « en saison »)
+       et l'explication sur les prix apparaît une seule fois, en bas.</p>
+    <p class="verdict"><b>Également :</b> section randonneurs restructurée, bloc horaires ajouté
+       là où l'information manquait, doublon parking/animaux supprimé.</p>
+  </div>
+
+  <div class="cas">
+    <div class="titre"><h2>Auberge du Vourbey</h2><span class="ou">— la carte des plats sur téléphone</span></div>
+    <p class="pourquoi">Nom du plat à gauche, description à droite : sur un écran de 375 px, cela donnait
+       deux colonnes de 150 px hachées en trois ou quatre lignes chacune. C'était la section
+       la plus importante du site, et la plus illisible là où on la consulte vraiment.
+       Les plats sont désormais empilés, description sous le nom.</p>
+    <p class="verdict"><b>Également :</b> boutons en pleine largeur sous 520 px, deuxième trace de
+       raquettes ajoutée pour rythmer la page, paragraphe « vos fêtes » réécrit en concret.</p>
+  </div>
+
+  <footer>Mesures effectuées sur les fichiers réels, en 360 px et 1100 px de large.
+    Résultat final : <b>21 sites sur 21</b> conformes en contraste, sans débordement horizontal.</footer>
+</div>
+</body>
+</html>
