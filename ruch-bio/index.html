@@ -20,6 +20,85 @@ prefers-color-scheme (les deux palettes ci-dessus).
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>La Ruch'Bio — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GroceryStore",
+  "@id": "https://primolo.github.io/vitrines/ruch-bio/#etablissement",
+  "name": "La Ruch'Bio",
+  "description": "Épicerie biologique à Jougne, sur la route du col vers la Suisse : fruits et légumes frais, vrac, crèmerie, pain et cosmétiques, avec les producteurs locaux mis en avant.",
+  "url": "https://primolo.github.io/vitrines/ruch-bio/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1 place du Tunnel",
+    "addressLocality": "Jougne",
+    "postalCode": "25370",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Jougne"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "https://schema.org/Monday",
+        "https://schema.org/Tuesday",
+        "https://schema.org/Wednesday",
+        "https://schema.org/Thursday",
+        "https://schema.org/Friday",
+        "https://schema.org/Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Que trouve-t-on à La Ruch'Bio ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Des fruits et légumes frais, du vrac, de la crèmerie, du pain et des cosmétiques, tous certifiés biologiques, avec une place particulière donnée aux producteurs locaux."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où se trouve La Ruch'Bio ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Au 1 place du Tunnel, à Jougne (25370), sur la route du col qui mène à la Suisse."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels sont les horaires du magasin ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Du lundi au samedi, de 9 h à 19 h. Les horaires sont à confirmer directement auprès du magasin."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --fond:#f7f2e6;
@@ -27,7 +106,7 @@ prefers-color-scheme (les deux palettes ci-dessus).
     --texte:#4a3a24;
     --texte2:#6d5c42;
     --miel:#cf9433;
-    --miel-fonce:#96681c;      /* miel assombri : texte lisible sur fond clair */
+    --miel-fonce:#8a5f18;      /* miel assombri : texte lisible sur fond clair */
     --vert:#6c8f3f;            /* vert décoratif (puces, traits, illustrations) */
     --vert-texte:#4f6c2c;      /* vert lisible en texte sur fond clair */
     --vert-fonce:#4f6c2c;      /* fond des bandeaux et boutons verts */
@@ -84,7 +163,7 @@ prefers-color-scheme (les deux palettes ci-dessus).
   .logo .nom{font-family:var(--titres);font-weight:700;font-size:1.25rem;letter-spacing:.02em}
   .logo .nom small{display:block;font-weight:400;font-size:.72rem;letter-spacing:.24em;
     text-transform:uppercase;color:var(--vert-texte)}
-  nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:1.5rem;
+  nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:.9rem 1.5rem;
     font-family:var(--titres);font-size:.85rem}
   nav.haut a{color:var(--texte);text-decoration:none}
   nav.haut a:hover{color:var(--miel-fonce)}
@@ -101,6 +180,7 @@ prefers-color-scheme (les deux palettes ci-dessus).
   }
   .hero h1 mark{background:none;color:var(--miel-fonce)}
   .hero p{max-width:52ch;color:var(--texte2);font-size:1.05rem}
+  .hero p + p{margin-top:.9rem}
   .actions{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.9rem}
   .btn{
     display:inline-block;text-decoration:none;font-family:var(--titres);font-weight:600;
@@ -114,13 +194,23 @@ prefers-color-scheme (les deux palettes ci-dessus).
   /* trajet d'abeille */
   .vol{display:block;width:min(680px,90%);height:46px;margin:2.2rem 0 0}
 
+  /* chiffres-repères */
+  .reperes{position:relative;display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:1.4rem 1.8rem;margin-top:2.2rem}
+  .repere{border-top:2px solid var(--miel);padding-top:.8rem}
+  .repere b{display:block;font-family:var(--titres);font-weight:700;font-size:1.55rem;
+    line-height:1.15;color:var(--miel-fonce)}
+  .repere span{display:block;font-family:var(--courant);font-size:.9rem;color:var(--texte2);margin-top:.15rem}
+
   section{padding:3.2rem max(6vw,1.15rem)}
   h2{font-family:var(--titres);font-weight:700;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.4rem}
-  .sous-titre{color:var(--texte2);max-width:60ch;margin-bottom:1.8rem}
+  .sous-titre{color:var(--texte2);max-width:62ch;margin-bottom:1.8rem}
+  .para{max-width:66ch}
+  .para + .para{margin-top:.9rem}
 
   /* ---- rayons : cartes hexagones discrets ---- */
   .rayons{background:var(--fond2)}
-  .grille-rayons{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.3rem}
+  .grille-rayons{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1.3rem}
   .rayon{
     background:var(--carte);border:1px solid var(--trait);border-radius:10px;
     padding:1.4rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;
@@ -140,6 +230,7 @@ prefers-color-scheme (les deux palettes ci-dessus).
   .bande:first-of-type{border-top:none;padding-top:0}
   .bande h3{font-family:var(--titres);font-size:1.3rem;margin-bottom:.6rem}
   .bande p{color:var(--texte2);font-size:.98rem}
+  .bande p + p{margin-top:.7rem}
   ul.hexliste{list-style:none;margin-top:.9rem}
   ul.hexliste li{position:relative;padding:.35rem 0 .35rem 1.6rem;font-size:.95rem}
   ul.hexliste li::before{
@@ -147,6 +238,28 @@ prefers-color-scheme (les deux palettes ci-dessus).
     clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
   }
   .illus{width:100%;max-width:330px;height:auto;justify-self:center}
+
+  /* ---- la maison ---- */
+  .maison{background:var(--fond2)}
+  .maison-cols{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:2.6rem;align-items:start;margin-top:1.4rem}
+  .maison-cols p{color:var(--texte2)}
+  .maison-cols p + p{margin-top:.9rem}
+  .fiche{background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:1.5rem 1.4rem}
+  .fiche h3{font-family:var(--titres);font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--miel-fonce);margin-bottom:1rem}
+  .fiche dl{display:grid;gap:.9rem}
+  .fiche dt{font-family:var(--titres);font-weight:700;font-size:1.05rem}
+  .fiche dd{font-size:.92rem;color:var(--texte2)}
+
+  /* ---- tableau des rayons ---- */
+  .table-boite{overflow-x:auto;margin-top:1.8rem;border:1px solid var(--trait);border-radius:10px;background:var(--carte)}
+  table.liste{width:100%;border-collapse:collapse;font-size:.95rem;min-width:520px}
+  table.liste th{background:var(--vert-fonce);color:var(--sur-vert);text-align:left;
+    font-family:var(--titres);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
+    font-weight:700;padding:.8rem 1rem}
+  table.liste td{padding:.8rem 1rem;border-top:1px solid var(--trait);vertical-align:top;color:var(--texte2)}
+  table.liste td:first-child{color:var(--texte);font-weight:600}
+  table.liste td:last-child{text-align:right;color:var(--miel-fonce);white-space:nowrap}
 
   /* ---- bandeau frontière ---- */
   .frontiere{
@@ -156,14 +269,16 @@ prefers-color-scheme (les deux palettes ci-dessus).
   }
   .frontiere h2{color:var(--sur-vert)}
   .frontiere p{max-width:58ch}
+  .frontiere p + p{margin-top:.9rem}
   .borne{width:120px;height:auto;justify-self:center}
 
   /* ---- pratique ---- */
-  .pratique-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+  .pratique-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1.5rem}
   .carte-info{background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:1.5rem}
   .carte-info h3{font-family:var(--titres);font-size:.78rem;letter-spacing:.24em;
     text-transform:uppercase;color:var(--miel-fonce);margin-bottom:.7rem}
   .carte-info p{font-size:.98rem}
+  .carte-info p + p{margin-top:.6rem}
   .carte-info a{color:var(--texte)}
   .a-completer{font-style:italic;color:var(--texte2)}
   a.maps{
@@ -174,9 +289,27 @@ prefers-color-scheme (les deux palettes ci-dessus).
   }
   a.maps:hover{background:var(--miel-survol)}
 
+  /* gros bloc de contact (téléphone) */
+  .gros-contact{
+    display:block;background:var(--vert-fonce);color:var(--sur-vert);
+    padding:1.4rem 1.4rem;border-radius:10px;max-width:28rem;margin:1.6rem 0 2rem;text-align:center;
+  }
+  .gros-contact small{display:block;font-family:var(--titres);font-size:.74rem;letter-spacing:.24em;
+    text-transform:uppercase;opacity:.9;margin-bottom:.4rem}
+  .gros-contact strong{display:block;font-family:var(--titres);font-weight:700;font-size:1.5rem;line-height:1.2}
+  .gros-contact em{display:block;font-size:.88rem;margin-top:.5rem;opacity:.92}
+
   footer.pied{
     border-top:1px solid var(--trait);color:var(--texte2);
     font-size:.82rem;text-align:center;padding:1.3rem max(6vw,1.15rem);font-family:var(--titres);
+  }
+
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .monte{opacity:1;transform:none;transition:none}
   }
 
   @media (max-width:800px){
@@ -188,6 +321,7 @@ prefers-color-scheme (les deux palettes ci-dessus).
     .illus{max-width:240px}
     .frontiere{grid-template-columns:1fr}
     .borne{display:none}
+    .maison-cols{grid-template-columns:1fr;gap:1.8rem}
     nav.haut{margin-left:0}
   }
   @media (max-width:520px){
@@ -195,6 +329,7 @@ prefers-color-scheme (les deux palettes ci-dessus).
     .hero{padding-top:2.8rem}
     .rayon{padding:1.2rem 1.1rem}
     .carte-info{padding:1.3rem}
+    .gros-contact strong{font-size:1.25rem}
   }
 </style>
 
@@ -215,6 +350,8 @@ prefers-color-scheme (les deux palettes ci-dessus).
   <nav class="haut">
     <a href="#rayons">Les rayons</a>
     <a href="#vrac">Vrac &amp; producteurs</a>
+    <a href="#maison">La maison</a>
+    <a href="#liste">Ce qu'on trouve</a>
     <a href="#pratique">Horaires &amp; accès</a>
   </nav>
 </header>
@@ -245,9 +382,20 @@ prefers-color-scheme (les deux palettes ci-dessus).
       du col, La Ruch'Bio rassemble le meilleur des producteurs locaux et du bio
       certifié — pour les habitants du Haut-Doubs comme pour les voisins suisses.
     </p>
+    <p>
+      C'est un magasin de village, pas une grande surface spécialisée : on y fait ses
+      courses complètes de la semaine, on y prend un pain, ou on s'y arrête pour remplir
+      trois bocaux avant de repasser la frontière.
+    </p>
     <div class="actions">
       <a class="btn" href="#rayons">Découvrir les rayons</a>
       <a class="btn vert" href="#pratique">Venir au magasin</a>
+    </div>
+    <div class="reperes">
+      <div class="repere monte"><b>6</b><span>rayons, de l'alimentaire à l'entretien</span></div>
+      <div class="repere monte"><b>Au poids</b><span>le vrac, dans vos contenants</span></div>
+      <div class="repere monte"><b>2 pays</b><span>une clientèle française et suisse</span></div>
+      <div class="repere monte"><b>Place du Tunnel</b><span>en plein centre de Jougne</span></div>
     </div>
   </div>
   <!-- trajet d'abeille (signature) -->
@@ -264,46 +412,56 @@ prefers-color-scheme (les deux palettes ci-dessus).
 </div>
 
 <section class="rayons" id="rayons">
-  <h2>Les rayons de la ruche</h2>
-  <p class="sous-titre">Une alimentation bio complète, du panier de légumes au produit d'entretien.</p>
+  <h2 class="monte">Les rayons de la ruche</h2>
+  <p class="sous-titre monte">Une alimentation bio complète, du panier de légumes au produit
+  d'entretien. L'idée n'est pas d'aligner des références, mais de couvrir assez de besoins
+  pour qu'on puisse faire ses courses ici plutôt qu'ailleurs.</p>
   <div class="grille-rayons">
-    <div class="rayon">
+    <div class="rayon monte">
       <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-vert" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
-      <div><h3>Fruits &amp; légumes</h3><p>Frais, de saison, au plus près des maraîchers de la région.</p></div>
+      <div><h3>Fruits &amp; légumes</h3><p>Frais, de saison, au plus près des maraîchers de la région. Le rayon change au fil de l'année : c'est normal, et c'est le signe qu'il suit vraiment les récoltes plutôt qu'un calendrier d'importation.</p></div>
     </div>
-    <div class="rayon">
+    <div class="rayon monte">
       <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-miel-plein" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
-      <div><h3>Vrac</h3><p>Céréales, légumineuses, oléagineux et fruits secs, au poids et sans emballage.</p></div>
+      <div><h3>Vrac</h3><p>Céréales, légumineuses, oléagineux et fruits secs, au poids et sans emballage. On prend la quantité qu'on veut : de quoi essayer une recette une fois, ou de quoi remplir un bocal de réserve.</p></div>
     </div>
-    <div class="rayon">
+    <div class="rayon monte">
       <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-miel" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
-      <div><h3>Pain &amp; douceurs</h3><p>Pains, biscuits et chocolats pour les goûters de la maison.</p></div>
+      <div><h3>Pain &amp; douceurs</h3><p>Pains, biscuits et chocolats pour les goûters de la maison. Le pain est le produit qui fait revenir chaque semaine : c'est souvent par lui qu'on découvre le reste du magasin.</p></div>
     </div>
-    <div class="rayon">
+    <div class="rayon monte">
       <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-vert-plein" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
-      <div><h3>Crèmerie, œufs &amp; viandes</h3><p>Produits laitiers, œufs et viandes issus de l'agriculture biologique.</p></div>
+      <div><h3>Crèmerie, œufs &amp; viandes</h3><p>Produits laitiers, œufs et viandes issus de l'agriculture biologique. Dans un pays de lait comme le Haut-Doubs, c'est le rayon où la provenance se demande le plus souvent — et où elle se dit.</p></div>
     </div>
-    <div class="rayon">
+    <div class="rayon monte">
       <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-vert" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
-      <div><h3>Thés, cafés &amp; infusions</h3><p>Avec les plantes séchées, épices et aromates du rayon voisin.</p></div>
+      <div><h3>Thés, cafés &amp; infusions</h3><p>Avec les plantes séchées, épices et aromates du rayon voisin. Beaucoup se prennent aussi en vrac, ce qui permet d'acheter dix grammes d'une épice qu'on n'utilisera qu'une fois.</p></div>
     </div>
-    <div class="rayon">
+    <div class="rayon monte">
       <svg class="hex" viewBox="0 0 30 34" aria-hidden="true"><polygon class="hex-miel-doux" points="15,1 29,9 29,25 15,33 1,25 1,9"/></svg>
-      <div><h3>Bien-être &amp; entretien</h3><p>Cosmétiques, huiles essentielles, compléments et produits d'entretien écologiques.</p></div>
+      <div><h3>Bien-être &amp; entretien</h3><p>Cosmétiques, huiles essentielles, compléments et produits d'entretien écologiques. Le rayon qu'on ne pense pas à chercher dans une épicerie, et qui évite pourtant un déplacement de plus.</p></div>
     </div>
   </div>
 </section>
 
 <section id="vrac">
+  <h2 class="monte">Le vrac et les producteurs</h2>
+  <p class="sous-titre monte">Ce sont les deux choses qui distinguent réellement le magasin
+  d'un rayon bio de supermarché. Elles méritent d'être expliquées plutôt qu'affichées comme
+  des mots-clés.</p>
   <div class="bande">
-    <div>
+    <div class="monte">
       <h3>Le vrac, sans cérémonie</h3>
-      <p>On vient avec ses bocaux ou ses sacs, on pèse, on ne paie que ce qu'on emporte.
-      Moins d'emballages, des quantités justes, et une cave d'épicerie qui change au fil
-      des saisons.</p>
+      <p>On vient avec ses bocaux ou ses sacs, on pèse le contenant vide, on remplit, on
+      repasse à la balance : on ne paie que ce qu'on emporte. Aucun emballage n'est facturé,
+      et rien ne finit à la poubelle en rentrant.</p>
+      <p>L'autre intérêt est moins souvent dit : le vrac permet d'acheter petit. Cinquante
+      grammes d'une graine qu'on n'a jamais cuisinée coûtent moins cher qu'un paquet de cinq
+      cents grammes dont on jettera les quatre cinquièmes dans deux ans.</p>
       <ul class="hexliste">
         <li>Apportez vos contenants — des sacs sont disponibles sur place</li>
         <li>Quantités libres, du sachet d'essai au bocal de réserve</li>
+        <li>Le contenant est pesé avant remplissage : son poids ne vous est pas facturé</li>
       </ul>
     </div>
     <svg class="illus" viewBox="0 0 300 220" aria-hidden="true">
@@ -349,25 +507,103 @@ prefers-color-scheme (les deux palettes ci-dessus).
       </g>
       <path d="M60 205 h180" stroke="#cf9433" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
     </svg>
-    <div>
+    <div class="monte">
       <h3>Les producteurs d'à côté</h3>
       <p>La ruche travaille d'abord avec les fermes et ateliers du Haut-Doubs et des
       environs : ce qui peut venir de près vient de près, le reste est choisi en bio
       certifié auprès de fournisseurs de confiance.</p>
+      <p>Travailler avec des producteurs proches a une conséquence visible en rayon : les
+      quantités ne sont pas infinies et les arrivages ne tombent pas tous les jours. Un
+      produit local peut manquer une semaine puis revenir la suivante — c'est le revers
+      d'une chaîne courte, et c'est assumé.</p>
       <ul class="hexliste">
         <li>Produits fermiers locaux selon les saisons et les arrivages</li>
         <li>Demandez d'où vient un produit : la provenance se dit au comptoir</li>
+        <li>Le reste de l'assortiment est en bio certifié</li>
       </ul>
     </div>
   </div>
 </section>
 
+<section class="maison" id="maison">
+  <h2 class="monte">Pourquoi pousser cette porte-là</h2>
+  <p class="sous-titre monte">Jougne est un petit village. Une épicerie bio n'y tient pas
+  parce qu'elle est à la mode, mais parce qu'elle rend un service précis à des gens précis.</p>
+  <div class="maison-cols">
+    <div class="monte">
+      <p>Le premier service est le plus simple : éviter un déplacement. Faire ses courses bio
+      complètes sans descendre en ville, c'est une demi-heure de route économisée à chaque
+      fois, et un plein de moins par mois. Dans un village de montagne, l'argument pèse plus
+      lourd qu'une déclaration d'intention.</p>
+      <p>Le deuxième tient au vrac. C'est une manière de consommer qui suppose un magasin à
+      taille humaine : il faut de la place, du temps pour peser, et quelqu'un à qui poser une
+      question. Un rayon vrac dans une grande surface ne rend pas le même service qu'un
+      magasin dont c'est un pilier.</p>
+      <p>Le troisième est la conversation. Savoir d'où vient un fromage, quel producteur a
+      livré les œufs cette semaine, ce qui vaut la peine en ce moment : c'est une information
+      qui ne s'imprime pas sur une étiquette et qui se donne au comptoir.</p>
+      <p>Et parce que Jougne est à la frontière, une partie des clients traverse pour venir :
+      des habitants du Haut-Doubs, mais aussi des voisins suisses. Un magasin qui accueille
+      les deux ne fonctionne pas tout à fait comme une épicerie de centre-ville.</p>
+      <p class="a-completer">L'histoire du magasin, les personnes qui le tiennent et la
+      liste des producteurs partenaires sont <em>à compléter ensemble</em> : ce sont des
+      informations qui doivent venir de vous.</p>
+    </div>
+    <div class="fiche monte">
+      <h3>En résumé</h3>
+      <dl>
+        <dt>Une épicerie, pas un rayon</dt>
+        <dd>de quoi faire des courses complètes, alimentaire et entretien compris</dd>
+        <dt>Le vrac comme pilier</dt>
+        <dd>vos contenants, vos quantités, aucun emballage facturé</dd>
+        <dt>Le local d'abord</dt>
+        <dd>producteurs du Haut-Doubs quand c'est possible, bio certifié pour le reste</dd>
+        <dt>Deux clientèles</dt>
+        <dd>habitants du secteur et voisins suisses, à quelques kilomètres de la douane</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="liste">
+  <h2 class="monte">Ce qu'on trouve, rayon par rayon</h2>
+  <p class="sous-titre monte">Le tableau donne la structure du magasin. Le détail des marques
+  et des références change au fil des arrivages : les prix sont affichés en rayon.</p>
+  <div class="table-boite monte">
+    <table class="liste">
+      <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Rayons du magasin, contenu et modalités de tarif</caption>
+      <thead>
+        <tr><th scope="col">Rayon</th><th scope="col">Ce qu'on y trouve</th><th scope="col">Tarif</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Fruits &amp; légumes</td><td>frais, de saison, maraîchers de la région</td><td>prix en magasin</td></tr>
+        <tr><td>Vrac alimentaire</td><td>céréales, légumineuses, oléagineux, fruits secs</td><td>au poids</td></tr>
+        <tr><td>Épices, plantes &amp; aromates</td><td>en vrac ou conditionnés, petites quantités possibles</td><td>au poids</td></tr>
+        <tr><td>Crèmerie &amp; œufs</td><td>produits laitiers et œufs bio</td><td>prix en magasin</td></tr>
+        <tr><td>Viandes</td><td>issues de l'agriculture biologique</td><td>prix en magasin</td></tr>
+        <tr><td>Pain &amp; boulangerie</td><td>pains, biscuits, chocolats</td><td>prix en magasin</td></tr>
+        <tr><td>Épicerie sèche &amp; conserves</td><td>bocaux, condiments, produits de base</td><td>prix en magasin</td></tr>
+        <tr><td>Thés, cafés &amp; infusions</td><td>en paquet ou en vrac</td><td>prix en magasin</td></tr>
+        <tr><td>Cosmétiques &amp; bien-être</td><td>soins, huiles essentielles, compléments</td><td>prix en magasin</td></tr>
+        <tr><td>Entretien de la maison</td><td>produits ménagers écologiques, recharges</td><td>prix en magasin</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="a-completer" style="margin-top:1.2rem">La disponibilité des produits locaux suit
+  les saisons et les livraisons : ce tableau décrit la structure du magasin, pas un stock
+  garanti au jour le jour.</p>
+</section>
+
 <div class="frontiere">
   <div>
-    <h2>À deux pas de la frontière</h2>
-    <p>Jougne est le dernier village avant la douane : les frontaliers et voisins de
-    Vallorbe, Ballaigues ou Lausanne s'arrêtent place du Tunnel sur la route du col.
-    La Ruch'Bio est aussi présente à Pontarlier.</p>
+    <h2 class="monte">À deux pas de la frontière</h2>
+    <p class="monte">Jougne est le dernier village avant la douane. Le col fait de la place
+    du Tunnel un point de passage autant qu'un centre de village : on s'y arrête en montant
+    vers la Suisse, ou en redescendant vers Pontarlier.</p>
+    <p class="monte">Cela se voit dans le magasin. Une partie de la clientèle est française,
+    une autre suisse ; les habitudes d'achat ne sont pas les mêmes, les quantités non plus,
+    et les questions posées au comptoir non plus. Un commerce frontalier apprend vite à
+    servir les deux sans choisir.</p>
   </div>
   <svg class="borne" viewBox="0 0 120 140" aria-hidden="true">
     <!-- borne frontière stylisée -->
@@ -380,21 +616,69 @@ prefers-color-scheme (les deux palettes ci-dessus).
 </div>
 
 <section id="pratique">
-  <h2>Horaires &amp; accès</h2>
-  <p class="sous-titre">Le magasin vous accueille toute la semaine, du lundi au samedi.</p>
+  <h2 class="monte">La boutique : horaires &amp; accès</h2>
+  <p class="sous-titre monte">Le magasin est au 1 place du Tunnel, en plein centre de Jougne.
+  On y entre pour une course précise comme pour le plein de la semaine — et il vaut mieux
+  prévoir un peu de temps la première fois, le temps de repérer le rayon vrac et de
+  comprendre comment on pèse.</p>
   <div class="pratique-grille">
-    <div class="carte-info">
+    <div class="carte-info monte">
       <h3>Horaires</h3>
       <p>Du lundi au samedi<br>9 h – 19 h</p>
+      <p class="a-completer">Horaires à confirmer ensemble avant la mise en ligne, ainsi que
+      les éventuelles fermetures de milieu de journée et de jours fériés.</p>
     </div>
-    <div class="carte-info">
+    <div class="carte-info monte">
       <h3>Adresse</h3>
       <p>La Ruch'Bio<br>1 place du Tunnel<br>25370 Jougne</p>
       <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=La+Ruch%27Bio+Jougne">Ouvrir dans Google Maps</a>
     </div>
-    <div class="carte-info">
-      <h3>Téléphone</h3>
-      <p class="a-completer">Numéro à compléter avec vous avant mise en ligne.</p>
+    <div class="carte-info monte">
+      <h3>Le vrac en pratique</h3>
+      <p>Venez avec vos bocaux, boîtes ou sacs. Ils sont pesés à vide avant remplissage,
+      et leur poids est déduit au passage en caisse.</p>
+      <p>Des sacs sont disponibles sur place si vous avez oublié les vôtres.</p>
+    </div>
+    <div class="carte-info monte">
+      <h3>Venir de Suisse</h3>
+      <p>Le magasin est sur la place du Tunnel, à quelques kilomètres de la douane, sur la
+      route du col.</p>
+      <p class="a-completer">Modalités de paiement et acceptation éventuelle du franc suisse
+      à préciser ensemble.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="monte">Nous joindre</h2>
+  <p class="sous-titre monte">Pour vérifier la présence d'un produit, demander la provenance
+  d'un article ou signaler une commande particulière.</p>
+  <div class="gros-contact monte">
+    <small>Téléphone du magasin</small>
+    <strong>Numéro à compléter</strong>
+    <em>Le numéro sera affiché ici en grand, cliquable depuis un téléphone, dès que vous
+    nous l'aurez communiqué.</em>
+  </div>
+  <div class="pratique-grille">
+    <div class="carte-info monte">
+      <h3>Adresse</h3>
+      <p>La Ruch'Bio<br>1 place du Tunnel<br>25370 Jougne</p>
+      <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=La+Ruch%27Bio+Jougne">Ouvrir dans Google Maps</a>
+    </div>
+    <div class="carte-info monte">
+      <h3>Horaires</h3>
+      <p>Du lundi au samedi, 9 h – 19 h.</p>
+      <p class="a-completer">À confirmer ensemble.</p>
+    </div>
+    <div class="carte-info monte">
+      <h3>Téléphone &amp; courriel</h3>
+      <p class="a-completer">Numéro et adresse électronique à compléter avec vous avant la
+      mise en ligne.</p>
+    </div>
+    <div class="carte-info monte">
+      <h3>Réseaux</h3>
+      <p class="a-completer">Si le magasin a une page Facebook ou un compte Instagram, ils
+      pourront être liés ici — adresses à fournir.</p>
     </div>
   </div>
 </section>
@@ -402,3 +686,34 @@ prefers-color-scheme (les deux palettes ci-dessus).
 <footer class="pied">
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
+
+<script>
+  (function(){
+    var els = Array.prototype.slice.call(document.querySelectorAll('.monte'));
+    var reduit = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function tout(){ els.forEach(function(el){ el.classList.add('vu'); }); }
+    if (reduit.matches || !('IntersectionObserver' in window)) { tout(); return; }
+    var io = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); }
+      });
+    }, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+    // filet de sécurité : si l'observateur ne peut pas travailler (onglet masqué,
+    // impression, navigateur particulier), rien ne doit rester invisible.
+    function rattrape(){
+      els.forEach(function(el){
+        if (el.classList.contains('vu')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 1.25 && r.bottom > -200) {
+          el.classList.add('vu'); io.unobserve(el);
+        }
+      });
+    }
+    window.addEventListener('load', rattrape);
+    window.addEventListener('scroll', rattrape, {passive:true});
+    document.addEventListener('visibilitychange', function(){ if (!document.hidden) rattrape(); });
+    window.addEventListener('beforeprint', tout);
+    setTimeout(rattrape, 400);
+  })();
+</script>

@@ -21,12 +21,68 @@ en colonne, rien de systématiquement centré.
 Contenu : faits vérifiés (fusion des fruitières de Saint-Antoine et des
 Hôpitaux-Vieux, 13 fermes, 6 communes, lait collecté entre 860 et 1300 m,
 ~4 millions de litres/an, ~400 t de Comté AOP, deux magasins avec adresses,
-téléphones et horaires relevés — à confirmer). Prix en magasin.
+téléphones et horaires relevés — à confirmer) + règles publiques du cahier des
+charges de l'AOP comté. Prix en magasin, aucune récompense inventée.
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Fromagerie Saint-Antoine — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "@id": "https://primolo.github.io/vitrines/fromagerie-saint-antoine/#etablissement",
+  "name": "Fromagerie Saint-Antoine",
+  "description": "Fruitière de Saint-Antoine – Les Hôpitaux-Vieux : le lait de treize fermes d'altitude transformé en comté AOP, en vente directe au magasin.",
+  "url": "https://primolo.github.io/vitrines/fromagerie-saint-antoine/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Les Hôpitaux-Vieux",
+    "postalCode": "25370",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Les Hôpitaux-Vieux"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien de fermes livrent la fruitière Saint-Antoine ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Treize fermes d'altitude, situées entre 860 et 1 300 mètres."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on acheter du comté directement à la fromagerie ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, la fruitière vend en direct au magasin, du producteur au consommateur."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --nuit:#1B1310; --cave:#2B211A; --croute:#C08A45; --or:#E0B368;
@@ -49,7 +105,7 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   a{color:var(--or)}
   img,svg{max-width:100%}
   h1,h2,h3{text-wrap:balance}
-  p{text-wrap:pretty}
+  p{text-wrap:pretty;overflow-wrap:break-word}
   a:focus-visible,.btn:focus-visible{outline:3px solid var(--or);outline-offset:3px}
   .demo-band a:focus-visible{outline-color:var(--nuit)}
 
@@ -70,7 +126,7 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   .sur-titre{font-size:.75rem;letter-spacing:.26em;text-transform:uppercase;
     color:var(--croute);margin-bottom:1.1rem}
   .hero p.chapo{margin-top:1.4rem;max-width:48ch;color:var(--texte-chapo)}
-  .hero .actions{margin:2rem 0 3rem;display:flex;gap:1rem;flex-wrap:wrap}
+  .hero .actions{margin:2rem 0 2.4rem;display:flex;gap:1rem;flex-wrap:wrap}
   .btn{display:inline-block;text-decoration:none;font-size:.82rem;letter-spacing:.14em;
     text-transform:uppercase;padding:.8rem 1.5rem;border:1px solid var(--or);color:var(--or)}
   .btn:hover{background:rgba(224,179,104,.12)}
@@ -78,6 +134,14 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   .btn.plein:hover{background:#caa057}
   .hero figure{align-self:end}
   .hero figcaption{font-size:.72rem;color:var(--pierre);font-style:italic;padding:.5rem 0 1rem}
+
+  /* chiffres-repères du héros, en bandeau de cave */
+  .bandeau-reperes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));
+    gap:1px;background:var(--filet);border-top:1px solid var(--filet);border-bottom:1px solid var(--filet);
+    margin-top:1rem}
+  .bandeau-reperes div{background:var(--cave);padding:1.3rem 1.5rem}
+  .bandeau-reperes b{display:block;font-family:var(--serif);font-weight:400;font-size:1.7rem;color:var(--or);line-height:1.1}
+  .bandeau-reperes span{font-size:.82rem;color:var(--pierre-clair)}
 
   .separateur{overflow:hidden;line-height:0;border-top:1px solid var(--filet);border-bottom:1px solid var(--filet);
     background:var(--cave);padding:.6rem 6vw}
@@ -89,6 +153,8 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
     text-transform:uppercase}
   h2{font-family:var(--serif);font-weight:400;color:var(--or);
     font-size:clamp(1.6rem,3.4vw,2.5rem);margin:1rem 0 1.4rem;max-width:26ch}
+  h3{font-family:var(--serif);font-weight:400}
+  .chapo-section{max-width:68ch;color:var(--texte-doux);margin-bottom:1.6rem}
   .deux-col{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:start}
   .deux-col p+p{margin-top:1rem}
   .deux-col p{color:var(--texte-doux)}
@@ -101,14 +167,27 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
     font-weight:400;min-width:5.5ch}
   .chiffres span{font-size:.88rem;color:var(--pierre-clair)}
 
-  /* Travée III — l'étal du magasin */
-  .comtes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1px;
+  /* la fabrication : une journée en cave, heure par heure */
+  .journee{list-style:none;margin-top:1.8rem;border-top:1px solid var(--filet)}
+  .journee li{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr);gap:.4rem 2rem;
+    padding:1.4rem 0;border-bottom:1px solid var(--filet)}
+  .journee .moment{font-family:var(--serif);font-size:1.05rem;color:var(--croute);letter-spacing:.06em}
+  .journee .moment small{display:block;font-family:var(--sans);font-size:.72rem;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--pierre-clair);margin-top:.25rem}
+  .journee h3{font-size:1.2rem;color:var(--or);margin-bottom:.3rem}
+  .journee p{color:var(--texte-doux);font-size:.97rem;max-width:64ch}
+
+  /* Travée — l'étal du magasin */
+  .comtes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1px;
     background:var(--filet);border:1px solid var(--filet);margin-top:1.5rem}
   .comtes article{background:var(--cave);padding:1.6rem 1.5rem}
-  .comtes h3{font-family:var(--serif);font-weight:400;font-size:1.3rem;color:var(--or)}
+  .comtes h3{font-size:1.3rem;color:var(--or)}
   .comtes .duree{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
     color:var(--croute);margin:.3rem 0 .8rem}
   .comtes p{font-size:.95rem;color:var(--texte-chapo)}
+  .comtes p+p{margin-top:.7rem}
+  .comtes .usage{border-top:1px solid var(--filet);padding-top:.7rem;margin-top:.9rem;
+    color:var(--pierre-clair);font-size:.9rem}
   .note-prix{margin-top:1.4rem;font-size:.9rem;font-style:italic;color:var(--pierre-clair)}
   .etal{list-style:none;margin-top:1.6rem;border-top:1px solid var(--filet)}
   .etal li{padding:.75rem 0;border-bottom:1px solid var(--filet);display:flex;
@@ -116,31 +195,78 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   .etal b{font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--or);min-width:9ch}
   .etal span{font-size:.92rem;color:var(--texte-chapo)}
 
+  /* tableau des produits */
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.6rem}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  table.produits{border-collapse:collapse;width:100%;min-width:34rem;background:var(--cave)}
+  table.produits th,table.produits td{border:1px solid var(--filet);padding:.75rem 1rem;
+    text-align:left;font-size:.93rem;color:var(--texte-doux)}
+  table.produits th{font-family:var(--serif);font-weight:400;font-size:.8rem;letter-spacing:.2em;
+    text-transform:uppercase;background:var(--nuit);color:var(--croute)}
+  table.produits td:first-child{color:var(--or)}
+  table.produits td.prix{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--pierre-clair);white-space:nowrap}
+
   .magasins{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:2rem;margin-top:1.5rem}
   .magasin{border:1px solid var(--croute);padding:1.8rem 1.7rem;background:linear-gradient(180deg,var(--cave),#241b15)}
-  .magasin h3{font-family:var(--serif);font-weight:400;font-size:1.35rem;color:var(--or)}
+  .magasin h3{font-size:1.35rem;color:var(--or)}
   .magasin .lieu{font-size:.77rem;letter-spacing:.2em;text-transform:uppercase;color:var(--croute);margin:.2rem 0 1rem}
   .magasin dl{font-size:.95rem}
   .magasin dt{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--pierre-clair);margin-top:.9rem}
   .magasin dd{margin-top:.15rem;color:var(--texte-doux)}
+  .magasin .quoi{font-size:.92rem;color:var(--texte-chapo);margin-top:1.1rem;
+    border-top:1px solid var(--filet);padding-top:.9rem}
   .avertissement{font-size:.88rem;color:var(--pierre-clair);margin-top:1.5rem;font-style:italic}
+
+  /* infos pratiques en quatre blocs */
+  .grille4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1px;
+    background:var(--filet);border:1px solid var(--filet);margin-top:1.6rem}
+  .info{background:var(--cave);padding:1.5rem 1.4rem}
+  .info h3{font-size:1.15rem;color:var(--or);margin-bottom:.5rem}
+  .info p{font-size:.93rem;color:var(--texte-doux)}
+  .info p+p{margin-top:.6rem}
+
+  /* contact et gros bouton téléphone */
+  .gros-tel{display:block;background:var(--or);color:var(--nuit);text-decoration:none;
+    padding:1.4rem 1.6rem;max-width:32rem;margin-bottom:2rem}
+  .gros-tel small{display:block;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;margin-bottom:.35rem}
+  .gros-tel b{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,5vw,2.2rem);
+    letter-spacing:.05em;line-height:1.1;display:block}
+  .gros-tel:hover{background:#eec27c}
+  .gros-tel+.gros-tel{margin-top:-1rem}
+  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:2.2rem}
+  .contact-grille h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--croute);margin-bottom:.6rem}
+  .contact-grille p{font-size:.95rem;color:var(--texte-doux)}
+  .contact-grille p+p{margin-top:.6rem}
 
   footer.site{border-top:1px solid var(--filet);background:var(--nuit-pied);padding:2.5rem 6vw;color:var(--pied)}
   footer.site p{font-size:.88rem;max-width:64ch}
   .mention-primo{margin-top:1.25rem;border-top:1px solid var(--filet-pied);padding-top:1rem;font-size:.82rem;color:var(--pierre-clair)}
   .mention-primo a{color:var(--croute)}
 
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .monte{opacity:1;transform:none;transition:none}
+  }
+
   @media (max-width:860px){
     .hero,.deux-col{grid-template-columns:1fr}
     .hero figure{order:-1;max-width:420px}
     nav.principale{margin-left:0;gap:1rem 1.2rem}
+    .journee li{grid-template-columns:1fr;gap:.6rem}
   }
   @media (max-width:520px){
     :root{--pas-section:2.9rem}
-    .hero{padding:3rem 6vw 0}
+    header.site,section.bloc,footer.site,.separateur{padding-left:1.15rem;padding-right:1.15rem}
+    .hero{padding:3rem 1.15rem 0}
     .magasin{padding:1.4rem 1.2rem}
-    .chiffres li{padding:1rem 1.1rem}
+    .chiffres li,.bandeau-reperes div,.info{padding:1rem 1.1rem}
     .etal b{min-width:0}
+    h2{max-width:none}
   }
 </style>
 
@@ -151,10 +277,12 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
     <small>Fruitière de Saint-Antoine · Les Hôpitaux-Vieux</small>
   </div>
   <nav class="principale">
-    <a href="#altitude">Le comté d'altitude</a>
-    <a href="#fruitiere">La fruitière</a>
+    <a href="#altitude">L'altitude</a>
+    <a href="#fabrication">La fabrication</a>
     <a href="#etal">L'étal</a>
+    <a href="#fruitiere">La fruitière</a>
     <a href="#magasins">Nos magasins</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
@@ -164,11 +292,12 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
     <h1>Un comté né là-haut, affiné dans l'ombre.</h1>
     <p class="chapo">Au cœur de la station Métabief – Mont d'Or, la fruitière
     de Saint-Antoine – Les Hôpitaux-Vieux transforme le lait de 13 fermes
-    d'altitude en Comté AOP. Du producteur au consommateur, sans détour :
-    c'est le circuit court, version haute montagne.</p>
+    d'altitude en Comté AOP. Le lait ne fait jamais plus de quelques kilomètres
+    entre le pré et la cuve, et le fromage se vend à deux pas de l'endroit où
+    il a été fait : c'est le circuit court, version haute montagne.</p>
     <div class="actions">
       <a class="btn plein" href="#magasins">Où nous trouver</a>
-      <a class="btn" href="#fruitiere">Notre histoire</a>
+      <a class="btn" href="#fabrication">Comment on fabrique</a>
     </div>
   </div>
   <figure>
@@ -229,6 +358,46 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   </figure>
 </section>
 
+<div class="bandeau-reperes">
+  <div><b>13 fermes</b><span>sociétaires, sur 6 communes</span></div>
+  <div><b>860–1 300 m</b><span>altitude de collecte du lait</span></div>
+  <div><b>4 M litres</b><span>de lait transformés chaque année</span></div>
+  <div><b>≈ 400 t</b><span>de Comté AOP produites par an</span></div>
+</div>
+
+<section class="bloc monte" id="altitude">
+  <span class="plaque">Travée I</span>
+  <h2>L'altitude se goûte</h2>
+  <p class="chapo-section">Le territoire n'est pas un décor sur l'emballage : c'est la première
+  étape de la fabrication. Entre 860 et 1 300 mètres, l'herbe pousse autrement, et le lait
+  n'a pas la même composition qu'en plaine.</p>
+  <div class="deux-col">
+    <div>
+      <p>Nos vaches pâturent entre 860 et 1 300 mètres, sur des prés de
+      montagne à la flore dense. À cette altitude, la saison de pousse est courte et la neige
+      couvre les prairies plusieurs mois ; l'herbe ne peut pas être forcée. Une prairie qui pousse
+      lentement porte des dizaines d'espèces différentes plutôt que trois ou quatre graminées
+      semées — et cette diversité passe dans le lait, puis dans le fromage.</p>
+      <p>Ce lait d'altitude, collecté dans 13 fermes réparties sur 6 communes du Haut-Doubs, donne
+      au comté de la fruitière son caractère : une pâte fine, des arômes francs, une longueur en
+      bouche qui change avec la saison de la traite. Un comté d'hiver, nourri au foin, n'a pas la
+      même couleur ni le même goût qu'un comté d'été fait avec le lait des pâtures.</p>
+      <p>Chaque année, la fruitière transforme environ 4 millions de litres
+      de lait, destinés pour l'essentiel au Comté AOP — environ 400 tonnes —
+      ainsi qu'à la crème et au beurre. À raison d'environ 400 litres de lait par meule, cela fait
+      beaucoup de matins passés en cuve.</p>
+    </div>
+    <ul class="chiffres">
+      <li><b>13</b><span>fermes sociétaires, sur 6 communes</span></li>
+      <li><b>860–1300&nbsp;m</b><span>altitude de collecte du lait</span></li>
+      <li><b>4&nbsp;M&nbsp;L</b><span>de lait transformés chaque année</span></li>
+      <li><b>≈400&nbsp;t</b><span>de Comté AOP produites par an</span></li>
+      <li><b>≈400&nbsp;L</b><span>de lait pour une seule meule</span></li>
+      <li><b>4 mois</b><span>d'affinage minimum imposés par l'AOP</span></li>
+    </ul>
+  </div>
+</section>
+
 <div class="separateur" aria-hidden="true">
   <svg viewBox="0 0 900 40">
     <g fill="none" stroke="#C08A45" stroke-width="2.5">
@@ -237,32 +406,146 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   </svg>
 </div>
 
-<section class="bloc" id="altitude">
-  <span class="plaque">Travée I</span>
-  <h2>L'altitude se goûte</h2>
-  <div class="deux-col">
-    <div>
-      <p>Nos vaches pâturent entre 860 et 1 300 mètres, sur des prés de
-      montagne à la flore dense. Ce lait d'altitude, collecté dans
-      13 fermes réparties sur 6 communes du Haut-Doubs, donne au comté de
-      la fruitière son caractère : une pâte fine, des arômes francs, une
-      longueur en bouche qui raconte l'estive.</p>
-      <p>Chaque année, la fruitière transforme environ 4 millions de litres
-      de lait, destinés pour l'essentiel au Comté AOP — environ 400 tonnes —
-      ainsi qu'à la crème et au beurre.</p>
-    </div>
-    <ul class="chiffres">
-      <li><b>13</b><span>fermes sociétaires, sur 6 communes</span></li>
-      <li><b>860–1300&nbsp;m</b><span>altitude de collecte du lait</span></li>
-      <li><b>4&nbsp;M&nbsp;L</b><span>de lait transformés chaque année</span></li>
-      <li><b>≈400&nbsp;t</b><span>de Comté AOP produites par an</span></li>
-    </ul>
-  </div>
+<section class="bloc monte" id="fabrication" style="background:var(--cave);border-top:1px solid var(--filet);border-bottom:1px solid var(--filet)">
+  <span class="plaque">Travée II</span>
+  <h2>Une journée à la fruitière</h2>
+  <p class="chapo-section">Le comté ne se fabrique pas par lots hebdomadaires : il se fabrique tous
+  les jours, parce que le lait cru arrive tous les jours et n'attend pas. Voici l'enchaînement, et
+  le temps que chaque geste réclame.</p>
+  <ul class="journee">
+    <li>
+      <div class="moment">Le petit matin<small>avant l'ouverture</small></div>
+      <div>
+        <h3>La collecte</h3>
+        <p>Le lait des 13 fermes arrive cru et entier. Il n'est ni pasteurisé ni standardisé : la
+        flore naturelle du lait, propre à chaque saison et à chaque ferme, est précisément ce que
+        l'AOP entend préserver. Le cahier des charges interdit l'ensilage dans l'alimentation des
+        vaches et impose une collecte de proximité — sans quoi un lait cru ne pourrait pas être
+        travaillé en toute sécurité.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">En cuve<small>environ 40 minutes</small></div>
+      <div>
+        <h3>Caillage et décaillage</h3>
+        <p>Le lait est tiédi, ensemencé de ferments lactiques puis emprésuré. Il prend en masse en
+        une demi-heure environ. Le caillé est alors tranché en grains de plus en plus fins, jusqu'à
+        la taille d'un grain de riz : plus le grain est fin, plus il rendra d'eau, et plus la pâte
+        sera ferme et apte à la garde.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">À la chauffe<small>environ 1 heure</small></div>
+      <div>
+        <h3>Le brassage chaud</h3>
+        <p>Le mélange grains-sérum est chauffé au-delà de 50 °C et brassé sans arrêt. Les grains se
+        contractent et deviennent élastiques. Le fromager en prélève une poignée, la serre : si elle
+        forme une boule qui se défait proprement, c'est le moment de soutirer. Aucun minuteur ne
+        remplace ce geste.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">Au moule<small>une nuit entière</small></div>
+      <div>
+        <h3>Pressage et identité</h3>
+        <p>Les grains sont soutirés, moulés et pressés plusieurs heures. Chaque meule reçoit sa
+        plaque de caséine verte, qui porte l'atelier et la date de fabrication : c'est elle qui
+        permet, des mois plus tard, de savoir exactement d'où vient le morceau que l'on vous coupe.
+        Une meule pèse plusieurs dizaines de kilos.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">En cave<small>4 mois au minimum</small></div>
+      <div>
+        <h3>Le salage et l'affinage</h3>
+        <p>Les meules passent en cave, où elles sont retournées et frottées au sel régulièrement.
+        C'est ce frottage répété qui construit la croûte et permet aux arômes de se développer sans
+        que la pâte ne sèche. Quatre mois est le plancher réglementaire ; les meules gardées
+        beaucoup plus longtemps donnent les comtés les plus typés.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">Au magasin<small>tous les jours d'ouverture</small></div>
+      <div>
+        <h3>L'ouverture de la meule</h3>
+        <p>La meule est ouverte et coupée à la demande. Demandez à goûter les affinages disponibles
+        avant de choisir : c'est l'usage de la maison, et c'est le seul moyen honnête de savoir
+        lequel vous convient. On vous dira aussi de quel mois date la meule entamée ce jour-là.</p>
+      </div>
+    </li>
+  </ul>
 </section>
 
-<section class="bloc" id="fruitiere" style="background:var(--cave);border-top:1px solid var(--filet);border-bottom:1px solid var(--filet)">
-  <span class="plaque">Travée II</span>
+<section class="bloc monte" id="etal">
+  <span class="plaque">Travée III</span>
+  <h2>Ce qu'il y a sur le banc</h2>
+  <p class="chapo-section">Le comté de la fruitière se coupe à la demande, dans l'affinage que vous
+  préférez. À côté, ce que la maison fabrique aussi : le beurre et la crème crus, qui viennent du
+  même lait, sortis de la même collecte du matin.</p>
+  <div class="comtes">
+    <article>
+      <h3>Comté doux</h3>
+      <p class="duree">Affinage jeune</p>
+      <p>Pâte souple et pâle, presque tendre sous le couteau. Le goût reste lacté : lait frais,
+      beurre, une pointe de noisette verte. Ni amertume ni piquant, aucun cristal.</p>
+      <p class="usage">Le comté du quotidien — celui des enfants, des sandwichs de randonnée et des
+      croque-monsieur.</p>
+    </article>
+    <article>
+      <h3>Comté fruité</h3>
+      <p class="duree">Affinage prolongé</p>
+      <p>La pâte fonce d'un ton et se raffermit ; les premiers cristaux apparaissent. Les arômes
+      se déploient vers les fruits secs, le beurre noisette et la torréfaction, avec une vraie
+      longueur en bouche.</p>
+      <p class="usage">Le choix des plateaux et des soirées d'hiver, et le meilleur compagnon d'un
+      blanc du Jura.</p>
+    </article>
+    <article>
+      <h3>Beurre &amp; crème crus</h3>
+      <p class="duree">Fabriqués à la fruitière</p>
+      <p>La crème est écrémée du lait de la collecte et vendue crue ; le beurre en est baratté.
+      Un beurre cru a un goût prononcé et une durée de conservation plus courte qu'un beurre
+      pasteurisé : c'est le prix à payer, et c'est tout l'intérêt.</p>
+      <p class="usage">La crème pour la sauce aux morilles, le beurre pour le pain du matin.
+      À garder au froid et à consommer vite.</p>
+    </article>
+  </div>
+
+  <div class="table-scroll">
+    <table class="produits">
+      <caption class="sr-only">Produits vendus dans les magasins de la fruitière</caption>
+      <tr>
+        <th scope="col">Produit</th>
+        <th scope="col">Ce que c'est</th>
+        <th scope="col">Disponibilité</th>
+        <th scope="col">Prix</th>
+      </tr>
+      <tr><td>Comté doux</td><td>Affinage jeune, pâte souple et lactée</td><td>Toute l'année, à la coupe</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Comté fruité</td><td>Affinage prolongé, arômes torréfiés</td><td>Toute l'année, à la coupe</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Beurre cru</td><td>Baratté à la fruitière</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Crème crue</td><td>Écrémée du lait de la collecte</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Yaourts</td><td>Yaourts artisanaux</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Autres fromages</td><td>Appellations de la région</td><td>Selon l'arrivage</td><td class="prix">Prix en magasin</td></tr>
+    </table>
+  </div>
+  <p class="note-prix">Prix affichés en magasin, selon les meules ouvertes du moment. Cette maquette
+  n'avance aucun montant. Les gammes exactes, les formats et les éventuels colis à emporter restent
+  à compléter ensemble.</p>
+
+  <ul class="etal">
+    <li><b>Beurre cru</b><span>de la fruitière</span></li>
+    <li><b>Crème crue</b><span>de la fruitière</span></li>
+    <li><b>Yaourts</b><span>artisanaux</span></li>
+    <li><b>Fromages</b><span>d'autres appellations de la région</span></li>
+  </ul>
+</section>
+
+<section class="bloc monte" id="fruitiere" style="background:var(--cave);border-top:1px solid var(--filet);border-bottom:1px solid var(--filet)">
+  <span class="plaque">Travée IV</span>
   <h2>Deux villages, une seule fruitière</h2>
+  <p class="chapo-section">Une fruitière n'est pas une entreprise qui achète du lait : c'est une
+  coopérative que les fermes possèdent. Cette différence de statut décide de beaucoup de choses,
+  à commencer par l'endroit où l'argent revient.</p>
   <div class="deux-col">
     <div>
       <p>La coopérative actuelle est née de la réunion de deux fruitières
@@ -272,7 +555,12 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
       vente directe.</p>
       <p>La fruitière est de ces maisons où le sociétaire n'est pas un
       fournisseur mais un propriétaire : le fruit de la vente revient aux
-      fermes, et le savoir-faire reste au village.</p>
+      fermes, et la fabrication reste au village plutôt que de partir vers un atelier
+      de plaine.</p>
+      <p>C'est aussi une question d'échelle. Il faut environ 400 litres de lait pour une seule
+      meule de comté : aucune ferme du secteur n'en produit assez à elle seule. Mettre le lait en
+      commun est la seule façon de faire un fromage de garde — c'est la raison d'être des fruitières
+      jurassiennes depuis des siècles, et elle n'a pas changé.</p>
     </div>
     <div>
       <p>Quatre kilomètres séparent les deux villages : c'est toute la
@@ -281,43 +569,10 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
       <p>Ce que cette réunion a permis de garder, c'est le plus difficile à
       faire revenir une fois perdu — une fabrication quotidienne au pays, et
       des portes ouvertes dans les deux villages.</p>
-    </div>
-  </div>
-</section>
-
-<section class="bloc" id="etal">
-  <span class="plaque">Travée III</span>
-  <h2>Ce qu'il y a sur le banc</h2>
-  <div class="deux-col">
-    <div>
-      <p>Le comté de la fruitière se coupe à la demande, dans l'affinage que
-      vous préférez. Demandez à goûter les deux avant de choisir : c'est le
-      meilleur moyen de savoir lequel est le vôtre.</p>
-      <div class="comtes">
-        <article>
-          <h3>Comté doux</h3>
-          <p class="duree">Affinage jeune</p>
-          <p>Souple et lacté, le comté du quotidien — celui des enfants et
-          des sandwichs de randonnée.</p>
-        </article>
-        <article>
-          <h3>Comté fruité</h3>
-          <p class="duree">Affinage prolongé</p>
-          <p>Plus charpenté, aux arômes torréfiés et fruités : le choix des
-          plateaux et des soirées d'hiver.</p>
-        </article>
-      </div>
-      <p class="note-prix">Prix affichés en magasin, selon les meules ouvertes du moment.</p>
-    </div>
-    <div>
-      <p>À côté du comté, ce que la maison fabrique et ce qu'elle a choisi
-      d'accueillir sur son banc&nbsp;:</p>
-      <ul class="etal">
-        <li><b>Beurre cru</b><span>de la fruitière</span></li>
-        <li><b>Crème crue</b><span>de la fruitière</span></li>
-        <li><b>Yaourts</b><span>artisanaux</span></li>
-        <li><b>Fromages</b><span>d'autres appellations de la région</span></li>
-      </ul>
+      <p>Autour, la station Métabief – Mont d'Or fait vivre le secteur l'hiver. Les deux magasins
+      voient donc défiler deux publics très différents : les habitués du village, qui viennent
+      chercher leur morceau chaque semaine, et les vacanciers qui découvrent qu'un comté peut avoir
+      une date de naissance et une adresse.</p>
     </div>
   </div>
 </section>
@@ -330,9 +585,12 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   </svg>
 </div>
 
-<section class="bloc" id="magasins">
-  <span class="plaque">Travée IV</span>
+<section class="bloc monte" id="magasins">
+  <span class="plaque">Travée V</span>
   <h2>Deux magasins de vente directe</h2>
+  <p class="chapo-section">Les deux magasins vendent la même production, mais ils n'ont ni les
+  mêmes horaires ni la même clientèle. Choisissez celui qui tombe sur votre route — et vérifiez les
+  horaires avant de monter, ils sont serrés à la mi-journée.</p>
   <div class="magasins">
     <div class="magasin">
       <h3>Saint-Antoine</h3>
@@ -347,6 +605,8 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
         <dt>Itinéraire</dt>
         <dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Fromagerie+Saint-Antoine+Saint-Antoine">Ouvrir dans Google Maps</a></dd>
       </dl>
+      <p class="quoi">Ouvert tous les jours, y compris le dimanche. L'ouverture de fin d'après-midi
+      convient bien au retour des pistes, quand on redescend avant de rentrer.</p>
     </div>
     <div class="magasin">
       <h3>Les Hôpitaux-Vieux</h3>
@@ -361,9 +621,73 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
         <dt>Itinéraire</dt>
         <dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Fruiti%C3%A8re+de+Saint-Antoine+Les+H%C3%B4pitaux-Vieux">Ouvrir dans Google Maps</a></dd>
       </dl>
+      <p class="quoi">Le magasin attenant à la fruitière, avec la plus large amplitude horaire :
+      ouvert dès 9 h et jusqu'à 19 h en semaine. Le dimanche, uniquement le matin.</p>
     </div>
   </div>
   <p class="avertissement">Horaires relevés dans les annuaires — à confirmer ensemble avant mise en ligne.</p>
+</section>
+
+<section class="bloc monte" id="infos" style="background:var(--cave);border-top:1px solid var(--filet);border-bottom:1px solid var(--filet)">
+  <span class="plaque">Travée VI</span>
+  <h2>Bon à savoir avant de venir</h2>
+  <div class="grille4">
+    <div class="info">
+      <h3>Goûter avant d'acheter</h3>
+      <p>C'est l'usage, et ce n'est pas une faveur : demandez à comparer les affinages disponibles.
+      Un comté n'est pas un produit standard, deux meules du même âge ne se ressemblent pas
+      forcément.</p>
+    </div>
+    <div class="info">
+      <h3>Conserver son comté</h3>
+      <p>Dans le bas du réfrigérateur, enveloppé dans son papier d'origine plutôt que dans un film
+      plastique — la pâte a besoin de respirer un peu.</p>
+      <p>À sortir une demi-heure avant de servir : froid, un comté ne dit presque rien.</p>
+    </div>
+    <div class="info">
+      <h3>Le beurre et la crème crus</h3>
+      <p>Produits au lait cru, donc fragiles : chaîne du froid stricte et consommation rapide. Si
+      vous avez de la route, demandez un emballage isotherme.</p>
+    </div>
+    <div class="info">
+      <h3>Commandes et groupes</h3>
+      <p>Grosses pièces, plateaux, commandes pour un groupe : un coup de fil quelques jours avant
+      évite la déception.</p>
+      <p>Moyens de paiement acceptés et envois postaux : à compléter ensemble.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc monte" id="contact">
+  <span class="plaque">Travée VII</span>
+  <h2>Nous appeler</h2>
+  <p class="chapo-section">Pour savoir quelles meules sont ouvertes, réserver une grosse pièce ou
+  vérifier un horaire de saison, le téléphone reste le plus rapide. Chaque magasin a sa ligne.</p>
+  <a class="gros-tel" href="tel:+33381491354">
+    <small>Magasin de Saint-Antoine</small>
+    <b>03 81 49 13 54</b>
+  </a>
+  <a class="gros-tel" href="tel:+33381491244">
+    <small>Magasin des Hôpitaux-Vieux</small>
+    <b>03 81 49 12 44</b>
+  </a>
+  <div class="contact-grille">
+    <div>
+      <h3>Adresses</h3>
+      <p>2 place de la Mairie<br>25370 Saint-Antoine</p>
+      <p>2 impasse des Biefs<br>25370 Les Hôpitaux-Vieux</p>
+    </div>
+    <div>
+      <h3>Itinéraires</h3>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Fromagerie+Saint-Antoine+Saint-Antoine">Saint-Antoine sur Google Maps</a></p>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Fruiti%C3%A8re+de+Saint-Antoine+Les+H%C3%B4pitaux-Vieux">Les Hôpitaux-Vieux sur Google Maps</a></p>
+    </div>
+    <div>
+      <h3>Le reste</h3>
+      <p>Adresse électronique, page Facebook, jours de fermeture annuelle et éventuels envois
+      postaux : à compléter ensemble avant la mise en ligne.</p>
+    </div>
+  </div>
 </section>
 
 <footer class="site">
@@ -371,3 +695,20 @@ téléphones et horaires relevés — à confirmer). Prix en magasin.
   Comté AOP d'altitude, beurre et crème crus, vente directe au cœur de la station Métabief – Mont d'Or.</p>
   <p class="mention-primo">Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle</p>
 </footer>
+
+<script>
+(function(){
+  var cibles = document.querySelectorAll('.monte');
+  if(!('IntersectionObserver' in window) ||
+     window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    cibles.forEach(function(el){el.classList.add('vu')});
+    return;
+  }
+  var io = new IntersectionObserver(function(entrees){
+    entrees.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
+    });
+  }, {threshold:.1});
+  cibles.forEach(function(el){io.observe(el)});
+})();
+</script>

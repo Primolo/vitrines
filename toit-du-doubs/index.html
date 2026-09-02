@@ -21,13 +21,123 @@ panneau de sommet. Grille moderniste, bandes horizontales, hero scindé
 gauche/droite — aucun centrage systématique.
 Contenu : faits fournis par le client (11 fermes, 2017, bâtiment mairie/poste,
 baies vitrées, 3 affinages de comté + mont d'or en saison, horaires, ~1 100 m)
-+ recherche (adresse 2B Grande Rue, tél. 03 81 39 54 24, épicerie de terroir).
++ recherche (adresse 2B Grande Rue, tél. 03 81 39 54 24, épicerie de terroir)
++ règles publiques du cahier des charges des AOP comté et mont d'or.
 Prix en magasin, aucune récompense inventée.
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Fruitière le Toit du Doubs — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "@id": "https://primolo.github.io/vitrines/toit-du-doubs/#etablissement",
+  "name": "Fruitière le Toit du Doubs",
+  "description": "Fromagerie coopérative des Fourgs, réunissant onze fermes depuis 2017. Comté en trois affinages, mont d'or de saison, fabrication visible depuis le magasin.",
+  "url": "https://primolo.github.io/vitrines/toit-du-doubs/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2B Grande Rue",
+    "addressLocality": "Les Fourgs",
+    "postalCode": "25300",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Les Fourgs"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "telephone": "+33381395424",
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "https://schema.org/Monday",
+        "https://schema.org/Tuesday",
+        "https://schema.org/Wednesday",
+        "https://schema.org/Thursday",
+        "https://schema.org/Friday",
+        "https://schema.org/Saturday"
+      ],
+      "opens": "10:00",
+      "closes": "12:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "https://schema.org/Monday",
+        "https://schema.org/Tuesday",
+        "https://schema.org/Wednesday",
+        "https://schema.org/Thursday",
+        "https://schema.org/Friday",
+        "https://schema.org/Saturday"
+      ],
+      "opens": "14:30",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "https://schema.org/Sunday"
+      ],
+      "opens": "10:00",
+      "closes": "12:00"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quels sont les horaires de la fruitière le Toit du Doubs ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Du lundi au samedi de 10 h à 12 h et de 14 h 30 à 18 h, et les dimanches et jours fériés de 10 h à 12 h."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on voir fabriquer le comté aux Fourgs ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, la fabrication est visible depuis le magasin à travers de grandes baies vitrées."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de fermes composent la coopérative ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Onze fermes se sont réunies en coopérative en 2017 pour fabriquer leur comté au village."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où se trouve la fruitière ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Au 2B Grande Rue, aux Fourgs (25300), le village le plus haut du Doubs, à environ 1 100 mètres d'altitude."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --neige:#F5F8FA; --givre:#DCE7EE; --ciel:#46759E; --ciel-texte:#2E5578; --nuit:#1F3A52;
@@ -48,8 +158,8 @@ Prix en magasin, aucune récompense inventée.
   .demo-band{background:var(--nuit);color:var(--neige);font-size:.8rem;padding:.5rem 1.25rem}
   a{color:var(--ciel)}
   img,svg{max-width:100%}
-  h1,h2{text-wrap:balance}
-  p{text-wrap:pretty}
+  h1,h2,h3{text-wrap:balance}
+  p{text-wrap:pretty;overflow-wrap:break-word}
   a:focus-visible,.btn:focus-visible{outline:3px solid var(--safran);outline-offset:3px}
   nav.principale a:focus-visible{outline-color:var(--ciel)}
 
@@ -67,7 +177,7 @@ Prix en magasin, aucune récompense inventée.
   .hero .texte{padding:4rem 3rem 4rem 5vw;display:flex;flex-direction:column;justify-content:center}
   .cote-altitude{font-family:var(--display);font-weight:700;color:var(--ciel);
     font-size:clamp(3.2rem,9vw,6.5rem);line-height:.95;letter-spacing:-.01em}
-  .cote-altitude sup{font-size:.32em;vertical-align:.9em;letter-spacing:.08em;color:var(--safran)}
+  .cote-altitude sup{font-size:.32em;vertical-align:.9em;letter-spacing:.08em;color:var(--safran-texte)}
   .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(1.15rem,2.2vw,1.6rem);
     text-transform:uppercase;letter-spacing:.12em;margin-top:1rem;max-width:24ch}
   .hero p.chapo{margin-top:1.25rem;max-width:44ch;color:var(--corps)}
@@ -76,7 +186,7 @@ Prix en magasin, aucune récompense inventée.
     text-transform:uppercase;letter-spacing:.16em;padding:.8rem 1.4rem}
   .btn.plein{background:var(--ciel);color:var(--blanc)}
   .btn.plein:hover{background:#38618a}
-  .btn.trait{border:2px solid var(--ciel);color:var(--ciel)}
+  .btn.trait{border:2px solid var(--ciel);color:var(--ciel-texte)}
   .btn.trait:hover{background:var(--givre)}
   .hero .vitrine{background:var(--givre);display:flex;align-items:center;
     justify-content:center;padding:2.5rem 5vw 2.5rem 2.5rem;border-left:4px solid var(--ciel)}
@@ -94,26 +204,43 @@ Prix en magasin, aucune récompense inventée.
     text-transform:uppercase;color:var(--safran-texte)}
   h2{font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,3vw,2.1rem);
     text-transform:uppercase;letter-spacing:.06em;color:var(--ciel);margin:.5rem 0 1.3rem;max-width:28ch}
+  .chapo-section{max-width:66ch;color:var(--corps);margin-bottom:2rem}
   .deux-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem}
   .deux-col p+p{margin-top:1rem}
   .deux-col p{color:var(--corps)}
+  h3{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+
+  /* les étapes de fabrication, en travées numérotées */
+  .etapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));
+    gap:1px;background:var(--givre);border:1px solid var(--givre);margin-top:1.8rem}
+  .etapes article{background:var(--blanc);padding:1.5rem 1.4rem 1.6rem}
+  .etapes .heure{font-family:var(--display);font-size:.72rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--safran-texte)}
+  .etapes h3{font-size:1.05rem;color:var(--ciel-texte);margin:.35rem 0 .2rem}
+  .etapes .duree{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--zinc-texte);margin-bottom:.7rem}
+  .etapes p{font-size:.95rem;color:var(--corps)}
 
   /* l'épicerie de terroir : une liste de rayons, pas un paragraphe fourre-tout */
   .rayons{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
   .rayons li{font-size:.85rem;background:var(--givre);color:var(--nuit);
     padding:.35rem .8rem;border-left:3px solid var(--ciel)}
 
-  .affinages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1.5rem;margin-top:1.5rem}
+  .affinages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1.5rem;margin-top:1.5rem}
   .affinages article{border-top:6px solid var(--ciel);background:var(--blanc);padding:1.4rem 1.4rem 1.6rem;
     box-shadow:0 1px 0 var(--givre)}
   .affinages article:nth-child(2){border-top-color:var(--safran)}
   .affinages article:nth-child(3){border-top-color:var(--nuit)}
-  .affinages h3{font-family:var(--display);font-weight:600;text-transform:uppercase;
-    letter-spacing:.1em;font-size:1.05rem}
+  .affinages h3{font-size:1.05rem;color:var(--ciel-texte)}
   .affinages .type{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc-texte);margin:.25rem 0 .8rem}
   .affinages p{font-size:.95rem;color:var(--corps)}
-  .saison{margin-top:1.5rem;background:var(--blanc);border-left:6px solid var(--safran);
-    padding:1.2rem 1.5rem;font-size:.95rem;max-width:70ch}
+  .affinages p+p{margin-top:.7rem}
+  .affinages .usage{font-size:.88rem;color:var(--ciel-texte);border-top:1px solid var(--givre);
+    margin-top:.9rem;padding-top:.7rem}
+  .saison{margin-top:1.8rem;background:var(--blanc);border-left:6px solid var(--safran);
+    padding:1.3rem 1.5rem;font-size:.95rem;max-width:74ch;color:var(--corps)}
+  .saison strong{color:var(--nuit)}
+  .saison p+p{margin-top:.8rem}
   .note-prix{margin-top:1.2rem;font-size:.88rem;font-style:italic;color:var(--zinc-texte)}
   .conseil{font-size:.9rem;color:var(--zinc-texte);margin-top:.9rem;font-style:italic}
 
@@ -126,6 +253,8 @@ Prix en magasin, aucune récompense inventée.
   table.horaires th{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;
     font-size:.72rem;background:var(--ciel);color:var(--blanc)}
   table.horaires td:first-child{font-weight:600}
+  table.horaires td.prix{font-family:var(--display);font-size:.78rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--safran-texte);white-space:nowrap}
   .panneau-acces{background:var(--nuit);color:var(--neige);padding:1.8rem 1.7rem}
   .panneau-acces h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;
     font-size:.95rem;color:var(--safran);margin-bottom:1rem}
@@ -134,10 +263,44 @@ Prix en magasin, aucune récompense inventée.
   .panneau-acces dd{margin-top:.15rem}
   .panneau-acces a{color:var(--safran)}
 
-  footer.site{background:var(--nuit);color:var(--clair);padding:2.5rem 5vw;margin-top:2rem}
+  /* quatre blocs d'infos pratiques */
+  .grille4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));
+    gap:1.5rem;margin-top:1.5rem}
+  .info{background:var(--blanc);border-top:4px solid var(--ciel);padding:1.4rem 1.4rem 1.6rem}
+  .info h3{font-size:.95rem;color:var(--ciel-texte);margin-bottom:.5rem}
+  .info p{font-size:.93rem;color:var(--corps)}
+  .info p+p{margin-top:.6rem}
+
+  /* contact : bande bleu nuit et gros bouton téléphone */
+  .contact{background:var(--nuit);color:var(--neige)}
+  .contact h2{color:var(--safran)}
+  .contact .repere{color:var(--safran)}
+  .contact .chapo-section{color:var(--clair)}
+  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:2.5rem}
+  .contact-grille h3{font-family:var(--display);font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--zinc);margin-bottom:.6rem}
+  .contact-grille p{font-size:.95rem;color:var(--clair)}
+  .contact-grille a{color:var(--safran)}
+  .gros-tel{display:block;background:var(--safran);color:#241505;text-decoration:none;
+    font-family:var(--display);padding:1.4rem 1.5rem;margin-bottom:2rem;max-width:32rem}
+  .gros-tel small{display:block;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+    margin-bottom:.35rem}
+  .gros-tel b{font-size:clamp(1.5rem,5vw,2.1rem);font-weight:700;letter-spacing:.04em;line-height:1.1}
+  .gros-tel:hover{background:#f2b258}
+  .gros-tel:focus-visible{outline:3px solid var(--neige);outline-offset:3px}
+
+  footer.site{background:var(--nuit);color:var(--clair);padding:2.5rem 5vw;border-top:1px solid var(--filet-nuit)}
   footer.site p{font-size:.88rem;max-width:64ch}
   footer.site a{color:var(--safran)}
   .mention-primo{margin-top:1.25rem;border-top:1px solid var(--filet-nuit);padding-top:1rem;font-size:.82rem}
+
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .monte{opacity:1;transform:none;transition:none}
+  }
 
   @media (max-width:860px){
     .hero{grid-template-columns:1fr;min-height:0}
@@ -147,12 +310,16 @@ Prix en magasin, aucune récompense inventée.
     nav.principale{margin-left:0;gap:1rem 1.2rem}
   }
   @media (max-width:520px){
-    section.bloc{padding:2.75rem 5vw}
-    .bandeau-faits div{padding:1.1rem 5vw}
+    section.bloc{padding:2.75rem 1.15rem}
+    header.site,footer.site{padding-left:1.15rem;padding-right:1.15rem}
+    .hero .texte,.hero .vitrine{padding-left:1.15rem;padding-right:1.15rem}
+    .bandeau-faits div{padding:1.1rem 1.15rem}
+    h2{max-width:none}
   }
 
   /* contraste AA : titres de section assombris */
   section.bloc h2{color:var(--ciel-texte)}
+  section.bloc.contact h2{color:var(--safran)}
 </style>
 
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
@@ -164,7 +331,10 @@ Prix en magasin, aucune récompense inventée.
   <nav class="principale">
     <a href="#fabrication">La fabrication</a>
     <a href="#comtes">Les trois comtés</a>
-    <a href="#magasin">Magasin &amp; horaires</a>
+    <a href="#etal">L'étal</a>
+    <a href="#magasin">Le magasin</a>
+    <a href="#village">Le village</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
@@ -175,7 +345,7 @@ Prix en magasin, aucune récompense inventée.
     <p class="chapo">Aux Fourgs, onze fermes se sont réunies en coopérative
     pour fabriquer leur comté au village. Le magasin partage le bâtiment de
     la mairie et de la poste — et à travers ses baies vitrées, on regarde
-    le fromage se faire.</p>
+    le fromage se faire, cuve après cuve, tous les matins.</p>
     <div class="actions">
       <a class="btn plein" href="#magasin">Horaires &amp; accès</a>
       <a class="btn trait" href="#comtes">Choisir son comté</a>
@@ -228,74 +398,170 @@ Prix en magasin, aucune récompense inventée.
 <div class="bandeau-faits">
   <div><b>11 fermes</b><span>réunies en coopérative</span></div>
   <div><b>2017</b><span>ouverture du magasin au village</span></div>
-  <div><b>3 affinages</b><span>de comté à la coupe</span></div>
-  <div><b>Mont d'or</b><span>fabriqué en saison</span></div>
+  <div><b>1 100 m</b><span>le plus haut village du Doubs</span></div>
+  <div><b>3 affinages</b><span>de comté à la coupe, plus le mont d'or en saison</span></div>
 </div>
 
-<section class="bloc" id="fabrication">
+<section class="bloc monte" id="fabrication">
   <p class="repere">Derrière la vitre</p>
   <h2>On fabrique sous vos yeux</h2>
-  <div class="deux-col">
-    <div>
-      <p>Depuis novembre 2017, la coopérative des Fourgs et ses onze fermes
-      tiennent leur magasin au centre du village, dans le même bâtiment que
-      la mairie et la poste. Une adresse qui dit tout : ici, la fruitière
-      est un service public du goût.</p>
-      <p>L'atelier ne se visite pas — il se regarde. De grandes baies
-      vitrées ouvrent le magasin sur la salle de fabrication : cuves,
-      moulage, soins des meules. Venez le matin, c'est là que tout se passe.</p>
-    </div>
-    <div>
-      <p>Les Fourgs, village le plus haut du Doubs, culmine à environ
-      1 100 mètres. Prés d'altitude, hivers francs, lait riche : le décor
-      n'est pas qu'un paysage, c'est la recette.</p>
-      <p>À côté du comté et du mont d'or de la maison, le magasin fait
-      aussi épicerie de terroir. De quoi remplir le panier sans redescendre
-      dans la vallée&nbsp;:</p>
-      <ul class="rayons">
-        <li>Beurre</li>
-        <li>Yaourts</li>
-        <li>Miel</li>
-        <li>Charcuterie</li>
-        <li>Chèvre bio</li>
-        <li>Fromages d'appellation de la région</li>
-      </ul>
-    </div>
+  <p class="chapo-section">Depuis novembre 2017, la coopérative des Fourgs et ses onze fermes
+  tiennent leur magasin au centre du village, dans le même bâtiment que la mairie et la poste.
+  L'atelier ne se visite pas — il se regarde. De grandes baies vitrées ouvrent le magasin sur la
+  salle de fabrication : vous êtes debout devant la vitre, le fromager est de l'autre côté, et
+  entre les deux il n'y a qu'un carreau. Voici ce qui se passe pendant que vous faites vos courses.</p>
+
+  <div class="etapes">
+    <article>
+      <p class="heure">Étape 1 · au petit matin</p>
+      <h3>Le lait arrive</h3>
+      <p class="duree">Deux traites, moins de 24 h</p>
+      <p>Le lait des onze fermes est collecté cru, jamais chauffé avant d'entrer en cuve, et
+      travaillé dans la foulée. Le cahier des charges de l'AOP comté impose une collecte de
+      proximité et interdit l'ensilage dans l'alimentation des vaches : c'est ce qui rend possible
+      un lait cru travaillé aussi vite.</p>
+    </article>
+    <article>
+      <p class="heure">Étape 2 · en cuve</p>
+      <h3>Caillage et décaillage</h3>
+      <p class="duree">Environ 30 à 40 minutes</p>
+      <p>Ferments et présure sont ajoutés au lait tiède ; le caillé prend en une demi-heure. Le
+      fromager le tranche ensuite en grains de plus en plus fins — jusqu'au calibre du grain de riz.
+      C'est le moment le plus visible depuis le magasin : les tranche-caillés tournent lentement
+      dans le cuivre.</p>
+    </article>
+    <article>
+      <p class="heure">Étape 3 · à la chauffe</p>
+      <h3>Le brassage chaud</h3>
+      <p class="duree">Environ 1 h à plus de 50 °C</p>
+      <p>Le mélange est chauffé et brassé sans interruption. Les grains se resserrent, expulsent
+      leur eau et deviennent élastiques. Le fromager en prend une poignée, la presse dans le creux
+      de la main : c'est ce geste, et pas un minuteur, qui décide du moment du soutirage.</p>
+    </article>
+    <article>
+      <p class="heure">Étape 4 · au moule</p>
+      <h3>Pressage et marquage</h3>
+      <p class="duree">Une nuit sous presse</p>
+      <p>Le caillé est soutiré, réparti dans les moules et pressé plusieurs heures pour prendre la
+      forme du talon convexe caractéristique. Chaque meule reçoit sa plaque verte de caséine :
+      atelier, mois et année de fabrication. C'est la carte d'identité que vous retrouverez sur le
+      morceau que l'on vous coupe.</p>
+    </article>
+    <article>
+      <p class="heure">Étape 5 · en cave</p>
+      <h3>Salage et affinage</h3>
+      <p class="duree">4 mois minimum, souvent bien plus</p>
+      <p>Les meules sont salées, puis descendues en cave où elles sont retournées et frottées
+      régulièrement. L'AOP impose quatre mois d'affinage au minimum ; les meules gardées plus
+      longtemps développent les arômes de fruits secs et de torréfaction que l'on retrouve dans nos
+      affinages les plus longs.</p>
+    </article>
+    <article>
+      <p class="heure">Étape 6 · au magasin</p>
+      <h3>La coupe</h3>
+      <p class="duree">Tous les jours d'ouverture</p>
+      <p>La meule est ouverte au magasin et coupée à la demande. On goûte avant d'acheter : c'est
+      l'usage, et c'est le seul moyen fiable de savoir lequel des trois affinages est le vôtre. On
+      vous dit aussi de quel mois date la meule ouverte ce jour-là.</p>
+    </article>
   </div>
+  <p class="conseil">Le bon moment pour regarder : la fin de matinée, quand la cuve est en chauffe.
+  L'après-midi, la salle est le plus souvent au nettoyage.</p>
 </section>
 
-<section class="bloc" id="comtes" style="background:var(--givre)">
+<section class="bloc monte" id="comtes" style="background:var(--givre)">
   <p class="repere">À la coupe</p>
   <h2>Trois affinages, trois caractères</h2>
+  <p class="chapo-section">C'est le même lait, la même cuve, le même fromager. Seul le temps passé
+  en cave change — et il change tout : la texture, la longueur, la présence ou non des petits
+  cristaux blancs que l'on croque dans les vieux comtés.</p>
   <div class="affinages">
     <article>
       <h3>Doux</h3>
-      <p class="type">Le tendre</p>
-      <p>Jeune et souple, des notes de lait frais et de beurre. Celui que
-      l'on rachète chaque semaine, pour tous les jours et tous les âges.</p>
+      <p class="type">Le tendre · affinage jeune</p>
+      <p>Pâte souple et claire, presque élastique sous le couteau. Le goût reste du côté du lait
+      frais et du beurre, avec une pointe de noisette verte en fin de bouche. Aucune amertume,
+      aucun piquant.</p>
+      <p class="usage">Celui des enfants, des sandwichs de randonnée et des gratins. C'est le comté
+      que l'on rachète chaque semaine sans y penser.</p>
     </article>
     <article>
       <h3>Fruité</h3>
-      <p class="type">Le généreux</p>
-      <p>L'affinage s'allonge, les arômes s'affirment : fruits secs,
-      torréfaction. L'équilibre préféré des plateaux.</p>
+      <p class="type">Le généreux · affinage prolongé</p>
+      <p>L'affinage s'allonge, la pâte fonce d'un ton et se raffermit. Les arômes s'affirment :
+      fruits secs, beurre noisette, une note de torréfaction qui reste en bouche. Les premiers
+      cristaux apparaissent.</p>
+      <p class="usage">L'équilibre préféré des plateaux, et le meilleur compagnon d'un vin blanc du
+      Jura. Si vous ne savez pas quoi prendre, prenez celui-là.</p>
     </article>
     <article>
       <h3>Altitude</h3>
-      <p class="type">Le signature</p>
-      <p>Le comté qui porte le nom du village : celui du lait des hauteurs,
-      à la personnalité la plus marquée. À goûter sur place pour choisir.</p>
+      <p class="type">Le signature · affinage long</p>
+      <p>Le comté qui porte le nom du village : celui du lait des hauteurs, gardé le plus longtemps
+      en cave. Pâte cassante, cristaux nets sous la dent, une longueur qui s'installe et ne
+      redescend pas vite.</p>
+      <p class="usage">À goûter sur place avant de choisir : c'est un comté qui a du caractère, et
+      tout le monde ne cherche pas la même chose dans un vieux.</p>
     </article>
   </div>
-  <p class="saison"><strong>Et l'hiver, le mont d'or.</strong> Fabriqué en
-  saison seulement, cerclé d'épicéa, à la cuillère ou passé au four : le
-  fromage des soirées d'altitude.</p>
+  <div class="saison">
+    <p><strong>Et l'hiver, le mont d'or.</strong> C'est l'autre fromage de la maison, et il ne se
+    fabrique qu'une partie de l'année : l'AOP mont d'or ne l'autorise qu'entre la mi-août et la
+    mi-mars, pour une vente qui court de septembre à mai. Le reste de l'année, il n'y en a pas —
+    et personne ne peut vous en vendre.</p>
+    <p>Il est cerclé d'une sangle d'épicéa, qui le tient et le parfume, et livré dans sa boîte de
+    bois. À la cuillère à température de la pièce, ou passé au four dans sa boîte avec un peu de
+    vin blanc : c'est le fromage des soirées où il neige dehors.</p>
+  </div>
   <p class="note-prix">Prix en magasin — dégustation et conseil à la coupe.</p>
 </section>
 
-<section class="bloc" id="magasin">
+<section class="bloc monte" id="etal">
+  <p class="repere">Ce qu'il y a sur l'étal</p>
+  <h2>Le comté, et tout ce qui va avec</h2>
+  <p class="chapo-section">À côté du comté et du mont d'or de la maison, le magasin fait aussi
+  épicerie de terroir. L'idée est simple : que l'on puisse remplir un panier complet aux Fourgs,
+  sans redescendre dans la vallée pour le beurre ou les yaourts.</p>
+  <div class="table-scroll">
+    <table class="horaires">
+      <caption class="sr-only">Produits vendus au magasin de la fruitière</caption>
+      <tr>
+        <th scope="col">Produit</th>
+        <th scope="col">Ce que c'est</th>
+        <th scope="col">Disponibilité</th>
+        <th scope="col">Prix</th>
+      </tr>
+      <tr><td>Comté doux</td><td>Affinage jeune, pâte souple</td><td>Toute l'année, à la coupe</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Comté fruité</td><td>Affinage prolongé, arômes torréfiés</td><td>Toute l'année, à la coupe</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Comté Altitude</td><td>Affinage long, le signature de la maison</td><td>Selon les meules ouvertes</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Mont d'or</td><td>Cerclé d'épicéa, dans sa boîte</td><td>Saison d'automne et d'hiver</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Beurre</td><td>Beurre de la région</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Yaourts</td><td>Yaourts fermiers</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Miel</td><td>Miel de producteurs du secteur</td><td>Selon les récoltes</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Charcuterie</td><td>Salaisons fumées du Haut-Doubs</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Chèvre bio</td><td>Fromages de chèvre biologiques</td><td>Selon la saison de production</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Autres AOP</td><td>Fromages d'appellation de la région</td><td>Selon l'arrivage</td><td class="prix">Prix en magasin</td></tr>
+    </table>
+  </div>
+  <p class="note-prix">Aucun prix n'est affiché sur cette maquette : ils sont donnés en magasin et
+  évoluent avec les affinages disponibles. Les gammes exactes de l'épicerie restent à compléter
+  ensemble.</p>
+  <ul class="rayons">
+    <li>Beurre</li>
+    <li>Yaourts</li>
+    <li>Miel</li>
+    <li>Charcuterie</li>
+    <li>Chèvre bio</li>
+    <li>Fromages d'appellation de la région</li>
+  </ul>
+</section>
+
+<section class="bloc monte" id="magasin" style="background:var(--givre)">
   <p class="repere">Nous rendre visite</p>
   <h2>Le magasin, place du village</h2>
+  <p class="chapo-section">Le magasin est au 2B Grande Rue, dans le bâtiment qui abrite aussi la
+  mairie et la poste. C'est le même arrêt pour un recommandé, un timbre et un morceau de comté —
+  une adresse qui dit assez bien la place de la fruitière dans le village.</p>
   <div class="horaires-grille">
     <div class="panneau-acces">
       <h3>Accès</h3>
@@ -318,7 +584,99 @@ Prix en magasin, aucune récompense inventée.
         </table>
       </div>
       <p class="conseil">Le conseil du sommet : passez en fin de matinée, quand la
-      fabrication bat son plein derrière les vitres.</p>
+      fabrication bat son plein derrière les vitres. Le dimanche, la fenêtre est courte —
+      deux heures, et le magasin ferme à midi.</p>
+      <p style="margin-top:1rem;color:var(--corps);font-size:.95rem">Ce que l'on trouve sur place :
+      les trois comtés à la coupe, le mont d'or en saison, le rayon d'épicerie de terroir, et
+      quelqu'un derrière le comptoir pour vous faire goûter avant que vous ne choisissiez. En
+      période de vacances, mieux vaut venir tôt : les meules ouvertes descendent vite.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc monte" id="village">
+  <p class="repere">Le territoire</p>
+  <h2>Pourquoi l'altitude se goûte</h2>
+  <div class="deux-col">
+    <div>
+      <p>Les Fourgs est le village le plus haut du Doubs : le bourg se tient autour de
+      1 100 mètres, sur le plateau qui borde la frontière suisse. Ce n'est pas un décor de carte
+      postale, c'est une contrainte agricole. À cette altitude, la neige tient plusieurs mois,
+      la saison de pousse de l'herbe est courte, et les prairies ne peuvent pas être forcées.</p>
+      <p>Une prairie de montagne qui pousse lentement est une prairie riche : au lieu de quelques
+      graminées semées, elle porte des dizaines d'espèces différentes, fleurs comprises. Les vaches
+      qui la pâturent produisent moins de lait qu'en plaine — mais un lait dont la composition
+      aromatique change avec la flore du moment, et donc avec la saison.</p>
+    </div>
+    <div>
+      <p>Le cahier des charges de l'AOP comté rend cette logique obligatoire plutôt que
+      facultative : races montbéliarde et simmental française uniquement, une surface minimale
+      d'herbe par vache, pas d'ensilage, alimentation issue de la zone. C'est une réglementation
+      qui protège un mode d'élevage extensif — et, accessoirement, le paysage que vous traversez
+      pour venir jusqu'ici.</p>
+      <p>Onze fermes du secteur portent la coopérative. Aucune ne pourrait fabriquer du comté
+      seule : il faut environ 400 litres de lait pour une seule meule, soit la traite de plusieurs
+      troupeaux. C'est exactement la raison d'être des fruitières jurassiennes depuis des siècles —
+      mettre le lait en commun pour faire ensemble un fromage de garde que personne ne peut faire
+      dans son coin.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc monte" id="infos" style="background:var(--givre)">
+  <p class="repere">Avant de venir</p>
+  <h2>Quatre choses utiles à savoir</h2>
+  <div class="grille4">
+    <div class="info">
+      <h3>Quand venir</h3>
+      <p>Du lundi au samedi, 10 h – 12 h et 14 h 30 – 18 h. Dimanche et jours fériés, uniquement
+      le matin, 10 h – 12 h.</p>
+      <p>La fin de matinée est le meilleur créneau pour voir la fabrication derrière les vitres.</p>
+    </div>
+    <div class="info">
+      <h3>Ce qui se voit</h3>
+      <p>L'atelier ne se visite pas : il s'observe depuis le magasin, à travers les baies vitrées.
+      Pas de réservation, pas de billet, rien à organiser — il suffit de pousser la porte.</p>
+    </div>
+    <div class="info">
+      <h3>Ce qui est de saison</h3>
+      <p>Le comté est là toute l'année, dans les trois affinages. Le mont d'or est saisonnier : il
+      n'est pas fabriqué au printemps ni en été, et l'appellation en encadre les dates.</p>
+    </div>
+    <div class="info">
+      <h3>Le transport</h3>
+      <p>Le comté voyage bien : bien emballé, il tient plusieurs jours de route. Dites-nous que
+      c'est pour un long trajet ou pour offrir, on adapte la coupe et l'emballage.</p>
+      <p>Modes de paiement acceptés : à compléter ensemble.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc contact monte" id="contact">
+  <p class="repere">Contact</p>
+  <h2>Un doute ? Appelez la fruitière</h2>
+  <p class="chapo-section">Pour savoir quelles meules sont ouvertes, si le mont d'or est arrivé,
+  ou pour commander une grosse pièce avant de passer : le téléphone reste le plus rapide.</p>
+  <a class="gros-tel" href="tel:+33381395424">
+    <small>Appeler le magasin</small>
+    <b>03 81 39 54 24</b>
+  </a>
+  <div class="contact-grille">
+    <div>
+      <h3>Adresse</h3>
+      <p>Fruitière le Toit du Doubs<br>2B Grande Rue — bâtiment mairie / poste<br>25300 Les Fourgs</p>
+      <p style="margin-top:.6rem"><a href="https://www.google.com/maps/search/?api=1&amp;query=Fruiti%C3%A8re+le+Toit+du+Doubs+Les+Fourgs">Ouvrir dans Google Maps</a></p>
+    </div>
+    <div>
+      <h3>Horaires</h3>
+      <p>Lundi – samedi : 10 h – 12 h / 14 h 30 – 18 h<br>Dimanche &amp; jours fériés : 10 h – 12 h</p>
+      <p style="margin-top:.6rem">Fermetures exceptionnelles : à compléter ensemble.</p>
+    </div>
+    <div>
+      <h3>Commandes &amp; groupes</h3>
+      <p>Grosses pièces, plateaux, commandes pour un groupe ou un événement : appelez quelques
+      jours à l'avance, on prépare.</p>
+      <p style="margin-top:.6rem">Envois postaux et paiement : à compléter ensemble.</p>
     </div>
   </div>
 </section>
@@ -329,3 +687,20 @@ Prix en magasin, aucune récompense inventée.
   visible depuis le magasin.</p>
   <p class="mention-primo">Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle</p>
 </footer>
+
+<script>
+(function(){
+  var cibles = document.querySelectorAll('.monte');
+  if(!('IntersectionObserver' in window) ||
+     window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    cibles.forEach(function(el){el.classList.add('vu')});
+    return;
+  }
+  var io = new IntersectionObserver(function(entrees){
+    entrees.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
+    });
+  }, {threshold:.1});
+  cibles.forEach(function(el){io.observe(el)});
+})();
+</script>

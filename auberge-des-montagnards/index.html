@@ -10,7 +10,9 @@ Concept : un "carnet d'auberge" en page asymétrique — hero fendu texte/cartou
 Thème   : sombre + clair par tokens (clair par défaut, bascule via prefers-color-scheme).
 Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morilles, filet de bœuf aux morilles,
           truite au vin jaune, salade comtoise, grenouilles, gibier en saison ; salle rustique, poutres, cheminée ;
-          6 rue du Centre. Aucun prix inventé.
+          parking, accès facilité PMR, chiens bienvenus ; 6 rue du Centre, 25160 Montperreux ; tour du lac
+          Saint-Point (plus grand lac naturel du Haut-Doubs, plan d'eau à 850 m). Aucun prix, aucune date
+          de création, aucun horaire inventé : ce qui manque est signalé « à compléter ensemble ».
 -->
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,6 +27,8 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
     --cuivre:#B0722C; --panneau:#FBF6EA; --filet:#D8CBB2; --sourdine:#6B5B47;
     /* cuivre assombri pour le TEXTE (le cuivre clair ne passe pas le contraste sur parchemin) */
     --cuivre-texte:#8A5518;
+    /* lac assombri pour le TEXTE fin sur parchemin */
+    --lac-texte:#2F5A63;
     /* échelle d'espacement : 1 = .6rem */
     --pas-section:2.8rem; --pas-bloc:1.6rem;
   }
@@ -32,11 +36,11 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
     :root{
       --parchemin:#221B12; --encre:#EDE3D0; --morille:#C29468; --lac:#7FB3BC;
       --cuivre:#D9A45B; --panneau:#2C2417; --filet:#4A3E2C; --sourdine:#B3A48C;
-      --cuivre-texte:#D9A45B;
+      --cuivre-texte:#D9A45B; --lac-texte:#8FC0C9;
     }
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{overflow-x:hidden}
+  html{overflow-x:hidden; scroll-behavior:smooth}
   body{
     background:var(--parchemin); color:var(--encre);
     font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
@@ -66,10 +70,10 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
   nav.site a:hover{border-color:var(--cuivre)}
   .hero{
     display:grid; grid-template-columns:1.15fr .85fr; gap:3.5rem;
-    padding:4rem 6vw 3.5rem; align-items:center;
+    padding:4rem 6vw 2.4rem; align-items:center;
   }
   .kicker{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.75rem;
-    letter-spacing:.28em; text-transform:uppercase; color:var(--lac); margin-bottom:1.1rem}
+    letter-spacing:.28em; text-transform:uppercase; color:var(--lac-texte); margin-bottom:1.1rem}
   .hero h1{font-size:clamp(2.1rem,4.6vw,3.6rem); line-height:1.08; font-weight:700; margin-bottom:1.3rem}
   .hero h1 em{font-style:italic; color:var(--morille)}
   .hero p.chapeau{font-size:1.08rem; max-width:34rem; margin-bottom:1.8rem}
@@ -85,13 +89,41 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
     box-shadow:6px 6px 0 var(--filet); text-align:center;
   }
   .cartouche figcaption{font-size:.85rem; font-style:italic; color:var(--sourdine); margin-top:1rem}
+
+  /* Chiffres-repères du hero, sous un filet double */
+  .reperes{
+    margin:0 6vw 2.6rem; padding-top:1.4rem; border-top:3px double var(--cuivre);
+    display:flex; flex-wrap:wrap; gap:1.4rem 3.2rem;
+  }
+  .reperes div{min-width:0}
+  .reperes b{display:block; font-size:1.85rem; line-height:1.1; color:var(--morille); font-weight:700}
+  .reperes span{display:block; font-family:"Avenir Next",Avenir,Helvetica,sans-serif;
+    font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--sourdine); margin-top:.25rem}
+
   .sep{display:flex; align-items:center; gap:1rem; padding:0 6vw; margin:1.2rem 0}
   .sep::before,.sep::after{content:""; flex:1; border-top:1px solid var(--filet)}
   section.bloc{padding:var(--pas-section) 6vw}
   section.bloc h2{font-size:clamp(1.45rem,3.6vw,1.9rem); line-height:1.2; margin-bottom:.4rem}
   .surtitre{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.72rem;
     letter-spacing:.26em; text-transform:uppercase; color:var(--cuivre-texte); margin-bottom:.5rem}
+  .intro{max-width:44rem; margin-top:.8rem}
   .colonnes{display:grid; grid-template-columns:1fr 1fr; gap:2.5rem 4rem; margin-top:var(--pas-bloc)}
+  .colonnes p+p{margin-top:1rem}
+
+  /* Trois cartouches de cuisine */
+  .trois{display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; margin-top:2rem}
+  .trois article{
+    background:var(--panneau); border:1.5px solid var(--filet); border-top:5px solid var(--morille);
+    padding:1.6rem 1.5rem 1.4rem;
+  }
+  .trois article:nth-child(2){border-top-color:var(--lac)}
+  .trois article:nth-child(3){border-top-color:var(--cuivre)}
+  .trois h3{font-size:1.25rem; margin:.9rem 0 .6rem}
+  .trois .quand{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.7rem;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--sourdine)}
+  .trois p{font-size:.97rem}
+  .trois p+p{margin-top:.7rem}
+
   .carte-liste{list-style:none; max-width:44rem}
   .carte-liste li{display:flex; align-items:baseline; gap:.6rem; padding:.55rem 0; border-bottom:1px dotted var(--filet)}
   .carte-liste .plat{font-weight:700}
@@ -103,21 +135,59 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
   .rando-grille{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);
     gap:2rem; align-items:start; margin-top:var(--pas-bloc)}
   .rando{background:var(--panneau); border-left:5px solid var(--lac); padding:1.6rem 1.8rem}
-  .rando strong{color:var(--lac)}
+  .rando strong{color:var(--lac-texte)}
+  .rando p+p{margin-top:.9rem}
   .services{list-style:none; font-family:"Avenir Next",Avenir,Helvetica,sans-serif;
     font-size:.86rem; line-height:1.45}
   .services li{display:flex; gap:.7rem; align-items:baseline; padding:.6rem 0; border-bottom:1px solid var(--filet)}
   .services li:last-child{border-bottom:none}
   .services li::before{content:""; flex:none; width:.48rem; height:.48rem;
     background:var(--cuivre); transform:rotate(45deg) translateY(-1px)}
+
+  /* Quatre blocs pratiques */
+  .quatre{display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-top:var(--pas-bloc)}
+  .quatre div{border:1px solid var(--filet); border-left:4px solid var(--cuivre); padding:1.2rem 1.2rem 1.1rem; background:var(--panneau)}
+  .quatre h3{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.72rem;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--cuivre-texte); margin-bottom:.5rem}
+  .quatre p{font-size:.93rem}
+  .quatre p+p{margin-top:.6rem}
+
+  /* Grand appel téléphonique */
+  .appel{
+    display:block; margin-top:var(--pas-bloc); background:var(--morille); color:var(--parchemin);
+    padding:1.6rem 1.6rem 1.5rem; border:1.5px solid var(--morille); box-shadow:8px 8px 0 var(--filet);
+    text-decoration:none; max-width:34rem;
+  }
+  .appel .quoi{display:block; font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.72rem;
+    letter-spacing:.24em; text-transform:uppercase; opacity:.9; margin-bottom:.4rem}
+  .appel .num{display:block; font-size:clamp(1.5rem,4vw,2.1rem); font-weight:700; line-height:1.15}
+  .appel .sous{display:block; font-family:"Avenir Next",Avenir,Helvetica,sans-serif;
+    font-size:.85rem; line-height:1.5; margin-top:.6rem; opacity:.95}
+
   address{font-style:normal}
   .contact-grille{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; margin-top:var(--pas-bloc)}
   .contact-grille h3{font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.72rem;
     letter-spacing:.22em; text-transform:uppercase; color:var(--sourdine); margin-bottom:.5rem}
+  .contact-grille p+p{margin-top:.6rem}
   .fine{font-size:.85rem; color:var(--sourdine)}
   a{color:var(--cuivre-texte)}
   footer.site{border-top:3px double var(--cuivre); margin-top:var(--pas-section); padding:1.6rem 6vw 2.4rem;
     font-family:"Avenir Next",Avenir,Helvetica,sans-serif; font-size:.82rem; color:var(--sourdine)}
+
+  /* apparition douce */
+  .js-anim .monte{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+  .js-anim .monte.vu{opacity:1; transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .js-anim .monte{opacity:1; transform:none; transition:none}
+  }
+
+  @media (max-width:1000px){
+    .quatre{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:860px){
+    .trois{grid-template-columns:1fr}
+  }
   @media (max-width:760px){
     .hero{grid-template-columns:1fr; gap:2.2rem; padding-top:2.5rem}
     .colonnes{grid-template-columns:1fr}
@@ -133,10 +203,83 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
     /* en colonne, flex-basis:100% vaudrait 100% de la HAUTEUR : on le neutralise */
     .carte-liste li p{flex-basis:auto}
     .cartouche{padding:1.6rem 1.1rem 1rem; box-shadow:4px 4px 0 var(--filet)}
+    .quatre{grid-template-columns:1fr}
+    .reperes{gap:1.1rem 2rem}
+    .reperes b{font-size:1.55rem}
+    .appel{box-shadow:5px 5px 0 var(--filet); padding:1.3rem 1.2rem}
   }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "https://primolo.github.io/vitrines/auberge-des-montagnards/#etablissement",
+  "name": "L'Auberge des Montagnards",
+  "description": "Auberge de village au-dessus du lac de Saint-Point, cuisine franc-comtoise, halte des randonneurs du tour du lac.",
+  "url": "https://primolo.github.io/vitrines/auberge-des-montagnards/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Montperreux",
+    "postalCode": "25160",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Montperreux"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "servesCuisine": [
+    "Française",
+    "Franc-comtoise"
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Où se trouve l'Auberge des Montagnards ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "À Montperreux, au-dessus du lac de Saint-Point, dans le Haut-Doubs. L'auberge est une halte sur le sentier du tour du lac."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle cuisine sert l'Auberge des Montagnards ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une cuisine franc-comtoise de village, avec les spécialités de la région selon la saison."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il réserver ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La réservation est conseillée le week-end et pendant les vacances scolaires."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
+<script>/* l'apparition au defilement n'est armee que si JS et IntersectionObserver sont la : sinon tout le contenu reste visible */
+if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.className+=' js-anim';}</script>
 <div class="demo-bandeau">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -155,8 +298,10 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
   </div>
   <nav class="site">
     <a href="#maison">La maison</a>
+    <a href="#cuisine">En cuisine</a>
     <a href="#carte">La carte</a>
-    <a href="#randonneurs">Randonneurs</a>
+    <a href="#randonneurs">Le tour du lac</a>
+    <a href="#pratique">Pratique</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -168,7 +313,8 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
       <h1>La table du village,<br>où la <em>morille</em> est reine.</h1>
       <p class="chapeau">Une auberge de village comme on n'en fait plus : poutres, cheminée, et la cuisine
       franc-comtoise de Walter — croûte aux morilles, truite au vin jaune, grenouilles en saison.
-      À deux pas du sentier du tour du lac.</p>
+      On y monte pour un plat précis, on y reste parce que personne ne vous presse. À deux pas du
+      sentier du tour du lac.</p>
       <div class="actions">
         <a class="plein" href="#contact">Réserver une table</a>
         <a class="ligne" href="#carte">Voir la carte</a>
@@ -199,19 +345,77 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
     </figure>
   </div>
 
+  <div class="reperes monte">
+    <div><b>N° 6</b><span>rue du Centre, en plein village</span></div>
+    <div><b>850 m</b><span>le lac, juste en contrebas</span></div>
+    <div><b>1</b><span>cheminée, allumée quand le froid tient</span></div>
+    <div><b>Chiens</b><span>bienvenus en salle</span></div>
+  </div>
+
   <div class="sep" aria-hidden="true"><svg width="28" height="40" viewBox="0 0 28 40"><use href="#morille-mini"/></svg></div>
 
   <section class="bloc" id="maison">
     <p class="surtitre">La maison</p>
     <h2>Une auberge de village, une vraie</h2>
-    <div class="colonnes">
-      <p>Au centre de Montperreux, sur les hauteurs du lac Saint-Point, l'Auberge des Montagnards est de ces
-      maisons que l'on se transmet de bouche à oreille. Salle rustique et chaleureuse, tables et chaises de bois,
-      poutres apparentes, cheminée qui crépite l'hiver : le décor ne triche pas, la cuisine non plus.</p>
-      <p>Derrière les fourneaux, <strong>Walter Poulain</strong> — tout le pays dit simplement
-      « chez Walter » — défend une cuisine franc-comtoise de produits frais et locaux :
-      morilles, truite, gibier en saison, desserts maison. Accueil familial, conseils francs,
-      et les chiens sont les bienvenus.</p>
+    <div class="colonnes monte">
+      <div>
+        <p>Au centre de Montperreux, sur les hauteurs du lac Saint-Point, l'Auberge des Montagnards est de ces
+        maisons que l'on se transmet de bouche à oreille. Salle rustique et chaleureuse, tables et chaises de bois,
+        poutres apparentes, cheminée qui crépite l'hiver : le décor ne triche pas, la cuisine non plus.</p>
+        <p>On entre par la rue du Centre et l'on comprend tout de suite le genre de l'endroit. Pas de carte
+        plastifiée de vingt pages, pas de musique par-dessus les conversations. Une salle où les habitués
+        ont leur table, où les marcheurs posent leur sac contre le mur, où les familles poussent deux tables
+        l'une contre l'autre quand elles sont douze.</p>
+      </div>
+      <div>
+        <p>Derrière les fourneaux, <strong>Walter Poulain</strong> — tout le pays dit simplement
+        « chez Walter » — défend une cuisine franc-comtoise de produits frais et locaux :
+        morilles, truite, gibier en saison, desserts maison. Accueil familial, conseils francs,
+        et les chiens sont les bienvenus.</p>
+        <p>Ce qui fait revenir, ici, ce n'est pas la nouveauté : c'est de retrouver exactement ce
+        qu'on était venu chercher. La croûte est la même que la fois d'avant, et c'est précisément
+        ce qu'on lui demande.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep" aria-hidden="true"><svg width="28" height="40" viewBox="0 0 28 40"><use href="#morille-mini"/></svg></div>
+
+  <section class="bloc" id="cuisine">
+    <p class="surtitre">En cuisine</p>
+    <h2>Trois choses qu'on ne trouve pas partout</h2>
+    <p class="intro">La carte de l'auberge tient sur une page et suit deux calendriers : celui du marché
+    et celui des bois. Voici ce qui la structure d'un bout de l'année à l'autre.</p>
+    <div class="trois monte">
+      <article>
+        <p class="quand">Le fil rouge de la maison</p>
+        <h3>La morille</h3>
+        <p>C'est un champignon de printemps, qui ne se cultive pas et qu'on ne trouve que quelques
+        semaines dans l'année : le reste du temps, il faut savoir s'approvisionner. La maison en a fait
+        sa signature et la travaille à la crème.</p>
+        <p>Deux façons de la rencontrer ici : sur la <strong>croûte</strong>, une croûte dorée qui boit
+        la sauce, ou sur le <strong>filet de bœuf</strong>, la même sauce servie sur une belle pièce.
+        C'est le plat pour lequel on monte à Montperreux, et il vaut mieux appeler avant de faire la route.</p>
+      </article>
+      <article>
+        <p class="quand">Ce que donne l'eau du pays</p>
+        <h3>La truite et les grenouilles</h3>
+        <p>La <strong>truite au vin jaune</strong> réunit deux classiques du Jura dans la même assiette :
+        le poisson des rivières froides du plateau et un vin dont on ne met que quelques centilitres,
+        mais qui tient toute la sauce.</p>
+        <p>Les <strong>cuisses de grenouilles</strong> reviennent au printemps, comme partout dans le Doubs
+        où elles sont une affaire sérieuse. Elles ne sont à la carte que sur leur saison — quand elles
+        n'y sont pas, il ne sert à rien de les demander.</p>
+      </article>
+      <article>
+        <p class="quand">Quand la neige arrive</p>
+        <h3>Le gibier et le fromage</h3>
+        <p>L'automne ouvre la saison du <strong>gibier</strong>, cuisiné en sauce et servi tant qu'il y en a.
+        C'est le moment de l'année où la cheminée sert à quelque chose et où l'on reste plus longtemps à table.</p>
+        <p>Le reste de l'hiver, les <strong>plats du terroir</strong> prennent le relais : fondue,
+        salade comtoise, plats de fromage du plateau. Et des <strong>desserts faits sur place</strong>,
+        annoncés de vive voix plutôt qu'écrits.</p>
+      </article>
     </div>
   </section>
 
@@ -220,23 +424,29 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
   <section class="bloc" id="carte">
     <p class="surtitre">La carte</p>
     <h2>Ce qui fait la réputation de la maison</h2>
-    <ul class="carte-liste">
+    <p class="intro">Les plats ci-dessous sont ceux que la maison sert et qu'on lui connaît. Les prix
+    ne figurent pas encore : ils seront repris de votre carte, tels quels, avant la mise en ligne.</p>
+    <ul class="carte-liste monte">
       <li><span class="plat">Croûte aux morilles</span><span class="points"></span><span class="note">la spécialité</span>
         <p>Morilles à la crème sur une croûte dorée. Le plat pour lequel on monte à Montperreux.</p></li>
-      <li><span class="plat">Filet de bœuf aux morilles</span><span class="points"></span>
+      <li><span class="plat">Filet de bœuf aux morilles</span><span class="points"></span><span class="note">nous consulter</span>
         <p>La même sauce, sur une pièce de bœuf.</p></li>
-      <li><span class="plat">Truite au vin jaune</span><span class="points"></span>
+      <li><span class="plat">Truite au vin jaune</span><span class="points"></span><span class="note">nous consulter</span>
         <p>La truite et le vin jaune : deux classiques du Jura dans la même assiette.</p></li>
-      <li><span class="plat">Cuisses de grenouilles</span><span class="points"></span><span class="note">en saison</span></li>
-      <li><span class="plat">Gibier</span><span class="points"></span><span class="note">en saison</span></li>
-      <li><span class="plat">Salade comtoise</span><span class="points"></span></li>
-      <li><span class="plat">Fondue &amp; plats du terroir</span><span class="points"></span></li>
+      <li><span class="plat">Cuisses de grenouilles</span><span class="points"></span><span class="note">en saison</span>
+        <p>Au printemps, tant que la saison dure.</p></li>
+      <li><span class="plat">Gibier</span><span class="points"></span><span class="note">en saison</span>
+        <p>À l'automne, cuisiné en sauce, selon les arrivages.</p></li>
+      <li><span class="plat">Salade comtoise</span><span class="points"></span><span class="note">toute l'année</span>
+        <p>L'assiette des marcheurs pressés : de quoi repartir sans s'alourdir.</p></li>
+      <li><span class="plat">Fondue &amp; plats du terroir</span><span class="points"></span><span class="note">nous consulter</span>
+        <p>Les plats de fromage du plateau, surtout demandés l'hiver.</p></li>
       <li><span class="plat">Desserts maison</span><span class="points"></span>
-        <p>Faits sur place.</p></li>
+        <p>Faits sur place, annoncés en fin de repas.</p></li>
     </ul>
     <p class="fine" style="margin-top:1.2rem; font-style:italic">
-      La carte suit le marché et la cueillette. Les prix et les menus ne sont pas affichés ici :
-      ils seront repris de votre carte, tels quels, avant la mise en ligne.</p>
+      La carte suit le marché et la cueillette. Menus de groupe, plat du jour et boissons :
+      à relever ensemble avant de publier quoi que ce soit.</p>
   </section>
 
   <div class="sep" aria-hidden="true"><svg width="28" height="40" viewBox="0 0 28 40"><use href="#morille-mini"/></svg></div>
@@ -244,18 +454,76 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
   <section class="bloc" id="randonneurs">
     <p class="surtitre">Randonneurs &amp; promeneurs</p>
     <h2>L'étape du tour du lac</h2>
-    <div class="rando-grille">
+    <div class="rando-grille monte">
       <div class="rando">
         <p><strong>Le tour du lac Saint-Point passe par ici.</strong> Montperreux domine le plus grand lac
         naturel du Haut-Doubs : l'auberge est la halte naturelle des marcheurs — une salade comtoise,
         une croûte, un café au coin du feu, et on repart.</p>
+        <p>Le tour du lac se fait à pied, à vélo ou en courant, et il se marche dans les deux sens :
+        certains attaquent la montée sur Montperreux en début de boucle, d'autres la gardent pour la fin.
+        Dans les deux cas, le village tombe à peu près au bon moment pour s'asseoir.</p>
+        <p>L'hiver, le décor change complètement — le lac gelé, les skis de fond sur les rives, et la
+        même salle avec le feu allumé. C'est la saison où les tables se libèrent le moins vite.</p>
       </div>
       <ul class="services">
         <li>Parking sur place</li>
         <li>Accès facilité aux personnes à mobilité réduite</li>
         <li>Chiens bienvenus</li>
         <li>Cheminée en salle l'hiver</li>
+        <li>Sacs et bâtons acceptés en salle</li>
       </ul>
+    </div>
+  </section>
+
+  <div class="sep" aria-hidden="true"><svg width="28" height="40" viewBox="0 0 28 40"><use href="#morille-mini"/></svg></div>
+
+  <section class="bloc" id="tablees">
+    <p class="surtitre">Les grandes tablées</p>
+    <h2>Repas de famille, groupes, fins d'année</h2>
+    <div class="colonnes monte">
+      <div>
+        <p>Une auberge de village sert aussi à ça : le repas d'après-baptême, l'anniversaire des
+        quatre-vingts ans, la tablée de cousins qui ne se voient qu'une fois l'an, le groupe de marcheurs
+        qui a réservé deux mois avant. Ces repas-là ne se commandent pas comme un déjeuner à deux —
+        ils se préparent au téléphone, en parlant du nombre de couverts et de ce que vous voulez servir.</p>
+      </div>
+      <div>
+        <p>Le nombre de places en salle, le menu de groupe et les conditions de réservation ne sont pas
+        affichés ici tant qu'ils n'ont pas été vérifiés avec la maison. <strong>C'est exactement le
+        genre d'information qu'on relèvera ensemble</strong> avant de mettre le site en ligne : mieux
+        vaut une page qui dit « appelez » qu'une page qui annonce trente couverts quand il y en a vingt.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep" aria-hidden="true"><svg width="28" height="40" viewBox="0 0 28 40"><use href="#morille-mini"/></svg></div>
+
+  <section class="bloc" id="pratique">
+    <p class="surtitre">Avant de monter</p>
+    <h2>Ce qu'il est utile de savoir</h2>
+    <div class="quatre monte">
+      <div>
+        <h3>Horaires</h3>
+        <p>Jours d'ouverture et services (midi, soir) <strong>à compléter ensemble</strong>.</p>
+        <p class="fine">Rien ne sera affiché tant que ce n'est pas vérifié : une horaire fausse fait
+        plus de mal qu'une horaire absente.</p>
+      </div>
+      <div>
+        <h3>Accès &amp; stationnement</h3>
+        <p>6 rue du Centre, au cœur de Montperreux, au-dessus du lac Saint-Point.</p>
+        <p class="fine">Parking sur place. Accès facilité aux personnes à mobilité réduite.</p>
+      </div>
+      <div>
+        <h3>Groupes &amp; familles</h3>
+        <p>Grandes tablées et repas de famille sur réservation, en appelant la maison.</p>
+        <p class="fine">Capacité de la salle et menus de groupe à préciser avec vous.</p>
+      </div>
+      <div>
+        <h3>Règlement</h3>
+        <p>Moyens de paiement acceptés (carte, chèque, espèces, titres restaurant) :
+        <strong>à confirmer</strong>.</p>
+        <p class="fine">Un détail, mais c'est la première question que pose un client au téléphone.</p>
+      </div>
     </div>
   </section>
 
@@ -264,16 +532,28 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
   <section class="bloc" id="contact">
     <p class="surtitre">Contact</p>
     <h2>Venir chez Walter</h2>
-    <div class="contact-grille">
+    <p class="intro">Montperreux se trouve sur les hauteurs de la rive est du lac Saint-Point,
+    entre Malbuisson et Pontarlier. L'auberge est dans la rue du Centre, au milieu du village.</p>
+
+    <a class="appel monte" href="#contact">
+      <span class="quoi">Réserver une table</span>
+      <span class="num">Téléphone à compléter</span>
+      <span class="sous">C'est le premier élément que nous renseignerons ensemble : sur un site de
+      restaurant, le bouton d'appel est ce qui sert le plus. Il occupera cette place, en grand,
+      cliquable directement depuis un téléphone.</span>
+    </a>
+
+    <div class="contact-grille monte">
       <address>
         <h3>Adresse</h3>
-        6 rue du Centre<br>25160 Montperreux<br>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Auberge+des+Montagnards+Montperreux">Itinéraire (Google Maps)</a>
+        <p>6 rue du Centre<br>25160 Montperreux</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Auberge+des+Montagnards+Montperreux">Itinéraire (Google Maps)</a></p>
       </address>
       <div>
-        <h3>Réservations</h3>
-        <p>Téléphone : <em>à compléter</em></p>
-        <p class="fine">Le numéro sera ajouté avec vous à la validation de la maquette.</p>
+        <h3>Itinéraire</h3>
+        <p>Depuis Pontarlier, la rive est du lac ; depuis Malbuisson, la montée sur le village.
+        Le tour du lac Saint-Point passe au pied de Montperreux.</p>
+        <p class="fine">Le lien ci-contre ouvre directement l'itinéraire sur un téléphone.</p>
       </div>
       <div>
         <h3>Horaires</h3>
@@ -286,5 +566,22 @@ Faits issus de recherche : maison tenue par Walter Poulain ; croûte aux morille
 </main>
 
 <footer class="site">Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.monte');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(e){ e.classList.add('vu'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('vu'); io.unobserve(en.target); }
+    });
+  }, {threshold:.12});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
 </body>
 </html>

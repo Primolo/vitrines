@@ -20,6 +20,79 @@ joue la lumière du calcaire.
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>L'Auberge du Château de Joux — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "Hotel",
+    "Restaurant"
+  ],
+  "@id": "https://primolo.github.io/vitrines/auberge-du-chateau-de-joux/#etablissement",
+  "name": "L'Auberge du Château de Joux",
+  "description": "Hôtel-restaurant au pied du château de Joux, dans la cluse de Pontarlier. Quinze chambres et une cuisine régionale franc-comtoise.",
+  "url": "https://primolo.github.io/vitrines/auberge-du-chateau-de-joux/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "La Cluse-et-Mijoux",
+    "postalCode": "25300",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "La Cluse-et-Mijoux"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "telephone": "+33381694041",
+  "email": "aubergeduchateaudejoux@gmail.com",
+  "servesCuisine": [
+    "Française",
+    "Franc-comtoise"
+  ],
+  "numberOfRooms": 15,
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "L'auberge est-elle proche du château de Joux ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, l'auberge se trouve au pied de l'éperon rocheux qui porte le château de Joux, à quelques minutes à pied."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de chambres compte l'Auberge du Château de Joux ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'établissement dispose de quinze chambres."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on réserver en direct ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, par téléphone au 03 81 69 40 41 ou par courriel — sans commission de plateforme."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --pierre:#d7d0c2;
@@ -79,7 +152,8 @@ joue la lumière du calcaire.
     color:var(--encre);
     border-left:4px solid var(--etendard);padding-left:.7rem;
   }
-  .hero p.chapo{margin:1.2rem 0 1.8rem;max-width:52ch;font-size:1.02rem;color:#4a4d55}
+  .hero p.chapo{margin:1.2rem 0 1.2rem;max-width:52ch;font-size:1.02rem;color:#4a4d55}
+  .hero p.chapo:last-of-type{margin-bottom:1.8rem}
   .actions{display:flex;flex-wrap:wrap;gap:.9rem}
   .btn{
     display:inline-block;text-decoration:none;font-size:.92rem;font-weight:600;
@@ -101,8 +175,8 @@ joue la lumière du calcaire.
     gap:1.4rem 2.5rem;
     padding:1.7rem max(5vw,1.15rem);font-size:.95rem;
   }
-  .reperes b{color:#fff;font-family:var(--serif);font-size:1.08rem;display:block;margin-bottom:.15rem}
-  .reperes span{display:block;max-width:24ch}
+  .reperes b{color:#fff;font-family:var(--serif);font-size:1.4rem;display:block;margin-bottom:.15rem}
+  .reperes span{display:block;max-width:26ch}
 
   section{padding:3.5rem max(5vw,1.15rem)}
   section h2{
@@ -110,6 +184,8 @@ joue la lumière du calcaire.
     margin-bottom:.4rem;
   }
   .filet{width:64px;height:3px;background:var(--or);margin:.6rem 0 1.6rem}
+  .intro{max-width:62ch}
+  .intro p + p{margin-top:.9rem}
 
   /* ---- restaurant : deux colonnes décalées ---- */
   .deux-col{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:start}
@@ -119,6 +195,7 @@ joue la lumière du calcaire.
     padding:1.6rem;font-size:.97rem;
   }
   .encart h3{font-family:var(--serif);margin-bottom:.6rem;font-size:1.15rem}
+  .encart p + p{margin-top:.8rem}
   ul.sobre{list-style:none;margin-top:1rem}
   ul.sobre li{
     padding:.55rem 0 .55rem 1.4rem;position:relative;
@@ -135,6 +212,15 @@ joue la lumière du calcaire.
     border-left:4px solid var(--or);padding-left:1rem;margin-top:1.3rem;
   }
 
+  /* ---- trois cartes (services du restaurant) ---- */
+  .trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem;margin:1.8rem 0}
+  .carte-s{background:#fff;border:1px solid var(--ombre);padding:1.5rem;font-size:.97rem}
+  .carte-s:nth-child(1){border-top:6px solid var(--etendard)}
+  .carte-s:nth-child(2){border-top:6px solid var(--or)}
+  .carte-s:nth-child(3){border-top:6px solid var(--encre)}
+  .carte-s h3{font-family:var(--serif);font-size:1.15rem;margin-bottom:.5rem}
+  .carte-s p + p{margin-top:.7rem}
+
   /* ---- chambres ---- */
   .chambres{background:#e9e3d4}
   .grille-ch{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem;margin-top:1.5rem}
@@ -144,6 +230,28 @@ joue la lumière du calcaire.
   .carte-ch:nth-child(3){border-top:6px solid var(--encre)}
   .carte-ch h3{font-family:var(--serif);font-size:1.12rem;margin-bottom:.5rem}
   .carte-ch p{font-size:.95rem;color:#464951}
+  .carte-ch p + p{margin-top:.7rem}
+
+  /* ---- tableau des prestations ---- */
+  .table-wrap{overflow-x:auto;margin-top:1.5rem;border-top:3px solid var(--or)}
+  table.presta{width:100%;border-collapse:collapse;min-width:480px;font-size:.96rem;background:#fff}
+  table.presta th{
+    text-align:left;background:var(--encre);color:var(--pierre);
+    font-family:var(--sans);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+    padding:.8rem 1rem;
+  }
+  table.presta td{padding:.8rem 1rem;border-bottom:1px solid #ded8c8;vertical-align:top}
+  table.presta td:last-child{text-align:right;font-family:var(--serif);color:var(--etendard);white-space:nowrap}
+  table.presta td em{display:block;font-style:normal;font-size:.88rem;color:#55585f;margin-top:.15rem}
+
+  /* ---- la maison ---- */
+  .maison{background:#fff;border-top:1px solid var(--ombre);border-bottom:1px solid var(--ombre)}
+  .maison .deux-col{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+  .maison p + p{margin-top:.9rem}
+  .repere-liste{list-style:none;margin-top:.6rem}
+  .repere-liste li{padding:.7rem 0;border-bottom:1px solid #e2dccb;font-size:.96rem}
+  .repere-liste li:last-child{border-bottom:none}
+  .repere-liste b{font-family:var(--serif);display:block;font-size:1.02rem}
 
   /* ---- château / alentours ---- */
   .alentours .deux-col{grid-template-columns:minmax(0,6fr) minmax(0,6fr)}
@@ -156,11 +264,19 @@ joue la lumière du calcaire.
   table.distances td:first-child{padding-right:1rem}
   table.distances td:last-child{text-align:right;font-family:var(--serif);color:#464951}
 
+  /* ---- infos pratiques : 4 blocs ---- */
+  .pratique{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.4rem;margin-top:1.5rem}
+  .bloc-p{border-left:4px solid var(--or);padding-left:1rem}
+  .bloc-p h3{font-family:var(--sans);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--etendard);font-weight:600;margin-bottom:.4rem}
+  .bloc-p p{font-size:.95rem;color:#464951}
+
   /* ---- contact ---- */
   .contact{background:var(--encre);color:var(--pierre)}
   .contact h2{color:#fff}
   .contact .filet{background:var(--etendard)}
   .contact a{color:var(--pierre)}
+  .contact p + p{margin-top:.8rem}
   .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:1.5rem;font-size:.94rem}
   .contact-grille h3{font-family:var(--serif);color:#fff;font-size:1rem;margin-bottom:.5rem;
     letter-spacing:.06em;text-transform:uppercase;font-weight:600}
@@ -169,16 +285,31 @@ joue la lumière du calcaire.
     padding:.45rem 1rem;text-decoration:none;font-size:.85rem;border-radius:2px;
   }
   .contact-grille a.maps:hover{background:rgba(179,137,74,.15)}
+  .gros-tel{
+    display:block;background:var(--etendard);color:#fff;text-decoration:none;text-align:center;
+    padding:1.3rem 1rem;margin:1.6rem 0 .4rem;border-radius:2px;max-width:34rem;
+    font-family:var(--serif);font-size:clamp(1.6rem,5.5vw,2.3rem);letter-spacing:.04em;
+  }
+  .gros-tel small{
+    display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.24em;
+    text-transform:uppercase;margin-bottom:.4rem;font-weight:600;
+  }
+  .gros-tel:hover{background:#73242d}
 
   footer.pied{
     background:#22252b;color:#a5aab4;font-size:.82rem;text-align:center;
     padding:1.3rem max(5vw,1.15rem);
   }
 
+  /* apparition douce au défilement */
+  .js .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .js .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.js .monte{opacity:1;transform:none;transition:none}}
+
   @media (max-width:820px){
     .hero{grid-template-columns:1fr;padding-top:2.5rem}
     .fort-svg{max-width:420px;margin:0 auto}
-    .deux-col,.alentours .deux-col{grid-template-columns:1fr;gap:1.8rem}
+    .deux-col,.alentours .deux-col,.maison .deux-col{grid-template-columns:1fr;gap:1.8rem}
     nav.principale{margin-left:0}
   }
   @media (max-width:520px){
@@ -198,6 +329,8 @@ joue la lumière du calcaire.
   <nav class="principale">
     <a href="#restaurant">Restaurant</a>
     <a href="#chambres">Chambres</a>
+    <a href="#tarifs">Prestations</a>
+    <a href="#maison">La maison</a>
     <a href="#chateau">Le château</a>
     <a href="#contact">Accès &amp; contact</a>
   </nav>
@@ -211,6 +344,11 @@ joue la lumière du calcaire.
       Dans la cluse de Pontarlier, face à l'éperon qui porte le château depuis mille ans,
       l'auberge accueille voyageurs, familles et randonneurs : cuisine régionale
       franc-comtoise, quinze chambres, et le fort à quelques minutes à pied.
+    </p>
+    <p class="chapo">
+      C'est une maison d'étape avant d'être une adresse de destination : on s'y arrête en
+      redescendant du fort, on y dort entre deux étapes de la Grande Traversée du Jura,
+      on y déjeune parce qu'on passe sur la RN 57 et qu'on a faim au bon moment.
     </p>
     <div class="actions">
       <a class="btn plein" href="tel:+33381694041">03 81 69 40 41</a>
@@ -282,38 +420,74 @@ joue la lumière du calcaire.
 </svg>
 
 <div class="reperes">
-  <div><b>Au pied du château</b><span>un site visité par près de 80 000 personnes chaque année</span></div>
+  <div><b>80 000</b><span>visiteurs par an au château, à quelques minutes à pied</span></div>
   <div><b>15 chambres</b><span>familles et personnes à mobilité réduite bienvenues</span></div>
-  <div><b>Cuisine régionale</b><span>produits du terroir franc-comtois</span></div>
-  <div><b>Parking gratuit</b><span>voitures, motos et vélos, à l'arrière de l'auberge</span></div>
+  <div><b>500 m</b><span>des sentiers de la Grande Traversée du Jura</span></div>
+  <div><b>5 km</b><span>de Pontarlier, sur la RN 57 vers la Suisse</span></div>
 </div>
 
 <section id="restaurant">
   <h2>Le restaurant</h2>
   <div class="filet"></div>
+  <div class="intro monte">
+    <p>
+      La salle sert une cuisine régionale généreuse, où le terroir du Haut-Doubs tient
+      le premier rôle : fromages et salaisons du pays, plats mijotés, desserts maison.
+      Le midi, on y croise des habitués de la vallée et des visiteurs qui redescendent
+      du fort ; le lendemain, le petit-déjeuner se prend au buffet avant de reprendre
+      la route.
+    </p>
+    <p>
+      Le rythme de la maison suit celui du château : creux du matin, affluence entre
+      midi et deux, deuxième vague en milieu d'après-midi quand les visites se terminent.
+      C'est aussi pour cela que le glacier tourne en saison — beaucoup de gens redescendent
+      avec une envie de pause plus que d'un vrai repas.
+    </p>
+  </div>
+  <div class="trio">
+    <article class="carte-s monte">
+      <h3>À midi, la table du pays</h3>
+      <p>Cuisine franc-comtoise et plats du marché, servis dans une salle prévue pour recevoir
+      du monde en même temps : cars, groupes de randonneurs, familles descendues du fort.</p>
+      <p>La carte exacte, les menus et les plats du jour seront repris avec vous — nous ne
+      publions pas de menu inventé.</p>
+    </article>
+    <article class="carte-s monte">
+      <h3>Le soir, l'étape</h3>
+      <p>Pour ceux qui dorment sur place, le dîner se prend sans avoir à reprendre la voiture :
+      c'est le principal argument d'une auberge d'étape, sur une route où les commerces ferment tôt.</p>
+      <p>Formule dîner et possibilité de demi-pension : à confirmer ensemble avant la mise en ligne.</p>
+    </article>
+    <article class="carte-s monte">
+      <h3>La pause du fort</h3>
+      <p>Glacier en saison, terrasse face à la cluse aux beaux jours : la halte de ceux qui ont
+      passé deux heures dans les casemates et veulent s'asseoir au soleil.</p>
+      <p>C'est aussi le moment où les randonneurs de la Grande Traversée refont leurs gourdes
+      avant de repartir vers les crêtes.</p>
+    </article>
+  </div>
   <div class="deux-col">
     <div>
-      <p>
-        La salle sert une cuisine régionale généreuse, où le terroir du Haut-Doubs tient
-        le premier rôle : fromages et salaisons du pays, plats mijotés, desserts maison.
-        Le midi, on y croise des habitués de la vallée et des visiteurs qui redescendent
-        du fort ; le lendemain, le petit-déjeuner se prend au buffet avant de reprendre
-        la route.
-      </p>
       <ul class="sobre">
         <li>Cuisine franc-comtoise et plats du marché — carte à valider ensemble</li>
         <li>Salle adaptée aux groupes, aux familles et aux personnes à mobilité réduite</li>
         <li>Glacier en saison : la pause sucrée en redescendant du fort</li>
         <li>Terrasse face à la cluse aux beaux jours</li>
+        <li>Petit-déjeuner au buffet pour les clients de l'hôtel</li>
       </ul>
       <p class="mention-prix">Menus et tarifs : nous consulter au 03 81 69 40 41.</p>
     </div>
-    <aside class="encart">
+    <aside class="encart monte">
       <h3>L'étape des marcheurs</h3>
       <p>
         La Grande Traversée du Jura passe à 500 mètres de l'auberge : randonneurs et
         cyclistes y font étape toute l'année, entre le fort, les lacs et les crêtes
         frontalières.
+      </p>
+      <p>
+        Pour eux, trois choses comptent et se règlent au téléphone : l'heure du dîner
+        quand on arrive tard, un endroit sec pour les sacs et les vélos, et un
+        petit-déjeuner assez tôt pour repartir avec la journée devant soi.
       </p>
     </aside>
   </div>
@@ -322,41 +496,125 @@ joue la lumière du calcaire.
 <section class="chambres" id="chambres">
   <h2>Les chambres</h2>
   <div class="filet"></div>
-  <p>Quinze chambres, pour la nuit d'étape entre deux cols comme pour la semaine au pied du fort.</p>
+  <div class="intro monte">
+    <p>Quinze chambres, pour la nuit d'étape entre deux cols comme pour la semaine au pied du fort.</p>
+    <p>On n'est pas ici dans l'hôtel de centre-ville : la clientèle arrive fatiguée, souvent
+    tard, parfois trempée. Les chambres sont pensées pour cela — de quoi se sécher, se laver
+    et dormir sans bruit de route une fois la nuit tombée sur la cluse.</p>
+  </div>
   <div class="grille-ch">
-    <article class="carte-ch">
+    <article class="carte-ch monte">
       <h3>Chambres familiales</h3>
       <p>Des chambres prévues pour dormir à plusieurs, entre la montée du château et la route de Métabief.</p>
+      <p>Utile pour les familles qui visitent le fort le matin et enchaînent sur le lac ou la station l'après-midi.</p>
     </article>
-    <article class="carte-ch">
+    <article class="carte-ch monte">
       <h3>Confort d'étape</h3>
       <p>Télévision à écran plat, salle de bain privative, sèche-cheveux et linge fournis dans chaque chambre.</p>
+      <p>Le nécessaire, bien tenu, sans supplément à découvrir au moment de la note.</p>
     </article>
-    <article class="carte-ch">
+    <article class="carte-ch monte">
       <h3>Accessibilité</h3>
       <p>Chambres et espaces adaptés aux personnes à mobilité réduite ; animaux acceptés (participation demandée).</p>
+      <p>Précisez-le à la réservation : cela détermine la chambre qui vous sera attribuée.</p>
     </article>
   </div>
   <p class="mention-prix">Disponibilités et tarifs : nous consulter — réservation par téléphone ou courriel.</p>
+</section>
+
+<section id="tarifs">
+  <h2>Prestations</h2>
+  <div class="filet"></div>
+  <div class="intro monte">
+    <p>Tant que vous ne nous avez pas transmis vos tarifs, ce tableau affiche « nous consulter »
+    plutôt qu'un prix approximatif. La structure, elle, est déjà en place : c'est le tableau
+    que vos clients liront avant d'appeler.</p>
+  </div>
+  <div class="table-wrap monte">
+    <table class="presta">
+      <caption style="text-align:left;padding:.8rem 0;font-weight:600">Chambres, table et services</caption>
+      <thead>
+        <tr><th scope="col">Prestation</th><th scope="col">Détail</th><th scope="col">Tarif</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Chambre<em>salle de bain privative, TV, linge fourni</em></td><td>15 chambres</td><td>nous consulter</td></tr>
+        <tr><td>Chambre familiale<em>pour dormir à plusieurs</em></td><td>Sur demande</td><td>nous consulter</td></tr>
+        <tr><td>Chambre adaptée PMR<em>à préciser à la réservation</em></td><td>Sur demande</td><td>nous consulter</td></tr>
+        <tr><td>Petit-déjeuner<em>servi au buffet</em></td><td>Clients de l'hôtel</td><td>nous consulter</td></tr>
+        <tr><td>Repas au restaurant<em>cuisine régionale, midi et soir</em></td><td>Ouvert à tous</td><td>nous consulter</td></tr>
+        <tr><td>Groupes et randonneurs<em>cars, clubs, étapes de la GTJ</em></td><td>Sur réservation</td><td>sur devis</td></tr>
+        <tr><td>Animal de compagnie<em>accepté en chambre</em></td><td>Par séjour</td><td>participation demandée</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mention-prix">Tarifs, taxe de séjour et conditions d'annulation seront intégrés dès validation.</p>
+</section>
+
+<section class="maison" id="maison">
+  <h2>La maison</h2>
+  <div class="filet"></div>
+  <div class="deux-col">
+    <div class="monte">
+      <p>L'auberge tient le premier virage de la montée du château, là où la RN 57 file vers
+      la frontière. C'est un emplacement de passage depuis toujours : la cluse est un couloir
+      étroit entre deux falaises, et tout ce qui va de Pontarlier vers la Suisse passe par là,
+      sous le fort.</p>
+      <p>Cette position fait la maison. On y entre pour des raisons très différentes — visiter,
+      randonner, dormir avant une frontière, manger entre deux rendez-vous — et la salle mélange
+      donc les tablées : un groupe de marcheurs à côté d'un couple en visite, des habitués de
+      la vallée au comptoir.</p>
+      <p>Derrière l'auberge, le parking gratuit accueille voitures, motos et vélos. C'est un
+      détail qui compte sur une nationale : beaucoup de motards s'arrêtent précisément parce
+      qu'ils peuvent garer sans manœuvrer sur la route.</p>
+      <p class="marquant">
+        Le fort au-dessus, la nationale en dessous, et entre les deux une maison qui sert
+        à manger et à dormir depuis que la route existe.
+      </p>
+      <p class="mention-prix">Histoire de la maison, date de reprise, équipe : à compléter
+      ensemble — nous préférons laisser la place vide plutôt que d'inventer un récit.</p>
+    </div>
+    <div class="monte">
+      <p class="titre-tableau">Ce qui définit l'adresse</p>
+      <ul class="repere-liste">
+        <li><b>Sur la RN 57</b>L'axe Pontarlier – Lausanne, au pied de la montée du château.</li>
+        <li><b>Au premier virage</b>On arrive avant la visite, ou l'on s'arrête en redescendant.</li>
+        <li><b>Face à la cluse</b>Terrasse ouverte aux beaux jours, sur le passage entre les deux falaises.</li>
+        <li><b>Parking gratuit</b>Voitures, motos et vélos, à l'arrière de l'auberge.</li>
+        <li><b>Hôtel et restaurant</b>On peut dîner et dormir sans reprendre le volant.</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <section class="alentours" id="chateau">
   <h2>Le château, les lacs, la frontière</h2>
   <div class="filet"></div>
   <div class="deux-col">
-    <div>
+    <div class="monte">
       <p>
         Depuis plus de mille ans, le Château de Joux verrouille la cluse entre la France
         et la Suisse. L'auberge se tient au premier virage de la montée, entre la route
         de Pontarlier et le chemin qui grimpe au fort : on y arrive avant la visite, ou
         on s'y arrête en redescendant.
       </p>
+      <p>
+        Près de 80 000 personnes montent au fort chaque année. Elles arrivent en voiture ou
+        en car, visitent une à deux heures, et redescendent avec faim, soif, ou l'envie de
+        s'asseoir — souvent les trois. Une bonne partie d'entre elles ne sait pas qu'il y a
+        une table et quinze chambres au pied de la montée : c'est exactement ce qu'un site
+        bien fait doit corriger.
+      </p>
+      <p>
+        Pour les familles, la visite du fort occupe une demi-journée. Le reste se joue autour :
+        le lac de Saint-Point à cinq kilomètres, les premières pistes des Fourgs à sept, la
+        station de Métabief à quatorze. L'auberge est au centre de ce petit triangle.
+      </p>
       <p class="marquant">
         Fort de montagne, prison d'État, mémoire de Toussaint Louverture : l'un des
         grands sites du Doubs.
       </p>
     </div>
-    <div>
+    <div class="monte">
       <p class="titre-tableau">Depuis la porte de l'auberge</p>
       <table class="distances">
         <tr><td>Château de Joux</td><td>à pied</td></tr>
@@ -371,9 +629,44 @@ joue la lumière du calcaire.
   </div>
 </section>
 
+<section id="pratique" style="background:#e9e3d4">
+  <h2>Infos pratiques</h2>
+  <div class="filet"></div>
+  <div class="intro monte">
+    <p>Quatre réponses aux questions posées le plus souvent au téléphone, avant même celle
+    des tarifs.</p>
+  </div>
+  <div class="pratique">
+    <div class="bloc-p monte">
+      <h3>Stationner</h3>
+      <p>Parkings gratuits derrière l'auberge, et garage pour motos et vélos. Sur une nationale,
+      pouvoir se garer sans manœuvrer compte autant que la carte.</p>
+    </div>
+    <div class="bloc-p monte">
+      <h3>Accessibilité</h3>
+      <p>Chambres et salle adaptées aux personnes à mobilité réduite. Signalez-le à la
+      réservation : cela détermine la chambre attribuée et la place en salle.</p>
+    </div>
+    <div class="bloc-p monte">
+      <h3>Animaux</h3>
+      <p>Acceptés en chambre, avec une participation demandée pour le séjour. À annoncer
+      au moment de réserver.</p>
+    </div>
+    <div class="bloc-p monte">
+      <h3>Horaires du fort</h3>
+      <p>Les horaires de visite du château varient selon la saison : renseignez-vous auprès
+      du site avant de monter, surtout hors vacances scolaires.</p>
+    </div>
+  </div>
+</section>
+
 <section class="contact" id="contact">
   <h2>Accès &amp; contact</h2>
   <div class="filet"></div>
+  <p>Réserver une chambre ou une table se fait par téléphone : c'est le plus rapide, et cela
+  permet de dire tout de suite si vous arrivez tard, si vous êtes plusieurs, ou si vous voyagez
+  avec un animal.</p>
+  <a class="gros-tel" href="tel:+33381694041"><small>Appeler l'auberge</small>03 81 69 40 41</a>
   <div class="contact-grille">
     <div>
       <h3>Adresse</h3>
@@ -384,11 +677,19 @@ joue la lumière du calcaire.
       <h3>Réservations</h3>
       <p>Téléphone : <a href="tel:+33381694041">03 81 69 40 41</a><br>
       Courriel : <a href="mailto:aubergeduchateaudejoux@gmail.com">aubergeduchateaudejoux@gmail.com</a></p>
+      <p>Pour un groupe ou un car, indiquez le nombre de couverts et l'heure d'arrivée.</p>
     </div>
     <div>
       <h3>Sur la route</h3>
       <p>Sur la RN 57 Pontarlier – Lausanne, au pied de la montée du château.
       Parkings gratuits et garage pour motos et vélos.</p>
+      <p>Depuis Pontarlier, comptez quelques minutes de route ; le fort est visible bien avant
+      d'arriver, il sert de repère.</p>
+    </div>
+    <div>
+      <h3>À compléter avec vous</h3>
+      <p>Jours et horaires d'ouverture du restaurant, périodes de fermeture annuelle, tarifs des
+      chambres et photos de la maison : tout cela sera renseigné avant la mise en ligne.</p>
     </div>
   </div>
 </section>
@@ -396,3 +697,19 @@ joue la lumière du calcaire.
 <footer class="pied">
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  (function(){
+    var els = document.querySelectorAll('.monte');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(e){e.classList.add('vu')}); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('vu'); io.unobserve(en.target); }
+      });
+    },{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  })();
+</script>

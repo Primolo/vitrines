@@ -74,7 +74,7 @@ d'une version sombre.
   .hero .surtitre{font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:var(--eau);margin-bottom:2rem;}
   .hero h1{font-size:clamp(2.6rem,6.5vw,4.6rem);max-width:14ch;margin-bottom:2.2rem;}
   .hero p.accroche{max-width:52ch;font-size:1.06rem;color:var(--encre-douce);margin-bottom:2.8rem;}
-  .cta-ligne{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;margin-bottom:4rem;}
+  .cta-ligne{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;margin-bottom:3.5rem;}
   .btn{display:inline-block;border:1px solid var(--encre);padding:.85rem 2.2rem;font-size:.8rem;
        letter-spacing:.22em;text-transform:uppercase;color:var(--encre);transition:all .25s;}
   .btn:hover{background:var(--encre);color:var(--brume);border-color:var(--encre);}
@@ -85,8 +85,10 @@ d'une version sombre.
   .ride{padding:3.5rem 0 0;}
   section{padding:5rem 0;}
   .deux-col{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4rem;align-items:start;}
+  .deux-col p + p{margin-top:1.2rem;}
   .trois-faits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--reflet);
                border-bottom:1px solid var(--reflet);margin-top:3.5rem;}
+  .quatre-faits{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0;margin-bottom:4rem;}
   .fait{padding:2rem 1.5rem 2rem 0;}
   .fait + .fait{border-left:1px solid var(--reflet);padding-left:2rem;}
   .fait .chiffre{font-family:var(--serif);font-size:2.1rem;color:var(--eau);line-height:1;margin-bottom:.5rem;}
@@ -98,6 +100,9 @@ d'une version sombre.
   .rangee .num{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--laiton-texte);}
   .rangee h3{font-size:1.35rem;}
   .rangee p{color:var(--encre-douce);max-width:56ch;}
+  .rangee p + p{margin-top:.9rem;}
+  .rangee .pour{display:block;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+                color:var(--laiton-texte);margin-top:.6rem;}
   /* plage */
   .plage-bloc{background:var(--greve);padding:5rem 0;}
   .plage-int{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:4rem;align-items:center;}
@@ -116,26 +121,135 @@ d'une version sombre.
   .direct .grande-ligne{font-size:1.05rem;color:var(--encre-douce);max-width:48ch;}
   .direct .encadre-cta{text-align:left;display:flex;flex-direction:column;gap:1rem;align-items:flex-start;}
   .mention-direct{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--laiton-texte);}
+  .arguments-direct{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem;margin-top:3rem;}
+  .arguments-direct div{border-top:1px solid var(--reflet);padding-top:1rem;}
+  .arguments-direct b{display:block;font-family:var(--serif);font-weight:400;font-size:1.2rem;margin-bottom:.4rem;}
+  .arguments-direct p{color:var(--encre-douce);font-size:.95rem;line-height:1.7;}
+  /* infos pratiques : quatre blocs sur filets */
+  .infos-quatre{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+                border-top:1px solid var(--reflet);margin-top:2.5rem;}
+  .infos-quatre .bloc-info{padding:2rem 1.8rem 2rem 0;border-bottom:1px solid var(--reflet);}
+  .infos-quatre .bloc-info + .bloc-info{border-left:1px solid var(--reflet);padding-left:1.8rem;}
+  .infos-quatre h3{font-family:var(--sans);font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;
+                   color:var(--laiton-texte);margin-bottom:.8rem;font-weight:500;}
+  .infos-quatre p{color:var(--encre-douce);font-size:.95rem;line-height:1.7;}
   /* contact */
   .contact-grille{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3rem;margin-top:2.5rem;}
   .contact-grille h3{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-family:var(--sans);
                      color:var(--laiton-texte);margin-bottom:.8rem;font-weight:500;}
   .contact-grille p{color:var(--encre-douce);font-size:.95rem;}
+  .appel{display:block;border:2px solid var(--laiton);background:var(--ivoire);padding:2rem 2.2rem;
+         margin-top:2.5rem;max-width:34rem;}
+  .appel .sur{font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--laiton-texte);}
+  .appel .numero{font-family:var(--serif);font-size:clamp(1.6rem,4.5vw,2.3rem);line-height:1.25;
+                 color:var(--encre);margin-top:.6rem;border-bottom:2px dashed var(--reflet);
+                 display:inline-block;padding-bottom:.3rem;}
+  .appel .note{font-size:.9rem;color:var(--encre-tenue);line-height:1.65;margin-top:1rem;}
   footer.pied{border-top:1px solid var(--reflet);padding:2.5rem 0 3rem;font-size:.8rem;color:var(--encre-tenue);letter-spacing:.03em;}
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+  .monte.vu{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){.monte{opacity:1;transform:none;transition:none;}}
+  @media (max-width:1000px){
+    .quatre-faits{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .quatre-faits .fait:nth-child(3){border-left:none;padding-left:0;}
+    .quatre-faits .fait:nth-child(n+3){border-top:1px solid var(--reflet);}
+    .infos-quatre{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .infos-quatre .bloc-info:nth-child(3){border-left:none;padding-left:0;}
+  }
   @media (max-width:840px){
     .deux-col,.plage-int,.direct{grid-template-columns:1fr;gap:2rem;}
     .trois-faits{grid-template-columns:1fr;}
     .fait + .fait{border-left:none;border-top:1px solid var(--reflet);padding-left:0;padding-top:2rem;}
     .rangee{grid-template-columns:1fr;gap:.6rem;padding:2rem 0;}
-    .contact-grille{grid-template-columns:1fr;gap:2rem;}
+    .contact-grille,.arguments-direct{grid-template-columns:1fr;gap:2rem;}
     .direct{padding:2rem;}
     section{padding:3.5rem 0;}
     .plage-bloc{padding:3.5rem 0;}
     .ride{padding:2.5rem 0 0;}
     .plage-int{gap:2.5rem;}
     nav.principale{gap:1rem;}
+    .arguments-direct{margin-top:2rem;}
+  }
+  @media (max-width:560px){
+    .quatre-faits,.infos-quatre{grid-template-columns:1fr;}
+    .quatre-faits .fait + .fait,.infos-quatre .bloc-info + .bloc-info{
+      border-left:none;padding-left:0;border-top:1px solid var(--reflet);}
+    .fait{padding:1.5rem 0;}
+    .infos-quatre .bloc-info{padding:1.5rem 0;}
+    .hero{padding:3rem 0 0;}
+    .appel{padding:1.5rem 1.3rem;}
+    .col{padding:0 1.15rem;}
+    .demo-band{padding:.65rem 1.15rem;}
   }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "@id": "https://primolo.github.io/vitrines/chalet-du-lac/#etablissement",
+  "name": "Chalet du Lac",
+  "description": "Maison d'hôtes quatre étoiles aux Grangettes, avec plage privée sur le lac de Saint-Point.",
+  "url": "https://primolo.github.io/vitrines/chalet-du-lac/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Les Grangettes",
+    "postalCode": "25160",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Les Grangettes"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "starRating": {
+    "@type": "Rating",
+    "ratingValue": 4
+  },
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Le Chalet du Lac a-t-il un accès direct au lac ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, l'établissement dispose d'une plage privée sur le lac de Saint-Point, à cinquante mètres de la rive."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on réserver sans passer par une plateforme ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. La réservation en direct est possible et évite les commissions de plateforme."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel est le classement du Chalet du Lac ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il s'agit d'un hébergement classé quatre étoiles."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
@@ -159,6 +273,7 @@ d'une version sombre.
   <nav class="principale">
     <a href="#maison">La maison</a>
     <a href="#chambres">Les chambres</a>
+    <a href="#matin">Le matin</a>
     <a href="#plage">La plage</a>
     <a href="#direct">Réserver</a>
     <a href="#contact">Contact</a>
@@ -178,6 +293,12 @@ d'une version sombre.
   <div class="cta-ligne">
     <a class="btn plein" href="#direct">Réserver en direct</a>
     <a class="btn" href="#chambres">Découvrir les chambres</a>
+  </div>
+  <div class="trois-faits quatre-faits">
+    <div class="fait"><div class="chiffre">50 m</div><div class="quoi">de la rive du lac Saint-Point</div></div>
+    <div class="fait"><div class="chiffre">4<span style="font-size:1.1rem;">&#9733;</span></div><div class="quoi">classement de la maison</div></div>
+    <div class="fait"><div class="chiffre">1</div><div class="quoi">plage privée, pour les hôtes seulement</div></div>
+    <div class="fait"><div class="chiffre">850 m</div><div class="quoi">l'altitude du lac, dans le Haut-Doubs</div></div>
   </div>
 </div>
 </div>
@@ -212,7 +333,7 @@ d'une version sombre.
 
 <div class="col">
 <section id="maison">
-  <div class="deux-col">
+  <div class="deux-col monte">
     <div>
       <span class="label">La maison</span>
       <h2>Un chalet posé <em>face à l'eau</em></h2>
@@ -223,14 +344,29 @@ d'une version sombre.
       un jardin, une terrasse, et la plage privée de la maison. À l'intérieur : une cheminée,
       un coin repas, et une décoration dont chaque détail a été choisi — c'est ce que les
       voyageurs retiennent le plus souvent, avec la chaleur de l'accueil.</p>
-      <p style="margin-top:1.2rem;">Le Wi-Fi et le parking privé sont offerts. Autour de la maison,
-      le tour du lac, les sentiers du Haut-Doubs et les itinéraires à vélo partent de la porte.</p>
+      <p>Les Grangettes est un village de rive, pas une station : la route y descend vers
+      l'eau et s'arrête. Le soir, ce qui reste, c'est le bruit de la grève et la lumière qui
+      change de côté sur le lac. Le matin, la brume s'accroche d'abord à la rive d'en face,
+      puis se lève d'un coup, souvent avant huit heures.</p>
+      <p>Le Wi-Fi et le parking privé sont offerts. Autour de la maison, le tour du lac,
+      les sentiers du Haut-Doubs et les itinéraires à vélo partent de la porte : on peut
+      passer trois jours ici sans reprendre la voiture une seule fois.</p>
     </div>
   </div>
-  <div class="trois-faits">
-    <div class="fait"><div class="chiffre">50 m</div><div class="quoi">de la rive du lac Saint-Point</div></div>
-    <div class="fait"><div class="chiffre">4<span style="font-size:1.1rem;">&#9733;</span></div><div class="quoi">classement de la maison</div></div>
-    <div class="fait"><div class="chiffre">1</div><div class="quoi">plage privée, pour les hôtes seulement</div></div>
+
+  <div class="ride" aria-hidden="true">
+    <svg viewBox="0 0 1060 14" style="width:100%;height:14px;">
+      <path d="M0 7 q30-6 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" fill="none" stroke="#AEC3CB" stroke-width="1.2"/>
+    </svg>
+  </div>
+
+  <div class="voix monte" style="margin-top:3.5rem;">
+    <span class="label">Ce que les hôtes retiennent</span>
+    <p class="grande">L'accueil, la vue dégagée sur le lac, et cette impression
+    que chaque détail de la maison a été pensé.</p>
+    <p class="note-plateformes">Thèmes qui reviennent dans les avis publiés sur les plateformes
+    de réservation — emplacement noté 10/10 par les voyageurs. Sources et citations exactes
+    à valider ensemble avant mise en ligne.</p>
   </div>
 </section>
 
@@ -241,47 +377,74 @@ d'une version sombre.
 </div>
 
 <section id="chambres">
-  <span class="label">Les chambres</span>
-  <h2>Peu de chambres, <em>beaucoup de soin</em></h2>
-  <p style="max-width:58ch;color:var(--encre-douce);margin-bottom:1rem;">Chaque chambre a sa salle de bain
-  privée et donne sur l'extérieur — patio ou terrasse, avec le lac en ligne de mire.
-  Le linge de lit et les serviettes sont fournis.</p>
-  <div class="rangee">
+  <div class="monte">
+    <span class="label">Les chambres</span>
+    <h2>Peu de chambres, <em>beaucoup de soin</em></h2>
+    <p style="max-width:58ch;color:var(--encre-douce);margin-bottom:1rem;">Chaque chambre a sa salle de bain
+    privée et donne sur l'extérieur — patio ou terrasse, avec le lac en ligne de mire.
+    Le linge de lit et les serviettes sont fournis, et refaits pour chaque arrivée.</p>
+  </div>
+  <div class="rangee monte">
     <div class="num">— 01</div>
     <h3>Côté lac</h3>
-    <p>Terrasse ou patio privatif tourné vers l'eau, bureau, télévision à écran plat.
-    Le matin, le petit-déjeuner en buffet vous attend en bas.</p>
+    <div>
+      <p>La chambre ouvre par une porte-fenêtre sur sa terrasse ou son patio privatif, tourné
+      vers l'eau. Ce qu'on voit en écartant le rideau : le jardin, la ligne de la rive, puis
+      le lac et la crête d'en face. À l'intérieur, un bureau près de la fenêtre, une télévision
+      à écran plat, et la salle de bain qui n'est qu'à vous.</p>
+      <p>Le matin, il n'y a rien à organiser : le petit-déjeuner en buffet attend en bas,
+      et la terrasse est à cinq pas si vous préférez l'emporter dehors.</p>
+      <span class="pour">Pour un couple, deux ou trois nuits</span>
+    </div>
   </div>
-  <div class="rangee">
+  <div class="rangee monte">
     <div class="num">— 02</div>
     <h3>Avec coin cuisine</h3>
-    <p>Certaines chambres disposent d'une cuisine équipée — lave-vaisselle, micro-ondes,
-    réfrigérateur — pour les séjours qui s'étirent.</p>
+    <div>
+      <p>Certaines chambres disposent d'une cuisine équipée — lave-vaisselle, micro-ondes,
+      réfrigérateur. C'est ce qui change tout sur un séjour d'une semaine : on rentre de
+      randonnée à trois heures de l'après-midi, on se fait un café et une assiette sans
+      avoir à ressortir, et on garde le repas du soir pour une table du coin quand l'envie vient.</p>
+      <p>Le nombre exact de chambres, leurs noms, leurs capacités et lesquelles disposent
+      du coin cuisine : à préciser ensemble avant la mise en ligne.</p>
+      <span class="pour">Pour un séjour qui s'étire, ou une famille</span>
+    </div>
   </div>
-  <div class="rangee">
+  <div class="rangee monte">
     <div class="num">— 03</div>
     <h3>Les espaces partagés</h3>
-    <p>Le salon et sa cheminée, le coin repas, le jardin et la terrasse commune :
-    la maison se prête autant aux soirées d'hiver qu'aux fins de journée d'été.</p>
+    <div>
+      <p>Le salon et sa cheminée, le coin repas, le jardin et la terrasse commune. En hiver,
+      c'est la pièce où l'on redescend en chaussons après le ski, le temps que la nuit tombe
+      complètement. En été, la terrasse tient jusque tard : à cette altitude, la chaleur retombe
+      dès que le soleil passe derrière la crête, et il faut souvent une petite laine à neuf heures.</p>
+      <span class="pour">Pour tout le monde, à toute heure</span>
+    </div>
   </div>
 </section>
 </div>
 
-<div class="plage-bloc" id="plage">
+<div class="plage-bloc" id="matin">
   <div class="col">
-    <div class="plage-int">
+    <div class="plage-int monte">
       <div>
-        <span class="label">La plage privée</span>
-        <h2>Votre entrée <em>dans le lac</em></h2>
-        <p style="color:var(--encre-douce);max-width:54ch;">Le lac Saint-Point est l'un des grands lacs
-        naturels du Jura français. La maison y a son accès direct : une plage réservée aux hôtes,
-        posée entre le jardin et l'eau.</p>
+        <span class="label">Le matin, et les services</span>
+        <h2>Un petit-déjeuner <em>en buffet</em>, servi en bas</h2>
+        <p style="color:var(--encre-douce);max-width:54ch;">Le petit-déjeuner est servi en buffet :
+        on descend quand on est prêt, on se sert, on s'installe au coin repas ou dehors si le
+        temps le permet. Pas d'heure imposée à la minute près, pas de plateau qui attend derrière
+        une porte. La composition exacte du buffet — pains, produits de la région, ce que la
+        maison prépare elle-même — est à décrire ensemble : c'est votre table, pas la mienne.</p>
         <ul class="sobre" style="margin-top:1.8rem;">
-          <li>Baignade et activités nautiques depuis la plage</li>
-          <li>Tour du lac à pied ou à vélo au départ de la maison</li>
-          <li>Sentiers de randonnée du Haut-Doubs à proximité</li>
-          <li>Métabief, Pontarlier et la Suisse voisine à courte route</li>
+          <li>Petit-déjeuner en buffet, servi dans la maison</li>
+          <li>Wi-Fi et parking privé offerts, sur place</li>
+          <li>Linge de lit et serviettes fournis</li>
+          <li>Salle de bain privée pour chaque chambre</li>
+          <li>Salon avec cheminée, coin repas, jardin et terrasse</li>
+          <li>Accès direct à la plage privée de la maison</li>
         </ul>
+        <p style="color:var(--encre-tenue);font-size:.92rem;margin-top:1.5rem;">Horaires du
+        petit-déjeuner, arrivées tardives, ménage, animaux : à préciser ensemble.</p>
       </div>
       <div aria-hidden="true">
         <svg viewBox="0 0 380 300" style="width:100%;height:auto;">
@@ -304,14 +467,53 @@ d'une version sombre.
 </div>
 
 <div class="col">
-<section>
-  <div class="voix">
-    <span class="label">Ce que les hôtes retiennent</span>
-    <p class="grande">L'accueil, la vue dégagée sur le lac, et cette impression
-    que chaque détail de la maison a été pensé.</p>
-    <p class="note-plateformes">Thèmes qui reviennent dans les avis publiés sur les plateformes
-    de réservation — emplacement noté 10/10 par les voyageurs. Sources et citations exactes
-    à valider ensemble avant mise en ligne.</p>
+<section id="plage">
+  <div class="deux-col monte">
+    <div>
+      <span class="label">La plage privée</span>
+      <h2>Votre entrée <em>dans le lac</em></h2>
+    </div>
+    <div>
+      <p>Le lac Saint-Point est l'un des grands lacs naturels du Jura français : près de sept
+      kilomètres de long, posé à environ 850 mètres d'altitude entre les crêtes du Haut-Doubs.
+      La maison y a son accès direct — une plage réservée aux hôtes, entre le jardin et l'eau.</p>
+      <p>Concrètement, cela veut dire qu'on peut aller tremper les pieds en sortant de table,
+      laisser les serviettes sur place l'après-midi, et revenir voir le lac une dernière fois
+      avant de monter se coucher. L'eau d'un lac de montagne reste fraîche : elle se réchauffe
+      vraiment en juillet et en août, et se laisse regarder le reste de l'année.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ride" aria-hidden="true">
+  <svg viewBox="0 0 1060 14" style="width:100%;height:14px;">
+    <path d="M0 7 q30-6 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" fill="none" stroke="#AEC3CB" stroke-width="1.2"/>
+  </svg>
+</div>
+
+<section id="environs">
+  <div class="deux-col monte">
+    <div>
+      <span class="label">Les environs</span>
+      <h2>Ce qu'il y a <em>à quelques kilomètres</em></h2>
+    </div>
+    <div>
+      <p>Le tour du lac se fait à pied ou à vélo au départ de la maison : le chemin longe la rive,
+      passe d'un village à l'autre, et l'on rentre par l'autre côté sans jamais s'éloigner de l'eau.
+      Les sentiers de randonnée du Haut-Doubs montent, eux, dans les pâtures et les forêts d'épicéas
+      qui bordent le lac.</p>
+      <p>Malbuisson, sur l'autre rive, est le bourg le plus proche pour les courses et les terrasses.
+      Métabief et le Mont d'Or — point culminant du Doubs, à 1 463 mètres — sont à courte route :
+      ski alpin et nordique l'hiver, VTT et sentiers de crête l'été. Pontarlier est à une vingtaine
+      de minutes, la frontière suisse juste derrière.</p>
+      <ul class="sobre" style="margin-top:1.8rem;">
+        <li>Baignade et activités nautiques depuis la plage</li>
+        <li>Tour du lac à pied ou à vélo au départ de la maison</li>
+        <li>Sentiers de randonnée du Haut-Doubs à proximité</li>
+        <li>Métabief, le Mont d'Or et ses panoramas à courte route</li>
+        <li>Pontarlier, le château de Joux et la Suisse voisine</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -322,7 +524,7 @@ d'une version sombre.
 </div>
 
 <section id="direct">
-  <div class="direct">
+  <div class="direct monte">
     <div>
       <span class="label">Réservez en direct</span>
       <h2>Le meilleur accueil <em>commence ici</em></h2>
@@ -337,12 +539,70 @@ d'une version sombre.
       à insérer ici après validation.</span>
     </div>
   </div>
+  <div class="arguments-direct monte">
+    <div>
+      <b>Vous parlez à la maison</b>
+      <p>Une arrivée tardive, un lit d'appoint, une allergie, un chien : ce sont des questions
+      qui se règlent en deux phrases avec la personne qui vous ouvrira la porte, et qui restent
+      sans réponse dans un formulaire de plateforme.</p>
+    </div>
+    <div>
+      <b>Vos conditions, pas les leurs</b>
+      <p>Les conditions d'annulation et de modification sont celles de la maison — souples,
+      discutées, humaines. Les modalités exactes sont à fixer ensemble et seront écrites
+      noir sur blanc sur le site final.</p>
+    </div>
+    <div>
+      <b>Le séjour commence avant l'arrivée</b>
+      <p>Un mot avant votre venue sur l'état des sentiers, le niveau du lac, la table qui vaut
+      le détour cette semaine-là : ce sont des conseils qu'aucune plateforme ne sait donner,
+      parce qu'ils changent tous les quinze jours.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pratique">
+  <div class="monte">
+    <span class="label">Infos pratiques</span>
+    <h2>Avant de venir, <em>l'essentiel</em></h2>
+  </div>
+  <div class="infos-quatre monte">
+    <div class="bloc-info">
+      <h3>Arrivée et départ</h3>
+      <p>Les horaires d'arrivée et de départ sont fixés par la maison, pas par un logiciel.
+      Prévenez de votre heure approximative et on s'arrange — horaires exacts à préciser ensemble.</p>
+    </div>
+    <div class="bloc-info">
+      <h3>Sur place</h3>
+      <p>Parking privé et Wi-Fi offerts. On gare la voiture une fois pour toutes : la rive,
+      le tour du lac et les sentiers partent de la porte.</p>
+    </div>
+    <div class="bloc-info">
+      <h3>Selon la saison</h3>
+      <p>La maison se vit dehors de juin à septembre et autour de la cheminée le reste de l'année.
+      Prévoyez une couche de plus le soir : à 850 mètres, les nuits restent fraîches même en été.</p>
+    </div>
+    <div class="bloc-info">
+      <h3>À préciser ensemble</h3>
+      <p>Tarifs par saison, durée minimale de séjour, animaux acceptés ou non, lit bébé,
+      moyens de paiement : autant de points que je ne veux pas inventer à votre place.</p>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
-  <span class="label">Contact</span>
-  <h2>Aux Grangettes, <em>chemin du Lac</em></h2>
-  <div class="contact-grille">
+  <div class="monte">
+    <span class="label">Contact</span>
+    <h2>Aux Grangettes, <em>chemin du Lac</em></h2>
+  </div>
+  <div class="appel monte">
+    <div class="sur">Appeler la maison</div>
+    <div class="numero">Numéro à insérer ici</div>
+    <p class="note">Sur le site final, ce bloc devient un bouton d'appel : un doigt dessus depuis
+    un téléphone, et la maison sonne. C'est le premier geste que fait un voyageur pressé —
+    il mérite d'être le plus visible de la page.</p>
+  </div>
+  <div class="contact-grille monte">
     <div>
       <h3>Adresse</h3>
       <p>Chalet du Lac<br>Chemin du Lac<br>25160 Les Grangettes<br>Doubs — Haut-Doubs</p>
@@ -366,5 +626,22 @@ d'une version sombre.
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
 </div>
+
+<script>
+  (function(){
+    var cibles = document.querySelectorAll('.monte');
+    if(!('IntersectionObserver' in window) ||
+       window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      cibles.forEach(function(el){ el.classList.add('vu'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
+      });
+    },{threshold:.12});
+    cibles.forEach(function(el){ io.observe(el); });
+  })();
+</script>
 </body>
 </html>

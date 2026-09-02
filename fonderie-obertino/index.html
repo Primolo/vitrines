@@ -19,9 +19,124 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Fonderie de cloches Obertino — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "Store",
+    "TouristAttraction"
+  ],
+  "@id": "https://primolo.github.io/vitrines/fonderie-obertino/#etablissement",
+  "name": "Fonderie de cloches Obertino",
+  "description": "Fonderie de cloches artisanale fondée en 1834 à Labergement-Sainte-Marie, l'une des dernières de France. Entreprise du Patrimoine Vivant depuis 2011. Cloches de vaches, sonnailles, cloches de table. Visites gratuites de l'atelier.",
+  "url": "https://primolo.github.io/vitrines/fonderie-obertino/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "15 rue de Mouthe",
+    "addressLocality": "Labergement-Sainte-Marie",
+    "postalCode": "25160",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Labergement-Sainte-Marie"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "telephone": "+33381693072",
+  "email": "cloches.obertino.c@orange.fr",
+  "foundingDate": "1834",
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "https://schema.org/Monday",
+        "https://schema.org/Tuesday",
+        "https://schema.org/Wednesday",
+        "https://schema.org/Thursday",
+        "https://schema.org/Friday",
+        "https://schema.org/Saturday"
+      ],
+      "opens": "09:30",
+      "closes": "12:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "https://schema.org/Monday",
+        "https://schema.org/Tuesday",
+        "https://schema.org/Wednesday",
+        "https://schema.org/Thursday",
+        "https://schema.org/Friday",
+        "https://schema.org/Saturday"
+      ],
+      "opens": "14:30",
+      "closes": "18:30"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Depuis quand existe la fonderie Obertino ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La fonderie de cloches Obertino a été fondée en 1834 à Labergement-Sainte-Marie. C'est l'une des dernières fonderies de cloches artisanales de France."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on visiter la fonderie de cloches ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Des visites gratuites d'une vingtaine de minutes permettent d'assister à la coulée et au démoulage. En juillet et août, des visites guidées ont lieu le vendredi à 16 h 30."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels sont les horaires de la boutique Obertino ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La boutique est ouverte tous les jours sauf les dimanches et jours fériés, de 9 h 30 à 12 h et de 14 h 30 à 18 h 30."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que fabrique la fonderie Obertino ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Des cloches de vaches et sonnailles, des cloches de table et des souvenirs, coulés et décorés à la main en bronze."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que le label Entreprise du Patrimoine Vivant ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C'est une distinction de l'État français qui reconnaît un savoir-faire artisanal rare. La fonderie Obertino la détient depuis 2011."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --nuit:#1d1712;
+    --nuit-clair:#251d15;
     --bronze:#c68a3f;
     --braise:#a9491f; --braise-clair:#d2622c;
     --patine:#6e8f7c;
@@ -56,7 +171,7 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
   .poincon .nom{font-family:var(--serif);font-size:1.3rem;letter-spacing:.04em}
   .poincon .nom small{display:block;font-family:var(--sans);font-size:.68rem;
     letter-spacing:.3em;text-transform:uppercase;color:var(--bronze)}
-  nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:1.6rem;font-size:.85rem;letter-spacing:.05em}
+  nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:1.1rem 1.6rem;font-size:.85rem;letter-spacing:.05em}
   nav.haut a{color:var(--ivoire);text-decoration:none}
   nav.haut a:hover{color:var(--bronze)}
 
@@ -75,14 +190,22 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
     font-size:clamp(1.85rem,4.6vw,3.4rem);line-height:1.12;max-width:20ch;
     overflow-wrap:break-word;
   }
-  .hero p{margin:1.4rem 0 2rem;max-width:54ch;color:var(--ivoire-doux)}
-  .hero .labels{display:flex;flex-wrap:wrap;gap:.8rem;font-size:.78rem}
+  .hero p.chapo{margin:1.4rem 0 1.6rem;max-width:54ch;color:var(--ivoire-doux)}
+  .hero .labels{display:flex;flex-wrap:wrap;gap:.8rem;font-size:.78rem;margin-bottom:2rem}
   .hero .labels span{
     border:1px solid var(--patine-clair);color:var(--patine-clair);
     padding:.35rem .9rem;letter-spacing:.08em;text-transform:uppercase;
   }
   .hero .labels span.or{border-color:var(--bronze);color:var(--bronze)}
   .cloche-hero{width:100%;max-width:380px;justify-self:center;height:auto}
+
+  /* chiffres-repères du hero */
+  .reperes{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));
+    gap:1.4rem 1.8rem;border-top:1px solid rgba(198,138,63,.35);padding-top:1.6rem;
+  }
+  .repere b{display:block;font-family:var(--serif);font-size:1.9rem;line-height:1.05;color:var(--bronze)}
+  .repere span{display:block;font-size:.82rem;color:var(--sable-clair);margin-top:.15rem}
 
   /* ---- ornement cloche filaire ---- */
   .orn{display:flex;align-items:center;gap:1rem;margin:0 max(6vw,1.15rem);padding-top:3.4rem}
@@ -92,8 +215,10 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
   section{padding:1.6rem max(6vw,1.15rem) 3.4rem}
   section h2{
     font-family:var(--serif);font-weight:500;color:var(--bronze);
-    font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1.4rem;letter-spacing:.02em;
+    font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:.9rem;letter-spacing:.02em;
   }
+  .chapeau-section{color:var(--ivoire-doux);max-width:66ch;margin-bottom:1.6rem}
+  .chapeau-section + .chapeau-section{margin-top:-.9rem}
 
   /* ---- frise chronologique ---- */
   .frise{list-style:none;border-left:2px solid var(--bronze);margin-left:.4rem;padding-left:2rem}
@@ -107,37 +232,89 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
   /* jalons sans date certaine : même famille, rythme visuel distinct des millésimes */
   .frise .an.jalon{font-size:1.08rem;font-style:italic;color:var(--bronze)}
   .frise p{color:var(--ivoire-doux);font-size:.97rem;margin-top:.25rem}
+  .frise p + p{margin-top:.6rem}
   .frise li:last-child{padding-bottom:0}
   .frise li:last-child::before{background:var(--bronze)}
 
   /* ---- savoir-faire : étapes numérotées ---- */
-  .etapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:rgba(198,138,63,.3);border:1px solid rgba(198,138,63,.3);margin-top:.5rem}
-  .etape{background:#251d15;padding:1.5rem 1.3rem}
+  .etapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1px;background:rgba(198,138,63,.3);border:1px solid rgba(198,138,63,.3);margin-top:.5rem}
+  .etape{background:var(--nuit-clair);padding:1.5rem 1.3rem}
   .etape .num{font-family:var(--serif);font-size:2rem;color:var(--braise-clair);line-height:1}
   .etape h3{font-size:1.02rem;margin:.6rem 0 .4rem;letter-spacing:.04em}
   .etape p{font-size:.95rem;color:var(--ivoire-doux)}
 
+  /* ---- encadré explicatif ---- */
+  .encadre{border:1px solid rgba(110,143,124,.5);border-left:4px solid var(--patine);
+    padding:1.5rem 1.4rem;margin-top:2rem;max-width:72ch}
+  .encadre h3{font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--ivoire);margin-bottom:.6rem}
+  .encadre p{color:var(--ivoire-doux);font-size:.97rem}
+  .encadre p + p{margin-top:.7rem}
+
+  /* ---- le label ---- */
+  .label-bloc{background:var(--nuit-clair);border-top:1px solid rgba(198,138,63,.3);
+    border-bottom:1px solid rgba(198,138,63,.3);padding:3.4rem max(6vw,1.15rem)}
+  .label-cols{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:2.6rem;align-items:start;margin-top:1.4rem}
+  .label-cols p{color:var(--ivoire-doux)}
+  .label-cols p + p{margin-top:.8rem}
+  .fiche-label{border:1px solid rgba(198,138,63,.35);padding:1.5rem 1.4rem}
+  .fiche-label h3{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze);margin-bottom:1rem}
+  .fiche-label dl{display:grid;gap:.9rem}
+  .fiche-label dt{font-family:var(--serif);font-size:1.25rem;color:var(--ivoire);line-height:1.2}
+  .fiche-label dd{font-size:.9rem;color:var(--sable-clair)}
+
   /* ---- produits ---- */
-  .produits{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.6rem;margin-top:.5rem}
+  .produits{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:1.6rem;margin-top:.5rem}
   .produit{border:1px solid rgba(110,143,124,.45);padding:1.5rem}
   .produit h3{font-family:var(--serif);font-weight:500;font-size:1.2rem;color:var(--patine);margin-bottom:.5rem}
   .produit p{font-size:.96rem;color:var(--ivoire-doux)}
+  .produit p + p{margin-top:.6rem}
   .produit .gravure{margin-top:1rem;height:10px;width:100%}
-  .mention{font-style:italic;color:var(--sable-clair);font-size:.92rem;margin-top:1.6rem}
+  .mention{font-style:italic;color:var(--sable-clair);font-size:.92rem;margin-top:1.6rem;max-width:70ch}
+
+  /* ---- tableau des pièces ---- */
+  .tableau-boite{overflow-x:auto;margin-top:1.4rem;border:1px solid rgba(198,138,63,.3)}
+  table.pieces{width:100%;border-collapse:collapse;font-size:.94rem;min-width:520px}
+  table.pieces th{background:var(--nuit-clair);text-align:left;font-family:var(--sans);
+    font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bronze);
+    font-weight:600;padding:.85rem 1rem}
+  table.pieces td{padding:.85rem 1rem;border-top:1px solid rgba(138,122,99,.4);vertical-align:top;color:var(--ivoire-doux)}
+  table.pieces td:first-child{color:var(--ivoire)}
+  table.pieces td:last-child{text-align:right;color:var(--bronze);white-space:nowrap}
 
   /* ---- visites & horaires ---- */
-  .visites{background:#251d15;border-top:1px solid rgba(198,138,63,.3);border-bottom:1px solid rgba(198,138,63,.3);padding:3.4rem max(6vw,1.15rem)}
-  .visites .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem}
+  .visites{background:var(--nuit-clair);border-top:1px solid rgba(198,138,63,.3);border-bottom:1px solid rgba(198,138,63,.3);padding:3.4rem max(6vw,1.15rem)}
+  .visites h2{font-family:var(--serif);font-weight:500;color:var(--bronze);
+    font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:.9rem}
+  .visites .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;margin-top:1.4rem}
   .visites h3{font-family:var(--serif);color:var(--ivoire);font-size:1.15rem;margin-bottom:.7rem}
   .visites p{font-size:.97rem;color:var(--ivoire-doux)}
+  .visites p + p{margin-top:.7rem}
   table.horaires{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:1rem}
-  table.horaires td{padding:.6rem .3rem;border-bottom:1px dashed rgba(138,122,99,.5);vertical-align:top}
-  table.horaires td:first-child{padding-right:1rem}
+  table.horaires td{padding:.6rem .3rem;border-bottom:1px dashed rgba(138,122,99,.5);vertical-align:top;color:var(--ivoire-doux)}
+  table.horaires td:first-child{padding-right:1rem;color:var(--ivoire)}
   table.horaires td:last-child{text-align:right;color:var(--bronze)}
 
+  /* ---- infos pratiques : 4 blocs ---- */
+  .pratique-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));
+    gap:1.3rem;margin-top:1.4rem}
+  .bloc-pratique{border:1px solid rgba(198,138,63,.3);padding:1.4rem 1.3rem;background:var(--nuit-clair)}
+  .bloc-pratique svg{width:26px;height:26px;margin-bottom:.8rem}
+  .bloc-pratique h3{font-family:var(--serif);font-weight:500;font-size:1.1rem;color:var(--ivoire);margin-bottom:.4rem}
+  .bloc-pratique p{font-size:.93rem;color:var(--ivoire-doux)}
+
   /* ---- contact ---- */
-  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;font-size:.94rem}
+  .gros-tel{
+    display:block;text-align:center;text-decoration:none;
+    background:var(--braise);color:#fff6ee;border:1px solid var(--braise-clair);
+    padding:1.3rem 1.2rem;margin:1.6rem 0 2rem;max-width:26rem;
+  }
+  .gros-tel small{display:block;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;
+    color:#fbe6da;margin-bottom:.35rem}
+  .gros-tel strong{font-family:var(--serif);font-size:1.75rem;font-weight:500;letter-spacing:.03em}
+  .gros-tel:hover{background:var(--braise-clair)}
+  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:2rem;font-size:.94rem}
   .contact-grille h3{font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--bronze);margin-bottom:.6rem}
+  .contact-grille p + p{margin-top:.6rem}
   .contact-grille a{color:var(--ivoire)}
   a.maps{
     display:inline-block;margin-top:.7rem;text-decoration:none;font-size:.85rem;
@@ -150,10 +327,19 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
     color:#a49881;font-size:.82rem;text-align:center;padding:1.3rem max(6vw,1.15rem);
   }
 
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .monte{opacity:1;transform:none;transition:none}
+  }
+
   @media (max-width:820px){
     .hero{grid-template-columns:1fr}
     .cloche-hero{max-width:280px}
     .visites .cols{grid-template-columns:1fr;gap:2.2rem}
+    .label-cols{grid-template-columns:1fr;gap:1.8rem}
     nav.haut{margin-left:0}
   }
   @media (max-width:520px){
@@ -163,6 +349,7 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
     .frise{padding-left:1.4rem}
     .frise li::before{left:calc(-1.4rem - 7px)}
     .etape{padding:1.2rem 1.1rem}
+    .gros-tel strong{font-size:1.5rem}
   }
 </style>
 
@@ -181,6 +368,7 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
   <nav class="haut">
     <a href="#histoire">Histoire</a>
     <a href="#savoirfaire">Savoir-faire</a>
+    <a href="#label">Le label</a>
     <a href="#produits">Cloches</a>
     <a href="#visites">Visites &amp; boutique</a>
     <a href="#contact">Contact</a>
@@ -191,14 +379,21 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
   <div>
     <p class="depuis">Depuis 1834</p>
     <h1>Le bronze coule encore à Labergement-Sainte-Marie</h1>
-    <p>
+    <p class="chapo">
       L'une des dernières fonderies de cloches artisanales de France. Ici, chaque
-      sonnaille est moulée, décorée et coulée à la main, selon un savoir-faire
-      transmis de génération en génération dans la même famille.
+      sonnaille est moulée, décorée et coulée à la main. La boutique et l'atelier
+      sont dans le même bâtiment, rue de Mouthe : on entre acheter une cloche et
+      l'on repart en ayant vu comment elle a été faite.
     </p>
     <div class="labels">
       <span class="or">Entreprise du Patrimoine Vivant — 2011</span>
       <span>Bronze coulé &amp; gravé à la main</span>
+    </div>
+    <div class="reperes">
+      <div class="repere"><b>1834</b><span>l'année que porte l'enseigne</span></div>
+      <div class="repere"><b>2011</b><span>label Entreprise du Patrimoine Vivant</span></div>
+      <div class="repere"><b>20 min</b><span>la visite de l'atelier, gratuite</span></div>
+      <div class="repere"><b>6 j / 7</b><span>boutique ouverte, sauf dimanches et fériés</span></div>
     </div>
   </div>
   <!-- ÉLÉMENT SIGNATURE : la cloche en coupe, bandeaux de gravure -->
@@ -249,29 +444,41 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
 </div>
 
 <section id="histoire">
-  <h2>Presque deux siècles de coulées</h2>
-  <ul class="frise">
+  <h2 class="monte">Presque deux siècles de coulées</h2>
+  <p class="chapeau-section monte">Fondre une cloche est un métier qui s'apprend à côté de
+  quelqu'un, pas dans un livre. C'est sans doute ce qui explique qu'il en reste si peu :
+  quand un atelier ferme, ce n'est pas une machine qui s'arrête, c'est une chaîne de gestes
+  qui se coupe. À Labergement-Sainte-Marie, elle n'a pas été coupée.</p>
+  <ul class="frise monte">
     <li>
       <span class="an">1834</span>
-      <p>Les Obertino, fondeurs itinérants venus d'Italie, coulent des cloches pour le
-      bétail sur les places des villages du Haut-Doubs, avant de regagner leur vallée
-      chaque hiver.</p>
+      <p>C'est l'année que porte l'enseigne de la maison, et le point de départ de tout
+      le reste. Les cloches de troupeau sortaient alors des fonderies au rythme des
+      estives : on venait en commander une pour une bête précise, et on repartait avec
+      un objet fait pour durer une vie de vache.</p>
     </li>
     <li>
-      <span class="an jalon">L'atelier s'enracine</span>
-      <p>La famille installe son premier atelier permanent à Labergement-Sainte-Marie,
-      dans l'ancienne fromagerie du village. La fonderie ne quittera plus la commune.</p>
+      <span class="an jalon">L'atelier de la rue de Mouthe</span>
+      <p>La fonderie travaille aujourd'hui au 15 rue de Mouthe, à Labergement-Sainte-Marie,
+      dans le Haut-Doubs. Atelier et boutique partagent le même toit : c'est la raison pour
+      laquelle la visite est possible sans rendez-vous, et gratuite.</p>
+      <p>Les dates précises des déménagements et des générations successives sont
+      <em>à compléter ensemble</em> — elles méritent d'être écrites correctement plutôt
+      qu'approximativement.</p>
     </li>
     <li>
-      <span class="an jalon">De génération en génération</span>
-      <p>Le métier se transmet dans la famille : moules, motifs et gestes passent de
-      main en main, pendant que la plupart des fonderies de France s'éteignent.</p>
+      <span class="an jalon">Une des dernières de France</span>
+      <p>Obertino compte parmi les dernières fonderies de cloches artisanales du pays.
+      Ce n'est pas un argument de vente : c'est un état des lieux. Le métier a reculé
+      avec la mécanisation de l'élevage, et les ateliers qui restent se comptent
+      aujourd'hui sur les doigts de la main.</p>
     </li>
     <li>
       <span class="an">2011</span>
       <p>L'État reconnaît ce savoir-faire rare : la fonderie est labellisée
-      <strong>Entreprise du Patrimoine Vivant</strong>. Elle demeure l'une des dernières
-      fonderies de cloches artisanales de France.</p>
+      <strong>Entreprise du Patrimoine Vivant</strong>. Le label distingue des maisons
+      françaises détentrices d'un savoir-faire artisanal ou industriel d'excellence ;
+      il s'obtient sur dossier et se renouvelle.</p>
     </li>
   </ul>
 </section>
@@ -283,109 +490,271 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
 </div>
 
 <section id="savoirfaire">
-  <h2>Le geste, du sable au bronze</h2>
-  <div class="etapes">
+  <h2 class="monte">Le geste, du sable au bronze</h2>
+  <p class="chapeau-section monte">Une cloche de bronze ne se fabrique pas : elle se coule.
+  Le principe n'a pas changé depuis des siècles — on construit en terre le creux exact de
+  l'objet, on y verse le métal en fusion, et on casse le moule pour découvrir le résultat.
+  Chaque moule ne sert qu'une fois. Chaque cloche est donc, littéralement, un exemplaire
+  unique, même quand elle est faite d'après le même gabarit que la précédente.</p>
+  <div class="etapes monte">
     <div class="etape">
       <div class="num">1</div>
-      <h3>Moulage</h3>
-      <p>Chaque cloche naît d'un moule préparé à la main, selon les gabarits de la maison.</p>
+      <h3>Le gabarit</h3>
+      <p>Tout part d'un profil : la forme de la robe, l'épaisseur du métal, la hauteur.
+      Ce sont les gabarits de la maison qui donnent à une cloche Obertino sa silhouette
+      et sa voix.</p>
     </div>
     <div class="etape">
       <div class="num">2</div>
-      <h3>Décor</h3>
-      <p>Frises, inscriptions et motifs sont apposés un à un avant la fermeture du moule.</p>
+      <h3>Moulage</h3>
+      <p>Le moule est monté à la main en terre à mouler, tassée et lissée jusqu'à ce que
+      la surface soit assez fine pour rendre le détail du décor. C'est l'étape la plus
+      longue, et celle qui décide de la netteté du résultat.</p>
     </div>
     <div class="etape">
       <div class="num">3</div>
-      <h3>Coulée</h3>
-      <p>Le bronze en fusion est versé dans le moule — l'instant que les visiteurs guettent.</p>
+      <h3>Décor</h3>
+      <p>Frises, motifs et inscriptions sont apposés un à un, en creux, avant la fermeture
+      du moule. Ce qui est gravé en creux dans la terre ressortira en relief sur le bronze :
+      il faut penser à l'envers.</p>
     </div>
     <div class="etape">
       <div class="num">4</div>
-      <h3>Démoulage</h3>
-      <p>Le moule est brisé, la cloche paraît, encore brute de fonderie.</p>
+      <h3>Coulée</h3>
+      <p>Le bronze en fusion est versé d'un seul trait dans le moule. Il n'y a pas de
+      deuxième essai : si la coulée s'interrompt ou si le métal fige trop tôt, la pièce est
+      perdue. C'est l'instant que les visiteurs guettent.</p>
     </div>
     <div class="etape">
       <div class="num">5</div>
-      <h3>Finition</h3>
-      <p>Ébarbage, polissage, accord : la cloche reçoit sa voix et son éclat.</p>
+      <h3>Démoulage</h3>
+      <p>Une fois le métal refroidi, le moule est brisé — il ne resservira pas. La cloche
+      apparaît, encore brute, couverte de sable, sa couleur définitive encore cachée sous
+      la croûte de fonderie.</p>
     </div>
+    <div class="etape">
+      <div class="num">6</div>
+      <h3>Finition</h3>
+      <p>Ébarbage des coutures, polissage, montage du battant, essai au son : c'est là que
+      la cloche prend son éclat et qu'on entend enfin ce qu'elle vaut.</p>
+    </div>
+  </div>
+
+  <div class="encadre monte">
+    <h3>Pourquoi deux cloches ne sonnent jamais tout à fait pareil</h3>
+    <p>La note d'une cloche dépend de trois choses : sa taille, l'épaisseur de son métal, et
+    la façon dont elle a refroidi. Plus la robe est épaisse et petite, plus le son monte ;
+    plus elle est large et fine, plus il descend et traîne. Un moule fait à la main ne
+    reproduit jamais deux fois exactement la même épaisseur au millimètre près — d'où des
+    voix qui se ressemblent sans être identiques.</p>
+    <p>Sur un troupeau, ce n'est pas un défaut, c'est l'intérêt : un éleveur qui connaît ses
+    bêtes reconnaît sa cloche dans le brouillard, et un ensemble de sonnailles bien choisies
+    ne fait pas du bruit, il fait un accord. C'est pour cela qu'on essaie les cloches à
+    l'oreille en boutique, l'une après l'autre, avant d'en choisir une.</p>
   </div>
 </section>
 
-<div class="orn" aria-hidden="true">
-  <hr>
-  <svg viewBox="0 0 40 40"><path d="M20 5 C 12 5 13 16 10 26 L 8 30 H 32 L 30 26 C 27 16 28 5 20 5 Z" fill="none" stroke="#c68a3f" stroke-width="2"/><circle cx="20" cy="33.5" r="2.6" fill="#c68a3f"/></svg>
-  <hr>
+<div class="label-bloc" id="label">
+  <h2 style="font-family:var(--serif);font-weight:500;color:var(--bronze);font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:.9rem" class="monte">Ce que veut dire « Patrimoine Vivant »</h2>
+  <p class="chapeau-section monte">C'est un label d'État, pas une distinction achetée ni un
+  autocollant de vitrine. Voilà ce qu'il recouvre, et ce qu'il change concrètement pour
+  quelqu'un qui pousse la porte de l'atelier.</p>
+  <div class="label-cols">
+    <div class="monte">
+      <p>Le label <strong>Entreprise du Patrimoine Vivant</strong> a été créé par l'État
+      français pour distinguer les entreprises qui détiennent un savoir-faire artisanal ou
+      industriel rare, attaché à un territoire et difficilement délocalisable. Il ne se
+      demande pas comme une adhésion : il s'instruit sur dossier, il est attribué pour une
+      durée limitée, et il doit être renouvelé.</p>
+      <p>Pour une fonderie de cloches, l'essentiel de ce qui est examiné ne se voit pas sur
+      un catalogue : l'outillage ancien encore en service, les gabarits conservés, la
+      transmission du métier à l'intérieur de la maison, la part réelle de la main dans
+      chaque pièce. Autrement dit, ce qui resterait vrai même si personne ne regardait.</p>
+      <p>Ce que cela change pour vous, en pratique : la cloche que vous achetez ici a été
+      moulée et coulée dans le bâtiment où vous vous tenez, pas importée puis étiquetée.
+      Et si une pièce vous intéresse, on peut vous montrer l'endroit exact où elle est née.</p>
+    </div>
+    <div class="fiche-label monte">
+      <h3>Le label en bref</h3>
+      <dl>
+        <dt>2011</dt>
+        <dd>année de labellisation de la fonderie Obertino</dd>
+        <dt>Sur dossier</dt>
+        <dd>attribué après examen du savoir-faire, de l'outillage et de la transmission</dd>
+        <dt>Renouvelable</dt>
+        <dd>le label a une durée de validité : il se reconquiert, il ne se garde pas d'office</dd>
+        <dt>Un métier rare</dt>
+        <dd>Obertino compte parmi les dernières fonderies de cloches artisanales de France</dd>
+      </dl>
+    </div>
+  </div>
 </div>
 
 <section id="produits">
-  <h2>Cloches &amp; sonnailles</h2>
+  <h2 class="monte">Cloches &amp; sonnailles</h2>
+  <p class="chapeau-section monte">Tout ce qui sort de l'atelier est du bronze coulé, du plus
+  gros collier de pâture à la petite cloche de table. Ce qui change d'une famille à l'autre,
+  c'est l'usage — et donc la taille, l'épaisseur et le décor.</p>
   <div class="produits">
-    <article class="produit">
+    <article class="produit monte">
       <h3>Cloches de vaches &amp; sonnailles</h3>
-      <p>Les voix des troupeaux du Jura : cloches de pâture coulées en bronze,
-      dimensionnées et accordées pour le bétail.</p>
+      <p>La voix des troupeaux du Haut-Doubs. Ces cloches sont faites pour vivre dehors
+      toute une saison d'estive, être secouées des milliers de fois par jour et rester
+      lisibles à l'oreille à plusieurs centaines de mètres.</p>
+      <p>On les choisit par taille et par son : une grosse pour la meneuse, des plus
+      petites pour le reste du troupeau. Colliers et courroies se choisissent en même
+      temps que la cloche, puisqu'ils en portent le poids.</p>
       <svg class="gravure" viewBox="0 0 200 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5 Q 10 0 20 5 T 40 5 T 60 5 T 80 5 T 100 5 T 120 5 T 140 5 T 160 5 T 180 5 T 200 5" fill="none" stroke="#6e8f7c" stroke-width="1.5"/></svg>
     </article>
-    <article class="produit">
+    <article class="produit monte">
       <h3>Cloches de table &amp; d'appel</h3>
-      <p>Cloches d'intérieur, de comptoir ou de portail, du même bronze que les grandes
-      sœurs des alpages.</p>
+      <p>Le même bronze, la même façon de faire, à une autre échelle : cloche de comptoir,
+      cloche de portail, cloche d'appel posée sur un buffet. Un objet qu'on garde des
+      décennies et qui ne demande aucun entretien.</p>
+      <p>Comme les grandes, elles s'essaient au son avant d'être choisies : à taille égale,
+      deux pièces peuvent donner deux voix différentes, et c'est en général l'oreille qui
+      tranche, pas l'œil.</p>
       <svg class="gravure" viewBox="0 0 200 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5 Q 10 0 20 5 T 40 5 T 60 5 T 80 5 T 100 5 T 120 5 T 140 5 T 160 5 T 180 5 T 200 5" fill="none" stroke="#6e8f7c" stroke-width="1.5"/></svg>
     </article>
-    <article class="produit">
+    <article class="produit monte">
       <h3>Souvenirs &amp; cloches gravées</h3>
-      <p>Cloches souvenirs et pièces personnalisées : une inscription en relief, coulée
-      dans le bronze, pour marquer une naissance, une fête, un jubilé.</p>
+      <p>Cloches souvenirs à emporter, et pièces personnalisées portant une inscription :
+      un nom, une date, quelques mots. Le texte n'est pas gravé après coup sur la surface,
+      il est coulé dans la masse — il fait partie du bronze et ne s'effacera pas.</p>
+      <p>Naissance, mariage, départ en retraite, jubilé d'une société : ce sont les
+      occasions qui reviennent le plus souvent. Le nombre de caractères et le délai de
+      fabrication se voient au cas par cas, à la boutique ou par téléphone.</p>
       <svg class="gravure" viewBox="0 0 200 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5 Q 10 0 20 5 T 40 5 T 60 5 T 80 5 T 100 5 T 120 5 T 140 5 T 160 5 T 180 5 T 200 5" fill="none" stroke="#6e8f7c" stroke-width="1.5"/></svg>
     </article>
   </div>
-  <p class="mention">Tarifs et commandes spéciales : nous consulter à la boutique ou par téléphone.</p>
+
+  <div class="tableau-boite monte">
+    <table class="pieces">
+      <caption class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Pièces réalisées à la fonderie et modalités de commande</caption>
+      <thead>
+        <tr><th scope="col">Pièce</th><th scope="col">Usage</th><th scope="col">Tarif</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cloche de pâture, grande taille</td><td>meneuse de troupeau, portée sonore maximale</td><td>prix en magasin</td></tr>
+        <tr><td>Cloche de pâture, tailles courantes</td><td>troupeau, estive, transhumance</td><td>prix en magasin</td></tr>
+        <tr><td>Sonnaille</td><td>petit bétail, décoration d'intérieur ou de chalet</td><td>prix en magasin</td></tr>
+        <tr><td>Collier &amp; courroie</td><td>se choisissent avec la cloche, selon son poids</td><td>prix en magasin</td></tr>
+        <tr><td>Cloche de table ou d'appel</td><td>comptoir, portail, maison</td><td>prix en magasin</td></tr>
+        <tr><td>Cloche souvenir</td><td>à emporter de la visite</td><td>prix en magasin</td></tr>
+        <tr><td>Cloche gravée personnalisée</td><td>inscription coulée dans le bronze</td><td>nous consulter</td></tr>
+        <tr><td>Commande spéciale ou hors gabarit</td><td>projet particulier, série pour un événement</td><td>nous consulter</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mention">Les tarifs sont affichés en boutique, pièce par pièce : le prix d'une
+  cloche dépend de sa taille et de la quantité de bronze qu'elle contient. Pour une gravure
+  ou une commande particulière, le mieux reste un coup de fil.</p>
 </section>
 
 <div class="visites" id="visites">
-  <h2>Visites &amp; boutique</h2>
+  <h2 class="monte">Visites &amp; boutique</h2>
+  <p class="chapeau-section monte">L'atelier n'est pas un musée : c'est un lieu de travail
+  qu'on ouvre au public. La visite dure une vingtaine de minutes, elle est gratuite, et elle
+  se fait au rythme de ce qui est en cours ce jour-là.</p>
   <div class="cols">
-    <div>
+    <div class="monte">
       <h3>Voir couler le bronze</h3>
-      <p>
-        Des visites gratuites d'une vingtaine de minutes présentent l'atelier ; selon le
-        moment, on assiste à la coulée ou au démoulage. En juillet et en août, une visite
-        guidée plus complète a lieu le vendredi à 16 h 30.
-      </p>
+      <p>Selon le moment de la journée, on assiste à la coulée — le bronze en fusion versé
+      dans le moule — ou au démoulage, quand le moule est brisé et que la cloche apparaît.
+      Les deux valent le déplacement, et ce n'est pas le même spectacle : l'un est une
+      question de secondes, l'autre une découverte.</p>
+      <p>Il n'y a pas de réservation à faire pour la visite libre : on entre pendant les
+      heures d'ouverture de la boutique. En juillet et en août, une visite guidée plus
+      complète a lieu le vendredi à 16 h 30.</p>
       <table class="horaires">
         <tr><td>Visite libre de l'atelier</td><td>≈ 20 min · gratuite</td></tr>
         <tr><td>Visite guidée (juillet – août)</td><td>vendredi 16 h 30</td></tr>
+        <tr><td>Groupes, écoles, autocaristes</td><td>sur réservation</td></tr>
       </table>
     </div>
-    <div>
+    <div class="monte">
       <h3>La boutique</h3>
-      <p>Cloches, sonnailles et souvenirs, à choisir sur place au son.</p>
+      <p>Cloches, sonnailles, colliers et souvenirs sont présentés sur place. On peut les
+      prendre en main, les faire sonner, les comparer : c'est la seule façon sérieuse de
+      choisir, et c'est justement ce qu'un catalogue ne permettra jamais.</p>
+      <p>La boutique est ouverte tous les jours sauf les dimanches et les jours fériés,
+      matin et après-midi.</p>
       <table class="horaires">
-        <tr><td>Du lundi au samedi</td><td>9 h 30 – 12 h · 14 h 30 – 18 h 30</td></tr>
+        <tr><td>Tous les jours</td><td>9 h 30 – 12 h · 14 h 30 – 18 h 30</td></tr>
         <tr><td>Dimanches et jours fériés</td><td>fermé</td></tr>
       </table>
     </div>
   </div>
 </div>
 
+<section id="pratique">
+  <h2 class="monte">Avant de venir</h2>
+  <p class="chapeau-section monte">Quatre choses utiles à savoir pour que le détour soit
+  réussi.</p>
+  <div class="pratique-grille">
+    <div class="bloc-pratique monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c68a3f" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+      <h3>Les horaires</h3>
+      <p>Ouvert tous les jours sauf dimanches et jours fériés, de 9 h 30 à 12 h et de
+      14 h 30 à 18 h 30. Prévoyez d'arriver un peu avant la fermeture si vous voulez
+      prendre le temps de choisir.</p>
+    </div>
+    <div class="bloc-pratique monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c68a3f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg>
+      <h3>La visite</h3>
+      <p>Gratuite, environ vingt minutes, sans réservation aux heures d'ouverture. On y
+      voit selon le moment la coulée ou le démoulage. Visite guidée le vendredi à 16 h 30
+      en juillet et en août.</p>
+    </div>
+    <div class="bloc-pratique monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c68a3f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.5" cy="8" r="3"/><path d="M2 20v-2.5A4.5 4.5 0 0 1 6.5 13h4A4.5 4.5 0 0 1 15 17.5V20"/><circle cx="17.5" cy="9.5" r="2.4"/><path d="M16 20v-2a3.5 3.5 0 0 1 6-2.4"/></svg>
+      <h3>Groupes et scolaires</h3>
+      <p>Écoles, clubs, comités d'entreprise et autocaristes sont accueillis toute l'année,
+      sur réservation par téléphone. Un appel permet de caler l'heure sur le travail en
+      cours dans l'atelier.</p>
+    </div>
+    <div class="bloc-pratique monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c68a3f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 10h16"/><path d="M7 14h4"/></svg>
+      <h3>Commandes gravées</h3>
+      <p>Une cloche portant une inscription se prépare à l'avance : le texte doit être posé
+      dans le moule avant la coulée. Délais et modalités de règlement sont à voir
+      directement avec la fonderie.</p>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
-  <h2>Venir à la fonderie</h2>
+  <h2 class="monte">Venir à la fonderie</h2>
+  <p class="chapeau-section monte">Labergement-Sainte-Marie se trouve dans le Haut-Doubs,
+  entre Pontarlier et le lac de Saint-Point. La fonderie est en plein village.</p>
+  <a class="gros-tel monte" href="tel:+33381693072">
+    <small>Appeler la fonderie</small>
+    <strong>03 81 69 30 72</strong>
+  </a>
   <div class="contact-grille">
-    <div>
+    <div class="monte">
       <h3>Adresse</h3>
       <p>Fonderie de cloches Obertino<br>15 rue de Mouthe<br>25160 Labergement-Sainte-Marie</p>
       <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=Fonderie+Obertino+Labergement-Sainte-Marie">Ouvrir dans Google Maps</a>
     </div>
-    <div>
+    <div class="monte">
       <h3>Contact</h3>
       <p>Téléphone : <a href="tel:+33381693072">03 81 69 30 72</a><br>
       Courriel : <a href="mailto:cloches.obertino.c@orange.fr">cloches.obertino.c@orange.fr</a></p>
+      <p>Le téléphone reste le moyen le plus sûr pour une commande particulière ou pour
+      caler une visite de groupe.</p>
     </div>
-    <div>
+    <div class="monte">
+      <h3>Horaires</h3>
+      <p>Tous les jours sauf dimanches et jours fériés<br>
+      9 h 30 – 12 h · 14 h 30 – 18 h 30</p>
+      <p>Visite libre de l'atelier aux mêmes heures, gratuite, environ 20 minutes.</p>
+    </div>
+    <div class="monte">
       <h3>Groupes</h3>
       <p>Écoles, clubs et autocaristes : visites sur réservation, toute l'année.</p>
+      <p>Les conditions d'accueil des grands groupes sont <em>à compléter ensemble</em>
+      avant la mise en ligne du site.</p>
     </div>
   </div>
 </section>
@@ -393,3 +762,34 @@ Thème : un seul thème sombre assumé (la lumière vient du métal), pas de ver
 <footer class="pied">
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
+
+<script>
+  (function(){
+    var els = Array.prototype.slice.call(document.querySelectorAll('.monte'));
+    var reduit = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function tout(){ els.forEach(function(el){ el.classList.add('vu'); }); }
+    if (reduit.matches || !('IntersectionObserver' in window)) { tout(); return; }
+    var io = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); }
+      });
+    }, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+    // filet de sécurité : si l'observateur ne peut pas travailler (onglet masqué,
+    // impression, navigateur particulier), rien ne doit rester invisible.
+    function rattrape(){
+      els.forEach(function(el){
+        if (el.classList.contains('vu')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 1.25 && r.bottom > -200) {
+          el.classList.add('vu'); io.unobserve(el);
+        }
+      });
+    }
+    window.addEventListener('load', rattrape);
+    window.addEventListener('scroll', rattrape, {passive:true});
+    document.addEventListener('visibilitychange', function(){ if (!document.hidden) rattrape(); });
+    window.addEventListener('beforeprint', tout);
+    setTimeout(rattrape, 400);
+  })();
+</script>

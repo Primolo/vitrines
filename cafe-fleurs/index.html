@@ -19,6 +19,73 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Café Fleurs — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "CafeOrCoffeeShop",
+    "Florist"
+  ],
+  "@id": "https://primolo.github.io/vitrines/cafe-fleurs/#etablissement",
+  "name": "Café Fleurs",
+  "description": "Fleuriste et salon de thé sur la rue principale de Malbuisson, au bord du lac de Saint-Point : créations florales, thés bio, chocolat viennois et crêpes.",
+  "url": "https://primolo.github.io/vitrines/cafe-fleurs/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Malbuisson",
+    "postalCode": "25160",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Malbuisson"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "telephone": "+33381397026",
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Le Café Fleurs est-il un fleuriste ou un salon de thé ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les deux : c'est un fleuriste doublé d'un salon de thé, sur la rue principale de Malbuisson."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que peut-on boire au Café Fleurs ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une large sélection de thés bio, du chocolat viennois, et des crêpes à la carte."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où se trouve le Café Fleurs ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "À Malbuisson (25160), sur la rue principale qui descend vers le lac de Saint-Point."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --petale:#d96a84;        /* géranium vif — décor, fleurs, filets */
@@ -40,7 +107,7 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   h1,h2,h3{text-wrap:balance}
   p{text-wrap:pretty}
   a:focus-visible,button:focus-visible{outline:3px solid var(--feuille-fonce);outline-offset:3px}
-  header.site a:focus-visible,.ardoise a:focus-visible,.pied a:focus-visible{outline-color:#fff}
+  header.site a:focus-visible,.ardoise a:focus-visible,.pied a:focus-visible,.reperes a:focus-visible{outline-color:#fff}
 
   .demo-banner{
     background:var(--encre);color:var(--lin);
@@ -75,7 +142,8 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
     font-size:clamp(2rem,4.8vw,3.4rem);line-height:1.12;
   }
   .hero h1 span{color:var(--petale)}
-  .hero p.chapo{margin:1.3rem 0 2rem;max-width:50ch;font-size:1.02rem}
+  .hero p.chapo{margin:1.3rem 0 1rem;max-width:50ch;font-size:1.02rem}
+  .hero p.chapo:last-of-type{margin-bottom:2rem}
   .pastille{
     display:inline-block;background:#fff;border:1px solid var(--petale);color:var(--petale-fonce);
     border-radius:999px;padding:.35rem 1.1rem;font-size:.8rem;letter-spacing:.14em;
@@ -93,6 +161,16 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   /* vaguelettes du lac en bas de hero */
   .vagues{position:absolute;left:0;right:0;bottom:0;height:38px;width:100%}
 
+  /* ---- chiffres-repères ---- */
+  .reperes{
+    background:var(--petale-fonce);color:#fff;
+    padding:1.8rem max(6vw,1.15rem);
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem 1.8rem;
+  }
+  .reperes b{display:block;font-family:var(--serif);font-style:italic;
+    font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.1}
+  .reperes span{display:block;font-size:.9rem;margin-top:.25rem;max-width:24ch}
+
   section{padding:3.2rem max(6vw,1.15rem)}
   h2{
     font-family:var(--serif);font-style:italic;font-weight:500;
@@ -100,6 +178,8 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   }
   .tige{display:flex;align-items:center;gap:.6rem;margin-bottom:1.6rem}
   .tige svg{width:70px;height:16px}
+  .intro{max-width:62ch}
+  .intro p + p{margin-top:.9rem}
 
   /* ---- concept : deux moitiés ---- */
   .moities{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.6rem}
@@ -109,6 +189,7 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   .moitie h3{font-family:var(--serif);font-size:1.3rem;margin-bottom:.6rem}
   .moitie.fleurs h3{color:var(--petale-fonce)}
   .moitie.cafe h3{color:var(--feuille-fonce)}
+  .moitie p + p{margin-top:.7rem}
   .moitie ul{list-style:none;margin-top:.9rem;font-size:.96rem}
   .moitie li{padding:.4rem 0 .4rem 1.5rem;position:relative}
   .moitie li::before{
@@ -116,6 +197,16 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   }
   .moitie.fleurs li::before{background:var(--petale)}
   .moitie.cafe li::before{background:var(--feuille)}
+
+  /* ---- trois cartes ---- */
+  .trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:1.6rem}
+  .carte-f{background:#fff;border:1px solid #ecdcd2;border-radius:18px;padding:1.6rem;font-size:.97rem}
+  .carte-f h3{font-family:var(--serif);font-size:1.2rem;margin-bottom:.5rem;color:var(--petale-fonce)}
+  .carte-f p + p{margin-top:.7rem}
+  .carte-f ul{list-style:none;margin-top:.8rem;font-size:.94rem}
+  .carte-f li{padding:.3rem 0 .3rem 1.4rem;position:relative}
+  .carte-f li::before{content:"";position:absolute;left:0;top:.72rem;width:9px;height:9px;
+    border-radius:50% 50% 50% 0;background:var(--mimosa)}
 
   /* ---- ardoise ---- */
   .ardoise-fond{background:var(--lac)}
@@ -140,19 +231,47 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   .ardoise ul{list-style:none;font-size:1rem}
   .ardoise li{padding:.55rem 0;border-bottom:1px dotted rgba(244,239,230,.35)}
   .ardoise li:last-child{border-bottom:none}
+  .ardoise li em{display:block;font-style:normal;font-size:.86rem;color:#cfd8cf;margin-top:.1rem}
   .ardoise .note{font-size:.85rem;font-style:italic;color:#cfd8cf;margin-top:1.1rem}
   .a-cote{
     background:#fff;border-radius:18px;padding:1.7rem;border:1px solid #cfe0ea;
   }
   .a-cote h3{font-family:var(--serif);font-size:1.2rem;color:var(--petale-fonce);margin-bottom:.5rem}
   .a-cote p{font-size:.96rem}
+  .a-cote p + p{margin-top:.7rem}
   .a-cote .btn{margin-top:1rem}
 
+  /* ---- tableau des prestations ---- */
+  .table-wrap{overflow-x:auto;margin-top:1.6rem;border-radius:18px;border:1px solid #ecdcd2;background:#fff}
+  table.presta{width:100%;border-collapse:collapse;min-width:460px;font-size:.96rem}
+  table.presta th{
+    text-align:left;background:var(--feuille-fonce);color:#fff;font-weight:600;
+    font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 1.1rem;
+  }
+  table.presta td{padding:.8rem 1.1rem;border-bottom:1px solid #f0e2da;vertical-align:top}
+  table.presta tr:last-child td{border-bottom:none}
+  table.presta td:last-child{text-align:right;color:var(--petale-fonce);font-weight:600;white-space:nowrap}
+  table.presta td em{display:block;font-style:normal;font-size:.88rem;color:#5a6b57;margin-top:.15rem}
+
+  /* ---- la maison ---- */
+  .maison{background:#fbe9ee}
+  .maison-int{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:2.2rem;align-items:start}
+  .maison p + p{margin-top:.9rem}
+  .exergue{
+    font-family:var(--serif);font-style:italic;font-size:1.25rem;line-height:1.45;
+    color:var(--petale-fonce);border-left:4px solid var(--petale);padding-left:1rem;margin-bottom:1.1rem;
+  }
+  .saisons-liste{list-style:none;background:#fff;border-radius:18px;padding:1.5rem;border:1px solid #efc3cf}
+  .saisons-liste li{padding:.8rem 0;border-bottom:1px solid #f5e3e8;font-size:.96rem}
+  .saisons-liste li:last-child{border-bottom:none}
+  .saisons-liste b{display:block;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--feuille-fonce)}
+
   /* ---- infos pratiques ---- */
-  .pratique{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.6rem;margin-top:.4rem}
+  .pratique{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.6rem;margin-top:.4rem}
   .carte-p{background:#fff;border-radius:18px;padding:1.6rem;border:1px solid #ecdcd2}
   .carte-p h3{font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--petale-fonce);margin-bottom:.7rem}
   .carte-p p{font-size:.97rem}
+  .carte-p p + p{margin-top:.6rem}
   .carte-p a{color:var(--encre)}
   a.maps{
     display:inline-block;margin-top:.9rem;text-decoration:none;font-size:.86rem;font-weight:600;
@@ -160,16 +279,42 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   }
   a.maps:hover{background:#9d3450}
 
+  /* ---- contact ---- */
+  .contact{background:var(--encre);color:#eaf3e8}
+  .contact h2{color:#fff}
+  .contact a{color:#fff}
+  .contact-int{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:1.4rem}
+  .contact p + p{margin-top:.8rem}
+  .contact h3{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:#fff;margin-bottom:.5rem}
+  .gros-tel{
+    display:block;background:var(--petale-fonce);color:#fff;text-decoration:none;text-align:center;
+    border-radius:999px;padding:1.2rem 1rem;margin:1.4rem 0 .6rem;max-width:32rem;
+    font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,5.5vw,2.3rem);
+  }
+  .gros-tel small{
+    display:block;font-family:var(--sans);font-style:normal;font-size:.72rem;letter-spacing:.24em;
+    text-transform:uppercase;margin-bottom:.35rem;font-weight:600;
+  }
+  .gros-tel:hover{background:#9d3450}
+
   footer.pied{
     background:var(--encre);color:#d7e6d5;font-size:.82rem;text-align:center;
-    padding:1.3rem max(6vw,1.15rem);
+    padding:1.3rem max(6vw,1.15rem);border-top:1px solid rgba(255,255,255,.15);
   }
 
+  /* apparition douce au défilement */
+  .js .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .js .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.js .monte{opacity:1;transform:none;transition:none}}
+
+  @media (max-width:900px){
+    .reperes{grid-template-columns:1fr 1fr}
+  }
   @media (max-width:780px){
     .hero-int{grid-template-columns:1fr}
     .bouquet-svg{max-width:260px}
     .moities{grid-template-columns:1fr}
-    .ardoise-int{grid-template-columns:1fr;gap:1.6rem}
+    .ardoise-int,.maison-int{grid-template-columns:1fr;gap:1.6rem}
     .ardoise{transform:rotate(0)}
     nav.haut{margin-left:0}
   }
@@ -179,6 +324,7 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
     .moitie{padding:1.4rem}
     .ardoise{padding:1.4rem 1.3rem;border-width:6px}
     .a-cote{padding:1.4rem}
+    .reperes{grid-template-columns:1fr;gap:1.1rem}
   }
 </style>
 
@@ -187,8 +333,11 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
 <header class="site">
   <div class="marque">Café Fleurs<small>Fleuriste &amp; salon de thé · Malbuisson</small></div>
   <nav class="haut">
-    <a href="#concept">La maison</a>
+    <a href="#concept">Les deux métiers</a>
+    <a href="#fleurs">Côté fleurs</a>
     <a href="#carte">L'ardoise</a>
+    <a href="#prestations">Prestations</a>
+    <a href="#maison">La maison</a>
     <a href="#pratique">Horaires &amp; accès</a>
   </nav>
 </header>
@@ -208,6 +357,11 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
         À Malbuisson, sur la rue qui descend vers le lac de Saint-Point, le Café Fleurs
         marie deux plaisirs : les créations de Nathalie, fleuriste, et une pause
         gourmande — thés bio, chocolats viennois et crêpes — au milieu des fleurs.
+      </p>
+      <p class="chapo">
+        On entre pour un bouquet et on ressort deux heures plus tard ; on vient pour un thé
+        et on repart avec une plante. C'est la même porte, le même comptoir, et c'est ce qui
+        rend l'adresse difficile à confondre avec une autre.
       </p>
       <div class="actions">
         <a class="btn" href="tel:+33381397026">03 81 39 70 26</a>
@@ -266,26 +420,50 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   </svg>
 </div>
 
+<div class="reperes">
+  <div><b>70 thés bio</b><span>et plus, à choisir devant le comptoir</span></div>
+  <div><b>2 métiers</b><span>fleuriste et salon de thé, sous le même store</span></div>
+  <div><b>7 jours / 7</b><span>ouvert toute l'année, sans coupure saisonnière</span></div>
+  <div><b>8 h 30</b><span>d'ouverture chaque jour, matin et après-midi</span></div>
+</div>
+
 <section id="concept">
   <h2>Une seule adresse, deux bonheurs</h2>
   <div class="tige" aria-hidden="true">
     <svg viewBox="0 0 70 16"><path d="M0 8 H70" stroke="#5e8c5a" stroke-width="2"/><path d="M18 8 q 6 -8 12 0 M40 8 q 6 8 12 0" stroke="#5e8c5a" stroke-width="2" fill="none"/><circle cx="70" cy="8" r="4" fill="#d96a84"/></svg>
   </div>
+  <div class="intro monte">
+    <p>Un fleuriste, dans un village de bord de lac, travaille par à-coups : les fêtes, les
+    grandes occasions, les week-ends d'été. Un salon de thé, lui, tourne tous les jours mais
+    ne remplit jamais complètement la boutique. Les deux mis ensemble, ils se tiennent
+    mutuellement debout — et c'est exactement ce qui se passe ici.</p>
+    <p>Concrètement : pendant qu'un bouquet se compose, on peut s'asseoir et commander.
+    Le temps d'attente devient une pause au lieu d'un temps mort. Et l'inverse est vrai
+    aussi : beaucoup de clients repartent avec une plante qu'ils n'étaient pas venus
+    chercher, simplement parce qu'elle était sur la table d'à côté.</p>
+    <p>C'est cette double activité qu'il faut mettre en avant en ligne : personne ne cherche
+    « fleuriste salon de thé » sur un moteur de recherche, mais tout le monde s'en souvient
+    une fois qu'il est venu.</p>
+  </div>
   <div class="moities">
-    <div class="moitie fleurs">
+    <div class="moitie fleurs monte">
       <h3>Côté fleurs</h3>
       <p>Le bouquet du dimanche, la composition d'un grand jour, la plante qu'on emporte
       en passant : Nathalie compose à la demande, avec ce qui est beau ce matin-là.</p>
+      <p>On peut commander à l'avance par téléphone, passer chercher, ou se faire livrer
+      autour du lac.</p>
       <ul>
         <li>Bouquets et compositions sur mesure</li>
         <li>Plantes, terrariums et objets de décoration</li>
         <li>Click &amp; collect et livraison autour du lac</li>
       </ul>
     </div>
-    <div class="moitie cafe">
+    <div class="moitie cafe monte">
       <h3>Côté salon de thé</h3>
       <p>On s'attable entre les bouquets, l'hiver au chaud, l'été côté rue, à deux pas
       des berges du lac.</p>
+      <p>Le choix de thés est la vraie surprise de la maison : plus de soixante-dix références
+      bio, ce qui n'est pas courant dans un village de cette taille.</p>
       <ul>
         <li>Plus de 70 thés bio à choisir</li>
         <li>Cappuccino, chocolat viennois et boissons gourmandes</li>
@@ -295,35 +473,158 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
   </div>
 </section>
 
+<section id="fleurs">
+  <h2>Ce que Nathalie compose</h2>
+  <div class="tige" aria-hidden="true">
+    <svg viewBox="0 0 70 16"><path d="M0 8 H70" stroke="#5e8c5a" stroke-width="2"/><path d="M18 8 q 6 -8 12 0 M40 8 q 6 8 12 0" stroke="#5e8c5a" stroke-width="2" fill="none"/><circle cx="70" cy="8" r="4" fill="#5e8c5a"/></svg>
+  </div>
+  <div class="intro monte">
+    <p>Trois façons de repartir avec des fleurs, selon le temps dont on dispose et l'occasion.
+    Dans les trois cas, le mieux reste d'appeler : cela permet de dire ce qu'on aime, la
+    couleur, le budget, et l'heure à laquelle on passe.</p>
+  </div>
+  <div class="trio">
+    <article class="carte-f monte">
+      <h3>Le bouquet de passage</h3>
+      <p>Celui qu'on prend sans avoir rien prévu, parce qu'on est invité à dîner ou parce que
+      c'est dimanche. Composé sur place, en quelques minutes, avec ce qu'il y a de plus frais.</p>
+      <p>C'est le moment où le salon de thé sert à quelque chose : on s'assoit, on attend
+      avec une tasse.</p>
+      <ul>
+        <li>Composé devant vous</li>
+        <li>Selon l'arrivage du moment</li>
+        <li>Emballage soigné pour la route</li>
+      </ul>
+    </article>
+    <article class="carte-f monte">
+      <h3>Les plantes et la décoration</h3>
+      <p>Plantes d'intérieur, terrariums, objets de décoration : la partie de la boutique
+      qu'on regarde en attendant, et dans laquelle on finit par choisir quelque chose.</p>
+      <p>Pratique pour un cadeau qui dure plus longtemps qu'un bouquet, ou pour meubler
+      un rebord de fenêtre à la fin de l'hiver.</p>
+      <ul>
+        <li>Plantes vertes et fleuries</li>
+        <li>Terrariums</li>
+        <li>Objets de décoration</li>
+      </ul>
+    </article>
+    <article class="carte-f monte">
+      <h3>Commande et livraison</h3>
+      <p>Pour une date précise — un anniversaire, une invitation, une occasion qui compte —
+      la commande se passe par téléphone et se retire quand vous voulez.</p>
+      <p>La livraison se fait autour du lac. Le détail des communes desservies, des délais et
+      des grandes occasions prises en charge est à préciser ensemble avant la mise en ligne.</p>
+      <ul>
+        <li>Click &amp; collect</li>
+        <li>Livraison autour du lac</li>
+        <li>Commandes pour une date fixée</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
 <div class="ardoise-fond">
   <section id="carte">
     <h2>Ce qu'on boit, ce qu'on grignote</h2>
     <div class="tige" aria-hidden="true">
       <svg viewBox="0 0 70 16"><path d="M0 8 H70" stroke="#5e8c5a" stroke-width="2"/><path d="M18 8 q 6 -8 12 0 M40 8 q 6 8 12 0" stroke="#5e8c5a" stroke-width="2" fill="none"/><circle cx="70" cy="8" r="4" fill="#bf4463"/></svg>
     </div>
+    <div class="intro monte" style="margin-bottom:1.4rem">
+      <p>La carte tient sur une ardoise, et c'est très bien ainsi. Elle se lit en entier depuis
+      la porte, et elle change moins souvent que la vitrine de fleurs juste à côté.</p>
+    </div>
     <div class="ardoise-int">
-      <div class="ardoise">
+      <div class="ardoise monte">
         <h3>L'ardoise du salon</h3>
         <p class="sur-ardoise">Sur place, entre les bouquets</p>
         <ul>
-          <li>Thés bio — plus de 70 références</li>
-          <li>Cappuccino</li>
-          <li>Chocolat viennois</li>
-          <li>« L'Unicorne », la boisson gourmande de la maison</li>
-          <li>Crêpes &amp; biscuits</li>
+          <li>Thés bio — plus de 70 références<em>noirs, verts, blancs, infusions : on ouvre les boîtes avant de choisir</em></li>
+          <li>Cappuccino<em>le classique de la pause de onze heures</em></li>
+          <li>Chocolat viennois<em>celui qu'on commande quand il neige dehors</em></li>
+          <li>« L'Unicorne », la boisson gourmande de la maison<em>la curiosité du menu, à goûter au moins une fois</em></li>
+          <li>Crêpes &amp; biscuits<em>pour le goûter, et pour les enfants qui attendent</em></li>
         </ul>
         <p class="note">Prix affichés en boutique. Ardoise à compléter ensemble avant la mise en ligne.</p>
       </div>
-      <aside class="a-cote">
+      <aside class="a-cote monte">
         <h3>Et de l'autre côté du comptoir</h3>
         <p>C'est le même comptoir qui prend les commandes de fleurs : bouquet à composer,
         plante à emporter, click &amp; collect ou livraison autour du lac. Un coup de fil
         suffit pour réserver l'un ou l'autre.</p>
+        <p>C'est aussi pour cela qu'il n'y a pas de service en salle façon restaurant : on
+        commande au comptoir, entre deux bottes de fleurs, et c'est ce va-et-vient qui fait
+        l'ambiance de la boutique.</p>
         <a class="btn" href="tel:+33381397026">03 81 39 70 26</a>
       </aside>
     </div>
   </section>
 </div>
+
+<section id="prestations">
+  <h2>Prestations</h2>
+  <div class="tige" aria-hidden="true">
+    <svg viewBox="0 0 70 16"><path d="M0 8 H70" stroke="#5e8c5a" stroke-width="2"/><path d="M18 8 q 6 -8 12 0 M40 8 q 6 8 12 0" stroke="#5e8c5a" stroke-width="2" fill="none"/><circle cx="70" cy="8" r="4" fill="#e9b84c"/></svg>
+  </div>
+  <div class="intro monte">
+    <p>Les prix des fleurs dépendent de la saison et de ce que vous voulez y mettre ; ceux de
+    l'ardoise sont affichés en boutique. Ce tableau récapitule donc ce qui existe et comment
+    ça se commande — les montants seront ajoutés dès que vous nous les aurez transmis.</p>
+  </div>
+  <div class="table-wrap monte">
+    <table class="presta">
+      <caption style="text-align:left;padding:.9rem 1.1rem;font-weight:600">Fleurs et salon de thé</caption>
+      <thead>
+        <tr><th scope="col">Prestation</th><th scope="col">Comment</th><th scope="col">Tarif</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bouquet composé sur place<em>selon l'arrivage du jour</em></td><td>Sans rendez-vous</td><td>selon le budget</td></tr>
+        <tr><td>Composition pour une date<em>anniversaire, invitation, occasion</em></td><td>Commande par téléphone</td><td>nous consulter</td></tr>
+        <tr><td>Plantes, terrariums, décoration<em>en boutique</em></td><td>Sur place</td><td>prix affichés</td></tr>
+        <tr><td>Click &amp; collect<em>on prépare, vous passez prendre</em></td><td>Par téléphone</td><td>selon la commande</td></tr>
+        <tr><td>Livraison autour du lac<em>communes desservies à préciser</em></td><td>Par téléphone</td><td>nous consulter</td></tr>
+        <tr><td>Thés, cafés et boissons gourmandes<em>plus de 70 thés bio</em></td><td>Au comptoir</td><td>prix affichés</td></tr>
+        <tr><td>Crêpes et biscuits<em>goûter et pauses de l'après-midi</em></td><td>Au comptoir</td><td>prix affichés</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note" style="margin-top:1rem;font-size:.9rem;font-style:italic">Grandes occasions
+  (mariages, cérémonies, deuils) : à confirmer avec vous — nous ne l'annonçons pas tant que
+  ce n'est pas validé.</p>
+</section>
+
+<section class="maison" id="maison">
+  <h2>La maison</h2>
+  <div class="tige" aria-hidden="true">
+    <svg viewBox="0 0 70 16"><path d="M0 8 H70" stroke="#5e8c5a" stroke-width="2"/><path d="M18 8 q 6 -8 12 0 M40 8 q 6 8 12 0" stroke="#5e8c5a" stroke-width="2" fill="none"/><circle cx="70" cy="8" r="4" fill="#d96a84"/></svg>
+  </div>
+  <div class="maison-int">
+    <div class="monte">
+      <p class="exergue">Une boutique où il fait bon attendre : c'est rare, et ça ne se
+      décide pas — ça se construit avec le temps.</p>
+      <p>Le Café Fleurs est sur la rue principale de Malbuisson, celle que tout le monde
+      descend pour aller au lac. L'été, la rue est pleine de vacanciers en tongs ; l'hiver,
+      elle se vide et il ne reste que les gens du coin. La boutique est ouverte dans les
+      deux cas, aux mêmes horaires, toute l'année.</p>
+      <p>C'est un point important : dans un village touristique, beaucoup d'adresses ferment
+      entre les saisons. Ici non. Les habitués de novembre comptent autant que les familles
+      d'août, et ce sont eux qui font vivre le salon quand la rue est calme.</p>
+      <p>À l'intérieur, les fleurs occupent l'espace et les tables se glissent entre elles.
+      On y entend des conversations qui n'ont rien à voir les unes avec les autres : une
+      commande de bouquet, une pause de milieu de matinée, un goûter d'enfants.</p>
+      <p style="font-size:.9rem;font-style:italic;color:#5a6b57">Nombre de places assises,
+      photos de la boutique, histoire de la maison : à compléter ensemble. Nous n'écrivons
+      rien qui n'ait été vérifié avec vous.</p>
+    </div>
+    <div class="monte">
+      <ul class="saisons-liste">
+        <li><b>L'été</b>La rue descend vers le lac et la boutique est sur le passage : bouquets pour les locations de vacances et pauses à l'ombre côté rue.</li>
+        <li><b>L'automne</b>Les plantes reprennent le dessus sur les bouquets, et le salon redevient un lieu où l'on s'installe pour de bon.</li>
+        <li><b>L'hiver</b>Chocolat viennois, thé et crêpes pendant que la neige tient sur la rue. C'est la saison où les habitués comptent le plus.</li>
+        <li><b>Le printemps</b>Les commandes de plantes repartent, les fêtes s'enchaînent, la vitrine change de couleur toutes les semaines.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 <section id="pratique">
   <h2>Horaires &amp; accès</h2>
@@ -331,19 +632,52 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
     <svg viewBox="0 0 70 16"><path d="M0 8 H70" stroke="#5e8c5a" stroke-width="2"/><path d="M18 8 q 6 -8 12 0 M40 8 q 6 8 12 0" stroke="#5e8c5a" stroke-width="2" fill="none"/><circle cx="70" cy="8" r="4" fill="#e9b84c"/></svg>
   </div>
   <div class="pratique">
-    <div class="carte-p">
+    <div class="carte-p monte">
       <h3>Horaires</h3>
       <p>Toute l'année, tous les jours<br>8 h 30 – 12 h 30 · 14 h 30 – 19 h</p>
+      <p>Soit huit heures et demie d'ouverture par jour, sans fermeture saisonnière.</p>
     </div>
-    <div class="carte-p">
+    <div class="carte-p monte">
       <h3>Adresse</h3>
       <p>Café Fleurs<br>Rue principale<br>25160 Malbuisson</p>
+      <p>Sur la rue qui descend vers le lac de Saint-Point.</p>
       <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=Caf%C3%A9+Fleurs+Malbuisson">Ouvrir dans Google Maps</a>
     </div>
-    <div class="carte-p">
+    <div class="carte-p monte">
       <h3>Téléphone</h3>
       <p><a href="tel:+33381397026">03 81 39 70 26</a><br>
       Commandes de bouquets, réservations de tables et livraisons.</p>
+      <p>Pour une composition à une date précise, appelez plutôt le matin.</p>
+    </div>
+    <div class="carte-p monte">
+      <h3>Commander à l'avance</h3>
+      <p>Click &amp; collect pour les fleurs, livraison autour du lac.</p>
+      <p>Communes desservies, délais et moyens de paiement acceptés : à compléter ensemble.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Nous appeler</h2>
+  <p>Un seul numéro pour les deux moitiés de la maison : les fleurs et le salon.</p>
+  <a class="gros-tel" href="tel:+33381397026"><small>Appeler le Café Fleurs</small>03 81 39 70 26</a>
+  <div class="contact-int">
+    <div>
+      <h3>Pour les fleurs</h3>
+      <p>Dites la couleur, l'occasion et le budget : le bouquet sera prêt à l'heure que
+      vous indiquez. Pour une livraison autour du lac, prévoyez l'adresse exacte et un
+      créneau de passage.</p>
+    </div>
+    <div>
+      <h3>Pour le salon</h3>
+      <p>On peut venir sans prévenir aux heures d'ouverture. Un appel reste utile si vous
+      arrivez à plusieurs, ou si vous voulez savoir ce qu'il y a sur l'ardoise ce jour-là.</p>
+    </div>
+    <div>
+      <h3>À compléter avec vous</h3>
+      <p>Photos de la boutique, moyens de paiement, jours de fermeture exceptionnelle et
+      tarifs seront intégrés à cette page avant la mise en ligne. Cette maquette ne contient
+      que des informations vérifiées.</p>
     </div>
   </div>
 </section>
@@ -351,3 +685,19 @@ Thème : un seul thème clair assumé (plein soleil de terrasse) — pas de vers
 <footer class="pied">
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  (function(){
+    var els = document.querySelectorAll('.monte');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(e){e.classList.add('vu')}); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('vu'); io.unobserve(en.target); }
+      });
+    },{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  })();
+</script>

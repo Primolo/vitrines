@@ -13,8 +13,8 @@
        (capitales espacées, écriteau de refuge) · corps en Palatino / Georgia (serif de veillée).
      Mise en page : héros pleine largeur = scène SVG nocturne (congères arrondies, chalet aux
        fenêtres allumées, traces de raquettes en pointillés, étoiles), texte calé à gauche ;
-       puis récit vertical : « on y va » (accès en deux saisons), « on y mange », « on y fête »,
-       ponctué par la trace de raquettes qui descend entre les sections.
+       puis récit vertical : « on y va » (accès en deux saisons), « on y mange », « le chalet »,
+       « on y fête », ponctué par la trace de raquettes qui descend entre les sections.
      ÉLÉMENT SIGNATURE : la TRACE DE RAQUETTES — paires d'empreintes ovales pointillées qui
        serpentent du haut de la page jusqu'à la porte du chalet, reprises en séparateurs de
        sections. Pas de crête de sapins (congères arrondies uniquement), pas d'ellipses
@@ -36,12 +36,14 @@
     background:var(--nuit); color:var(--neige);
     font-family:"Palatino","Palatino Linotype",Georgia,serif;
     font-size:1.06rem; line-height:1.7;
+    overflow-wrap:break-word;-webkit-text-size-adjust:100%;
   }
   h1,h2,h3,.caps{
     font-family:"Futura","Avenir Next Condensed","Century Gothic","Apple SD Gothic Neo",sans-serif;
     text-transform:uppercase; letter-spacing:.14em; font-weight:600;
   }
   h1,h2{text-wrap:balance}
+  p{text-wrap:pretty}
   a{color:var(--lanterne)}
   svg{max-width:100%}
   a:focus-visible,.btn:focus-visible{
@@ -75,7 +77,7 @@
   .hero{position:relative;overflow:hidden}
   .hero svg.scene{display:block;width:100%;height:auto}
   .hero .titre{
-    position:absolute;left:0;right:0;top:8%;
+    position:absolute;left:0;right:0;top:6%;
   }
   .hero .titre .wrap{max-width:1020px}
   .hero .eyebrow{
@@ -99,6 +101,15 @@
   .btn:hover{background:var(--braise);color:#fff}
   .btn.ghost{background:transparent;color:var(--lanterne);border:1px solid var(--lanterne);margin-left:.8rem}
 
+  /* chiffres-repères du héros */
+  .reperes{background:var(--congere);padding:1.7rem 0}
+  .reperes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem 1.6rem}
+  .repere b{
+    display:block;font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;
+    font-size:clamp(1.5rem,4vw,2.1rem);color:var(--lanterne);letter-spacing:.06em;line-height:1.1;
+  }
+  .repere span{display:block;font-size:.86rem;color:var(--neige);margin-top:.3rem;max-width:22ch}
+
   /* Séparateur trace de raquettes */
   .trace{display:block;margin:0 auto;color:var(--givre)}
 
@@ -110,6 +121,7 @@
   section.block h2{font-size:clamp(1.5rem,3.2vw,2.2rem);letter-spacing:.12em;margin-bottom:1.1rem;color:#fff}
   section.block p+p{margin-top:1rem}
   .muted{color:var(--givre)}
+  .intro{max-width:60ch}
 
   /* Deux saisons */
   .saisons{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:2rem}
@@ -119,8 +131,9 @@
   }
   .saison.hiver{border-top-color:var(--lanterne)}
   .saison h3{font-size:1rem;letter-spacing:.24em;margin-bottom:1rem;color:var(--lanterne)}
-  .saison.ete h3{color:var(--givre)}
+  .saison.ete h3{color:#A8C8E0}
   .saison p{font-size:.98rem}
+  .saison p+p{margin-top:.8rem}
   .saison ul{list-style:none;margin-top:1rem}
   .saison li{
     padding:.5rem 0 .5rem 1.6rem;position:relative;font-size:.95rem;
@@ -132,8 +145,19 @@
   .saison.ete li::before{border-color:var(--givre)}
   .saison .tel-inline{font-weight:bold}
 
-  /* La table */
-  .carte{display:grid;grid-template-columns:1.1fr .9fr;gap:2.6rem;align-items:start}
+  /* La table — trois cartes qui racontent */
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2rem}
+  .fiche{
+    background:var(--congere);padding:1.7rem 1.5rem;border-left:4px solid var(--lanterne);
+  }
+  .fiche:nth-child(2){border-left-color:var(--braise)}
+  .fiche:nth-child(3){border-left-color:var(--givre)}
+  .fiche h3{font-size:.95rem;letter-spacing:.2em;color:var(--lanterne);margin-bottom:.8rem}
+  .fiche:nth-child(3) h3{color:#A8C8E0}
+  .fiche p{font-size:.97rem}
+  .fiche p+p{margin-top:.7rem}
+
+  .carte{display:grid;grid-template-columns:1.1fr .9fr;gap:2.6rem;align-items:start;margin-top:2.4rem}
   .plats{list-style:none;margin-top:1.2rem}
   .plats li{
     display:flex;justify-content:space-between;gap:1rem;align-items:baseline;
@@ -145,16 +169,45 @@
   .lanterne-fig{text-align:center;background:var(--congere);padding:2rem 1rem 1.4rem}
   .lanterne-fig figcaption{font-size:.85rem;color:var(--givre);font-style:italic;margin-top:.7rem}
 
+  /* Le chalet */
+  .chalet{display:grid;grid-template-columns:1.15fr .85fr;gap:2.4rem;align-items:start;margin-top:1.6rem}
+  .exergue{
+    font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;
+    text-transform:none;letter-spacing:.02em;font-size:1.15rem;line-height:1.5;
+    color:var(--lanterne);border-left:3px solid var(--lanterne);padding-left:1rem;margin-bottom:1.2rem;
+  }
+  .encadre{background:var(--congere);padding:1.6rem 1.5rem;border:1px solid rgba(127,163,191,.3)}
+  .encadre h3{font-size:.88rem;letter-spacing:.22em;color:var(--lanterne);margin-bottom:.9rem}
+  .encadre dl div{padding:.6rem 0;border-bottom:1px solid rgba(236,242,248,.14)}
+  .encadre dl div:last-child{border-bottom:none}
+  .encadre dt{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--givre);
+    font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif}
+  .encadre dd{font-size:.98rem;margin-top:.15rem}
+
+  /* Tableau des prestations */
+  .table-wrap{overflow-x:auto;margin-top:1.6rem}
+  table.presta{width:100%;border-collapse:collapse;min-width:460px;font-size:.97rem}
+  table.presta th{
+    text-align:left;background:var(--congere);color:var(--lanterne);
+    font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;
+    font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+    padding:.85rem 1rem;
+  }
+  table.presta td{padding:.85rem 1rem;border-bottom:1px solid rgba(127,163,191,.28);vertical-align:top}
+  table.presta td:last-child{text-align:right;color:var(--lanterne);white-space:nowrap}
+  table.presta td em{color:var(--givre);font-size:.9rem;display:block;font-style:normal;margin-top:.15rem}
+
   /* Fêtes */
   .fete{
     border:1px solid rgba(229,161,61,.45);
     padding:2.2rem 2rem; display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:center;
     background:linear-gradient(180deg, rgba(229,161,61,.08), transparent);
   }
+  .fete p+p{margin-top:.9rem}
 
   /* Infos + contact */
   .infos-kicker{margin-top:2.8rem}
-  .infos{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1rem}
+  .infos{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin-top:1rem}
   .infos article{border-left:3px solid var(--givre);padding-left:1.1rem}
   .infos h3{font-size:.82rem;letter-spacing:.22em;color:var(--lanterne);margin-bottom:.4rem}
   .infos p{font-size:.92rem;color:var(--neige)}
@@ -165,18 +218,37 @@
   .contact dt{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--givre);font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif}
   .contact dd{font-size:1.05rem;margin-top:.2rem;overflow-wrap:anywhere}
   .contact .note{font-size:.9rem;font-style:italic;color:var(--givre);margin-top:1rem}
+  .gros-tel{
+    display:block;background:var(--lanterne);color:#1B1408;text-decoration:none;
+    padding:1.3rem 1.2rem;text-align:center;margin-bottom:1.4rem;
+    font-family:"Futura","Avenir Next Condensed","Century Gothic",sans-serif;
+    font-size:clamp(1.5rem,5vw,2.1rem);letter-spacing:.08em;font-weight:600;
+  }
+  .gros-tel small{
+    display:block;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+    margin-bottom:.4rem;font-weight:600;
+  }
+  .gros-tel:hover{background:var(--braise);color:#fff}
 
   footer.credit{
     background:#0A121D;color:#8FA5B8;font-size:.82rem;
     padding:1.2rem 1.25rem;text-align:center;font-family:"Avenir Next","Futura","Century Gothic",sans-serif;
   }
 
+  /* apparition douce au défilement */
+  .js .monte{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .js .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .js .monte{opacity:1;transform:none;transition:none}
+  }
+
   @media (max-width:840px){
     .hero .titre{position:static;background:var(--nuit);padding:2rem 0 0}
     .hero svg.scene{margin-top:1rem}
-    .saisons,.carte,.contact-grid{grid-template-columns:1fr}
+    .saisons,.carte,.contact-grid,.chalet,.trio{grid-template-columns:1fr}
     .saisons{gap:1.2rem}
-    .infos{grid-template-columns:1fr;gap:1.1rem}
+    .reperes-grid{grid-template-columns:1fr 1fr}
+    .infos{grid-template-columns:1fr 1fr;gap:1.1rem}
     .fete{grid-template-columns:1fr;text-align:left;padding:1.8rem 1.4rem;gap:1.2rem}
     nav.main{display:flex;flex-wrap:wrap}
     nav.main a{margin-left:0;margin-right:1.2rem}
@@ -192,8 +264,82 @@
   @media (max-width:520px){
     .btn{display:block;text-align:center}
     .btn.ghost{margin-left:0;margin-top:.7rem}
+    .infos{grid-template-columns:1fr}
+    .reperes-grid{grid-template-columns:1fr 1fr;gap:1rem}
+    .fiche{padding:1.4rem 1.2rem}
+    .encadre{padding:1.3rem 1.1rem}
   }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "https://primolo.github.io/vitrines/auberge-du-vourbey/#etablissement",
+  "name": "L'Auberge du Vourbey",
+  "description": "Chalet d'alpage au cœur des pistes nordiques des Fourgs, accessible l'hiver uniquement à ski ou en raquettes. Cuisine franc-comtoise, salle pour les fêtes de famille.",
+  "url": "https://primolo.github.io/vitrines/auberge-du-vourbey/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Lieu-dit Le Vourbey",
+    "addressLocality": "Les Fourgs",
+    "postalCode": "25300",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Les Fourgs"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "telephone": "+33770913333",
+  "email": "aubergeduvourbey@outlook.com",
+  "servesCuisine": [
+    "Française",
+    "Franc-comtoise"
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment accède-t-on à l'Auberge du Vourbey en hiver ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'hiver, l'auberge n'est accessible qu'à ski de fond ou en raquettes : aucune route n'est déneigée jusqu'au chalet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on venir à l'Auberge du Vourbey l'été ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, l'été l'auberge accueille les groupes à partir de 8 personnes, sur réservation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L'auberge accueille-t-elle les repas de famille ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, une salle est disponible pour les mariages, baptêmes et anniversaires. Les conditions se calent par téléphone au 07 70 91 33 33."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
 
@@ -211,6 +357,8 @@
     <nav class="main">
       <a href="#acces">Y aller</a>
       <a href="#table">La table</a>
+      <a href="#chalet">Le chalet</a>
+      <a href="#tarifs">Prestations</a>
       <a href="#fetes">Vos fêtes</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -294,32 +442,55 @@
   </svg>
 </section>
 
+<!-- chiffres-repères -->
+<div class="reperes">
+  <div class="wrap reperes-grid">
+    <div class="repere"><b>1 100 m</b><span>Les Fourgs, la commune la plus haute du Doubs</span></div>
+    <div class="repere"><b>0 route</b><span>dégagée jusqu'à la porte pendant tout l'hiver</span></div>
+    <div class="repere"><b>2010</b><span>le premier hiver où l'auberge a accueilli les skieurs</span></div>
+    <div class="repere"><b>8 pers.</b><span>le seuil des repas de groupe, à la belle saison</span></div>
+  </div>
+</div>
+
 <div class="wrap">
   <section class="block" id="acces">
     <p class="kicker">Y aller — c'est la moitié du plaisir</p>
     <h2>Deux saisons, deux chemins</h2>
-    <p>Le Vourbey est un vrai chalet d'alpage, au cœur du domaine nordique des Fourgs.
-    Il accueille les skieurs et les raquetteurs depuis l'hiver 2010 — et ne triche pas
-    avec son isolement.</p>
+    <div class="intro monte">
+      <p>Le Vourbey est un vrai chalet d'alpage, au cœur du domaine nordique des Fourgs.
+      Il accueille les skieurs et les raquetteurs depuis l'hiver 2010 — et ne triche pas
+      avec son isolement.</p>
+      <p>C'est la première chose à comprendre avant de réserver : entre les premières neiges et
+      la fonte, personne ne vient en voiture. La combe n'est pas déneigée, et c'est exactement
+      ce qui fait qu'on y mange bien au calme. Le reste de l'année, le chemin s'ouvre et
+      l'auberge redevient un but de balade à pied, en famille ou en groupe.</p>
+    </div>
     <div class="saisons">
-      <article class="saison hiver">
+      <article class="saison hiver monte">
         <h3>L'hiver — à ski ou en raquettes</h3>
         <p>Aucun accès routier : on rejoint l'auberge par les pistes de ski nordique
         ou par l'itinéraire raquettes du Tourillot, au départ de la station des Fourgs.</p>
+        <p>Prévenez-nous de l'heure à laquelle vous pensez arriver — c'est ce qui nous permet
+        de sortir la fondue au bon moment et de savoir, en fin de service, que tout le monde
+        est bien redescendu.</p>
         <ul>
           <li>Réservation par téléphone uniquement&nbsp;: <span class="tel-inline"><a href="tel:+33770913333">07 70 91 33 33</a></span></li>
           <li>Pensez à la frontale pour redescendre après la fondue du soir</li>
+          <li>Skis, raquettes et vêtements chauds : rien ne se loue sur place</li>
           <li>L'arrivée&nbsp;: les fenêtres allumées au creux de la combe</li>
         </ul>
       </article>
-      <article class="saison ete">
+      <article class="saison ete monte">
         <h3>L'été — pour les groupes</h3>
         <p>À la belle saison, l'auberge ouvre sur réservation pour les groupes
         à partir de 8 personnes : familles, clubs, randonnées, repas d'équipe.</p>
+        <p>Le chemin est alors carrossable jusqu'au parking privé, et la table se dresse
+        volontiers dehors quand le temps le permet.</p>
         <ul>
           <li>Terrasse avec vue sur le Chasseron, côté suisse</li>
           <li>Jardin, jeux pour enfants, parking privé</li>
           <li>Animaux bienvenus</li>
+          <li>Dates d'ouverture estivale : à fixer ensemble avant la mise en ligne</li>
         </ul>
       </article>
     </div>
@@ -334,15 +505,44 @@
   </svg>
 
   <section class="block" id="table">
+    <p class="kicker">La table</p>
+    <h2>Le fromage&nbsp;a le premier rôle</h2>
+    <div class="intro monte">
+      <p>Cuisine régionale, spécialités franc-comtoises et franco-suisses, produits choisis
+      chez les producteurs du coin. Ici, on mange ce que la montagne sait faire : du fromage
+      fondu, de la charcuterie fumée, du pain, et de quoi tenir sur les skis au retour.</p>
+    </div>
+    <div class="trio">
+      <article class="fiche monte">
+        <h3>Le fromage fondu</h3>
+        <p>C'est le cœur de la carte et la raison pour laquelle on monte. La croûte au fromage
+        se fait à la mode d'ici et d'en face — la frontière suisse est à deux pas, chaque
+        version a ses partisans.</p>
+        <p>À côté, les fondues et la boîte chaude : un Mont d'Or passé au four dans sa sangle
+        d'épicéa, qu'on mange à la cuillère avec des pommes de terre.</p>
+      </article>
+      <article class="fiche monte">
+        <h3>Le casse-croûte d'alpage</h3>
+        <p>Pour ceux qui s'arrêtent entre deux boucles et ne veulent pas repartir alourdis :
+        des tartines copieuses et la charcuterie de pays, fumée comme il se doit dans le
+        Haut-Doubs.</p>
+        <p>C'est la formule de midi la plus demandée quand le groupe a encore une descente
+        devant lui.</p>
+      </article>
+      <article class="fiche monte">
+        <h3>Avant de rechausser</h3>
+        <p>Les desserts sont faits maison, et les boissons chaudes arrivent sans qu'on ait
+        besoin de les demander deux fois quand on entre les joues rouges.</p>
+        <p>Le détail de la carte — plats du moment, boissons, vins — sera repris avec vous :
+        cette maquette n'en montre que la trame.</p>
+      </article>
+    </div>
     <div class="carte">
       <div>
-        <p class="kicker">La table</p>
-        <h2>Le fromage&nbsp;a le premier rôle</h2>
-        <p>Cuisine régionale, spécialités franc-comtoises et franco-suisses,
-        produits choisis chez les producteurs du coin. Ici, on mange ce que la montagne sait faire.</p>
+        <h3 class="kicker" style="margin-top:.4rem">Ce qui revient sur les tables</h3>
         <ul class="plats">
           <li><b>Croûte au fromage</b><span>la spécialité maison, à la mode d'ici et d'en face</span></li>
-          <li><b>Fondues</b><span>l'incontournable des soirs d'hiver</span></li>
+          <li><b>Fondues</b><span>le plat des soirs d'hiver, à partager en tablée</span></li>
           <li><b>Boîte chaude</b><span>Mont d'Or au four dans sa sangle d'épicéa</span></li>
           <li><b>Tartines</b><span>copieuses, façon casse-croûte d'alpage</span></li>
           <li><b>Charcuterie de pays</b><span>fumée comme il se doit dans le Haut-Doubs</span></li>
@@ -350,7 +550,7 @@
         </ul>
         <p class="prix-note">Tarifs : nous consulter au moment de la réservation.</p>
       </div>
-      <figure class="lanterne-fig">
+      <figure class="lanterne-fig monte">
         <svg viewBox="0 0 200 240" width="180" role="img" aria-label="Lanterne d'auberge">
           <path d="M100 10 v18" stroke="#7FA3BF" stroke-width="4" stroke-linecap="round"/>
           <path d="M70 40 h60 l8 14 h-76 z" fill="#223449" stroke="#7FA3BF" stroke-width="3"/>
@@ -377,8 +577,70 @@
     </g>
   </svg>
 
+  <section class="block" id="chalet">
+    <p class="kicker">La maison</p>
+    <h2>Un chalet, une combe, une lanterne</h2>
+    <div class="chalet">
+      <div class="monte">
+        <p class="exergue">Il n'y a rien autour : c'est précisément ce qu'on vient chercher.</p>
+        <p>Le Vourbey n'est pas une adresse de bord de route qu'on pousse par hasard. On sait
+        où l'on va, on a réservé, on a chaussé — et la dernière montée se fait en regardant
+        les fenêtres jaunes grossir au fond de la combe. Beaucoup de clients disent que cette
+        arrivée-là fait partie du repas.</p>
+        <p>À l'intérieur, on se serre autour des tables, on empile les vestes, la buée monte
+        aux carreaux. Les groupes se mélangent naturellement : un club nordique à côté d'une
+        famille venue en raquettes avec les enfants, et tout le monde repart en même temps
+        quand la nuit est franche.</p>
+        <p>L'été, le décor change complètement. La combe devient verte, la terrasse s'ouvre
+        sur le Chasseron, les enfants prennent le jardin, et les tablées s'étirent dans
+        l'après-midi. C'est la saison des repas de famille et des sorties de club.</p>
+        <p class="muted">Nombre de couverts, plan de la salle, périodes exactes d'ouverture :
+        à compléter ensemble — nous préférons ne rien afficher plutôt qu'annoncer un chiffre
+        approximatif.</p>
+      </div>
+      <aside class="encadre monte">
+        <h3>Le chalet en bref</h3>
+        <dl>
+          <div><dt>Le lieu</dt><dd>Chalet d'alpage, lieu-dit Le Vourbey, commune des Fourgs</dd></div>
+          <div><dt>Dehors</dt><dd>Terrasse tournée vers le Chasseron, jardin, jeux pour enfants</dd></div>
+          <div><dt>Accès hiver</dt><dd>Ski nordique ou raquettes uniquement, depuis la station</dd></div>
+          <div><dt>Accès été</dt><dd>Parking privé au chalet, groupes sur réservation</dd></div>
+          <div><dt>Réservation</dt><dd>Par téléphone, toute l'année</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="tarifs">
+    <p class="kicker">Prestations</p>
+    <h2>Ce qu'on peut vous proposer</h2>
+    <div class="intro monte">
+      <p>Les tarifs ne sont pas affichés ici tant qu'ils n'ont pas été validés avec vous.
+      Le tableau ci-dessous liste ce qui existe déjà à l'auberge et la façon dont chaque
+      prestation se réserve — c'est ce que les clients cherchent en premier.</p>
+    </div>
+    <div class="table-wrap monte">
+      <table class="presta">
+        <caption class="kicker" style="text-align:left;margin-bottom:.6rem">Prestations et modalités</caption>
+        <thead>
+          <tr><th scope="col">Prestation</th><th scope="col">Quand</th><th scope="col">Tarif</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Repas à la carte<em>croûte, fondue, boîte chaude, tartines</em></td><td>Hiver, midi et soir</td><td>nous consulter</td></tr>
+          <tr><td>Casse-croûte d'alpage<em>tartines et charcuterie, service rapide</em></td><td>Hiver, le midi</td><td>nous consulter</td></tr>
+          <tr><td>Repas de groupe<em>à partir de 8 personnes</em></td><td>Été, sur réservation</td><td>sur devis</td></tr>
+          <tr><td>Privatisation de la salle<em>anniversaire, sortie de club, repas d'équipe</em></td><td>Toute l'année</td><td>sur devis</td></tr>
+          <tr><td>Boissons et desserts maison<em>sur place, en salle ou en terrasse</em></td><td>Aux heures d'ouverture</td><td>nous consulter</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="prix-note">Un appel au 07 70 91 33 33 suffit pour caler le nombre de couverts,
+    l'heure d'arrivée et le menu. Les prix définitifs seront intégrés à cette page dès que
+    vous nous les aurez transmis.</p>
+  </section>
+
   <section class="block" id="fetes">
-    <div class="fete">
+    <div class="fete monte">
       <svg width="90" height="90" viewBox="0 0 90 90" aria-hidden="true">
         <rect x="12" y="34" width="66" height="44" fill="none" stroke="#E5A13D" stroke-width="3"/>
         <path d="M6 34 L45 10 L84 34" fill="none" stroke="#E5A13D" stroke-width="3" stroke-linecap="round"/>
@@ -393,15 +655,21 @@
         se privatise. L'été, on vous accueille à partir de huit personnes, terrasse et jardin
         compris ; l'hiver, tout le monde monte à ski ou en raquettes — dites-nous simplement
         combien vous serez et à quelle heure vous arriverez, on cale le reste au téléphone.</p>
+        <p>Une fête ici demande un peu d'organisation, et c'est ce qui la rend mémorable :
+        le groupe monte ensemble à la nuit tombante, chacun avec sa frontale, et redescend
+        de même. Prévenez les invités qui n'ont jamais chaussé de raquettes — le trajet est
+        à la portée de la plupart des gens, mais il vaut mieux ne pas le découvrir en
+        chaussures de ville.</p>
         <p>Formules et disponibilités : <a href="tel:+33770913333">07 70 91 33 33</a>.</p>
       </div>
     </div>
 
     <p class="kicker infos-kicker">Bon à savoir avant de monter</p>
-    <div class="infos">
-      <article><h3>Paiement</h3><p>Carte bleue et espèces acceptées.</p></article>
-      <article><h3>Avec les enfants</h3><p>Jeux pour enfants, jardin, tablées familiales bienvenues.</p></article>
-      <article><h3>Avec le chien</h3><p>Les animaux sont les bienvenus à l'auberge.</p></article>
+    <div class="infos monte">
+      <article><h3>Réserver</h3><p>Par téléphone uniquement, avec le nombre de personnes et l'heure d'arrivée. C'est aussi ce qui nous rassure sur votre redescente.</p></article>
+      <article><h3>Payer</h3><p>Carte bleue et espèces acceptées. Pas de distributeur au chalet, ni sur le chemin qui y mène.</p></article>
+      <article><h3>En famille</h3><p>Jeux pour enfants et jardin l'été, tablées familiales toute l'année. Les animaux sont les bienvenus.</p></article>
+      <article><h3>Repartir de nuit</h3><p>Frontale, gants et vêtements chauds : le retour se fait dans le noir et rien ne se loue sur place.</p></article>
     </div>
   </section>
 </div>
@@ -411,15 +679,23 @@
     <p class="kicker">Contact</p>
     <h2>On vous garde une table près du feu&nbsp;?</h2>
     <div class="contact-grid">
-      <dl>
-        <div><dt>Adresse</dt><dd>Lieu-dit Le Vourbey, 25300 Les Fourgs</dd></div>
-        <div><dt>Téléphone (réservation)</dt><dd><a href="tel:+33770913333">07 70 91 33 33</a></dd></div>
-        <div><dt>Email</dt><dd><a href="mailto:aubergeduvourbey@outlook.com">aubergeduvourbey@outlook.com</a></dd></div>
-        <div><dt>Itinéraire (été)</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Auberge+du+Vourbey+Les+Fourgs" rel="noopener">Ouvrir dans Google Maps</a></dd></div>
-      </dl>
+      <div>
+        <a class="gros-tel" href="tel:+33770913333"><small>Appeler l'auberge</small>07 70 91 33 33</a>
+        <dl>
+          <div><dt>Adresse</dt><dd>Lieu-dit Le Vourbey, 25300 Les Fourgs</dd></div>
+          <div><dt>Téléphone (réservation)</dt><dd><a href="tel:+33770913333">07 70 91 33 33</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:aubergeduvourbey@outlook.com">aubergeduvourbey@outlook.com</a></dd></div>
+          <div><dt>Itinéraire (été)</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Auberge+du+Vourbey+Les+Fourgs" rel="noopener">Ouvrir dans Google Maps</a></dd></div>
+        </dl>
+      </div>
       <div>
         <p>L'hiver, ne suivez pas le GPS : suivez les pistes. Départ depuis la station
         des Fourgs, itinéraire raquettes du Tourillot ou pistes nordiques.</p>
+        <p>Au téléphone, trois informations suffisent pour bloquer une table : combien vous
+        serez, quel jour, et par quel itinéraire vous comptez monter. Si la météo tourne,
+        nous vous rappelons — mieux vaut décaler d'un soir que de tracer dans le mauvais temps.</p>
+        <p>Pour les groupes d'été, précisez aussi l'heure du repas et s'il y a des enfants :
+        cela change la manière dont on dresse la salle et la terrasse.</p>
         <p class="note">Périodes d'ouverture, plans d'accès détaillés et photos seront
         intégrés avec vous lors de la validation de cette maquette.</p>
       </div>
@@ -430,6 +706,22 @@
 <footer class="credit">
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  (function(){
+    var els = document.querySelectorAll('.monte');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(e){e.classList.add('vu')}); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('vu'); io.unobserve(en.target); }
+      });
+    },{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  })();
+</script>
 
 </body>
 </html>

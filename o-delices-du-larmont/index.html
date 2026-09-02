@@ -19,6 +19,70 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Ô Délices du Larmont — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  "@id": "https://primolo.github.io/vitrines/o-delices-du-larmont/#etablissement",
+  "name": "Ô Délices du Larmont",
+  "description": "Traiteur du Haut-Doubs à Malbuisson : vins d'honneur, buffets et repas servis à table pour mariages, fêtes de famille et entreprises. Épicerie fine en complément.",
+  "url": "https://primolo.github.io/vitrines/o-delices-du-larmont/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Malbuisson",
+    "postalCode": "25160",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Malbuisson"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "telephone": "+33381387977",
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ô Délices du Larmont fait-il les mariages ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, le traiteur compose vins d'honneur, buffets et repas servis à table pour les mariages, les fêtes de famille et les événements d'entreprise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment demander un devis ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Par téléphone au 03 81 38 79 77, en précisant la date, le nombre de convives et le type de réception souhaité."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où se trouve Ô Délices du Larmont ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "À Malbuisson (25160), dans le Haut-Doubs, près du lac de Saint-Point."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --prune:#3a2334;
@@ -55,7 +119,7 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   .marque .o{color:var(--champagne);font-style:italic}
   .marque small{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.32em;
     text-transform:uppercase;color:var(--sauge)}
-  nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:1.6rem;font-size:.85rem;letter-spacing:.06em}
+  nav.haut{margin-left:auto;display:flex;flex-wrap:wrap;gap:1rem 1.6rem;font-size:.85rem;letter-spacing:.06em}
   nav.haut a{color:var(--ivoire);text-decoration:none}
   nav.haut a:hover{color:var(--champagne)}
 
@@ -66,7 +130,7 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   /* ---- HERO ---- */
   .hero{
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);
-    gap:2.5rem;align-items:center;padding:4rem max(7vw,1.15rem) 3.5rem;
+    gap:2.5rem;align-items:center;padding:4rem max(7vw,1.15rem) 2.5rem;
     background:
       radial-gradient(ellipse at 20% 0%, rgba(230,211,163,.12) 0%, rgba(58,35,52,0) 45%),
       var(--prune);
@@ -89,10 +153,20 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   .btn.ghost:hover{background:rgba(230,211,163,.1)}
   .cloche-svg{width:100%;max-width:360px;height:auto;justify-self:center}
 
+  /* chiffres-repères du hero */
+  .reperes{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));
+    gap:1.4rem 2rem;padding:0 max(7vw,1.15rem) 3.4rem;
+  }
+  .repere{border-top:1px solid rgba(230,211,163,.35);padding-top:1rem}
+  .repere b{display:block;font-family:var(--serif);font-size:1.75rem;line-height:1.1;color:var(--champagne)}
+  .repere span{display:block;font-size:.84rem;color:var(--ivoire-tenu);margin-top:.2rem}
+
   section{padding:3.4rem max(7vw,1.15rem)}
   h2{font-family:var(--serif);font-weight:500;color:var(--champagne);
     font-size:clamp(1.5rem,3vw,2.2rem)}
-  .sous{color:var(--ivoire-doux);max-width:60ch;margin-top:.8rem}
+  .sous{color:var(--ivoire-doux);max-width:62ch;margin-top:.8rem}
+  .sous + .sous{margin-top:.8rem}
 
   /* ---- prestations : menu déroulé ---- */
   .services{margin-top:2rem;display:grid;gap:0}
@@ -105,14 +179,45 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
     padding-top:.35rem;line-height:1.4}
   .service h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;margin-bottom:.4rem}
   .service p{font-size:.97rem;color:var(--ivoire-doux);max-width:62ch}
+  .service p + p{margin-top:.6rem}
+
+  /* ---- déroulé du travail ---- */
+  .deroule{background:var(--prune-fonce)}
+  .etapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));
+    gap:1.6rem;margin-top:1.8rem}
+  .etape{border-top:2px solid var(--cuivre);padding-top:1rem}
+  .etape .num{font-family:var(--serif);font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sauge)}
+  .etape h3{font-family:var(--serif);font-weight:500;font-size:1.2rem;margin:.4rem 0 .4rem}
+  .etape p{font-size:.95rem;color:var(--ivoire-doux)}
+
+  /* ---- tableau des prestations ---- */
+  .table-boite{overflow-x:auto;margin-top:1.8rem;border:1px solid rgba(230,211,163,.3)}
+  table.presta{width:100%;border-collapse:collapse;font-size:.94rem;min-width:540px}
+  table.presta th{background:var(--prune-fonce);text-align:left;font-family:var(--sans);
+    font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--champagne);
+    font-weight:600;padding:.85rem 1rem}
+  table.presta td{padding:.85rem 1rem;border-top:1px solid rgba(230,211,163,.22);
+    vertical-align:top;color:var(--ivoire-doux)}
+  table.presta td:first-child{color:var(--ivoire)}
+  table.presta td:last-child{text-align:right;color:var(--champagne);white-space:nowrap}
 
   /* ---- terroir ---- */
   .terroir{background:var(--prune-fonce)}
-  .terroir-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.6rem;margin-top:1.8rem}
+  .terroir-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1.6rem;margin-top:1.8rem}
   .produit-t{border-left:3px solid var(--sauge);padding:.2rem 0 .2rem 1.2rem}
   .produit-t h3{font-family:var(--serif);font-weight:500;font-size:1.1rem;color:var(--ivoire);margin-bottom:.3rem}
   .produit-t p{font-size:.95rem;color:var(--ivoire-doux)}
-  .mention{font-style:italic;color:var(--ivoire-tenu);font-size:.92rem;margin-top:1.8rem;max-width:60ch}
+  .mention{font-style:italic;color:var(--ivoire-tenu);font-size:.92rem;margin-top:1.8rem;max-width:64ch}
+
+  /* ---- boutique en ligne ---- */
+  .boutique-int{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:2.6rem;align-items:start;margin-top:1.6rem}
+  .encart-boutique{border:1px solid var(--champagne);padding:1.8rem 1.6rem}
+  .encart-boutique .url{font-family:var(--serif);font-size:1.9rem;color:var(--champagne);display:block;
+    text-decoration:none;letter-spacing:.02em}
+  .encart-boutique .url:hover{text-decoration:underline}
+  .encart-boutique p{font-size:.94rem;color:var(--ivoire-doux);margin-top:.7rem}
+  .encart-boutique ul{list-style:none;margin-top:1.1rem;font-size:.94rem}
+  .encart-boutique li{padding:.4rem 0;border-top:1px solid rgba(230,211,163,.22);color:var(--ivoire-doux)}
 
   /* ---- devis ---- */
   .devis{background:
@@ -126,7 +231,7 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   .champ input,.champ select,.champ textarea{
     background:rgba(244,238,226,.06);border:1px solid rgba(230,211,163,.4);
     color:var(--ivoire);font-family:var(--sans);font-size:.95rem;
-    padding:.7rem .8rem;border-radius:0;
+    padding:.7rem .8rem;border-radius:0;max-width:100%;
   }
   .champ textarea{min-height:110px;resize:vertical}
   .champ input:focus,.champ select:focus,.champ textarea:focus{outline:2px solid var(--champagne)}
@@ -137,10 +242,27 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   }
   .envoyer{grid-column:1 / -1;justify-self:start}
 
+  /* ---- infos pratiques : 4 blocs ---- */
+  .blocs4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1.4rem;margin-top:1.8rem}
+  .bloc-info{border:1px solid rgba(230,211,163,.28);padding:1.5rem 1.4rem;background:var(--prune-fonce)}
+  .bloc-info svg{width:26px;height:26px;margin-bottom:.8rem}
+  .bloc-info h3{font-family:var(--serif);font-weight:500;font-size:1.15rem;color:var(--ivoire);margin-bottom:.4rem}
+  .bloc-info p{font-size:.93rem;color:var(--ivoire-doux)}
+
   /* ---- contact ---- */
-  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:1.6rem;font-size:.94rem}
+  .gros-tel{
+    display:block;text-align:center;text-decoration:none;max-width:26rem;
+    background:var(--champagne);color:var(--prune);border:1px solid var(--champagne);
+    padding:1.3rem 1.2rem;margin:1.6rem 0 2rem;
+  }
+  .gros-tel small{display:block;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;
+    color:#5c3a52;margin-bottom:.35rem}
+  .gros-tel strong{font-family:var(--serif);font-size:1.8rem;font-weight:500;letter-spacing:.03em}
+  .gros-tel:hover{background:#f0e2ba}
+  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:2rem;margin-top:1.6rem;font-size:.94rem}
   .contact-grille h3{font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--sauge);margin-bottom:.6rem}
   .contact-grille a{color:var(--ivoire)}
+  .contact-grille p + p{margin-top:.6rem}
   a.maps{display:inline-block;margin-top:.7rem;text-decoration:none;font-size:.85rem;
     border:1px solid var(--champagne);color:var(--champagne);padding:.5rem 1.2rem}
   a.maps:hover{background:rgba(230,211,163,.1)}
@@ -150,10 +272,19 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
     padding:1.3rem max(7vw,1.15rem);border-top:1px solid rgba(230,211,163,.2);
   }
 
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .monte{opacity:1;transform:none;transition:none}
+  }
+
   @media (max-width:840px){
     .hero{grid-template-columns:1fr}
     .cloche-svg{max-width:270px}
     .devis-int{grid-template-columns:1fr;gap:2rem}
+    .boutique-int{grid-template-columns:1fr;gap:2rem}
     form.formulaire{grid-template-columns:1fr}
     .service{grid-template-columns:1fr;gap:.35rem}
     .service .plat{padding-top:0;font-size:.9rem}
@@ -163,6 +294,8 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
     section{padding:2.8rem max(7vw,1.15rem)}
     .service{padding:1.4rem 0}
     .envoyer{justify-self:stretch;text-align:center}
+    .gros-tel strong{font-size:1.5rem}
+    .encart-boutique .url{font-size:1.5rem}
   }
 </style>
 
@@ -174,8 +307,11 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   </div>
   <nav class="haut">
     <a href="#receptions">Réceptions</a>
+    <a href="#deroule">Comment ça se passe</a>
+    <a href="#prestations">Prestations</a>
     <a href="#terroir">Terroir</a>
-    <a href="#devis">Demander un devis</a>
+    <a href="#boutique">Boutique en ligne</a>
+    <a href="#devis">Devis</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -186,9 +322,9 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
     <h1>Le jour où tout doit être <em>parfait</em>, la table est notre affaire</h1>
     <div class="filets" aria-hidden="true"></div>
     <p>
-      Traiteur du Haut-Doubs, Ô Délices du Larmont compose vins d'honneur, buffets et
-      repas servis à table pour vos grands jours — avec les produits francs-comtois que
-      la maison sélectionne aussi pour son épicerie fine.
+      Traiteur du Haut-Doubs installé à Malbuisson, Ô Délices du Larmont compose vins
+      d'honneur, buffets et repas servis à table pour vos grands jours — avec les produits
+      francs-comtois que la maison sélectionne aussi pour son épicerie fine.
     </p>
     <div class="actions">
       <a class="btn" href="#devis">Demander un devis</a>
@@ -231,34 +367,56 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   </svg>
 </div>
 
+<div class="reperes">
+  <div class="repere monte"><b>3</b><span>familles de réceptions : mariages, fêtes de famille, entreprises</span></div>
+  <div class="repere monte"><b>oddl.fr</b><span>la boutique en ligne d'épicerie fine de la maison</span></div>
+  <div class="repere monte"><b>Malbuisson</b><span>la cuisine, au bord du lac Saint-Point</span></div>
+  <div class="repere monte"><b>Sur devis</b><span>chaque réception est chiffrée à part, jamais au forfait</span></div>
+</div>
+
 <section id="receptions">
-  <h2>Nos réceptions, servies comme un menu</h2>
-  <p class="sous">Du vin d'honneur au dernier café, la même maison compose le menu, cuisine
-  et sert — pour vingt convives comme pour deux cents.</p>
+  <h2 class="monte">Nos réceptions, servies comme un menu</h2>
+  <p class="sous monte">Du vin d'honneur au dernier café, la même maison compose le menu,
+  cuisine et sert. Trois familles d'événements, qui n'ont ni les mêmes contraintes ni le
+  même rythme.</p>
   <div class="services">
-    <article class="service">
+    <article class="service monte">
       <div class="plat">Vin d'honneur · buffet · service à table</div>
       <div>
         <h3>Mariages</h3>
-        <p>Vin d'honneur, buffets élégants ou repas servis à table, pièce montée et
-        menus enfants : la maison accompagne les mariés de la dégustation au grand soir,
-        en salle, sous chapiteau ou au bord des lacs du Haut-Doubs.</p>
+        <p>C'est la réception la plus longue à préparer et la plus exigeante le jour même :
+        un vin d'honneur qui doit tenir debout pendant les photos, un repas qui démarre à
+        l'heure prévue même si le cortège a pris du retard, et une soirée qui se termine
+        beaucoup plus tard que ce qui était écrit sur le devis.</p>
+        <p>La maison accompagne les mariés depuis les premiers échanges jusqu'au dernier
+        service : composition du menu, dégustation avant décision, organisation du service
+        en salle, sous chapiteau ou dans un lieu de réception du Haut-Doubs. Pièce montée et
+        menus enfants font partie des demandes habituelles.</p>
       </div>
     </article>
-    <article class="service">
+    <article class="service monte">
       <div class="plat">Buffet · cocktail</div>
       <div>
         <h3>Fêtes de famille</h3>
-        <p>Baptêmes, communions, anniversaires, retrouvailles : des formules buffet ou
-        cocktail à composer selon vos envies et le nombre de convives.</p>
+        <p>Baptêmes, communions, anniversaires, retrouvailles, repas d'après-cérémonie : ce
+        sont souvent des réceptions plus courtes, avec un nombre de convives qui bouge
+        jusqu'à la dernière semaine et une salle qui n'est pas toujours équipée.</p>
+        <p>Formules buffet ou cocktail à composer selon vos envies, avec la possibilité de
+        livrer et de dresser sur place plutôt que d'assurer un service complet — c'est
+        souvent ce qui fait la différence sur le budget.</p>
       </div>
     </article>
-    <article class="service">
+    <article class="service monte">
       <div class="plat">Cocktail · plateaux-repas</div>
       <div>
         <h3>Entreprises</h3>
-        <p>Cocktails, plateaux-repas, séminaires et fêtes de fin d'année, livrés et
-        dressés sur le lieu de votre choix : dans vos locaux, en salle ou sous chapiteau.</p>
+        <p>Séminaires, inaugurations, assemblées, fêtes de fin d'année : ici, la contrainte
+        n'est pas le luxe mais l'horaire. Un cocktail qui doit être prêt à la minute où la
+        réunion se termine, des plateaux-repas livrés pendant une pause de quarante minutes,
+        un buffet qui doit être monté et démonté sans gêner l'activité.</p>
+        <p>Livraison et dressage sur le lieu de votre choix : dans vos locaux, en salle ou
+        sous chapiteau. Les modalités de facturation et de délai de commande sont à fixer
+        ensemble.</p>
       </div>
     </article>
   </div>
@@ -266,27 +424,135 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   formule, le nombre de convives et le lieu de la réception.</p>
 </section>
 
+<section class="deroule" id="deroule">
+  <h2 class="monte">Comment se prépare une réception</h2>
+  <p class="sous monte">Un traiteur ne se juge pas seulement à ce qu'il y a dans l'assiette,
+  mais à ce qui se passe avant. Voici le chemin habituel entre votre premier appel et le
+  moment où la salle se vide.</p>
+  <div class="etapes">
+    <div class="etape monte">
+      <div class="num">Premier temps</div>
+      <h3>L'appel</h3>
+      <p>Date, lieu, nombre de convives approximatif, style de réception. C'est en général
+      dix minutes de téléphone, et cela suffit à savoir si la date est libre et dans quelle
+      direction partir.</p>
+    </div>
+    <div class="etape monte">
+      <div class="num">Deuxième temps</div>
+      <h3>La proposition</h3>
+      <p>Une proposition écrite, chiffrée, détaillant les mets, le service et ce qui est
+      fourni ou non — vaisselle, personnel, boissons. C'est le document sur lequel on
+      discute, et qu'on modifie autant de fois qu'il le faut.</p>
+    </div>
+    <div class="etape monte">
+      <div class="num">Troisième temps</div>
+      <h3>Le calage</h3>
+      <p>Le nombre définitif de convives, les régimes particuliers, les allergies, l'heure
+      exacte du vin d'honneur, l'accès du lieu pour le camion. Ce sont les détails qui font
+      qu'un service se passe bien ou mal.</p>
+    </div>
+    <div class="etape monte">
+      <div class="num">Le jour même</div>
+      <h3>Le service</h3>
+      <p>Livraison, dressage, service, puis remise en état de la salle. Vous n'avez pas à
+      vous en occuper : c'est précisément ce pour quoi on appelle un traiteur plutôt que de
+      cuisiner soi-même.</p>
+    </div>
+  </div>
+  <p class="mention">Les délais de réservation, les conditions d'acompte et le détail de ce
+  qui est fourni avec le service sont <em>à compléter ensemble</em> avant la mise en ligne
+  du site : ce sont vos règles, pas des règles génériques.</p>
+</section>
+
+<section id="prestations">
+  <h2 class="monte">Les prestations, en clair</h2>
+  <p class="sous monte">Toutes ne s'appliquent pas à tous les événements, et plusieurs se
+  combinent. Le tableau donne le vocabulaire pour que vous sachiez quoi demander au
+  téléphone.</p>
+  <div class="table-boite monte">
+    <table class="presta">
+      <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Prestations proposées, occasions correspondantes et modalités de tarif</caption>
+      <thead>
+        <tr><th scope="col">Prestation</th><th scope="col">Pour quelle occasion</th><th scope="col">Tarif</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Vin d'honneur</td><td>mariage, inauguration, cérémonie</td><td>nous consulter</td></tr>
+        <tr><td>Buffet froid ou chaud</td><td>fête de famille, réception d'entreprise</td><td>nous consulter</td></tr>
+        <tr><td>Repas servi à table</td><td>mariage, grand repas de famille</td><td>nous consulter</td></tr>
+        <tr><td>Cocktail dînatoire</td><td>soirée d'entreprise, anniversaire</td><td>nous consulter</td></tr>
+        <tr><td>Plateaux-repas</td><td>séminaire, réunion, journée de travail</td><td>nous consulter</td></tr>
+        <tr><td>Pièce montée et desserts</td><td>mariage, baptême, communion</td><td>nous consulter</td></tr>
+        <tr><td>Menus enfants</td><td>toute réception familiale</td><td>nous consulter</td></tr>
+        <tr><td>Livraison et dressage sur place</td><td>salle, chapiteau, locaux d'entreprise</td><td>nous consulter</td></tr>
+        <tr><td>Épicerie fine de la maison</td><td>cadeaux, paniers, achat à distance</td><td>prix sur oddl.fr</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mention">Un devis de traiteur ne se lit pas au prix par tête : à nombre de
+  convives égal, un buffet livré et un repas servi à table n'engagent pas le même personnel
+  ni le même matériel. C'est pour cela que chaque réception est chiffrée séparément.</p>
+</section>
+
 <section class="terroir" id="terroir">
-  <h2>Le terroir franc-comtois en cuisine</h2>
-  <p class="sous">Ô Délices du Larmont, c'est aussi une épicerie fine de produits régionaux
-  (boutique en ligne oddl.fr) : les mêmes maisons et les mêmes terroirs se retrouvent
-  dans nos buffets.</p>
+  <h2 class="monte">Le terroir franc-comtois en cuisine</h2>
+  <p class="sous monte">Ô Délices du Larmont, c'est aussi une épicerie fine de produits
+  régionaux : les mêmes maisons et les mêmes terroirs se retrouvent dans les buffets et sur
+  les étagères de la boutique en ligne.</p>
   <div class="terroir-grille">
-    <div class="produit-t">
+    <div class="produit-t monte">
       <h3>Fromages affinés</h3>
-      <p>Comté et fromages du massif jurassien, choisis chez les affineurs de la région.</p>
+      <p>Comté et fromages du massif jurassien, choisis chez les affineurs de la région —
+      la base de tout plateau et de bien des entrées chaudes.</p>
     </div>
-    <div class="produit-t">
+    <div class="produit-t monte">
       <h3>Salaisons fumées</h3>
-      <p>Charcuteries et fumaisons du Haut-Doubs pour les plateaux et buffets campagnards.</p>
+      <p>Charcuteries et fumaisons du Haut-Doubs, pour les plateaux, les buffets campagnards
+      et les cocktails où l'on veut quelque chose de reconnaissable.</p>
     </div>
-    <div class="produit-t">
+    <div class="produit-t monte">
       <h3>Morilles &amp; champignons</h3>
-      <p>Les sous-bois du Jura dans les sauces des grands jours.</p>
+      <p>Les sous-bois du Jura dans les sauces des grands jours : c'est l'accompagnement que
+      l'on retrouve le plus souvent sur les menus de mariage de la région.</p>
     </div>
-    <div class="produit-t">
+    <div class="produit-t monte">
       <h3>Vins &amp; champagnes</h3>
-      <p>Une cave choisie pour accorder chaque service, du vin d'honneur au dessert.</p>
+      <p>Une cave choisie pour accorder chaque service, du vin d'honneur au dessert, avec
+      la particularité des vins du Jura qui demandent d'être expliqués avant d'être servis.</p>
+    </div>
+  </div>
+  <p class="mention">La liste des producteurs et des maisons partenaires est
+  <em>à compléter ensemble</em> : ce sont des noms qui doivent venir de vous.</p>
+</section>
+
+<section id="boutique">
+  <h2 class="monte">La boutique en ligne existe déjà : oddl.fr</h2>
+  <p class="sous monte">Tout le monde n'a pas une réception à organiser. Pour ceux qui veulent
+  simplement les produits, la maison tient déjà une boutique d'épicerie fine en ligne — et
+  c'est elle qu'il faut mettre en avant plutôt que de la cacher en bas de page.</p>
+  <div class="boutique-int">
+    <div class="monte">
+      <p class="sous">C'est le prolongement naturel du métier de traiteur : les fromages, les
+      salaisons et les produits régionaux sélectionnés pour les buffets se commandent aussi à
+      l'unité, sans passer par un devis ni par une date de réception.</p>
+      <p class="sous">Concrètement, la boutique sert trois usages : le cadeau que l'on envoie
+      sans se déplacer, la commande d'un habitué qui connaît déjà les produits, et le panier
+      de fin d'année pour une entreprise. Dans les trois cas, on choisit, on paie, on est
+      livré — pas de rendez-vous à prendre.</p>
+      <p class="sous">Sur le site final, les produits phares de la boutique peuvent être
+      repris directement ici, avec un lien vers chaque fiche : le visiteur qui arrive pour un
+      mariage repart parfois avec une commande d'épicerie, et l'inverse est vrai aussi.</p>
+      <p class="mention">Le détail du catalogue, des frais de port et des délais de livraison
+      est <em>à reprendre ensemble</em> depuis la boutique existante.</p>
+    </div>
+    <div class="encart-boutique monte">
+      <a class="url" href="https://www.oddl.fr" rel="noopener">oddl.fr</a>
+      <p>L'épicerie fine de la maison, en ligne, ouverte en permanence.</p>
+      <ul>
+        <li>Produits régionaux à la commande</li>
+        <li>Cadeaux et paniers à envoyer</li>
+        <li>Commandes d'entreprise</li>
+        <li>Sans rendez-vous ni devis</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -294,11 +560,14 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
 <section class="devis" id="devis">
   <div class="devis-int">
     <div>
-      <h2>Demandez un devis</h2>
+      <h2 class="monte">Demandez un devis</h2>
       <div class="filets" aria-hidden="true"></div>
-      <p class="sous">Parlez-nous de votre événement : date, lieu, nombre de convives,
+      <p class="sous monte">Parlez-nous de votre événement : date, lieu, nombre de convives,
       envies. Nous vous rappelons pour composer une proposition sur mesure.</p>
-      <p class="sous" style="margin-top:1rem">Vous préférez le téléphone ?<br>
+      <p class="sous monte">Plus les informations sont précises, plus la première proposition
+      sera proche du résultat final. Si vous hésitez encore entre deux formules, dites-le :
+      il est plus simple de chiffrer les deux d'un coup que de recommencer.</p>
+      <p class="sous monte">Vous préférez le téléphone ?<br>
       <a href="tel:+33381387977" style="color:var(--champagne)">03 81 38 79 77</a></p>
     </div>
     <form class="formulaire">
@@ -341,23 +610,69 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
   </div>
 </section>
 
+<section id="pratique">
+  <h2 class="monte">Avant de nous appeler</h2>
+  <p class="sous monte">Quatre repères qui font gagner du temps au premier échange.</p>
+  <div class="blocs4">
+    <div class="bloc-info monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#e6d3a3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M9 3v4M15 3v4"/></svg>
+      <h3>La date d'abord</h3>
+      <p>C'est la première question posée : un samedi de juin ne se réserve pas au même
+      moment qu'un mardi de novembre. Appelez tôt même si le reste n'est pas décidé.</p>
+    </div>
+    <div class="bloc-info monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#e6d3a3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2 20v-2.5A4.5 4.5 0 0 1 6.5 13h5a4.5 4.5 0 0 1 4.5 4.5V20"/><circle cx="18" cy="9.5" r="2.4"/><path d="M17 20v-2a3.5 3.5 0 0 1 5-3"/></svg>
+      <h3>Le nombre de convives</h3>
+      <p>Même approximatif, il change tout : la formule, le personnel nécessaire et le
+      matériel à transporter. Un ordre de grandeur suffit au premier appel.</p>
+    </div>
+    <div class="bloc-info monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#e6d3a3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      <h3>Le lieu</h3>
+      <p>Salle équipée, chapiteau, locaux d'entreprise ou extérieur : l'accès, la cuisine
+      disponible et l'électricité sur place pèsent autant que le menu.</p>
+    </div>
+    <div class="bloc-info monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#e6d3a3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v6a6 6 0 0 1-12 0Z"/><path d="M12 15v4"/><path d="M8 21h8"/></svg>
+      <h3>Les contraintes</h3>
+      <p>Régimes particuliers, allergies, convives enfants, horaire imposé par une salle :
+      dites-les dès le départ, elles se traitent mieux en amont qu'en catastrophe.</p>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
-  <h2>Contact</h2>
+  <h2 class="monte">Contact</h2>
+  <p class="sous monte">Pour une date, une question ou une commande d'épicerie : le téléphone
+  reste le plus rapide.</p>
+  <a class="gros-tel monte" href="tel:+33381387977">
+    <small>Appeler la maison</small>
+    <strong>03 81 38 79 77</strong>
+  </a>
   <div class="contact-grille">
-    <div>
+    <div class="monte">
       <h3>Nous trouver</h3>
       <p>Ô Délices du Larmont<br>Malbuisson · Haut-Doubs</p>
       <p class="mention" style="margin-top:.5rem">Adresse complète à compléter avec vous.</p>
       <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=%C3%94+D%C3%A9lices+du+Larmont+Malbuisson">Ouvrir dans Google Maps</a>
     </div>
-    <div>
+    <div class="monte">
       <h3>Nous joindre</h3>
       <p>Téléphone : <a href="tel:+33381387977">03 81 38 79 77</a></p>
+      <p>Vous pouvez aussi passer par le formulaire de devis : il arrive directement en
+      cuisine sur le site final.</p>
     </div>
-    <div>
+    <div class="monte">
       <h3>Épicerie fine</h3>
-      <p>Retrouvez nos produits régionaux sur la boutique en ligne
-      <a href="https://www.oddl.fr">oddl.fr</a>.</p>
+      <p>Retrouvez les produits régionaux de la maison sur la boutique en ligne
+      <a href="https://www.oddl.fr" rel="noopener">oddl.fr</a>, ouverte en permanence.</p>
+      <p>Commandes de cadeaux et paniers d'entreprise possibles depuis la boutique.</p>
+    </div>
+    <div class="monte">
+      <h3>Zone d'intervention</h3>
+      <p>Réceptions dans le Haut-Doubs et ses environs, en salle, sous chapiteau ou dans
+      vos locaux.</p>
+      <p class="mention">Le périmètre exact de déplacement est à préciser ensemble.</p>
     </div>
   </div>
 </section>
@@ -365,3 +680,34 @@ Thème : un seul thème sombre assumé (lumière de salle de réception) — pas
 <footer class="pied">
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
+
+<script>
+  (function(){
+    var els = Array.prototype.slice.call(document.querySelectorAll('.monte'));
+    var reduit = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function tout(){ els.forEach(function(el){ el.classList.add('vu'); }); }
+    if (reduit.matches || !('IntersectionObserver' in window)) { tout(); return; }
+    var io = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); }
+      });
+    }, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+    // filet de sécurité : si l'observateur ne peut pas travailler (onglet masqué,
+    // impression, navigateur particulier), rien ne doit rester invisible.
+    function rattrape(){
+      els.forEach(function(el){
+        if (el.classList.contains('vu')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 1.25 && r.bottom > -200) {
+          el.classList.add('vu'); io.unobserve(el);
+        }
+      });
+    }
+    window.addEventListener('load', rattrape);
+    window.addEventListener('scroll', rattrape, {passive:true});
+    document.addEventListener('visibilitychange', function(){ if (!document.hidden) rattrape(); });
+    window.addEventListener('beforeprint', tout);
+    setTimeout(rattrape, 400);
+  })();
+</script>

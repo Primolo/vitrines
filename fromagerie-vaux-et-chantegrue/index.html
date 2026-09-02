@@ -18,13 +18,71 @@ Typographies (système + fallbacks) :
 en grand dans le héros, en pictogrammes de section et en filigrane du pied.
 Second motif : la frise de bidons de lait. Layout éditorial aligné à gauche,
 rien de systématiquement centré.
-Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe)
-+ généralités AOP vérifiables ; aucune coordonnée inventée, prix en magasin.
+Contenu : coopérative peu documentée publiquement — on reste volontairement
+générique-crédible. Faits fournis (coopérative, comté, morbier, mont d'or, vente
+directe) + règles publiques des cahiers des charges AOP comté / morbier /
+mont d'or. Aucune coordonnée inventée : téléphone et horaires « à compléter ».
+Prix en magasin.
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Fromagerie de Vaux-et-Chantegrue — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "@id": "https://primolo.github.io/vitrines/fromagerie-vaux-et-chantegrue/#etablissement",
+  "name": "Fromagerie de Vaux-et-Chantegrue",
+  "description": "Coopérative fromagère de village dans le Haut-Doubs : comté, morbier et mont d'or de saison, en vente directe au magasin.",
+  "url": "https://primolo.github.io/vitrines/fromagerie-vaux-et-chantegrue/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Vaux-et-Chantegrue",
+    "postalCode": "25160",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Vaux-et-Chantegrue"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Que vend la fromagerie de Vaux-et-Chantegrue ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Du comté, du morbier et, à la saison froide, du mont d'or — des fromages d'appellation vendus directement au magasin de la coopérative."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels sont les horaires du magasin ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les horaires sont à confirmer directement auprès de la fromagerie."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --lait:#FBF7EE; --creme-cru:#F3EAD6; --paille:#C98F2E; --cuivre:#B4653C; --cuivre-texte:#93502F; --pature-texte:#456039;
@@ -43,10 +101,10 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   html{scroll-behavior:smooth;overflow-x:hidden}
   body{background:var(--lait);color:var(--encre);font-family:var(--sans);line-height:1.65}
   .demo-band{background:var(--encre);color:var(--lait);font-size:.8rem;padding:.5rem 1.25rem;text-align:left;letter-spacing:.02em}
-  a{color:var(--cuivre)}
+  a{color:var(--cuivre-texte)}
   img,svg{max-width:100%}
   h1,h2,h3{text-wrap:balance}
-  p{text-wrap:pretty}
+  p{text-wrap:pretty;overflow-wrap:break-word}
   a:focus-visible,.btn:focus-visible{outline:3px solid var(--cuivre);outline-offset:3px}
   footer.site a:focus-visible{outline-color:var(--paille)}
 
@@ -58,14 +116,14 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   nav.principale{margin-left:auto;display:flex;gap:1.4rem;flex-wrap:wrap}
   nav.principale a{text-decoration:none;font-size:.85rem;text-transform:uppercase;
     letter-spacing:.12em;color:var(--encre);border-bottom:2px solid transparent;padding-bottom:.15rem}
-  nav.principale a:hover{border-color:var(--cuivre);color:var(--cuivre)}
+  nav.principale a:hover{border-color:var(--cuivre);color:var(--cuivre-texte)}
 
   .hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;
     align-items:center;padding:4rem 5vw 3.5rem;
     background:linear-gradient(180deg,var(--lait) 55%,var(--creme-cru) 55%)}
   .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.6vw,3.4rem);
     line-height:1.12;max-width:15ch}
-  .hero h1 em{font-style:italic;color:var(--cuivre)}
+  .hero h1 em{font-style:italic;color:var(--cuivre-texte)}
   .sur-titre{text-transform:uppercase;letter-spacing:.24em;font-size:.75rem;
     color:var(--pature-texte);margin-bottom:1rem}
   .hero p.chapo{margin-top:1.25rem;max-width:46ch;font-size:1.02rem;color:var(--encre-doux)}
@@ -73,11 +131,20 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   .btn{display:inline-block;text-decoration:none;font-size:.85rem;text-transform:uppercase;
     letter-spacing:.12em;padding:.75rem 1.4rem;border:1.5px solid var(--cuivre)}
   .btn.plein{background:var(--cuivre-texte);color:var(--lait)}
-  .btn.plein:hover{background:#9a552f}
+  .btn.plein:hover{background:#7d4426}
   .btn.vide{color:var(--cuivre-texte)}
   .btn.vide:hover{background:rgba(180,101,60,.08)}
   .hero figure{justify-self:center}
   .hero figcaption{font-size:.75rem;color:var(--cendre);margin-top:.6rem;font-style:italic}
+
+  /* chiffres-repères du héros */
+  .reperes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));
+    background:var(--creme-cru);border-top:1px solid var(--filet);border-bottom:3px double var(--paille)}
+  .reperes div{padding:1.3rem 5vw 1.4rem;border-right:1px solid var(--filet)}
+  .reperes div:last-child{border-right:none}
+  .reperes b{display:block;font-family:var(--serif);font-weight:400;font-size:1.6rem;
+    color:var(--cuivre-texte);line-height:1.1}
+  .reperes span{font-size:.83rem;color:var(--cendre)}
 
   .frise-bidons{background:var(--creme-cru);padding:0 5vw 1rem;overflow:hidden}
   .frise-bidons svg{display:block;width:100%;height:auto}
@@ -86,25 +153,54 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   .num{font-family:var(--serif);color:var(--paille-texte);font-size:1.05rem;letter-spacing:.1em}
   h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3vw,2.2rem);
     margin:.35rem 0 1.2rem;max-width:24ch}
+  h3{font-family:var(--serif);font-weight:400}
+  .chapo-section{max-width:68ch;color:var(--encre-doux);margin-bottom:1.6rem}
   .deux-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem}
   .deux-col p+p{margin-top:1rem}
   .deux-col p{color:var(--encre-doux)}
   .encart{border-left:4px solid var(--pature);background:var(--creme-cru);
     padding:1.25rem 1.5rem;font-size:.97rem}
   .encart p{color:var(--encre)}
+  .encart p+p{margin-top:.8rem}
   .encart strong{color:var(--pature)}
+
+  /* la fabrication, étape par étape */
+  .etapes{list-style:none;margin-top:1.6rem;border-top:1px solid var(--filet)}
+  .etapes li{display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr);gap:.4rem 2rem;
+    padding:1.4rem 0;border-bottom:1px solid var(--filet)}
+  .etapes .moment{font-family:var(--serif);font-size:1.05rem;color:var(--cuivre-texte)}
+  .etapes .moment small{display:block;font-family:var(--sans);font-size:.72rem;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--cendre);margin-top:.25rem}
+  .etapes h3{font-size:1.2rem;margin-bottom:.3rem}
+  .etapes p{color:var(--encre-doux);font-size:.97rem;max-width:64ch}
 
   .produits{background:var(--creme-cru);border-top:3px double var(--paille);
     border-bottom:3px double var(--paille)}
   .rang-produit{display:grid;grid-template-columns:90px minmax(0,1fr) minmax(0,2fr);
     gap:1.5rem;align-items:start;padding:1.75rem 0;border-bottom:1px solid var(--filet)}
   .rang-produit:last-of-type{border-bottom:none}
-  .rang-produit h3{font-family:var(--serif);font-weight:400;font-size:1.35rem}
+  .rang-produit h3{font-size:1.35rem}
   .rang-produit .aop{display:inline-block;font-size:.7rem;text-transform:uppercase;
-    letter-spacing:.16em;color:var(--lait);background:var(--pature);
+    letter-spacing:.16em;color:var(--lait);background:var(--pature-texte);
     padding:.2rem .5rem;margin-top:.4rem}
   .rang-produit p{font-size:.97rem;color:var(--encre-doux)}
+  .rang-produit p+p{margin-top:.7rem}
+  .rang-produit .desc{grid-column:3/4;min-width:0}
+  .rang-produit .quand{font-size:.88rem;color:var(--cendre);border-top:1px solid var(--filet);
+    margin-top:.9rem;padding-top:.6rem}
   .note-prix{font-size:.9rem;color:var(--cendre);font-style:italic;margin-top:1.5rem}
+
+  /* tableau des produits */
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.6rem}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  table.tab{border-collapse:collapse;width:100%;min-width:34rem;background:var(--blanc)}
+  table.tab th,table.tab td{border:1px solid var(--filet);padding:.75rem 1rem;text-align:left;
+    font-size:.93rem;color:var(--encre-doux)}
+  table.tab th{font-family:var(--serif);font-weight:400;font-size:.8rem;letter-spacing:.16em;
+    text-transform:uppercase;background:var(--cuivre-texte);color:var(--lait)}
+  table.tab td:first-child{font-family:var(--serif);font-size:1.02rem;color:var(--encre)}
+  table.tab td.prix{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--paille-texte);white-space:nowrap}
 
   .magasin{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:2.5rem;align-items:start}
   .magasin>div>p{color:var(--encre-doux)}
@@ -115,11 +211,39 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   .rayons b{font-family:var(--serif);font-weight:400;font-size:1.05rem;min-width:11ch}
   .rayons span{font-size:.9rem;color:var(--cendre)}
   .carte-acces{border:1.5px solid var(--cendre);padding:1.5rem 1.75rem;background:var(--blanc)}
-  .carte-acces h3{font-family:var(--serif);font-weight:400;font-size:1.25rem;margin-bottom:.75rem}
+  .carte-acces h3{font-size:1.25rem;margin-bottom:.75rem}
   .carte-acces dl{font-size:.97rem}
   .carte-acces dt{text-transform:uppercase;font-size:.72rem;letter-spacing:.16em;
     color:var(--cendre);margin-top:.9rem}
   .carte-acces dd{margin-top:.15rem}
+
+  /* infos pratiques en quatre blocs */
+  .grille4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));
+    gap:1.5rem;margin-top:1.6rem}
+  .info{background:var(--blanc);border-top:4px solid var(--paille);padding:1.4rem 1.4rem 1.6rem}
+  .info h3{font-size:1.15rem;margin-bottom:.5rem;color:var(--cuivre-texte)}
+  .info p{font-size:.93rem;color:var(--encre-doux)}
+  .info p+p{margin-top:.6rem}
+
+  /* contact : gros pavé téléphone et itinéraire */
+  .contact{background:var(--creme-cru);border-top:3px double var(--paille)}
+  .pave-contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));
+    gap:1.5rem;margin:1.6rem 0 2rem}
+  .gros-tel{display:block;text-decoration:none;padding:1.4rem 1.6rem;
+    background:var(--cuivre-texte);color:var(--lait)}
+  .gros-tel small{display:block;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;
+    margin-bottom:.35rem}
+  .gros-tel b{display:block;font-family:var(--serif);font-weight:400;
+    font-size:clamp(1.4rem,5vw,2rem);line-height:1.15}
+  .gros-tel:hover{background:#7d4426}
+  .gros-tel.attente{background:var(--blanc);color:var(--encre);border:2px dashed var(--cendre)}
+  .gros-tel.attente small{color:var(--cendre)}
+  .gros-tel.attente b{color:var(--cuivre-texte)}
+  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:2rem}
+  .contact-grille h3{font-family:var(--sans);font-size:.72rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--cendre);margin-bottom:.6rem}
+  .contact-grille p{font-size:.95rem;color:var(--encre-doux)}
+  .contact-grille p+p{margin-top:.6rem}
 
   footer.site{background:var(--encre);color:#d9cfbf;padding:2.5rem 5vw;position:relative;overflow:hidden}
   footer.site .filigrane{position:absolute;right:-30px;bottom:-40px;opacity:.12;width:240px}
@@ -127,20 +251,33 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   footer.site a{color:var(--paille)}
   .mention-primo{margin-top:1.25rem;border-top:1px solid var(--filet-nuit);padding-top:1rem;font-size:.82rem}
 
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .monte{opacity:1;transform:none;transition:none}
+  }
+
   @media (max-width:820px){
     .hero,.deux-col,.magasin{grid-template-columns:1fr}
     .hero{gap:2rem}
     .hero figure{order:-1;max-width:260px}
     .rang-produit{grid-template-columns:64px minmax(0,1fr)}
-    .rang-produit p{grid-column:1/-1}
+    .rang-produit .desc{grid-column:1/-1}
+    .etapes li{grid-template-columns:1fr;gap:.6rem}
     nav.principale{margin-left:0;gap:1rem 1.2rem}
   }
   @media (max-width:520px){
     :root{--pas-section:2.75rem}
-    .hero{padding:2.5rem 5vw 2.5rem}
+    header.site,section.bloc,footer.site{padding-left:1.15rem;padding-right:1.15rem}
+    .hero{padding:2.5rem 1.15rem}
+    .frise-bidons{padding-left:1.15rem;padding-right:1.15rem}
+    .reperes div{padding-left:1.15rem;padding-right:1.15rem}
     .rang-produit{grid-template-columns:52px minmax(0,1fr);gap:1rem}
     .carte-acces{padding:1.25rem}
     .rayons b{min-width:0}
+    h2{max-width:none}
   }
 
   /* contraste AA : texte coloré assombri (les aplats gardent la teinte vive) */
@@ -156,9 +293,11 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   </div>
   <nav class="principale">
     <a href="#fruitiere">La fruitière</a>
+    <a href="#fabrication">La fabrication</a>
     <a href="#fromages">Nos fromages</a>
     <a href="#magasin">Vente directe</a>
-    <a href="#acces">Accès</a>
+    <a href="#territoire">Le territoire</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
@@ -168,8 +307,8 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
     <h1>Le lait de l'aube devient <em>comté</em>.</h1>
     <p class="chapo">Chaque matin, le lait cru des fermes du village arrive à la
     fromagerie. Dans les cuves de cuivre, il devient comté, morbier et, à la
-    saison froide, mont d'or — des fromages d'appellation, vendus directement
-    au magasin de la coopérative.</p>
+    saison froide, mont d'or — trois fromages d'appellation d'origine protégée,
+    fabriqués ici et vendus directement au magasin de la coopérative.</p>
     <div class="actions">
       <a class="btn plein" href="#fromages">Découvrir nos fromages</a>
       <a class="btn vide" href="#magasin">Le magasin</a>
@@ -211,6 +350,13 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   </figure>
 </section>
 
+<div class="reperes">
+  <div><b>3 AOP</b><span>comté, morbier et mont d'or</span></div>
+  <div><b>Lait cru</b><span>collecté au village, travaillé sur place</span></div>
+  <div><b>≈ 400 L</b><span>de lait pour une seule meule de comté</span></div>
+  <div><b>4 mois</b><span>d'affinage minimum imposés au comté</span></div>
+</div>
+
 <div class="frise-bidons" aria-hidden="true">
   <svg viewBox="0 0 1200 60" preserveAspectRatio="xMidYMax meet">
     <g fill="none" stroke="#6E6459" stroke-width="3" opacity=".55">
@@ -227,7 +373,7 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   </svg>
 </div>
 
-<section class="bloc" id="fruitiere">
+<section class="bloc monte" id="fruitiere">
   <p class="num">01 —</p>
   <h2>Une fruitière, c'est le village qui fait fromage ensemble</h2>
   <div class="deux-col">
@@ -240,19 +386,100 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
       de lait.</p>
       <p>Le lait est collecté dans les fermes voisines, travaillé cru, sans
       transport inutile : du pré à la cuve, il ne quitte pas le pays.</p>
+      <p>La différence avec une laiterie n'est pas seulement technique, elle est juridique. Le
+      sociétaire d'une fruitière n'est pas un fournisseur qui vend son lait : il est copropriétaire
+      de l'atelier. Ce que le fromage rapporte revient donc aux fermes du village, et les décisions
+      — quel affinage privilégier, quel volume fabriquer — se prennent entre producteurs plutôt
+      qu'ailleurs.</p>
     </div>
     <div class="encart">
       <p><strong>Du pré au magasin, en circuit court.</strong> Ici, le fromage
       que vous achetez a été fabriqué sur place, avec le lait des fermes du
       village. La vente directe rémunère les producteurs au juste prix — et
       vous garantit la fraîcheur.</p>
+      <p><strong>Une fabrication quotidienne.</strong> Le lait cru n'attend pas : il est travaillé
+      le jour même de sa collecte. C'est pour cela qu'une fruitière tourne tous les jours de
+      l'année, y compris les dimanches et les jours fériés.</p>
     </div>
   </div>
 </section>
 
-<section class="bloc produits" id="fromages">
+<section class="bloc monte" id="fabrication" style="background:var(--creme-cru);border-top:3px double var(--paille);border-bottom:3px double var(--paille)">
   <p class="num">02 —</p>
+  <h2>Ce qui se passe entre la traite et la meule</h2>
+  <p class="chapo-section">Rien de compliqué, mais rien d'automatique non plus : la fabrication du
+  comté tient en une matinée de gestes précis, dont plusieurs se décident à la main et à l'œil.
+  Voici l'enchaînement et le temps qu'il réclame.</p>
+  <ul class="etapes">
+    <li>
+      <div class="moment">Le petit matin<small>avant le jour</small></div>
+      <div>
+        <h3>La collecte du lait</h3>
+        <p>Le lait cru des fermes du village arrive à la fromagerie et part directement en cuve.
+        Il n'est ni pasteurisé ni écrémé au préalable : la flore naturelle du lait, qui change avec
+        la saison et l'alimentation des vaches, fait partie du produit. C'est pour cela que le
+        cahier des charges de l'AOP comté interdit l'ensilage dans la ration et impose une collecte
+        de proximité.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">En cuve<small>environ 40 minutes</small></div>
+      <div>
+        <h3>Caillage, puis décaillage</h3>
+        <p>Le lait est tiédi, ensemencé de ferments lactiques et emprésuré. Il prend en une
+        demi-heure environ. Le fromager tranche ensuite le caillé en grains de plus en plus fins,
+        jusqu'au calibre du grain de riz : plus le grain est petit, plus il rendra d'eau, et plus la
+        pâte sera ferme et apte à la longue garde.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">À la chauffe<small>environ 1 heure</small></div>
+      <div>
+        <h3>Le brassage chaud</h3>
+        <p>Le mélange est chauffé au-delà de 50 °C et brassé en continu. Les grains se resserrent et
+        deviennent élastiques. Pour savoir quand arrêter, le fromager en prélève une poignée et la
+        serre dans le creux de la main : c'est ce test, et non un minuteur, qui donne le signal du
+        soutirage.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">Au moule<small>une nuit sous presse</small></div>
+      <div>
+        <h3>Moulage et marquage</h3>
+        <p>Les grains sont soutirés, répartis dans les moules et pressés plusieurs heures — c'est
+        ce qui donne à la meule son talon convexe. Chaque meule reçoit une plaque de caséine
+        identifiant l'atelier et la date de fabrication : des mois plus tard, elle permet encore de
+        savoir d'où sort exactement le morceau que l'on vous coupe.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">En cave<small>4 mois au minimum</small></div>
+      <div>
+        <h3>Salage et affinage sur épicéa</h3>
+        <p>Les meules sont salées puis descendues en cave, posées sur des planches d'épicéa, et
+        retournées et frottées régulièrement. C'est ce travail répété qui construit la croûte et
+        laisse les arômes se développer sans que la pâte ne sèche. Quatre mois est le plancher
+        réglementaire du comté ; les affinages plus longs donnent des fromages plus typés.</p>
+      </div>
+    </li>
+    <li>
+      <div class="moment">Le morbier<small>en parallèle</small></div>
+      <div>
+        <h3>Une autre pâte, un autre rythme</h3>
+        <p>Le morbier suit un chemin différent : pâte pressée non cuite, affinage plus court, et sa
+        raie centrale de charbon végétal. Le mont d'or, lui, n'est fabriqué qu'à la saison froide,
+        dans un moule cerclé d'épicéa. Trois fromages, trois calendriers, une seule fromagerie.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section class="bloc produits monte" id="fromages">
+  <p class="num">03 —</p>
   <h2>Trois fromages d'appellation, un seul terroir</h2>
+  <p class="chapo-section">Trois AOP fabriquées dans la même maison, avec le même lait, mais avec
+  trois techniques et trois calendriers différents. Voici comment les reconnaître et quand les
+  trouver.</p>
 
   <div class="rang-produit">
     <svg viewBox="0 0 90 90" width="90" role="img" aria-label="Meule de comté entamée">
@@ -264,10 +491,17 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
       <h3>Comté</h3>
       <span class="aop">AOP · lait cru</span>
     </div>
-    <p>Fabriqué chaque jour dans nos cuves de cuivre à partir du lait cru de
-    vaches montbéliardes, puis confié à l'affinage sur épicéa. Fruité ou
-    doux selon l'affinage : demandez à goûter avant de choisir, c'est
-    l'usage au magasin.</p>
+    <div class="desc">
+      <p>Pâte pressée cuite, fabriquée chaque jour dans nos cuves de cuivre à partir du lait cru de
+      vaches montbéliardes, puis confiée à l'affinage sur planches d'épicéa. Quatre mois d'affinage
+      au minimum, souvent bien davantage.</p>
+      <p>Jeune, il est souple et lacté, avec une note de beurre et de noisette verte. Plus âgé, la
+      pâte fonce et se raffermit, les arômes virent aux fruits secs et à la torréfaction, et les
+      petits cristaux blancs apparaissent sous la dent. Deux comtés du même âge n'ont pas forcément
+      le même goût : la saison de la traite compte autant que la durée de cave.</p>
+      <p class="quand">Toute l'année, coupé à la demande. Demandez à goûter avant de choisir votre
+      affinage : c'est l'usage au magasin.</p>
+    </div>
   </div>
 
   <div class="rang-produit">
@@ -280,9 +514,16 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
       <h3>Morbier</h3>
       <span class="aop">AOP · lait cru</span>
     </div>
-    <p>Reconnaissable entre tous à sa fine raie de cendre végétale, héritage
-    du temps où l'on protégeait le caillé du matin en attendant celui du
-    soir. Pâte souple, parfum de crème et de noisette.</p>
+    <div class="desc">
+      <p>Reconnaissable entre tous à sa fine raie de charbon végétal, héritage du temps où l'on
+      protégeait le caillé du matin d'une couche de suie en attendant celui du soir. Aujourd'hui la
+      raie est décorative et réglementée, mais elle reste la signature du fromage.</p>
+      <p>Pâte pressée non cuite, donc beaucoup plus souple que le comté : elle cède sous le
+      couteau. Le goût est doux, crémeux, avec un parfum de crème fraîche et de noisette, et une
+      croûte orangée frottée à l'eau salée.</p>
+      <p class="quand">Toute l'année. Il fond remarquablement bien : c'est le fromage des gratins
+      et des tartiflettes du pays.</p>
+    </div>
   </div>
 
   <div class="rang-produit">
@@ -296,22 +537,53 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
       <h3>Mont d'or</h3>
       <span class="aop">AOP · saisonnier</span>
     </div>
-    <p>Le fromage de la saison froide : cerclé d'une sangle d'épicéa et
-    servi dans sa boîte, à la cuillère ou chaud au four. Disponible au
-    magasin de l'automne au printemps, le temps de sa saison d'appellation.</p>
+    <div class="desc">
+      <p>Le fromage de la saison froide, et le seul des trois à avoir une date de naissance et une
+      date de fin. L'appellation n'autorise sa fabrication que de la mi-août à la mi-mars, et sa
+      vente que de septembre à mai : le reste de l'année, il n'existe pas.</p>
+      <p>Pâte molle à croûte lavée, cerclée d'une sangle d'épicéa qui le tient et le parfume, et
+      livrée dans sa boîte de bois. La sangle n'est pas un emballage : c'est un ingrédient, et c'est
+      elle qui donne au fromage sa note résineuse.</p>
+      <p class="quand">De l'automne au printemps. À la cuillère à température ambiante, ou passé au
+      four dans sa boîte avec un peu de vin blanc et une gousse d'ail.</p>
+    </div>
   </div>
 
-  <p class="note-prix">Prix en magasin — l'équipe vous conseille sur place selon les affinages disponibles.</p>
+  <div class="table-scroll">
+    <table class="tab">
+      <caption class="sr-only">Produits vendus au magasin de la coopérative</caption>
+      <tr>
+        <th scope="col">Produit</th>
+        <th scope="col">Type de pâte</th>
+        <th scope="col">Disponibilité</th>
+        <th scope="col">Prix</th>
+      </tr>
+      <tr><td>Comté</td><td>Pressée cuite, lait cru</td><td>Toute l'année, à la coupe</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Morbier</td><td>Pressée non cuite, lait cru</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Mont d'or</td><td>Pâte molle cerclée d'épicéa</td><td>De l'automne au printemps</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Produits du terroir</td><td>Sélection régionale</td><td>Selon les arrivages</td><td class="prix">Prix en magasin</td></tr>
+    </table>
+  </div>
+
+  <p class="note-prix">Prix en magasin — l'équipe vous conseille sur place selon les affinages
+  disponibles. Cette maquette n'avance aucun montant, et la liste exacte des produits du rayon
+  terroir reste à compléter ensemble.</p>
 </section>
 
-<section class="bloc" id="magasin">
-  <p class="num">03 —</p>
+<section class="bloc monte" id="magasin">
+  <p class="num">04 —</p>
   <h2>La vente directe, au magasin de la coopérative</h2>
+  <p class="chapo-section">Le magasin est attenant à l'atelier. Ce n'est pas un détail de
+  logistique : cela veut dire que la meule que l'on vous coupe sort de la cave d'à côté, et que la
+  personne qui vous sert sait de quand elle date.</p>
   <div class="magasin">
     <div>
       <p>Au magasin de la coopérative, le fromage se vend là où il se fabrique.
-      Pas d'intermédiaire, pas de camion : la meule que l'on vous coupe sort de
-      la cave d'à côté.</p>
+      Pas d'intermédiaire, pas de camion : le circuit est aussi court qu'il peut l'être.</p>
+      <p>On y vient pour le morceau de la semaine, pour le plateau du dimanche, ou pour repartir
+      avec de quoi tenir la route jusqu'à la maison. Dites au comptoir si c'est pour manger le soir
+      même ou pour tenir trois jours dans une voiture : la coupe et l'emballage ne sont pas les
+      mêmes.</p>
       <ul class="rayons">
         <li><b>Comté</b><span>coupé à la demande, selon les affinages du moment</span></li>
         <li><b>Morbier</b><span>au lait cru, toute l'année</span></li>
@@ -328,7 +600,101 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
         <dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Fromagerie+de+Vaux-et-Chantegrue+Vaux-et-Chantegrue">Ouvrir dans Google Maps</a></dd>
         <dt>Horaires &amp; téléphone</dt>
         <dd>À compléter avec vous lors de la mise en ligne.</dd>
+        <dt>Ce que l'on trouve sur place</dt>
+        <dd>Comté à la coupe, morbier, mont d'or en saison, et un rayon de produits de la région.</dd>
       </dl>
+    </div>
+  </div>
+</section>
+
+<section class="bloc monte" id="territoire" style="background:var(--creme-cru);border-top:3px double var(--paille);border-bottom:3px double var(--paille)">
+  <p class="num">05 —</p>
+  <h2>Pourquoi le Haut-Doubs donne ce lait-là</h2>
+  <div class="deux-col">
+    <div>
+      <p>Vaux-et-Chantegrue se tient sur le haut plateau du Doubs, dans une zone où les hivers sont
+      longs et la saison de pousse de l'herbe courte. Ce n'est pas une contrainte anecdotique :
+      elle interdit de facto l'élevage intensif. Une prairie de montagne qui pousse lentement porte
+      des dizaines d'espèces différentes plutôt que trois graminées semées, et cette diversité
+      passe dans le lait avant de passer dans le fromage.</p>
+      <p>C'est la raison pour laquelle un comté d'été, fait avec le lait des vaches en pâture, n'a
+      ni la même couleur ni les mêmes arômes qu'un comté d'hiver fait avec du lait de foin. Le
+      produit change au fil de l'année, et c'est normal.</p>
+    </div>
+    <div>
+      <p>Le cahier des charges des AOP du massif rend cette logique obligatoire : races
+      montbéliarde et simmental française, surface d'herbe minimale par vache, interdiction de
+      l'ensilage, alimentation issue de la zone d'appellation. Ces règles protègent moins une
+      recette qu'un mode d'élevage — et, avec lui, le paysage de prairies et de murets que vous
+      traversez pour arriver au village.</p>
+      <p>Les trois fromages de la maison relèvent de trois appellations distinctes, avec chacune sa
+      zone géographique et ses contraintes. Le mont d'or est le plus restrictif des trois : il n'est
+      produit que dans une aire limitée du massif du Jura et seulement une partie de l'année.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc monte" id="infos">
+  <p class="num">06 —</p>
+  <h2>Bon à savoir avant de passer</h2>
+  <div class="grille4">
+    <div class="info">
+      <h3>Quand venir</h3>
+      <p>Les horaires d'ouverture du magasin sont à compléter ensemble avant la mise en ligne :
+      cette maquette n'en invente aucun.</p>
+      <p>Dans les fruitières, l'ouverture suit en général la fabrication : matinée et fin
+      d'après-midi.</p>
+    </div>
+    <div class="info">
+      <h3>Goûter avant d'acheter</h3>
+      <p>Demandez à comparer les affinages disponibles. Ce n'est pas une faveur, c'est la manière
+      normale d'acheter du comté : deux meules n'ont pas le même caractère.</p>
+    </div>
+    <div class="info">
+      <h3>Conserver ses fromages</h3>
+      <p>Bas du réfrigérateur, dans le papier d'origine plutôt que sous film : la pâte a besoin de
+      respirer un peu.</p>
+      <p>Sortir une demi-heure avant de servir — froid, un comté ne dit presque rien.</p>
+    </div>
+    <div class="info">
+      <h3>Commandes et groupes</h3>
+      <p>Plateaux, grosses pièces, commandes pour un repas de famille : prévenez quelques jours à
+      l'avance.</p>
+      <p>Moyens de paiement acceptés et éventuels envois : à compléter ensemble.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc contact monte" id="contact">
+  <p class="num">07 —</p>
+  <h2>Nous contacter</h2>
+  <p class="chapo-section">Avant de faire la route, un coup de fil évite la porte close — surtout
+  pour le mont d'or, dont la saison ouvre et se ferme à date fixe. Le numéro du magasin sera affiché
+  ici en gros dès que vous nous l'aurez confirmé.</p>
+  <div class="pave-contact">
+    <div class="gros-tel attente">
+      <small>Téléphone du magasin</small>
+      <b>À compléter ensemble</b>
+    </div>
+    <a class="gros-tel" href="https://www.google.com/maps/search/?api=1&amp;query=Fromagerie+de+Vaux-et-Chantegrue+Vaux-et-Chantegrue">
+      <small>Venir au magasin</small>
+      <b>Ouvrir l'itinéraire</b>
+    </a>
+  </div>
+  <div class="contact-grille">
+    <div>
+      <h3>Adresse</h3>
+      <p>Fromagerie de Vaux-et-Chantegrue<br>25160 Vaux-et-Chantegrue, Doubs</p>
+    </div>
+    <div>
+      <h3>Horaires</h3>
+      <p>À compléter avec vous avant la mise en ligne. Aucun horaire n'est affiché sur cette
+      maquette : mieux vaut un site muet qu'un site faux.</p>
+    </div>
+    <div>
+      <h3>Le reste à caler</h3>
+      <p>Téléphone, adresse électronique, fermetures annuelles, moyens de paiement, présence sur
+      les marchés : autant de points à remplir ensemble.</p>
     </div>
   </div>
 </section>
@@ -342,3 +708,20 @@ Contenu : faits fournis (coopérative, comté, morbier, mont d'or, vente directe
   Comté, morbier et mont d'or fabriqués au village, vendus en direct.</p>
   <p class="mention-primo">Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle</p>
 </footer>
+
+<script>
+(function(){
+  var cibles = document.querySelectorAll('.monte');
+  if(!('IntersectionObserver' in window) ||
+     window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    cibles.forEach(function(el){el.classList.add('vu')});
+    return;
+  }
+  var io = new IntersectionObserver(function(entrees){
+    entrees.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
+    });
+  }, {threshold:.1});
+  cibles.forEach(function(el){io.observe(el)});
+})();
+</script>

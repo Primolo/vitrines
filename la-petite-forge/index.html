@@ -75,9 +75,17 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
     background:linear-gradient(90deg,var(--fer) 0%,#5C554C 30%,var(--braise) 46%,var(--etincelle) 50%,var(--braise) 54%,#5C554C 70%,var(--fer) 100%);}
   /* HERO */
   .hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;
-        align-items:center;padding:4.5rem 0 4rem;}
+        align-items:center;padding:4.5rem 0 2.5rem;}
   .hero h1{font-size:clamp(2.4rem,6vw,4.1rem);margin:0 0 1.6rem;}
   .hero .amorce{color:var(--cendre-mate);max-width:50ch;margin-bottom:2.4rem;font-size:1.05rem;}
+  /* chiffres-repères du hero */
+  .reperes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--trait);
+           border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);margin-bottom:3.5rem;}
+  .repere{background:var(--charbon);padding:1.5rem 1.3rem;}
+  .repere b{display:block;font-family:var(--slab);font-weight:700;font-size:1.9rem;
+            color:var(--braise-texte);line-height:1;}
+  .repere span{display:block;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+               color:var(--fer);margin-top:.5rem;line-height:1.5;}
   .btn{display:inline-block;font-family:var(--slab);font-weight:700;font-size:.85rem;
        letter-spacing:.14em;text-transform:uppercase;padding:.9rem 1.9rem;border:1px solid var(--braise);
        color:var(--cendre);transition:all .25s;}
@@ -87,15 +95,26 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
   .cta-rang{display:flex;gap:1.2rem;flex-wrap:wrap;}
   section{padding:4.5rem 0;}
   .deux{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3.5rem;}
+  .deux p + p{margin-top:1.1rem;}
   .atouts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--trait);
           border:1px solid var(--trait);margin-top:2.8rem;}
   .atout{background:var(--fonte);padding:1.7rem 1.6rem;}
   .atout h3{font-size:1.02rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.65rem;}
   .atout p{color:var(--cendre-sourde);font-size:.95rem;line-height:1.65;}
   .etinc{flex:0 0 auto;}
+  /* trois pièces de la maison */
+  .pieces{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--trait);
+          border:1px solid var(--trait);margin-top:2.8rem;}
+  .piece{background:var(--fonte);padding:2rem 1.8rem;}
+  .piece h3{font-size:1.2rem;margin-bottom:.8rem;}
+  .piece p{color:var(--cendre-sourde);font-size:.97rem;line-height:1.7;}
+  .piece p + p{margin-top:.8rem;}
+  .piece .pour{display:block;margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--trait);
+               font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--braise-texte);}
   /* bloc lac : bandeau pleine largeur, braise sur charbon inversé */
   .bandeau-lac{background:var(--fonte);border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);}
   .bandeau-lac .int{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:center;padding:4rem 0;}
+  .bandeau-lac p + p{margin-top:1rem;}
   .grand-chiffre{font-family:var(--slab);font-weight:700;font-size:clamp(3rem,7vw,4.6rem);color:var(--braise);line-height:1;}
   .liste-fer{list-style:none;margin-top:1.4rem;}
   .liste-fer li{padding:.7rem 0;border-bottom:1px solid var(--trait);color:var(--cendre-doux);display:flex;gap:.9rem;align-items:baseline;}
@@ -117,6 +136,17 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
   .direct .phrase{font-size:1.08rem;color:var(--cendre-doux);max-width:46ch;}
   .direct .droite{display:flex;flex-direction:column;gap:1rem;align-items:flex-start;}
   .sans-comm{font-family:var(--slab);color:var(--etincelle);font-size:1.05rem;}
+  .raisons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.4rem;margin-top:2.8rem;}
+  .raisons div{border-top:2px solid var(--braise);padding-top:1rem;}
+  .raisons b{display:block;font-family:var(--slab);font-size:1.05rem;margin-bottom:.4rem;}
+  .raisons p{color:var(--cendre-sourde);font-size:.95rem;line-height:1.7;}
+  /* infos pratiques : quatre blocs */
+  .infos4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--trait);
+          border:1px solid var(--trait);margin-top:2.4rem;}
+  .infos4 > div{background:var(--fonte);padding:1.7rem 1.5rem;}
+  .infos4 h3{font-family:var(--sans);font-weight:600;font-size:.76rem;letter-spacing:.2em;
+             text-transform:uppercase;color:var(--braise-texte);margin-bottom:.7rem;}
+  .infos4 p{color:var(--cendre-sourde);font-size:.95rem;line-height:1.7;}
   /* contact */
   .contact-rangs{margin-top:2.2rem;border-top:1px solid var(--trait);}
   .c-rang{display:grid;grid-template-columns:minmax(120px,1fr) minmax(0,3fr);gap:1.5rem;
@@ -126,14 +156,31 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
   .c-rang ul{list-style:none;color:var(--cendre-doux);}
   .c-rang ul li{padding:.15rem 0;}
   .c-rang ul li::before{content:"— ";color:var(--fer);}
+  .appel{display:block;border:2px solid var(--braise);background:var(--fonte);padding:2rem 2.2rem;
+         max-width:34rem;margin-top:2.2rem;}
+  .appel .sur{font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--braise-texte);}
+  .appel .numero{font-family:var(--slab);font-weight:700;font-size:clamp(1.6rem,5vw,2.3rem);
+                 line-height:1.25;margin-top:.5rem;border-bottom:2px dashed var(--fer);
+                 display:inline-block;padding-bottom:.25rem;}
+  .appel .note{font-size:.93rem;color:var(--cendre-sourde);line-height:1.7;margin-top:1rem;}
   footer.bas{padding:var(--e3) 0 var(--e4);font-size:.9rem;color:var(--fer);line-height:1.6;}
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+  .monte.vu{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){.monte{opacity:1;transform:none;transition:none;}}
+  @media (max-width:960px){
+    .pieces{grid-template-columns:1fr;}
+    .raisons{grid-template-columns:1fr;gap:1.8rem;}
+    .infos4{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
   @media (max-width:840px){
     .hero,.deux,.bandeau-lac .int,.direct,.parole-bloc{grid-template-columns:1fr;gap:2rem;}
     .atouts{grid-template-columns:1fr;}
     .direct{padding:2rem;}
     section{padding:3.2rem 0;}
-    .hero{padding:3rem 0 2.5rem;}
+    .hero{padding:3rem 0 2rem;}
     .bandeau-lac .int{padding:3.2rem 0;}
+    .reperes{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:2.5rem;}
   }
   /* petits téléphones : rien ne doit être compressé en colonnes de 120px */
   @media (max-width:520px){
@@ -144,11 +191,69 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
     .parole{padding-left:1.2rem;}
     .parole-bloc{gap:1.6rem;}
     .atout{padding:1.4rem 1.25rem;}
+    .piece{padding:1.5rem 1.3rem;}
+    .infos4{grid-template-columns:1fr;}
+    .appel{padding:1.5rem 1.3rem;}
     nav.haut-nav{gap:1rem 1.1rem;}
     .liste-fer li{align-items:flex-start;}
     .liste-fer li::before{transform:translateY(11px);}
   }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BedAndBreakfast",
+  "@id": "https://primolo.github.io/vitrines/la-petite-forge/#etablissement",
+  "name": "La Petite Forge",
+  "description": "Maison d'hôtes à Oye-et-Pallet, dans un hameau calme du Haut-Doubs, à cinq minutes du lac de Saint-Point.",
+  "url": "https://primolo.github.io/vitrines/la-petite-forge/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Oye-et-Pallet",
+    "postalCode": "25160",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Oye-et-Pallet"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Où se trouve La Petite Forge ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dans un hameau d'Oye-et-Pallet, à cinq minutes en voiture du lac de Saint-Point."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on réserver en direct ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, la réservation directe est possible et évite les commissions de plateforme."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
@@ -174,6 +279,8 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
   </div>
   <nav class="haut-nav">
     <a href="#maison">La maison</a>
+    <a href="#pieces">Le logement</a>
+    <a href="#vivre">Vivre ici</a>
     <a href="#autour">Autour</a>
     <a href="#direct">Réserver</a>
     <a href="#contact">Contact</a>
@@ -216,6 +323,13 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
     </svg>
   </div>
 </div>
+
+<div class="reperes">
+  <div class="repere"><b>5 min</b><span>du lac Saint-Point</span></div>
+  <div class="repere"><b>9,2/10</b><span>note moyenne constatée</span></div>
+  <div class="repere"><b>1 463 m</b><span>le Mont d'Or, à courte route</span></div>
+  <div class="repere"><b>0 %</b><span>de commission en direct</span></div>
+</div>
 </div>
 
 <hr class="fer-chauffe" aria-hidden="true">
@@ -223,14 +337,20 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
 <div class="cadre">
 <section id="maison">
   <div class="deux">
-    <div>
+    <div class="monte">
       <span class="sur-label">La maison</span>
       <h2>Le confort, <span class="braise-mot">sans façons</span></h2>
       <p style="color:var(--cendre-mate);">Une maison indépendante, une décoration que les hôtes
       remarquent, un jardin et une terrasse pour finir les journées dehors.
       Le nécessaire est là — le superflu, on l'a laissé à la ville.</p>
+      <p style="color:var(--cendre-mate);">Indépendante, cela veut dire : votre porte, vos horaires,
+      personne dans l'escalier à sept heures du matin. On arrive quand on arrive, on rentre de
+      randonnée à l'heure qu'on veut, on fait sécher les affaires sans demander.</p>
+      <p style="color:var(--cendre-mate);">Le hameau, lui, est calme au sens plein : pas de route
+      passante, pas de remontée mécanique au-dessus du toit. Ce qu'on entend le soir, c'est le vent
+      dans les épicéas et, l'été, les cloches d'un troupeau dans un pré voisin.</p>
     </div>
-    <div>
+    <div class="monte">
       <div class="atouts" style="margin-top:0;">
         <div class="atout">
           <h3><svg class="etinc" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1 v12 M1 7 h12" stroke="#C75B28" stroke-width="1.6" stroke-linecap="round"/></svg>Cuisine équipée</h3>
@@ -252,23 +372,98 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
     </div>
   </div>
 </section>
+
+<section id="pieces" style="padding-top:1rem;">
+  <div class="monte">
+    <span class="sur-label">Le logement</span>
+    <h2>Trois façons <span class="braise-mot">d'occuper la maison</span></h2>
+    <p style="color:var(--cendre-mate);max-width:56ch;">Le détail chambre par chambre — nombre de
+    couchages, surfaces, étages — reste à écrire avec vous. Voici ce qui est déjà vérifié,
+    et ce que cela change concrètement une fois les sacs posés.</p>
+  </div>
+  <div class="pieces monte">
+    <div class="piece">
+      <h3>La cuisine et le coin repas</h3>
+      <p>Une cuisine équipée : de quoi préparer un vrai repas, pas seulement réchauffer.
+      C'est ce qui fait la différence les jours de pluie, et le soir où l'on rentre trop tard
+      pour une table de restaurant.</p>
+      <p>La boulangerie et l'épicerie sont dans le village : on descend chercher le pain le matin,
+      on remonte, et le petit-déjeuner se prend à sa propre heure, à sa propre table.</p>
+      <span class="pour">Pour ceux qui restent plusieurs jours</span>
+    </div>
+    <div class="piece">
+      <h3>Dormir</h3>
+      <p>Salle de bain privative, linge de lit et serviettes fournis : rien à emporter, rien à
+      louer en arrivant. La télévision est là par satellite, pour les soirs d'hiver où la nuit
+      tombe à cinq heures.</p>
+      <p>Le nombre de chambres, les couchages et l'organisation des étages : à préciser ensemble,
+      chiffres en main — c'est la première question que pose un visiteur, elle mérite une réponse
+      exacte.</p>
+      <span class="pour">Pour une famille ou deux couples, selon la configuration</span>
+    </div>
+    <div class="piece">
+      <h3>La terrasse et le jardin</h3>
+      <p>La terrasse ouvre sur le jardin et la campagne du Haut-Doubs. En été, c'est la pièce
+      la plus utilisée de la maison : on y déjeune, on y fait sécher les maillots revenus du lac,
+      on y reste tard.</p>
+      <p>À cette altitude, la chaleur retombe dès que le soleil passe la crête : prévoyez une
+      épaisseur de plus pour la fin de soirée, même en juillet.</p>
+      <span class="pour">Pour les journées d'été et les soirées douces</span>
+    </div>
+  </div>
+</section>
+
+<section id="vivre" style="padding-top:1rem;">
+  <div class="deux">
+    <div class="monte">
+      <span class="sur-label">Vivre ici</span>
+      <h2>Les repas, <span class="braise-mot">et le reste</span></h2>
+      <p style="color:var(--cendre-mate);">La maison vous laisse la cuisine plutôt qu'un menu
+      imposé : c'est la liberté d'un logement indépendant. Le village fournit l'essentiel —
+      pain le matin, épicerie pour le reste — et les fruitières du Haut-Doubs sont à courte route
+      pour le comté et le morbier.</p>
+      <p style="color:var(--cendre-mate);">Ce qui est fourni, ce qui ne l'est pas, et si un
+      petit-déjeuner peut être proposé : à préciser ensemble. Je préfère laisser cette ligne
+      ouverte plutôt que d'annoncer un service que vous n'assurez pas.</p>
+    </div>
+    <div class="monte">
+      <ul class="liste-fer" style="margin-top:0;">
+        <li>Cuisine équipée et coin repas, à disposition pendant tout le séjour</li>
+        <li>Boulangerie et épicerie dans le village</li>
+        <li>Linge de lit et serviettes fournis, salle de bain privative</li>
+        <li>Wi-Fi et parking privé, offerts, sur place</li>
+        <li>Terrasse et jardin ouverts sur la campagne</li>
+        <li>Ménage, animaux, lit bébé, horaires : à préciser ensemble</li>
+      </ul>
+    </div>
+  </div>
+</section>
 </div>
 
 <div class="bandeau-lac" id="autour">
   <div class="cadre">
-    <div class="int">
+    <div class="int monte">
       <div>
         <div class="grand-chiffre">5 min</div>
         <p style="font-family:var(--slab);font-size:1.2rem;margin-top:.6rem;">du lac Saint-Point</p>
         <p style="color:var(--cendre-sourde);max-width:44ch;margin-top:1rem;">La maison est posée entre
         le lac et les crêtes frontalières : baignade et rives l'été, raquettes et ski
         de Métabief l'hiver, sentiers toute l'année.</p>
+        <p style="color:var(--cendre-sourde);max-width:44ch;">Le lac Saint-Point est l'un des grands
+        lacs naturels du Jura français : près de sept kilomètres de long, à environ 850 mètres
+        d'altitude. Son tour se fait à pied ou à vélo, presque toujours à vue de l'eau, en passant
+        d'un village de rive à l'autre.</p>
+        <p style="color:var(--cendre-sourde);max-width:44ch;">Oye-et-Pallet est sur la route entre
+        Pontarlier et le lac : d'un côté la ville, ses commerces et le château de Joux ; de l'autre
+        l'eau, puis les crêtes et la Suisse juste derrière.</p>
       </div>
       <div>
         <ul class="liste-fer">
           <li>Lac Saint-Point : rives, baignade, tour du lac à pied ou à vélo</li>
           <li>Randonnées balisées au départ du village</li>
-          <li>Station de Métabief et Mont d'Or à courte route</li>
+          <li>Station de Métabief et Mont d'Or (1 463 m, point culminant du Doubs) à courte route</li>
+          <li>Ski alpin et nordique l'hiver, VTT et sentiers de crête l'été</li>
+          <li>Malbuisson et les villages de rive, pour les terrasses et les courses</li>
           <li>Pontarlier et la Suisse voisine pour les excursions</li>
         </ul>
       </div>
@@ -278,7 +473,7 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
 
 <div class="cadre">
 <section>
-  <div class="parole-bloc">
+  <div class="parole-bloc monte">
     <div>
       <div class="note-globale">9,2<span>/10</span></div>
       <div class="note-legende">Note moyenne constatée</div>
@@ -294,7 +489,7 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
 </section>
 
 <section id="direct">
-  <div class="direct">
+  <div class="direct monte">
     <div>
       <span class="sur-label">Réservez en direct</span>
       <h2>Frappez <span class="braise-mot">à la bonne porte</span></h2>
@@ -309,12 +504,68 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
       deviendra un appel en un geste dès que vous m'aurez donné le numéro.</span>
     </div>
   </div>
+  <div class="raisons monte">
+    <div>
+      <b>On vous répond, pas un robot</b>
+      <p>Une arrivée à minuit, un chien, un lit d'appoint, une allergie : des questions qui se
+      règlent en deux phrases avec la maison, et qui restent sans réponse dans un formulaire.</p>
+    </div>
+    <div>
+      <b>Des conditions décidées ici</b>
+      <p>Report, annulation, changement de dates : c'est la maison qui tranche, pas un règlement
+      automatique. Les conditions exactes seront écrites en clair sur le site — et ce sont les vôtres.</p>
+    </div>
+    <div>
+      <b>Un accueil préparé</b>
+      <p>Savoir à quelle heure vous arrivez et ce que vous venez faire change l'accueil :
+      le chauffage monté avant votre arrivée en hiver, un conseil de sentier qui tient compte
+      de la neige tombée la veille.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pratique">
+  <div class="monte">
+    <span class="sur-label">Infos pratiques</span>
+    <h2>Avant de venir, <span class="braise-mot">l'essentiel</span></h2>
+  </div>
+  <div class="infos4 monte">
+    <div>
+      <h3>Arrivée et départ</h3>
+      <p>Un message la veille avec votre heure approximative suffit. Horaires exacts d'arrivée
+      et de départ à préciser ensemble.</p>
+    </div>
+    <div>
+      <h3>Sur place</h3>
+      <p>Parking privé et Wi-Fi offerts, cuisine équipée, linge fourni. On se gare une fois,
+      les sentiers partent du village.</p>
+    </div>
+    <div>
+      <h3>Selon la saison</h3>
+      <p>Hiver : ski et raquettes à Métabief, la nuit tombe tôt, la maison chauffe. Été : le lac
+      à cinq minutes, la terrasse jusque tard, une laine pour la fin de soirée.</p>
+    </div>
+    <div>
+      <h3>À préciser ensemble</h3>
+      <p>Tarifs par saison, durée minimale, capacité exacte, animaux, ménage, moyens de paiement :
+      je ne veux rien inventer à votre place.</p>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
-  <span class="sur-label">Contact</span>
-  <h2>À Oye-et-Pallet, <span class="braise-mot">Haut-Doubs</span></h2>
-  <div class="contact-rangs">
+  <div class="monte">
+    <span class="sur-label">Contact</span>
+    <h2>À Oye-et-Pallet, <span class="braise-mot">Haut-Doubs</span></h2>
+  </div>
+  <div class="appel monte">
+    <div class="sur">Appeler la maison</div>
+    <div class="numero">Numéro à insérer ici</div>
+    <p class="note">Sur le site réel, ce bloc devient un bouton d'appel : un doigt dessus depuis
+    un téléphone et la maison sonne. C'est le geste le plus fréquent d'un visiteur qui hésite —
+    il doit être l'élément le plus visible de la page.</p>
+  </div>
+  <div class="contact-rangs monte">
     <div class="c-rang">
       <span class="cle">Commune</span>
       <p>La Petite Forge — 25160 Oye-et-Pallet, Doubs (entre Pontarlier et le lac Saint-Point)</p>
@@ -350,5 +601,22 @@ Thème : UN SEUL thème sombre assumé — une forge se visite à la lueur du fo
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
 </div>
+
+<script>
+  (function(){
+    var cibles = document.querySelectorAll('.monte');
+    if(!('IntersectionObserver' in window) ||
+       window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      cibles.forEach(function(el){ el.classList.add('vu'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
+      });
+    },{threshold:.12});
+    cibles.forEach(function(el){ io.observe(el); });
+  })();
+</script>
 </body>
 </html>

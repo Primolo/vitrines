@@ -14,6 +14,76 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Le Tremplin — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "https://primolo.github.io/vitrines/le-tremplin/#etablissement",
+  "name": "Le Tremplin",
+  "description": "Restaurant au pied des pistes de Métabief : burgers maison, pizzas et spécialités comtoises. Skieurs l'hiver, vététistes l'été.",
+  "url": "https://primolo.github.io/vitrines/le-tremplin/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Métabief",
+    "postalCode": "25370",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Métabief"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "telephone": "+33381491066",
+  "email": "restoletremplin@gmail.com",
+  "servesCuisine": [
+    "Française",
+    "Pizza",
+    "Burger"
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Le Tremplin est-il au pied des pistes de Métabief ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, le restaurant se situe au pied des pistes de la station de Métabief."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que sert Le Tremplin ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Des burgers maison, des pizzas et des spécialités comtoises, avec une terrasse."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le restaurant est-il ouvert en été ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. L'été, Le Tremplin accueille notamment les vététistes du bike park de Métabief."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --neige:#F4F2ED; --nuit:#101D2E; --rouge:#E03E2D; --piste:#2F6DA3; --fart:#F0A72E; --fart-clair:#F9C066;
@@ -24,7 +94,12 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
     --texte:"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--neige);color:var(--nuit);font-family:var(--texte);line-height:1.6}
+  body{background:var(--neige);color:var(--nuit);font-family:var(--texte);line-height:1.6;
+    overflow-wrap:break-word;-webkit-text-size-adjust:100%;
+    /* les aplats et les titres sont inclinés (skewX) : on rogne le débord latéral
+       sans créer de conteneur de défilement, pour que l'en-tête sticky continue de coller */
+    overflow-x:clip}
+  p{text-wrap:pretty}
   .demo-band{
     background:var(--nuit);color:var(--neige);font-size:.85rem;letter-spacing:.02em;
     padding:.6rem 1.2rem;text-align:left;border-bottom:4px solid var(--fart);
@@ -50,6 +125,7 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
     text-transform:uppercase;transform:skewX(-8deg);letter-spacing:.02em;max-width:14ch}
   .hero h1 span{color:var(--fart-clair)}
   .hero p.pitch{margin-top:1.2rem;font-size:1.15rem;max-width:34rem;font-weight:500}
+  .hero p.pitch + p.pitch{margin-top:.9rem;font-size:1.02rem;font-weight:400}
   .hero .cta-row{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
   .btn{font-family:var(--titres);text-transform:uppercase;letter-spacing:.08em;font-weight:700;
     text-decoration:none;padding:.85rem 1.6rem;display:inline-block;transform:skewX(-8deg)}
@@ -62,6 +138,12 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   .hero > h1,.hero > p.pitch,.hero > .cta-row{position:relative;z-index:2}
   .hero svg.remontee{position:absolute;right:-2vw;bottom:-1rem;width:min(640px,80vw);opacity:.9;
     z-index:1;pointer-events:none}
+  /* chiffres-repères sous le hero */
+  .reperes{background:var(--nuit);color:var(--neige);padding:2.2rem 6vw;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem}
+  .repere b{display:block;font-family:var(--titres);font-weight:800;letter-spacing:.02em;
+    font-size:clamp(1.7rem,4.4vw,2.6rem);color:var(--fart);line-height:1.05;transform:skewX(-8deg)}
+  .repere span{display:block;font-size:.9rem;margin-top:.4rem;max-width:24ch}
   /* bandes diagonales */
   .strip{padding:4.5rem 6vw}
   .strip-rouge{background:var(--rouge-aplat);color:#fff;clip-path:polygon(0 8%,100% 0,100% 100%,0 100%);padding-top:6rem}
@@ -71,22 +153,43 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   .hero h1{text-wrap:balance}
   svg{max-width:100%}
   a:focus-visible,.btn:focus-visible{outline:3px solid var(--nuit);outline-offset:4px}
-  .hero a:focus-visible,.strip-rouge a:focus-visible,.strip-nuit a:focus-visible{outline-color:var(--fart)}
+  .hero a:focus-visible,.strip-rouge a:focus-visible,.strip-nuit a:focus-visible,.reperes a:focus-visible{outline-color:var(--fart)}
   h2 .tick{display:inline-block;width:.6em;height:.18em;background:var(--fart);vertical-align:middle;margin-right:.4em}
+  .chapo{max-width:46rem;font-size:1.05rem}
+  .chapo + .chapo{margin-top:.9rem}
   .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;margin-top:2rem}
   .plat{border:3px solid currentColor;padding:1.4rem;position:relative}
   .plat::before{content:"";position:absolute;top:-3px;left:-3px;width:2.2rem;height:.6rem;background:var(--fart)}
   .plat h3{font-family:var(--titres);text-transform:uppercase;letter-spacing:.06em;font-size:1.05rem;margin-bottom:.6rem}
-  .plat ul{list-style:none;margin-top:.4rem}
+  .plat p + p{margin-top:.7rem}
+  .plat ul{list-style:none;margin-top:.8rem}
   .plat li{padding-left:1.1rem;position:relative;margin:.35rem 0}
   .plat li::before{content:"";position:absolute;left:0;top:.55em;width:.55em;height:.18em;background:var(--fart);transform:skewX(-20deg)}
   .note-carte{margin-top:1.6rem;font-size:.95rem;max-width:46rem}
+  /* tableau des prestations */
+  .table-wrap{overflow-x:auto;margin-top:1.8rem;border-top:4px solid var(--nuit)}
+  table.presta{width:100%;border-collapse:collapse;min-width:480px;font-size:.97rem}
+  table.presta th{font-family:var(--titres);text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;
+    text-align:left;background:var(--nuit);color:var(--neige);padding:.85rem 1rem}
+  table.presta td{padding:.85rem 1rem;border-bottom:1px solid #cdc9c0;vertical-align:top}
+  table.presta td:last-child{text-align:right;font-weight:700;white-space:nowrap;color:#8E2416}
+  table.presta td em{display:block;font-style:normal;font-size:.88rem;color:#3B4A5C;margin-top:.15rem}
   /* deux saisons */
   .saisons{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
   .saison{padding:1.6rem;background:rgba(255,255,255,.06);border-left:.5rem solid var(--fart)}
   .saison.hiver{border-color:var(--piste)}
   .saison.ete{border-color:var(--rouge)}
   .saison h3{font-family:var(--titres);text-transform:uppercase;font-size:1.2rem;letter-spacing:.08em;margin-bottom:.6rem}
+  .saison p + p{margin-top:.8rem}
+  .saison ul{list-style:none;margin-top:.9rem;font-size:.96rem}
+  .saison li{padding-left:1.1rem;position:relative;margin:.35rem 0}
+  .saison li::before{content:"";position:absolute;left:0;top:.55em;width:.55em;height:.18em;background:var(--fart);transform:skewX(-20deg)}
+  /* la salle */
+  .salle{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:2.4rem;align-items:start;margin-top:1.4rem}
+  .salle p + p{margin-top:.9rem}
+  .exergue{font-family:var(--titres);text-transform:uppercase;font-size:1.15rem;letter-spacing:.05em;
+    line-height:1.35;border-left:.5rem solid var(--rouge);padding-left:1rem;margin-bottom:1.2rem;transform:skewX(-4deg)}
+  .exergue span{display:inline-block;transform:skewX(4deg)}
   /* comptoir */
   .comptoir{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:1.6rem}
   .fait{background:var(--nuit);color:var(--neige);padding:1.2rem 1.3rem;transform:skewX(-4deg)}
@@ -96,6 +199,12 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   .resa{background:var(--fart);color:var(--nuit);padding:4rem 6vw;clip-path:polygon(0 12%,100% 0,100% 100%,0 100%)}
   .resa .tel{font-family:var(--titres);font-size:clamp(1.8rem,5vw,3rem);font-weight:800;letter-spacing:.04em;
     color:var(--nuit);text-decoration:none;border-bottom:5px solid var(--rouge)}
+  .gros-tel{display:block;max-width:34rem;margin-top:1.6rem;background:var(--nuit);color:var(--neige);
+    text-decoration:none;text-align:center;padding:1.3rem 1rem;font-family:var(--titres);font-weight:800;
+    font-size:clamp(1.6rem,5.5vw,2.4rem);letter-spacing:.05em;transform:skewX(-8deg)}
+  .gros-tel > span{display:block;transform:skewX(8deg)}
+  .gros-tel small{display:block;font-size:.72rem;letter-spacing:.24em;margin-bottom:.35rem;color:var(--fart)}
+  .gros-tel:hover{background:#000}
   .resa p{max-width:40rem;margin-top:1rem}
   /* accès */
   .acces{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;align-items:start;margin-top:2rem}
@@ -107,6 +216,14 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   .cable{display:block;width:100%;max-width:520px;margin:0 0 1.6rem}
   footer{background:var(--nuit);color:var(--neige);padding:1.4rem 6vw;font-size:.85rem;border-top:5px solid var(--rouge)}
   footer a{color:var(--fart)}
+  /* apparition douce au défilement */
+  .js .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .js .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.js .monte{opacity:1;transform:none;transition:none}}
+  @media (max-width:900px){
+    .reperes{grid-template-columns:1fr 1fr;gap:1.3rem}
+    .salle{grid-template-columns:1fr;gap:1.6rem}
+  }
   @media (max-width:720px){
     header.top{position:static;padding:1rem max(1.25rem,6vw)}
     nav.main{width:100%}
@@ -117,8 +234,13 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
     .strip-rouge{padding-top:5rem}
     .strip-nuit{padding-bottom:5rem}
     .resa{padding:3.5rem max(1.25rem,6vw)}
+    .reperes{padding:2rem max(1.25rem,6vw)}
     footer{padding:1.4rem max(1.25rem,6vw)}
     .cols,.saisons,.comptoir,.acces{gap:1.2rem}
+  }
+  @media (max-width:420px){
+    .reperes{grid-template-columns:1fr}
+    .btn{display:block;text-align:center}
   }
 </style>
 
@@ -128,7 +250,9 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   <span class="logo">Le <em>Tremplin</em></span>
   <nav class="main">
     <a href="#carte">La carte</a>
+    <a href="#tarifs">Formules</a>
     <a href="#saisons">Deux saisons</a>
+    <a href="#salle">La salle</a>
     <a href="#reserver">Réserver</a>
     <a href="#acces">Accès</a>
   </nav>
@@ -137,6 +261,7 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
 <section class="hero">
   <h1>Au pied des pistes,<br>plein <span>gaz</span>.</h1>
   <p class="pitch">Burgers maison, pizzas généreuses et spécialités comtoises, à Métabief — le point de ralliement des skieurs l'hiver et des vététistes l'été.</p>
+  <p class="pitch">On déchausse devant la porte, on pose les gants sur le radiateur, on commande. C'est une table de station, pas une table d'étape : bruyante à midi, plus calme le soir, ouverte sur les deux saisons de la montagne.</p>
   <div class="cta-row">
     <a class="btn btn-rouge" href="tel:+33381491066"><span>03 81 49 10 66</span></a>
     <a class="btn btn-neige" href="#carte"><span>Voir la carte</span></a>
@@ -157,29 +282,40 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   </svg>
 </section>
 
+<div class="reperes">
+  <div class="repere"><b>4,3/5</b><span>la note moyenne relevée sur les guides en ligne</span></div>
+  <div class="repere"><b>500+</b><span>avis publiés par vos clients</span></div>
+  <div class="repere"><b>1 463 m</b><span>le Mont d'Or, sommet du Doubs, au-dessus de la station</span></div>
+  <div class="repere"><b>2 saisons</b><span>skis l'hiver, VTT l'été, la même adresse</span></div>
+</div>
+
 <section class="strip strip-rouge" id="carte">
   <h2><span class="tick"></span>La carte, façon station</h2>
+  <p class="chapo">Trois familles de plats, et une logique simple : on mange en fonction de ce qu'on vient de faire ou de ce qu'on s'apprête à faire. Un casse-croûte rapide entre deux remontées n'a rien à voir avec la tablée de fin de journée.</p>
   <div class="cols">
-    <div class="plat">
+    <div class="plat monte">
       <h3>Burgers</h3>
-      <p>La spécialité de la maison, celle que les habitués recommandent.</p>
+      <p>La spécialité de la maison, celle que les habitués recommandent. C'est le plat qui revient le plus souvent dans vos avis en ligne, avec les frites maison qui l'accompagnent.</p>
+      <p>Format solide, à manger avec les doigts, servi assez vite pour ne pas manger sur le temps de la dernière benne.</p>
       <ul>
         <li>Burgers maison</li>
         <li>Frites maison</li>
         <li>Salade César</li>
       </ul>
     </div>
-    <div class="plat">
+    <div class="plat monte">
       <h3>Pizzas</h3>
-      <p>Généreuses, à partager en tablée après une journée dehors.</p>
+      <p>Généreuses, à partager en tablée après une journée dehors. C'est le choix des groupes et des familles quand chacun veut piocher dans ce que le voisin a commandé.</p>
+      <p>La liste des pizzas et la possibilité de les emporter sont à préciser ensemble : c'est le genre de détail qu'un client cherche avant d'appeler.</p>
       <ul>
         <li>Pizzas à la carte</li>
         <li>Sur place ou à emporter — à préciser ensemble</li>
       </ul>
     </div>
-    <div class="plat">
+    <div class="plat monte">
       <h3>Côté Comté</h3>
-      <p>Le terroir du Haut-Doubs, comme il se doit à Métabief.</p>
+      <p>Le terroir du Haut-Doubs, comme il se doit à Métabief. La fondue comtoise pour les soirées où personne n'est pressé, et les spécialités régionales pour ceux qui montent une fois par an et veulent goûter le pays.</p>
+      <p>Les crêpes ferment la marche, l'après-midi comme en fin de repas.</p>
       <ul>
         <li>Fondue comtoise</li>
         <li>Spécialités régionales</li>
@@ -190,21 +326,56 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
   <p class="note-carte">Carte présentée à titre indicatif d'après les plats cités par vos clients en ligne — la carte réelle et les tarifs seront repris avec vous lors de la validation.</p>
 </section>
 
+<section class="strip" id="tarifs">
+  <h2><span class="tick"></span>Formules et prestations</h2>
+  <p class="chapo">Aucun prix n'est affiché ici tant que vous ne les avez pas validés : mieux vaut une case « nous consulter » qu'un tarif faux, que le client découvre au moment de l'addition. Voici la trame du tableau, prête à recevoir vos montants.</p>
+  <div class="table-wrap monte">
+    <table class="presta">
+      <caption style="text-align:left;padding:.9rem 0;font-weight:700">Ce qui se sert au Tremplin</caption>
+      <thead>
+        <tr><th scope="col">Prestation</th><th scope="col">Quand</th><th scope="col">Tarif</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Burger et frites maison<em>le plat le plus cité par vos clients</em></td><td>Midi et soir</td><td>nous consulter</td></tr>
+        <tr><td>Pizzas<em>sur place ou à emporter, à confirmer</em></td><td>Midi et soir</td><td>nous consulter</td></tr>
+        <tr><td>Fondue comtoise<em>à partir de deux personnes, à confirmer</em></td><td>Le soir, en saison</td><td>nous consulter</td></tr>
+        <tr><td>Salades et assiettes<em>dont la salade César citée dans les avis</em></td><td>Le midi</td><td>nous consulter</td></tr>
+        <tr><td>Crêpes et desserts<em>aussi pour la pause de l'après-midi</em></td><td>Toute la journée</td><td>nous consulter</td></tr>
+        <tr><td>Groupes et clubs<em>tablées de skieurs, sorties VTT, séminaires</em></td><td>Sur réservation</td><td>sur devis</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="a-completer">Dès que vous nous transmettez la carte à jour, les montants remplacent les mentions « nous consulter » et le tableau devient la page la plus consultée du site.</p>
+</section>
+
 <section class="strip strip-nuit" id="saisons">
   <h2><span class="tick"></span>Deux saisons, une adresse</h2>
+  <p class="chapo">Métabief vit deux fois par an, et le restaurant suit le même rythme. Ce ne sont ni les mêmes horaires, ni les mêmes clients, ni la même façon de s'attabler — un site qui ne raconte qu'une saison sur deux perd la moitié de ses visiteurs.</p>
   <div class="saisons">
-    <div class="saison hiver">
+    <div class="saison hiver monte">
       <h3>L'hiver — skis au râtelier</h3>
       <p>Au pied des pistes de Métabief : on déchausse, on s'attable. Le repaire des skieurs pour la pause de midi comme pour l'après-ski.</p>
+      <p>Le service de midi est serré : entre 12 h et 14 h, tout le monde veut manger en même temps et repartir avant que la neige ne tourne. Le soir, l'ambiance change — on prend le temps, la fondue sort, les familles redescendent des chalets.</p>
+      <ul>
+        <li>Pause de midi entre deux remontées</li>
+        <li>Après-ski et repas du soir</li>
+        <li>Vacances scolaires : réservez, la salle se remplit</li>
+      </ul>
     </div>
-    <div class="saison ete">
+    <div class="saison ete monte">
       <h3>L'été — VTT au portique</h3>
       <p>Quand la station passe en mode VTT, Le Tremplin reste le camp de base : une table solide avant de remonter, une terrasse pour souffler après la descente.</p>
+      <p>Le public change : vététistes couverts de poussière, randonneurs descendus du Mont d'Or, familles en vacances au bord du lac. Les portions comptent plus que jamais pour ceux qui enchaînent les descentes.</p>
+      <ul>
+        <li>Terrasse pour les retours de piste</li>
+        <li>Groupes et clubs VTT sur réservation</li>
+        <li>Randonneurs du Mont d'Or et du plateau</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="strip">
+<section class="strip" id="salle">
   <!-- rappel de la signature : le câble et sa cabine -->
   <svg class="cable" viewBox="0 0 520 60" fill="none" aria-hidden="true">
     <path d="M0 18 L520 42" stroke="#101D2E" stroke-width="2"/>
@@ -215,40 +386,78 @@ fondue et crêpes à la carte ; accueil souriant toute l'année ; réservation c
     </g>
     <path d="M96 22 L96 56 M80 56 L112 56" stroke="#101D2E" stroke-width="3"/>
   </svg>
-  <h2><span class="tick"></span>Ce qu'on entend au comptoir</h2>
-  <div class="comptoir">
-    <div class="fait"><div><b>Ce qui revient le plus</b>Les burgers et les frites maison — c'est le premier plat que vos clients citent dans leurs avis.</div></div>
-    <div class="fait"><div><b>La note</b>Environ 4,3/5 sur les guides en ligne, sur plus de 500 avis publiés.</div></div>
-    <div class="fait"><div><b>L'accueil</b>Le deuxième compliment le plus fréquent : une équipe souriante, l'hiver comme l'été.</div></div>
+  <h2><span class="tick"></span>La maison</h2>
+  <div class="salle">
+    <div class="monte">
+      <p class="exergue"><span>Place Xavier Authier : la place où l'on se retrouve avant de monter et où l'on se raconte la journée en redescendant.</span></p>
+      <p>Le Tremplin est à cet endroit précis de la station où l'on passe forcément — celui où les groupes se reforment, où l'un attend l'autre, où l'on décide si on remonte une dernière fois ou si on s'arrête là. Beaucoup de tables se remplissent sans réservation, simplement parce que la porte était devant.</p>
+      <p>La salle vit au rythme des remontées : plein à craquer à midi, calme à quinze heures pour un chocolat et des crêpes, puis de nouveau animée quand les pistes ferment. C'est une maison où l'on entre en tenue de ski sans se poser de question, et où les enfants ne dérangent personne.</p>
+      <p>Ce que vos clients écrivent le plus souvent, après les plats, c'est l'accueil. Cela revient hiver comme été, et c'est un argument qui mérite d'être en haut de page plutôt qu'enfoui dans les avis.</p>
+      <p class="a-completer">Photos de la salle et de la terrasse, nombre de couverts, coin adapté aux groupes : à intégrer avec vous. Nous n'inventons rien sur ce qui n'a pas été vérifié.</p>
+    </div>
+    <div class="monte">
+      <h3 style="font-family:var(--titres);text-transform:uppercase;letter-spacing:.08em;font-size:1rem;margin-bottom:.8rem">Ce qu'on entend au comptoir</h3>
+      <div class="comptoir" style="grid-template-columns:1fr;margin-top:0">
+        <div class="fait"><div><b>Ce qui revient le plus</b>Les burgers et les frites maison — c'est le premier plat que vos clients citent dans leurs avis.</div></div>
+        <div class="fait"><div><b>La note</b>Environ 4,3/5 sur les guides en ligne, sur plus de 500 avis publiés.</div></div>
+        <div class="fait"><div><b>L'accueil</b>Le deuxième compliment le plus fréquent : une équipe souriante, l'hiver comme l'été.</div></div>
+      </div>
+      <p class="note-carte">Tendances relevées dans vos avis en ligne. Les citations exactes, et les avis que vous voudrez mettre en avant, seront choisis avec vous.</p>
+    </div>
   </div>
-  <p class="note-carte">Tendances relevées dans vos avis en ligne. Les citations exactes, et les avis que vous voudrez mettre en avant, seront choisis avec vous.</p>
 </section>
 
 <section class="resa" id="reserver">
   <h2><span class="tick"></span>Réservez votre table</h2>
-  <a class="tel" href="tel:+33381491066">03 81 49 10 66</a>
-  <p>En période de vacances scolaires, la salle se remplit vite : un coup de fil avant de descendre des pistes, et votre table vous attend. Vous pouvez aussi écrire à <a href="mailto:restoletremplin@gmail.com">restoletremplin@gmail.com</a>.</p>
+  <p>En période de vacances scolaires, la salle se remplit vite : un coup de fil avant de descendre des pistes, et votre table vous attend. Précisez le nombre de couverts et l'heure — c'est tout ce qu'il faut.</p>
+  <a class="gros-tel" href="tel:+33381491066"><span><small>Appeler le restaurant</small>03 81 49 10 66</span></a>
+  <p>Pour un groupe, un club ou une sortie d'entreprise, mieux vaut appeler quelques jours avant : au-delà d'une dizaine de couverts, la salle se prépare autrement. Vous pouvez aussi écrire à <a href="mailto:restoletremplin@gmail.com">restoletremplin@gmail.com</a>.</p>
 </section>
 
 <section class="strip" id="acces">
   <h2><span class="tick"></span>Venir au Tremplin</h2>
+  <p class="chapo">Quatre informations, celles qu'on cherche sur un téléphone avec des gants : où c'est, comment on y va, qui on appelle, et quand c'est ouvert.</p>
   <div class="acces">
-    <div class="bloc">
+    <div class="bloc monte">
       <h3>Où nous trouver</h3>
       <p>Le Tremplin<br>3 place Xavier Authier<br>25370 Métabief — au pied des pistes</p>
+      <p style="margin-top:.6rem;font-size:.94rem">Au centre de la station, à quelques pas du départ des remontées.</p>
     </div>
-    <div class="bloc">
+    <div class="bloc monte">
       <h3>Itinéraire</h3>
       <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Tremplin+M%C3%A9tabief">Ouvrir dans Google Maps</a></p>
+      <p style="margin-top:.6rem;font-size:.94rem">Depuis Pontarlier, direction Métabief puis le centre station. Stationnement : à préciser ensemble selon la saison.</p>
     </div>
-    <div class="bloc">
+    <div class="bloc monte">
       <h3>Contact</h3>
       <p>Tél. <a href="tel:+33381491066">03 81 49 10 66</a><br><a href="mailto:restoletremplin@gmail.com">restoletremplin@gmail.com</a></p>
+      <p style="margin-top:.6rem;font-size:.94rem">Réservations, groupes, questions sur la carte du jour.</p>
+    </div>
+    <div class="bloc monte">
+      <h3>Horaires</h3>
+      <p>Jours et horaires d'ouverture, saison par saison : à compléter ensemble.</p>
+      <p style="margin-top:.6rem;font-size:.94rem">C'est la première chose que les clients cherchent sur un site de restaurant — cette case sera remplie avant la mise en ligne.</p>
     </div>
   </div>
-  <p class="a-completer">Jours et horaires d'ouverture, saison par saison : à intégrer avec vous — c'est la première chose que les clients cherchent sur un site de restaurant.</p>
+  <p class="a-completer">Cette maquette ne contient que des éléments vérifiables : coordonnées, plats cités publiquement, note moyenne en ligne. Tout le reste — horaires, tarifs, photos, fermetures annuelles — sera renseigné avec vous.</p>
 </section>
 
 <footer>
   Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle
 </footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  (function(){
+    var els = document.querySelectorAll('.monte');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(e){e.classList.add('vu')}); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('vu'); io.unobserve(en.target); }
+      });
+    },{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  })();
+</script>

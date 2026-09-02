@@ -25,7 +25,8 @@ Thème : UN SEUL thème clair chaleureux assumé (papier d'épicerie), pas de va
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--papier);color:var(--encre);font-family:Seravek,"Gill Sans","Segoe UI",Verdana,sans-serif;line-height:1.65}
 img,svg{max-width:100%}
-h1,h2,h3,.slab{font-family:Rockwell,"Rockwell Nova","Roboto Slab","Courier New",serif;font-weight:700}
+h1,h2,h3{font-family:Rockwell,"Rockwell Nova","Roboto Slab","Courier New",serif;font-weight:700}
+.slab{font-family:Rockwell,"Rockwell Nova","Roboto Slab","Courier New",serif;font-weight:700}
 h1,h2{text-wrap:balance}
 p{text-wrap:pretty}
 a:focus-visible,.btn:focus-visible,.reseau:focus-visible{outline:3px solid var(--morteau);outline-offset:3px;border-radius:3px}
@@ -33,29 +34,41 @@ header.top a:focus-visible,.encart a:focus-visible,footer a:focus-visible{outlin
 .demo-band{background:var(--morteau);color:#FCEFE0;text-align:center;padding:.6rem 1rem;font-size:.85rem;letter-spacing:.02em}
 header.top{background:var(--bois);color:var(--papier);padding:1rem 5vw;display:flex;flex-wrap:wrap;align-items:center;gap:1rem;justify-content:space-between}
 header.top .marque{display:flex;align-items:center;gap:.7rem}
-header.top nav{display:flex;gap:1.4rem;flex-wrap:wrap;font-size:.95rem}
+header.top nav{display:flex;gap:1rem 1.4rem;flex-wrap:wrap;font-size:.95rem}
 header.top nav a{color:var(--comte);text-decoration:none;border-bottom:2px dotted transparent;padding-bottom:2px}
 header.top nav a:hover{border-bottom-color:var(--comte)}
 .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:2rem;align-items:center;padding:4rem 5vw 3rem;max-width:1200px;margin:0 auto}
 .hero h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;color:var(--bois)}
 .hero h1 em{font-style:normal;color:var(--morteau)}
-.hero p.accroche{margin:1.2rem 0 1.8rem;font-size:1.1rem;max-width:32rem}
+.hero p.accroche{margin:1.2rem 0 1.4rem;font-size:1.1rem;max-width:32rem}
+.hero p.appoint{margin-bottom:1.6rem;max-width:32rem;color:var(--note);font-size:.98rem}
 .sticker{display:inline-block;background:var(--comte);color:var(--bois);border-radius:50%;width:7.2rem;height:7.2rem;text-align:center;transform:rotate(-8deg);font-size:.8rem;line-height:1.25;padding-top:1.9rem;box-shadow:2px 3px 0 rgba(46,36,27,.25);margin-right:1rem;vertical-align:middle}
 .sticker strong{display:block;font-size:1.15rem;font-family:Rockwell,"Roboto Slab",serif}
 .btn{display:inline-block;background:var(--bois);color:var(--papier);text-decoration:none;padding:.75rem 1.5rem;border-radius:4px;font-weight:600;vertical-align:middle}
 .btn:hover{background:var(--morteau)}
 .hero-svg{width:100%;height:auto}
+
+/* chiffres-repères, sur ficelle */
+.reperes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:1.2rem 1.6rem;
+  max-width:1200px;margin:0 auto;padding:0 5vw 2.6rem}
+.repere{border-top:3px dashed var(--kraft);padding-top:.9rem}
+.repere b{display:block;font-family:Rockwell,"Roboto Slab","Courier New",serif;font-size:1.75rem;line-height:1.1;color:var(--morteau)}
+.repere span{display:block;font-size:.86rem;color:var(--note);margin-top:.15rem}
+
 section{padding:var(--pas-3) 5vw;max-width:1200px;margin:0 auto}
 .ficelle{border-top:3px dashed var(--kraft)}
 h2{font-size:clamp(1.6rem,3.4vw,2.3rem);color:var(--bois);margin-bottom:.4rem;max-width:22ch}
 .sous{display:block;color:var(--morteau);font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:.82rem}
-.etiquettes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1.4rem;margin-top:var(--pas-2)}
-.etiquette{background:var(--carte);border:1px solid var(--kraft);border-radius:6px;padding:1.5rem 1.3rem 1.3rem;position:relative;box-shadow:2px 3px 0 rgba(201,168,122,.35)}
+.intro{max-width:66ch;margin-top:.6rem}
+.intro + .intro{margin-top:.8rem}
+.etiquettes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1.4rem;margin-top:var(--pas-2)}
+.etiquette{background:var(--carte);border:1px solid var(--kraft);border-radius:6px;padding:1.6rem 1.3rem 1.3rem;position:relative;box-shadow:2px 3px 0 rgba(201,168,122,.35)}
 .etiquette::before{content:"";position:absolute;top:-9px;left:50%;width:44px;height:16px;margin-left:-22px;background:var(--comte);opacity:.85;transform:rotate(-2deg)}
 .etiquette:nth-child(2){transform:rotate(.6deg)}
 .etiquette:nth-child(3){transform:rotate(-.6deg)}
 .etiquette h3{color:var(--morteau);margin-bottom:.5rem;font-size:1.15rem}
-.etiquette ul{list-style:none;font-size:.95rem}
+.etiquette p{font-size:.95rem}
+.etiquette ul{list-style:none;font-size:.95rem;margin-top:.9rem;border-top:1px dotted var(--kraft);padding-top:.6rem}
 .etiquette li{padding:.28rem 0;border-bottom:1px dotted var(--kraft)}
 .etiquette li:last-child{border-bottom:none}
 .histoire{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2rem;align-items:start}
@@ -64,18 +77,53 @@ h2{font-size:clamp(1.6rem,3.4vw,2.3rem);color:var(--bois);margin-bottom:.4rem;ma
 .encart{background:var(--bois);color:var(--papier);border-radius:8px;padding:2rem}
 .encart h3{color:var(--comte);font-size:1.3rem}
 .encart a{color:var(--comte)}
+
+/* tableau des rayons */
+.table-boite{overflow-x:auto;margin-top:var(--pas-2);border:1px solid var(--kraft);border-radius:6px;background:var(--carte)}
+table.rayons{width:100%;border-collapse:collapse;font-size:.95rem;min-width:520px}
+table.rayons th{background:var(--bois);color:var(--papier);text-align:left;font-family:Rockwell,"Roboto Slab","Courier New",serif;
+  font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;padding:.8rem 1rem}
+table.rayons td{padding:.8rem 1rem;border-top:1px dotted var(--kraft);vertical-align:top}
+table.rayons td:first-child{font-weight:600;color:var(--bois)}
+table.rayons td:last-child{text-align:right;color:var(--morteau);white-space:nowrap;font-weight:600}
+
 .reseaux{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:var(--pas-1)}
 .reseau{display:flex;align-items:center;gap:.6rem;background:var(--carte);border:1px solid var(--kraft);border-radius:6px;padding:.7rem 1.1rem;text-decoration:none;color:var(--encre);font-weight:600;font-size:.92rem}
 .reseau:hover{border-color:var(--morteau)}
 .reseau.inactif{color:var(--note);font-weight:400;border-style:dashed;background:transparent}
+.compteur{background:var(--comte);color:var(--bois);border-radius:6px;padding:1.2rem 1.3rem;margin-top:var(--pas-1);max-width:24rem}
+.compteur b{display:block;font-family:Rockwell,"Roboto Slab","Courier New",serif;font-size:2rem;line-height:1.1}
+.compteur span{font-size:.92rem}
 .note{font-size:.88rem;color:var(--note)}
+
+/* infos pratiques : 4 blocs */
+.blocs4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1.3rem;margin-top:var(--pas-2)}
+.bloc-info{background:var(--carte);border:1px solid var(--kraft);border-radius:6px;padding:1.4rem 1.3rem}
+.bloc-info svg{width:26px;height:26px;margin-bottom:.7rem}
+.bloc-info h3{font-size:1.05rem;color:var(--bois);margin-bottom:.35rem}
+.bloc-info p{font-size:.93rem;color:var(--note)}
+
 .pratique{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:2.5rem;align-items:start;margin-top:1.6rem}
 .contact dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:.5rem 1.2rem}
 .contact dt{font-weight:700;color:var(--morteau)}
 .contact a{color:var(--bouteille)}
+.gros-tel{display:block;background:var(--morteau);color:#FCEFE0;text-decoration:none;border-radius:6px;
+  padding:1.2rem 1.3rem;text-align:center;max-width:26rem;margin:1.4rem 0 var(--pas-2);box-shadow:3px 4px 0 rgba(46,36,27,.22)}
+.gros-tel small{display:block;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;opacity:.9;margin-bottom:.3rem}
+.gros-tel strong{font-family:Rockwell,"Roboto Slab","Courier New",serif;font-size:1.7rem;letter-spacing:.02em}
+.gros-tel:hover{background:var(--bois)}
 footer{background:var(--bois);color:#CBB894;text-align:center;padding:1.8rem 5vw;font-size:.85rem;margin-top:var(--pas-3)}
 footer .maison{color:var(--comte);font-family:Rockwell,"Roboto Slab","Courier New",serif;font-size:1rem;margin-bottom:.4rem}
 footer a{color:var(--comte)}
+
+/* apparition douce au défilement */
+.monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.monte.vu{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .monte{opacity:1;transform:none;transition:none}
+}
+
 @media(max-width:820px){
   .hero,.deux-col,.pratique{grid-template-columns:1fr}
   .histoire{grid-template-columns:1fr}
@@ -87,8 +135,89 @@ footer a{color:var(--comte)}
   .contact dt{margin-top:.9rem}
   .sticker{margin:0 0 1rem;display:block}
   .btn{display:block;text-align:center}
+  .gros-tel strong{font-size:1.45rem}
 }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "@id": "https://primolo.github.io/vitrines/chalet-jacquet/#etablissement",
+  "name": "Le Chalet Jacquet",
+  "description": "Épicerie fine de terroir à La Cluse-et-Mijoux : fromages affinés, salaisons fumées au tuyé, vins du Jura et paniers garnis. Ouvert sept jours sur sept.",
+  "url": "https://primolo.github.io/vitrines/chalet-jacquet/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "La Cluse-et-Mijoux",
+    "postalCode": "25300",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "La Cluse-et-Mijoux"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "telephone": "+33381397540",
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "https://schema.org/Monday",
+        "https://schema.org/Tuesday",
+        "https://schema.org/Wednesday",
+        "https://schema.org/Thursday",
+        "https://schema.org/Friday",
+        "https://schema.org/Saturday",
+        "https://schema.org/Sunday"
+      ],
+      "opens": "09:00",
+      "closes": "19:00"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Le Chalet Jacquet est-il ouvert tous les jours ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, la boutique est ouverte sept jours sur sept. Les horaires précis sont à confirmer au 03 81 39 75 40."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que vend le Chalet Jacquet ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Des produits du terroir franc-comtois : fromages affinés, salaisons fumées au tuyé, vins du Jura et paniers garnis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on composer un panier cadeau ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, la boutique propose des paniers garnis. Les compositions se calent directement en magasin ou par téléphone."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
@@ -100,8 +229,10 @@ footer a{color:var(--comte)}
   </div>
   <nav>
     <a href="#comptoir">Le comptoir</a>
-    <a href="#histoire">Notre histoire</a>
-    <a href="#paniers">Paniers &amp; expédition</a>
+    <a href="#maison">La maison</a>
+    <a href="#rayons">Les rayons</a>
+    <a href="#reseaux">Les arrivages</a>
+    <a href="#paniers">Paniers &amp; commande</a>
     <a href="#contact">Venir nous voir</a>
   </nav>
 </header>
@@ -109,7 +240,12 @@ footer a{color:var(--comte)}
 <div class="hero">
   <div>
     <h1>Le terroir du Haut-Doubs, <em>tranché au comptoir</em>.</h1>
-    <p class="accroche">Fromages affinés, salaisons fumées au tuyé, vins du Jura et paniers garnis : au pied du château de Joux, le Chalet Jacquet sélectionne le meilleur des fermes et des caves de la région.</p>
+    <p class="accroche">Fromages affinés, salaisons fumées, vins du Jura et épicerie fine :
+    au pied du château de Joux, le Chalet Jacquet est une épicerie de terroir où l'on coupe,
+    on fait goûter et on explique avant de vendre.</p>
+    <p class="appoint">Ouvert tous les jours de l'année, y compris le dimanche — ce qui, dans
+    un village de montagne, n'est pas un détail quand on s'aperçoit à midi qu'il manque
+    quelque chose sur la table.</p>
     <span class="sticker"><strong>7 j / 7</strong>ouvert<br>toute l'année</span>
     <a class="btn" href="#comptoir">Découvrir le comptoir</a>
   </div>
@@ -151,34 +287,58 @@ footer a{color:var(--comte)}
   </svg>
 </div>
 
+<div class="reperes">
+  <div class="repere monte"><b>7 j / 7</b><span>ouvert toute l'année, dimanche compris</span></div>
+  <div class="repere monte"><b>677</b><span>abonnés suivent les arrivages sur Instagram</span></div>
+  <div class="repere monte"><b>2</b><span>réseaux tenus au jour le jour : Facebook et Instagram</span></div>
+  <div class="repere monte"><b>4</b><span>familles de produits au comptoir</span></div>
+</div>
+
 <section id="comptoir" class="ficelle">
-  <span class="sous">Au comptoir</span>
-  <h2>Ce que vous trouverez sur nos planches</h2>
-  <p>Une sélection rigoureuse, en direct des producteurs franc-comtois — servie à la coupe, sous vide sur demande.</p>
+  <span class="sous monte">Au comptoir</span>
+  <h2 class="monte">Ce que vous trouverez sur nos planches</h2>
+  <p class="intro monte">Une épicerie de terroir n'est pas un rayon de supermarché en plus
+  petit. La différence tient à trois choses : ce qui est coupé devant vous, ce qui n'existe
+  qu'à certaines saisons, et le fait qu'on puisse répondre à la question « lequel, pour
+  quoi faire ? ». Voilà les quatre familles qui occupent le comptoir.</p>
   <div class="etiquettes">
-    <div class="etiquette">
+    <div class="etiquette monte">
       <h3>Fromages</h3>
-      <ul><li>Comté de nos fruitières</li><li>Morbier au lait cru</li><li>Mont d'Or en saison</li><li>Tommes &amp; spécialités locales</li></ul>
+      <p>Coupés à la demande, au gramme près plutôt qu'au format préemballé. C'est aussi le
+      rayon le plus saisonnier : certaines spécialités du massif n'apparaissent qu'une partie
+      de l'année, et disparaissent aussi vite qu'elles sont arrivées.</p>
+      <ul><li>Comté et fromages du massif jurassien</li><li>Pâtes pressées et pâtes molles</li><li>Spécialités de saison</li><li>Tommes et fromages de chèvre</li></ul>
     </div>
-    <div class="etiquette">
+    <div class="etiquette monte">
       <h3>Salaisons</h3>
-      <ul><li>Saucisse de Morteau</li><li>Jambon &amp; brési fumés</li><li>Terrines artisanales</li><li>Charcuteries du tuyé</li></ul>
+      <p>Les charcuteries fumées font partie du paysage du Haut-Doubs autant que les sapins.
+      Elles se conservent, elles voyagent bien, et elles se prêtent à la mise sous vide pour
+      ceux qui repartent loin.</p>
+      <ul><li>Saucisses fumées du pays</li><li>Jambons et viandes séchées</li><li>Terrines et pâtés</li><li>Charcuteries à cuisiner</li></ul>
     </div>
-    <div class="etiquette">
-      <h3>Vins du Jura &amp; cave</h3>
-      <ul><li>Savagnin, chardonnay, poulsard</li><li>Vin jaune &amp; macvin</li><li>Bières et sirops artisanaux</li><li>Conseil accords au comptoir</li></ul>
+    <div class="etiquette monte">
+      <h3>Cave &amp; boissons</h3>
+      <p>Le Jura est une petite région viticole avec des vins qui ne ressemblent à aucun
+      autre. C'est précisément le rayon où le conseil compte le plus : on vient rarement en
+      sachant déjà quelle bouteille poser à côté de quel plat.</p>
+      <ul><li>Vins du Jura, blancs et rouges</li><li>Spécialités régionales de la cave</li><li>Bières et boissons artisanales</li><li>Accords conseillés au comptoir</li></ul>
     </div>
-    <div class="etiquette">
+    <div class="etiquette monte">
       <h3>Épicerie fine</h3>
-      <ul><li>Miels et confitures du massif</li><li>Biscuits &amp; douceurs</li><li>Moutardes, condiments</li><li>Idées cadeaux gourmandes</li></ul>
+      <p>Tout ce qui se garde et tout ce qui s'offre : les bocaux, les douceurs, les
+      condiments. C'est ce rayon qui permet de composer un panier quand on cherche un cadeau
+      plutôt qu'un repas.</p>
+      <ul><li>Miels et confitures</li><li>Biscuits et douceurs</li><li>Condiments et conserves</li><li>Idées cadeaux gourmandes</li></ul>
     </div>
   </div>
-  <p class="note" style="margin-top:1.2rem">Tarifs à la coupe et disponibilités saisonnières : nous consulter en boutique ou par téléphone.</p>
+  <p class="note" style="margin-top:1.2rem">Le détail exact de la sélection change au fil des
+  arrivages : la liste ci-dessus donne les familles, pas un catalogue figé. Tarifs à la coupe
+  et disponibilités : prix en magasin, ou par téléphone.</p>
 </section>
 
-<section id="histoire" class="ficelle">
+<section id="maison" class="ficelle">
   <div class="histoire">
-    <svg class="tampon" viewBox="0 0 120 120" aria-hidden="true">
+    <svg class="tampon monte" viewBox="0 0 120 120" aria-hidden="true">
       <circle cx="60" cy="60" r="56" fill="none" stroke="#9C3D2E" stroke-width="3" stroke-dasharray="6 4"/>
       <circle cx="60" cy="60" r="44" fill="none" stroke="#9C3D2E" stroke-width="1.5"/>
       <text x="60" y="50" text-anchor="middle" font-family="Rockwell,serif" font-size="13" fill="#9C3D2E">MAISON</text>
@@ -186,10 +346,102 @@ footer a{color:var(--comte)}
       <text x="60" y="84" text-anchor="middle" font-family="Seravek,sans-serif" font-size="9" fill="#9C3D2E">Haut-Doubs</text>
     </svg>
     <div>
-      <span class="sous">Notre histoire</span>
-      <h2>Une maison de famille du Haut-Doubs</h2>
-      <p>Installé au lieu-dit La Gauffre, à La Cluse-et-Mijoux, le Chalet Jacquet a été fondé par Martine et Michel Jacquet, figures locales de la salaison. Depuis juillet 2021, Yanis Paget a repris le comptoir avec la même exigence : des produits frais, des fournisseurs choisis un par un, et le goût du conseil.</p>
-      <p style="margin-top:.8rem">Sur la route du château de Joux, la boutique est devenue une halte gourmande pour les habitants comme pour les visiteurs de passage — ouverte tous les jours, toute l'année.</p>
+      <span class="sous monte">La maison</span>
+      <h2 class="monte">Pourquoi on pousse cette porte-là</h2>
+      <p class="intro monte">Il y a des commerces où l'on prend un produit sur une étagère, et
+      d'autres où l'on repart avec un renseignement en plus. Le Chalet Jacquet est du second
+      type : c'est une épicerie de comptoir, où la vente commence par une question et se
+      termine souvent par un goût sur la langue.</p>
+      <p class="intro monte">Concrètement, cela veut dire qu'on coupe devant vous la quantité
+      dont vous avez besoin — pas 400 g sous film parce que c'est le seul format. Que l'on
+      peut dire quel fromage tiendra jusqu'à dimanche et lequel doit être mangé ce soir.
+      Et que si vous décrivez le repas que vous préparez, on vous orientera vers le produit
+      qui va avec plutôt que vers le plus cher.</p>
+      <p class="intro monte">L'autre raison est plus prosaïque : la boutique est ouverte
+      <strong>sept jours sur sept, toute l'année</strong>, sur la route qui monte au château
+      de Joux. Pour les habitants, c'est le dépannage du dimanche midi. Pour les gens de
+      passage, c'est l'arrêt où l'on charge de quoi tenir la semaine de vacances — ou de quoi
+      rapporter le Haut-Doubs à la maison.</p>
+      <p class="note monte" style="margin-top:.8rem">L'histoire de la maison, les personnes
+      qui la tiennent et les producteurs partenaires sont <em>à compléter ensemble</em> :
+      ce sont des informations qui doivent venir de vous, pas d'une supposition.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rayons" class="ficelle">
+  <span class="sous monte">En un coup d'œil</span>
+  <h2 class="monte">Les rayons et les services</h2>
+  <p class="intro monte">Ce que la boutique propose, et ce qu'on peut vous faire faire en
+  plus de la vente au détail.</p>
+  <div class="table-boite monte">
+    <table class="rayons">
+      <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Rayons de la boutique, services associés et modalités de tarif</caption>
+      <thead>
+        <tr><th scope="col">Rayon ou service</th><th scope="col">Ce que cela recouvre</th><th scope="col">Tarif</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Fromages à la coupe</td><td>coupe à la demande, à la quantité souhaitée</td><td>prix en magasin</td></tr>
+        <tr><td>Salaisons et charcuteries</td><td>pièces entières ou tranchées sur place</td><td>prix en magasin</td></tr>
+        <tr><td>Cave</td><td>vins du Jura, bières et boissons artisanales</td><td>prix en magasin</td></tr>
+        <tr><td>Épicerie fine</td><td>miels, confitures, biscuits, condiments</td><td>prix en magasin</td></tr>
+        <tr><td>Mise sous vide</td><td>pour emporter loin ou conserver plus longtemps</td><td>nous consulter</td></tr>
+        <tr><td>Plateau de fromages ou de charcuterie</td><td>préparé pour un repas, une soirée, une raclette</td><td>nous consulter</td></tr>
+        <tr><td>Panier garni</td><td>composé avec vous, ou selon un budget que vous fixez</td><td>nous consulter</td></tr>
+        <tr><td>Commande à l'avance</td><td>préparée par téléphone, à retirer en boutique</td><td>nous consulter</td></tr>
+        <tr><td>Cadeaux d'entreprise et fêtes de fin d'année</td><td>plusieurs paniers, à préparer à l'avance</td><td>nous consulter</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note" style="margin-top:1.2rem">Aucun montant n'est affiché ici volontairement :
+  les prix des produits frais bougent avec les arrivages et l'affinage. Ils sont indiqués en
+  magasin, et donnés au téléphone sans difficulté.</p>
+</section>
+
+<section id="reseaux" class="ficelle">
+  <span class="sous monte">Les arrivages, en direct</span>
+  <h2 class="monte">Ce qui est arrivé cette semaine se voit d'abord sur Instagram</h2>
+  <div class="deux-col">
+    <div>
+      <p class="intro monte">Une épicerie de terroir vit d'arrivages : une meule ouverte, une
+      spécialité de saison qui revient, une caisse de bouteilles reçue le matin. Rien de tout
+      cela ne tient dans une page de site, parce que c'est différent chaque semaine.</p>
+      <p class="intro monte">C'est pour cette raison que la maison est active au jour le jour
+      sur <strong>Instagram</strong> et sur <strong>Facebook</strong> : ce sont les deux
+      endroits où l'on voit, en photo, ce qu'il y a réellement sur la planche aujourd'hui.
+      <strong>677 personnes</strong> y sont déjà abonnées — pour un commerce de village,
+      c'est un carnet d'habitués qui se tient tout seul.</p>
+      <p class="intro monte">Le bon réflexe : suivre le compte, et appeler quand quelque
+      chose passe et vous fait envie. Ce qui est annoncé le matin n'est pas toujours encore
+      là le lendemain.</p>
+      <div class="reseaux">
+        <a class="reseau monte" href="https://www.instagram.com/" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="none" stroke="#9C3D2E" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="#9C3D2E" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.4" fill="#9C3D2E"/></svg>
+          Instagram — Le Chalet Jacquet
+        </a>
+        <a class="reseau monte" href="https://www.facebook.com/lechaletjacquet/" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="5" fill="#2E241B"/><path d="M13.5 8.5h2V5.8h-2.3c-2 0-3 1.3-3 3.1v1.8H8v2.6h2.2V19h2.7v-5.7h2.2l.4-2.6h-2.6V9.3c0-.5.2-.8.6-.8Z" fill="#F9F3E6"/></svg>
+          Facebook — Le Chalet Jacquet
+        </a>
+      </div>
+      <p class="note" style="margin-top:.9rem">Les adresses exactes des deux profils sont à
+      confirmer ensemble avant la mise en ligne, pour que les liens pointent au bon endroit.</p>
+    </div>
+    <div>
+      <div class="compteur monte">
+        <b>677</b>
+        <span>abonnés suivent le compte Instagram de la maison.</span>
+      </div>
+      <div class="encart monte" style="margin-top:1.2rem">
+        <h3>Ce qu'on y publie</h3>
+        <p style="margin-top:.6rem">Les arrivages du jour, les produits de saison qui
+        reviennent, les préparations du week-end, les fermetures exceptionnelles et les
+        rappels de fêtes — c'est aussi là qu'on annonce les périodes où il vaut mieux
+        commander à l'avance.</p>
+        <p style="margin-top:.6rem">Le contenu réel du calendrier de publication est
+        <em>à caler ensemble</em> : le site peut reprendre automatiquement les dernières
+        publications si vous le souhaitez.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -197,44 +449,99 @@ footer a{color:var(--comte)}
 <section id="paniers" class="ficelle">
   <div class="deux-col">
     <div>
-      <span class="sous">Pour offrir ou emporter</span>
-      <h2>Paniers garnis &amp; expédition sous vide</h2>
-      <p>Composez votre panier garni au comptoir — fromages, salaisons, vins et douceurs — ou confiez-nous un budget : nous l'assemblons pour vous. Comités d'entreprise et cadeaux de fin d'année : nous consulter.</p>
-      <p style="margin-top:.8rem">Vos produits voyagent bien : nous les conditionnons <strong>sous vide</strong> pour préserver leur fraîcheur, et le <strong>Click &amp; Collect</strong> vous permet de commander à l'avance et de retirer en boutique.</p>
+      <span class="sous monte">Pour offrir ou emporter</span>
+      <h2 class="monte">Paniers garnis, plateaux et commandes à l'avance</h2>
+      <p class="intro monte">Un panier garni se compose au comptoir, produit par produit :
+      un fromage qui tiendra le voyage, une salaison, une bouteille, une douceur. Vous pouvez
+      aussi donner un budget et laisser la maison l'assembler — c'est souvent plus simple
+      quand le panier est destiné à quelqu'un d'autre.</p>
+      <p class="intro monte">Pour les repas à plusieurs, un plateau de fromages ou de
+      charcuterie préparé à l'avance évite la file du samedi soir : un appel dans la semaine,
+      un passage rapide en boutique, et le repas est réglé. Même logique pour les cadeaux de
+      fin d'année en nombre, qui demandent d'être annoncés quelques jours plus tôt.</p>
+      <p class="intro monte">Pour ceux qui repartent loin, la <strong>mise sous vide</strong>
+      change tout : elle permet à un fromage ou à une salaison de tenir la route et d'arriver
+      dans le même état qu'au départ du comptoir.</p>
     </div>
-    <div class="encart">
+    <div class="encart monte">
       <h3>Le bon réflexe</h3>
-      <p style="margin-top:.6rem">Un repas de famille, une raclette entre amis, un cadeau à expédier&nbsp;?</p>
-      <p style="margin-top:.6rem">Appelez-nous au <a href="tel:+33381397540">03 81 39 75 40</a> — on prépare, vous passez prendre.</p>
+      <p style="margin-top:.6rem">Un repas de famille, une soirée entre amis, un cadeau à
+      préparer ?</p>
+      <p style="margin-top:.6rem">Appelez le <a href="tel:+33381397540">03 81 39 75 40</a> —
+      on prépare, vous passez prendre. Les délais dépendent de la période : comptez plus
+      large en décembre et pendant les vacances scolaires.</p>
+      <p style="margin-top:.6rem;font-size:.9rem;opacity:.85">Les conditions exactes de
+      commande à l'avance sont à préciser ensemble avant la mise en ligne.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pratique" class="ficelle">
+  <span class="sous monte">Avant de venir</span>
+  <h2 class="monte">Quatre choses utiles à savoir</h2>
+  <div class="blocs4">
+    <div class="bloc-info monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#9C3D2E" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+      <h3>Ouvert 7 j / 7</h3>
+      <p>La boutique est ouverte tous les jours, toute l'année, dimanche compris. Les
+      horaires précis de la journée sont à confirmer ensemble avant la mise en ligne.</p>
+    </div>
+    <div class="bloc-info monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#9C3D2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M4 11h16"/><path d="M9 3v4M15 3v4"/></svg>
+      <h3>Commander à l'avance</h3>
+      <p>Plateaux, paniers et grosses quantités se préparent sur appel. En décembre et en
+      période de vacances, prenez de l'avance : le comptoir est chargé.</p>
+    </div>
+    <div class="bloc-info monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#9C3D2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-4 9 4-9 4-9-4Z"/><path d="M3 12l9 4 9-4"/><path d="M3 16l9 4 9-4"/></svg>
+      <h3>Emporter loin</h3>
+      <p>Mise sous vide possible pour les fromages et les salaisons : c'est ce qui permet
+      à un achat de vacances d'arriver intact à l'autre bout du pays.</p>
+    </div>
+    <div class="bloc-info monte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#9C3D2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      <h3>Sur la route du château</h3>
+      <p>La boutique est à La Cluse-et-Mijoux, sur l'axe qui mène au château de Joux —
+      une halte naturelle entre Pontarlier et la Suisse.</p>
     </div>
   </div>
 </section>
 
 <section id="contact" class="ficelle contact">
-  <span class="sous">Infos pratiques</span>
-  <h2>Venir au Chalet</h2>
+  <span class="sous monte">Infos pratiques</span>
+  <h2 class="monte">Venir au Chalet</h2>
+  <p class="intro monte">Le plus simple reste le téléphone : pour savoir ce qu'il y a au
+  comptoir aujourd'hui, faire préparer une commande, ou vérifier une disponibilité avant de
+  monter.</p>
+  <a class="gros-tel monte" href="tel:+33381397540">
+    <small>Appeler la boutique</small>
+    <strong>03 81 39 75 40</strong>
+  </a>
   <div class="pratique">
     <dl>
       <dt>Adresse</dt><dd>Lieu-dit La Gauffre, 25300 La Cluse-et-Mijoux — sur la route du château de Joux</dd>
       <dt>Téléphone</dt><dd><a href="tel:+33381397540">03 81 39 75 40</a></dd>
-      <dt>Ouverture</dt><dd>7 jours sur 7, toute l'année</dd>
+      <dt>Ouverture</dt><dd>7 jours sur 7, toute l'année (horaires détaillés à confirmer ensemble)</dd>
       <dt>Itinéraire</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Chalet+Jacquet+La+Cluse-et-Mijoux" rel="noopener">Ouvrir dans Google Maps</a></dd>
-      <dt>Sur place</dt><dd>Coupe à la demande, mise sous vide, Click &amp; Collect sur commande téléphonique.</dd>
+      <dt>Sur place</dt><dd>Coupe à la demande, mise sous vide, plateaux et paniers sur commande téléphonique.</dd>
+      <dt>Suivre</dt><dd>Instagram et Facebook, tenus au jour le jour — 677 abonnés.</dd>
     </dl>
     <div>
       <h3 style="font-size:1.05rem;color:var(--bois)">Suivre les arrivages</h3>
-      <p style="margin-top:.5rem;font-size:.95rem">Le meilleur moyen de savoir ce qu'il y a sur la planche cette semaine.</p>
+      <p style="margin-top:.5rem;font-size:.95rem">Le meilleur moyen de savoir ce qu'il y a
+      sur la planche cette semaine — et d'être prévenu des fermetures exceptionnelles.</p>
       <div class="reseaux">
+        <a class="reseau" href="https://www.instagram.com/" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="none" stroke="#9C3D2E" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="#9C3D2E" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.4" fill="#9C3D2E"/></svg>
+          Instagram — 677 abonnés
+        </a>
         <a class="reseau" href="https://www.facebook.com/lechaletjacquet/" rel="noopener">
           <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="5" fill="#2E241B"/><path d="M13.5 8.5h2V5.8h-2.3c-2 0-3 1.3-3 3.1v1.8H8v2.6h2.2V19h2.7v-5.7h2.2l.4-2.6h-2.6V9.3c0-.5.2-.8.6-.8Z" fill="#F9F3E6"/></svg>
           Facebook — Le Chalet Jacquet
         </a>
-        <span class="reseau inactif">
-          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="none" stroke="#63533E" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="#63533E" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.4" fill="#9C3D2E"/></svg>
-          Instagram — lien à fournir
-        </span>
       </div>
-      <p class="note" style="margin-top:.9rem">Adresses exactes des profils à confirmer ensemble avant mise en ligne.</p>
+      <p class="note" style="margin-top:.9rem">Adresses exactes des profils à confirmer
+      ensemble avant mise en ligne.</p>
     </div>
   </div>
 </section>
@@ -243,5 +550,36 @@ footer a{color:var(--comte)}
   <p class="maison">Le Chalet Jacquet — épicerie de terroir, La Cluse-et-Mijoux</p>
   <p>Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle</p>
 </footer>
+
+<script>
+  (function(){
+    var els = Array.prototype.slice.call(document.querySelectorAll('.monte'));
+    var reduit = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function tout(){ els.forEach(function(el){ el.classList.add('vu'); }); }
+    if (reduit.matches || !('IntersectionObserver' in window)) { tout(); return; }
+    var io = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); }
+      });
+    }, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+    // filet de sécurité : si l'observateur ne peut pas travailler (onglet masqué,
+    // impression, navigateur particulier), rien ne doit rester invisible.
+    function rattrape(){
+      els.forEach(function(el){
+        if (el.classList.contains('vu')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 1.25 && r.bottom > -200) {
+          el.classList.add('vu'); io.unobserve(el);
+        }
+      });
+    }
+    window.addEventListener('load', rattrape);
+    window.addEventListener('scroll', rattrape, {passive:true});
+    document.addEventListener('visibilitychange', function(){ if (!document.hidden) rattrape(); });
+    window.addEventListener('beforeprint', tout);
+    setTimeout(rattrape, 400);
+  })();
+</script>
 </body>
 </html>

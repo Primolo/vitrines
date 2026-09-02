@@ -15,11 +15,76 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>L'Écrin du Lac — maquette</title>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BedAndBreakfast",
+  "@id": "https://primolo.github.io/vitrines/ecrin-du-lac/#etablissement",
+  "name": "L'Écrin du Lac",
+  "description": "Chambres d'hôtes dans une ancienne ferme comtoise rénovée, au bord du lac de Saint-Point. Quatre chambres et un gîte indépendant.",
+  "url": "https://primolo.github.io/vitrines/ecrin-du-lac/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Saint-Point-Lac",
+    "postalCode": "25160",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Saint-Point-Lac"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien de chambres compte L'Écrin du Lac ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quatre chambres d'hôtes, auxquelles s'ajoute un gîte indépendant pour les séjours plus longs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L'Écrin du Lac est-il proche du lac ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, la maison se trouve au cœur du village de Saint-Point-Lac, sur la rive du lac de Saint-Point."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le petit-déjeuner est-il compris ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le petit-déjeuner fait partie de la formule chambre d'hôtes. Les détails sont à préciser lors de la réservation."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 <style>
   :root{
     --lac:#266A6C; --brume:#EFF5F4; --encre:#1F3235; --sable:#CBD6D2; --genet:#D9A441;
     /* même genêt, éclairci : version lisible sur le fond vert-lac */
     --genet-clair:#F0C77A;
+    /* genêt assombri : version lisible en TEXTE sur la brume claire */
+    --genet-texte:#8A6212;
     --serif:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
     --sans:"Gill Sans","Gill Sans MT","Segoe UI","Helvetica Neue",sans-serif;
   }
@@ -53,20 +118,29 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
   .hero .direct{margin-top:2rem;display:inline-block;background:var(--lac);color:var(--brume);text-decoration:none;
     padding:.9rem 1.8rem;letter-spacing:.08em;font-size:.9rem;text-transform:uppercase}
   .hero .direct:hover{background:var(--encre)}
+  /* chiffres-repères du hero */
+  .reperes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.6rem;margin-top:2.8rem;
+           border-top:1px solid var(--sable);padding-top:1.6rem}
+  .repere b{display:block;font-family:var(--serif);font-weight:400;font-size:2rem;color:var(--lac);line-height:1}
+  .repere span{display:block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--encre);margin-top:.4rem}
   svg.ondes{width:100%;max-width:380px;justify-self:center}
   .ponctuation{display:block;margin:0 0 1.4rem}
   h1,h2{text-wrap:balance}
   h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,3.6vw,2.3rem);margin-bottom:1.2rem;max-width:30ch}
+  h2 em{font-style:italic;color:var(--lac)}
   /* colonne d'étiquette étroite + colonne de lecture calibrée : sans plafond de mesure,
      les paragraphes atteignaient 130 caractères par ligne sur un grand écran */
   .duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:2.5rem}
   .duo p{max-width:62ch}
+  .duo p + p{margin-top:1rem}
   .duo .colonne-titre{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lac)}
   /* chambres */
   .chambres{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--sable);border:1px solid var(--sable);margin-top:2rem}
   .chambre{background:var(--brume);padding:1.8rem}
   .chambre h3{font-family:var(--serif);font-weight:400;font-size:1.2rem;margin-bottom:.5rem}
   .chambre p{font-size:.95rem}
+  .chambre p + p{margin-top:.7rem}
+  .chambre .pour{display:block;margin-top:.9rem;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--genet-texte)}
   .filet{width:2.4rem;height:2px;background:var(--genet);margin-bottom:.9rem}
   /* louanges */
   .sur-louanges{margin-top:2.8rem}
@@ -74,9 +148,21 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
   .louange{border-top:1px solid var(--sable);padding-top:1rem;max-width:34ch}
   .louange strong{font-family:var(--serif);font-weight:400;font-size:1.15rem;display:block;margin-bottom:.4rem}
   .note-plateforme{margin-top:2.2rem;padding:1.2rem 1.5rem;border-left:3px solid var(--genet);background:#fff;max-width:44rem;font-size:.95rem}
+  /* liste de rive */
+  ul.rive{list-style:none;margin-top:1.6rem;max-width:46rem}
+  ul.rive li{padding:.7rem 0;border-bottom:1px solid var(--sable);display:flex;gap:.9rem;align-items:baseline}
+  ul.rive li::before{content:"";flex:0 0 18px;height:1px;background:var(--genet);transform:translateY(-4px)}
+  /* infos pratiques : quatre blocs */
+  .infos4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--sable);
+          border:1px solid var(--sable);margin-top:2rem}
+  .infos4 > div{background:var(--brume);padding:1.7rem 1.5rem}
+  .infos4 h3{font-family:var(--sans);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;
+             color:var(--lac);margin-bottom:.7rem;font-weight:600}
+  .infos4 p{font-size:.95rem}
   /* résa directe */
   .resa{background:var(--lac);color:var(--brume)}
   .resa h2{color:#fff}
+  .resa h2 em{color:var(--genet-clair)}
   .resa .accroche{font-family:var(--serif);font-size:clamp(1.2rem,2.6vw,1.6rem);font-style:italic;max-width:38rem}
   .resa .argu{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:2.4rem}
   .resa .argu div{border-top:1px solid rgba(239,245,244,.4);padding-top:1rem}
@@ -91,8 +177,21 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
   .contact dt{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lac);margin-bottom:.4rem}
   .contact dd{overflow-wrap:anywhere;max-width:34ch}
   .contact a{color:var(--lac)}
+  .appel{display:block;border:2px solid var(--lac);background:#fff;padding:1.8rem 2rem;max-width:34rem;margin-top:1.8rem}
+  .appel .sur{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--lac);font-weight:600}
+  .appel .numero{font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.25;margin-top:.5rem;
+                 border-bottom:2px dashed var(--sable);display:inline-block;padding-bottom:.25rem}
+  .appel .note{font-size:.92rem;margin-top:.9rem}
   footer{padding:1.4rem 7vw;font-size:.9rem;color:var(--encre);background:var(--sable);overflow-wrap:anywhere}
   footer a{color:var(--encre)}
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.monte{opacity:1;transform:none;transition:none}}
+  @media (max-width:1080px){
+    .reperes{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .infos4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
   @media (max-width:860px){
     .cadre{grid-template-columns:1fr}
     aside.rail{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;border-right:0;border-bottom:1px solid var(--sable)}
@@ -108,6 +207,11 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
     .chambres{gap:1px}
     .chambre{padding:1.4rem}
   }
+  @media (max-width:520px){
+    .infos4{grid-template-columns:1fr}
+    .reperes{gap:1.2rem}
+    .appel{padding:1.4rem 1.2rem}
+  }
 </style>
 
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
@@ -119,7 +223,9 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
       <a href="#maison">La maison</a>
       <a href="#chambres">Les chambres</a>
       <a href="#table">Le petit-déjeuner</a>
+      <a href="#autour">Autour du lac</a>
       <a href="#direct">Réservez en direct</a>
+      <a href="#pratique">Infos pratiques</a>
       <a href="#venir">Venir</a>
     </nav>
     <div class="rail-pied">Rive du lac<br>de Saint-Point<br>~870 m d'altitude</div>
@@ -131,6 +237,12 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
         <h1>Une ancienne ferme posée <em>au bord du lac</em>, quatre chambres, un seul mot d'ordre&nbsp;: prendre le temps.</h1>
         <p class="sous">Au cœur du village de Saint-Point-Lac, sur la rive du lac Saint-Point, L'Écrin du Lac vous reçoit dans une ferme comtoise entièrement rénovée&nbsp;: quatre chambres d'hôtes décorées avec soin, un gîte indépendant, un jardin pour les fins de journée.</p>
         <a class="direct" href="#direct">Réserver en direct</a>
+        <div class="reperes">
+          <div class="repere"><b>4</b><span>chambres d'hôtes</span></div>
+          <div class="repere"><b>1</b><span>gîte indépendant</span></div>
+          <div class="repere"><b>870 m</b><span>d'altitude</span></div>
+          <div class="repere"><b>9,5<span style="display:inline;font-size:.7em;letter-spacing:0">/10</span></b><span>note des voyageurs</span></div>
+        </div>
       </div>
       <!-- signature : ondes concentriques -->
       <svg class="ondes" viewBox="0 0 380 380" fill="none" aria-hidden="true">
@@ -143,20 +255,72 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
       </svg>
     </section>
 
+    <section id="lamaison">
+      <svg class="ponctuation" width="72" height="24" viewBox="0 0 72 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" stroke="#266A6C" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="#266A6C" opacity=".4"/>
+        <line x1="30" y1="12" x2="72" y2="12" stroke="#CBD6D2"/>
+      </svg>
+      <h2 class="monte">Une ferme comtoise, <em>rénovée pour y dormir</em></h2>
+      <div class="duo monte">
+        <p class="colonne-titre">Le lieu</p>
+        <div>
+          <p>C'était une ferme : des murs épais, de grands volumes, des ouvertures faites pour le
+          climat d'ici. La rénovation a gardé les proportions et changé tout le reste — isolation,
+          salles de bain, chauffage. C'est ce qui explique les deux choses que les voyageurs
+          relèvent le plus souvent : des chambres spacieuses, et une maison où l'on n'a jamais froid.</p>
+          <p>Saint-Point-Lac est un village de rive, l'un des plus petits du secteur, posé
+          à environ 870 mètres d'altitude entre l'eau et les pâtures. La maison est au cœur du
+          village : on se gare une fois, on ne redémarre plus. L'eau est à quelques pas, et le
+          silence qui arrive à la tombée du jour est celui d'un village, pas d'une station.</p>
+          <p>Le jardin prend la fin d'après-midi. C'est là que les séjours se terminent en général :
+          on rentre de marche, on pose les chaussures, et on reste dehors jusqu'à ce que la fraîcheur
+          fasse rentrer tout le monde.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="chambres">
       <svg class="ponctuation" width="72" height="24" viewBox="0 0 72 24" fill="none" aria-hidden="true">
         <circle cx="12" cy="12" r="4" stroke="#266A6C" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="#266A6C" opacity=".4"/>
         <line x1="30" y1="12" x2="72" y2="12" stroke="#CBD6D2"/>
       </svg>
-      <h2>Quatre chambres, et un gîte pour les séjours longs</h2>
-      <div class="duo">
+      <h2 class="monte">Quatre chambres, et un gîte pour les séjours longs</h2>
+      <div class="duo monte">
         <p class="colonne-titre">Dormir</p>
         <p>Spacieuses et impeccablement tenues : c'est ce qui revient le plus souvent dans les commentaires de vos hôtes, avec le soin de la décoration. Le gîte indépendant prend le relais pour ceux qui restent plus de deux ou trois nuits.</p>
       </div>
-      <div class="chambres">
-        <div class="chambre"><div class="filet"></div><h3>Les quatre chambres</h3><p>Chacune a son caractère dans les volumes de la ferme rénovée. Noms, capacités, tarifs et photos : c'est la partie qu'on remplira ensemble.</p></div>
-        <div class="chambre"><div class="filet"></div><h3>Le gîte</h3><p>Un logement indépendant tout équipé, idéal pour un séjour en famille au bord du lac.</p></div>
-        <div class="chambre"><div class="filet"></div><h3>Les à-côtés</h3><p>Jardin, parking privé gratuit, wifi — et le lac à quelques pas de la porte.</p></div>
+      <div class="chambres monte">
+        <div class="chambre">
+          <div class="filet"></div>
+          <h3>Les quatre chambres</h3>
+          <p>Elles occupent les volumes de la ferme : plafonds hauts, murs droits, peu de meubles
+          et de la place pour poser deux sacs sans se marcher dessus. Chacune a son caractère,
+          hérité de l'orientation de la fenêtre — celles qui prennent le matin ne ressemblent pas
+          à celles qui gardent la lumière jusqu'au soir.</p>
+          <p>Noms, capacités, literie exacte, tarifs et photos : c'est la partie qu'on remplira
+          ensemble, chambre par chambre.</p>
+          <span class="pour">Pour une ou deux nuits, en couple ou entre amis</span>
+        </div>
+        <div class="chambre">
+          <div class="filet"></div>
+          <h3>Le gîte indépendant</h3>
+          <p>Un logement complet, avec sa porte à soi et sa cuisine : on fait les courses au
+          village voisin le premier jour, on cuisine quand il pleut, on dîne à l'heure des
+          enfants plutôt qu'à celle des restaurants.</p>
+          <p>C'est la bonne formule à partir de trois ou quatre nuits, ou dès qu'on vient
+          à plusieurs. Surface, nombre de couchages et équipements : à préciser ensemble.</p>
+          <span class="pour">Pour une famille, une semaine au bord de l'eau</span>
+        </div>
+        <div class="chambre">
+          <div class="filet"></div>
+          <h3>Ce qu'il y a autour des lits</h3>
+          <p>Un jardin où l'on peut s'asseoir sans demander, un parking privé gratuit
+          — donc pas de tour du village à chercher une place un samedi d'août — et le wifi
+          dans la maison.</p>
+          <p>Et le lac à quelques pas de la porte : de quoi aller voir l'eau avant le
+          petit-déjeuner, en chaussons, juste pour savoir de quelle couleur elle est ce matin-là.</p>
+          <span class="pour">Pour tout le monde, tous les jours du séjour</span>
+        </div>
       </div>
     </section>
 
@@ -165,29 +329,99 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
         <circle cx="12" cy="12" r="4" stroke="#266A6C" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="#266A6C" opacity=".4"/>
         <line x1="30" y1="12" x2="72" y2="12" stroke="#CBD6D2"/>
       </svg>
-      <h2>Le matin commence bien</h2>
-      <div class="duo">
+      <h2 class="monte">Le matin commence bien</h2>
+      <div class="duo monte">
         <p class="colonne-titre">Petit-déjeuner</p>
-        <p>Un petit-déjeuner copieux, où les produits régionaux côtoient le fait maison — l'un des moments que vos visiteurs citent le plus volontiers. Il est compris dans la nuitée, comme le wifi et le parking.</p>
+        <div>
+          <p>Un petit-déjeuner copieux, où les produits régionaux côtoient le fait maison — l'un des moments que vos visiteurs citent le plus volontiers. Il est compris dans la nuitée, comme le wifi et le parking.</p>
+          <p>Copieux, ici, veut dire quelque chose de précis : on ne repart pas prendre un
+          deuxième petit-déjeuner en route. C'est utile quand la journée commence par une montée,
+          et c'est le moment où les conseils s'échangent — quel sentier est encore gras après la
+          pluie, où le lac est le plus abordable pour se baigner cette semaine-là.</p>
+          <p>Le détail de ce qui est servi, les horaires, et ce qu'il est possible de prévoir pour
+          un départ très matinal : à préciser ensemble.</p>
+        </div>
       </div>
       <p class="colonne-titre sur-louanges">Et aussi, dans leurs commentaires</p>
-      <div class="louanges">
+      <div class="louanges monte">
         <div class="louange"><strong>L'accueil</strong>Une maîtresse de maison décrite comme chaleureuse et très disponible, du premier contact au départ.</div>
         <div class="louange"><strong>Le calme</strong>Le cœur d'un village de rive, l'eau à deux pas, la montagne autour.</div>
         <div class="louange"><strong>Le soin</strong>Propreté et confort relevés séjour après séjour.</div>
       </div>
-      <p class="note-plateforme">Les voyageurs attribuent à la maison une note d'environ 9,5/10 sur les grandes plateformes de réservation. C'est précisément pour cela qu'ils peuvent — et devraient — réserver chez vous en direct.</p>
+      <p class="note-plateforme monte">Les voyageurs attribuent à la maison une note d'environ 9,5/10 sur les grandes plateformes de réservation. C'est précisément pour cela qu'ils peuvent — et devraient — réserver chez vous en direct.</p>
+    </section>
+
+    <section id="autour">
+      <svg class="ponctuation" width="72" height="24" viewBox="0 0 72 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" stroke="#266A6C" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="#266A6C" opacity=".4"/>
+        <line x1="30" y1="12" x2="72" y2="12" stroke="#CBD6D2"/>
+      </svg>
+      <h2 class="monte">Autour, <em>le lac et les crêtes</em></h2>
+      <div class="duo monte">
+        <p class="colonne-titre">Les environs</p>
+        <div>
+          <p>Le lac Saint-Point est l'un des grands lacs naturels du Jura français : près de sept
+          kilomètres de long, entre les crêtes du Haut-Doubs. Le tour se fait à pied ou à vélo
+          depuis la maison, presque toujours à vue de l'eau, en passant d'un village de rive à
+          l'autre. C'est plat, c'est long, et c'est la première chose à faire en arrivant pour
+          comprendre où l'on est.</p>
+          <p>En s'éloignant à peine : Malbuisson, le bourg de l'autre rive, pour les courses et
+          les terrasses ; Métabief et le Mont d'Or — point culminant du Doubs à 1 463 mètres —
+          pour le ski l'hiver, le VTT et les sentiers de crête l'été ; Pontarlier à une vingtaine
+          de minutes, et la frontière suisse juste derrière la crête.</p>
+        </div>
+      </div>
+      <ul class="rive monte">
+        <li>Le tour du lac Saint-Point à pied ou à vélo, au départ du village</li>
+        <li>Baignade et plages de la rive, en juillet et en août</li>
+        <li>Sentiers de randonnée du Haut-Doubs, dans les pâtures et les forêts d'épicéas</li>
+        <li>Station de Métabief et Mont d'Or (1 463 m) à courte route</li>
+        <li>Pontarlier, le château de Joux et la Suisse voisine pour les journées d'excursion</li>
+      </ul>
     </section>
 
     <section class="resa" id="direct">
-      <h2>Réservez en direct</h2>
-      <p class="accroche">Ici, la réservation ne passe par personne d'autre que la maison.</p>
-      <div class="argu">
+      <h2 class="monte">Réservez en direct</h2>
+      <p class="accroche monte">Réservation en direct, sans commission de plateforme&nbsp;: ici, la réservation ne passe par personne d'autre que la maison.</p>
+      <div class="argu monte">
         <div><b>Le juste circuit</b>En réservant auprès de la maison, chaque euro de votre séjour reste dans la maison — aucun intermédiaire ne prélève sa part.</div>
         <div><b>Le bon interlocuteur</b>Vous échangez directement avec vos hôtes&nbsp;: demandes particulières, conseils de saison, arrivées tardives — tout se règle simplement.</div>
         <div><b>La même chambre</b>Mêmes chambres, même petit-déjeuner, même vue — simplement réservés en circuit court.</div>
+        <div><b>Des conditions humaines</b>Un report, une annulation, un changement de dates&nbsp;: c'est la maison qui décide, pas un règlement automatique. Les conditions exactes seront écrites noir sur blanc, et ce sont les vôtres.</div>
+        <div><b>Un accueil préparé</b>Vos hôtes savent à quelle heure vous arrivez, ce que vous venez faire, si vous marchez ou si vous skiez. Cela ne se dit pas dans une case à cocher.</div>
+        <div><b>Le mot de la fin</b>Un conseil de saison, une adresse de fruitière, un sentier praticable ce week-end-là&nbsp;: ce sont des choses qui changent tous les quinze jours et qu'aucune plateforme ne sait dire.</div>
       </div>
-      <p class="badge"><b>Emplacement réservé</b>Téléphone, e-mail et formulaire de demande de la maison viendront ici, en gros et cliquables — nous les mettrons en place ensemble au moment de la validation.</p>
+      <p class="badge monte"><b>Emplacement réservé</b>Téléphone, e-mail et formulaire de demande de la maison viendront ici, en gros et cliquables — nous les mettrons en place ensemble au moment de la validation.</p>
+    </section>
+
+    <section id="pratique">
+      <svg class="ponctuation" width="72" height="24" viewBox="0 0 72 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" stroke="#266A6C" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="#266A6C" opacity=".4"/>
+        <line x1="30" y1="12" x2="72" y2="12" stroke="#CBD6D2"/>
+      </svg>
+      <h2 class="monte">Infos pratiques</h2>
+      <div class="infos4 monte">
+        <div>
+          <h3>Compris dans la nuitée</h3>
+          <p>Le petit-déjeuner, le wifi et le parking privé. Rien à ajouter au moment de partir,
+          rien à découvrir en bas de facture.</p>
+        </div>
+        <div>
+          <h3>Arrivée et départ</h3>
+          <p>Prévenez de votre heure approximative : les arrivées tardives se règlent d'un
+          message. Horaires exacts d'arrivée et de départ à préciser ensemble.</p>
+        </div>
+        <div>
+          <h3>Se garer, circuler</h3>
+          <p>Parking privé gratuit sur place. Le village se traverse à pied en quelques minutes ;
+          le tour du lac et les sentiers partent d'ici.</p>
+        </div>
+        <div>
+          <h3>À préciser ensemble</h3>
+          <p>Tarifs par saison, durée minimale de séjour, animaux, lit bébé, moyens de paiement :
+          autant de points que je ne veux pas inventer à votre place.</p>
+        </div>
+      </div>
     </section>
 
     <section class="contact" id="venir">
@@ -195,11 +429,19 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
         <circle cx="12" cy="12" r="4" stroke="#266A6C" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke="#266A6C" opacity=".4"/>
         <line x1="30" y1="12" x2="72" y2="12" stroke="#CBD6D2"/>
       </svg>
-      <h2>Venir à Saint-Point-Lac</h2>
-      <dl>
+      <h2 class="monte">Venir à Saint-Point-Lac</h2>
+      <div class="appel monte">
+        <div class="sur">Appeler la maison</div>
+        <div class="numero">Numéro à insérer ici</div>
+        <p class="note">Sur le site réel, ce bloc devient un bouton d'appel en un geste depuis un
+        téléphone. C'est le premier réflexe d'un voyageur qui hésite entre deux maisons : il doit
+        être le plus gros élément de la page.</p>
+      </div>
+      <dl class="monte">
         <div><dt>Commune</dt><dd>Saint-Point-Lac (Doubs), rive du lac Saint-Point, Haut-Doubs.</dd></div>
         <div><dt>Altitude</dt><dd>Environ 870 m, au cœur du village, à quelques pas de l'eau.</dd></div>
         <div><dt>Itinéraire</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=L%27%C3%89crin+du+Lac+Saint-Point-Lac">Ouvrir dans Google Maps</a></dd></div>
+        <div><dt>Repères routiers</dt><dd>Pontarlier à une vingtaine de minutes ; Malbuisson sur l'autre rive ; Métabief à courte route.</dd></div>
         <div><dt>Contact direct</dt><dd>Téléphone et adresse exacte à reprendre avec vous lors de la validation de la maquette.</dd></div>
       </dl>
     </section>
@@ -209,3 +451,20 @@ propres et spacieuses, le petit-déjeuner copieux aux produits régionaux et fai
     </footer>
   </main>
 </div>
+
+<script>
+  (function(){
+    var cibles = document.querySelectorAll('.monte');
+    if(!('IntersectionObserver' in window) ||
+       window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      cibles.forEach(function(el){ el.classList.add('vu'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
+      });
+    },{threshold:.12});
+    cibles.forEach(function(el){ io.observe(el); });
+  })();
+</script>

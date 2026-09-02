@@ -29,8 +29,9 @@ Contenu : faits vérifiés (maison familiale depuis 1936, frères Patrice et
 Xavier Robbe, 16 rue de Damvauthier à Saint-Point-Lac, entre Pontarlier,
 Métabief et Mouthe, vins de toute la France, bières, whiskies, coffrets,
 tireuses et accessoires de brassage, tél. 03 81 69 62 13, horaires relevés) ;
-généralités vérifiables sur le vin jaune (savagnin, 6 ans et 3 mois sous
-voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
+généralités vérifiables sur le vignoble du Jura (cinq cépages, appellations,
+vin jaune : savagnin, 6 ans et 3 mois sous voile, clavelin 62 cl). Prix en
+magasin, aucun montant inventé. Mention alcool obligatoire en pied.
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
@@ -67,7 +68,7 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
     font-size:.95rem;color:var(--ivoire)}
   nav.principale a:hover{color:var(--or)}
 
-  .hero{padding:4rem 6vw;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);
+  .hero{padding:4rem 6vw 2.5rem;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);
     gap:3.5rem;align-items:center}
   .etiquette{border:1px solid var(--or);outline:4px double var(--or);outline-offset:6px;
     background:var(--lie);padding:3rem 3rem 2.6rem;position:relative}
@@ -89,6 +90,16 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   .hero figure{justify-self:center;text-align:left}
   .hero figcaption{font-size:.82rem;color:var(--rose);font-style:italic;margin-top:.6rem;max-width:26ch;line-height:1.55}
 
+  /* chiffres-repères du héros, en bandeau d'étiquette */
+  .bandeau-reperes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));
+    border-top:1px solid var(--or);border-bottom:1px solid var(--or);background:var(--lie)}
+  .bandeau-reperes div{padding:1.3rem 1.6rem;border-right:1px solid rgba(201,169,78,.3)}
+  .bandeau-reperes div:last-child{border-right:none}
+  .bandeau-reperes b{display:block;font-family:var(--display);font-weight:400;font-size:1.65rem;
+    color:var(--or);line-height:1.15}
+  .bandeau-reperes span{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--rose);margin-top:.35rem;line-height:1.6}
+
   .frise-bouteilles{border-top:1px solid var(--or);border-bottom:1px solid var(--or);
     background:var(--lie);padding:.9rem 6vw;overflow:hidden}
   .frise-bouteilles svg{display:block;height:44px;width:auto;margin:0;opacity:.85}
@@ -99,6 +110,7 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   h2{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,3.2vw,2.4rem);
     color:var(--or);margin:1rem 0 1.4rem;max-width:28ch;line-height:1.18;text-wrap:balance}
   h1,h3{text-wrap:balance}
+  .chapo-section{max-width:68ch;color:var(--ivoire-doux);margin-bottom:1.6rem}
   .deux-col{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:start}
   .deux-col p+p{margin-top:1rem}
   .deux-col p{color:var(--ivoire-doux)}
@@ -113,13 +125,35 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   .reperes span{display:block;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
     color:var(--rose);margin-top:.4rem;line-height:1.6}
 
-  .rayons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.6rem;margin-top:1.6rem}
+  /* le métier, en gestes numérotés */
+  .gestes{list-style:none;margin-top:1.6rem;border-top:1px solid rgba(201,169,78,.35)}
+  .gestes li{display:grid;grid-template-columns:minmax(0,3rem) minmax(0,1fr);gap:.4rem 1.8rem;
+    padding:1.4rem 0;border-bottom:1px solid rgba(201,169,78,.35)}
+  .gestes .num{font-family:var(--display);font-style:italic;font-size:1.4rem;color:var(--or)}
+  .gestes h3{font-family:var(--display);font-weight:400;font-size:1.25rem;color:var(--ivoire);margin-bottom:.3rem}
+  .gestes p{color:var(--ivoire-doux);font-size:1rem;max-width:64ch}
+
+  .rayons{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:1.6rem;margin-top:1.6rem}
   .rayon{border:1px solid var(--or);padding:1.6rem 1.5rem;background:var(--lie);position:relative}
   .rayon::after{content:"";position:absolute;inset:5px;border:1px solid rgba(201,169,78,.4);pointer-events:none}
   .rayon h3{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--ivoire)}
   .rayon .region{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--rose);margin:.25rem 0 .9rem}
   .rayon p{font-size:.98rem;color:var(--ivoire-doux);line-height:1.65}
+  .rayon p+p{margin-top:.7rem}
+  .rayon .pour{border-top:1px solid rgba(201,169,78,.35);margin-top:.9rem;padding-top:.7rem;
+    font-size:.9rem;color:var(--rose);font-style:italic}
   .note-prix{margin-top:1.4rem;font-size:.85rem;font-style:italic;color:var(--rose)}
+
+  /* tableau des rayons */
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.8rem}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  table.tab{border-collapse:collapse;width:100%;min-width:34rem;background:var(--lie)}
+  table.tab th,table.tab td{border:1px solid rgba(201,169,78,.4);padding:.75rem 1rem;
+    text-align:left;font-size:.95rem;color:var(--ivoire-doux)}
+  table.tab th{font-family:var(--display);font-weight:400;font-variant:small-caps;
+    letter-spacing:.2em;font-size:.9rem;background:var(--nuit-profonde);color:var(--or)}
+  table.tab td:first-child{color:var(--or);font-family:var(--display)}
+  table.tab td.prix{font-variant:small-caps;letter-spacing:.12em;color:var(--rose);white-space:nowrap}
 
   .vin-jaune{background:var(--lie);border-top:1px solid var(--or);border-bottom:1px solid var(--or)}
   .vin-jaune .deux-col{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}
@@ -136,12 +170,40 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   .comptoir dd{margin-top:.15rem;color:var(--ivoire-doux)}
   .avertissement{font-size:.92rem;font-style:italic;color:var(--rose);margin-top:1.2rem;line-height:1.6}
 
+  /* infos pratiques en quatre blocs */
+  .grille4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));
+    gap:1.6rem;margin-top:1.6rem}
+  .info{border:1px solid rgba(201,169,78,.45);padding:1.5rem 1.4rem;background:var(--lie)}
+  .info h3{font-family:var(--display);font-weight:400;font-size:1.2rem;color:var(--or);margin-bottom:.5rem}
+  .info p{font-size:.96rem;color:var(--ivoire-doux)}
+  .info p+p{margin-top:.6rem}
+
+  /* contact et gros bouton téléphone */
+  .gros-tel{display:block;text-decoration:none;background:var(--or);color:var(--nuit);
+    padding:1.5rem 1.7rem;max-width:34rem;margin:1.6rem 0 2rem}
+  .gros-tel small{display:block;font-variant:small-caps;letter-spacing:.24em;font-size:.85rem;margin-bottom:.3rem}
+  .gros-tel b{display:block;font-family:var(--display);font-weight:400;
+    font-size:clamp(1.6rem,5.5vw,2.4rem);letter-spacing:.05em;line-height:1.1}
+  .gros-tel:hover{background:var(--or-sombre)}
+  .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:2.2rem}
+  .contact-grille h3{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--rose);margin-bottom:.6rem;font-family:var(--texte);font-weight:400}
+  .contact-grille p{font-size:.98rem;color:var(--ivoire-doux)}
+  .contact-grille p+p{margin-top:.6rem}
+
   footer.site{background:var(--nuit-profonde);padding:2.6rem 6vw;color:var(--pied-texte);border-top:1px solid var(--or)}
   footer.site p{font-size:.92rem;max-width:66ch;line-height:1.65}
   .alcool{margin-top:1.2rem;font-size:.85rem;color:var(--ivoire);border:1px solid var(--rose);
     display:inline-block;padding:.5rem .9rem}
   .mention-primo{margin-top:1.25rem;border-top:1px solid var(--filet-pied);padding-top:1rem;font-size:.8rem;color:var(--rose)}
   .mention-primo a{color:var(--or)}
+
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .monte{opacity:1;transform:none;transition:none}
+  }
 
   @media (max-width:880px){
     .hero{grid-template-columns:1fr;gap:2.5rem}
@@ -152,19 +214,86 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
     .reperes{grid-template-columns:1fr;gap:1.1rem}
     .reperes div{border-left:none;padding-left:0;border-top:1px solid rgba(201,169,78,.28);padding-top:.9rem}
     .reperes div:first-child{border-top:none;padding-top:0}
+    .gestes li{grid-template-columns:1fr;gap:.4rem}
   }
   /* petits téléphones : 6vw = 21 px de marge, et le cartouche du héros étouffe */
   @media (max-width:520px){
     header.site,.hero,section.bloc,footer.site{padding-left:1.15rem;padding-right:1.15rem}
     .frise-bouteilles{padding-left:1.15rem;padding-right:1.15rem}
+    .bandeau-reperes div{padding:1.1rem 1.15rem}
     .etiquette{padding:1.6rem 1.15rem;outline-offset:4px}
     h2{max-width:none}
     nav.principale{gap:.7rem 1.2rem}
     .comptoir{padding:1.4rem 1.2rem;outline-offset:4px}
-    .rayon{padding:1.35rem 1.2rem}
+    .rayon,.info{padding:1.35rem 1.2rem}
     .millesime{margin:1.2rem 0 1rem}
   }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "@id": "https://primolo.github.io/vitrines/cave-robbe/#etablissement",
+  "name": "Cave Robbe",
+  "description": "Caviste familial à Saint-Point-Lac depuis 1936 : vins du Jura, arbois, vin jaune et sélection de la cave.",
+  "url": "https://primolo.github.io/vitrines/cave-robbe/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "16 rue de Damvauthier",
+    "addressLocality": "Saint-Point-Lac",
+    "postalCode": "25160",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Saint-Point-Lac"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "foundingDate": "1936",
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Depuis quand existe la Cave Robbe ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La famille Robbe tient cave à Saint-Point-Lac depuis 1936."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels vins trouve-t-on à la Cave Robbe ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Des vins du Jura, notamment d'Arbois et du vin jaune, ainsi qu'une sélection plus large et des conseils."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où se trouve la Cave Robbe ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Au 16 rue de Damvauthier, à Saint-Point-Lac (25160), sur les rives du lac."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
 
@@ -176,8 +305,10 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   </div>
   <nav class="principale">
     <a href="#maison">La maison</a>
+    <a href="#metier">Le métier</a>
     <a href="#rayons">La cave</a>
     <a href="#vinjaune">Le vin jaune</a>
+    <a href="#jura">Le vignoble</a>
     <a href="#visite">Nous rendre visite</a>
   </nav>
 </header>
@@ -228,6 +359,13 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   </figure>
 </section>
 
+<div class="bandeau-reperes">
+  <div><b>1936</b><span>La famille reprend la cave</span></div>
+  <div><b>4 générations</b><span>La même maison, jamais vendue</span></div>
+  <div><b>5 cépages</b><span>Le Jura, notre vignoble voisin</span></div>
+  <div><b>62 cl</b><span>Le clavelin du vin jaune</span></div>
+</div>
+
 <div class="frise-bouteilles" aria-hidden="true">
   <svg viewBox="0 0 900 60">
     <g fill="#C9A94E" opacity=".9">
@@ -244,7 +382,7 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   </svg>
 </div>
 
-<section class="bloc" id="maison">
+<section class="bloc monte" id="maison">
   <span class="cartouche-titre">La maison</span>
   <h2>Une cave de famille, au bord du lac</h2>
   <div class="deux-col">
@@ -257,6 +395,9 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
       <p>À mi-chemin entre Pontarlier, Métabief et Mouthe, la cave est le
       caviste de tout le Haut-Doubs : les habitués y remplissent leur cave
       de l'hiver, les vacanciers du lac y trouvent la bouteille du soir.</p>
+      <p>Une cave qui traverse quatre générations sans changer de mains, cela veut dire quelque
+      chose de très concret : des relations avec des domaines qui durent depuis des décennies, et
+      une mémoire des millésimes que l'on ne trouve pas dans un rayon de supermarché.</p>
     </div>
     <div>
       <p>On vient chez Robbe pour le vin — on y revient pour le reste :
@@ -264,7 +405,11 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
       accessoires de brassage pour les amateurs qui veulent mettre la main
       à la cuve.</p>
       <p>Et surtout pour un conseil sans chichis : dites-nous le plat, le
-      budget, l'occasion — la bouteille suivra.</p>
+      budget, l'occasion — la bouteille suivra. Ce n'est pas une formule : c'est exactement la
+      manière dont se déroule une visite ici. Personne ne vous demandera si vous préférez un vin
+      « minéral » ou « sur le fruit » avant de vous avoir demandé ce que vous mangez ce soir.</p>
+      <p>Le magasin sert aussi bien la bouteille de la semaine que la caisse de mariage, la
+      commande d'un restaurant du secteur que le coffret de fin d'année.</p>
     </div>
   </div>
   <div class="reperes">
@@ -283,66 +428,208 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   </div>
 </section>
 
-<section class="bloc" id="rayons" style="padding-top:0">
+<section class="bloc monte" id="metier" style="background:var(--lie);border-top:1px solid var(--or);border-bottom:1px solid var(--or)">
+  <span class="cartouche-titre">Le métier</span>
+  <h2>Ce que fait un caviste, exactement</h2>
+  <p class="chapo-section">Un caviste ne fait pas le vin : il le choisit, le garde et le
+  transmet. Trois métiers en un, dont deux sont invisibles depuis le magasin. Voici comment une
+  bouteille arrive jusqu'à votre table.</p>
+  <ul class="gestes">
+    <li>
+      <span class="num">I</span>
+      <div>
+        <h3>Goûter, et écarter</h3>
+        <p>Tout commence par la dégustation : domaines visités, échantillons reçus, salons. Le
+        travail réel consiste moins à trouver de bonnes bouteilles qu'à en écarter beaucoup — une
+        cave se définit autant par ce qu'elle refuse que par ce qu'elle propose. On garde ce que
+        l'on est capable de défendre en face d'un client.</p>
+      </div>
+    </li>
+    <li>
+      <span class="num">II</span>
+      <div>
+        <h3>Suivre les domaines dans la durée</h3>
+        <p>Un vigneron n'est pas une marque : sa production change avec le millésime, la météo,
+        parfois la reprise du domaine par la génération suivante. Suivre un domaine sur dix ou
+        vingt ans, c'est savoir quand une année est réussie et quand il vaut mieux passer son tour
+        — et pouvoir le dire.</p>
+      </div>
+    </li>
+    <li>
+      <span class="num">III</span>
+      <div>
+        <h3>Garder les bouteilles correctement</h3>
+        <p>Le vin craint trois choses : la chaleur, les variations de température et la lumière.
+        Une cave digne de ce nom est fraîche, stable et sombre, avec les bouteilles couchées pour
+        que le bouchon reste humide. C'est la partie du métier que personne ne voit, et celle qui
+        décide de l'état d'une bouteille de garde.</p>
+      </div>
+    </li>
+    <li>
+      <span class="num">IV</span>
+      <div>
+        <h3>Conseiller sans jargon</h3>
+        <p>La bonne question n'est pas « quel est votre meilleur vin » mais « avec quoi, pour
+        combien de personnes, et à quel budget ». Un vin d'apéritif, un vin qui tiendra tête à une
+        viande en sauce et un vin à poser en cave pour dix ans ne se choisissent pas de la même
+        façon.</p>
+      </div>
+    </li>
+    <li>
+      <span class="num">V</span>
+      <div>
+        <h3>Dire quand ouvrir, et comment servir</h3>
+        <p>Beaucoup de bouteilles sont bues trop jeunes, trop froides ou trop chaudes. Un blanc du
+        Jura servi glacé ne dit rien ; un rouge à température de pièce en été est écœurant. Le
+        conseil de service fait partie de la vente — c'est gratuit, et c'est souvent ce qui change
+        tout.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section class="bloc monte" id="rayons">
   <span class="cartouche-titre">La cave</span>
   <h2>Nos rayons</h2>
+  <p class="chapo-section">Quatre rayons, quatre logiques d'achat. La sélection évolue au fil des
+  arrivages : ce qui est décrit ici, c'est la constante de la maison, pas un catalogue figé.</p>
   <div class="rayons">
     <div class="rayon">
       <h3>Vins du Jura</h3>
       <p class="region">Arbois · Côtes du Jura</p>
-      <p>Le vignoble voisin, notre première fierté : savagnin et chardonnay,
-      trousseau et poulsard, vins ouillés ou typés — jusqu'au vin jaune,
-      roi de la cave.</p>
+      <p>Le vignoble voisin, notre première fierté : cinq cépages seulement — chardonnay et
+      savagnin en blanc, poulsard, trousseau et pinot noir en rouge — pour une variété de styles
+      qui étonne toujours ceux qui découvrent la région.</p>
+      <p>Blancs ouillés à la manière bourguignonne ou blancs typés élevés sous voile, rouges légers
+      et parfumés, crémant, macvin, vin de paille — et le vin jaune, roi de la cave.</p>
+      <p class="pour">Pour accompagner le comté, le poulet aux morilles, ou pour faire découvrir
+      une région à quelqu'un qui croit connaître le vin.</p>
     </div>
     <div class="rayon">
       <h3>Toute la France</h3>
       <p class="region">Grandes et petites appellations</p>
-      <p>Une large sélection de vins de tout le pays, choisis bouteille par
-      bouteille : de quoi accorder chaque table, du quotidien aux grandes
-      occasions.</p>
+      <p>Une large sélection de vins de tout le pays, choisis bouteille par bouteille : Bourgogne,
+      Bordeaux, vallée du Rhône, Loire, Alsace, Sud-Ouest et Languedoc.</p>
+      <p>À côté des noms attendus, une part de la cave est réservée aux appellations moins
+      célèbres, où le rapport qualité-prix est souvent le plus favorable. C'est là que le conseil
+      sert le plus.</p>
+      <p class="pour">Pour la table de tous les jours comme pour la bouteille d'un anniversaire ou
+      d'un repas de famille.</p>
     </div>
     <div class="rayon">
       <h3>Bières &amp; brassage</h3>
       <p class="region">Tireuses · accessoires</p>
-      <p>Bières à la bouteille, tireuses pour les fêtes et accessoires de
-      brassage pour les brasseurs amateurs du Haut-Doubs.</p>
+      <p>Bières à la bouteille, des brasseries régionales aux styles étrangers, et tireuses à
+      louer pour les fêtes — anniversaires, mariages, associations, tournois du village.</p>
+      <p>Pour les brasseurs amateurs, le rayon brassage : matériel, ingrédients et accessoires,
+      avec les conseils qui vont avec quand on démarre.</p>
+      <p class="pour">Pour une soirée nombreuse, ou pour se lancer dans le brassage sans acheter
+      n'importe quoi.</p>
     </div>
     <div class="rayon">
       <h3>Whiskies &amp; coffrets</h3>
       <p class="region">À offrir ou à garder</p>
-      <p>Whiskies choisis et coffrets composés à la demande : le cadeau
-      tout trouvé, préparé au comptoir.</p>
+      <p>Whiskies choisis, du single malt tourbé au blend accessible, et une sélection de
+      spiritueux pour compléter une carte de fin de repas.</p>
+      <p>Les coffrets sont composés à la demande, au comptoir : dites le budget et pour qui, on
+      assemble devant vous et on emballe.</p>
+      <p class="pour">Pour un cadeau que l'on n'a pas envie de choisir dans une pile de coffrets
+      identiques.</p>
     </div>
   </div>
-  <p class="note-prix">Prix en magasin — la sélection évolue au fil des arrivages.</p>
+
+  <div class="table-scroll">
+    <table class="tab">
+      <caption class="sr-only">Ce que l'on trouve à la cave</caption>
+      <tr>
+        <th scope="col">Rayon</th>
+        <th scope="col">Ce que l'on y trouve</th>
+        <th scope="col">Disponibilité</th>
+        <th scope="col">Prix</th>
+      </tr>
+      <tr><td>Vins du Jura</td><td>Arbois, Côtes du Jura, blancs ouillés et typés, rouges</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Vin jaune</td><td>Savagnin élevé sous voile, en clavelin de 62 cl</td><td>Selon les millésimes disponibles</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Crémant &amp; macvin</td><td>Effervescents et vin de liqueur du Jura</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Vins de France</td><td>Toutes régions, grandes et petites appellations</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Bières</td><td>Bouteilles, brasseries régionales et styles étrangers</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Tireuses</td><td>Location pour fêtes et événements</td><td>Sur réservation</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Brassage</td><td>Matériel et accessoires pour brasseurs amateurs</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Whiskies</td><td>Single malts et blends, spiritueux</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+      <tr><td>Coffrets</td><td>Composés à la demande, emballés au comptoir</td><td>Toute l'année</td><td class="prix">Prix en magasin</td></tr>
+    </table>
+  </div>
+  <p class="note-prix">Prix en magasin — la sélection évolue au fil des arrivages. Cette maquette
+  n'avance aucun montant, et le détail des rayons reste à compléter ensemble.</p>
 </section>
 
-<section class="bloc vin-jaune" id="vinjaune">
+<section class="bloc vin-jaune monte" id="vinjaune">
   <div class="deux-col">
     <div>
       <span class="cartouche-titre">Le trésor du Jura</span>
       <h2>Le vin jaune, notre or local</h2>
       <p style="color:var(--ivoire-doux)">Il naît à quelques lieues d'ici, dans le
-      vignoble jurassien, et n'a d'équivalent nulle part : élevé sous un
-      voile de levures, sans ouillage, il gagne ses arômes de noix, de curry
-      et de pomme verte au prix d'une patience rare. À la cave, on vous
-      aide à choisir le vôtre — et à décider s'il faut l'ouvrir ou
-      l'attendre encore.</p>
+      vignoble jurassien, et n'a d'équivalent nulle part. Le principe est contraire à tout ce que
+      l'on apprend en cave : au lieu de compléter le fût à mesure que le vin s'évapore — ce que
+      l'on appelle l'ouillage — on le laisse baisser. Un voile de levures se forme alors à la
+      surface et protège le vin de l'oxydation brutale tout en le transformant lentement.</p>
+      <p style="color:var(--ivoire-doux);margin-top:1rem">Six ans et trois mois plus tard au
+      minimum, il en reste environ 62 centilitres par litre engagé : c'est exactement la contenance
+      du clavelin, cette bouteille trapue que l'on ne trouve nulle part ailleurs. Le reste s'est
+      évaporé — la « part des anges ».</p>
+      <p style="color:var(--ivoire-doux);margin-top:1rem">Le résultat n'est ni un vin doux ni un
+      vin oxydé au sens habituel : c'est un blanc sec, très puissant, aux arômes de noix, de curry
+      et de pomme verte, qui se garde des décennies. À la cave, on vous aide à choisir le vôtre —
+      et à décider s'il faut l'ouvrir ou l'attendre encore.</p>
     </div>
     <dl class="fiche-jaune">
       <dt>Cépage</dt>
       <dd>Savagnin, seul autorisé.</dd>
       <dt>Élevage</dt>
-      <dd>Six ans et trois mois minimum en fût, sous voile.</dd>
+      <dd>Six ans et trois mois minimum en fût, sans ouillage, sous un voile de levures.</dd>
       <dt>Bouteille</dt>
       <dd>Le clavelin de 62 cl — ce qu'il reste d'un litre après l'évaporation, la « part des anges ».</dd>
+      <dt>Appellations</dt>
+      <dd>Château-Chalon, qui ne produit que du vin jaune, ainsi qu'Arbois, L'Étoile et Côtes du Jura.</dd>
+      <dt>Service</dt>
+      <dd>Chambré, autour de 14 à 15 °C, dans un verre assez large. Ouvert plusieurs heures à l'avance : il ne craint pas l'air.</dd>
       <dt>À table</dt>
-      <dd>Poulet aux morilles, comté très affiné, ou pour lui-même, chambré.</dd>
+      <dd>Poulet aux morilles, comté très affiné, ou pour lui-même en fin de repas.</dd>
+      <dt>Garde</dt>
+      <dd>Considérable : une bouteille bien conservée se compte en décennies plutôt qu'en années.</dd>
     </dl>
   </div>
 </section>
 
-<section class="bloc" id="visite">
+<section class="bloc monte" id="jura">
+  <span class="cartouche-titre">Le vignoble</span>
+  <h2>Le Jura, à une heure de la cave</h2>
+  <p class="chapo-section">Saint-Point-Lac n'est pas dans le vignoble : le Haut-Doubs est un pays
+  d'herbe et de forêt, pas de vigne. Mais le vignoble jurassien commence juste de l'autre côté du
+  plateau, et c'est ce voisinage qui donne à la cave sa couleur.</p>
+  <div class="deux-col">
+    <div>
+      <p>Le vignoble du Jura est l'un des plus petits vignobles français, étiré du nord au sud sur
+      le rebord du premier plateau, face à la Bresse. Ses sols de marnes et de calcaires et son
+      climat continental — hivers rudes, étés chauds, gelées de printemps redoutées — expliquent
+      des vins que l'on ne confond avec aucun autre.</p>
+      <p>Cinq cépages seulement y sont cultivés : le chardonnay et le savagnin pour les blancs, le
+      poulsard, le trousseau et le pinot noir pour les rouges. C'est peu — et pourtant la palette
+      est large, parce qu'un même cépage y donne des vins radicalement différents selon qu'on
+      ouille le fût ou qu'on le laisse sous voile.</p>
+    </div>
+    <div>
+      <p>Aux appellations géographiques — Arbois, Côtes du Jura, L'Étoile, Château-Chalon —
+      s'ajoutent des appellations de produit : le crémant du Jura, le macvin (un vin de liqueur
+      obtenu en ajoutant du marc au moût), et le vin de paille, issu de raisins passerillés
+      plusieurs semaines avant d'être pressés.</p>
+      <p>Cette proximité est aussi une affaire de table. Le comté du Haut-Doubs et le savagnin sont
+      voisins de terroir avant d'être un accord de manuel : c'est le genre d'évidence qu'on ne
+      trouve pas dans un guide, et qu'on vous rappelle volontiers au comptoir.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc monte" id="visite" style="background:var(--lie);border-top:1px solid var(--or);border-bottom:1px solid var(--or)">
   <span class="cartouche-titre">Au comptoir</span>
   <h2>Nous rendre visite</h2>
   <div class="visite">
@@ -351,6 +638,13 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
       Saint-Point-Lac, à deux pas des rives du lac. Parking aisé, coffres
       chargés avec le sourire — et une bouteille se goûte toujours mieux
       quand on repart avec l'histoire qui va avec.</p>
+      <p style="color:var(--ivoire-doux);margin-top:1rem">Ce que l'on peut faire sur place :
+      choisir une bouteille pour le soir même, composer une caisse pour un événement, faire
+      emballer un coffret, réserver une tireuse pour une fête, ou simplement venir demander ce
+      qu'il faut boire avec ce que l'on a prévu de cuisiner.</p>
+      <p style="color:var(--ivoire-doux);margin-top:1rem">Le lundi, la cave n'ouvre qu'à
+      13 h 30 : c'est le seul jour de la semaine où il ne faut pas venir le matin. Le reste du
+      temps, l'amplitude est large, avec une coupure à midi.</p>
       <p class="avertissement">Horaires relevés dans les annuaires — à confirmer
       ensemble avant mise en ligne.</p>
     </div>
@@ -370,11 +664,87 @@ voile, clavelin 62 cl). Prix en magasin. Mention alcool obligatoire en pied.
   </div>
 </section>
 
+<section class="bloc monte" id="infos">
+  <span class="cartouche-titre">Bon à savoir</span>
+  <h2>Quatre choses utiles avant de passer</h2>
+  <div class="grille4">
+    <div class="info">
+      <h3>Venir avec une idée</h3>
+      <p>Le plat, le nombre de convives, le budget : trois informations suffisent pour qu'on vous
+      oriente vite et bien.</p>
+      <p>Et si vous n'avez aucune idée, dites-le aussi — c'est une réponse parfaitement valable.</p>
+    </div>
+    <div class="info">
+      <h3>Transporter et garder</h3>
+      <p>L'été, ne laissez jamais une caisse dans un coffre au soleil : quelques heures suffisent à
+      abîmer une bouteille.</p>
+      <p>Chez vous, cherchez le plus frais, le plus stable et le plus sombre — une cave de
+      montagne n'est pas un luxe, c'est un avantage.</p>
+    </div>
+    <div class="info">
+      <h3>Événements et grandes tablées</h3>
+      <p>Mariage, anniversaire, repas d'association : parlez-en quelques semaines à l'avance pour
+      les quantités, la tireuse et l'organisation du retour d'invendus.</p>
+      <p>Conditions exactes de location et de reprise : à compléter ensemble.</p>
+    </div>
+    <div class="info">
+      <h3>Ce qui reste à préciser</h3>
+      <p>Moyens de paiement acceptés, livraison éventuelle, dégustations organisées et fermetures
+      annuelles : autant de points à compléter ensemble avant la mise en ligne.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloc monte" id="contact" style="background:var(--lie);border-top:1px solid var(--or)">
+  <span class="cartouche-titre">Contact</span>
+  <h2>Un doute ? Appelez la cave</h2>
+  <p class="chapo-section">Pour vérifier une disponibilité, réserver une tireuse ou faire préparer
+  une commande avant de passer, le téléphone reste le plus rapide.</p>
+  <a class="gros-tel" href="tel:+33381696213">
+    <small>Appeler la cave</small>
+    <b>03 81 69 62 13</b>
+  </a>
+  <div class="contact-grille">
+    <div>
+      <h3>Adresse</h3>
+      <p>Cave Robbe — Robbe Frères<br>16 rue de Damvauthier<br>25160 Saint-Point-Lac</p>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Cave+Robbe+Saint-Point-Lac">Ouvrir dans Google Maps</a></p>
+    </div>
+    <div>
+      <h3>Horaires relevés</h3>
+      <p>Lundi : 13 h 30 – 18 h 30<br>Mardi à samedi : 9 h – 12 h / 13 h 30 – 18 h 30</p>
+      <p>À confirmer ensemble avant la mise en ligne.</p>
+    </div>
+    <div>
+      <h3>Le reste à caler</h3>
+      <p>Adresse électronique, réseaux sociaux, livraison, dégustations et fermetures annuelles :
+      à compléter ensemble.</p>
+    </div>
+  </div>
+</section>
+
 <footer class="site">
   <p><strong>Cave Robbe</strong> — caviste familial à Saint-Point-Lac depuis 1936.
   Vins du Jura et de toute la France, vin jaune, bières, whiskies, coffrets et conseils de famille.</p>
   <p class="alcool">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
   <p class="mention-primo">Maquette réalisée par Primo · Montperreux · <a href="mailto:primo.locatelli@gmail.com">primo.locatelli@gmail.com</a> — proposition non contractuelle</p>
 </footer>
+
+<script>
+(function(){
+  var cibles = document.querySelectorAll('.monte');
+  if(!('IntersectionObserver' in window) ||
+     window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    cibles.forEach(function(el){el.classList.add('vu')});
+    return;
+  }
+  var io = new IntersectionObserver(function(entrees){
+    entrees.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
+    });
+  }, {threshold:.1});
+  cibles.forEach(function(el){io.observe(el)});
+})();
+</script>
 </body>
 </html>

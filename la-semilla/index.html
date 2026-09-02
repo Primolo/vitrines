@@ -15,6 +15,12 @@
             posés sur le vert profond de l'absinthe.
   Élément signature : alambic en cuivre + brin d'absinthe en SVG inline ; cadres d'étiquette à double filet.
   Thème   : SOMBRE UNIQUE ASSUMÉ (pas de version claire — c'est la pénombre de l'atelier de distillation).
+  Contenu : faits fournis (première distillerie artisanale bio de la zone historique de l'absinthe,
+            plantes cultivées à 1 100 m, seize recettes d'absinthe, anisés, vodka, gentiane, liqueurs,
+            gamme gourmande de la ferme, réseau des Amis de la Route de l'Absinthe, adresse et téléphone)
+            + généralités publiques et vérifiables sur l'absinthe (interdiction de 1915, Pontarlier,
+            plantes, louche, rituel de la fontaine). Aucun prix, aucune médaille, aucun avis inventé.
+            Mention alcool obligatoire en pied.
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
@@ -70,31 +76,79 @@
   .bouton.plein{background:var(--cuivre);color:#1c1108}
   .bouton:hover{background:var(--cuivre-clair);border-color:var(--cuivre-clair);color:#1c1108}
 
+  /* chiffres-repères, en pied d'étiquette */
+  .reperes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));
+    border-top:1px solid var(--filet);border-bottom:1px solid var(--filet);background:rgba(34,65,47,.5)}
+  .reperes div{padding:1.4rem 1.6rem;border-right:1px solid rgba(184,115,51,.3)}
+  .reperes div:last-child{border-right:none}
+  .reperes b{display:block;font-family:var(--serif-titre);font-weight:400;font-size:1.7rem;
+    color:var(--ambre);line-height:1.15}
+  .reperes span{display:block;font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--parchemin-doux);margin-top:.4rem;line-height:1.6}
+
   section{padding:4rem 5vw;border-top:1px solid rgba(184,115,51,.25)}
   .cartouche{font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;
     color:var(--cuivre-clair);display:flex;align-items:center;gap:1rem}
   .cartouche::after{content:"";height:1px;flex:0 0 72px;background:var(--filet)}
   h2{font-family:var(--serif-titre);font-weight:400;font-size:clamp(1.7rem,4vw,2.5rem);
     margin:.6rem 0 1.2rem;line-height:1.16;text-wrap:balance;max-width:22ch}
+  h3{text-wrap:balance}
 
   .deux-colonnes{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:start;max-width:1100px}
+  .deux-colonnes p+p{margin-top:1rem}
   .aparte{border-left:2px solid var(--cuivre);padding:1rem 1.4rem;background:rgba(34,65,47,.5);
     font-style:italic;color:var(--parchemin-doux)}
   .aparte strong{font-style:normal;color:var(--ambre)}
+  .aparte p+p{margin-top:.8rem}
+
+  /* la distillation, geste par geste */
+  .gestes{list-style:none;margin-top:1.8rem;max-width:1000px;border-top:1px dotted var(--filet)}
+  .gestes li{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:.4rem 2rem;
+    padding:1.4rem 0;border-bottom:1px dotted var(--filet)}
+  .gestes .moment{font-family:var(--serif-titre);font-style:italic;font-size:1.15rem;color:var(--cuivre-clair)}
+  .gestes .moment small{display:block;font-family:var(--sans-etiquette);font-style:normal;font-size:.7rem;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--parchemin-doux);margin-top:.3rem}
+  .gestes h3{font-family:var(--serif-titre);font-weight:400;font-size:1.3rem;color:var(--parchemin);margin-bottom:.3rem}
+  .gestes p{color:var(--parchemin-doux);font-size:1rem;max-width:62ch}
+
+  /* trois grandes familles, en cartes d'étiquette */
+  .familles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));
+    gap:1.8rem;margin-top:1.8rem;max-width:1100px}
+  .famille{border:1px solid var(--filet);padding:1.7rem 1.5rem;background:rgba(34,65,47,.45);position:relative}
+  .famille::after{content:"";position:absolute;inset:5px;border:1px solid rgba(184,115,51,.3);pointer-events:none}
+  .famille h3{font-family:var(--serif-titre);font-weight:400;font-size:1.4rem;color:var(--parchemin)}
+  .famille .etiq{font-family:var(--sans-etiquette);font-size:.7rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--ambre);margin:.3rem 0 .9rem}
+  .famille p{color:var(--parchemin-doux);font-size:1rem}
+  .famille p+p{margin-top:.7rem}
+  .famille .service{border-top:1px solid rgba(184,115,51,.35);margin-top:.9rem;padding-top:.7rem;
+    font-style:italic;font-size:.95rem;color:var(--cuivre-clair)}
 
   /* ——— Catalogue d'apothicaire : entrées volontairement inégales, pas de cartes clonées ——— */
-  .officine{max-width:980px}
+  .officine{max-width:980px;margin-top:2rem}
   .flacon{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1.2rem;align-items:baseline;
     padding:1.35rem 0;border-bottom:1px dotted var(--filet)}
   .flacon:first-of-type{border-top:1px dotted var(--filet)}
   .flacon .num{font-family:var(--serif-titre);font-style:italic;color:var(--cuivre-clair);font-size:1.1rem;min-width:2.2rem}
   .flacon h3{font-family:var(--serif-titre);font-weight:400;font-size:1.35rem;color:var(--parchemin);
-    line-height:1.25;text-wrap:balance}
+    line-height:1.25}
   .flacon .degre{font-family:var(--sans-etiquette);font-size:.74rem;letter-spacing:.18em;color:var(--ambre);
     border:1px solid var(--filet);padding:.25rem .6rem;white-space:nowrap}
   .flacon p{grid-column:2/3;color:var(--parchemin-doux);font-size:1rem;max-width:58ch}
   .mention-officine{margin-top:1.6rem;font-style:italic;color:var(--parchemin-doux);font-size:.98rem;
     border-left:2px solid var(--cuivre);padding-left:1.2rem;max-width:64ch}
+
+  /* tableau des produits */
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.8rem;max-width:1100px}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  table.tab{border-collapse:collapse;width:100%;min-width:34rem;background:rgba(34,65,47,.45)}
+  table.tab th,table.tab td{border:1px solid rgba(184,115,51,.35);padding:.75rem 1rem;text-align:left;
+    font-size:.97rem;color:var(--parchemin-doux)}
+  table.tab th{font-family:var(--sans-etiquette);font-size:.7rem;letter-spacing:.24em;
+    text-transform:uppercase;background:var(--fond);color:var(--ambre)}
+  table.tab td:first-child{font-family:var(--serif-titre);font-size:1.05rem;color:var(--parchemin)}
+  table.tab td.prix{font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--cuivre-clair);white-space:nowrap}
 
   .ferme-liste{list-style:none;margin-top:1rem;columns:2;column-gap:3rem;max-width:640px}
   .ferme-liste li{padding:.45rem 0 .45rem 1.4rem;position:relative;break-inside:avoid}
@@ -104,18 +158,40 @@
   .visite{background:var(--bouteille);border:1px solid var(--filet);max-width:1100px;
     display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center;padding:2.2rem clamp(1.2rem,4vw,3rem)}
   .visite h2{margin-top:0}
+  .visite p+p{margin-top:1rem}
+
+  /* infos pratiques en quatre blocs */
+  .grille4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));
+    gap:1.6rem;margin-top:1.8rem;max-width:1100px}
+  .info{border:1px solid rgba(184,115,51,.4);padding:1.5rem 1.4rem;background:rgba(34,65,47,.4)}
+  .info h3{font-family:var(--serif-titre);font-weight:400;font-size:1.25rem;color:var(--ambre);margin-bottom:.5rem}
+  .info p{font-size:.98rem;color:var(--parchemin-doux)}
+  .info p+p{margin-top:.6rem}
 
   .contact-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.5rem;max-width:1100px}
   .contact-grille h3{font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.34em;
     text-transform:uppercase;color:var(--cuivre-clair);margin-bottom:.7rem}
   .contact-grille p{color:var(--parchemin-doux)}
-  .tel{font-family:var(--serif-titre);font-size:1.5rem;color:var(--parchemin);text-decoration:none}
-  .tel:hover{color:var(--ambre)}
+  .contact-grille p+p{margin-top:.6rem}
+  .gros-tel{display:block;text-decoration:none;background:var(--ambre);color:#1c1108;
+    padding:1.5rem 1.7rem;max-width:34rem;margin:1.8rem 0 2.2rem}
+  .gros-tel small{display:block;font-family:var(--sans-etiquette);font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;margin-bottom:.35rem}
+  .gros-tel b{display:block;font-family:var(--serif-titre);font-weight:400;
+    font-size:clamp(1.6rem,5.5vw,2.4rem);letter-spacing:.04em;line-height:1.1}
+  .gros-tel:hover{background:#e8b660}
 
   footer{border-top:1px solid var(--filet);padding:2rem 5vw 2.6rem;font-size:.85rem;color:var(--parchemin-doux)}
   footer .alcool{font-family:var(--sans-etiquette);letter-spacing:.06em;text-transform:uppercase;
     font-size:.72rem;color:var(--ambre);margin-bottom:.9rem}
   footer .primo{margin-top:.5rem;font-style:italic}
+
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .monte{opacity:1;transform:none;transition:none}
+  }
 
   @media (max-width:760px){
     .deux-colonnes{grid-template-columns:1fr}
@@ -124,6 +200,7 @@
     .visite .bouton{justify-self:start}
     .flacon{grid-template-columns:auto minmax(0,1fr);gap:.5rem 1.2rem}
     .flacon .degre{grid-column:2/3;justify-self:start}
+    .gestes li{grid-template-columns:1fr;gap:.5rem}
     nav.site{margin-left:0}
     h2{max-width:none}
   }
@@ -132,14 +209,78 @@
     section,header.site,footer{padding-left:1.15rem;padding-right:1.15rem}
     .hero{padding-left:1.15rem;padding-right:1.15rem}
     .etiquette{padding:2.1rem 1.1rem;outline-offset:5px}
+    .reperes div{padding:1.2rem 1.15rem}
     .cartouche{flex-wrap:wrap;gap:.5rem}
     .cartouche::after{flex:0 0 48px}
     nav.site{gap:.8rem 1.1rem;font-size:.76rem;letter-spacing:.16em}
     .flacon .num{min-width:1.9rem}
-    .tel{font-size:1.35rem}
+    .famille,.info{padding:1.35rem 1.2rem}
     .contact-grille{gap:2rem}
   }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "@id": "https://primolo.github.io/vitrines/la-semilla/#etablissement",
+  "name": "La Semilla — Distillerie Aymonier",
+  "description": "Distillerie artisanale biologique aux Fourgs, dans la zone historique de l'absinthe : plantes cultivées à 1 100 mètres d'altitude et distillées à l'alambic de cuivre.",
+  "url": "https://primolo.github.io/vitrines/la-semilla/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Les Fourgs",
+    "postalCode": "25300",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Les Fourgs"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Où se trouve la distillerie La Semilla ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aux Fourgs (25300), dans le Haut-Doubs, au cœur de la zone historique de l'absinthe du pays de Pontarlier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Les plantes sont-elles cultivées sur place ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, les plantes sont cultivées à environ 1 100 mètres d'altitude, en agriculture biologique."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on visiter la distillerie ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les conditions de visite sont à convenir directement avec la distillerie."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
 <div class="demo-banner">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
@@ -150,6 +291,7 @@
     <a href="#atelier">L’atelier</a>
     <a href="#officine">Absinthes &amp; élixirs</a>
     <a href="#ferme">La ferme</a>
+    <a href="#pays">Le pays</a>
     <a href="#visites">Visites</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -202,7 +344,14 @@
     </div>
   </div>
 
-  <section id="atelier">
+  <div class="reperes">
+    <div><b>16 recettes</b><span>d’absinthe distillées à la ferme</span></div>
+    <div><b>1 100 m</b><span>l’altitude où poussent nos plantes</span></div>
+    <div><b>Bio</b><span>première distillerie artisanale certifiée de la zone</span></div>
+    <div><b>0 arôme</b><span>ajouté : on sème, on cueille, on distille</span></div>
+  </div>
+
+  <section id="atelier" class="monte">
     <p class="cartouche">L’atelier de distillation</p>
     <h2>Au fond de la grange, le cuivre chauffe</h2>
     <div class="deux-colonnes">
@@ -211,20 +360,124 @@
           ferme. On y renoue avec la tradition des <em>paysans-distillateurs</em> : les alambics en cuivre
           transforment les plantes de la ferme en alcools francs, hérités des savoir-faire populaires
           des montagnes jurassiennes.</p>
-        <p style="margin-top:1rem">Ici, pas d’arômes ajoutés ni de raccourcis : on sème, on cultive, on cueille,
-          on distille — dans cet ordre, et sur place.</p>
+        <p>Ici, pas d’arômes ajoutés ni de raccourcis : on sème, on cultive, on cueille,
+          on distille — dans cet ordre, et sur place. C’est la différence entre une absinthe distillée
+          et une absinthe simplement colorée : dans le second cas, on ajoute des extraits à de l’alcool
+          neutre, et cela se sent au nez comme en bouche.</p>
       </div>
       <div class="aparte">
         <p><strong>Seize recettes d’absinthe</strong> sont distillées à la ferme, aux côtés d’anisés,
           d’une vodka, d’un apéritif de gentiane et de liqueurs. La distillerie est membre du réseau
           <strong>« Les Amis de la Route de l’Absinthe »</strong>.</p>
+        <p>Le cuivre n’est pas là pour le décor : il capte certains composés soufrés pendant la
+          chauffe et donne des distillats plus nets. C’est la raison pour laquelle on n’a jamais
+          remplacé les alambics de cuivre par de l’inox.</p>
       </div>
     </div>
+
+    <ul class="gestes">
+      <li>
+        <div class="moment">Le semis<small>au printemps</small></div>
+        <div>
+          <h3>Tout part du champ</h3>
+          <p>La grande absinthe, les plantes anisées et aromatiques sont semées et cultivées dans les
+          parcelles de la ferme, en agriculture biologique. À 1 100 mètres, la saison de végétation
+          est courte : les plantes poussent lentement et se concentrent — c’est ce qu’on leur
+          demande.</p>
+        </div>
+      </li>
+      <li>
+        <div class="moment">La cueillette<small>à la belle saison</small></div>
+        <div>
+          <h3>Couper au bon moment</h3>
+          <p>Chaque plante a une fenêtre de récolte : la teneur en huiles essentielles ne reste pas la
+          même d’une semaine à l’autre. C’est cette contrainte qui donne son rythme au calendrier de
+          la distillerie, et qui explique pourquoi toutes les recettes ne sont pas disponibles en
+          permanence.</p>
+        </div>
+      </li>
+      <li>
+        <div class="moment">La macération<small>plusieurs heures à plusieurs jours</small></div>
+        <div>
+          <h3>Les plantes dans l’alcool</h3>
+          <p>Les plantes séchées ou fraîches macèrent dans l’alcool avant la chauffe. C’est cette
+          première étape qui extrait la matière aromatique ; la distillation qui suit ne fait
+          que la trier.</p>
+        </div>
+      </li>
+      <li>
+        <div class="moment">La distillation<small>une chauffe surveillée</small></div>
+        <div>
+          <h3>Têtes, cœur et queues</h3>
+          <p>La chauffe se conduit lentement. Les premières vapeurs — les « têtes » — sont écartées,
+          de même que les dernières fractions, les « queues » : seul le cœur de chauffe est conservé.
+          C’est la coupe la plus délicate du métier, et elle se décide au nez, alambic par alambic.</p>
+        </div>
+      </li>
+      <li>
+        <div class="moment">La coloration<small>pour les vertes</small></div>
+        <div>
+          <h3>D’où vient le vert</h3>
+          <p>Une absinthe verte n’est pas colorée avec un colorant : après distillation, le distillat
+          — incolore — repasse sur un lit de plantes qui lui cèdent leur chlorophylle. La couleur
+          évolue ensuite avec le temps et la lumière, du vert franc vers l’ambré. Une vieille
+          bouteille qui a tourné n’est pas une bouteille abîmée.</p>
+        </div>
+      </li>
+      <li>
+        <div class="moment">Le louche<small>dans votre verre</small></div>
+        <div>
+          <h3>Pourquoi ça se trouble</h3>
+          <p>Les composés anisés sont solubles dans l’alcool mais pas dans l’eau. Quand l’eau glacée
+          descend dans le verre, ils précipitent en fines gouttelettes : c’est le « louche », ce
+          nuage laiteux qui monte et libère les arômes. Ce n’est pas un effet spectaculaire, c’est de
+          la chimie visible à l’œil nu.</p>
+        </div>
+      </li>
+    </ul>
   </section>
 
-  <section id="officine">
+  <section id="officine" class="monte">
     <p class="cartouche">Absinthes &amp; élixirs</p>
     <h2>Le catalogue de l’officine</h2>
+    <p class="lede">Trois grandes familles sortent de l’alambic, et une longue liste de variantes.
+      Voici d’abord les trois, avec ce qu’elles ont dans le verre et la manière de les servir.</p>
+
+    <div class="familles">
+      <div class="famille">
+        <h3>Les absinthes vertes</h3>
+        <p class="etiq">Distillées et colorées aux plantes</p>
+        <p>Le cœur de la maison : des absinthes hautement titrées, distillées à partir de la grande
+        absinthe cultivée sur nos parcelles et colorées par un second passage sur les plantes.</p>
+        <p>Au nez, l’anis domine, mais derrière viennent l’amertume herbacée de l’absinthe et les
+        notes fraîches des plantes de montagne. En bouche, la puissance est réelle : une absinthe ne
+        se boit jamais pure.</p>
+        <p class="service">Service : une part d’absinthe pour trois à cinq parts d’eau glacée, versée
+        lentement. Le sucre est facultatif — goûtez d’abord sans.</p>
+      </div>
+      <div class="famille">
+        <h3>Les liqueurs d’absinthe</h3>
+        <p class="etiq">Une seule distillation, plus douces</p>
+        <p>Beaucoup plus abordables que les vertes : une seule distillation de la plante, un degré
+        modéré, et une amertume volontairement effacée au profit du bouquet aromatique.</p>
+        <p>C’est la porte d’entrée pour qui trouve l’absinthe classique trop rude, et le format qui
+        passe le mieux en cuisine — sur un dessert, dans une crème, avec du chocolat.</p>
+        <p class="service">Service : très frais, en petit verre, ou allongé d’eau pétillante en
+        apéritif d’été.</p>
+      </div>
+      <div class="famille">
+        <h3>Gentiane, anisés &amp; vodka</h3>
+        <p class="etiq">Le reste de l’officine</p>
+        <p>L’apéritif de gentiane est fait avec des racines du massif jurassien — une plante dont
+        la récolte se fait encore à la main, à la fourche, parce que la racine descend
+        profondément.</p>
+        <p>À côté, les anisés sans absinthe, une vodka de la ferme et une série de liqueurs qui
+        suivent les cueillettes de la saison.</p>
+        <p class="service">Service : la gentiane bien fraîche à l’apéritif, seule ou avec un trait
+        de vin blanc.</p>
+      </div>
+    </div>
+
     <div class="officine">
       <article class="flacon">
         <span class="num">N° 1</span>
@@ -261,12 +514,33 @@
           au fil des saisons de cueillette.</p>
       </article>
     </div>
+
+    <div class="table-scroll">
+      <table class="tab">
+        <caption class="sr-only">Les produits de la distillerie</caption>
+        <tr>
+          <th scope="col">Produit</th>
+          <th scope="col">Ce que c’est</th>
+          <th scope="col">Disponibilité</th>
+          <th scope="col">Prix</th>
+        </tr>
+        <tr><td>La Faucille</td><td>Absinthe verte, 72°, plantes de la ferme</td><td>À la distillerie et sur les marchés</td><td class="prix">Prix en magasin</td></tr>
+        <tr><td>Lynx</td><td>Absinthe bio solidaire</td><td>À la distillerie et sur les marchés</td><td class="prix">Prix en magasin</td></tr>
+        <tr><td>Liqueur d’absinthe</td><td>Une seule distillation, sans amertume</td><td>À la distillerie et sur les marchés</td><td class="prix">Prix en magasin</td></tr>
+        <tr><td>La Pioche</td><td>Apéritif de gentiane, 16°</td><td>À la distillerie et sur les marchés</td><td class="prix">Prix en magasin</td></tr>
+        <tr><td>Autres absinthes</td><td>Les douze autres recettes de la maison</td><td>Selon les cueillettes</td><td class="prix">Prix en magasin</td></tr>
+        <tr><td>Anisés &amp; vodka</td><td>Distillés à la ferme</td><td>Selon les productions</td><td class="prix">Prix en magasin</td></tr>
+        <tr><td>Confitures &amp; sirops</td><td>Élaborés à la ferme avec la récolte</td><td>Selon les saisons</td><td class="prix">Prix en magasin</td></tr>
+        <tr><td>Tisanes &amp; chocolats</td><td>Plantes de montagne de la ferme</td><td>Selon les saisons</td><td class="prix">Prix en magasin</td></tr>
+      </table>
+    </div>
+
     <p class="mention-officine">Les prix sont affichés à la distillerie et sur les marchés : cette maquette
       n’en avance aucun, et la gamme complète — seize absinthes, anisés, vodka, liqueurs — reste à
       détailler avec vous, bouteille par bouteille.</p>
   </section>
 
-  <section id="ferme">
+  <section id="ferme" class="monte">
     <p class="cartouche">La ferme de montagne</p>
     <h2>Tout commence par une graine</h2>
     <div class="deux-colonnes">
@@ -281,15 +555,47 @@
           <li>Tisanes de montagne</li>
           <li>Chocolats</li>
         </ul>
+        <p style="margin-top:1.2rem">Cette gamme n’est pas un à-côté commercial : c’est ce qui permet
+          d’utiliser la récolte entière plutôt que la seule fraction qui part à l’alambic. Une ferme
+          de cette taille ne peut pas se permettre de jeter la moitié de ce qu’elle cultive.</p>
       </div>
       <div class="aparte">
         <p>Des installations <strong>à la taille de la ferme</strong> : on ne distille que ce que l’on
           cultive, pour des produits d’une qualité que seule permet la plante fraîche et entière.</p>
+        <p>Conséquence directe : les quantités sont limitées et certaines recettes s’arrêtent quand
+          la récolte de l’année est épuisée. C’est une contrainte assumée, pas un argument de rareté.</p>
       </div>
     </div>
   </section>
 
-  <section id="visites">
+  <section id="pays" class="monte">
+    <p class="cartouche">Le pays de l’absinthe</p>
+    <h2>Pourquoi ici, et pas ailleurs</h2>
+    <div class="deux-colonnes">
+      <div>
+        <p class="lede">Les Fourgs est le village le plus haut du Doubs, sur le plateau qui borde la
+          frontière suisse, à quelques minutes de Pontarlier. Ce n’est pas un hasard géographique :
+          Pontarlier fut la capitale mondiale de l’absinthe avant l’interdiction française de 1915,
+          et la vallée voisine, côté suisse, est le berceau revendiqué de la boisson.</p>
+        <p>L’interdiction a duré près d’un siècle. La production a repris progressivement, et le nom
+          « absinthe » n’a été de nouveau autorisé en France qu’en 2011. Ce que fait la distillerie
+          n’est donc pas la continuation d’un métier ininterrompu : c’est la reprise d’un fil coupé,
+          dans le pays même où il avait été coupé.</p>
+      </div>
+      <div>
+        <p>L’altitude, elle, change la plante. À 1 100 mètres, les nuits sont froides même en été, la
+          saison de pousse est brève, et les végétaux concentrent davantage leurs huiles essentielles
+          qu’en plaine. C’est vrai de la grande absinthe comme des plantes de tisane.</p>
+        <p>La gentiane jaune, elle, est une plante de montagne au sens strict : elle pousse dans les
+          prairies d’altitude du massif, met des années à faire une racine exploitable, et se récolte
+          encore à la main. Sa lenteur explique son prix et son amertume.</p>
+        <p>La distillerie est membre du réseau « Les Amis de la Route de l’Absinthe », qui relie de
+          part et d’autre de la frontière les lieux liés à cette histoire.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visites" class="monte">
     <div class="visite">
       <div>
         <p class="cartouche">Visites &amp; dégustations</p>
@@ -297,30 +603,72 @@
         <p class="lede">Visite de l’atelier de distillation et dégustation des absinthes et liqueurs de la
           ferme, <strong>sur réservation obligatoire</strong>. Le rituel de la fontaine, la louche à
           sucre, l’eau glacée : tout s’apprend mieux sur place.</p>
+        <p class="lede">Ce que l’on voit : les alambics de cuivre, la pièce de distillation au fond de
+          la grange, les plantes en cours de séchage selon la saison, et la manière dont une recette
+          passe du champ à la bouteille. Ce que l’on goûte : plusieurs produits de la maison, servis
+          et expliqués — dilution, température, ordre de dégustation.</p>
+        <p class="lede">Durée, tarif, taille des groupes et jours de visite : à caler ensemble avant la
+          mise en ligne. Rien n’est inventé ici.</p>
       </div>
       <a class="bouton plein" href="#contact">Réserver</a>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="infos" class="monte">
+    <p class="cartouche">Bon à savoir</p>
+    <h2>Quatre points avant de venir</h2>
+    <div class="grille4">
+      <div class="info">
+        <h3>Sur réservation</h3>
+        <p>Les visites et dégustations ne se font qu’avec un rendez-vous pris à l’avance : c’est une
+        ferme en activité, pas un lieu de passage permanent.</p>
+        <p>Jours et créneaux disponibles : à compléter ensemble.</p>
+      </div>
+      <div class="info">
+        <h3>Servir une absinthe</h3>
+        <p>Jamais pure. Comptez trois à cinq volumes d’eau glacée pour un volume d’absinthe, versés
+        lentement pour laisser le louche se former.</p>
+        <p>Le sucre est une option, pas une règle : goûtez d’abord sans.</p>
+      </div>
+      <div class="info">
+        <h3>Conserver ses bouteilles</h3>
+        <p>Debout, à l’abri de la lumière et de la chaleur. La couleur d’une verte évolue avec le
+        temps vers l’ambré : c’est normal, et ce n’est pas un défaut.</p>
+      </div>
+      <div class="info">
+        <h3>Où nous trouver ailleurs</h3>
+        <p>À la ferme, sur les marchés du Haut-Doubs et chez des revendeurs locaux.</p>
+        <p>Calendrier des marchés, liste des revendeurs et vente en ligne éventuelle : à compléter
+        ensemble.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="monte">
     <p class="cartouche">Contact</p>
     <h2>La distillerie vous ouvre sa grange</h2>
+    <a class="gros-tel" href="tel:+33787245745">
+      <small>Appeler la distillerie</small>
+      <b>07 87 24 57 45</b>
+    </a>
     <div class="contact-grille">
       <div>
         <h3>Adresse</h3>
         <p>La Semilla — Distillerie Aymonier<br>80 Grande Rue<br>25300 Les Fourgs</p>
-        <p style="margin-top:.6rem"><a href="https://www.google.com/maps/search/?api=1&amp;query=La+Semilla+Distillerie+Aymonier+Les+Fourgs">Voir sur Google Maps</a></p>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=La+Semilla+Distillerie+Aymonier+Les+Fourgs">Voir sur Google Maps</a></p>
       </div>
       <div>
-        <h3>Téléphone</h3>
-        <p><a class="tel" href="tel:+33787245745">07 87 24 57 45</a></p>
-        <p style="margin-top:.6rem">Visites et dégustations sur réservation.</p>
+        <h3>Visites</h3>
+        <p>Visites et dégustations uniquement sur réservation. Appelez pour convenir d’un créneau et
+          indiquer le nombre de personnes.</p>
+        <p>Durée et tarif : à compléter ensemble.</p>
       </div>
       <div>
         <h3>Où nous trouver</h3>
         <p>À la ferme, sur les marchés du Haut-Doubs et chez les revendeurs locaux.
           Aux Fourgs, plus haut village du Doubs, à quelques minutes de Pontarlier,
           capitale historique de l’absinthe.</p>
+        <p>Adresse électronique et réseaux sociaux : à compléter ensemble.</p>
       </div>
     </div>
   </section>
@@ -331,5 +679,22 @@
   <p>La consommation d’alcool est interdite aux mineurs.</p>
   <p class="primo">Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle</p>
 </footer>
+
+<script>
+(function(){
+  var cibles = document.querySelectorAll('.monte');
+  if(!('IntersectionObserver' in window) ||
+     window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    cibles.forEach(function(el){el.classList.add('vu')});
+    return;
+  }
+  var io = new IntersectionObserver(function(entrees){
+    entrees.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
+    });
+  }, {threshold:.1});
+  cibles.forEach(function(el){io.observe(el)});
+})();
+</script>
 </body>
 </html>

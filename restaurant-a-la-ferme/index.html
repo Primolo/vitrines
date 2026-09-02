@@ -11,12 +11,19 @@
      Typographie : titres en Iowan Old Style / Georgia (serif fermier, généreux) ·
        corps en Avenir Next / Gill Sans / Verdana (sans humaniste).
      Mise en page : héros en diptyque bois (texte à gauche, grande boîte chaude SVG à droite),
-       sections séparées par des filets « veine de bois », carte des saisons en deux volets
-       hiver/été comme les deux battants d'une porte de grange.
+       bande de repères sous filet, sections séparées par des filets « veine de bois »,
+       trois cartouches de cuisine, carte des saisons en deux volets hiver/été comme les deux
+       battants d'une porte de grange, blocs pratiques et grand appel téléphonique.
      ÉLÉMENT SIGNATURE : la BOÎTE CHAUDE vue du dessus — sangle d'épicéa cerclant une spirale
        de Mont d'Or fondu, redessinée en SVG ; ses cercles-copeaux servent de puces et le filet
        « veine de bois » (trait ondulé irrégulier) rythme toute la page. Aucune crête de sapins,
        aucune ellipse topographique.
+     Faits retenus : Les Fourgs (25300), plus haut village du Doubs, plateau à environ 1 100 m,
+       frontière suisse, ski nordique et raquettes · cuisine maison, produits régionaux,
+       cadre rustique · plats à emporter et bons cadeaux · boîte chaude, fondue, jambon et salade
+       de röstis, filet de truite au vin d'Arbois, pavé de bœuf sur ardoise, salades, hamburger
+       maison, filets de perche. Aucun prix, aucune date, aucun horaire, aucun nom inventés :
+       ce qui manque est signalé « à compléter ensemble ».
 -->
 <html lang="fr">
 <head>
@@ -36,7 +43,7 @@
     --pas-section:3.4rem;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{overflow-x:hidden}
+  html{overflow-x:hidden; scroll-behavior:smooth}
   body{
     background:var(--lait); color:var(--encre);
     font-family:"Avenir Next","Avenir","Gill Sans","Gill Sans MT",Verdana,sans-serif;
@@ -47,7 +54,7 @@
   p{text-wrap:pretty}
   a{color:var(--pature)}
   a:focus-visible{outline:3px solid var(--braise); outline-offset:3px}
-  .contact a:focus-visible,.demo-banner a:focus-visible,.btn:focus-visible{outline-color:var(--comte)}
+  .contact a:focus-visible,.demo-banner a:focus-visible,.btn:focus-visible,.appel:focus-visible{outline-color:var(--comte)}
   img,svg{max-width:100%;height:auto}
 
   /* Bandeau maquette */
@@ -80,7 +87,7 @@
   /* Héros diptyque */
   .hero{
     display:grid; grid-template-columns:1.15fr .85fr; gap:2.5rem; align-items:center;
-    padding:3.2rem 0 3rem;
+    padding:3.2rem 0 2.4rem;
   }
   .hero .eyebrow{
     display:inline-block; font-size:.78rem; text-transform:uppercase; letter-spacing:.22em;
@@ -99,6 +106,21 @@
   .btn:hover{background:var(--comte);border-color:var(--comte);color:var(--encre)}
   .hero-fig{text-align:center}
   .hero-fig figcaption{font-size:.8rem;color:var(--bois);margin-top:.6rem;font-style:italic;font-family:Georgia,serif}
+
+  /* Chiffres-repères */
+  .reperes{
+    display:flex;flex-wrap:wrap;gap:1.3rem 3rem;
+    padding:1.5rem 0 2.4rem;border-top:2px solid var(--filet-bois);
+  }
+  .reperes div{min-width:0}
+  .reperes b{
+    display:block;font-family:"Iowan Old Style",Palatino,Georgia,serif;
+    font-size:2rem;line-height:1.05;color:var(--bois);font-weight:700;
+  }
+  .reperes span{
+    display:block;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--braise);margin-top:.3rem;
+  }
 
   /* Filet veine de bois */
   .grain{display:block;margin:0 auto;color:var(--bois);opacity:.55}
@@ -123,6 +145,21 @@
     margin-bottom:.5rem;
   }
   section.block h2{font-size:clamp(1.7rem,3.4vw,2.4rem); margin-bottom:1rem}
+  .chapo{max-width:44rem}
+  .chapo + .chapo{margin-top:.9rem}
+
+  /* Trois cartouches de cuisine */
+  .trois{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2rem}
+  .trois article{
+    background:var(--papier);border:1px solid rgba(92,69,48,.3);
+    border-top:6px solid var(--comte);padding:1.6rem 1.5rem 1.4rem;
+  }
+  .trois article:nth-child(2){border-top-color:var(--pature)}
+  .trois article:nth-child(3){border-top-color:var(--braise)}
+  .trois .quand{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bois)}
+  .trois h3{font-size:1.28rem;margin:.5rem 0 .7rem}
+  .trois p{font-size:.96rem}
+  .trois p+p{margin-top:.7rem}
 
   /* Carte deux volets */
   .volets{display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; margin-top:2rem}
@@ -162,16 +199,49 @@
     border:1px solid var(--bois);color:var(--bois);padding:.3rem .7rem;
   }
 
+  /* Emporter / groupes */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.4rem}
+  .duo p+p{margin-top:.9rem}
+  .encart{
+    background:var(--papier);border:1px solid rgba(92,69,48,.3);
+    border-left:6px solid var(--comte);padding:1.5rem 1.5rem 1.3rem;
+  }
+  .encart h3{font-size:1.15rem;margin-bottom:.6rem}
+  .encart p{font-size:.96rem}
+  .encart p+p{margin-top:.7rem}
+
+  /* Quatre blocs pratiques */
+  .quatre{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1.8rem}
+  .quatre div{background:var(--papier);border:1px solid rgba(92,69,48,.3);border-bottom:4px solid var(--comte);padding:1.3rem 1.3rem 1.2rem}
+  .quatre h3{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--braise);margin-bottom:.6rem;font-family:inherit}
+  .quatre p{font-size:.93rem}
+  .quatre p+p{margin-top:.5rem}
+  .quatre .fine{color:var(--bois);font-size:.88rem;font-style:italic}
+
   /* Contact */
   .contact{background:var(--bois); color:var(--lait)}
   .contact .kicker{color:var(--paille)}
   .contact h2{color:#FFFDF7}
   .contact a{color:var(--paille)}
+  .contact .chapo{color:var(--paille-2)}
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem}
   .contact dl div{padding:.8rem 0;border-bottom:1px solid rgba(245,239,227,.25)}
   .contact dt{font-size:.75rem;text-transform:uppercase;letter-spacing:.18em;color:var(--paille-3)}
   .contact dd{font-size:1.05rem;margin-top:.15rem}
   .contact .note{font-size:.88rem;font-style:italic;margin-top:1.2rem;color:var(--paille-2)}
+  .contact-grid p+p{margin-top:.8rem}
+
+  /* Grand appel téléphonique */
+  .appel{
+    display:block;background:var(--lait);color:var(--encre);text-decoration:none;
+    border:3px solid var(--comte);padding:1.6rem 1.5rem;margin-top:1.8rem;max-width:34rem;
+  }
+  .appel .quoi{display:block;font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;color:var(--braise);margin-bottom:.4rem}
+  .appel .num{
+    display:block;font-family:"Iowan Old Style",Palatino,Georgia,serif;
+    font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:700;line-height:1.15;color:var(--bois);
+  }
+  .appel .sous{display:block;font-size:.9rem;line-height:1.5;margin-top:.6rem;color:var(--encre)}
 
   footer.credit{
     background:var(--encre); color:#D2C6AF; font-size:.82rem;
@@ -179,6 +249,18 @@
   }
   footer.credit a:focus-visible{outline-color:var(--comte)}
 
+  /* apparition douce */
+  .js-anim .monte{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .js-anim .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .js-anim .monte{opacity:1;transform:none;transition:none}
+  }
+
+  @media (max-width:980px){
+    .trois{grid-template-columns:1fr}
+    .quatre{grid-template-columns:1fr 1fr}
+  }
   @media (max-width:820px){
     .hero{grid-template-columns:1fr; gap:1.8rem; padding-top:2.4rem}
     .hero-fig{order:-1; max-width:340px; margin:0 auto}
@@ -188,6 +270,7 @@
     .volets{grid-template-columns:1fr}
     .village{grid-template-columns:1fr}
     .village .art{max-width:300px;margin:0 auto}
+    .duo{grid-template-columns:1fr;gap:1.6rem}
     .contact-grid{grid-template-columns:1fr}
     nav.main{display:flex;flex-wrap:wrap;gap:.2rem .1rem}
     nav.main a{margin-left:0;margin-right:1.1rem}
@@ -197,10 +280,75 @@
     .volet{padding:1.4rem 1.2rem 1.2rem}
     .strip article{padding:1.3rem 0}
     .btn{padding:.8rem 1.15rem;letter-spacing:.08em}
+    .quatre{grid-template-columns:1fr}
+    .reperes{gap:1.1rem 2rem}
+    .reperes b{font-size:1.65rem}
+    .appel{padding:1.3rem 1.2rem}
   }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "https://primolo.github.io/vitrines/restaurant-a-la-ferme/#etablissement",
+  "name": "Restaurant à la Ferme",
+  "description": "Cuisine fermière du Haut-Doubs : boîte chaude, fondue, salade de röstis au jambon, filet de truite au vin d'Arbois.",
+  "url": "https://primolo.github.io/vitrines/restaurant-a-la-ferme/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Les Fourgs",
+    "postalCode": "25300",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Les Fourgs"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "servesCuisine": [
+    "Française",
+    "Franc-comtoise"
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quelles sont les spécialités du Restaurant à la Ferme ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La boîte chaude, la fondue, la salade de röstis au jambon et le filet de truite au vin d'Arbois font partie des spécialités de la maison."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le restaurant est-il ouvert l'hiver ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les Fourgs est un village de ski nordique très fréquenté l'hiver. Les horaires de saison sont à confirmer directement auprès du restaurant."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
+<script>/* l'apparition au defilement n'est armee que si JS et IntersectionObserver sont la : sinon tout le contenu reste visible */
+if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.className+=' js-anim';}</script>
 
 <div class="demo-banner"><strong>Maquette de démonstration réalisée par Primo (Montperreux)</strong> — proposition non contractuelle, contenu à valider avec vous.</div>
 
@@ -216,8 +364,10 @@
       <span><b>Restaurant à la Ferme</b><small>Les Fourgs · Haut-Doubs</small></span>
     </a>
     <nav class="main">
+      <a href="#cuisine">En cuisine</a>
       <a href="#carte">La carte</a>
       <a href="#village">Le village</a>
+      <a href="#pratique">Pratique</a>
       <a href="#venir">Venir</a>
     </nav>
   </header>
@@ -275,6 +425,13 @@
       <figcaption>La boîte chaude, servie tout l'hiver.</figcaption>
     </figure>
   </section>
+
+  <div class="reperes monte">
+    <div><b>1 100 m</b><span>le plateau des Fourgs</span></div>
+    <div><b>2</b><span>cartes, une par saison</span></div>
+    <div><b>8</b><span>plats de la maison, détaillés ici</span></div>
+    <div><b>À emporter</b><span>et bons cadeaux, toute l'année</span></div>
+  </div>
 </div>
 
 <div class="strip">
@@ -295,12 +452,58 @@
 </div>
 
 <div class="wrap">
+  <section class="block" id="cuisine">
+    <p class="kicker">En cuisine</p>
+    <h2>D'où vient ce qu'il y a dans l'assiette</h2>
+    <p class="chapo">Trois choses décident de la carte, dans cet ordre : le fromage du plateau,
+    la saison, et ce que la salle demande le jour même. Le reste s'organise autour.</p>
+    <div class="trois monte">
+      <article>
+        <p class="quand">De l'automne au printemps</p>
+        <h3>Le fromage, en plat entier</h3>
+        <p>Aux Fourgs, on est entouré de fruitières : le fromage n'arrive pas de loin, et il ne sert
+        pas de garniture. Il est le plat.</p>
+        <p>La <strong>boîte chaude</strong> — le Mont d'Or passé au four dans sa sangle d'épicéa —
+        n'existe que sur sa saison, celle du fromage lui-même : on la sert tant qu'il y en a, et
+        pas un jour de plus. La <strong>fondue</strong>, elle, tient toute la mauvaise saison,
+        et à 1 100 mètres, la mauvaise saison est longue.</p>
+      </article>
+      <article>
+        <p class="quand">Toute l'année</p>
+        <h3>Préparé sur place</h3>
+        <p>Cuisine maison veut dire quelque chose de précis ici : les plats sont montés
+        en cuisine, pas assemblés. Le <strong>hamburger</strong> est fait façon fermière,
+        la <strong>salade de röstis</strong> est râpée et poêlée sur place, le
+        <strong>pavé de bœuf</strong> part sur son ardoise brûlante et finit de cuire devant vous.</p>
+        <p>C'est une cuisine qui rassasie plus qu'elle ne surprend — et dans un village de fondeurs,
+        c'est exactement ce qu'on lui demande.</p>
+      </article>
+      <article>
+        <p class="quand">Selon la saison et le marché</p>
+        <h3>Le poisson et le pré</h3>
+        <p>Le <strong>filet de truite au vin d'Arbois</strong> fait se rencontrer deux voisins :
+        la truite des rivières froides du plateau et le vignoble jurassien, à moins d'une heure
+        de route. Les <strong>filets de perche</strong> viennent, eux, de la famille des lacs
+        tout proches.</p>
+        <p>L'été, la carte s'allège d'elle-même : <strong>salades garnies</strong> et grillades
+        prennent la place des plats de fromage, en suivant ce que donne le plateau.</p>
+      </article>
+    </div>
+  </section>
+
+  <svg class="grain" width="220" height="18" viewBox="0 0 220 18" aria-hidden="true">
+    <path d="M4 9 q18 -7 36 0 t36 0 t36 0 t36 0 t36 0 t32 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="110" cy="9" r="3.5" fill="currentColor"/>
+  </svg>
+
   <section class="block" id="carte">
     <p class="kicker">La carte</p>
     <h2>Deux saisons, deux volets</h2>
-    <p>Aux Fourgs, la carte suit la neige : quand les pistes ferment, la carte d'été s'ouvre.</p>
+    <p class="chapo">Aux Fourgs, la carte suit la neige : quand les pistes ferment, la carte d'été s'ouvre.
+    Voici les plats que la maison sert et qu'on lui connaît — les tarifs seront repris de vos
+    documents, tels quels, avant toute mise en ligne.</p>
 
-    <div class="volets">
+    <div class="volets monte">
       <article class="volet">
         <span class="saison">L'hiver</span>
         <h3>Quand le village skie</h3>
@@ -322,7 +525,8 @@
         </ul>
       </article>
     </div>
-    <p class="prix-note">Tarifs et carte du moment : nous consulter — la carte définitive sera reprise avec vous.</p>
+    <p class="prix-note">Tarifs, menu du jour et carte des boissons : nous consulter — la carte définitive
+    sera reprise avec vous, plat par plat, avant la mise en ligne.</p>
   </section>
 
   <svg class="grain" width="220" height="18" viewBox="0 0 220 18" aria-hidden="true">
@@ -331,7 +535,7 @@
   </svg>
 
   <section class="block" id="village">
-    <div class="village">
+    <div class="village monte">
       <div class="art">
         <!-- caquelon de fondue -->
         <svg viewBox="0 0 260 220" width="260" role="img" aria-label="Caquelon de fondue">
@@ -358,11 +562,74 @@
         au rythme du ski nordique l'hiver et des grands prés l'été. Le restaurant tient sa place
         dans cette vie de village : une salle rustique, une cuisine qui rassasie les fondeurs,
         les raquetteurs, les randonneurs — et les gourmands qui ne skient pas.</p>
-        <p>On y vient après la piste, en famille, entre voisins. On repart avec, parfois,
-        un plat à emporter pour le soir.</p>
+        <p>La saison de fond commence dès que la neige tient et peut durer jusqu'au printemps :
+        c'est le moment où le village compte plus de skis que de voitures et où la salle se remplit
+        deux fois, à midi puis en fin d'après-midi. Le service s'organise autour de ça.</p>
+        <p>L'été, le rythme change du tout au tout. Randonneurs, cyclistes et familles remontent
+        pour l'air du plateau, et l'on mange plus tard, plus léger, souvent après une longue matinée
+        dehors. On y vient en famille, entre voisins. On repart avec, parfois, un plat à emporter
+        pour le soir.</p>
         <div class="tags">
           <span>Ski nordique</span><span>Raquettes</span><span>Frontière suisse</span><span>Cadre rustique</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="grain" width="220" height="18" viewBox="0 0 220 18" aria-hidden="true">
+    <path d="M4 9 q18 -7 36 0 t36 0 t36 0 t36 0 t36 0 t32 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="110" cy="9" r="3.5" fill="currentColor"/>
+  </svg>
+
+  <section class="block" id="emporter">
+    <p class="kicker">Groupes, familles &amp; à emporter</p>
+    <h2>Repartir avec la table</h2>
+    <div class="duo monte">
+      <div>
+        <p>Tout ne se passe pas en salle. La maison prépare des <strong>plats à emporter</strong> :
+        pratique le soir de retour de piste, quand la journée a été longue et que personne n'a
+        envie de cuisiner, ou pour une location de vacances où l'on est plus nombreux que
+        prévu.</p>
+        <p>Les <strong>bons cadeaux</strong> répondent à une autre demande, celle des habitués qui
+        veulent faire découvrir l'adresse : un repas offert plutôt qu'un objet de plus.
+        Montant, durée de validité et modalités : à préciser directement avec le restaurant.</p>
+      </div>
+      <div class="encart">
+        <h3>Pour une tablée</h3>
+        <p>Repas de famille, sortie de club de ski, groupe de randonneurs, fin de saison :
+        ces repas se calent par téléphone, parce qu'ils demandent de savoir à l'avance combien
+        vous êtes et ce que vous voulez manger.</p>
+        <p><strong>Le nombre de couverts, les menus de groupe et les conditions de réservation
+        ne sont pas affichés ici</strong> tant qu'ils n'ont pas été vérifiés avec la maison.
+        C'est le genre d'information qu'on relèvera ensemble avant la mise en ligne — mieux vaut
+        une page honnête qu'une page qui promet ce qui n'est pas tenable.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="pratique">
+    <p class="kicker">Pratique</p>
+    <h2>Ce qu'il est utile de savoir avant de venir</h2>
+    <div class="quatre monte">
+      <div>
+        <h3>Horaires</h3>
+        <p>Jours de service et horaires de midi et du soir : <strong>à compléter ensemble</strong>.</p>
+        <p class="fine">Rien ne sera publié tant que ce n'est pas vérifié.</p>
+      </div>
+      <div>
+        <h3>Accès</h3>
+        <p>Les Fourgs (25300), sur le plateau, à quelques minutes de la frontière suisse.</p>
+        <p class="fine">Adresse précise et stationnement à préciser avec vous.</p>
+      </div>
+      <div>
+        <h3>Groupes</h3>
+        <p>Familles, clubs et sorties de saison sur réservation, par téléphone.</p>
+        <p class="fine">Capacité de la salle et menus de groupe à compléter.</p>
+      </div>
+      <div>
+        <h3>Paiement</h3>
+        <p>Moyens acceptés (carte, espèces, titres restaurant) : <strong>à confirmer</strong>.</p>
+        <p class="fine">Question fréquente au téléphone : autant y répondre ici.</p>
       </div>
     </div>
   </section>
@@ -372,7 +639,18 @@
   <div class="wrap">
     <p class="kicker">Venir</p>
     <h2>À votre table aux Fourgs</h2>
-    <div class="contact-grid">
+    <p class="chapo">Réservation conseillée en saison d'hiver et les week-ends. Pour un groupe
+    ou un plat à emporter, le téléphone reste le plus simple.</p>
+
+    <a class="appel monte" href="#venir">
+      <span class="quoi">Réserver une table</span>
+      <span class="num">Téléphone à compléter</span>
+      <span class="sous">C'est le premier élément que nous renseignerons ensemble : sur un site de
+      restaurant, le bouton d'appel est de loin le plus utilisé. Il occupera cette place, en grand,
+      et lancera l'appel directement depuis un téléphone.</span>
+    </a>
+
+    <div class="contact-grid monte">
       <dl>
         <div><dt>Adresse</dt><dd>Les Fourgs (25300) — adresse précise à compléter avec vous</dd></div>
         <div><dt>Téléphone</dt><dd>à compléter</dd></div>
@@ -381,6 +659,9 @@
       <div>
         <p>Réservation conseillée en saison d'hiver et les week-ends.
         Plats à emporter et bons cadeaux : renseignez-vous au restaurant.</p>
+        <p>Depuis Pontarlier, on monte sur le plateau en une vingtaine de minutes ; depuis la Suisse,
+        la frontière est toute proche. Le lien d'itinéraire ci-contre ouvre directement la navigation
+        sur un téléphone.</p>
         <p class="note">Horaires, coordonnées et photos définitives seront intégrés avec vous
         lors de la validation de cette maquette.</p>
       </div>
@@ -391,6 +672,23 @@
 <footer class="credit">
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.monte');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(e){ e.classList.add('vu'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('vu'); io.unobserve(en.target); }
+    });
+  }, {threshold:.12});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
 
 </body>
 </html>

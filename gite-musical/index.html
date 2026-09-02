@@ -80,6 +80,13 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
   .hero{padding:3.5rem 0 1rem;}
   .hero h1{font-size:clamp(2.5rem,6vw,4.2rem);max-width:16ch;margin-bottom:1.6rem;}
   .hero .la{color:var(--doux);max-width:52ch;font-size:1.08rem;margin-bottom:2.2rem;}
+  /* chiffres-repères du hero */
+  .reperes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.6rem;margin-top:2.4rem;
+           border-top:1px solid var(--filet);padding-top:1.6rem;}
+  .repere b{display:block;font-family:var(--serif);font-weight:600;font-size:1.9rem;
+            color:var(--velours);line-height:1;}
+  .repere span{display:block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
+               color:var(--doux);margin-top:.45rem;line-height:1.5;}
   .btn{display:inline-block;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;
        padding:.9rem 2rem;border-radius:999px;border:1.5px solid var(--velours);
        color:var(--velours);transition:all .25s;font-weight:600;}
@@ -97,15 +104,25 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
   /* séparateur signature : portée courte + note */
   .cadence{display:flex;justify-content:flex-start;padding:0;}
   .deux-voix{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3.5rem;align-items:start;}
+  .deux-voix p + p{margin-top:1rem;}
   .pupitre-bloc{background:var(--pupitre);border-radius:14px;padding:2.2rem;}
   .pupitre-bloc h3{font-size:1.08rem;margin-bottom:.5rem;}
   .pupitre-bloc p{color:var(--doux);font-size:1rem;line-height:1.7;}
+  .pupitre-bloc p + p{margin-top:.7rem;}
   .pupitre-bloc ul{list-style:none;margin-top:.5rem;color:var(--doux);font-size:1rem;}
   .pupitre-bloc ul li{padding:.2rem 0 .2rem 1.1rem;position:relative;}
   .pupitre-bloc ul li::before{content:"";position:absolute;left:0;top:.85rem;width:.45rem;height:.45rem;
                               border-radius:50%;background:var(--velours);}
   .partition-note{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--velours);
                   margin-top:1.4rem;}
+  /* trois pièces du gîte */
+  .trois-pieces{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;margin-top:2.4rem;}
+  .piece{background:var(--pupitre);border-radius:14px;padding:2rem 1.8rem;}
+  .piece h3{font-size:1.2rem;margin-bottom:.7rem;}
+  .piece p{color:var(--doux);font-size:1rem;line-height:1.7;}
+  .piece p + p{margin-top:.7rem;}
+  .piece .pour{display:block;margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--filet);
+               font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--laiton-texte);}
   /* programme en quatre mouvements */
   .programme{list-style:none;counter-reset:mvt;border-top:1px solid var(--filet);margin-top:2.4rem;}
   .programme li{counter-increment:mvt;display:grid;grid-template-columns:minmax(90px,1fr) minmax(0,3fr) minmax(0,6fr);
@@ -125,12 +142,37 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
   .direct .phrase{color:var(--doux);font-size:1.06rem;max-width:46ch;}
   .direct .droite{display:flex;flex-direction:column;gap:1rem;align-items:flex-start;}
   .accord{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--laiton-texte);}
+  .trois-accords{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.4rem;margin-top:2.6rem;}
+  .trois-accords div{border-top:2px solid var(--velours);padding-top:1rem;}
+  .trois-accords b{display:block;font-family:var(--serif);font-size:1.12rem;margin-bottom:.4rem;}
+  .trois-accords p{color:var(--doux);font-size:.97rem;line-height:1.7;}
+  /* infos pratiques : quatre blocs */
+  .infos4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem;margin-top:2.2rem;}
+  .infos4 > div{background:var(--pupitre);border-radius:14px;padding:1.7rem 1.5rem;}
+  .infos4 h3{font-family:var(--sans);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;
+             color:var(--laiton-texte);margin-bottom:.7rem;font-weight:600;}
+  .infos4 p{color:var(--doux);font-size:.97rem;line-height:1.7;}
   /* contact */
   .coordonnees{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem;margin-top:2.2rem;}
   .coordonnees h3{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-family:var(--sans);
                   color:var(--laiton-texte);margin-bottom:.7rem;}
   .coordonnees p{color:var(--doux);font-size:1rem;}
+  .appel{display:block;background:var(--pupitre);border:2px solid var(--velours);border-radius:18px;
+         padding:2rem 2.2rem;max-width:34rem;margin-top:2.2rem;}
+  .appel .sur{font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;}
+  .appel .numero{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,5vw,2.3rem);
+                 line-height:1.25;margin-top:.5rem;border-bottom:2px dashed var(--filet);
+                 display:inline-block;padding-bottom:.25rem;}
+  .appel .note{color:var(--doux);font-size:.95rem;line-height:1.7;margin-top:1rem;}
   footer.coda{border-top:1px solid var(--filet);padding:2.3rem 0 3rem;font-size:.8rem;color:var(--doux);}
+  /* apparition douce au défilement */
+  .monte{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+  .monte.vu{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){.monte{opacity:1;transform:none;transition:none;}}
+  @media (max-width:960px){
+    .trois-pieces,.trois-accords{grid-template-columns:1fr;gap:1.2rem;}
+    .infos4{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
   @media (max-width:840px){
     .deux-voix,.direct{grid-template-columns:1fr;gap:2rem;}
     .programme li{grid-template-columns:minmax(46px,auto) 1fr;grid-template-rows:auto auto;gap:.4rem 1rem;}
@@ -138,17 +180,76 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
     .coordonnees{grid-template-columns:1fr;gap:1.8rem;}
     .direct{padding:2rem;}
     section{padding:3.2rem 0;}
+    .reperes{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.3rem;}
   }
   @media (max-width:520px){
     .portee-page{padding:0 1.15rem;}
     .demo-band{padding:.65rem 1.15rem;}
     .direct{padding:1.6rem;border-radius:14px;}
     .pupitre-bloc{padding:1.5rem 1.35rem;}
+    .piece{padding:1.5rem 1.35rem;}
+    .infos4{grid-template-columns:1fr;}
+    .appel{padding:1.5rem 1.3rem;border-radius:14px;}
     nav.tete-nav{gap:.9rem 1.1rem;}
     .cta-mesure .btn{padding:.85rem 1.4rem;}
     .coordonnees{padding-top:.4rem;border-top:1px solid var(--filet);}
   }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "@id": "https://primolo.github.io/vitrines/gite-musical/#etablissement",
+  "name": "Le Gîte musical",
+  "description": "Gîte dans le secteur de Métabief, entre les monts du Haut-Doubs et le lac de Saint-Point.",
+  "url": "https://primolo.github.io/vitrines/gite-musical/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Métabief",
+    "postalCode": "25370",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Métabief"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Où se situe Le Gîte musical ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dans le secteur de Métabief, entre les monts du Haut-Doubs et le lac de Saint-Point."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on réserver sans plateforme ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, la réservation en direct est possible, sans commission d'intermédiaire."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
@@ -169,9 +270,11 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
   </div>
   <nav class="tete-nav">
     <a href="#gite">Le gîte</a>
+    <a href="#pieces">Le logement</a>
     <a href="#saisons">Les saisons</a>
     <a href="#autour">Autour</a>
     <a href="#direct">Réserver</a>
+    <a href="#pratique">Pratique</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -190,6 +293,12 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
   <div class="cta-mesure">
     <a class="btn forte" href="#direct">Réserver en direct</a>
     <a class="btn" href="#gite">Lire le programme</a>
+  </div>
+  <div class="reperes">
+    <div class="repere"><b>900 m</b><span>d'altitude, à Métabief</span></div>
+    <div class="repere"><b>1 463 m</b><span>le Mont d'Or, point culminant du Doubs</span></div>
+    <div class="repere"><b>20 min</b><span>de Pontarlier</span></div>
+    <div class="repere"><b>4</b><span>saisons, quatre façons de venir</span></div>
   </div>
 </div>
 </div>
@@ -226,7 +335,7 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
 <div class="portee-page">
 <section id="gite">
   <div class="deux-voix">
-    <div>
+    <div class="monte">
       <div class="mouvement">Premier mouvement
         <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
       </div>
@@ -235,15 +344,21 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
       on chausse le matin, on marche ou on skie la journée, on rentre le soir dans une
       maison chauffée. C'est ce que les gens viennent chercher ici, et c'est ce que
       cette page doit dire — avec vos mots.</p>
+      <p style="color:var(--doux);max-width:46ch;">Ce qui ne change pas d'une maison à l'autre,
+      c'est le rythme : à 900 mètres, la nuit tombe tôt en décembre et s'étire jusqu'à dix heures
+      du soir en juin. L'hiver, la journée se termine quand le froid entre par le col des vestes ;
+      l'été, elle se prolonge dehors bien après le dîner.</p>
       <p class="partition-note">Ce que vous lisez à droite, c'est ce que j'ai pu vérifier
       sur le secteur. Ce qui manque, c'est vous qui l'avez : je n'ai rien inventé.</p>
     </div>
-    <div style="display:grid;gap:1.2rem;">
+    <div class="monte" style="display:grid;gap:1.2rem;">
       <div class="pupitre-bloc">
         <h3>Où l'on est</h3>
         <p>Métabief, plus de 900 mètres d'altitude, au pied du Mont d'Or — point culminant
         du Doubs à 1 463 m. Pontarlier à une vingtaine de minutes, la frontière suisse
         juste derrière la crête.</p>
+        <p>Le lac Saint-Point, l'un des grands lacs naturels du Jura français, est à courte
+        route : près de sept kilomètres d'eau posés à environ 850 mètres d'altitude.</p>
       </div>
       <div class="pupitre-bloc">
         <h3>Ce qu'il y a à faire, à pied du gîte</h3>
@@ -266,52 +381,111 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
   </div>
 </section>
 
-<section id="saisons" style="padding-top:1rem;">
-  <div class="mouvement">Deuxième mouvement
-    <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+<section id="pieces" style="padding-top:1rem;">
+  <div class="monte">
+    <div class="mouvement">Deuxième mouvement
+      <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+    </div>
+    <h2>Le logement, <em>en trois pupitres</em></h2>
+    <p style="color:var(--doux);max-width:56ch;">Un gîte de montagne se juge à trois endroits :
+    là où l'on pose les affaires mouillées, là où l'on mange, là où l'on dort. Voici ce que
+    chacun de ces trois moments demande ici — et, en bas de chaque carte, ce que vous seul
+    pouvez remplir.</p>
   </div>
-  <h2>Quatre saisons, <em>quatre tempos</em></h2>
-  <ol class="programme">
+  <div class="trois-pieces monte">
+    <div class="piece">
+      <h3>L'entrée, et ce qu'on y laisse</h3>
+      <p>Dans le Haut-Doubs, un séjour se joue souvent sur ce mètre carré : l'endroit où
+      les chaussures de ski, les raquettes ou les chaussures de marche s'égouttent sans qu'on
+      les traîne dans toute la maison.</p>
+      <p>Local à skis, séchage, garage, place couverte : c'est exactement le genre de détail
+      qui décide un visiteur en février — et c'est à préciser ensemble, sans rien supposer.</p>
+      <span class="pour">Pour les journées de neige et de pluie</span>
+    </div>
+    <div class="piece">
+      <h3>La pièce à vivre</h3>
+      <p>C'est la pièce du retour : celle où l'on s'assoit avec les chaussettes encore chaudes,
+      où le repas se prépare pendant que les autres regardent la nuit tomber par la fenêtre.
+      En secteur Métabief, ce que cette fenêtre donne, ce sont des pâtures, la ligne des crêtes,
+      et un ciel de nuit sans halo de ville.</p>
+      <p>Cuisine, table, cheminée ou poêle, nombre de places assises : à décrire ensemble,
+      photos à l'appui.</p>
+      <span class="pour">Pour les soirées à plusieurs, hiver comme été</span>
+    </div>
+    <div class="piece">
+      <h3>Les chambres</h3>
+      <p>À cette altitude, on dort bien : les nuits restent fraîches même en plein été, et
+      la fenêtre s'ouvre sans qu'aucun bruit de circulation ne rentre avec l'air.</p>
+      <p>Le nombre de chambres, les couchages, la literie et les salles de bain : première
+      question que pose un visiteur, première ligne à écrire ensemble. Je préfère laisser
+      la place vide plutôt que d'annoncer des lits que je n'ai pas comptés.</p>
+      <span class="pour">Pour une famille, un groupe d'amis — capacité à préciser</span>
+    </div>
+  </div>
+</section>
+
+<section id="saisons" style="padding-top:1rem;">
+  <div class="monte">
+    <div class="mouvement">Troisième mouvement
+      <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+    </div>
+    <h2>Quatre saisons, <em>quatre tempos</em></h2>
+  </div>
+  <ol class="programme monte">
     <li>
       <span class="tempo">Allegro — l'hiver</span>
       <span class="detail">Ski alpin et nordique à la station de Métabief, raquettes
-      sur les crêtes du Mont d'Or, retour au chaud à la tombée du jour.</span>
+      sur les crêtes du Mont d'Or, retour au chaud à la tombée du jour — c'est-à-dire
+      vers cinq heures en décembre.</span>
     </li>
     <li>
       <span class="tempo">Andante — le printemps</span>
       <span class="detail">Les alpages reverdissent, les sentiers se rouvrent,
-      les villages du Haut-Doubs se visitent sans hâte.</span>
+      les villages du Haut-Doubs se visitent sans hâte. La neige tient encore en haut
+      quand elle a disparu en bas : deux saisons dans la même journée.</span>
     </li>
     <li>
       <span class="tempo">Vivace — l'été</span>
       <span class="detail">VTT sur les pistes de la station, baignade au lac
-      Saint-Point tout proche, grandes traversées à pied.</span>
+      Saint-Point tout proche, grandes traversées à pied. Les soirées restent claires tard,
+      et fraîches dès que le soleil passe la crête.</span>
     </li>
     <li>
       <span class="tempo">Adagio — l'automne</span>
       <span class="detail">Brumes sur les combes, forêts rousses, fruitières et bonnes
-      tables comtoises : la saison la plus confidentielle.</span>
+      tables comtoises : la saison la plus confidentielle, celle où l'on croise trois
+      personnes sur un sentier de crête un dimanche.</span>
     </li>
   </ol>
 </section>
 
 <section id="autour" style="padding-top:1rem;">
   <div class="deux-voix">
-    <div>
-      <div class="mouvement">Troisième mouvement
+    <div class="monte">
+      <div class="mouvement">Quatrième mouvement
         <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
       </div>
       <h2>Autour du gîte, <em>en accords</em></h2>
       <p style="color:var(--doux);max-width:44ch;">Le secteur de Métabief est une des
       portes des Montagnes du Jura : tout se joue à courte distance.</p>
+      <p style="color:var(--doux);max-width:44ch;">Du haut du Mont d'Or, par temps clair,
+      la vue porte jusqu'aux Alpes : c'est la marche à faire une fois dans le séjour,
+      de préférence tôt le matin avant que la brume ne monte des combes.</p>
+      <p style="color:var(--doux);max-width:44ch;">Vers le bas, la route descend sur
+      Pontarlier et ses commerces, puis remonte au château de Joux, dressé dans le défilé
+      qui garde le passage vers la Suisse.</p>
     </div>
-    <ul class="notes">
+    <ul class="notes monte">
       <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
         La station de Métabief : ski l'hiver, VTT et luge d'été à la belle saison</li>
       <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
-        Le Mont d'Or et son panorama sur les Alpes par temps clair</li>
+        Le Mont d'Or (1 463 m) et son panorama sur les Alpes par temps clair</li>
       <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
         Le lac Saint-Point et ses plages, à courte route</li>
+      <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
+        Les sentiers de crête et les alpages, au départ de la station</li>
+      <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
+        Les fruitières du Haut-Doubs, pour le comté et le morbier</li>
       <li><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><ellipse cx="4.5" cy="10.5" rx="4" ry="3" transform="rotate(-18 4.5 10.5)" style="fill:var(--velours)"/><path d="M8 9 V1" style="stroke:var(--velours)" stroke-width="1.6"/></svg>
         Pontarlier, le château de Joux et la Suisse voisine</li>
     </ul>
@@ -319,7 +493,7 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
 </section>
 
 <section id="direct" style="padding-top:1rem;">
-  <div class="direct">
+  <div class="direct monte">
     <div>
       <div class="mouvement">Finale
         <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
@@ -336,14 +510,75 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
       ce bouton composera votre numéro d'un seul geste — dès que vous me l'aurez donné.</span>
     </div>
   </div>
+  <div class="trois-accords monte">
+    <div>
+      <b>Une vraie personne au bout</b>
+      <p>Une arrivée tardive après six heures de route, un lit d'appoint, un chien, un
+      groupe qui change d'effectif : autant de questions qui se règlent en deux phrases
+      avec la maison, et jamais dans un formulaire.</p>
+    </div>
+    <div>
+      <b>Vos conditions, écrites en clair</b>
+      <p>Report, annulation, changement de dates : c'est la maison qui décide, pas un
+      règlement automatique. Les modalités exactes seront fixées avec vous et affichées
+      noir sur blanc sur le site final.</p>
+    </div>
+    <div>
+      <b>Le conseil qui vaut le détour</b>
+      <p>L'état de l'enneigement la semaine de votre venue, le sentier encore fermé, la
+      fruitière ouverte le dimanche matin : des informations qui changent tous les quinze
+      jours et qu'aucune plateforme ne sait donner.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pratique" style="padding-top:1rem;">
+  <div class="monte">
+    <div class="mouvement">Intermède
+      <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+    </div>
+    <h2>Infos pratiques, <em>avant de venir</em></h2>
+  </div>
+  <div class="infos4 monte">
+    <div>
+      <h3>Y arriver</h3>
+      <p>Pontarlier à une vingtaine de minutes, gare et commerces sur place ; la frontière
+      suisse juste derrière la crête. En hiver, équipements neige indispensables sur les
+      routes de montagne.</p>
+    </div>
+    <div>
+      <h3>Ce qu'il faut emporter</h3>
+      <p>À 900 mètres, une épaisseur de plus qu'en plaine, même en été. L'hiver, de quoi
+      faire sécher : les journées de neige mouillent tout ce qu'on porte.</p>
+    </div>
+    <div>
+      <h3>Arrivée et départ</h3>
+      <p>Prévenez de votre heure approximative : cela permet de chauffer la maison avant
+      votre venue. Horaires exacts d'arrivée et de départ à préciser ensemble.</p>
+    </div>
+    <div>
+      <h3>À préciser ensemble</h3>
+      <p>Capacité, tarifs par saison, durée minimale, ménage, animaux, local à skis,
+      moyens de paiement : autant de points que je ne veux pas inventer à votre place.</p>
+    </div>
+  </div>
 </section>
 
 <section id="contact" style="padding-top:1rem;">
-  <div class="mouvement">Coda
-    <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+  <div class="monte">
+    <div class="mouvement">Coda
+      <svg width="40" height="10" viewBox="0 0 40 10" aria-hidden="true"><path d="M0 5 H40" style="stroke:var(--laiton)" stroke-width="1"/></svg>
+    </div>
+    <h2>Nous trouver, <em>secteur Métabief</em></h2>
   </div>
-  <h2>Nous trouver, <em>secteur Métabief</em></h2>
-  <div class="coordonnees">
+  <div class="appel monte">
+    <div class="sur">Appeler le gîte</div>
+    <div class="numero">Numéro à insérer ici</div>
+    <p class="note">Sur le site réel, ce bloc devient un bouton d'appel : un doigt dessus depuis
+    un téléphone, et le gîte sonne. C'est le premier geste d'un visiteur qui hésite entre deux
+    maisons — il doit être l'élément le plus visible de la page.</p>
+  </div>
+  <div class="coordonnees monte">
     <div>
       <h3>Localisation</h3>
       <p>Le Gîte musical<br>Secteur Métabief — 25370, Doubs<br>Montagnes du Jura</p>
@@ -368,5 +603,22 @@ Thèmes : CLAIR par défaut (papier) + SOMBRE (soir de concert) via tokens et pr
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
 </div>
+
+<script>
+  (function(){
+    var cibles = document.querySelectorAll('.monte');
+    if(!('IntersectionObserver' in window) ||
+       window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      cibles.forEach(function(el){ el.classList.add('vu'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
+      });
+    },{threshold:.12});
+    cibles.forEach(function(el){ io.observe(el); });
+  })();
+</script>
 </body>
 </html>

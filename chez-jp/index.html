@@ -11,12 +11,19 @@
      Typographie : titres en American Typewriter / Rockwell / Courier (slab d'enseigne et de ticket) ·
        corps en Helvetica Neue / Arial (neutre de brasserie).
      Mise en page : héros = enseigne émaillée pleine largeur à double liseré blanc (pas de photo,
-       de la typo peinte), puis bande-ticket d'infos pratiques, triptyque bar/table/tabac en colonnes
-       à filets carrés, et grande ardoise sombre pour la carte de la semaine.
+       de la typo peinte), puis bande-ticket d'infos pratiques, bande de chiffres-repères façon
+       total de caisse, triptyque bar/table/tabac en colonnes à filets carrés, trois cartouches
+       de cuisine, grande ardoise sombre pour la carte, tableau d'horaires, blocs pratiques
+       et grand bouton téléphone rouge.
      ÉLÉMENT SIGNATURE : la CAROTTE DE TABAC — losange rouge à double pointe redessiné en SVG,
        posé sur l'enseigne et repris en petit comme marqueur de liste ; double liseré émaillé
        (deux filets blancs) sur tous les encadrés. Aucune crête de sapins, aucune ellipse
        topographique, pas de cartes arrondies.
+     Faits retenus : 74 Grande Rue, 25300 Les Fourgs · 03 81 69 41 96 · fermé lundi et mercredi ·
+       bar + restaurant + tabac · fondue, tartiflette, Mont d'Or chaud, filet mignon à la moutarde
+       de cassis, filet de bœuf sauce morilles, poissons · soirées à thème · Les Fourgs, plus haut
+       village du Doubs (plateau à environ 1 100 m), à la frontière suisse, station de ski nordique.
+       Aucun prix, aucune date de création, aucun nom de personne inventés.
 -->
 <html lang="fr">
 <head>
@@ -36,7 +43,7 @@
     --pas-section:3.2rem;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{overflow-x:hidden}
+  html{overflow-x:hidden; scroll-behavior:smooth}
   body{
     background:var(--papier); color:var(--encre);
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -48,7 +55,7 @@
   img,svg{max-width:100%;height:auto}
   a{color:var(--rouge)}
   a:focus-visible{outline:3px solid var(--encre); outline-offset:3px}
-  .ardoise a:focus-visible,.enseigne a:focus-visible,.demo-banner a:focus-visible{outline-color:var(--or-craie)}
+  .ardoise a:focus-visible,.enseigne a:focus-visible,.demo-banner a:focus-visible,.appel:focus-visible{outline-color:var(--or-craie)}
 
   .demo-banner{
     background:var(--ardoise); color:var(--craie);
@@ -81,7 +88,8 @@
     font-size:clamp(.8rem,2vw,1.05rem); letter-spacing:.28em; text-transform:uppercase;
     padding:.4rem .9rem;
   }
-  .enseigne .depuis{margin-top:.9rem;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+  .enseigne .depuis{margin-top:.9rem;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;opacity:.95}
+  .enseigne .accroche{margin-top:1rem;font-size:1.02rem;max-width:38rem;line-height:1.55}
 
   /* Bande ticket */
   .ticket{
@@ -96,6 +104,23 @@
   .ticket a{text-decoration:none}
   .ticket a:hover{text-decoration:underline}
 
+  /* Chiffres-repères, façon total de caisse */
+  .totaux{background:var(--blanc);border-bottom:1px solid var(--trait)}
+  .totaux .wrap{
+    padding:1.4rem 1.25rem 1.5rem;
+    border-top:3px double var(--rouge);
+    display:flex;flex-wrap:wrap;gap:1.2rem 3rem;
+  }
+  .totaux div{min-width:0}
+  .totaux b{
+    display:block;font-family:"American Typewriter","Rockwell","Courier New",monospace;
+    font-size:1.9rem;line-height:1.05;color:var(--rouge);
+  }
+  .totaux span{
+    display:block;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--zinc-texte);margin-top:.3rem;
+  }
+
   /* Sections */
   section{padding:var(--pas-section) 0}
   .kicker{
@@ -105,6 +130,8 @@
     padding:.3rem .8rem; margin-bottom:1rem;
   }
   h2{font-size:clamp(1.7rem,3.6vw,2.5rem); line-height:1.15; margin-bottom:1rem}
+  .chapo{max-width:44rem}
+  .chapo + .chapo{margin-top:.9rem}
 
   /* Triptyque */
   .triptyque{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:2rem;border:2px solid var(--encre)}
@@ -115,10 +142,25 @@
   .triptyque article:first-child{border-left:none}
   .triptyque h3{font-size:1.15rem;letter-spacing:.06em;text-transform:uppercase;margin:.9rem 0 .5rem}
   .triptyque p{font-size:.95rem}
+  .triptyque p+p{margin-top:.6rem}
   .triptyque .num{
     font-family:"American Typewriter","Rockwell","Courier New",monospace;
     color:var(--zinc-texte); font-size:.85rem; letter-spacing:.2em;
   }
+
+  /* Trois cartouches de cuisine */
+  .cuisine-trois{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+  .cuisine-trois article{
+    background:var(--blanc);border:2px solid var(--encre);border-top:8px solid var(--rouge);
+    padding:1.5rem 1.4rem 1.4rem;
+  }
+  .cuisine-trois h3{font-size:1.2rem;margin:.5rem 0 .6rem}
+  .cuisine-trois .saison{
+    font-family:"American Typewriter","Rockwell","Courier New",monospace;
+    font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc-texte);
+  }
+  .cuisine-trois p{font-size:.96rem}
+  .cuisine-trois p+p{margin-top:.7rem}
 
   /* Carotte marqueur */
   .carotte-li{list-style:none}
@@ -139,6 +181,7 @@
   }
   .ardoise .kicker{background:var(--craie);color:var(--ardoise)}
   .ardoise h2{color:var(--blanc)}
+  .ardoise .chapo{color:var(--craie-2)}
   .ardoise .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.8rem}
   .ardoise h3{
     font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or-craie);
@@ -155,6 +198,18 @@
   }
   .ardoise .mention + .mention{margin-top:.4rem;color:var(--craie-2)}
 
+  /* Village / saison */
+  .village{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:2.4rem;margin-top:1.6rem;align-items:start}
+  .village p+p{margin-top:.9rem}
+  .encart{
+    background:var(--blanc);border:2px solid var(--encre);
+    box-shadow:6px 6px 0 var(--zinc);padding:1.5rem 1.4rem;
+  }
+  .encart h3{font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.7rem}
+  .encart li{font-size:.94rem}
+  .encart li b{display:block;font-family:"American Typewriter","Rockwell","Courier New",monospace}
+  .encart li span{color:var(--zinc-texte);font-size:.9rem}
+
   /* Horaires */
   .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.6rem}
   .horaires table{width:100%;min-width:19rem;border-collapse:collapse;background:var(--blanc);border:2px solid var(--encre)}
@@ -163,6 +218,33 @@
   .horaires th{font-family:"American Typewriter","Rockwell","Courier New",monospace;letter-spacing:.05em;width:38%}
   .horaires tr.ferme td{color:var(--rouge);font-weight:600}
   .horaires td small{display:block;color:var(--zinc-texte);font-size:.88rem}
+
+  /* Quatre blocs pratiques */
+  .quatre{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:1.8rem;border:2px solid var(--encre)}
+  .quatre div{background:var(--blanc);padding:1.4rem 1.3rem;border-left:2px solid var(--encre)}
+  .quatre div:first-child{border-left:none}
+  .quatre h3{
+    font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rouge);margin-bottom:.6rem;
+  }
+  .quatre p{font-size:.93rem}
+  .quatre p+p{margin-top:.5rem}
+  .quatre .fine{color:var(--zinc-texte);font-size:.88rem}
+
+  /* Grand bouton téléphone */
+  .appel{
+    display:block;background:var(--rouge);color:var(--blanc);text-decoration:none;
+    padding:1.6rem 1.5rem;margin-top:1.8rem;max-width:34rem;
+    box-shadow:inset 0 0 0 5px var(--rouge), inset 0 0 0 7px var(--blanc), 8px 8px 0 var(--encre);
+  }
+  .appel .quoi{
+    display:block;font-family:"American Typewriter","Rockwell","Courier New",monospace;
+    font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:.4rem;
+  }
+  .appel .num{
+    display:block;font-family:"American Typewriter","Rockwell","Courier New",monospace;
+    font-size:clamp(1.7rem,6vw,2.4rem);font-weight:700;line-height:1.1;letter-spacing:.02em;
+  }
+  .appel .sous{display:block;font-size:.88rem;margin-top:.6rem;line-height:1.5}
 
   /* Contact */
   .contact .fiche{
@@ -173,6 +255,7 @@
   .contact dt{font-family:"American Typewriter","Rockwell","Courier New",monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zinc-texte)}
   .contact dd{font-size:1.1rem;margin:.15rem 0 1rem}
   .contact .fiche p{font-size:.95rem}
+  .contact .fiche p+p{margin-top:.7rem}
   .contact .fiche .note{font-style:italic;color:var(--zinc-texte);margin-top:1rem}
 
   footer.credit{
@@ -180,12 +263,28 @@
     padding:1.1rem 1.25rem;text-align:center;
   }
 
+  /* apparition douce */
+  .js-anim .monte{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .js-anim .monte.vu{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .js-anim .monte{opacity:1;transform:none;transition:none}
+  }
+
+  @media (max-width:960px){
+    .cuisine-trois{grid-template-columns:1fr}
+    .quatre{grid-template-columns:1fr 1fr}
+    .quatre div:nth-child(3){border-left:none}
+    .quatre div:nth-child(n+3){border-top:2px solid var(--encre)}
+  }
   @media (max-width:820px){
     .enseigne .inner{grid-template-columns:1fr;gap:1.2rem;text-align:center;justify-items:center}
+    .enseigne .accroche{text-align:left}
     .triptyque{grid-template-columns:1fr}
     .triptyque article{border-left:none;border-top:2px solid var(--encre)}
     .triptyque article:first-child{border-top:none}
     .ardoise .menu-grid{grid-template-columns:1fr}
+    .village{grid-template-columns:1fr}
     .contact .fiche{grid-template-columns:1fr}
   }
   @media (max-width:560px){
@@ -196,10 +295,90 @@
     .ardoise .cadre{padding:1.6rem 1.1rem}
     .contact .fiche{padding:1.5rem 1.2rem;box-shadow:5px 5px 0 var(--rouge)}
     .ticket .wrap{gap:.3rem 1.2rem}
+    .totaux .wrap{gap:1rem 1.8rem}
+    .totaux b{font-size:1.6rem}
+    .quatre{grid-template-columns:1fr}
+    .quatre div{border-left:none;border-top:2px solid var(--encre)}
+    .quatre div:first-child{border-top:none}
+    .appel{box-shadow:inset 0 0 0 4px var(--rouge), inset 0 0 0 6px var(--blanc), 5px 5px 0 var(--encre);padding:1.3rem 1.1rem}
   }
 </style>
+<!-- donnees-structurees:debut -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "Restaurant",
+    "BarOrPub"
+  ],
+  "@id": "https://primolo.github.io/vitrines/chez-jp/#etablissement",
+  "name": "Chez JP",
+  "description": "Restaurant, bar et tabac au cœur du village des Fourgs. La table de midi et du soir, le café du matin, le dépannage tabac.",
+  "url": "https://primolo.github.io/vitrines/chez-jp/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "74 Grande Rue",
+    "addressLocality": "Les Fourgs",
+    "postalCode": "25300",
+    "addressRegion": "Bourgogne-Franche-Comté",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Les Fourgs"
+    },
+    {
+      "@type": "Place",
+      "name": "Haut-Doubs"
+    }
+  ],
+  "telephone": "+33381694196",
+  "servesCuisine": [
+    "Française",
+    "Franc-comtoise"
+  ],
+  "currenciesAccepted": "EUR",
+  "knowsLanguage": "fr"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Chez JP est-il ouvert tous les jours ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'établissement est fermé le lundi et le mercredi. Les horaires sont à confirmer directement au 03 81 69 41 96."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Chez JP fait-il aussi bar et tabac ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Chez JP réunit trois activités dans le village des Fourgs : le restaurant, le bar et le tabac."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où se trouve Chez JP ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Au 74 Grande Rue, aux Fourgs (25300), dans le Haut-Doubs."
+      }
+    }
+  ]
+}
+</script>
+<!-- donnees-structurees:fin -->
 </head>
 <body>
+<script>/* l'apparition au defilement n'est armee que si JS et IntersectionObserver sont la : sinon tout le contenu reste visible */
+if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.className+=' js-anim';}</script>
 
 <div class="demo-banner"><strong>Maquette de démonstration réalisée par Primo (Montperreux)</strong> — proposition non contractuelle, contenu à valider avec vous.</div>
 
@@ -216,6 +395,9 @@
       <h1>Chez JP</h1>
       <span class="sous">Bar &middot; Restaurant &middot; Tabac</span>
       <p class="depuis">74 Grande Rue — Les Fourgs · l'institution du village</p>
+      <p class="accroche">Le café de sept heures, le plat de midi, le paquet de dépannage et la table
+      du samedi soir : quatre raisons de pousser la même porte, sur la Grande Rue du plus haut village
+      du Doubs.</p>
     </div>
   </div>
 </header>
@@ -228,16 +410,28 @@
   </div>
 </div>
 
+<div class="totaux">
+  <div class="wrap monte">
+    <div><b>3</b><span>métiers sous le même toit</span></div>
+    <div><b>1 100 m</b><span>le plateau des Fourgs</span></div>
+    <div><b>5 j / 7</b><span>ouvert, sauf lundi et mercredi</span></div>
+    <div><b>1 h</b><span>du matin, vendredi et samedi</span></div>
+  </div>
+</div>
+
 <div class="wrap">
   <section id="maison">
     <span class="kicker">La maison</span>
     <h2>Trois comptoirs, une seule adresse</h2>
-    <p>Sur la Grande Rue des Fourgs, Chez JP tient tous les rôles du village :
+    <p class="chapo">Sur la Grande Rue des Fourgs, Chez JP tient tous les rôles du village :
     le café du matin, la table de midi et du soir, le tabac de dépannage.
     Cuisine traditionnelle à base de produits frais, cadre chaleureux, décoration contemporaine —
     et des soirées à thème qui rassemblent le plateau.</p>
+    <p class="chapo">Dans un village de montagne, ce cumul n'est pas une curiosité : c'est ce qui
+    fait tenir l'adresse. Le tabac amène ceux qui n'ont pas faim, le bar amène ceux qui n'ont pas
+    le temps, et la salle se remplit le soir de gens qui étaient déjà passés le matin.</p>
 
-    <div class="triptyque">
+    <div class="triptyque monte">
       <article>
         <span class="num">N° 1</span>
         <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true">
@@ -248,6 +442,8 @@
         <h3>Le bar</h3>
         <p>Ouvert dès le matin : café serré, journal, nouvelles du village.
         Le comptoir où tout Les Fourgs finit par passer.</p>
+        <p>C'est aussi là que s'annoncent les soirées à thème et que se calent les tablées
+        du week-end — souvent avant même d'être écrites quelque part.</p>
       </article>
       <article>
         <span class="num">N° 2</span>
@@ -260,6 +456,8 @@
         <h3>La table</h3>
         <p>Une carte courte qui change chaque semaine, des produits frais,
         et les classiques francs-comtois quand revient la neige.</p>
+        <p>Midi et soir, avec deux publics différents : les gens qui travaillent, puis
+        ceux qui prennent leur temps. La cuisine s'adapte, la salle aussi.</p>
       </article>
       <article>
         <span class="num">N° 3</span>
@@ -270,6 +468,45 @@
         <h3>Le tabac</h3>
         <p>Tabac et dépannage du quotidien — le troisième métier de la maison,
         celui qui fait qu'on pousse la porte même sans avoir faim.</p>
+        <p>Aux Fourgs, avec la Suisse à quelques kilomètres et le premier grand commerce
+        assez loin, ce comptoir-là rend service toute l'année.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="cuisine">
+    <span class="kicker">En cuisine</span>
+    <h2>Ce qui sort vraiment de la cuisine</h2>
+    <p class="chapo">Trois lignes tiennent la carte d'un bout à l'autre de l'année : le fromage du
+    plateau, les sauces comtoises, et ce que le marché de la semaine permet de faire.</p>
+    <div class="cuisine-trois monte">
+      <article>
+        <p class="saison">De la première neige au printemps</p>
+        <h3>Le fromage, en plat</h3>
+        <p>Aux Fourgs, le fromage n'est pas un supplément de fin de repas : c'est le plat.
+        La <strong>fondue</strong> quand on est au moins deux, la <strong>tartiflette</strong> quand
+        on rentre de piste avec faim, et le <strong>Mont d'Or chaud</strong> — passé au four dans
+        sa boîte, à la cuillère, tant que dure sa saison.</p>
+        <p>Ces plats-là demandent du temps en salle. Un coup de fil avant de venir, surtout en groupe,
+        évite d'attendre.</p>
+      </article>
+      <article>
+        <p class="saison">Toute l'année, à la demande</p>
+        <h3>Les sauces de la maison</h3>
+        <p>Le <strong>filet mignon à la moutarde de cassis</strong> est la spécialité qui a ses
+        habitués : une moutarde parfumée au cassis, réduite en sauce, sur un porc cuit rosé.
+        Ce n'est pas un plat qu'on trouve dans toutes les salles du plateau.</p>
+        <p>À côté, le <strong>filet de bœuf sauce morilles</strong> tient le rôle du grand classique
+        comtois — celui qu'on commande pour un anniversaire ou pour marquer le coup.</p>
+      </article>
+      <article>
+        <p class="saison">Selon la semaine</p>
+        <h3>Le marché et l'ardoise</h3>
+        <p>Le reste de la carte est court et volontairement mouvant : <strong>poissons</strong> et
+        plats de saison changent selon ce qui arrive, et se lisent à l'ardoise plutôt que sur
+        un menu imprimé.</p>
+        <p>C'est la partie de la carte qui justifie qu'on revienne : elle n'est pas la même
+        d'une semaine sur l'autre, et personne ne prétend le contraire.</p>
       </article>
     </div>
   </section>
@@ -277,9 +514,11 @@
 
 <section class="ardoise" id="carte">
   <div class="wrap">
-    <div class="cadre">
+    <div class="cadre monte">
       <span class="kicker">À l'ardoise</span>
       <h2>La carte change chaque semaine</h2>
+      <p class="chapo">Voici les plats que la maison sert et qu'on lui connaît. Les prix restent
+      à l'ardoise : ils seront repris de vos documents, tels quels, avant toute mise en ligne.</p>
       <div class="menu-grid">
         <div>
           <h3>Côté hiver</h3>
@@ -305,10 +544,55 @@
 </section>
 
 <div class="wrap">
+  <section id="village">
+    <span class="kicker">Les Fourgs</span>
+    <h2>Un village qui vit avec la neige et avec la frontière</h2>
+    <div class="village">
+      <div class="monte">
+        <p>Les Fourgs, c'est le plus haut village du Doubs : un plateau à environ 1 100 mètres,
+        collé à la frontière suisse, dont l'hiver appartient au ski nordique. Quand les pistes de fond
+        sont tracées, la Grande Rue voit passer des gens en combinaison dès la fin de matinée,
+        et la salle se remplit d'un coup entre midi et deux.</p>
+        <p>Le reste de l'année, ce sont les mêmes chemins en raquettes tant que la neige tient,
+        puis à pied et à VTT sur les grands prés. Et toute l'année, les frontaliers qui descendent
+        ou remontent : beaucoup d'habitants du plateau travaillent de l'autre côté, et l'heure du
+        café du matin s'en ressent.</p>
+        <p>Chez JP tient sa place dans cette mécanique-là. On n'y vient pas pour une adresse de
+        destination : on y vient parce qu'on passe devant, tous les jours, depuis des années.</p>
+      </div>
+      <div class="encart monte">
+        <h3>À quel moment on vient</h3>
+        <ul class="carotte-li">
+          <li><b>Le matin</b><span>café, journal, tabac — dès l'ouverture</span></li>
+          <li><b>Entre midi et deux</b><span>service rapide, carte de la semaine</span></li>
+          <li><b>Après le ski</b><span>fromage chaud et tables longues</span></li>
+          <li><b>Vendredi et samedi soir</b><span>le bar reste ouvert jusqu'à 1 h</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="groupes">
+    <span class="kicker">Groupes &amp; soirées</span>
+    <h2>Tablées, clubs et soirées à thème</h2>
+    <p class="chapo">Les soirées à thème de la maison sont annoncées au bar et sur sa page Facebook.
+    Elles rassemblent le plateau : on y vient à plusieurs, souvent par tablées entières, et il vaut
+    mieux avoir réservé.</p>
+    <p class="chapo">Pour un groupe — club sportif, sortie de fin de saison, repas de famille,
+    équipe de frontaliers qui se retrouve — le mieux reste le téléphone. On y parle du nombre de
+    couverts, du budget et de ce que vous voulez servir, et la maison dit franchement ce qu'elle
+    peut faire ce soir-là.</p>
+    <p class="chapo"><strong>Le nombre de places en salle et les menus de groupe ne sont pas affichés
+    ici</strong> tant qu'ils n'ont pas été vérifiés avec la maison : c'est une information qu'on
+    relèvera ensemble avant la mise en ligne.</p>
+  </section>
+
   <section class="horaires" id="horaires">
     <span class="kicker">Horaires</span>
     <h2>Du café du matin au dernier service</h2>
-    <div class="table-scroll">
+    <p class="chapo">La maison ouvre tôt et ferme tard les soirs de fin de semaine. Deux jours
+    de fermeture dans la semaine : le lundi et le mercredi.</p>
+    <div class="table-scroll monte">
       <table>
         <caption>Horaires relevés — à confirmer ensemble avant mise en ligne.</caption>
         <tbody>
@@ -321,18 +605,58 @@
     </div>
   </section>
 
+  <section id="pratique">
+    <span class="kicker">Pratique</span>
+    <h2>Ce qu'il est utile de savoir avant de venir</h2>
+    <div class="quatre monte">
+      <div>
+        <h3>Horaires</h3>
+        <p>Ouvert du mardi au dimanche, midi et soir. Fermé lundi et mercredi.</p>
+        <p class="fine">Horaires relevés, à confirmer ensemble avant mise en ligne.</p>
+      </div>
+      <div>
+        <h3>Accès</h3>
+        <p>74 Grande Rue, en plein centre des Fourgs, sur l'axe qui traverse le village.</p>
+        <p class="fine">Stationnement dans le village. Situation exacte des places : à préciser.</p>
+      </div>
+      <div>
+        <h3>Groupes</h3>
+        <p>Tablées, clubs et soirées à thème sur réservation, par téléphone.</p>
+        <p class="fine">Capacité de la salle et menus de groupe à compléter ensemble.</p>
+      </div>
+      <div>
+        <h3>Paiement</h3>
+        <p>Moyens acceptés (carte, espèces, titres restaurant) : <strong>à confirmer</strong>.</p>
+        <p class="fine">Un bar-tabac reçoit la question dix fois par jour : autant y répondre ici.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="contact" id="contact">
     <span class="kicker">Contact</span>
     <h2>On se retrouve au 74 ?</h2>
-    <div class="fiche">
+    <p class="chapo">Réservation conseillée le week-end, pendant les vacances scolaires et pour
+    tout ce qui dépasse quatre couverts. Un appel suffit.</p>
+
+    <a class="appel monte" href="tel:+33381694196">
+      <span class="quoi">Appeler Chez JP</span>
+      <span class="num">03 81 69 41 96</span>
+      <span class="sous">Depuis un téléphone, ce bouton lance directement l'appel.</span>
+    </a>
+
+    <div class="fiche monte">
       <dl>
         <dt>Adresse</dt><dd>74 Grande Rue, 25300 Les Fourgs</dd>
         <dt>Téléphone</dt><dd><a href="tel:+33381694196">03 81 69 41 96</a></dd>
         <dt>Itinéraire</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Chez+JP+Les+Fourgs" rel="noopener">Ouvrir dans Google Maps</a></dd>
+        <dt>Fermeture</dt><dd>Lundi et mercredi</dd>
       </dl>
       <div>
         <p>Réservation conseillée le week-end et pendant les vacances scolaires.
         Groupes et soirées à thème : téléphonez-nous, on en parle au comptoir.</p>
+        <p>Depuis Pontarlier, montez sur le plateau par Sainte-Croix ; depuis la Suisse,
+        la frontière est à quelques minutes. Le 74 est sur la rue principale, on ne le rate pas :
+        c'est celui avec la carotte de tabac.</p>
         <p class="note">Photos de la salle et menus définitifs à intégrer avec vous lors de la validation.</p>
       </div>
     </div>
@@ -342,6 +666,23 @@
 <footer class="credit">
   Maquette réalisée par Primo · Montperreux · primo.locatelli@gmail.com — proposition non contractuelle
 </footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.monte');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(e){ e.classList.add('vu'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('vu'); io.unobserve(en.target); }
+    });
+  }, {threshold:.12});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
 
 </body>
 </html>
