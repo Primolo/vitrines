@@ -245,12 +245,12 @@ charges de l'AOP comté. Prix en magasin, aucune récompense inventée.
   .mention-primo{margin-top:1.25rem;border-top:1px solid var(--filet-pied);padding-top:1rem;font-size:.82rem;color:var(--pierre-clair)}
   .mention-primo a{color:var(--croute)}
 
-  /* apparition douce au défilement */
-  .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
-  .monte.vu{opacity:1;transform:none}
+  /* apparition douce au défilement — activée par JS seulement (.anim sur <html>),
+     pour qu'un navigateur sans JS affiche tout normalement */
+  .anim .monte{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .anim .monte.vu{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    .monte{opacity:1;transform:none;transition:none}
+    .anim .monte{opacity:1;transform:none;transition:none}
   }
 
   @media (max-width:860px){
@@ -270,6 +270,13 @@ charges de l'AOP comté. Prix en magasin, aucune récompense inventée.
   }
 </style>
 
+<script>
+/* on masque avant l'apparition uniquement si le navigateur sait l'animer,
+   et jamais si l'utilisateur demande moins d'animations */
+if(window.IntersectionObserver && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.documentElement.className += ' anim';
+}
+</script>
 <div class="demo-band">Maquette de démonstration réalisée par Primo (Montperreux) — proposition non contractuelle, contenu à valider avec vous.</div>
 
 <header class="site">
@@ -699,16 +706,15 @@ charges de l'AOP comté. Prix en magasin, aucune récompense inventée.
 <script>
 (function(){
   var cibles = document.querySelectorAll('.monte');
-  if(!('IntersectionObserver' in window) ||
-     window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    cibles.forEach(function(el){el.classList.add('vu')});
-    return;
-  }
+  function tout(){ for(var i=0;i<cibles.length;i++) cibles[i].classList.add('vu'); }
+  if(!document.documentElement.classList.contains('anim')){ tout(); return; }
   var io = new IntersectionObserver(function(entrees){
-    entrees.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); }
-    });
-  }, {threshold:.1});
-  cibles.forEach(function(el){io.observe(el)});
+    for(var i=0;i<entrees.length;i++){
+      if(entrees[i].isIntersecting){ entrees[i].target.classList.add('vu'); io.unobserve(entrees[i].target); }
+    }
+  }, {threshold:0, rootMargin:'0px 0px -40px 0px'});
+  for(var i=0;i<cibles.length;i++) io.observe(cibles[i]);
+  /* filet de sécurité : rien ne doit pouvoir rester invisible */
+  setTimeout(tout, 4000);
 })();
 </script>
