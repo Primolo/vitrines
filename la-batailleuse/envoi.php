@@ -56,6 +56,9 @@ $page = $pages[explode('/', $formulaire)[0]] ?? explode('/', $formulaire)[0];
 // Démonstration : tout part vers une seule boîte (rediriger_vers), avec la boîte qui l'aurait reçu en service réel.
 $prevu = $destinataire;
 $demo = ($c['rediriger_vers'] ?? '') !== '';
+if ($demo && ($c['resend_cle'] ?? '') === '') {
+    repondre(503, ['erreur' => 'Démonstration : l’envoi des emails n’est pas encore activé sur ce site (clé d’envoi manquante). Rien n’est parti.', 'demo' => true]);
+}
 if ($demo && !$test && !limiter('envoi:tous', (int) ($c['limite_jour'] ?? 40), 86400)) {
     repondre(429, ['erreur' => 'La démonstration a atteint son nombre d’envois pour aujourd’hui. Réessayez demain.']);
 }
@@ -69,7 +72,7 @@ if ($test) {
 
 $ok = envoyer_mail($destinataire, $objet, mail_equipe($titre, $page, $lignes, $email, $test, $demo ? $prevu : null), texte_equipe($titre, $lignes, $email), $email);
 if (!$ok) {
-    repondre(502, ['erreur' => "L'envoi a échoué. Écrivez-nous directement à $prevu.", 'destinataire' => $prevu]);
+    repondre(502, ['erreur' => "L'envoi a échoué : votre demande n'est pas partie.", 'destinataire' => $demo ? null : $prevu, 'demo' => $demo]);
 }
 if (!$test && $email !== null) {
     if ($demo) {

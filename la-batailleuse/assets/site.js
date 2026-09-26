@@ -468,7 +468,8 @@
         if (res.s === 200 && res.j && res.j.ok) return showRecap(form, "envoye", { to: res.j.destinataire, email: corps.email, demo: !!res.j.demo });
         // Pas de serveur d'envoi (maquette statique) : le serveur ne sait pas traiter la demande.
         if (!res.j && [404, 405, 501].indexOf(res.s) !== -1) return showRecap(form, "demo");
-        erreurEnvoi(form, bouton, (res.j && res.j.erreur) || "L’envoi n’a pas abouti.", (res.j && res.j.destinataire) || destination(form, rows));
+        // En démonstration, jamais de lien vers la vraie boîte de la ferme.
+        erreurEnvoi(form, bouton, (res.j && res.j.erreur) || "L’envoi n’a pas abouti.", res.j && res.j.demo ? null : (res.j && res.j.destinataire) || destination(form, rows));
       }, function () {
         fin();
         erreurEnvoi(form, bouton, "Pas de connexion : votre demande n’est pas partie. Réessayez dans un instant.", destination(form, rows));
