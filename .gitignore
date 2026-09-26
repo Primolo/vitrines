@@ -1,0 +1,7 @@
+# Espace équipe et formulaires : jamais la configuration réelle ni l’état du serveur
+la-batailleuse/prive/config.php
+la-batailleuse/prive/*.json
+la-batailleuse/prive/*.lock
+la-batailleuse/prive/*.log
+la-batailleuse/prive/historique/
+.DS_Store

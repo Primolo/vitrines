@@ -1,0 +1,6 @@
+# Les contenus changent dès que l equipe les modifie : pas de cache navigateur.
+<IfModule mod_headers.c>
+  <Files "contenus.json">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </Files>
+</IfModule>

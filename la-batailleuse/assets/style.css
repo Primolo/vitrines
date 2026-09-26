@@ -408,7 +408,7 @@ table.prices tbody th { font-weight: 600; }
 .field > label, .field > .label { font-weight: 700; font-size: .98rem; }
 .field .hint { font-size: .88rem; color: var(--ink-mute); margin: 0; }
 .field .req { color: var(--bordeaux); }
-input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], input[type="week"], select, textarea {
+input:not([type]), input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], input[type="week"], input[type="time"], input[type="password"], select, textarea {
   width: 100%; min-height: 48px; padding: 10px 12px;
   font: 1rem var(--sans); color: var(--ink); background: var(--paper);
   border: 1.5px solid var(--line-strong); border-radius: var(--radius);
@@ -519,3 +519,8 @@ input:user-invalid, select:user-invalid, textarea:user-invalid { border-color: v
   .hero::before, .hero__img { display: none; }
   .hero h1, .hero .lead { color: var(--ink); text-shadow: none; }
 }
+
+/* Envoi réel des formulaires */
+.recap__banner--ok { background: #E1EDDF; border-color: #BCD3B8; color: var(--sapin-deep); }
+.demande__erreur { margin: 18px 0 0; padding: 12px 14px; border-radius: var(--radius); background: #F3DCD6; border: 1px solid #E2B9AE; color: var(--bordeaux-deep); font-size: .95rem; }
+.demande__erreur a { color: var(--bordeaux-deep); font-weight: 700; }

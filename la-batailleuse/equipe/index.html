@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Espace équipe — la Batailleuse</title>
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="../img/logo.png">
+<link rel="apple-touch-icon" href="../img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  body.eq { background: var(--paper); padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .eq-top { background: var(--sapin-deep); color: #F2EADA; }
+  .eq-top .wrap { display: flex; align-items: center; gap: 12px; min-height: 60px; max-width: 720px; }
+  .eq-top img { width: 26px; background: var(--paper); border-radius: 4px; padding: 2px; }
+  .eq-top b { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; }
+  .eq-top a { margin-left: auto; color: var(--foin-soft); font-weight: 700; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .eq-main { max-width: 720px; margin: 0 auto; padding: 20px var(--gutter) 40px; }
+  .eq-demo { background: var(--foin-soft); color: #4A3309; padding: 10px 14px; border-radius: var(--radius); font-size: .92rem; margin-bottom: 16px; }
+  .eq-demo button { font: inherit; font-weight: 700; background: none; border: 0; color: var(--bordeaux); text-decoration: underline; cursor: pointer; padding: 0; }
+  .eq-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px; }
+  .eq-card h2 { font-size: 1.6rem; margin: 0 0 4px; }
+  .eq-card > p.muted { margin: 0 0 16px; }
+  .eq-hello { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 14px; }
+  .eq-hello h1 { font-size: 1.7rem; margin: 0; }
+  .eq-hello button { margin-left: auto; font: 600 .92rem var(--sans); background: none; border: 0; color: var(--bordeaux); text-decoration: underline; cursor: pointer; min-height: 44px; }
+  .eq-last { width: 100%; font-size: .9rem; color: var(--ink-mute); }
+  .eq-tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--white); border-top: 1px solid var(--line); display: flex; padding-bottom: env(safe-area-inset-bottom); box-shadow: 0 -6px 20px rgba(33, 28, 23, .08); }
+  .eq-tabs button { flex: 1; min-height: 64px; border: 0; background: none; font: 700 .8rem var(--sans); color: var(--ink-mute); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .eq-tabs button svg { width: 22px; height: 22px; }
+  .eq-tabs button[aria-selected="true"] { color: var(--bordeaux); box-shadow: inset 0 3px 0 var(--bordeaux); }
+  @media (min-width: 760px) {
+    body.eq { padding-bottom: 0; }
+    .eq-tabs { position: static; max-width: 720px; margin: 0 auto 16px; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: none; }
+  }
+  .eq-apercu { background: var(--sapin-deep); color: #F2EADA; border-radius: var(--radius); padding: 10px 12px; font-size: .92rem; margin-bottom: 16px; }
+  .eq-apercu span { display: block; margin-top: 6px; background: var(--foin); color: var(--ink); padding: 6px 10px; border-radius: var(--radius); font-weight: 600; }
+  .eq-apercu span.vide { background: none; color: #B9C7BB; padding: 0; font-weight: 400; font-style: italic; }
+  .eq-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
+  .eq-chip { min-height: 40px; padding: 0 14px; border: 1.5px solid var(--line-strong); border-radius: 999px; background: var(--paper); font: 600 .9rem var(--sans); color: var(--ink); cursor: pointer; }
+  .eq-chip:hover { border-color: var(--sapin); }
+  .eq-count { font-size: .85rem; color: var(--ink-mute); text-align: right; margin-top: 4px; }
+  .eq-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .eq-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .eq-item { display: grid; grid-template-columns: 58px 1fr auto; gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--paper); }
+  .eq-item .d { text-align: center; line-height: 1.1; }
+  .eq-item .d b { display: block; font-family: var(--serif); font-size: 1.6rem; color: var(--bordeaux); }
+  .eq-item .d span { font-size: .75rem; font-weight: 700; text-transform: uppercase; color: var(--ink-mute); }
+  .eq-item h3 { font-size: 1.05rem; margin: 0; line-height: 1.3; }
+  .eq-item p { margin: 2px 0 0; font-size: .88rem; color: var(--ink-mute); }
+  .eq-mini { min-height: 44px; padding: 0 12px; border: 1.5px solid var(--line-strong); border-radius: 999px; background: var(--white); font: 700 .85rem var(--sans); color: var(--bordeaux); cursor: pointer; }
+  .eq-sejour { padding: 14px 0; border-top: 1px solid var(--line); }
+  .eq-sejour:first-of-type { border-top: 0; padding-top: 0; }
+  .eq-sejour h3 { font-size: 1.1rem; margin: 0 0 8px; }
+  .eq-periode { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  .eq-periode .badge { flex: none; }
+  .eq-periode span { flex: 1; }
+  .eq-dirty { font-size: .9rem; font-weight: 700; color: var(--bordeaux); }
+  .eq-journal li { padding: 12px 0; border-top: 1px solid var(--line); display: grid; gap: 4px; }
+  .eq-journal li:first-child { border-top: 0; }
+  .eq-journal b { font-weight: 700; }
+  .eq-journal small { color: var(--ink-mute); }
+  .eq-toast { position: fixed; left: 50%; width: max-content; bottom: calc(96px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 50; background: var(--ink); color: #FFF8EE; padding: 12px 18px; border-radius: 999px; font-weight: 700; font-size: .95rem; box-shadow: var(--shadow); max-width: calc(100vw - 32px); text-align: center; }
+  .eq-toast.is-err { background: var(--bordeaux-deep); }
+  .eq-toast[hidden] { display: none; }
+  dialog.eq-dialog { border: 0; border-radius: var(--radius-lg); padding: 22px; max-width: min(460px, calc(100vw - 32px)); box-shadow: 0 20px 60px rgba(0, 0, 0, .3); }
+  dialog.eq-dialog::backdrop { background: rgba(20, 16, 12, .5); }
+  dialog.eq-dialog h2 { font-size: 1.4rem; margin: 0 0 10px; }
+  .eq-cite { background: var(--paper); border-left: 3px solid var(--foin); padding: 8px 12px; margin: 10px 0; font-size: .95rem; }
+  body[aria-busy="true"] .btn, body[aria-busy="true"] .eq-mini, body[aria-busy="true"] .choice { opacity: .55; pointer-events: none; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body class="eq">
+
+<header class="eq-top">
+  <div class="wrap">
+    <img src="../img/logo.png" alt="" width="26" height="40">
+    <b>Espace équipe</b>
+    <a href="../index.html" target="_blank" rel="noopener">Voir le site ↗</a>
+  </div>
+</header>
+
+<main class="eq-main">
+  <p class="eq-demo" id="demo" hidden><b>Mode démonstration.</b> Vos essais ne changent le site que sur cet appareil : ouvrez « Voir le site » pour voir le résultat. <button type="button" id="demo-raz">Tout remettre à zéro</button></p>
+
+  <!-- Connexion -->
+  <section id="connexion" class="eq-card" hidden aria-labelledby="t-cx">
+    <h1 id="t-cx" style="font-size:1.9rem;margin:0 0 6px">Espace équipe de la Bata</h1>
+    <p class="muted">Mettez le site à jour depuis votre téléphone : message du jour, agenda, colos et horaires. Tout est en ligne dès que vous enregistrez.</p>
+    <form id="form-cx" novalidate>
+      <div class="fields">
+        <div class="field"><label for="cx-prenom">Votre prénom</label><input id="cx-prenom" type="text" autocomplete="given-name" required maxlength="30"><p class="hint">Il apparaît dans l’historique, pour savoir qui a changé quoi.</p></div>
+        <div class="field"><label for="cx-code">Code de l’équipe</label><input id="cx-code" type="password" autocomplete="current-password" required></div>
+      </div>
+      <p class="hint" id="cx-demo-aide" hidden style="margin-top:10px">Démonstration : n’importe quel code de 4 caractères ou plus fonctionne.</p>
+      <label class="choice" style="margin-top:14px"><input type="checkbox" id="cx-garder" checked><span>Rester connecté·e sur ce téléphone</span></label>
+      <p class="demande__erreur" id="cx-erreur" role="alert" hidden></p>
+      <div class="eq-actions"><button class="btn" type="submit">Entrer</button></div>
+    </form>
+  </section>
+
+  <!-- Application -->
+  <div id="app" hidden>
+    <div class="eq-hello">
+      <h1 id="bonjour">Bonjour</h1>
+      <button type="button" id="deconnexion">Se déconnecter</button>
+      <p class="eq-last" id="derniere"></p>
+    </div>
+
+    <nav class="eq-tabs" role="tablist" aria-label="Rubriques">
+      <button type="button" role="tab" aria-selected="true" data-onglet="message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message</button>
+      <button type="button" role="tab" aria-selected="false" data-onglet="agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Agenda</button>
+      <button type="button" role="tab" aria-selected="false" data-onglet="colos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3.5 21 14 3M20.5 21 10 3M15.5 21 12 15l-3.5 6M2 21h20"/></svg>Colos</button>
+      <button type="button" role="tab" aria-selected="false" data-onglet="horaires"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Horaires</button>
+      <button type="button" role="tab" aria-selected="false" data-onglet="historique"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 3"/></svg>Historique</button>
+    </nav>
+
+    <!-- Message du jour -->
+    <section class="eq-card" data-panneau="message" aria-labelledby="t-msg">
+      <h2 id="t-msg">Message du jour</h2>
+      <p class="muted">Il s’affiche en haut de toutes les pages du site, jusqu’à la date choisie. Pratique pour une fermeture imprévue.</p>
+      <div class="eq-apercu" aria-live="polite">En ce moment sur le site :<span id="msg-actuel"></span></div>
+      <form id="form-msg" novalidate>
+        <div class="field"><label for="msg-texte">Nouveau message</label><textarea id="msg-texte" maxlength="200" rows="3" placeholder="Ex. : Ferme fermée ce soir à cause de la neige."></textarea><p class="eq-count"><span id="msg-n">0</span> / 200</p></div>
+        <div class="eq-chips" aria-label="Phrases toutes prêtes">
+          <button type="button" class="eq-chip" data-phrase="Ferme exceptionnellement fermée ce soir.">Fermée ce soir</button>
+          <button type="button" class="eq-chip" data-phrase="Pas de fournée aujourd’hui.">Pas de fournée</button>
+          <button type="button" class="eq-chip" data-phrase="Pas de lait à la boutique ce soir.">Pas de lait</button>
+          <button type="button" class="eq-chip" data-phrase="Route enneigée : venez équipés.">Route enneigée</button>
+        </div>
+        <div class="field" style="margin-top:14px"><span class="label">Jusqu’à quand ?</span>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="msg-fin" value="aujourdhui" checked><span>Aujourd’hui</span></label>
+            <label class="choice"><input type="radio" name="msg-fin" value="demain"><span>Jusqu’à demain</span></label>
+            <label class="choice"><input type="radio" name="msg-fin" value="date"><span>Jusqu’au…</span></label>
+          </div>
+          <input type="date" id="msg-date" hidden aria-label="Date de fin du message" style="margin-top:8px">
+        </div>
+        <div class="eq-actions">
+          <button class="btn" type="submit">Publier le message</button>
+          <button class="btn btn--ghost" type="button" id="msg-retirer">Retirer le message</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Agenda -->
+    <section class="eq-card" data-panneau="agenda" hidden aria-labelledby="t-ag">
+      <h2 id="t-ag">Agenda</h2>
+      <p class="muted">Les dates s’affichent sur l’accueil du site. Les dates passées disparaissent toutes seules.</p>
+      <ul class="eq-list" id="ag-liste"></ul>
+      <p class="muted small" id="ag-passees" style="margin-top:10px"></p>
+    </section>
+    <section class="eq-card" data-panneau="agenda" hidden aria-labelledby="t-ag2">
+      <h2 id="t-ag2" style="font-size:1.3rem">Ajouter une date</h2>
+      <form id="form-ag" novalidate>
+        <div class="fields">
+          <div class="field field--full"><label for="ag-titre">Titre <span class="req">*</span></label><input id="ag-titre" maxlength="90" required placeholder="Ex. : Atelier parents-enfants"></div>
+          <div class="field"><label for="ag-date">Date <span class="req">*</span></label><input id="ag-date" type="date" required></div>
+          <div class="field"><label for="ag-heure">Heure</label><input id="ag-heure" type="time"></div>
+          <div class="field"><label for="ag-lieu">Lieu</label><input id="ag-lieu" maxlength="60" list="ag-lieux" placeholder="À la ferme"><datalist id="ag-lieux"><option value="À la ferme"><option value="Au Chalet du Souleret"></datalist></div>
+          <div class="field"><label for="ag-prix">Prix</label><input id="ag-prix" maxlength="40" placeholder="5 € par famille, prix libre…"></div>
+          <div class="field field--full"><label for="ag-texte">Quelques mots</label><textarea id="ag-texte" maxlength="300" rows="3"></textarea></div>
+        </div>
+        <div class="eq-actions"><button class="btn" type="submit">Ajouter à l’agenda</button></div>
+      </form>
+    </section>
+
+    <!-- Colos -->
+    <section class="eq-card" data-panneau="colos" hidden aria-labelledby="t-co">
+      <h2 id="t-co">Colos : où en sont les inscriptions ?</h2>
+      <p class="muted">Le statut s’affiche sur la page Colos et sur l’accueil. Il s’enregistre dès que vous touchez un choix.</p>
+      <div id="co-liste"></div>
+    </section>
+
+    <!-- Horaires -->
+    <section class="eq-card" data-panneau="horaires" hidden aria-labelledby="t-ho">
+      <h2 id="t-ho">Horaires de la ferme</h2>
+      <p class="muted">Le site calcule seul « ouvert aujourd’hui » à partir de ces périodes. Pensez à saisir la saison suivante avant la fin de la dernière période.</p>
+      <div class="fields">
+        <div class="field"><label for="ho-acc-de">Accueil : de</label><input id="ho-acc-de" type="time" required></div>
+        <div class="field"><label for="ho-acc-a">à</label><input id="ho-acc-a" type="time" required></div>
+        <div class="field"><label for="ho-tr-de">Traite : de</label><input id="ho-tr-de" type="time" required></div>
+        <div class="field"><label for="ho-tr-a">à</label><input id="ho-tr-a" type="time" required></div>
+      </div>
+      <h3 style="font-size:1.15rem;margin:22px 0 4px">Périodes d’ouverture</h3>
+      <div id="ho-periodes"></div>
+      <p class="demande__erreur" id="ho-alerte" role="status" hidden></p>
+      <details style="margin-top:12px">
+        <summary class="btn btn--ghost btn--small" style="display:inline-flex">Ajouter une période</summary>
+        <div style="margin-top:12px">
+          <div class="field"><span class="label">Type</span>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="ho-type" value="haute" checked><span>Haute<small>du mardi au samedi</small></span></label>
+              <label class="choice"><input type="radio" name="ho-type" value="moyenne"><span>Moyenne<small>mercredi, vendredi, samedi</small></span></label>
+              <label class="choice"><input type="radio" name="ho-type" value="basse"><span>Basse<small>le mercredi</small></span></label>
+            </div>
+          </div>
+          <div class="fields" style="margin-top:12px">
+            <div class="field"><label for="ho-du">Du</label><input id="ho-du" type="date"></div>
+            <div class="field"><label for="ho-au">Au</label><input id="ho-au" type="date"></div>
+            <div class="field field--full"><label for="ho-nom">Nom (facultatif)</label><input id="ho-nom" maxlength="30" placeholder="Ex. : Toussaint"></div>
+          </div>
+          <div class="eq-actions"><button class="btn btn--sapin btn--small" type="button" id="ho-ajouter">Ajouter cette période</button></div>
+        </div>
+      </details>
+      <h3 style="font-size:1.15rem;margin:22px 0 4px">Fermetures exceptionnelles</h3>
+      <div class="eq-chips" id="ho-fermetures"></div>
+      <div class="fields" style="margin-top:8px">
+        <div class="field"><label for="ho-ferm">Ajouter une date de fermeture</label><input id="ho-ferm" type="date"></div>
+      </div>
+      <div class="eq-actions" style="align-items:center">
+        <button class="btn" type="button" id="ho-enregistrer">Enregistrer les horaires</button>
+        <span class="eq-dirty" id="ho-dirty" hidden>Modifications non enregistrées</span>
+      </div>
+    </section>
+
+    <!-- Historique -->
+    <section class="eq-card" data-panneau="historique" hidden aria-labelledby="t-hi">
+      <h2 id="t-hi">Historique</h2>
+      <p class="muted">Qui a changé quoi, et quand. En cas d’erreur, revenez à l’état d’avant une modification.</p>
+      <ul class="eq-list eq-journal" id="hi-liste" style="gap:0"></ul>
+    </section>
+  </div>
+</main>
+
+<div class="eq-toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<dialog class="eq-dialog" id="conflit">
+  <h2>Quelqu’un vient de modifier la même chose</h2>
+  <p id="conflit-texte"></p>
+  <div class="eq-cite" id="conflit-cite"></div>
+  <p class="muted small">Rien n’a été écrasé. À vous de choisir :</p>
+  <div class="eq-actions">
+    <button class="btn btn--ghost" type="button" data-choix="garder">Garder sa version</button>
+    <button class="btn" type="button" data-choix="remplacer">Mettre la mienne à la place</button>
+  </div>
+</dialog>
+
+<script src="equipe.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "mis_a_jour": "2026-09-26T10:00:00+02:00",
+  "par": "Primo (mise en place)",
+  "message_du_jour": {
+    "texte": "",
+    "jusqu_au": ""
+  },
+  "horaires": {
+    "accueil": {
+      "de": "16:30",
+      "a": "19:00"
+    },
+    "traite": {
+      "de": "17:45",
+      "a": "18:15"
+    },
+    "periodes": [
+      {
+        "type": "basse",
+        "du": "2026-01-05",
+        "au": "2026-02-07",
+        "nom": ""
+      },
+      {
+        "type": "haute",
+        "du": "2026-02-06",
+        "au": "2026-03-07",
+        "nom": "Hiver"
+      },
+      {
+        "type": "moyenne",
+        "du": "2026-03-08",
+        "au": "2026-04-03",
+        "nom": ""
+      },
+      {
+        "type": "haute",
+        "du": "2026-04-03",
+        "au": "2026-04-18",
+        "nom": "Pâques"
+      },
+      {
+        "type": "moyenne",
+        "du": "2026-04-19",
+        "au": "2026-07-03",
+        "nom": ""
+      },
+      {
+        "type": "haute",
+        "du": "2026-07-04",
+        "au": "2026-08-29",
+        "nom": "Été"
+      },
+      {
+        "type": "moyenne",
+        "du": "2026-08-30",
+        "au": "2026-10-17",
+        "nom": ""
+      },
+      {
+        "type": "haute",
+        "du": "2026-10-17",
+        "au": "2026-10-31",
+        "nom": "Toussaint"
+      },
+      {
+        "type": "basse",
+        "du": "2026-11-02",
+        "au": "2026-12-19",
+        "nom": ""
+      },
+      {
+        "type": "haute",
+        "du": "2026-12-19",
+        "au": "2027-01-02",
+        "nom": "Noël"
+      }
+    ],
+    "fermetures": [
+      "2026-12-25",
+      "2027-01-01"
+    ]
+  },
+  "agenda": [
+    {
+      "id": "e1",
+      "date": "2026-09-18",
+      "heure": "19:30",
+      "titre": "Atelier parentalité : « Comment la parentalité me transforme ? »",
+      "texte": "Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.",
+      "lieu": "À la ferme",
+      "prix": "5 € par famille"
+    },
+    {
+      "id": "e2",
+      "date": "2026-09-25",
+      "heure": "19:30",
+      "titre": "Atelier parentalité : « Écouter mon enfant, qu’est-ce que ça veut dire ? »",
+      "texte": "Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.",
+      "lieu": "À la ferme",
+      "prix": "5 € par famille"
+    },
+    {
+      "id": "e3",
+      "date": "2026-09-26",
+      "heure": "09:30",
+      "titre": "Atelier parents-enfants",
+      "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 9h30 à 11h30.",
+      "lieu": "",
+      "prix": "5 € par famille"
+    },
+    {
+      "id": "e4",
+      "date": "2026-10-07",
+      "heure": "20:00",
+      "titre": "Projection d’un film",
+      "texte": "",
+      "lieu": "Au Chalet du Souleret",
+      "prix": ""
+    },
+    {
+      "id": "e5",
+      "date": "2026-10-09",
+      "heure": "19:30",
+      "titre": "Atelier parentalité : « (Ré)inventer ma parentalité »",
+      "texte": "Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.",
+      "lieu": "À la ferme",
+      "prix": "5 € par famille"
+    },
+    {
+      "id": "e6",
+      "date": "2026-10-10",
+      "heure": "14:30",
+      "titre": "Atelier parents-enfants",
+      "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 14h30 à 16h30.",
+      "lieu": "",
+      "prix": "5 € par famille"
+    },
+    {
+      "id": "e7",
+      "date": "2026-10-14",
+      "heure": "14:30",
+      "titre": "Atelier parents-enfants",
+      "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 14h30 à 16h30.",
+      "lieu": "",
+      "prix": "5 € par famille"
+    }
+  ],
+  "sejours": [
+    {
+      "id": "apprentis",
+      "nom": "Vacances des apprentis fermiers (6-10 ans)",
+      "statut": "termine"
+    },
+    {
+      "id": "tout-autour",
+      "nom": "Tout autour de la ferme (10-13 ans)",
+      "statut": "termine"
+    },
+    {
+      "id": "alpages",
+      "nom": "L’aventure des alpages (14-17 ans)",
+      "statut": "termine"
+    }
+  ],
+  "versions": {
+    "message": 1,
+    "agenda": 1,
+    "horaires": 1,
+    "sejours": 1
+  }
+}

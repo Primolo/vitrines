@@ -26,73 +26,158 @@
   function longDate(d) { return JOURS[d.getDay()] + " " + d.getDate() + " " + MOIS[d.getMonth()]; }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
-  /* ---------- Horaires de la ferme (affiche 2026-2027) ---------- */
+  /* ---------- Contenus tenus à jour par l'équipe (data/contenus.json) ---------- */
+  // Valeurs de secours = l'affiche horaires 2026-2027, utilisées si le fichier ne répond pas.
   var DAYS = { haute: [2, 3, 4, 5, 6], moyenne: [3, 5, 6], basse: [3] };
-  var PERIODS = [
-    { type: "basse", from: "2026-01-05", to: "2026-02-07" },
-    { type: "haute", from: "2026-02-06", to: "2026-03-07" },
-    { type: "moyenne", from: "2026-03-08", to: "2026-04-03" },
-    { type: "haute", from: "2026-04-03", to: "2026-04-18" },
-    { type: "moyenne", from: "2026-04-19", to: "2026-07-03" },
-    { type: "haute", from: "2026-07-04", to: "2026-08-29" },
-    { type: "moyenne", from: "2026-08-30", to: "2026-10-17" },
-    { type: "haute", from: "2026-10-17", to: "2026-10-31" },
-    { type: "basse", from: "2026-11-02", to: "2026-12-19" },
-    { type: "haute", from: "2026-12-19", to: "2027-01-02" }
-  ];
-  var CLOSED = ["2026-12-25", "2027-01-01"];
-  var LAST_KNOWN = "2027-01-02";
-  // Message du jour, modifiable depuis un téléphone sur le vrai site (fermeture exceptionnelle, neige…).
-  var INFO_DU_JOUR = "";
+  var DAYS_TXT = { haute: "Du mardi au samedi", moyenne: "Mercredi, vendredi et samedi", basse: "Le mercredi" };
+  var TYPE_TXT = { haute: ["Période haute", "vacances scolaires"], moyenne: ["Période moyenne", "entre les vacances"], basse: ["Période basse", "de novembre à février, hors vacances"] };
+  var C = {
+    message_du_jour: { texte: "", jusqu_au: "" },
+    horaires: {
+      accueil: { de: "16:30", a: "19:00" },
+      traite: { de: "17:45", a: "18:15" },
+      periodes: [
+        { type: "basse", du: "2026-01-05", au: "2026-02-07" }, { type: "haute", du: "2026-02-06", au: "2026-03-07" },
+        { type: "moyenne", du: "2026-03-08", au: "2026-04-03" }, { type: "haute", du: "2026-04-03", au: "2026-04-18" },
+        { type: "moyenne", du: "2026-04-19", au: "2026-07-03" }, { type: "haute", du: "2026-07-04", au: "2026-08-29" },
+        { type: "moyenne", du: "2026-08-30", au: "2026-10-17" }, { type: "haute", du: "2026-10-17", au: "2026-10-31" },
+        { type: "basse", du: "2026-11-02", au: "2026-12-19" }, { type: "haute", du: "2026-12-19", au: "2027-01-02" }
+      ],
+      fermetures: ["2026-12-25", "2027-01-01"]
+    },
+    agenda: null,
+    sejours: null
+  };
+  var DEMO_KEY = "bata-demo-contenus";
+  var DEMO = false;
+  var MOIS_COURT = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+
+  function minutesDe(s) { var p = s.split(":"); return +p[0] * 60 + +p[1]; }
+  function heureTxt(s) { var p = s.split(":"); return +p[0] + "h" + (p[1] === "00" ? "" : p[1]); }
+  function jourTxt(d) { return d.getDate() === 1 ? "1er" : String(d.getDate()); }
+  function lastKnown() { return C.horaires.periodes.reduce(function (m, p) { return p.au > m ? p.au : m; }, ""); }
+  function plageTxt(a, b) {
+    var A = parse(a), B = parse(b);
+    if (A.getFullYear() !== B.getFullYear()) return "du " + jourTxt(A) + " " + MOIS[A.getMonth()] + " " + A.getFullYear() + " au " + jourTxt(B) + " " + MOIS[B.getMonth()] + " " + B.getFullYear();
+    if (A.getMonth() !== B.getMonth()) return "du " + jourTxt(A) + " " + MOIS[A.getMonth()] + " au " + jourTxt(B) + " " + MOIS[B.getMonth()] + " " + B.getFullYear();
+    return "du " + jourTxt(A) + " au " + jourTxt(B) + " " + MOIS[B.getMonth()] + " " + B.getFullYear();
+  }
+
+  function charger() {
+    try {
+      var demo = localStorage.getItem(DEMO_KEY);
+      if (demo) { DEMO = true; return Promise.resolve(JSON.parse(demo)); }
+    } catch (e) { /* stockage indisponible : on lit le vrai fichier */ }
+    var delai = new Promise(function (_, non) { setTimeout(non, 3000); });
+    return Promise.race([fetch("data/contenus.json", { cache: "no-store" }).then(function (r) {
+      if (!r.ok) throw new Error("contenus " + r.status);
+      return r.json();
+    }), delai]);
+  }
+  function fusionner(d) {
+    if (!d || typeof d !== "object") return;
+    if (d.message_du_jour) C.message_du_jour = d.message_du_jour;
+    var h = d.horaires;
+    if (h && Array.isArray(h.periodes) && h.periodes.length) C.horaires = h;
+    if (Array.isArray(d.agenda)) C.agenda = d.agenda;
+    if (Array.isArray(d.sejours)) C.sejours = d.sejours;
+  }
 
   function isOpen(d) {
     var s = iso(d);
-    if (CLOSED.indexOf(s) !== -1) return false;
-    return PERIODS.some(function (p) {
-      return s >= p.from && s <= p.to && DAYS[p.type].indexOf(d.getDay()) !== -1;
+    if ((C.horaires.fermetures || []).indexOf(s) !== -1) return false;
+    return C.horaires.periodes.some(function (p) {
+      return s >= p.du && s <= p.au && DAYS[p.type] && DAYS[p.type].indexOf(d.getDay()) !== -1;
     });
   }
   function nextOpening(from) {
+    var fin = lastKnown();
     var d = new Date(from.getFullYear(), from.getMonth(), from.getDate());
     for (var i = 1; i <= 60; i++) {
       d.setDate(d.getDate() + 1);
-      if (iso(d) > LAST_KNOWN) return null;
+      if (iso(d) > fin) return null;
       if (isOpen(d)) return d;
     }
     return null;
   }
   function openStatus() {
-    var minutes = NOW.getHours() * 60 + NOW.getMinutes();
+    var a = C.horaires.accueil, minutes = NOW.getHours() * 60 + NOW.getMinutes();
     var open = isOpen(NOW);
     var next = nextOpening(NOW);
-    var nextTxt = next ? "réouverture " + longDate(next) + " à 16h30" : "horaires 2027 bientôt en ligne";
-    if (TODAY > LAST_KNOWN) return { open: false, text: "Horaires 2027 bientôt en ligne" };
-    if (open && minutes < 16 * 60 + 30) return { open: true, text: "Ferme ouverte aujourd'hui de 16h30 à 19h" };
-    if (open && minutes < 19 * 60) return { open: true, text: "Ferme ouverte en ce moment, jusqu'à 19h" };
+    var nextTxt = next ? "réouverture " + longDate(next) + " à " + heureTxt(a.de) : "prochains horaires bientôt en ligne";
+    if (TODAY > lastKnown()) return { open: false, text: "Prochains horaires bientôt en ligne" };
+    if (open && minutes < minutesDe(a.de)) return { open: true, text: "Ferme ouverte aujourd'hui de " + heureTxt(a.de) + " à " + heureTxt(a.a) };
+    if (open && minutes < minutesDe(a.a)) return { open: true, text: "Ferme ouverte en ce moment, jusqu'à " + heureTxt(a.a) };
     if (open) return { open: false, text: "Ferme fermée pour ce soir · " + nextTxt };
     return { open: false, text: "Ferme fermée aujourd'hui · " + nextTxt };
+  }
+  function messageDuJour() {
+    var m = C.message_du_jour || {};
+    return m.texte && (!m.jusqu_au || TODAY <= m.jusqu_au) ? m.texte : "";
   }
 
   function renderAlmanach() {
     var el = document.querySelector("[data-almanach]");
     var st = openStatus();
     document.querySelectorAll("[data-open-status]").forEach(function (n) { n.textContent = st.text; });
+    var msg = messageDuJour();
+    document.querySelectorAll("[data-message-du-jour]").forEach(function (n) { n.textContent = msg; n.hidden = !msg; });
     if (!el) return;
-    var items = [];
+    var t = C.horaires.traite, items = [];
     items.push('<span class="almanach__date">' + cap(longDate(NOW)) + "</span>");
-    items.push('<span class="almanach__item"><span class="almanach__dot' + (st.open ? "" : " is-closed") + '" aria-hidden="true"></span>' + st.text + "</span>");
+    items.push('<span class="almanach__item"><span class="almanach__dot' + (st.open ? "" : " is-closed") + '" aria-hidden="true"></span>' + esc(st.text) + "</span>");
     var minutes = NOW.getHours() * 60 + NOW.getMinutes();
-    if (isOpen(NOW) && minutes < 18 * 60 + 15) items.push('<span class="almanach__item">Traite 17h45-18h15, lait frais à la boutique</span>');
+    if (isOpen(NOW) && minutes < minutesDe(t.a)) items.push('<span class="almanach__item">Traite ' + heureTxt(t.de) + "-" + heureTxt(t.a) + ", lait frais à la boutique</span>");
     if ([1, 3, 5].indexOf(NOW.getDay()) !== -1) items.push('<span class="almanach__item">Jour de fournée au fournil</span>');
     items.push('<a href="visiter.html#horaires">Tous les horaires</a>');
-    if (INFO_DU_JOUR) items.push('<span class="almanach__info">' + INFO_DU_JOUR + "</span>");
+    if (msg) items.push('<span class="almanach__info">' + esc(msg) + "</span>");
     (el.querySelector(".wrap") || el).innerHTML = items.join("");
+  }
+
+  // Page « Venir à la ferme » : les trois périodes et les fermetures, regénérées depuis les contenus.
+  function renderPeriodes() {
+    document.querySelectorAll("[data-periodes]").forEach(function (box) {
+      box.innerHTML = ["haute", "moyenne", "basse"].map(function (type) {
+        var ps = C.horaires.periodes.filter(function (p) { return p.type === type; })
+          .sort(function (a, b) { return a.du < b.du ? -1 : 1; });
+        if (!ps.length) return "";
+        return '<div class="period"><h3>' + TYPE_TXT[type][0] + " <small>" + TYPE_TXT[type][1] + '</small></h3><p class="days">' + DAYS_TXT[type] + "</p><ul>" +
+          ps.map(function (p) {
+            return '<li data-from="' + esc(p.du) + '" data-to="' + esc(p.au) + '">' + (p.nom ? "<b>" + esc(p.nom) + "</b> : " : "") + plageTxt(p.du, p.au) + "</li>";
+          }).join("") + "</ul></div>";
+      }).join("");
+    });
+    var f = (C.horaires.fermetures || []).slice().sort();
+    document.querySelectorAll("[data-fermetures]").forEach(function (n) {
+      if (!f.length) { n.textContent = "Aucune fermeture exceptionnelle annoncée."; return; }
+      var l = f.map(function (s) { var d = parse(s); return JOURS[d.getDay()] + " " + jourTxt(d) + " " + MOIS[d.getMonth()] + " " + d.getFullYear(); });
+      n.textContent = cap("le " + (l.length > 1 ? l.slice(0, -1).join(", le ") + " et le " + l[l.length - 1] : l[0])) + ".";
+    });
   }
 
   function markPeriods() {
     document.querySelectorAll("[data-from][data-to]").forEach(function (li) {
       if (TODAY > li.dataset.to) li.classList.add("is-past");
       else if (TODAY >= li.dataset.from) li.classList.add("is-now");
+    });
+  }
+
+  // Accueil : l'agenda publié par l'équipe remplace la liste écrite dans la page.
+  function renderAgendaData() {
+    if (!C.agenda) return;
+    document.querySelectorAll("[data-agenda]").forEach(function (list) {
+      list.classList.remove("is-empty");
+      list.innerHTML = C.agenda.slice().sort(function (a, b) {
+        return (a.date + (a.heure || "")) < (b.date + (b.heure || "")) ? -1 : 1;
+      }).map(function (e) {
+        var d = parse(e.date);
+        var infos = [e.heure ? "À " + heureTxt(e.heure) : "", e.lieu || ""].filter(Boolean).join(" · ");
+        var texte = infos + (infos && e.texte ? ". " : "") + (e.texte || "");
+        return '<li class="event" data-date="' + esc(e.date) + '"' + (e.fin ? ' data-end="' + esc(e.fin) + '"' : "") + ">" +
+          '<div class="event__date"><b>' + d.getDate() + "</b><span>" + MOIS_COURT[d.getMonth()] + "</span></div>" +
+          "<div><h3>" + esc(e.titre) + "</h3>" + (texte ? "<p>" + esc(texte) + "</p>" : "") +
+          '<div class="event__tags">' + (e.prix ? '<span class="badge">' + esc(e.prix) + "</span>" : "") + "</div></div></li>";
+      }).join("");
     });
   }
 
@@ -124,6 +209,50 @@
         b.className = "badge badge--passe";
       }
     });
+  }
+
+  // Colos : le statut choisi par l'équipe l'emporte sur les dates écrites dans la page.
+  var STATUTS = {
+    "a-venir": ["Inscriptions bientôt", "badge--bientot"], ouvert: ["Inscriptions ouvertes", "badge--ok"],
+    dernieres: ["Dernières places", "badge--bientot"], complet: ["Complet", "badge--complet"], termine: ["Terminé", "badge--passe"]
+  };
+  function renderSejours() {
+    if (!C.sejours) return;
+    C.sejours.forEach(function (s) {
+      var st = STATUTS[s.statut];
+      if (!st) return;
+      document.querySelectorAll('[data-sejour="' + s.id + '"]').forEach(function (b) { b.textContent = st[0]; b.className = "badge " + st[1]; });
+    });
+    var ss = C.sejours.map(function (s) { return s.statut; });
+    var resume = ss.some(function (x) { return x === "ouvert" || x === "dernieres"; }) ? STATUTS.ouvert
+      : ss.indexOf("a-venir") !== -1 ? STATUTS["a-venir"]
+      : ss.every(function (x) { return x === "complet"; }) ? STATUTS.complet : null;
+    if (resume) document.querySelectorAll("[data-colos-resume]").forEach(function (b) { b.textContent = resume[0]; b.className = "badge " + resume[1]; });
+  }
+
+  function bandeauDemo() {
+    if (!DEMO) return;
+    var n = document.createElement("div");
+    n.className = "mockup-note";
+    n.style.background = "#1F4A2E";
+    n.style.color = "#FFF8EE";
+    n.innerHTML = "Aperçu de démonstration : les modifications faites dans l’espace équipe ne s’affichent que sur cet appareil. " +
+      '<button type="button" style="font:inherit;font-weight:700;background:none;border:0;color:#F1DDB4;text-decoration:underline;cursor:pointer">Revenir au site réel</button>';
+    n.querySelector("button").addEventListener("click", function () {
+      try { localStorage.removeItem(DEMO_KEY); } catch (e) {}
+      location.reload();
+    });
+    document.body.insertBefore(n, document.body.firstChild);
+  }
+
+  function toutAfficher() {
+    renderAlmanach();
+    renderPeriodes();
+    markPeriods();
+    renderAgendaData();
+    renderAgenda();
+    renderSejours();
+    bandeauDemo();
   }
 
   /* ---------- Menu mobile ---------- */
@@ -243,9 +372,12 @@
     });
   }
 
-  function showRecap(form) {
+  var PAGE = (location.pathname.split("/").pop() || "index.html").replace(/\.html?$/, "") || "index";
+
+  // mode "envoye" : la demande est vraiment partie ; mode "demo" : maquette sans serveur d'envoi.
+  function showRecap(form, mode, info) {
     var rows = collect(form);
-    var to = destination(form, rows);
+    var to = (info && info.to) || destination(form, rows);
     var recap = form.parentNode.querySelector(".recap[data-for='" + form.id + "']");
     if (!recap) {
       recap = document.createElement("div");
@@ -254,17 +386,37 @@
       form.parentNode.insertBefore(recap, form.nextSibling);
     }
     var dl = rows.map(function (r) { return "<dt>" + esc(r.label) + "</dt><dd>" + esc(r.value) + "</dd>"; }).join("");
-    recap.innerHTML =
-      '<div class="recap__banner" role="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>' +
-      "<div><b>Maquette : rien n'a été envoyé.</b> Sur le vrai site, cette demande partirait directement à <b>" + esc(to) + "</b>, déjà complète et triée. Vous recevriez aussitôt un accusé de réception avec le délai de réponse choisi par l'équipe.</div></div>" +
-      '<p class="recap__ok" tabindex="-1">Merci, votre demande est prête.</p>' +
-      '<p class="muted">Voici exactement ce que l\'équipe recevrait :</p>' +
-      '<div class="mail"><div class="mail__head"><div><b>À</b> ' + esc(to) + "</div><div><b>Objet</b> " + esc(subject(form, rows)) + "</div></div>" +
-      '<div class="mail__body"><dl>' + dl + "</dl></div></div>" +
-      '<div class="step__nav"><button type="button" class="btn btn--ghost" data-edit>Modifier ma demande</button><a class="btn" href="index.html">Retour à l\'accueil</a></div>';
+    var mail = '<div class="mail"><div class="mail__head"><div><b>À</b> ' + esc(to) + "</div><div><b>Objet</b> " + esc(subject(form, rows)) + "</div></div>" +
+      '<div class="mail__body"><dl>' + dl + "</dl></div></div>";
+    if (mode === "envoye" && info.demo) {
+      recap.innerHTML =
+        '<div class="recap__banner recap__banner--ok" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>' +
+        "<div><b>C’est vraiment parti.</b> Démonstration : la demande et l’accusé de réception sont arrivés dans la boîte de démonstration. Sur le site en service, la demande arriverait chez <b>" + esc(to) + "</b>" +
+        (info.email ? " et l’accusé de réception partirait à <b>" + esc(info.email) + "</b>" : "") + ".</div></div>" +
+        '<p class="recap__ok" tabindex="-1">Merci, l’équipe vous répond dès que possible.</p>' +
+        '<p class="muted">Voici ce que vous nous avez envoyé :</p>' + mail +
+        '<div class="step__nav"><button type="button" class="btn btn--ghost" data-autre>Faire une autre demande</button><a class="btn" href="index.html">Retour à l’accueil</a></div>';
+    } else if (mode === "envoye") {
+      recap.innerHTML =
+        '<div class="recap__banner recap__banner--ok" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>' +
+        "<div><b>C’est envoyé.</b> Votre demande est arrivée chez <b>" + esc(to) + "</b>." +
+        (info.email ? " Un accusé de réception vient de partir à <b>" + esc(info.email) + "</b>." : "") + "</div></div>" +
+        '<p class="recap__ok" tabindex="-1">Merci, l’équipe vous répond dès que possible.</p>' +
+        '<p class="muted">Voici ce que vous nous avez envoyé :</p>' + mail +
+        '<div class="step__nav"><button type="button" class="btn btn--ghost" data-autre>Faire une autre demande</button><a class="btn" href="index.html">Retour à l’accueil</a></div>';
+    } else {
+      recap.innerHTML =
+        '<div class="recap__banner" role="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>' +
+        "<div><b>Maquette : rien n'a été envoyé.</b> Sur le vrai site, cette demande partirait directement à <b>" + esc(to) + "</b>, déjà complète et triée, et vous recevriez aussitôt un accusé de réception.</div></div>" +
+        '<p class="recap__ok" tabindex="-1">Merci, votre demande est prête.</p>' +
+        '<p class="muted">Voici exactement ce que l\'équipe recevrait :</p>' + mail +
+        '<div class="step__nav"><button type="button" class="btn btn--ghost" data-edit>Modifier ma demande</button><a class="btn" href="index.html">Retour à l\'accueil</a></div>';
+    }
     form.hidden = true;
     recap.hidden = false;
-    recap.querySelector("[data-edit]").addEventListener("click", function () {
+    var retour = recap.querySelector("[data-edit], [data-autre]");
+    retour.addEventListener("click", function () {
+      if (retour.hasAttribute("data-autre")) { form.reset(); form._debut = Date.now(); form._montrer(0); applyConditions(form); }
       recap.hidden = true;
       form.hidden = false;
       requestAnimationFrame(function () { form.scrollIntoView({ block: "start" }); });
@@ -274,6 +426,53 @@
       recap.scrollIntoView({ block: "start" });
       recap.querySelector(".recap__ok").focus({ preventScroll: true });
     });
+  }
+
+  function erreurEnvoi(form, bouton, message, to) {
+    var p = document.createElement("p");
+    p.className = "demande__erreur";
+    p.setAttribute("role", "alert");
+    p.innerHTML = esc(message) + (to ? ' Vous pouvez aussi écrire directement à <a href="mailto:' + esc(to) + '">' + esc(to) + "</a>." : "");
+    bouton.closest(".step__nav").insertAdjacentElement("beforebegin", p);
+  }
+
+  function envoyer(form) {
+    var rows = collect(form);
+    var bouton = form.querySelector('.step:not([hidden]) button[type="submit"]');
+    var ancien = form.querySelector(".demande__erreur");
+    if (ancien) ancien.remove();
+    var libelle = bouton.textContent;
+    bouton.disabled = true;
+    bouton.textContent = "Envoi en cours…";
+    var champ = form.dataset.toField ? (form.querySelector('[name="' + form.dataset.toField + '"]:checked') || form.querySelector('[name="' + form.dataset.toField + '"]')) : null;
+    var email = form.querySelector('input[type="email"]');
+    var pot = form.querySelector('[name="site_web"]');
+    var titre = form.querySelector(".demande__head h3");
+    var corps = {
+      formulaire: PAGE + "/" + form.id,
+      titre: titre ? titre.textContent.trim() : "",
+      objet: subject(form, rows),
+      aiguillage: champ ? champ.value : "",
+      email: email ? email.value.trim() : "",
+      lignes: rows.map(function (r) { return { libelle: r.label, valeur: r.value }; }),
+      site_web: pot ? pot.value : "",
+      duree_ms: Date.now() - (form._debut || Date.now())
+    };
+    function fin() { bouton.disabled = false; bouton.textContent = libelle; }
+    fetch("envoi.php", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(corps) })
+      .then(function (r) {
+        return r.json().then(function (j) { return { s: r.status, j: j }; }, function () { return { s: r.status, j: null }; });
+      })
+      .then(function (res) {
+        fin();
+        if (res.s === 200 && res.j && res.j.ok) return showRecap(form, "envoye", { to: res.j.destinataire, email: corps.email, demo: !!res.j.demo });
+        // Pas de serveur d'envoi (maquette statique) : le serveur ne sait pas traiter la demande.
+        if (!res.j && [404, 405, 501].indexOf(res.s) !== -1) return showRecap(form, "demo");
+        erreurEnvoi(form, bouton, (res.j && res.j.erreur) || "L’envoi n’a pas abouti.", (res.j && res.j.destinataire) || destination(form, rows));
+      }, function () {
+        fin();
+        erreurEnvoi(form, bouton, "Pas de connexion : votre demande n’est pas partie. Réessayez dans un instant.", destination(form, rows));
+      });
   }
 
   function initForm(form) {
@@ -331,8 +530,16 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!valid(current)) return;
-      showRecap(form);
+      envoyer(form);
     });
+    // Piège à robots : un champ invisible que seuls les robots remplissent.
+    var pot = document.createElement("div");
+    pot.setAttribute("aria-hidden", "true");
+    pot.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden";
+    pot.innerHTML = '<label>Site web <input type="text" name="site_web" tabindex="-1" autocomplete="off" data-skip></label>';
+    form.appendChild(pot);
+    form._debut = Date.now();
+    form._montrer = show;
     applyConditions(form);
     show(0);
   }
@@ -387,9 +594,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    renderAlmanach();
-    markPeriods();
-    renderAgenda();
+    charger().then(fusionner, function () { /* hors ligne ou fichier absent : valeurs de secours */ }).then(toutAfficher);
     initNav();
     initReveal();
     document.querySelectorAll("form.demande").forEach(function (f) { initForm(f); });
