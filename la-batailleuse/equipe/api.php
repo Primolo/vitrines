@@ -245,8 +245,10 @@ function infos_reglages(): array
     if (!interrupteur_disponible(config())) {
         return ['interrupteur' => false];
     }
+    $c = config();
     $r = reglages();
-    return ['interrupteur' => true, 'boites_reelles' => !empty($r['boites_reelles']), 'par' => $r['par'] ?? '', 'quand' => $r['quand'] ?? ''];
+    return ['interrupteur' => true, 'boites_reelles' => !empty($r['boites_reelles']), 'par' => $r['par'] ?? '', 'quand' => $r['quand'] ?? '',
+        'limite' => (int) ($c['limite_jour'] ?? 0), 'expediteur' => (string) $c['expediteur']];
 }
 
 function valider_evenement($e): array
