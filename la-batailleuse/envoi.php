@@ -59,8 +59,13 @@ $demo = ($c['rediriger_vers'] ?? '') !== '';
 if ($demo && ($c['resend_cle'] ?? '') === '') {
     repondre(503, ['erreur' => 'Démonstration : l’envoi des emails n’est pas encore activé sur ce site (clé d’envoi manquante). Rien n’est parti.', 'demo' => true]);
 }
-if ($demo && !$test && !limiter('envoi:tous', (int) ($c['limite_jour'] ?? 40), 86400)) {
-    repondre(429, ['erreur' => 'La démonstration a atteint son nombre d’envois pour aujourd’hui. Réessayez demain.']);
+// Plafond quotidien pour tout le site (quota d'envoi partagé) ; 0 = sans plafond, le cas chez IONOS.
+$limite = (int) ($c['limite_jour'] ?? 0);
+if (!$test && $limite > 0 && !limiter('envoi:tous', $limite, 86400)) {
+    repondre(429, [
+        'erreur' => $demo ? 'La démonstration a atteint son nombre d’envois pour aujourd’hui. Réessayez demain.' : 'Le site a reçu beaucoup de demandes aujourd’hui.',
+        'destinataire' => $demo ? null : $prevu, 'demo' => $demo,
+    ]);
 }
 if ($test) {
     $destinataire = $c['adresse_test'];

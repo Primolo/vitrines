@@ -42,9 +42,10 @@ return [
     // Hébergeur sans SMTP (Railway…) : clé de l'API Resend. Vide chez IONOS, qui envoie lui-même.
     'resend_cle' => '',
 
-    // Démonstration seulement : si rempli, TOUS les emails partent vers cette adresse (au plus limite_jour par jour).
+    // Démonstration seulement : si rempli, TOUS les emails partent vers cette adresse.
     'rediriger_vers' => '',
-    'limite_jour' => 40,
+    // Plafond de formulaires par jour pour tout le site (0 = sans plafond). Utile si le quota d'envoi est partagé.
+    'limite_jour' => 0,
 
     // Pied de l'accusé de réception envoyé au demandeur.
     'contacts' => 'La ferme : 03 81 49 91 15 · Le Chalet du Souleret : 03 81 49 91 84 · Le fournil : 07 81 42 48 30',
