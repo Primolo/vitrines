@@ -56,6 +56,9 @@ $page = $pages[explode('/', $formulaire)[0]] ?? explode('/', $formulaire)[0];
 // Démonstration : tout part vers une seule boîte (rediriger_vers), avec la boîte qui l'aurait reçu en service réel.
 $prevu = $destinataire;
 $demo = ($c['rediriger_vers'] ?? '') !== '';
+if ($demo && interrupteur_disponible($c) && !empty(reglages()['boites_reelles'])) {
+    $demo = false; // l'équipe a choisi de recevoir les demandes de la démo dans ses vraies boîtes
+}
 if ($demo && ($c['resend_cle'] ?? '') === '') {
     repondre(503, ['erreur' => 'Démonstration : l’envoi des emails n’est pas encore activé sur ce site (clé d’envoi manquante). Rien n’est parti.', 'demo' => true]);
 }

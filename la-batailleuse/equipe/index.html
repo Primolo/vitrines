@@ -70,6 +70,9 @@
   dialog.eq-dialog { border: 0; border-radius: var(--radius-lg); padding: 22px; max-width: min(460px, calc(100vw - 32px)); box-shadow: 0 20px 60px rgba(0, 0, 0, .3); }
   dialog.eq-dialog::backdrop { background: rgba(20, 16, 12, .5); }
   dialog.eq-dialog h2 { font-size: 1.4rem; margin: 0 0 10px; }
+  .eq-fd { border: 2px solid var(--foin); }
+  .eq-fd .choice span { flex-wrap: wrap; row-gap: 2px; }
+  .eq-fd .choice small { flex-basis: 100%; padding-left: 28px; }
   .eq-cite { background: var(--paper); border-left: 3px solid var(--foin); padding: 8px 12px; margin: 10px 0; font-size: .95rem; }
   body[aria-busy="true"] .btn, body[aria-busy="true"] .eq-mini, body[aria-busy="true"] .choice { opacity: .55; pointer-events: none; }
   #form-cx .fields { grid-template-columns: 1fr; max-width: 420px; }
@@ -121,6 +124,19 @@
       <button type="button" role="tab" aria-selected="false" data-onglet="horaires"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Horaires</button>
       <button type="button" role="tab" aria-selected="false" data-onglet="historique"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 3"/></svg>Historique</button>
     </nav>
+
+    <!-- Démonstration seulement : l'équipe choisit où arrivent les formulaires -->
+    <div data-panneau="message">
+      <section class="eq-card eq-fd" id="fd" hidden aria-labelledby="t-fd">
+        <h2 id="t-fd" style="font-size:1.3rem">Formulaires de la démo</h2>
+        <p class="muted">Où arrivent les demandes envoyées depuis les formulaires de la démo ?</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="fd" value="primo"><span>Chez Primo<small>pour tout essayer sans rien recevoir</small></span></label>
+          <label class="choice"><input type="radio" name="fd" value="boites"><span>Dans nos boîtes mail<small>animation, hébergement, ferme… et l’accusé de réception à la personne qui écrit</small></span></label>
+        </div>
+        <p class="muted small" id="fd-etat" style="margin:10px 0 0"></p>
+      </section>
+    </div>
 
     <!-- Message du jour -->
     <section class="eq-card" data-panneau="message" aria-labelledby="t-msg">

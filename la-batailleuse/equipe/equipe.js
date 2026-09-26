@@ -125,6 +125,7 @@
 
   /* ---------- Résultats, conflits ---------- */
   function maj(j) {
+    if (j.reglages) S.reglages = j.reglages;
     S.contenus = j.contenus;
     S.journal = j.journal || [];
     S.historique = j.historique || [];
@@ -221,6 +222,17 @@
     afficherColos();
     afficherHoraires();
     afficherHistorique();
+    afficherReglages();
+  }
+
+  function afficherReglages() {
+    var r = S.reglages || {}, carte = $("#fd");
+    carte.hidden = S.demo || !r.interrupteur;
+    if (carte.hidden) return;
+    $$('[name="fd"]').forEach(function (x) { x.checked = x.value === (r.boites_reelles ? "boites" : "primo"); });
+    $("#fd-etat").textContent = r.boites_reelles
+      ? "Activé" + (r.par ? " par " + r.par + " " + quandTxt(r.quand) : "") + " : envoyez un formulaire depuis le site, la demande arrive dans la boîte concernée."
+      : "";
   }
 
   function afficherMessage() {
@@ -412,6 +424,12 @@
       if (b && confirm("Revenir à l’état d’avant cette modification ? Tout ce qui a été changé depuis sera annulé (et restera dans l’historique).")) {
         appel("restaurer", { fichier: b.dataset.restaurer }).then(function (res) { S.dirty = false; traiter(res); });
       }
+    });
+
+    $$('[name="fd"]').forEach(function (x) {
+      x.addEventListener("change", function () {
+        if (x.checked) appel("boites_reelles", { valeur: x.value === "boites" }).then(function (res) { traiter(res); });
+      });
     });
 
     $("#demo-raz").addEventListener("click", function () {

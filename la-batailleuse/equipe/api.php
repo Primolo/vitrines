@@ -110,6 +110,20 @@ switch ($action) {
             succes(enregistrer($doc, 'horaires', 'Horaires modifiés (' . count($h['periodes']) . ' périodes, ' . count($h['fermetures']) . ' fermetures)', $prenom));
         });
 
+    case 'boites_reelles':
+        if (!interrupteur_disponible($c)) {
+            repondre(400, ['erreur' => 'Ce réglage n’existe que sur la démonstration.']);
+        }
+        $oui = !empty($d['valeur']);
+        avec_verrou('contenus', function () use ($oui, $prenom) {
+            ecrire_json(DOSSIER_ETAT . '/reglages.json', ['boites_reelles' => $oui, 'par' => $prenom, 'quand' => date('c')]);
+            $j = journal();
+            array_unshift($j, ['quand' => date('c'), 'par' => $prenom, 'section' => 'reglages', 'cle' => '',
+                'resume' => $oui ? 'Formulaires de la démo : dans vos boîtes mail' : 'Formulaires de la démo : chez Primo', 'avant' => '']);
+            ecrire_json(DOSSIER_ETAT . '/journal.json', array_slice($j, 0, 200));
+            succes(charger(), $oui ? 'C’est fait : les demandes de la démo arrivent maintenant dans vos boîtes mail. Essayez un formulaire !' : 'Les demandes de la démo arrivent de nouveau chez Primo.');
+        });
+
     case 'restaurer':
         $f = (string) ($d['fichier'] ?? '');
         if (!preg_match('/^\d{8}-\d{6}-[0-9a-f]{4}\.json$/', $f) || !is_file(DOSSIER_ETAT . '/historique/' . $f)) {
@@ -223,7 +237,16 @@ function conflit(array $doc, string $section, $actuel, string $cle = ''): void
 
 function succes(array $doc, string $info = ''): void
 {
-    repondre(200, ['ok' => true, 'info' => $info, 'contenus' => $doc, 'journal' => array_slice(journal(), 0, 20), 'historique' => historique()]);
+    repondre(200, ['ok' => true, 'info' => $info, 'contenus' => $doc, 'journal' => array_slice(journal(), 0, 20), 'historique' => historique(), 'reglages' => infos_reglages()]);
+}
+
+function infos_reglages(): array
+{
+    if (!interrupteur_disponible(config())) {
+        return ['interrupteur' => false];
+    }
+    $r = reglages();
+    return ['interrupteur' => true, 'boites_reelles' => !empty($r['boites_reelles']), 'par' => $r['par'] ?? '', 'quand' => $r['quand'] ?? ''];
 }
 
 function valider_evenement($e): array

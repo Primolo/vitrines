@@ -152,6 +152,17 @@ function limiter(string $cle, int $max, int $fenetre, bool $compter = true): boo
     });
 }
 
+/** Démonstration seulement : l'équipe choisit elle-même, dans l'espace équipe, de recevoir les formulaires. */
+function interrupteur_disponible(array $c): bool
+{
+    return !empty($c['interrupteur_equipe']) && ($c['rediriger_vers'] ?? '') !== '';
+}
+
+function reglages(): array
+{
+    return lire_json(DOSSIER_ETAT . '/reglages.json', []);
+}
+
 function entete_mime(string $s): string
 {
     return '=?UTF-8?B?' . base64_encode($s) . '?=';
