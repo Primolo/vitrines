@@ -403,7 +403,7 @@ table.prices tbody th { font-weight: 600; }
 .step[hidden] { display: none; }
 .step legend { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; padding: 0; margin-bottom: 16px; }
 .fields { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
-.field { display: grid; gap: 6px; }
+.field { display: grid; gap: 6px; align-content: start; }
 .field--full { grid-column: 1 / -1; }
 .field > label, .field > .label { font-weight: 700; font-size: .98rem; }
 .field .hint { font-size: .88rem; color: var(--ink-mute); margin: 0; }
