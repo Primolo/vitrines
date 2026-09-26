@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Le Chalet du Souleret — 62 places à Rochejean (Haut-Doubs) · La Batailleuse</title>
+<meta name="description" content="Le Chalet du Souleret à Rochejean : 62 places, ouvert toute l’année aux familles, aux groupes et aux classes. Pension complète, demi-pension, nuitée ou gestion libre : tarifs 2026-2027, disponibilités et demande d’option en ligne.">
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* Compléments propres à la page du chalet (variables de style.css uniquement) */
+  .hero__img img { object-position: 50% 38%; }
+  .section--sapin .ticks li::before { border-color: var(--foin-soft); }
+  .section--sapin h3 { margin-bottom: .45em; }
+  .pills { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .pills li { padding: 8px 16px; border: 1px solid rgba(242, 234, 218, .35); border-radius: 999px; font-weight: 600; color: #FFF8EE; }
+  table.prices--short { min-width: 0; }
+  table.prices thead th[colspan] { text-align: center; }
+  table.prices thead tr + tr th { background: var(--white); }
+  table.prices td.free { text-align: center; font-weight: 700; color: var(--sapin); }
+  .stack { display: grid; gap: clamp(18px, 2.4vw, 28px); }
+  .split { display: grid; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  @media (min-width: 980px) {
+    .split { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); }
+    .split__side { position: sticky; top: 96px; }
+  }
+  .split__side .aside { margin-top: 26px; }
+  .card__body .card__foot .price { font-size: 1.25rem; }
+  .legend { margin-top: 14px; }
+  .legend b { min-width: 11.5em; }
+  .territoire .card__body h3 { font-size: 1.25rem; }
+  .territoire .card__body p { font-size: .98rem; }
+  .gap-top { margin-top: clamp(32px, 5vw, 56px); }
+  .faq-wrap { max-width: 860px; }
+  @media (max-width: 520px) { .meta li { flex-direction: column; gap: 0; } .legend b { min-width: 0; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Hostel",
+  "@id": "https://primolo.github.io/vitrines/la-batailleuse/#souleret",
+  "name": "Chalet du Souleret",
+  "url": "https://primolo.github.io/vitrines/la-batailleuse/chalet.html",
+  "description": "Centre d’accueil de 62 places à Rochejean (Haut-Doubs), ancienne ferme sur trois niveaux à 900 mètres d’altitude, pour les familles, les groupes et les classes : pension complète, demi-pension, nuitée ou gestion libre.",
+  "maximumAttendeeCapacity": 62,
+  "telephone": "+33381499184",
+  "email": "hebergement@claj-batailleuse.fr",
+  "address": { "@type": "PostalAddress", "streetAddress": "16 rue de la Fontaine", "postalCode": "25370", "addressLocality": "Rochejean", "addressCountry": "FR" },
+  "image": [
+    "https://primolo.github.io/vitrines/la-batailleuse/img/souleret-facade.jpg",
+    "https://primolo.github.io/vitrines/la-batailleuse/img/souleret-salle.jpg",
+    "https://primolo.github.io/vitrines/la-batailleuse/img/souleret-chambre.jpg"
+  ],
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Deux chambres accessibles aux personnes à mobilité réduite", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Cuisine équipée en gestion libre", "value": true }
+  ],
+  "parentOrganization": { "@type": "NGO", "@id": "https://primolo.github.io/vitrines/la-batailleuse/#asso", "name": "CLAJ de Franche-Comté — La Batailleuse" }
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="mockup-note">Maquette proposée à la Batailleuse. Tous les contenus viennent de votre site actuel.</p>
+
+<div class="almanach" data-almanach aria-live="polite">
+  <div class="wrap">Ferme ouverte de 16h30 à 19h selon la période · <a href="visiter.html#horaires">Tous les horaires</a></div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="La Batailleuse, accueil">
+      <img class="brand__mark" src="img/logo.png" alt="" width="30" height="46">
+      <span><span class="brand__name">la <i>Batailleuse</i></span><span class="brand__sub">Ferme pédagogique · Rochejean</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <button class="menu-toggle nav__close" type="button" aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <ul>
+        <li><a href="collectif.html">La ferme</a></li>
+        <li><a href="ecoles.html">Écoles &amp; groupes</a></li>
+        <li><a href="colos.html">Colos</a></li>
+        <li><a href="chalet.html" aria-current="page">Le chalet</a></li>
+        <li><a href="visiter.html">Venir à la ferme</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn--small" href="contact.html#demande">Faire une demande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="hero hero--short" aria-labelledby="titre">
+    <div class="hero__img"><img src="img/souleret-facade.jpg" alt="La façade rénovée du Chalet du Souleret : murs crème rosé, balcon et escalier en planches de bois, enseigne verte « Le Chalet du Souleret » et jardinière fleurie devant l’entrée." width="1920" height="1440" fetchpriority="high"></div>
+    <div class="wrap">
+      <p class="kicker">Centre d’accueil du CLAJ · Rochejean, Haut-Doubs</p>
+      <h1 id="titre">Le Chalet du Souleret</h1>
+      <p class="lead">Une ancienne ferme sur trois niveaux, au centre du village de Rochejean, rouverte en 2023 après quinze mois de travaux. 62 places, ouvertes toute l’année aux familles, aux groupes et aux classes.</p>
+      <div class="hero__actions">
+        <a class="btn btn--light" href="#demande">Estimer et demander une option</a>
+        <a class="btn btn--ghost" style="color:#FFF8EE;border-color:#FFF8EE" href="#disponibilites">Voir les disponibilités</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 · La maison -->
+  <section class="section" aria-labelledby="t-maison">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>01</b> La maison</p>
+          <h2 id="t-maison">Une grande maison, au centre du village.</h2>
+        </div>
+        <p class="lead">À 900 mètres d’altitude, le Souleret accueille pour une nuit, un week-end ou une semaine. On y dort, on y mange, on y vit ensemble : c’est l’esprit des CLAJ, né du bénévolat.</p>
+      </div>
+
+      <div class="figures">
+        <div class="figure reveal"><strong>62</strong><span>places, des chambres de 2 lits aux dortoirs, sur trois niveaux</span></div>
+        <div class="figure reveal"><strong>2</strong><span>chambres PMR, au rez-de-chaussée</span></div>
+        <div class="figure reveal"><strong>4</strong><span>formules, de la pension complète à la gestion libre</span></div>
+        <div class="figure reveal"><strong>900&nbsp;m</strong><span>d’altitude, dans le village de Rochejean</span></div>
+      </div>
+
+      <div class="feature gap-top">
+        <figure class="feature__img reveal">
+          <img src="img/souleret-salle.jpg" alt="La grande salle à manger rénovée du Souleret : tables en bois clair, chaises, bouquets de fleurs des champs, armoire en bois et coin café au fond." width="1200" height="900" loading="lazy">
+          <figcaption>La grande salle, après la rénovation.</figcaption>
+        </figure>
+        <div class="reveal">
+          <h3>À table, les produits de la ferme.</h3>
+          <blockquote class="quote">
+            <p>« Notre cuisine familiale invite à découvrir de nouvelles saveurs. »</p>
+            <cite>L’équipe de la Batailleuse</cite>
+          </blockquote>
+          <p style="margin-top:22px">Au menu : le pain au levain du fournil, le fromage de chèvre et le lait de vache de la ferme, les légumes du potager, et des produits de fournisseurs locaux, surtout en bio.</p>
+          <p>L’accueil se veut « simple, convivial et coopératif » : chacun·e met la table, débarrasse et participe à la vaisselle, les enfants comme les adultes.</p>
+          <ul class="ticks">
+            <li>Une grande salle, un coin détente et bibliothèque, une salle d’animation.</li>
+            <li>Des salles de bains communes, et deux dortoirs avec leurs propres sanitaires.</li>
+            <li>En gestion libre, une cuisine équipée et de la vaisselle pour une soixantaine de personnes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 02 · Histoire -->
+  <section class="section section--alt" aria-labelledby="t-histoire">
+    <div class="wrap">
+      <div class="feature feature--reverse">
+        <figure class="feature__img reveal">
+          <img src="img/souleret-chambre.jpg" alt="Une chambre du Souleret baignée de soleil : lits superposés en bois, deux lits simples, sol rouge et grande fenêtre ouverte sur les arbres." width="1200" height="900" loading="lazy">
+          <figcaption>Une chambre, lits superposés et lits simples.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>02</b> Son histoire</p>
+          <h2 id="t-histoire">Achetée par souscription, rénovée par financement participatif.</h2>
+          <ol class="timeline" style="margin-top:28px">
+            <li><time datetime="1980">1980</time><p>La Fédération de Franche-Comté du CLAJ achète par souscription le Souleret, une ancienne ferme de Rochejean. Des chantiers bénévoles y aménagent les premiers dortoirs.</p></li>
+            <li><time datetime="1986">1986</time><p>Un incendie ravage le Souleret. La maison est reconstruite et devient un centre d’hébergement de 50 places.</p></li>
+            <li><time datetime="2022">2022</time><p>Quinze mois de travaux commencent, portés aussi par un financement participatif. L’association remercie ses soutiens d’un « 53 000 MERCI ».</p></li>
+            <li><time datetime="2023-05">Mai 2023</time><p>Le chalet rouvre, rénové. Aujourd’hui : 62 places, ouvertes toute l’année.</p></li>
+          </ol>
+          <a class="link-arrow" href="collectif.html#histoire">Toute l’histoire de la Bata</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Formules -->
+  <section class="section" id="formules" aria-labelledby="t-formules">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>03</b> Les formules</p>
+          <h2 id="t-formules">Quatre façons de séjourner.</h2>
+        </div>
+        <p class="lead">Du tout compris à la gestion libre, vous choisissez ce que vous confiez à l’équipe. Une classe découverte, avec les ateliers à la ferme ? Elle a sa page : <a href="ecoles.html">Écoles &amp; groupes</a>.</p>
+      </div>
+      <div class="grid grid--4">
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--ok">Repas compris</span>
+            <h3>Pension complète</h3>
+            <p>L’hébergement et les repas, en cuisine familiale avec les produits de la ferme. Chacun·e participe au service et à la vaisselle.</p>
+            <div class="card__foot"><span class="price">34 à 54 € <small>par personne selon l’âge</small></span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Une partie des repas</span>
+            <h3>Demi-pension</h3>
+            <p>L’hébergement avec une partie des repas. Lesquels : à caler avec l’équipe, selon votre programme de la journée.</p>
+            <div class="card__foot"><span class="price">29 à 45 € <small>par personne selon l’âge</small></span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">À l’unité</span>
+            <h3>Nuitée</h3>
+            <p>La nuit seule. Le petit-déjeuner (de 4 à 7 €) et les repas (de 9 à 14,50 €) s’ajoutent à l’unité, selon vos envies.</p>
+            <div class="card__foot"><span class="price">15 à 23 € <small>par personne selon l’âge</small></span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--bientot">Forfait week-end</span>
+            <h3>Gestion libre</h3>
+            <p>Un forfait, avec la cuisine équipée et sa vaisselle à disposition. Vous cuisinez vous-mêmes, et le ménage est à votre charge.</p>
+            <div class="card__foot"><span class="price">1&nbsp;000 € <small>la première nuit</small></span></div>
+          </div>
+        </article>
+      </div>
+      <p style="margin-top:24px"><a class="link-arrow" href="#tarifs">Toutes les grilles 2026-2027</a></p>
+    </div>
+  </section>
+
+  <!-- 04 · Tarifs -->
+  <section class="section section--alt" id="tarifs" aria-labelledby="t-tarifs">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>04</b> Tarifs 2026-2027</p>
+          <h2 id="t-tarifs">Les prix, tranche d’âge par tranche d’âge.</h2>
+        </div>
+        <p class="lead">Chaque personne compte une fois, dans la tranche de son âge. Les enfants de moins de 3 ans sont accueillis gratuitement. S’ajoutent l’adhésion à l’association et la taxe de séjour.</p>
+      </div>
+
+      <div class="stack">
+        <div class="table-wrap reveal">
+          <table class="prices">
+            <caption>Pension complète et demi-pension<small>Prix par personne et par nuit, d’après la grille 2026-2027 publiée — à confirmer par l’équipe.</small></caption>
+            <thead>
+              <tr>
+                <th scope="col" rowspan="2">Âge</th>
+                <th scope="colgroup" colspan="2">Pension complète</th>
+                <th scope="colgroup" colspan="2">Demi-pension</th>
+              </tr>
+              <tr>
+                <th scope="col" class="n">Semaine</th>
+                <th scope="col" class="n">Week-end</th>
+                <th scope="col" class="n">Semaine</th>
+                <th scope="col" class="n">Week-end</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Adultes</th><td class="n">50 €</td><td class="n">54 €</td><td class="n">41 €</td><td class="n">45 €</td></tr>
+              <tr><th scope="row">Moins de 16 ans</th><td class="n">41 €</td><td class="n">43 €</td><td class="n">35 €</td><td class="n">37 €</td></tr>
+              <tr><th scope="row">Moins de 12 ans</th><td class="n">39 €</td><td class="n">40 €</td><td class="n">33 €</td><td class="n">34 €</td></tr>
+              <tr><th scope="row">Moins de 6 ans</th><td class="n">34 €</td><td class="n">35 €</td><td class="n">29 €</td><td class="n">29 €</td></tr>
+              <tr><th scope="row">Moins de 3 ans</th><td class="free" colspan="4">Gratuit</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid grid--2">
+          <div class="table-wrap reveal">
+            <table class="prices">
+              <caption>Nuitée et repas à l’unité<small>Par personne, grille 2026-2027.</small></caption>
+              <thead>
+                <tr><th scope="col">Âge</th><th scope="col" class="n">Nuit</th><th scope="col" class="n">Petit-déjeuner</th><th scope="col" class="n">Repas</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Adultes</th><td class="n">23 €</td><td class="n">7 €</td><td class="n">14,50 €</td></tr>
+                <tr><th scope="row">Moins de 16 ans</th><td class="n">20 €</td><td class="n">6 €</td><td class="n">13 €</td></tr>
+                <tr><th scope="row">Moins de 12 ans</th><td class="n">18 €</td><td class="n">5 €</td><td class="n">11,50 €</td></tr>
+                <tr><th scope="row">Moins de 6 ans</th><td class="n">15 €</td><td class="n">4 €</td><td class="n">9 €</td></tr>
+                <tr><th scope="row">Moins de 3 ans</th><td class="free" colspan="3">Gratuit</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-wrap reveal" id="adhesion">
+            <table class="prices prices--short">
+              <caption>Adhésion à l’association<small>Pour une année. Obligatoire pour être hébergé·e au chalet.</small></caption>
+              <thead>
+                <tr><th scope="col">Vous êtes</th><th scope="col" class="n">Adhésion</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Une famille</th><td class="n">5 €</td></tr>
+                <tr><th scope="row">Un groupe de moins de 20 personnes</th><td class="n">25 €</td></tr>
+                <tr><th scope="row">Un groupe de plus de 20 personnes</th><td class="n">50 €</td></tr>
+                <tr><th scope="row">Une classe</th><td class="n">50 € <small class="muted">forfait</small></td></tr>
+                <tr><th scope="row">Une personne seule</th><td class="n">3 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid grid--2">
+          <div class="aside reveal">
+            <h3>À prévoir en plus</h3>
+            <ul class="meta">
+              <li><b>Taxe de séjour</b><span>pour les adultes seulement, 0,83 € par nuit*</span></li>
+              <li><b>Draps</b><span>en location, 4 € par personne*</span></li>
+              <li><b>Ménage</b><span>à votre charge en gestion libre</span></li>
+              <li><b>Paiement</b><span>chèques vacances acceptés*</span></li>
+              <li><b>Animaux</b><span>non admis au chalet*</span></li>
+            </ul>
+            <p class="note">* D’après notre annonce sur Grands Gîtes, à confirmer avec l’équipe.</p>
+          </div>
+          <div class="aside aside--bordeaux reveal">
+            <h3>Semaine ou week-end ?</h3>
+            <p>En gestion libre, le week-end commence dès le vendredi soir et va jusqu’au dimanche. Pour la pension complète et la demi-pension, le tarif qui s’applique à vos dates est à voir avec l’équipe.</p>
+            <p><a class="link-arrow" href="#demande">Estimer mon séjour</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 05 · Gestion libre -->
+  <section class="section section--sapin" id="gestion-libre" aria-labelledby="t-libre">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>05</b> Gestion libre</p>
+          <h2 id="t-libre">En gestion libre, la cuisine est à vous.</h2>
+        </div>
+        <p class="lead">Un forfait pour le week-end, avec la cuisine professionnelle, son matériel (four, cuisinière, cafetière, lave-vaisselle) et la vaisselle pour une soixantaine de personnes. Vous vous organisez comme vous l’entendez.</p>
+      </div>
+
+      <div class="figures">
+        <div class="figure reveal"><strong>1&nbsp;000&nbsp;€</strong><span>la première nuit, week-end normal ou spécial</span></div>
+        <div class="figure reveal"><strong>300&nbsp;€</strong><span>par nuit supplémentaire, week-end normal</span></div>
+        <div class="figure reveal"><strong>450&nbsp;€</strong><span>par nuit supplémentaire, week-end spécial</span></div>
+        <div class="figure reveal"><strong>50&nbsp;€</strong><span>d’adhésion à l’association, en plus du forfait</span></div>
+      </div>
+
+      <div class="grid grid--2 gap-top">
+        <div class="reveal">
+          <h3>Les week-ends spéciaux</h3>
+          <p>La nuit supplémentaire passe à 450 € pour les week-ends de fête :</p>
+          <ul class="pills">
+            <li>Noël</li>
+            <li>Jour de l’An</li>
+            <li>Pâques</li>
+            <li>1er mai</li>
+            <li>8 mai</li>
+            <li>Pentecôte</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <h3>Bon à savoir</h3>
+          <ul class="ticks">
+            <li>Les week-ends débutent dès le vendredi soir et vont jusqu’au dimanche.</li>
+            <li>Le ménage est à la charge des clients.</li>
+            <li>La taxe de séjour s’ajoute au forfait et à l’adhésion.</li>
+            <li>Heures d’arrivée et de départ, gestion libre en semaine : à voir avec l’équipe.</li>
+          </ul>
+          <p><a class="link-arrow" href="#demande">Calculer mon forfait</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--sapin-deep)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 06 · Disponibilités -->
+  <section class="section section--tight" id="disponibilites" aria-labelledby="t-dispos">
+    <div class="wrap">
+      <div class="grid grid--2" style="align-items:start">
+        <div class="reveal">
+          <p class="kicker"><b>06</b> Disponibilités</p>
+          <h2 id="t-dispos">Vos dates sont-elles libres ?</h2>
+          <p class="lead">Notre planning est tenu à jour par l’équipe sur Grands Gîtes. Regardez vos dates, puis posez une option avec le formulaire juste en dessous.</p>
+          <div class="hero__actions">
+            <a class="btn" href="https://www.grandsgites.com/gite-25-claj-3607.htm" target="_blank" rel="noopener">Ouvrir le planning du chalet<span class="sr-only"> (nouvel onglet)</span></a>
+            <a class="btn btn--ghost" href="#demande">Demander une option</a>
+          </div>
+          <p class="note">Le planning est saisi jusqu’au début de juillet 2027. Pour des dates plus lointaines, posez la question à l’équipe.</p>
+        </div>
+        <div class="stack">
+          <div class="aside reveal">
+            <h3>Lire le planning</h3>
+            <ul class="meta legend">
+              <li><b>Libre</b><span>le chalet est disponible</span></li>
+              <li><b>Disponibilité partielle</b><span>une partie seulement : précisez votre effectif</span></li>
+              <li><b>Complet</b><span>le chalet est réservé</span></li>
+              <li><b>Jour d’arrivée ou de départ</b><span>un groupe arrive ou repart ce jour-là</span></li>
+              <li><b>Fermé</b><span>pas d’accueil ce jour-là</span></li>
+            </ul>
+          </div>
+          <div class="aside aside--bordeaux reveal">
+            <p>Sur le vrai site, le planning s’afficherait directement dans cette page : le calendrier Grands Gîtes que l’équipe tient déjà fournit un script d’intégration, sans double saisie.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · Demande d'option -->
+  <section class="section section--alt" aria-labelledby="t-demande">
+    <div class="wrap">
+      <div class="split">
+        <div class="split__side reveal">
+          <p class="kicker"><b>07</b> Demande d’option</p>
+          <h2 id="t-demande">Estimez votre séjour, posez une option.</h2>
+          <p class="lead">Trois étapes : le séjour, les personnes, vos coordonnées. L’estimation se calcule au fil de vos réponses, avec la grille 2026-2027.</p>
+          <ul class="ticks">
+            <li>Votre demande arrive complète à l’accueil du chalet.</li>
+            <li>L’équipe vérifie le planning et revient vers vous pour l’option et le devis.</li>
+            <li>L’estimation reste indicative : le devis définitif vient de l’équipe.</li>
+          </ul>
+          <div class="aside">
+            <h3>Vous préférez appeler ?</h3>
+            <p>L’accueil du chalet : <a href="tel:+33381499184">03 81 49 91 84</a><br><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@claj-batailleuse.fr</a></p>
+          </div>
+        </div>
+
+        <form class="demande" id="demande" novalidate
+              data-estimateur="chalet"
+              data-to="hebergement@claj-batailleuse.fr"
+              data-subject="Demande d'option au Souleret — {nom}"
+              data-submit="Envoyer ma demande d’option">
+          <div class="demande__head"><h3>Votre demande d’option</h3><p>Elle part à l’accueil du chalet, qui vérifie vos dates et vous répond pour poser l’option.</p></div>
+
+          <fieldset class="step" data-short="Le séjour">
+            <legend>Votre séjour</legend>
+            <div class="fields">
+              <div class="field field--full"><span class="label">Vous venez en <span class="req">*</span></span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="type_sejour" value="famille" required><span>Famille<small>adhésion famille : 5 €</small></span></label>
+                  <label class="choice"><input type="radio" name="type_sejour" value="groupe"><span>Groupe<small>association, club, amis, classe…</small></span></label>
+                </div>
+              </div>
+
+              <div class="field field--full"><span class="label">Formule <span class="req">*</span></span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="formule" value="pension" required><span>Pension complète<small>l’hébergement et les repas, en cuisine familiale</small></span></label>
+                  <label class="choice"><input type="radio" name="formule" value="demi"><span>Demi-pension<small>l’hébergement et une partie des repas</small></span></label>
+                  <label class="choice"><input type="radio" name="formule" value="nuit"><span>Nuitée<small>la nuit seule, petit-déjeuner en option</small></span></label>
+                  <label class="choice"><input type="radio" name="formule" value="libre"><span>Gestion libre<small>forfait, vous cuisinez vous-mêmes</small></span></label>
+                </div>
+              </div>
+
+              <div class="field field--full"><span class="label">Période <span class="req">*</span></span>
+                <div class="choices">
+                  <label class="choice" data-show-if="formule=pension|demi|nuit"><input type="radio" name="periode" value="semaine" required><span>En semaine</span></label>
+                  <label class="choice"><input type="radio" name="periode" value="weekend" required><span>Un week-end<small>en gestion libre, du vendredi soir au dimanche</small></span></label>
+                  <label class="choice" data-show-if="formule=libre"><input type="radio" name="periode" value="speciaux" required><span>Un week-end spécial<small>Noël, Jour de l’An, Pâques, 1er mai, 8 mai, Pentecôte</small></span></label>
+                </div>
+              </div>
+
+              <div class="field"><label for="arrivee">Date d’arrivée <span class="req">*</span></label><input id="arrivee" name="arrivee" type="date" min="2026-09-25" required></div>
+              <div class="field"><label for="nuits">Nombre de nuits <span class="req">*</span></label><input id="nuits" name="nuits" type="number" min="1" value="1" inputmode="numeric" required></div>
+
+              <div class="field field--full" data-show-if="formule=nuit"><span class="label">Petit-déjeuner</span>
+                <input type="hidden" name="petitdej" value="" data-skip>
+                <div class="choices">
+                  <label class="choice"><input type="checkbox" name="petitdej" value="oui"><span>Ajouter le petit-déjeuner<small>de 4 à 7 € par personne selon l’âge</small></span></label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" data-short="Les personnes">
+            <legend>Qui vient ?</legend>
+            <p class="muted small">Comptez chaque personne une seule fois, dans la tranche de son âge.</p>
+            <div class="fields">
+              <div class="field"><label for="adultes">Adultes</label><input id="adultes" name="adultes" type="number" min="0" value="0" inputmode="numeric"></div>
+              <div class="field"><label for="moins16">Moins de 16 ans</label><input id="moins16" name="moins16" type="number" min="0" value="0" inputmode="numeric"></div>
+              <div class="field"><label for="moins12">Moins de 12 ans</label><input id="moins12" name="moins12" type="number" min="0" value="0" inputmode="numeric"></div>
+              <div class="field"><label for="moins6">Moins de 6 ans</label><input id="moins6" name="moins6" type="number" min="0" value="0" inputmode="numeric"></div>
+              <div class="field"><label for="moins3">Moins de 3 ans (gratuit)</label><input id="moins3" name="moins3" type="number" min="0" value="0" inputmode="numeric"></div>
+
+              <div class="field field--full" data-label="Accessibilité et régimes"><label for="besoins">Accessibilité, régimes alimentaires <span class="muted small">(facultatif)</span></label>
+                <textarea id="besoins" name="besoins" rows="3" placeholder="Chambre PMR, fauteuil roulant, repas végétariens, allergies…"></textarea>
+              </div>
+
+              <div class="field field--full"><span class="label">Animation à la ferme</span>
+                <div class="choices">
+                  <label class="choice"><input type="checkbox" name="animation" value="oui"><span>Nous aimerions une animation à la Batailleuse<small>traite, soins aux animaux, fournil… à voir avec l’équipe</small></span></label>
+                </div>
+              </div>
+            </div>
+            <div class="estimate" data-estimate aria-live="polite"></div>
+          </fieldset>
+
+          <fieldset class="step" data-short="Vos coordonnées">
+            <legend>Vos coordonnées</legend>
+            <div class="fields">
+              <div class="field field--full"><label for="nom">Nom ou structure <span class="req">*</span></label><input id="nom" name="nom" type="text" required autocomplete="name"></div>
+              <div class="field"><label for="email">E-mail <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email"></div>
+              <div class="field"><label for="telephone">Téléphone</label><input id="telephone" name="telephone" type="tel" autocomplete="tel"></div>
+              <div class="field field--full"><label for="message">Votre message</label><textarea id="message" name="message" rows="4" placeholder="Votre programme, vos questions, une souplesse sur les dates…"></textarea></div>
+            </div>
+          </fieldset>
+
+          <p class="consent">Vos informations servent uniquement à traiter votre demande. Elles ne sont ni revendues ni utilisées pour de la publicité.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · Autour du Souleret -->
+  <section class="section" id="territoire" aria-labelledby="t-autour">
+    <div class="wrap">
+      <div class="feature">
+        <figure class="feature__img reveal">
+          <img src="img/lac-remoray.jpg" alt="Baignade au lac de Remoray en été : un groupe au loin dans l’eau, devant des prés vallonnés et des forêts de sapins." width="1600" height="1066" loading="lazy">
+          <figcaption>Baignade au lac de Remoray.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>08</b> Autour du Souleret</p>
+          <h2 id="t-autour">Entre lacs, crêtes et forêts du Haut-Doubs.</h2>
+          <p class="lead">Les lacs de Remoray et de Saint-Point sont à moins de 10 minutes en voiture, 20 minutes à vélo ou une heure à pied.</p>
+          <ul class="meta" style="margin-top:18px">
+            <li><b>Mont d’Or</b><span>1 463 m</span></li>
+            <li><b>Aiguilles de Baulmes</b><span>1 559 m</span></li>
+            <li><b>Chasseron</b><span>1 607 m</span></li>
+            <li><b>Mont Tendre</b><span>1 678 m</span></li>
+            <li><b>Source du Doubs</b><span>à Mouthe, à 10 km</span></li>
+            <li><b>La Suisse</b><span>à 20 minutes en voiture</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid--3 gap-top territoire">
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--ok">En été</span>
+            <h3>Marcher, grimper, se baigner</h3>
+            <p>Randonnée sur 270 km de chemins balisés, VTT, escalade, spéléologie, canyoning, parapente, via ferrata, accrobranche, balades avec chiens de traîneau, activités nautiques, pêche.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">En hiver</span>
+            <h3>Glisser sur la neige</h3>
+            <p>Ski alpin, ski de fond, ski de randonnée nordique, balades en raquettes, patinage sur les lacs gelés, et la Grande Traversée du Jura.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--bientot">À visiter</span>
+            <h3>Voir, visiter, goûter</h3>
+            <p>Les réserves naturelles du lac de Remoray et des tourbières de Frasne, la Maison de la Réserve, les caves à comté du Fort Saint-Antoine, une fonderie de cloches, la grotte d’Osselle, le gouffre de Poudrey, la distillerie Pierre Guy à Pontarlier.</p>
+          </div>
+        </article>
+      </div>
+      <p class="note">Pour les prestataires et les horaires : <a href="http://www.tourisme-metabief.com/" rel="noopener">l’office de tourisme de Métabief</a>. Et pour une traite ou un atelier à la ferme : <a href="visiter.html">Venir à la ferme</a>.</p>
+    </div>
+  </section>
+
+  <!-- 09 · Questions fréquentes -->
+  <section class="section section--alt" id="faq" aria-labelledby="t-faq">
+    <div class="wrap faq-wrap">
+      <p class="kicker"><b>09</b> Questions fréquentes</p>
+      <h2 id="t-faq">Avant de réserver.</h2>
+      <div class="faq" style="margin-top:28px">
+        <details>
+          <summary>Faut-il adhérer à l’association pour dormir au chalet ?</summary>
+          <div><p>Oui. « En tant qu’association, une adhésion est obligatoire pour être hébergé chez nous. » Elle vaut pour une année : 5 € pour une famille, 25 € pour un groupe de moins de 20 personnes, 50 € au-delà, 3 € pour une personne seule.</p></div>
+        </details>
+        <details>
+          <summary>Le chalet est-il accessible aux personnes à mobilité réduite ?</summary>
+          <div><p>Le chalet compte 2 chambres PMR, au rez-de-chaussée. Les autres chambres et dortoirs sont au premier étage et en rez-de-jardin. Décrivez vos besoins dans la demande d’option : l’équipe regarde avec vous.</p></div>
+        </details>
+        <details>
+          <summary>Faut-il participer à la vie de la maison ?</summary>
+          <div><p>Oui, c’est l’accueil participatif du Souleret : chacun·e met la table, débarrasse et participe à la vaisselle. En gestion libre, le ménage est à votre charge.</p></div>
+        </details>
+        <details>
+          <summary>Faut-il apporter ses draps ?</summary>
+          <div><p>Vous pouvez en louer sur place : 4 € par personne d’après notre annonce Grands Gîtes. Précisez-le dans votre demande.</p></div>
+        </details>
+        <details>
+          <summary>Je randonne seul·e : puis-je dormir une nuit au Souleret ?</summary>
+          <div><p>La grille prévoit la nuitée (23 € pour un adulte), le petit-déjeuner (7 €) et une adhésion individuelle à 3 €. Appelez le chalet au <a href="tel:+33381499184">03 81 49 91 84</a> pour savoir s’il reste de la place à vos dates.</p></div>
+        </details>
+        <details>
+          <summary>Quelles sont les conditions de réservation ?</summary>
+          <div><p>Arrhes, annulation, heures d’arrivée et de départ : c’est à voir avec l’équipe au moment de poser votre option. Les chèques vacances sont acceptés, d’après notre annonce Grands Gîtes.</p></div>
+        </details>
+        <details>
+          <summary>Les animaux sont-ils acceptés ?</summary>
+          <div><p>Non, les animaux ne sont pas admis au chalet, d’après notre annonce Grands Gîtes.</p></div>
+        </details>
+        <details>
+          <summary>Peut-on ajouter une animation à la ferme ?</summary>
+          <div><p>C’est à voir avec l’équipe : cochez la case « animation à la ferme » dans la demande d’option. Pour une classe découverte, tout est sur la page <a href="ecoles.html">Écoles &amp; groupes</a>.</p></div>
+        </details>
+        <details>
+          <summary>Où se trouve le chalet ?</summary>
+          <div><p>Au 16 rue de la Fontaine, au centre du village de Rochejean (25370). La ferme de la Batailleuse est route de la Batailleuse, sur la même commune. <a href="contact.html#acces">Plan d’accès</a>.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="t-contact">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <p class="kicker">L’accueil du chalet</p>
+          <h2 id="t-contact">Une question sur vos dates ?</h2>
+          <p class="lead">Appelez-nous au <a href="tel:+33381499184">03 81 49 91 84</a> ou écrivez à <a href="mailto:hebergement@claj-batailleuse.fr">hebergement@claj-batailleuse.fr</a>. Pour poser une option, le formulaire reste le plus simple : votre demande arrive complète.</p>
+        </div>
+        <a class="btn" href="#demande">Demander une option</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="img/logo.png" alt="Logo du CLAJ la Batailleuse" width="64" height="99" loading="lazy">
+        <p>Le CLAJ de Franche-Comté, association d’éducation populaire autogérée, fait vivre la ferme de la Batailleuse et le Chalet du Souleret à Rochejean.</p>
+      </div>
+      <div>
+        <h2>Nous trouver</h2>
+        <ul>
+          <li><b>Ferme de la Batailleuse</b><br>Route de la Batailleuse, 25370 Rochejean</li>
+          <li><b>Chalet du Souleret</b><br>16 rue de la Fontaine, 25370 Rochejean</li>
+          <li><a href="contact.html#acces">Plan d’accès</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Téléphones</h2>
+        <ul>
+          <li class="footer__phone"><b><a href="tel:+33381499115">03 81 49 91 15</a></b><span>Ferme et boutique</span></li>
+          <li class="footer__phone"><b><a href="tel:+33381499184">03 81 49 91 84</a></b><span>Chalet du Souleret</span></li>
+          <li class="footer__phone"><b><a href="tel:+33781424830">07 81 42 48 30</a></b><span>Fournil, commandes de pain</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Écrire</h2>
+        <ul>
+          <li><a href="mailto:animation@claj-batailleuse.fr">animation@</a> classes, colos, animations</li>
+          <li><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a> Chalet du Souleret</li>
+          <li><a href="mailto:ferme@claj-batailleuse.fr">ferme@</a> ferme et fournil</li>
+          <li><a href="mailto:facturation@claj-batailleuse.fr">facturation@</a> factures</li>
+          <li><a href="mailto:contact@claj-batailleuse.fr">contact@</a> tout le reste</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
+      <span><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a></span>
+      <span>Maquette proposée par Primo, Montperreux · septembre 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

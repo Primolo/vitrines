@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Colos à la ferme de 6 à 17 ans — La Batailleuse, Rochejean (Haut-Doubs)</title>
+<meta name="description" content="Séjours de vacances à la ferme pédagogique La Batailleuse : apprentis fermiers (6-10 ans), camp à la ferme (10-13 ans), itinérance dans les alpages (14-17 ans). Été 2026 terminé : inscrivez-vous pour être prévenu·e de l’ouverture 2027.">
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  section[id], form[id] { scroll-margin-top: 88px; }
+  .statut { display: grid; gap: 24px 56px; padding: clamp(22px, 4vw, 44px); background: var(--white); border: 1px solid var(--line); border-top: 5px solid var(--bordeaux); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+  @media (min-width: 900px) { .statut { grid-template-columns: 1.4fr 1fr; align-items: center; } .sticky { position: sticky; top: 104px; } }
+  .statut h2 { font-size: clamp(1.55rem, 2.8vw, 2.25rem); margin: 0 0 14px; }
+  .statut p { color: var(--ink-soft); margin: 0; }
+  .statut__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 22px; }
+  .statut__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-strong); }
+  .statut__list li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 14px; padding: 14px 0; border-bottom: 1px solid var(--line); font-weight: 600; }
+  .card__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .card__body .card__label { margin-top: 6px; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--bordeaux); }
+  .card__body .meta b { min-width: 6.4em; }
+  .card__body .ticks { margin: 0; gap: 6px; font-size: .96rem; color: var(--ink-soft); }
+  .card__body .card__note { font-size: .92rem; font-style: italic; color: var(--bordeaux-deep); }
+  .sessions { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-weight: 600; }
+  .sessions li { position: relative; padding-left: 18px; }
+  .sessions li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--foin); }
+  .sessions li.is-past { color: var(--ink-mute); font-weight: 400; }
+  .sessions li.is-past::before { background: var(--line-strong); }
+  .sessions li.is-now::after { content: " · en cours"; color: var(--bordeaux); }
+  .section--sapin .ticks li::before { border-color: var(--foin-soft); }
+  .section--sapin .feature__img figcaption { color: #B9B0A0; }
+  .section--sapin .figures { margin-top: clamp(40px, 6vw, 72px); }
+  table.prices.prices--compact { min-width: 0; }
+  table.prices tbody th.group { background: var(--paper); color: var(--bordeaux); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+  table.prices th small, table.prices td small { display: block; font-weight: 400; color: var(--ink-mute); font-size: .86rem; margin-top: 2px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="mockup-note">Maquette proposée à la Batailleuse. Tous les contenus viennent de votre site actuel.</p>
+
+<div class="almanach" data-almanach aria-live="polite">
+  <div class="wrap">Ferme ouverte de 16h30 à 19h selon la période · <a href="visiter.html#horaires">Tous les horaires</a></div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="La Batailleuse, accueil">
+      <img class="brand__mark" src="img/logo.png" alt="" width="30" height="46">
+      <span><span class="brand__name">la <i>Batailleuse</i></span><span class="brand__sub">Ferme pédagogique · Rochejean</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <button class="menu-toggle nav__close" type="button" aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <ul>
+        <li><a href="collectif.html">La ferme</a></li>
+        <li><a href="ecoles.html">Écoles &amp; groupes</a></li>
+        <li><a href="colos.html" aria-current="page">Colos</a></li>
+        <li><a href="chalet.html">Le chalet</a></li>
+        <li><a href="visiter.html">Venir à la ferme</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn--small" href="contact.html#demande">Faire une demande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="hero hero--short" aria-labelledby="titre">
+    <div class="hero__img"><img src="img/tipi-nuit.jpg" alt="Un tipi et une tente éclairés de l’intérieur, la nuit, sous un ciel étoilé, au campement de la colo." width="1920" height="1440" fetchpriority="high"></div>
+    <div class="wrap">
+      <p class="kicker">Séjours de vacances · de 6 à 17 ans</p>
+      <h1 id="titre">Des colos au plus près des animaux et de la nature.</h1>
+      <p class="lead">Une semaine au chalet, deux semaines au camp de la ferme ou en itinérance dans les alpages. Depuis plus de 40 ans, la Bata accueille enfants et ados chaque été, à Rochejean.</p>
+      <div class="hero__actions">
+        <a class="btn btn--light" href="#demande">Être prévenu·e pour 2027</a>
+        <a class="btn btn--ghost" style="color:#FFF8EE;border-color:#FFF8EE" href="#sejours">Revoir les séjours 2026</a>
+      </div>
+    </div>
+    <p class="hero__credit">Le campement, une nuit d’été</p>
+  </section>
+
+  <section class="section section--tight" id="statut" aria-labelledby="t-statut">
+    <div class="wrap">
+      <div class="statut">
+        <div>
+          <p class="kicker">Où en sont les inscriptions</p>
+          <h2 id="t-statut">Les colos de l’été 2026 sont terminées. Les dates 2027 ne sont pas encore publiées.</h2>
+          <p>Vous pensez déjà à l’été prochain ? Laissez-nous vos coordonnées : nous vous prévenons dès l’ouverture des inscriptions 2027.</p>
+          <div class="statut__actions">
+            <a class="btn" href="#demande">M’inscrire sur la liste</a>
+            <a class="link-arrow" href="#sejours">Revoir les séjours 2026</a>
+          </div>
+        </div>
+        <ul class="statut__list" aria-label="État des inscriptions">
+          <li>Séjours de l’été 2026 <span class="badge badge--passe">Terminés</span></li>
+          <li>Dates et prix 2027 <span class="badge">Pas encore publiés</span></li>
+          <li>Liste de prévenance 2027 <span class="badge badge--ok">Ouverte</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--sapin" aria-labelledby="t-esprit">
+    <div class="wrap">
+      <div class="feature">
+        <figure class="feature__img reveal">
+          <img src="img/traite-etable.jpg" alt="Des enfants en bonnets et en bottes, de dos, face à la rangée de vaches montbéliardes pendant la traite, dans l’étable." width="1920" height="1280" loading="lazy">
+          <figcaption>À l’étable, pendant la traite. Photo : Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>01</b> L’esprit des séjours</p>
+          <h2 id="t-esprit">Rencontre, partage et bonne humeur.</h2>
+          <p class="lead">Ce sont les maîtres mots de nos colos. Chaque été, toute l’équipe de l’association se rassemble autour des séjours : animatrices, cuisinières et fermier·es.</p>
+          <ul class="ticks">
+            <li>Les enfants participent aux soins des animaux et à la traite des vaches et des chèvres.</li>
+            <li>On sort à pied : jardin pédagogique, forêt, lac de Remoray, Mont d’Or.</li>
+            <li>Au petit-déjeuner, les produits de la ferme : pain au levain, fromage de chèvre, yaourt et lait de vache.</li>
+            <li>La vie collective se partage : cuisine, mise de table, vaisselle. Les enfants sont acteurs de leur séjour.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="figures">
+        <div class="figure reveal"><strong>40+</strong><span>ans que la Batailleuse organise des séjours de vacances</span></div>
+        <div class="figure reveal"><strong>3</strong><span>séjours selon l’âge : au chalet, au camp, en itinérance</span></div>
+        <div class="figure reveal"><strong>6-17</strong><span>ans, des apprentis fermiers aux ados des alpages</span></div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--sapin-deep)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section" id="sejours" aria-labelledby="t-sejours">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>02</b> Les séjours de l’été 2026</p>
+          <h2 id="t-sejours">Trois séjours, trois façons de vivre la ferme.</h2>
+        </div>
+        <p class="lead">Voici les séjours tels qu’ils se sont déroulés en 2026, avec leurs dates et leurs prix. Les séjours 2027 seront publiés ici dès qu’ils seront fixés.</p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card reveal">
+          <div class="card__img"><img src="img/sortie-chevres.jpg" alt="Un groupe d’enfants, de dos, suit le troupeau dans le pré, face aux collines boisées du Haut-Doubs." width="1200" height="800" loading="lazy"></div>
+          <div class="card__body">
+            <div class="card__tags"><span class="badge">6-10 ans</span><span class="badge" data-until="2026-08-22" data-past-text="Terminé">Été 2026</span></div>
+            <h3>Vacances des apprentis fermiers</h3>
+            <p>Une semaine à la ferme, avec hébergement dans notre centre d’accueil, le Chalet du Souleret.</p>
+            <ul class="meta">
+              <li><b>Âges</b> de 6 à 10 ans</li>
+              <li><b>Durée</b> 1 semaine, 7 jours</li>
+              <li><b>Hébergement</b> au Chalet du Souleret</li>
+            </ul>
+            <p class="card__label">Dates 2026 · 3 semaines au choix</p>
+            <ul class="sessions">
+              <li data-from="2026-07-05" data-to="2026-07-11">du dimanche 5 au samedi 11 juillet</li>
+              <li data-from="2026-07-12" data-to="2026-07-18">du dimanche 12 au samedi 18 juillet</li>
+              <li data-from="2026-08-16" data-to="2026-08-22">du dimanche 16 au samedi 22 août</li>
+            </ul>
+            <p class="card__label">Au programme</p>
+            <ul class="ticks">
+              <li>Soins aux animaux, traite des vaches et des chèvres.</li>
+              <li>Leurs propres pizzas, préparées au fournil.</li>
+              <li>Jardin pédagogique, forêt, lac de Remoray, Mont d’Or : des sorties « nature », accessibles à pied.</li>
+              <li>Une cuisine familiale, le plus possible locale et bio : le lait, le pain, les biscuits, le fromage et certains légumes viennent de la ferme.</li>
+            </ul>
+            <div class="card__foot"><span class="price">420&nbsp;€ <small>le séjour en 2026</small></span><a class="link-arrow" href="#demande">Être prévenu·e</a></div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__img"><img src="img/lac-remoray.jpg" alt="Un groupe de jeunes, bras levés, se baigne dans l’espace surveillé du lac de Remoray, face aux prés et aux sapins." width="1600" height="1066" loading="lazy"></div>
+          <div class="card__body">
+            <div class="card__tags"><span class="badge">10-13 ans</span><span class="badge badge--complet" data-until="2026-07-18" data-past-text="Terminé">Complet</span></div>
+            <h3>Tout autour de la ferme</h3>
+            <p>Deux semaines de camp, tout près de la ferme, pour comprendre de l’intérieur la vie paysanne et ses métiers.</p>
+            <ul class="meta">
+              <li><b>Âges</b> de 10 à 13 ans</li>
+              <li><b>Durée</b> 2 semaines, 14 jours</li>
+              <li><b>Hébergement</b> sur notre terrain de camping, à côté de la ferme</li>
+            </ul>
+            <p class="card__label">Dates 2026</p>
+            <ul class="sessions">
+              <li data-from="2026-07-05" data-to="2026-07-18">du dimanche 5 au samedi 18 juillet</li>
+            </ul>
+            <p class="card__label">Au programme</p>
+            <ul class="ticks">
+              <li>Soins aux animaux, traite des vaches et des chèvres, en petits groupes ou tous ensemble.</li>
+              <li>Récolte des produits du jardin.</li>
+              <li>Jeux collectifs, balades, cabanes en forêt, feux de camp.</li>
+              <li>Baignade dans les espaces surveillés du lac de Remoray.</li>
+            </ul>
+            <p class="card__note">En 2026, ce séjour affichait complet dès la mi-mars.</p>
+            <div class="card__foot"><span class="price">570&nbsp;€ <small>le séjour en 2026</small></span><a class="link-arrow" href="#demande">Être prévenu·e</a></div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__img"><img src="img/rando-ados.jpg" alt="Des adolescent·es, sac au dos, marchent en file sur un sentier entre les prairies et les forêts de sapins." width="1600" height="1200" loading="lazy"></div>
+          <div class="card__body">
+            <div class="card__tags"><span class="badge">14-17 ans</span><span class="badge" data-until="2026-08-22" data-past-text="Terminé">Été 2026</span></div>
+            <h3>L’aventure des alpages</h3>
+            <p>Un camp itinérant dans les alpages jurassiens, au départ de la ferme, à la rencontre des bergers en estive.</p>
+            <ul class="meta">
+              <li><b>Âges</b> de 14 à 17 ans</li>
+              <li><b>Durée</b> 2 semaines, 14 jours</li>
+              <li><b>Groupe</b> une quinzaine de jeunes</li>
+              <li><b>Hébergement</b> en bivouac, d’alpage en alpage</li>
+            </ul>
+            <p class="card__label">Dates 2026</p>
+            <ul class="sessions">
+              <li data-from="2026-08-09" data-to="2026-08-22">du dimanche 9 au samedi 22 août</li>
+            </ul>
+            <p class="card__label">Au programme</p>
+            <ul class="ticks">
+              <li>Vivre quelques jours le quotidien des bergers en estive.</li>
+              <li>Relier à pied les alpages de moyenne montagne, entre faune et flore.</li>
+              <li>Les jeunes organisent eux-mêmes les balades et les bivouacs.</li>
+              <li>Autonomie et vie collective : chacun·e met la main à la pâte.</li>
+            </ul>
+            <div class="card__foot"><span class="price">550&nbsp;€ <small>le séjour en 2026</small></span><a class="link-arrow" href="#demande">Être prévenu·e</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="aside aside--bordeaux reveal" style="margin-top:28px">
+        <p><b>Sur le vrai site,</b> chaque séjour porte sa date de fin : son badge passe tout seul à « Terminé » le lendemain, et les dates écoulées se grisent. Plus besoin d’y penser à la fin de l’été.</p>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--alt" id="aides" aria-labelledby="t-aides">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>03</b> Aides et paiement</p>
+          <h2 id="t-aides">Partir en colo avec les aides auxquelles vous avez droit.</h2>
+        </div>
+        <p class="lead">Nous sommes partenaires de différentes institutions et structures privées. Et nous pouvons vous accompagner pour une demande de financement auprès d’institutions.</p>
+      </div>
+
+      <div class="grid grid--2" style="align-items:start">
+        <div class="aside reveal">
+          <h3>Les aides acceptées</h3>
+          <ul class="ticks">
+            <li><b>Chèques vacances ANCV</b></li>
+            <li><b>Bons vacances CAF</b> : précisez votre caisse, l’équipe vous confirme ce qui est possible.</li>
+            <li><b>Tickets loisirs</b></li>
+            <li><b>Pass’Colo</b> ou <b>Colos apprenantes</b>, pour les enfants éligibles</li>
+            <li><b>Comités d’entreprise</b> ou <b>FNAS</b></li>
+            <li>Et d’autres encore : parlez-en avec nous.</li>
+          </ul>
+          <p class="small muted">En cas de prise en charge complémentaire, une attestation est à joindre à l’inscription.</p>
+          <p class="small">Un doute sur une aide ? <a href="mailto:animation@claj-batailleuse.fr">animation@claj-batailleuse.fr</a></p>
+        </div>
+
+        <div class="reveal">
+          <div class="table-wrap">
+            <table class="prices prices--compact">
+              <caption>Prix et règlement<small>Tarifs et conditions du bulletin d’inscription 2026, par enfant. À confirmer pour 2027.</small></caption>
+              <thead>
+                <tr><th scope="col">Détail</th><th scope="col" class="n">Montant</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="colgroup" colspan="2" class="group">Prix des séjours 2026</th></tr>
+                <tr><th scope="row">Vacances des apprentis fermiers<small>6-10 ans · 7 jours</small></th><td class="n">420&nbsp;€</td></tr>
+                <tr><th scope="row">Tout autour de la ferme<small>10-13 ans · 14 jours</small></th><td class="n">570&nbsp;€</td></tr>
+                <tr><th scope="row">L’aventure des alpages<small>14-17 ans · 14 jours</small></th><td class="n">550&nbsp;€</td></tr>
+              </tbody>
+              <tbody>
+                <tr><th scope="colgroup" colspan="2" class="group">Règlement</th></tr>
+                <tr><th scope="row">Acompte<small>pour valider l’inscription</small></th><td class="n">100&nbsp;€</td></tr>
+                <tr><th scope="row">Solde<small>au plus tard 15 jours avant le début du séjour</small></th><td class="n">le reste</td></tr>
+                <tr><th scope="row">Réduction fratrie<small>à partir de la deuxième inscription</small></th><td class="n">−&nbsp;10&nbsp;€</td></tr>
+                <tr><th scope="row">Désistement jusqu’à 30 jours avant<small>frais de dossier retenus</small></th><td class="n">30&nbsp;€</td></tr>
+                <tr><th scope="row">Désistement à moins de 30 jours<small>somme retenue</small></th><td class="n">100&nbsp;€</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Aucune retenue en cas de force majeure, sur justificatif : maladie ou accident de l’enfant, décès d’un proche, licenciement économique des parents. Le moyen de paiement de l’acompte est à voir avec l’équipe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="familles" aria-labelledby="t-familles">
+    <div class="wrap">
+      <div class="feature feature--reverse">
+        <figure class="feature__img reveal">
+          <img src="img/souleret-salle.jpg" alt="La grande salle à manger rénovée du Chalet du Souleret : tables en bois clair, bouquets de fleurs des champs, mur orange." width="1200" height="900" loading="lazy">
+          <figcaption>La grande salle à manger du Chalet du Souleret.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>04</b> Séjours familles</p>
+          <h2 id="t-familles">En famille, avec la CAF du Doubs et VACAF.</h2>
+          <p class="lead">Tous les ans, nous proposons des séjours pour les familles, en partenariat avec la CAF du Doubs et VACAF.</p>
+          <p>Nous vous accueillons en pension complète dans notre gîte, le Chalet du Souleret. Le transport et les animations sont pris en charge par notre structure.</p>
+          <ul class="ticks">
+            <li>Découverte de la ferme et soins aux animaux.</li>
+            <li>Traites animées, à l’étable.</li>
+            <li>Visites et animations dans la région : lac et baignade, accrobranche, balade sur le Mont d’Or.</li>
+          </ul>
+          <ul class="meta" style="margin:22px 0">
+            <li><b>Paiement</b> Nous sommes agréés chèques vacances.</li>
+            <li><b>Dates et tarifs</b> Sur demande auprès de l’équipe.</li>
+            <li><b>À Besançon</b> Votre référent·e de quartier peut aussi vous renseigner sur le financement.</li>
+          </ul>
+          <p style="margin:0"><a class="btn btn--sapin" href="mailto:contact@claj-batailleuse.fr?subject=S%C3%A9jours%20familles%20VACAF">Nous écrire</a> <span class="muted small" style="margin-left:10px">ou <a href="tel:+33381499184">03 81 49 91 84</a></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="prevenance" aria-labelledby="t-prevenance">
+    <div class="wrap">
+      <div class="grid grid--2">
+        <div>
+          <div class="sticky">
+            <p class="kicker"><b>05</b> Colos 2027</p>
+            <h2 id="t-prevenance">Soyez prévenu·e dès l’ouverture des inscriptions.</h2>
+            <p class="lead">Les dates, les prix et le bulletin 2027 ne sont pas encore publiés. Laissez-nous vos coordonnées : nous vous écrivons dès que tout est prêt.</p>
+            <ul class="ticks">
+              <li>Un message à l’ouverture des inscriptions 2027, avec les dates et les prix.</li>
+              <li>Ce n’est pas une inscription : aucun paiement, aucun engagement.</li>
+              <li>En 2026, Tout autour de la ferme affichait complet dès la mi-mars.</li>
+            </ul>
+            <p class="small muted">Une question en attendant ? Écrivez à <a href="mailto:animation@claj-batailleuse.fr">animation@claj-batailleuse.fr</a>.</p>
+          </div>
+        </div>
+
+        <div>
+          <form class="demande reveal" id="demande" novalidate
+                data-to="animation@claj-batailleuse.fr"
+                data-subject="Liste d’attente colos 2027 — {prenom_enfant}"
+                data-submit="M’inscrire sur la liste">
+            <div class="demande__head">
+              <h3>Être prévenu·e de l’ouverture des inscriptions 2027</h3>
+              <p>Deux étapes. Votre demande arrive à l’équipe d’animation, qui vous écrit dès l’ouverture des inscriptions.</p>
+            </div>
+
+            <fieldset class="step" data-short="L’enfant">
+              <legend>Votre enfant</legend>
+              <div class="fields">
+                <div class="field field--full"><label for="prenom_enfant">Prénom de l’enfant <span class="req">*</span></label><input id="prenom_enfant" name="prenom_enfant" type="text" required autocomplete="off"></div>
+                <div class="field field--full"><span class="label">Pour situer son âge, vous préférez indiquer</span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="repere" value="naissance" checked data-skip><span>Sa date de naissance</span></label>
+                    <label class="choice"><input type="radio" name="repere" value="age" data-skip><span>Son âge</span></label>
+                  </div></div>
+                <div class="field" data-show-if="repere=naissance"><label for="naissance">Date de naissance <span class="req">*</span></label><input id="naissance" name="naissance" type="date" required max="2026-09-25"></div>
+                <div class="field" data-show-if="repere=age"><label for="age">Âge à l’été 2027 <span class="req">*</span></label><input id="age" name="age" type="number" min="6" max="17" inputmode="numeric" required><p class="hint">Nos séjours 2026 accueillaient les 6-17 ans.</p></div>
+                <div class="field field--full"><span class="label">Le ou les séjours qui l’intéressent</span>
+                  <p class="hint">D’après les séjours 2026 : ceux de 2027 peuvent évoluer. Plusieurs choix possibles.</p>
+                  <div class="choices">
+                    <label class="choice"><input type="checkbox" name="sejours" value="apprentis"><span>Vacances des apprentis fermiers<small>6-10 ans · 1 semaine au Chalet du Souleret</small></span></label>
+                    <label class="choice"><input type="checkbox" name="sejours" value="ferme"><span>Tout autour de la ferme<small>10-13 ans · 2 semaines de camp à la ferme</small></span></label>
+                    <label class="choice"><input type="checkbox" name="sejours" value="alpages"><span>L’aventure des alpages<small>14-17 ans · 2 semaines en itinérance</small></span></label>
+                    <label class="choice"><input type="checkbox" name="sejours" value="indecis"><span>Nous ne savons pas encore<small>selon son âge et les dates 2027</small></span></label>
+                  </div></div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-short="Vous">
+              <legend>Vous</legend>
+              <div class="fields">
+                <div class="field"><label for="nom">Votre nom et prénom <span class="req">*</span></label><input id="nom" name="nom" type="text" required autocomplete="name"></div>
+                <div class="field"><label for="email">Votre email <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email"></div>
+                <div class="field"><label for="telephone">Téléphone</label><input id="telephone" name="telephone" type="tel" autocomplete="tel"><p class="hint">Facultatif.</p></div>
+                <div class="field"><label for="commune">Votre commune <span class="req">*</span></label><input id="commune" name="commune" type="text" required autocomplete="address-level2"></div>
+                <div class="field field--full"><span class="label">Les aides que vous envisagez</span>
+                  <p class="hint">Facultatif, plusieurs choix possibles.</p>
+                  <div class="choices">
+                    <label class="choice"><input type="checkbox" name="aides" value="ancv"><span>Chèques vacances ANCV</span></label>
+                    <label class="choice"><input type="checkbox" name="aides" value="caf"><span>Bons vacances CAF</span></label>
+                    <label class="choice"><input type="checkbox" name="aides" value="tickets"><span>Tickets loisirs</span></label>
+                    <label class="choice"><input type="checkbox" name="aides" value="passcolo"><span>Pass’Colo<small>pour les enfants éligibles</small></span></label>
+                    <label class="choice"><input type="checkbox" name="aides" value="apprenantes"><span>Colos apprenantes<small>pour les enfants éligibles</small></span></label>
+                    <label class="choice"><input type="checkbox" name="aides" value="ce"><span>Comité d’entreprise ou FNAS</span></label>
+                    <label class="choice"><input type="checkbox" name="aides" value="autre"><span>Une autre aide</span></label>
+                    <label class="choice"><input type="checkbox" name="aides" value="aucune"><span>Aucune, ou je ne sais pas encore</span></label>
+                  </div></div>
+                <div class="field field--full" data-show-if="aides=autre"><label for="aide_autre">Quelle autre aide ?</label><input id="aide_autre" name="aide_autre" type="text"></div>
+                <div class="field field--full"><span class="label">Financement</span>
+                  <div class="choices">
+                    <label class="choice"><input type="checkbox" name="accompagnement" value="oui"><span>J’aimerais être accompagné·e pour une demande de financement<small>auprès d’une institution</small></span></label>
+                  </div></div>
+                <div class="field field--full"><span class="label">Des frères et sœurs intéressé·es aussi ? <span class="req">*</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="fratrie" value="oui" required><span>Oui<small>en 2026 : 10 € de réduction dès la 2e inscription</small></span></label>
+                    <label class="choice"><input type="radio" name="fratrie" value="non" required><span>Non</span></label>
+                  </div></div>
+                <div class="field field--full" data-show-if="fratrie=oui"><label for="fratrie_detail">Leurs prénoms et leurs âges</label><input id="fratrie_detail" name="fratrie_detail" type="text"></div>
+                <div class="field field--full"><label for="message">Une question, une précision ?</label><textarea id="message" name="message"></textarea></div>
+                <div class="field field--full" data-label="Accord"><span class="label">Votre accord <span class="req">*</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="checkbox" name="accord" value="oui" required><span>J’accepte que l’équipe d’animation m’écrive au sujet des colos 2027</span></label>
+                  </div></div>
+              </div>
+            </fieldset>
+
+            <p class="consent">Vos informations servent uniquement à vous prévenir de l’ouverture des inscriptions 2027. Elles ne sont ni revendues ni utilisées pour de la publicité.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="questions" aria-labelledby="t-faq">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>06</b> Questions de parents</p>
+          <h2 id="t-faq">Avant de vous décider.</h2>
+        </div>
+        <p class="lead">Ce que nous pouvons déjà vous dire, d’après les séjours 2026. Pour tout le reste, l’équipe d’animation vous répond.</p>
+      </div>
+      <div class="grid grid--2" style="align-items:start">
+        <div class="faq">
+          <details>
+            <summary>À partir de quel âge mon enfant peut-il partir ?</summary>
+            <div><p>Dès 6 ans. En 2026, nos séjours accueillaient les 6-10 ans (Vacances des apprentis fermiers), les 10-13 ans (Tout autour de la ferme) et les 14-17 ans (L’aventure des alpages).</p><p>À 10 ans, deux séjours sont possibles : une semaine au Chalet du Souleret, ou deux semaines de camp à la ferme.</p></div>
+          </details>
+          <details>
+            <summary>Les dates 2027 sont-elles connues ?</summary>
+            <div><p>Pas encore. Elles seront publiées sur cette page, avec les prix et la marche à suivre pour s’inscrire. Pour être prévenu·e, <a href="#demande">inscrivez-vous sur la liste</a>.</p></div>
+          </details>
+          <details>
+            <summary>Où dorment les enfants ?</summary>
+            <div><p>Les 6-10 ans sont hébergés au Chalet du Souleret, notre centre d’accueil. Les 10-13 ans campent sur notre terrain de camping, à proximité immédiate de la ferme. Les 14-17 ans bivouaquent d’alpage en alpage.</p></div>
+          </details>
+          <details>
+            <summary>Qui encadre les enfants ?</summary>
+            <div><p>Nos animatrices et animateurs, avec les fermier·es de la Bata : chaque été, toute l’équipe de l’association se rassemble autour des séjours, cuisinières comprises.</p><p>Pour les 14-17 ans, les animateurs privilégient l’autonomie : les jeunes organisent les balades et les bivouacs. Le nombre d’encadrant·es par enfant n’est pas encore publié : demandez-le à l’équipe.</p></div>
+          </details>
+          <details>
+            <summary>Que mangent les enfants ?</summary>
+            <div><p>Une cuisine familiale et simple, le plus possible locale et bio. Le lait, le pain au levain, les biscuits, le fromage de chèvre, les yaourts et certains légumes sont produits à la ferme.</p></div>
+          </details>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Quelles aides acceptez-vous ?</summary>
+            <div><p>Les chèques vacances ANCV, les bons vacances CAF, les tickets loisirs, le Pass’Colo ou les Colos apprenantes pour les enfants éligibles, et les aides des comités d’entreprise ou de la FNAS, entre autres.</p><p>Pour une aide complémentaire, joignez une attestation à l’inscription. Et si vous avez besoin d’aide pour monter une demande de financement, nous pouvons vous accompagner.</p></div>
+          </details>
+          <details>
+            <summary>Comment se règle le séjour ?</summary>
+            <div><p>En 2026, un acompte de 100 € validait l’inscription. La totalité du séjour était à régler au plus tard 15 jours avant le départ. Le moyen de paiement de l’acompte est à voir avec l’équipe.</p></div>
+          </details>
+          <details>
+            <summary>Y a-t-il une réduction pour les frères et sœurs ?</summary>
+            <div><p>Oui : 10 € de réduction à partir de la deuxième inscription d’une même fratrie.</p></div>
+          </details>
+          <details>
+            <summary>Et si nous devons annuler ?</summary>
+            <div><p>Jusqu’à 30 jours avant le début du séjour, nous retenons 30 € de frais de dossier. À moins de 30 jours, nous retenons 100 €.</p><p>Rien n’est retenu en cas de force majeure, sur justificatif : maladie ou accident de l’enfant, décès d’un proche, licenciement économique des parents.</p></div>
+          </details>
+          <div class="aside aside--bordeaux">
+            <h3>Une autre question ?</h3>
+            <p>L’équipe d’animation : <a href="mailto:animation@claj-batailleuse.fr">animation@claj-batailleuse.fr</a><br>Par téléphone : <a href="tel:+33381499184">03 81 49 91 84</a>, le numéro du bulletin d’inscription.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--alt" aria-labelledby="t-attendant">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <p class="kicker">En attendant l’été</p>
+          <h2 id="t-attendant">Venez voir les animaux avec vos enfants.</h2>
+          <p class="lead"><span data-open-status>La ferme est ouverte de 16h30 à 19h selon la période</span>. La visite libre passe par l’adhésion : 2 € la journée ou 10 € l’année par adulte, gratuite pour les mineurs.</p>
+        </div>
+        <a class="btn" href="visiter.html#horaires">Horaires et visite libre</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="img/logo.png" alt="Logo du CLAJ la Batailleuse" width="64" height="99" loading="lazy">
+        <p>Le CLAJ de Franche-Comté, association d’éducation populaire autogérée, fait vivre la ferme de la Batailleuse et le Chalet du Souleret à Rochejean.</p>
+      </div>
+      <div>
+        <h2>Nous trouver</h2>
+        <ul>
+          <li><b>Ferme de la Batailleuse</b><br>Route de la Batailleuse, 25370 Rochejean</li>
+          <li><b>Chalet du Souleret</b><br>16 rue de la Fontaine, 25370 Rochejean</li>
+          <li><a href="contact.html#acces">Plan d’accès</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Téléphones</h2>
+        <ul>
+          <li class="footer__phone"><b><a href="tel:+33381499115">03 81 49 91 15</a></b><span>Ferme et boutique</span></li>
+          <li class="footer__phone"><b><a href="tel:+33381499184">03 81 49 91 84</a></b><span>Chalet du Souleret</span></li>
+          <li class="footer__phone"><b><a href="tel:+33781424830">07 81 42 48 30</a></b><span>Fournil, commandes de pain</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Écrire</h2>
+        <ul>
+          <li><a href="mailto:animation@claj-batailleuse.fr">animation@</a> classes, colos, animations</li>
+          <li><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a> Chalet du Souleret</li>
+          <li><a href="mailto:ferme@claj-batailleuse.fr">ferme@</a> ferme et fournil</li>
+          <li><a href="mailto:facturation@claj-batailleuse.fr">facturation@</a> factures</li>
+          <li><a href="mailto:contact@claj-batailleuse.fr">contact@</a> tout le reste</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
+      <span><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a></span>
+      <span>Maquette proposée par Primo, Montperreux · septembre 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<!--
+PLAN DE DESIGN — La Batailleuse (ferme pédagogique, CLAJ de Franche-Comté, Rochejean)
+Concept : l'almanach de la Bata — une publication paysanne bien imprimée, premium sans être corporate.
+Palette tirée du logo : bordeaux #7A1F1F · vert sapin #1F4A2E · papier crème #F5EFE3 · foin #C8902F (accent).
+Typo : Fraunces (titres, serif chaleureux à caractère) · Source Sans 3 (texte, très lisible).
+SIGNATURE : la ligne « Aujourd'hui à la Bata » calculée en direct depuis l'affiche horaires 2026-2027
+(ouvert/fermé, traite, fournée) + la crête du Mont d'Or en séparateur.
+Tous les textes, tarifs et dates viennent de claj-batailleuse.fr (relevé du 25/09/2026).
+Photos : Florian Houdelot et l'équipe (site actuel). Aucune photo d'enfant identifiable.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>La Batailleuse — ferme pédagogique paysanne et bio à Rochejean (Haut-Doubs)</title>
+<meta name="description" content="Ferme pédagogique et productive, bio et autogérée, au pied du Mont d'Or : classes découvertes, colos, Chalet du Souleret (62 places), visite libre, boutique et pain au levain.">
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "NGO",
+      "@id": "https://primolo.github.io/vitrines/la-batailleuse/#asso",
+      "name": "CLAJ de Franche-Comté — La Batailleuse",
+      "alternateName": ["La Batailleuse", "La Bata"],
+      "description": "Association loi 1901 d'éducation populaire, autogérée : ferme pédagogique et productive en agriculture biologique et centre d'accueil (Chalet du Souleret) à Rochejean, dans le Haut-Doubs.",
+      "url": "https://claj-batailleuse.fr/",
+      "logo": "https://primolo.github.io/vitrines/la-batailleuse/img/logo.png",
+      "email": "contact@claj-batailleuse.fr",
+      "sameAs": ["https://www.facebook.com/claj.batailleuse/", "https://www.instagram.com/la_batailleuse/", "https://www.helloasso.com/associations/claj-de-franche-comte"]
+    },
+    {
+      "@type": ["LocalBusiness", "TouristAttraction"],
+      "@id": "https://primolo.github.io/vitrines/la-batailleuse/#ferme",
+      "name": "Ferme pédagogique La Batailleuse",
+      "parentOrganization": { "@id": "https://primolo.github.io/vitrines/la-batailleuse/#asso" },
+      "description": "Ferme pédagogique et productive en agriculture biologique : vaches, chèvres, cochons, lapins, poules, fromagerie et fournil. Visite libre sur adhésion, boutique en accès libre.",
+      "telephone": "+33381499115",
+      "email": "ferme@claj-batailleuse.fr",
+      "address": { "@type": "PostalAddress", "streetAddress": "Route de la Batailleuse", "postalCode": "25370", "addressLocality": "Rochejean", "addressCountry": "FR" },
+      "image": "https://primolo.github.io/vitrines/la-batailleuse/img/chevres-pre.jpg",
+      "isAccessibleForFree": false,
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-01-05", "validThrough": "2026-02-07" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-02-06", "validThrough": "2026-03-07" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-03-08", "validThrough": "2026-04-03" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-04-03", "validThrough": "2026-04-18" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-04-19", "validThrough": "2026-07-03" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-07-04", "validThrough": "2026-08-29" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-08-30", "validThrough": "2026-10-17" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-10-17", "validThrough": "2026-10-31" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-11-02", "validThrough": "2026-12-19" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-12-19", "validThrough": "2027-01-02" }
+      ]
+    },
+    {
+      "@type": "Hostel",
+      "@id": "https://primolo.github.io/vitrines/la-batailleuse/#souleret",
+      "name": "Chalet du Souleret",
+      "parentOrganization": { "@id": "https://primolo.github.io/vitrines/la-batailleuse/#asso" },
+      "description": "Centre d'accueil de 62 places à Rochejean pour les classes, les familles et les groupes : pension complète, demi-pension, nuitée ou gestion libre.",
+      "telephone": "+33381499184",
+      "email": "hebergement@claj-batailleuse.fr",
+      "address": { "@type": "PostalAddress", "streetAddress": "16 rue de la Fontaine", "postalCode": "25370", "addressLocality": "Rochejean", "addressCountry": "FR" },
+      "image": "https://primolo.github.io/vitrines/la-batailleuse/img/souleret-facade.jpg"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="mockup-note">Maquette proposée à la Batailleuse. Tous les contenus viennent de votre site actuel.</p>
+
+<div class="almanach" data-almanach aria-live="polite">
+  <div class="wrap">Ferme ouverte de 16h30 à 19h selon la période · <a href="visiter.html#horaires">Tous les horaires</a></div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="La Batailleuse, accueil">
+      <img class="brand__mark" src="img/logo.png" alt="" width="30" height="46">
+      <span><span class="brand__name">la <i>Batailleuse</i></span><span class="brand__sub">Ferme pédagogique · Rochejean</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <button class="menu-toggle nav__close" type="button" aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <ul>
+        <li><a href="collectif.html">La ferme</a></li>
+        <li><a href="ecoles.html">Écoles &amp; groupes</a></li>
+        <li><a href="colos.html">Colos</a></li>
+        <li><a href="chalet.html">Le chalet</a></li>
+        <li><a href="visiter.html">Venir à la ferme</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn--small" href="contact.html#demande">Faire une demande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="hero" aria-labelledby="titre">
+    <div class="hero__img"><img src="img/chevres-pre.jpg" alt="Des enfants accompagnent le troupeau de chèvres à travers le pré, vers les bâtiments de la ferme, dans la lumière du soir." width="1920" height="1080" fetchpriority="high"></div>
+    <div class="wrap">
+      <p class="kicker">Ferme pédagogique et productive · Haut-Doubs</p>
+      <h1 id="titre">À la Bata, on apprend la ferme en la faisant.</h1>
+      <p class="lead">Vaches, chèvres, cochons, lapins, poules, une fromagerie, un fournil au feu de bois et un chalet de 62 places. Depuis 1980, le CLAJ de Franche-Comté accueille classes, colos, familles et groupes à Rochejean, au pied du Mont d’Or.</p>
+      <div class="hero__actions">
+        <a class="btn btn--light" href="#vous-etes">Préparer votre venue</a>
+        <a class="btn btn--ghost" style="color:#FFF8EE;border-color:#FFF8EE" href="visiter.html#horaires">Horaires et visite libre</a>
+      </div>
+    </div>
+    <p class="hero__credit">Photo : Florian Houdelot</p>
+  </section>
+
+  <section class="section" id="vous-etes" aria-labelledby="t-vous">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker">Par où commencer</p>
+          <h2 id="t-vous">Vous venez pour…</h2>
+        </div>
+        <p class="lead">Chaque accueil a sa page, ses tarifs et son formulaire. Votre demande arrive directement à la bonne personne de l’équipe, déjà complète.</p>
+      </div>
+      <div class="routes">
+        <a class="route reveal" href="ecoles.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/><path d="M22 10v6"/></svg>
+          <strong>Une classe</strong>
+          <span>Classes découvertes de 3 à 5 jours, journées à la ferme, animations dans votre école.</span>
+          <em>Enseignant·es</em>
+        </a>
+        <a class="route reveal" href="colos.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></svg>
+          <strong>Une colo</strong>
+          <span>Séjours de vacances de 6 à 17 ans, entre la ferme, le camp et les alpages.</span>
+          <em>Parents</em>
+        </a>
+        <a class="route reveal" href="chalet.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          <strong>Un séjour au chalet</strong>
+          <span>Le Chalet du Souleret : 62 places, en pension complète ou en gestion libre.</span>
+          <em>Familles et groupes</em>
+        </a>
+        <a class="route reveal" href="visiter.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <strong>Une visite</strong>
+          <span>Visite libre, boutique, pain au levain, lait à l’heure de la traite, anniversaires.</span>
+          <em>De passage</em>
+        </a>
+        <a class="route reveal" href="collectif.html#adherer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <strong>Un coup de main</strong>
+          <span>Adhérer, donner, venir en bénévole ou en stage, suivre la vie de l’asso.</span>
+          <em>Voisin·es et ami·es</em>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--alt" aria-labelledby="t-ferme">
+    <div class="wrap">
+      <div class="feature">
+        <figure class="feature__img reveal">
+          <img src="img/traite-etable.jpg" alt="Des enfants en bonnets et en bottes, de dos, face à la rangée de vaches montbéliardes pendant la traite dans l’étable." width="1920" height="1280" loading="lazy">
+          <figcaption>La traite des vaches, chaque soir à l’étable. Photo : Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>01</b> Pédagogique et productive</p>
+          <h2 id="t-ferme">Ici, les animaux ne sont pas un décor.</h2>
+          <p class="lead">La Batailleuse est une vraie ferme, qui vit de ce qu’elle produit. Les enfants qui viennent ici ne regardent pas la ferme : ils y travaillent, à côté des paysan·nes.</p>
+          <ul class="ticks">
+            <li>Élevage en agriculture biologique : les chèvres depuis 1998, les vaches depuis 2001.</li>
+            <li>Fromage de chèvre fabriqué tous les matins, de mars à octobre.</li>
+            <li>Pain au levain cuit au four à bois, trois fournées par semaine.</li>
+            <li>Un collectif autogéré, où chaque salarié·e a le même pouvoir de décision.</li>
+          </ul>
+          <a class="link-arrow" href="collectif.html">Découvrir la ferme et le collectif</a>
+        </div>
+      </div>
+
+      <div class="animals" style="margin-top:clamp(40px,6vw,72px)">
+        <figure class="animal reveal"><img src="img/vache-veau.jpg" alt="Une vache montbéliarde couchée dans la paille avec son veau qui vient de naître." loading="lazy" width="1200" height="800"><figcaption>Les vaches</figcaption></figure>
+        <figure class="animal reveal"><img src="img/chevres-cornadis.jpg" alt="Des chèvres au cornadis mangent du foin dans la chèvrerie." loading="lazy" width="1200" height="800"><figcaption>Les chèvres</figcaption></figure>
+        <figure class="animal reveal"><img src="img/cochon.jpg" alt="Un cochon noir dans son parc, en plein air." loading="lazy" width="1200" height="800"><figcaption>Les cochons</figcaption></figure>
+        <figure class="animal reveal"><img src="img/coq.jpg" alt="Un coq au plumage roux en contre-jour devant la forêt." loading="lazy" width="1200" height="900"><figcaption>Les poules</figcaption></figure>
+        <figure class="animal reveal"><img src="img/lapin-main.jpg" alt="Un lapin mange une feuille tendue par une main." loading="lazy" width="1200" height="800"><figcaption>Les lapins</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--sapin" aria-labelledby="t-chiffres">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker">La Bata en quelques chiffres</p>
+          <h2 id="t-chiffres">Plus de 45 ans d’aventure collective.</h2>
+        </div>
+        <p class="lead">Tout a commencé par une souscription : en 1980, la fédération du CLAJ achète une ancienne ferme de Rochejean, et des chantiers bénévoles y aménagent les premiers dortoirs.</p>
+      </div>
+      <div class="figures">
+        <div class="figure reveal"><strong>1980</strong><span>Le CLAJ achète le Souleret, une ancienne ferme de Rochejean</span></div>
+        <div class="figure reveal"><strong>62</strong><span>places au Chalet du Souleret, en dortoirs de 2 à 11 lits</span></div>
+        <div class="figure reveal"><strong>1998</strong><span>première certification bio, pour l’élevage des chèvres</span></div>
+        <div class="figure reveal"><strong>900+</strong><span>personnes à la Fête de la Batailleuse, l’été 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-accueils">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>02</b> Nos accueils</p>
+          <h2 id="t-accueils">Toute l’année, pour tous les âges.</h2>
+        </div>
+        <p class="lead">Les prix sont affichés, les formules expliquées. Pour le reste, l’équipe construit le programme avec vous.</p>
+      </div>
+      <div class="grid grid--4">
+        <a class="card reveal" href="ecoles.html">
+          <div class="card__img"><img src="img/fromagerie.jpg" alt="Une louche verse le caillé dans les faisselles, pendant un atelier de fromagerie." loading="lazy" width="1200" height="800"></div>
+          <div class="card__body">
+            <span class="badge badge--ok">Toute l’année</span>
+            <h3>Classes découvertes</h3>
+            <p>De 3 à 5 jours, en pension complète au chalet, avec ateliers à la ferme et veillées.</p>
+            <div class="card__foot"><span class="price"><small>dès</small> 43 € <small>/ jour / enfant</small></span></div>
+          </div>
+        </a>
+        <a class="card reveal" href="colos.html">
+          <div class="card__img"><img src="img/tipi-nuit.jpg" alt="Un tipi et une tente éclairés de l’intérieur sous un ciel étoilé, au camp de la ferme." loading="lazy" width="1920" height="1440"></div>
+          <div class="card__body">
+            <span class="badge badge--bientot">Été 2027 en préparation</span>
+            <h3>Colos de vacances</h3>
+            <p>Apprentis fermiers (6-10 ans), Tout autour de la ferme (10-13 ans), L’aventure des alpages (14-17 ans).</p>
+            <div class="card__foot"><span class="price">420 € <small>la semaine en 2026</small></span></div>
+          </div>
+        </a>
+        <a class="card reveal" href="chalet.html">
+          <div class="card__img"><img src="img/souleret-facade.jpg" alt="La façade rénovée du Chalet du Souleret, avec son balcon et son escalier en bois." loading="lazy" width="1920" height="1440"></div>
+          <div class="card__body">
+            <span class="badge badge--ok">Ouvert toute l’année</span>
+            <h3>Le Chalet du Souleret</h3>
+            <p>62 places pour les familles et les groupes : pension complète, demi-pension ou gestion libre.</p>
+            <div class="card__foot"><span class="price">50 € <small>/ adulte en pension complète, en semaine</small></span></div>
+          </div>
+        </a>
+        <a class="card reveal" href="visiter.html#anniversaire">
+          <div class="card__img"><img src="img/lapin-paille.jpg" alt="Un lapin blotti dans la paille contre les jambes d’un enfant en ciré rouge." loading="lazy" width="1200" height="800"></div>
+          <div class="card__body">
+            <span class="badge">Toute l’année</span>
+            <h3>Anniversaire à la ferme</h3>
+            <p>Un après-midi de soins aux animaux, préparé par l’équipe d’animation, et une salle pour le goûter.</p>
+            <div class="card__foot"><span class="price">110 € <small>pour 8 enfants, 10 € par enfant en plus</small></span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="t-agenda">
+    <div class="wrap">
+      <div class="grid grid--2" style="align-items:start">
+        <div>
+          <p class="kicker"><b>03</b> Agenda</p>
+          <h2 id="t-agenda">Cet automne à la Bata</h2>
+          <p class="lead">Les dates passées disparaissent toutes seules. Sur le vrai site, chaque rendez-vous aurait son inscription en ligne et son nombre de places restantes.</p>
+          <div class="aside" style="margin-top:28px">
+            <h3>Les pizzas du fournil</h3>
+            <p>Pendant les vacances scolaires, le fournil se chauffe pour des pizzas bio à emporter, cuites au four à bois. Les jours de vente sont publiés ici dès qu’ils sont fixés.</p>
+          </div>
+        </div>
+        <div>
+          <ul class="agenda">
+            <li class="event" data-date="2026-09-18">
+              <div class="event__date"><b>18</b><span>sept.</span></div>
+              <div><h3>Atelier parentalité : « Comment la parentalité me transforme ? »</h3><p>À 19h30, à la ferme. Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.</p><div class="event__tags"><span class="badge">5 € par famille</span></div></div>
+            </li>
+            <li class="event" data-date="2026-09-25">
+              <div class="event__date"><b>25</b><span>sept.</span></div>
+              <div><h3>Atelier parentalité : « Écouter mon enfant, qu’est-ce que ça veut dire ? »</h3><p>À 19h30, à la ferme. Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.</p><div class="event__tags"><span class="badge">5 € par famille</span></div></div>
+            </li>
+            <li class="event" data-date="2026-09-26">
+              <div class="event__date"><b>26</b><span>sept.</span></div>
+              <div><h3>Atelier parents-enfants</h3><p>Samedi de 9h30 à 11h30. Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans.</p><div class="event__tags"><span class="badge">5 € par famille</span></div></div>
+            </li>
+            <li class="event" data-date="2026-10-07">
+              <div class="event__date"><b>7</b><span>oct.</span></div>
+              <div><h3>Projection d’un film</h3><p>Mercredi à 20h, au Chalet du Souleret.</p><div class="event__tags"></div></div>
+            </li>
+            <li class="event" data-date="2026-10-09">
+              <div class="event__date"><b>9</b><span>oct.</span></div>
+              <div><h3>Atelier parentalité : « (Ré)inventer ma parentalité »</h3><p>À 19h30, à la ferme. Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.</p><div class="event__tags"><span class="badge">5 € par famille</span></div></div>
+            </li>
+            <li class="event" data-date="2026-10-10">
+              <div class="event__date"><b>10</b><span>oct.</span></div>
+              <div><h3>Atelier parents-enfants</h3><p>Samedi de 14h30 à 16h30. Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans.</p><div class="event__tags"><span class="badge">5 € par famille</span></div></div>
+            </li>
+            <li class="event" data-date="2026-10-14">
+              <div class="event__date"><b>14</b><span>oct.</span></div>
+              <div><h3>Atelier parents-enfants</h3><p>Mercredi de 14h30 à 16h30. Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans.</p><div class="event__tags"><span class="badge">5 € par famille</span></div></div>
+            </li>
+            <li class="event" data-date="2026-10-17" data-end="2026-10-31">
+              <div class="event__date"><b>17</b><span>oct.</span></div>
+              <div><h3>Vacances de la Toussaint</h3><p>La ferme ouvre du mardi au samedi, de 16h30 à 19h, jusqu’au 31 octobre.</p><div class="event__tags"><span class="badge badge--ok">Horaires de vacances</span></div></div>
+            </li>
+          </ul>
+          <p class="agenda__empty">Les prochaines dates arrivent bientôt. Inscrivez-vous à la lettre d’information pour les recevoir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-collectif">
+    <div class="wrap">
+      <div class="feature feature--reverse">
+        <figure class="feature__img reveal">
+          <img src="img/sortie-vaches.jpg" alt="Deux paysans ramènent les vaches montbéliardes sur le chemin de la ferme, en fin de journée." width="1920" height="1279" loading="lazy">
+          <figcaption>La sortie des vaches. Photo : Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>04</b> Le collectif</p>
+          <blockquote class="quote">
+            <p>« Nous sommes douze salariés, douze personnes de divers horizons aujourd’hui liées au C.L.A.J. »</p>
+            <cite>L’équipe de la Batailleuse</cite>
+          </blockquote>
+          <p style="margin-top:22px">Pas de directeur ni de hiérarchie : les décisions se prennent en réunion d’équipe, et chacun·e est responsable de son secteur. Éducation populaire, agriculture paysanne, vie collective : la Bata fait ce qu’elle dit depuis plus de quarante ans.</p>
+          <p>Toute cette histoire est racontée dans un livre paru en août 2025 aux éditions Repas : <em>La Batailleuse, un centre d’accueil et une ferme autogérés dans le Haut-Doubs</em>.</p>
+          <a class="link-arrow" href="collectif.html#histoire">Lire l’histoire de la Bata</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--alt" aria-labelledby="t-joindre">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker">Nous joindre</p>
+          <h2 id="t-joindre">Le bon contact, du premier coup.</h2>
+        </div>
+        <p class="lead">L’équipe est souvent à la traite, au fournil ou avec des enfants. Pour une réservation, le formulaire est le plus rapide : votre demande arrive complète à la bonne personne.</p>
+      </div>
+      <div class="who">
+        <div class="who__row reveal">
+          <h3>Visite, boutique, lait et fromages</h3>
+          <p>La ferme de la Batailleuse</p>
+          <p><a href="tel:+33381499115">03 81 49 91 15</a></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Classes, colos, anniversaires</h3>
+          <p>L’équipe d’animation</p>
+          <p><a href="mailto:animation@claj-batailleuse.fr">animation@claj-batailleuse.fr</a><br><a class="small" href="ecoles.html#demande">ou le formulaire de demande</a></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Séjour au Chalet du Souleret</h3>
+          <p>L’accueil du chalet</p>
+          <p><a href="tel:+33381499184">03 81 49 91 84</a> · <a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a><br><a class="small" href="chalet.html#demande">ou le formulaire de devis</a></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Commander du pain</h3>
+          <p>Le fournil, la veille avant 17h</p>
+          <p><a href="tel:+33781424830">07 81 42 48 30</a><br><a class="small" href="visiter.html#fournil">ou la précommande en ligne</a></p>
+        </div>
+      </div>
+      <p style="margin-top:22px"><a class="link-arrow" href="contact.html">Tous les contacts et les questions fréquentes</a></p>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="t-adherer">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <p class="kicker">Soutenir la Bata</p>
+          <h2 id="t-adherer">Adhérer, c’est faire vivre la ferme.</h2>
+          <p class="lead">Depuis le 1er avril 2026, la visite libre passe par l’adhésion : 2 € la journée ou 10 € l’année par adulte. C’est gratuit pour les mineurs, et la boutique reste en accès libre.</p>
+        </div>
+        <a class="btn" href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">Adhérer en ligne</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="img/logo.png" alt="Logo du CLAJ la Batailleuse" width="64" height="99" loading="lazy">
+        <p>Le CLAJ de Franche-Comté, association d’éducation populaire autogérée, fait vivre la ferme de la Batailleuse et le Chalet du Souleret à Rochejean.</p>
+      </div>
+      <div>
+        <h2>Nous trouver</h2>
+        <ul>
+          <li><b>Ferme de la Batailleuse</b><br>Route de la Batailleuse, 25370 Rochejean</li>
+          <li><b>Chalet du Souleret</b><br>16 rue de la Fontaine, 25370 Rochejean</li>
+          <li><a href="contact.html#acces">Plan d’accès</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Téléphones</h2>
+        <ul>
+          <li class="footer__phone"><b><a href="tel:+33381499115">03 81 49 91 15</a></b><span>Ferme et boutique</span></li>
+          <li class="footer__phone"><b><a href="tel:+33381499184">03 81 49 91 84</a></b><span>Chalet du Souleret</span></li>
+          <li class="footer__phone"><b><a href="tel:+33781424830">07 81 42 48 30</a></b><span>Fournil, commandes de pain</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Écrire</h2>
+        <ul>
+          <li><a href="mailto:animation@claj-batailleuse.fr">animation@</a> classes, colos, animations</li>
+          <li><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a> Chalet du Souleret</li>
+          <li><a href="mailto:ferme@claj-batailleuse.fr">ferme@</a> ferme et fournil</li>
+          <li><a href="mailto:facturation@claj-batailleuse.fr">facturation@</a> factures</li>
+          <li><a href="mailto:contact@claj-batailleuse.fr">contact@</a> tout le reste</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
+      <span><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a></span>
+      <span>Maquette proposée par Primo, Montperreux · septembre 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

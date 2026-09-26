@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>La ferme et le collectif — agriculture paysanne, bio et autogestion · La Batailleuse</title>
+<meta name="description" content="La ferme de la Batailleuse et le collectif du CLAJ de Franche-Comté à Rochejean : agriculture paysanne et bio, autogestion, notre histoire, le livre, l’adhésion, les dons, le bénévolat, les stages et le recrutement d’un·e paysan·ne vacher·e.">
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* La ferme et le collectif : compléments de page (variables de style.css uniquement) */
+  .hero__img img { object-position: 72% 60%; }
+  main [id] { scroll-margin-top: 88px; }
+  .feature__img, .animal { margin: 0; }
+  .toc { background: var(--paper); border-bottom: 1px solid var(--line); }
+  .toc ul { list-style: none; margin: 0 auto; max-width: var(--wrap); padding: 8px var(--gutter); display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+  .toc a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 999px; white-space: nowrap; font-weight: 600; font-size: .95rem; color: var(--ink-soft); text-decoration: none; }
+  .toc a:hover { background: var(--paper-2); color: var(--ink); }
+  .gap-top { margin-top: clamp(40px, 6vw, 72px); }
+  .split { display: grid; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  @media (min-width: 980px) { .split { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); } .split__side { position: sticky; top: 100px; } }
+  .split__side .aside { margin-top: 26px; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline a { font-weight: 700; }
+  .section--sapin .quote cite, .section--sapin .team h3 { color: var(--foin-soft); }
+  .section--sapin .ticks li::before { border-color: var(--foin-soft); }
+  .section--sapin .meta { color: #D8CFBE; } .section--sapin .meta b { color: #FFF8EE; }
+  .principles > div { padding: 18px 0; border-top: 1px solid rgba(242, 234, 218, .2); }
+  .principles h3 { font-size: 1.2rem; margin-bottom: 4px; } .principles p { margin: 0; color: #D8CFBE; }
+  .team { display: grid; gap: 30px 32px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); }
+  .team h3 { font: 700 .8rem var(--sans); letter-spacing: .14em; text-transform: uppercase; padding-bottom: 10px; margin-bottom: 14px; border-bottom: 1px solid rgba(242, 234, 218, .25); }
+  .team ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px 20px; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .team b { display: block; font-family: var(--serif); font-size: 1.45rem; font-weight: 500; line-height: 1.15; color: #FFF8EE; }
+  .team span { font-size: .93rem; color: #D8CFBE; }
+  .panel { padding: clamp(20px, 3vw, 32px); border: 1px solid rgba(242, 234, 218, .25); border-radius: var(--radius-lg); background: rgba(255, 248, 238, .04); }
+  .panel .meta b { min-width: 9em; }
+  .btn--on-dark { color: #FFF8EE; border-color: #FFF8EE; } .btn--on-dark:hover { background: #FFF8EE; border-color: #FFF8EE; color: var(--ink); }
+  .reseaux .card__body h3 { font-size: 1.2rem; }
+  .pills { list-style: none; margin: 12px 0 14px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .pills li { padding: 6px 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper); font-weight: 700; }
+  .book h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 520px) { .meta li { flex-direction: column; gap: 0; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Book",
+      "name": "La Batailleuse – un centre d’accueil et une ferme autogérés dans le haut-Doubs",
+      "author": [{ "@type": "Person", "name": "Miléna Francioli" }, { "@type": "Person", "name": "Matthieu Prégniard" }],
+      "publisher": { "@type": "Organization", "name": "Éditions Repas" },
+      "isbn": "9782919272242",
+      "numberOfPages": 132,
+      "inLanguage": "fr",
+      "url": "https://editionsrepas.fr/catalogue/la-batailleuse/",
+      "offers": { "@type": "Offer", "price": "15", "priceCurrency": "EUR" }
+    },
+    {
+      "@type": "JobPosting",
+      "title": "Paysan·ne vacher·e",
+      "description": "Gestion du secteur vaches en binôme (vaches laitières montbéliardes, lait en Comté bio), parcellaire, animation avec le public, administratif, temps collectifs. CDD de 12 mois renouvelable en CDI, SMIC temps plein, 6 semaines de congés.",
+      "employmentType": ["FULL_TIME", "TEMPORARY"],
+      "jobStartDate": "2026-11-02",
+      "hiringOrganization": { "@type": "NGO", "@id": "https://primolo.github.io/vitrines/la-batailleuse/#asso", "name": "CLAJ de Franche-Comté — La Batailleuse" },
+      "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Rochejean", "postalCode": "25370", "addressCountry": "FR" } }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="mockup-note">Maquette proposée à la Batailleuse. Tous les contenus viennent de votre site actuel.</p>
+
+<div class="almanach" data-almanach aria-live="polite">
+  <div class="wrap">Ferme ouverte de 16h30 à 19h selon la période · <a href="visiter.html#horaires">Tous les horaires</a></div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="La Batailleuse, accueil">
+      <img class="brand__mark" src="img/logo.png" alt="" width="30" height="46">
+      <span><span class="brand__name">la <i>Batailleuse</i></span><span class="brand__sub">Ferme pédagogique · Rochejean</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <button class="menu-toggle nav__close" type="button" aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <ul>
+        <li><a href="collectif.html" aria-current="page">La ferme</a></li>
+        <li><a href="ecoles.html">Écoles &amp; groupes</a></li>
+        <li><a href="colos.html">Colos</a></li>
+        <li><a href="chalet.html">Le chalet</a></li>
+        <li><a href="visiter.html">Venir à la ferme</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn--small" href="contact.html#demande">Faire une demande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="hero hero--short" aria-labelledby="titre">
+    <div class="hero__img"><img src="img/alpage-contemplation.jpg" alt="En alpage, un homme au bob clair est assis de dos sur un muret de pierres sèches, près de deux vaches et d’un veau, devant une forêt de sapins." width="1920" height="1279" fetchpriority="high"></div>
+    <div class="wrap">
+      <p class="kicker">La ferme et le collectif · Rochejean, Haut-Doubs</p>
+      <h1 id="titre">Une ferme paysanne, bio et autogérée.</h1>
+      <p class="lead">Depuis 1980, le CLAJ de Franche-Comté, association d’éducation populaire, fait vivre à Rochejean une ferme pédagogique et productive en agriculture biologique, et le Chalet du Souleret. Il est autogéré par celles et ceux qui y travaillent.</p>
+      <div class="hero__actions">
+        <a class="btn btn--light" href="#adherer">Adhérer à l’association</a>
+        <a class="btn btn--ghost btn--on-dark" href="#benevolat">Venir en bénévole ou en stage</a>
+      </div>
+    </div>
+    <p class="hero__credit">Photo&nbsp;: Florian Houdelot</p>
+  </section>
+
+  <nav class="toc" aria-label="Sur cette page">
+    <ul>
+      <li><a href="#ferme">La ferme</a></li>
+      <li><a href="#productions">Nos productions</a></li>
+      <li><a href="#histoire">Notre histoire</a></li>
+      <li><a href="#collectif">L’autogestion</a></li>
+      <li><a href="#valeurs">Valeurs et réseaux</a></li>
+      <li><a href="#livre">Le livre</a></li>
+      <li><a href="#adherer">Adhérer, donner</a></li>
+      <li><a href="#benevolat">Bénévolat et stages</a></li>
+      <li><a href="#recrutement">Recrutement</a></li>
+    </ul>
+  </nav>
+
+  <!-- 01 · La ferme -->
+  <section class="section" id="ferme" aria-labelledby="t-ferme">
+    <div class="wrap">
+      <div class="feature">
+        <figure class="feature__img reveal">
+          <img src="img/sortie-vaches.jpg" alt="Deux paysans ramènent les vaches montbéliardes sur le chemin de la ferme, en fin de journée." width="1920" height="1279" loading="lazy">
+          <figcaption>La sortie des vaches. Photo&nbsp;: Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>01</b> La ferme</p>
+          <h2 id="t-ferme">Pédagogique et productive, les deux à la fois.</h2>
+          <p class="lead">À la Batailleuse, on élève, on trait, on fait du fromage et du pain, dans les valeurs de l’agriculture paysanne. Et on accueille&nbsp;: les classes et les colos participent aux soins des animaux, et le public vient souvent voir la traite du soir.</p>
+          <ul class="ticks">
+            <li>Des vaches montbéliardes, des chèvres, des cochons, des poules et des lapins.</li>
+            <li>Une fromagerie, un fournil et son four à bois, un jardin pédagogique ouvert au public.</li>
+            <li>Les cochons profitent d’un grand parc en plein air, et du petit lait des chèvres.</li>
+            <li>Des panneaux, tout autour de la ferme, pour comprendre ce que l’on voit.</li>
+          </ul>
+          <a class="link-arrow" href="visiter.html">Horaires et visite libre</a>
+        </div>
+      </div>
+
+      <div class="animals gap-top">
+        <figure class="animal reveal"><img src="img/vache-veau.jpg" alt="Une vache montbéliarde couchée dans la paille avec son veau qui vient de naître." loading="lazy" width="1200" height="800"><figcaption>Les vaches</figcaption></figure>
+        <figure class="animal reveal"><img src="img/chevres-cornadis.jpg" alt="Des chèvres au cornadis mangent du foin dans la chèvrerie." loading="lazy" width="1200" height="800"><figcaption>Les chèvres</figcaption></figure>
+        <figure class="animal reveal"><img src="img/cochon.jpg" alt="Un cochon noir dans son parc, en plein air." loading="lazy" width="1200" height="800"><figcaption>Les cochons</figcaption></figure>
+        <figure class="animal reveal"><img src="img/coq.jpg" alt="Un coq au plumage roux en contre-jour devant la forêt." loading="lazy" width="1200" height="900"><figcaption>Les poules</figcaption></figure>
+        <figure class="animal reveal"><img src="img/lapin-main.jpg" alt="Un lapin mange une feuille tendue par une main." loading="lazy" width="1200" height="800"><figcaption>Les lapins</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 02 · Productions et circuits courts -->
+  <section class="section section--alt" id="productions" aria-labelledby="t-prod">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>02</b> Ce que nous produisons</p>
+          <h2 id="t-prod">Du pré à la boutique, en bio.</h2>
+        </div>
+        <p class="lead">Le lait, les fromages et le pain sont faits ici, en agriculture biologique, et vendus en circuit court. Les légumes du jardin, eux, vont dans les assiettes du chalet et des groupes.</p>
+      </div>
+
+      <div class="grid grid--4">
+        <article class="card reveal">
+          <div class="card__img"><img src="img/traite-etable.jpg" alt="Des enfants en bonnets et en bottes, de dos, face à la rangée de vaches montbéliardes pendant la traite dans l’étable." width="1920" height="1280" loading="lazy"></div>
+          <div class="card__body">
+            <span class="badge badge--ok">Bio depuis 2001</span>
+            <h3>Le lait des vaches</h3>
+            <p>Des montbéliardes à cornes, et le foin de la ferme. La majorité du lait part à la fruitière des Pontets, dont la ferme est coopératrice&nbsp;: Comté, Morbier et, l’hiver, Mont d’Or, en bio. Une petite partie devient yaourts et faisselles, ici.</p>
+            <div class="card__foot"><span class="small">Lait cru à la traite, de 17h45 à 18h15, les jours d’ouverture</span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__img"><img src="img/fromagerie.jpg" alt="Une louche verse le caillé dans les faisselles, pendant la fabrication du fromage de chèvre." width="1200" height="800" loading="lazy"></div>
+          <div class="card__body">
+            <span class="badge badge--ok">Bio depuis 1998</span>
+            <h3>Les fromages de chèvre</h3>
+            <p>Surtout des alpines chamoisées. Leur lait est transformé sur place, tous les matins de mars à octobre&nbsp;: crottins frais, demi-frais et secs, bûches cendrées, cœurs, tomme, faisselles.</p>
+            <div class="card__foot"><a class="link-arrow small" href="visiter.html#boutique">La boutique de la ferme</a></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__img"><img src="img/pains.jpg" alt="Des pains au levain, en boules et en moules, posés sur une plaque du fournil." width="1200" height="949" loading="lazy"></div>
+          <div class="card__body">
+            <span class="badge">Lundi, mercredi, vendredi</span>
+            <h3>Le pain au levain</h3>
+            <p>Des farines bio, du levain, un four à bois, trois fournées par semaine. Blé nature, aux graines, aux noix, sarrasin, pur seigle, engrain. Et des biscuits.</p>
+            <div class="card__foot"><a class="link-arrow small" href="visiter.html#precommande">Commander du pain</a></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__img"><img src="img/jardin.jpg" alt="Le jardin pédagogique : planches de blettes, de choux et de fleurs, bordées de rondins, avec la ferme au fond." width="1200" height="900" loading="lazy"></div>
+          <div class="card__body">
+            <span class="badge">Ouvert au public</span>
+            <h3>Le jardin pédagogique</h3>
+            <p>Il donne des légumes pour le centre d’accueil et la cuisine des groupes. On y fait aussi le compost.</p>
+            <div class="card__foot"><a class="link-arrow small" href="ecoles.html">Les classes à la ferme</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid grid--2 gap-top">
+        <div class="aside reveal">
+          <h3>Où trouver nos produits</h3>
+          <ul class="meta" style="margin-top:12px">
+            <li><b>À la ferme</b><span>à la boutique, en accès libre. On peut y payer en Pive, la monnaie locale.</span></li>
+            <li><b>En AMAP</b><span>l’AMAP Rilchou de Pontarlier et l’AMAP La Bergeronnette, à Labergement-Sainte-Marie.</span></li>
+            <li><b>En magasin</b><span>Ruch’bio à Pontarlier, La Semilla aux Fourgs, et quelques magasins bio de Pontarlier.</span></li>
+            <li><b>Sur les marchés</b><span>lesquels et quand&nbsp;: à voir avec l’équipe.</span></li>
+          </ul>
+          <p class="note">À la boutique aussi, des produits de la région&nbsp;: Comté, Morbier et Mont d’Or selon la saison, miel local, bières du Jura, charcuterie, confitures, pesto.</p>
+        </div>
+        <div class="aside aside--bordeaux reveal">
+          <h3>Une agriculture paysanne</h3>
+          <ul class="ticks" style="margin-top:12px">
+            <li>Certifiée bio par Ecocert&nbsp;: l’élevage des chèvres en 1998, celui des vaches en 2001.</li>
+            <li>Engagée auprès de la Confédération paysanne, et membre du réseau Paysans de nature.</li>
+            <li>Des soins par l’homéopathie et les médecines naturelles.</li>
+            <li>Des chiens de protection, les patous, gardent les deux troupeaux contre les loups, les lynx et les chiens. Des panneaux disent comment se comporter en les croisant.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Histoire -->
+  <section class="section" id="histoire" aria-labelledby="t-histoire">
+    <div class="wrap">
+      <div class="split">
+        <div class="split__side reveal">
+          <p class="kicker"><b>03</b> Notre histoire</p>
+          <h2 id="t-histoire">D’un relais niçois à une ferme du Haut-Doubs.</h2>
+          <p class="lead">Tout commence avec des jeunes qui achètent des maisons par souscription, pour en faire des relais de la jeunesse. L’idée tient toujours&nbsp;: maintenir un collectif qui vit et travaille à la campagne, avec des valeurs de coopération, de solidarité, d’équité et d’égalité.</p>
+          <div class="aside">
+            <h3>Et aujourd’hui</h3>
+            <p>Autour de l’équipe, un réseau de sympathisant·es&nbsp;: anciens des séjours, anciens salarié·es, réseaux des CLAJ et REPAS.</p>
+            <p><a class="link-arrow" href="#livre">Toute l’histoire, dans le livre</a></p>
+          </div>
+        </div>
+
+        <ol class="timeline reveal">
+          <li><time>Années 1950</time><p>Naissance des CLAJ, les Clubs de Loisirs et d’Action de la Jeunesse. Des groupes de jeunes Niçois achètent des villas grâce à des souscriptions et des tombolas, à Cap d’Ail, Nice, Antibes, Allos ou Valberg, et en font des Relais de la Jeunesse tenus par des bénévoles. Leur devise&nbsp;: «&nbsp;Le soleil brille pour tout le monde&nbsp;!&nbsp;»</p></li>
+          <li><time>Années 1960-1970</time><p>D’autres Relais ouvrent, à Poissy, Grenoble, Pénestin, Métabief et Calvi. Une Fédération nationale d’éducation populaire voit le jour et obtient l’agrément Jeunesse et Sport.</p></li>
+          <li><time datetime="1980">1980</time><p>Dans les années 1980, la fédération nationale se divise en fédérations régionales autonomes. En 1980, la Fédération de Franche-Comté achète par souscription le Souleret, une ancienne ferme de Rochejean, à quelques kilomètres de Métabief. Des chantiers bénévoles y aménagent des dortoirs, puis arrivent les chèvres et les vaches.</p></li>
+          <li><time datetime="1986">1986</time><p>Un incendie ravage le Souleret et fait une victime. La maison est reconstruite et devient un lieu d’hébergement de 50 places.</p></li>
+          <li><time datetime="1989">1989</time><p>Nouveau projet&nbsp;: la ferme de la Batailleuse, reconstruite au lieu-dit du même nom. Les photos d’archives la montrent achevée en août 1989. On passe de la «&nbsp;Ferme des Copains&nbsp;», bénévole, à une structure qui paie une partie de l’équipe.</p></li>
+          <li><time>Années 1990</time><p>Une permanence ouvre à Besançon, avec un centre aéré le mercredi. Viennent aussi des études du mouvement social, et deux ans d’implication dans une ferme internationale de jeunes au Bénin.</p></li>
+          <li><time>1998 et 2001</time><p>Après presque vingt ans d’expérience, le passage au bio&nbsp;: Ecocert certifie l’élevage des chèvres en 1998, celui des vaches en 2001. Avec la vente directe, la lutte anti-OGM et l’éducation populaire par l’accueil.</p></li>
+          <li><time datetime="2020-01">Janvier 2020</time><p>La Pive, la monnaie locale, entre à la ferme&nbsp;: on peut y régler ses achats.</p></li>
+          <li><time datetime="2022">2022</time><p>Le Souleret part en travaux, avec un financement participatif. L’association remercie ses soutiens d’un «&nbsp;53 000 MERCI&nbsp;».</p></li>
+          <li><time datetime="2023-05">Mai 2023</time><p>Après quinze mois de travaux, le Chalet du Souleret rouvre. <a href="chalet.html">Le chalet aujourd’hui</a></p></li>
+          <li><time datetime="2025-08">Août 2025</time><p>Sortie du livre qui raconte cette histoire, aux éditions Repas. <a href="#livre">Le livre</a></p></li>
+          <li><time datetime="2026-04-01">1er&nbsp;avril 2026</time><p>La visite libre de la ferme passe par l’adhésion à l’association.</p></li>
+          <li><time datetime="2026">Été 2026</time><p>La Fête de la Batailleuse rassemble plus de 900 personnes.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 04 · Autogestion et équipe -->
+  <section class="section section--sapin" id="collectif" aria-labelledby="t-collectif">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>04</b> L’autogestion</p>
+          <h2 id="t-collectif">Une équipe où tous sont décideurs.</h2>
+        </div>
+        <p class="lead">Le CLAJ fonctionne en autogestion, une direction alternative et collégiale. Pas de hiérarchie&nbsp;: chaque salarié·e a le même pouvoir de décision.</p>
+      </div>
+
+      <div class="grid grid--2" style="align-items:start">
+        <div class="reveal">
+          <blockquote class="quote">
+            <p>«&nbsp;Un collectif de travail et non un collectif de vie.&nbsp;»</p>
+            <cite>Le CLAJ de Franche-Comté</cite>
+          </blockquote>
+          <p style="margin-top:22px">On travaille ensemble, on décide ensemble, on partage le repas du midi, et des temps collectifs font vivre l’autogestion.</p>
+        </div>
+        <div class="principles reveal">
+          <div><h3>En réunion d’équipe</h3><p>Les décisions se prennent ensemble, en réunion d’équipe, sans hiérarchie.</p></div>
+          <div><h3>Chacun·e son secteur</h3><p>Chaque salarié·e est responsable de son secteur&nbsp;: les vaches, les chèvres et la fromagerie, le fournil, l’animation, le chalet.</p></div>
+          <div><h3>Un conseil d’administration</h3><p>Il réunit Geneviève, Milena, Lison, Robin, Pascal, Gérard, Maël et Thomas.</p></div>
+        </div>
+      </div>
+
+      <div class="gap-top">
+        <h3 style="margin-bottom:6px">L’équipe à l’été 2025</h3>
+        <p class="muted" style="margin-bottom:28px">Les prénoms et les rôles de notre trombinoscope.</p>
+        <div class="team">
+          <div class="reveal">
+            <h3>Le Chalet du Souleret</h3>
+            <ul>
+              <li><b>Laura</b><span>co-gestionnaire du Souleret</span></li>
+              <li><b>Anthony</b><span>co-gestionnaire du Souleret</span></li>
+              <li><b>Marie</b><span>co-gestionnaire du Souleret</span></li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3>La pédagogie</h3>
+            <ul>
+              <li><b>Laura</b><span>co-responsable pédagogique</span></li>
+              <li><b>Juliette</b><span>co-responsable pédagogique</span></li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3>Les vaches</h3>
+            <ul>
+              <li><b>Manon</b><span>paysanne vachère</span></li>
+              <li><b>Antoine</b><span>paysan vacher</span></li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3>Les chèvres</h3>
+            <ul>
+              <li><b>Pauline</b><span>fromagère-chevrière</span></li>
+              <li><b>Sébastien</b><span>paysan chevrier</span></li>
+              <li><b>Aloïs</b><span>paysan chevrier</span></li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3>Le fournil</h3>
+            <ul>
+              <li><b>Pierre</b><span>boulanger</span></li>
+              <li><b>Emeline</b><span>boulangère</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--sapin-deep)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 05 · Valeurs et réseaux -->
+  <section class="section" id="valeurs" aria-labelledby="t-valeurs">
+    <div class="wrap">
+      <div class="feature feature--reverse">
+        <figure class="feature__img reveal">
+          <img src="img/sortie-chevres.jpg" alt="Un groupe d’enfants et d’adultes, de dos, marche avec le troupeau dans un pré en pente, face à une colline boisée." width="1200" height="800" loading="lazy">
+          <figcaption>Dans le pré, avec le troupeau. Photo&nbsp;: Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>05</b> Nos valeurs</p>
+          <h2 id="t-valeurs">Le plein air pour tous, et la vie en commun.</h2>
+          <p class="lead">Le CLAJ est issu d’un mouvement d’éducation populaire. Nos buts&nbsp;: l’accès de tous au plein air, à la nature et à des loisirs simples et participatifs&nbsp;; la sensibilisation du public, surtout des jeunes, à l’environnement, à la consommation, à la vie collective et au partage.</p>
+          <blockquote class="quote" style="margin-top:26px">
+            <p>Un accueil «&nbsp;simple, convivial et coopératif&nbsp;».</p>
+            <cite>L’Assoc’, notre projet</cite>
+          </blockquote>
+          <ul class="ticks" style="margin-top:22px">
+            <li>Laïcité, solidarité, respect de l’environnement et du vivant.</li>
+            <li>À table, chacun·e met le couvert, débarrasse et fait la vaisselle, les enfants comme les adultes.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="gap-top">
+        <h3>Nos réseaux</h3>
+        <div class="grid grid--4 reseaux" style="margin-top:18px">
+          <article class="card reveal"><div class="card__body"><span class="badge">Réseau</span><h3>REPAS</h3><p>Le Réseau d’Échanges et de Pratiques Alternatives et Solidaires.</p></div></article>
+          <article class="card reveal"><div class="card__body"><span class="badge">Partenaire</span><h3>Accueil Paysan</h3><p>Partenaire de la Batailleuse.</p></div></article>
+          <article class="card reveal"><div class="card__body"><span class="badge">Réseau</span><h3>Les CLAJ</h3><p>Les autres associations CLAJ&nbsp;: Côte d’Azur, Métabief, Pénestin – La Mine d’Or.</p></div></article>
+          <article class="card reveal"><div class="card__body"><span class="badge">Réseaux paysans</span><h3>Côté paysan</h3><p>La Confédération paysanne, le réseau Paysans de nature, l’Association des Bergers du Jura.</p></div></article>
+        </div>
+        <p class="note">Avec le soutien de la Région Bourgogne-Franche-Comté, de la Communauté de communes des Lacs et Montagnes du Haut-Doubs, de la CAF du Doubs et du Département.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · Le livre -->
+  <section class="section section--alt" id="livre" aria-labelledby="t-livre">
+    <div class="wrap">
+      <div class="grid grid--2" style="align-items:center">
+        <div class="reveal">
+          <p class="kicker"><b>06</b> Le livre</p>
+          <h2 id="t-livre">Toute notre histoire, dans un livre.</h2>
+          <p class="lead">Miléna Francioli et Matthieu Prégniard y ont passé deux ans de recherches, d’entretiens et d’écriture. Le livre suit les CLAJ depuis leurs débuts jusqu’aux défis d’aujourd’hui&nbsp;: les rénovations, le retour du loup.</p>
+          <p>Il est en vente à la ferme et dans votre librairie préférée. L’envoi est possible à partir de 5 livres. Les rencontres autour du livre sont annoncées sur <a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">notre page Facebook</a>.</p>
+        </div>
+        <article class="card book reveal">
+          <div class="card__body">
+            <span class="badge badge--ok">Paru en août 2025</span>
+            <h3>La Batailleuse – un centre d’accueil et une ferme autogérés dans le haut-Doubs</h3>
+            <ul class="meta">
+              <li><b>Auteurs</b><span>Miléna Francioli et Matthieu Prégniard</span></li>
+              <li><b>Éditeur</b><span>éditions Repas, collection «&nbsp;Pratiques utopiques&nbsp;»</span></li>
+              <li><b>Pages</b><span>132</span></li>
+              <li><b>ISBN</b><span>9782919272242</span></li>
+            </ul>
+            <div class="card__foot">
+              <span class="price">15&nbsp;€</span>
+              <a class="btn btn--small" href="https://editionsrepas.fr/catalogue/la-batailleuse/" rel="noopener">Voir chez l’éditeur</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · Adhérer et donner -->
+  <section class="section" id="adherer" aria-labelledby="t-adherer">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>07</b> Adhérer et donner</p>
+          <h2 id="t-adherer">«&nbsp;La Bata n’a plus d’oseille, de flouze, de blé&nbsp;!&nbsp;»</h2>
+        </div>
+        <p class="lead">C’est notre affiche d’adhésion qui le dit, et nous ne le cachons pas&nbsp;: le contexte économique est tendu. Adhérer, c’est faire grandir la communauté, faire rayonner le projet et valoriser l’accueil. Depuis le 1er&nbsp;avril 2026, c’est aussi ce qui ouvre la visite libre de la ferme.</p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--ok">En ligne ou à la boutique</span>
+            <h3>L’adhésion à l’année</h3>
+            <p>Pour un adulte de plus de 18 ans. Elle ouvre la visite libre de la ferme, des réductions sur certains événements et la lettre d’information.</p>
+            <div class="card__foot"><span class="price">10&nbsp;€ <small>par adulte</small></span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">À la boutique</span>
+            <h3>L’adhésion à la journée</h3>
+            <p>Pour un adulte de plus de 18 ans, le jour de votre visite&nbsp;: les chèvres, les vaches, les cochons, les lapins, les poules et le fournil.</p>
+            <div class="card__foot"><span class="price">2&nbsp;€ <small>par adulte</small></span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--bientot">Moins de 18 ans</span>
+            <h3>Les mineurs</h3>
+            <p>L’accès à la ferme est gratuit pour les mineurs. La boutique, elle, reste en accès libre et gratuit pour tout le monde.</p>
+            <div class="card__foot"><span class="price">Gratuit</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid grid--2 gap-top">
+        <div class="aside reveal">
+          <h3>Faire un don</h3>
+          <p>En ligne, vous pouvez ajouter un don à votre adhésion (5 €, 10 €, 20 € ou le montant de votre choix), ou faire un don libre, sans adhérer. Avec le bulletin papier&nbsp;:</p>
+          <ul class="pills" aria-label="Montants proposés sur le bulletin">
+            <li>20 €</li><li>30 €</li><li>50 €</li><li>100 €</li><li>Libre</li>
+          </ul>
+          <p><a class="link-arrow" href="https://www.helloasso.com/associations/claj-de-franche-comte/formulaires/1" rel="noopener">Faire un don en ligne</a></p>
+        </div>
+        <div class="aside aside--bordeaux reveal">
+          <h3>Par chèque, avec le bulletin</h3>
+          <p>Remplissez le bulletin d’adhésion et de soutien, joignez un chèque à l’ordre du «&nbsp;CLAJ- Ferme de la Batailleuse&nbsp;» et déposez-le à l’accueil.</p>
+          <p><a class="link-arrow" href="https://claj-batailleuse.fr/wp-content/uploads/2026/01/bulletin-dadhesion-et-de-soutien-1.png" rel="noopener">Le bulletin à imprimer</a></p>
+          <p class="small muted">Pour un séjour au chalet, une classe ou un groupe, l’adhésion de la famille ou de la structure s’ajoute au prix&nbsp;: elle est indiquée avec les tarifs de chaque accueil.</p>
+        </div>
+      </div>
+
+      <div class="cta-band gap-top reveal">
+        <div>
+          <h3>Adhérer ou donner en ligne</h3>
+          <p class="muted">Le paiement se fait sur la page HelloAsso de l’association.</p>
+        </div>
+        <div class="actions">
+          <a class="btn" href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">Adhérer en ligne</a>
+          <a class="btn btn--ghost" href="https://www.helloasso.com/associations/claj-de-franche-comte/formulaires/1" rel="noopener">Faire un don</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 08 · Bénévolat et stages -->
+  <section class="section section--alt" id="benevolat" aria-labelledby="t-benevolat">
+    <div class="wrap">
+      <div class="split">
+        <div class="split__side reveal">
+          <p class="kicker"><b>08</b> Bénévolat et stages</p>
+          <h2 id="t-benevolat">Venir apprendre, et donner un coup de main.</h2>
+          <p class="lead">La ferme est aussi un lieu de formation. Nous accueillons régulièrement des bénévoles, des stagiaires en formation agricole ou en animation, et des volontaires.</p>
+          <ul class="ticks">
+            <li>Le bénévolat se fait sur trois semaines minimum.</li>
+            <li>Vous découvrez nos savoir-faire, nos actions et notre fonctionnement en autogestion.</li>
+            <li>Au cœur de l’accueil&nbsp;: l’échange de connaissances, les pratiques alternatives et la sensibilisation à l’environnement.</li>
+            <li>Il y a aussi des chantiers de bénévoles, comme ceux de l’Ascension 2026.</li>
+            <li>Logement, repas, trajet&nbsp;: nous en parlons ensemble, selon la période.</li>
+          </ul>
+          <div class="aside">
+            <h3>Une question d’abord&nbsp;?</h3>
+            <p>Écrivez-nous à <a href="mailto:contact@claj-batailleuse.fr">contact@claj-batailleuse.fr</a>.</p>
+          </div>
+        </div>
+
+        <div>
+          <form class="demande" id="demande" novalidate
+                data-to="contact@claj-batailleuse.fr"
+                data-subject="{venue} à la Bata — {nom}"
+                data-submit="Envoyer ma proposition">
+            <div class="demande__head">
+              <h3>Proposer de venir en bénévole ou en stage</h3>
+              <p>Trois étapes. Votre proposition arrive à l’équipe avec vos dates et vos envies. Nous répondons «&nbsp;au plus tôt&nbsp;»&nbsp;: parfois, cela prend un peu de temps, merci de votre patience.</p>
+            </div>
+
+            <fieldset class="step" data-short="Vous">
+              <legend>Vous</legend>
+              <div class="fields">
+                <div class="field field--full"><label for="nom">Prénom et nom <span class="req">*</span></label><input id="nom" name="nom" type="text" required autocomplete="name"></div>
+                <div class="field"><label for="email">E-mail <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email"></div>
+                <div class="field"><label for="telephone">Téléphone</label><input id="telephone" name="telephone" type="tel" autocomplete="tel"></div>
+                <div class="field field--full" data-label="Ville ou région"><label for="ville">Vous venez d’où&nbsp;? <span class="muted small">(facultatif)</span></label><input id="ville" name="ville" type="text" autocomplete="address-level2" placeholder="Ville ou région"></div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-short="Votre venue">
+              <legend>Votre venue</legend>
+              <div class="fields">
+                <div class="field field--full"><span class="label">Vous proposez <span class="req">*</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="venue" value="benevolat" required><span>Bénévolat<small>trois semaines minimum</small></span></label>
+                    <label class="choice"><input type="radio" name="venue" value="stage"><span>Stage<small>dans le cadre d’une formation</small></span></label>
+                  </div>
+                </div>
+                <div class="field field--full" data-show-if="venue=stage"><label for="formation">Votre formation <span class="req">*</span></label><input id="formation" name="formation" type="text" required placeholder="Formation agricole ou en animation, établissement…"></div>
+                <div class="field"><label for="debut">Arrivée souhaitée <span class="req">*</span></label><input id="debut" name="debut" type="date" min="2026-09-25" required></div>
+                <div class="field"><label for="fin">Départ souhaité <span class="req">*</span></label><input id="fin" name="fin" type="date" min="2026-09-25" required></div>
+                <div class="field field--full" data-show-if="venue=benevolat"><span class="label">Durée <span class="req">*</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="checkbox" name="duree" value="oui" required><span>Je peux rester trois semaines au moins<small>la durée minimale d’un bénévolat à la Bata</small></span></label>
+                  </div>
+                </div>
+                <div class="field field--full"><span class="label">Vos dates</span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="souplesse" value="souples"><span>Elles sont souples<small>on peut en discuter</small></span></label>
+                    <label class="choice"><input type="radio" name="souplesse" value="fixes"><span>Elles sont fixes</span></label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-short="Vos envies">
+              <legend>Vos envies</legend>
+              <div class="fields">
+                <div class="field field--full"><span class="label">Les secteurs qui vous attirent</span>
+                  <div class="choices">
+                    <label class="choice"><input type="checkbox" name="secteurs" value="vaches"><span>Les vaches<small>traite et soins au troupeau</small></span></label>
+                    <label class="choice"><input type="checkbox" name="secteurs" value="chevres"><span>Les chèvres et la fromagerie</span></label>
+                    <label class="choice"><input type="checkbox" name="secteurs" value="fournil"><span>Le fournil<small>pain au levain, four à bois</small></span></label>
+                    <label class="choice"><input type="checkbox" name="secteurs" value="animation"><span>L’animation<small>classes, colos, visiteurs</small></span></label>
+                    <label class="choice"><input type="checkbox" name="secteurs" value="chantiers"><span>Les chantiers</span></label>
+                    <label class="choice"><input type="checkbox" name="secteurs" value="jardin"><span>Le jardin</span></label>
+                  </div>
+                </div>
+                <div class="field field--full"><label for="message">Parlez-nous de vous <span class="req">*</span></label>
+                  <textarea id="message" name="message" rows="5" required placeholder="Ce qui vous amène, ce que vous savez faire, vos questions pratiques : logement, repas, trajet…"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <p class="consent">Vos informations servent uniquement à traiter votre demande. Elles ne sont ni revendues ni utilisées pour de la publicité.</p>
+          </form>
+          <p class="note">Sur le vrai site, ce formulaire remplace le questionnaire en ligne actuel, qui affiche «&nbsp;Accès refusé&nbsp;»&nbsp;: chaque proposition arrive complète à contact@claj-batailleuse.fr.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 09 · Recrutement -->
+  <section class="section section--sapin" id="recrutement" aria-labelledby="t-recrutement">
+    <div class="wrap">
+      <div class="grid grid--2" style="align-items:start">
+        <div class="reveal">
+          <p class="kicker"><b>09</b> Recrutement</p>
+          <h2 id="t-recrutement">Nous recrutons un·e paysan·ne vacher·e.</h2>
+          <p><span class="badge badge--ok" data-until="2026-11-02" data-past-text="Poste pourvu ou clos">Recrutement en cours</span></p>
+          <p class="lead">Pour le secteur vaches, en binôme&nbsp;: le troupeau de montbéliardes, le lait en Comté bio, les parcelles, et le public qui vient voir la traite.</p>
+          <ul class="ticks">
+            <li>La gestion du secteur vaches en binôme, et le parcellaire.</li>
+            <li>L’animation avec le public&nbsp;: la traite du soir est souvent une «&nbsp;traite animée&nbsp;».</li>
+            <li>L’administratif&nbsp;: PAC, fermage, fiches de paie et référent·e MSA pour les salarié·es de la ferme.</li>
+            <li>Les temps collectifs de l’autogestion.</li>
+          </ul>
+        </div>
+        <div class="panel reveal">
+          <ul class="meta">
+            <li><b>Contrat</b><span>CDD de 12 mois, renouvelable en CDI</span></li>
+            <li><b>Rémunération</b><span>SMIC, temps plein</span></li>
+            <li><b>Congés</b><span>6 semaines</span></li>
+            <li><b>Prise de poste</b><span>lundi 2 novembre 2026</span></li>
+            <li><b>Lieu</b><span>Rochejean (25370)</span></li>
+            <li><b>Rythme</b><span>5 jours en binôme, week-end le vendredi et le samedi, ou le dimanche et le lundi</span></li>
+            <li><b>Vie d’équipe</b><span>repas du midi en équipe, logement temporaire possible à prix modéré selon les disponibilités</span></li>
+            <li><b>La ferme</b><span>74 hectares, foin produit sur la ferme, vaches à cornes, étable entravée avec traite au pipeline, moyenne d’étable entre 6 500 et 6 900 litres</span></li>
+          </ul>
+          <p style="margin:22px 0 18px">Pour postuler&nbsp;: CV et lettre de motivation à <a href="mailto:ferme.batailleuse@gmail.com?subject=Recrutement%20Vache">ferme.batailleuse@gmail.com</a>, avec l’objet «&nbsp;Recrutement Vache&nbsp;».</p>
+          <div class="actions">
+            <a class="btn btn--light" href="mailto:ferme.batailleuse@gmail.com?subject=Recrutement%20Vache">Envoyer ma candidature</a>
+            <a class="btn btn--ghost btn--on-dark" href="https://claj-batailleuse.fr/wp-content/uploads/2026/08/Offre-emploi-vachere-2026.pdf" rel="noopener">L’offre complète (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="img/logo.png" alt="Logo du CLAJ la Batailleuse" width="64" height="99" loading="lazy">
+        <p>Le CLAJ de Franche-Comté, association d’éducation populaire autogérée, fait vivre la ferme de la Batailleuse et le Chalet du Souleret à Rochejean.</p>
+      </div>
+      <div>
+        <h2>Nous trouver</h2>
+        <ul>
+          <li><b>Ferme de la Batailleuse</b><br>Route de la Batailleuse, 25370 Rochejean</li>
+          <li><b>Chalet du Souleret</b><br>16 rue de la Fontaine, 25370 Rochejean</li>
+          <li><a href="contact.html#acces">Plan d’accès</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Téléphones</h2>
+        <ul>
+          <li class="footer__phone"><b><a href="tel:+33381499115">03 81 49 91 15</a></b><span>Ferme et boutique</span></li>
+          <li class="footer__phone"><b><a href="tel:+33381499184">03 81 49 91 84</a></b><span>Chalet du Souleret</span></li>
+          <li class="footer__phone"><b><a href="tel:+33781424830">07 81 42 48 30</a></b><span>Fournil, commandes de pain</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Écrire</h2>
+        <ul>
+          <li><a href="mailto:animation@claj-batailleuse.fr">animation@</a> classes, colos, animations</li>
+          <li><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a> Chalet du Souleret</li>
+          <li><a href="mailto:ferme@claj-batailleuse.fr">ferme@</a> ferme et fournil</li>
+          <li><a href="mailto:facturation@claj-batailleuse.fr">facturation@</a> factures</li>
+          <li><a href="mailto:contact@claj-batailleuse.fr">contact@</a> tout le reste</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
+      <span><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a></span>
+      <span>Maquette proposée par Primo, Montperreux · septembre 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

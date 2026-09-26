@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Écoles et groupes — classes découvertes, journées à la ferme, petite enfance · La Batailleuse</title>
+<meta name="description" content="Classes découvertes de 3 à 5 jours au Chalet du Souleret, dès 43 € par jour et par enfant en pension complète, journées à la ferme, animations petite enfance 0-3 ans et en classe, à Rochejean. Aide de la Région, tarifs et pré-réservation en ligne.">
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* Compléments propres à la page Écoles & groupes (variables de style.css uniquement) */
+  section[id], form[id], div[id] { scroll-margin-top: 88px; }
+  .hero__img img { object-position: 50% 72%; }
+  .gap-top { margin-top: clamp(32px, 5vw, 56px); }
+  .split { display: grid; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  @media (min-width: 980px) { .split { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); } .split__side { position: sticky; top: 96px; } }
+  .split__side .aside { margin-top: 22px; }
+  table.prices.prices--compact { min-width: 0; }
+  table.prices th small, table.prices td small { display: block; font-weight: 400; color: var(--ink-mute); font-size: .86rem; margin-top: 2px; }
+  .section--sapin .ticks li::before { border-color: var(--foin-soft); }
+  .section--sapin .timeline::before { background: rgba(242, 234, 218, .3); }
+  .section--sapin .timeline li::before { background: var(--sapin-deep); border-color: var(--foin-soft); }
+  .section--sapin .timeline time { color: var(--foin-soft); }
+  .section--sapin .timeline p { color: #D8CFBE; }
+  .section--sapin .meta { color: #D8CFBE; margin-bottom: 26px; }
+  .section--sapin .meta b { color: #FFF8EE; }
+  .section--sapin h3 { font-size: 1.25rem; }
+  .ateliers, .legend-dots { list-style: none; margin: 0; padding: 0; }
+  .ateliers li { position: relative; padding: 12px 0 12px 20px; border-top: 1px dashed var(--line); }
+  .ateliers li::before, .legend-dots li::before { content: ""; position: absolute; left: 0; top: 19px; width: 10px; height: 10px; border-radius: 50%; background: var(--sapin); }
+  .ateliers li.auto::before, .legend-dots li.auto::before { background: transparent; box-shadow: inset 0 0 0 2px var(--sapin); }
+  .ateliers b { display: block; font-family: var(--serif); font-weight: 600; font-size: 1.08rem; line-height: 1.25; }
+  .ateliers span { display: block; font-size: .9rem; color: var(--ink-mute); margin-top: 2px; }
+  .legend-dots { display: flex; flex-wrap: wrap; gap: 6px 26px; margin-bottom: 24px; color: var(--ink-soft); }
+  .legend-dots li { position: relative; padding-left: 20px; }
+  .legend-dots li::before { top: .5em; }
+  .rubrique--ferme { border-top: 4px solid var(--bordeaux); }
+  .rubrique--wide { grid-column: 1 / -1; }
+  @media (min-width: 900px) { .rubrique--wide .ateliers { columns: 2; column-gap: 44px; } .rubrique--wide .ateliers li { break-inside: avoid; } }
+  .budget .estimate b { color: #FFF8EE; font-size: 1.15rem; }
+  .budget .estimate .budget__warn { color: var(--foin-soft); font-weight: 700; }
+  .faq-wrap { max-width: 860px; }
+  .demande .field { align-content: start; }
+  .timeline--tight li { padding-bottom: 16px; } .timeline--tight time { font-size: 1.15rem; }
+  .pair { display: grid; gap: 4px 28px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); margin-top: 8px; }
+  @media (max-width: 520px) { .meta li { flex-direction: column; gap: 0; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="mockup-note">Maquette proposée à la Batailleuse. Tous les contenus viennent de votre site actuel.</p>
+
+<div class="almanach" data-almanach aria-live="polite">
+  <div class="wrap">Ferme ouverte de 16h30 à 19h selon la période · <a href="visiter.html#horaires">Tous les horaires</a></div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="La Batailleuse, accueil">
+      <img class="brand__mark" src="img/logo.png" alt="" width="30" height="46">
+      <span><span class="brand__name">la <i>Batailleuse</i></span><span class="brand__sub">Ferme pédagogique · Rochejean</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <button class="menu-toggle nav__close" type="button" aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <ul>
+        <li><a href="collectif.html">La ferme</a></li>
+        <li><a href="ecoles.html" aria-current="page">Écoles &amp; groupes</a></li>
+        <li><a href="colos.html">Colos</a></li>
+        <li><a href="chalet.html">Le chalet</a></li>
+        <li><a href="visiter.html">Venir à la ferme</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn--small" href="contact.html#demande">Faire une demande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="hero hero--short" aria-labelledby="titre">
+    <div class="hero__img"><img src="img/sortie-chevres.jpg" alt="Un groupe d’enfants et d’adultes, de dos, accompagne le troupeau à travers le pré, face à une colline couverte de sapins, dans la lumière d’automne." width="1200" height="800" fetchpriority="high"></div>
+    <div class="wrap">
+      <p class="kicker">Écoles, crèches, structures jeunesse</p>
+      <h1 id="titre">Votre classe à la ferme, à chaque saison.</h1>
+      <p class="lead">Classes découvertes de 3 à 5 jours au Chalet du Souleret, journées à la ferme, animations pour les tout-petits : vos élèves soignent les animaux, participent à la traite et mettent la main à la pâte au fournil comme à la fromagerie.</p>
+      <div class="hero__actions">
+        <a class="btn btn--light" href="#demande">Pré-réserver</a>
+        <a class="btn btn--ghost" style="color:#FFF8EE;border-color:#FFF8EE" href="#tarifs">Tarifs et aide de la Région</a>
+      </div>
+    </div>
+    <p class="hero__credit">Photo : Florian Houdelot</p>
+  </section>
+
+  <!-- Les formules -->
+  <section class="section" aria-labelledby="t-formules">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker">Nos accueils pour les groupes</p>
+          <h2 id="t-formules">Quatre façons de venir à la Bata.</h2>
+        </div>
+        <p class="lead">Chaque formule, son programme et ses prix, puis un seul formulaire de pré-réservation : votre demande arrive complète à l’équipe d’animation.</p>
+      </div>
+      <div class="grid grid--4">
+        <a class="card reveal" href="#classe">
+          <div class="card__body">
+            <span class="badge badge--ok">Toute l’année</span>
+            <h3>Classe découverte</h3>
+            <p>3, 4 ou 5 jours en pension complète au Chalet du Souleret, avec les ateliers à la ferme et une veillée.</p>
+            <div class="card__foot"><span class="price"><small>dès</small> 43 € <small>/ jour / enfant</small></span></div>
+          </div>
+        </a>
+        <a class="card reveal" href="#journee">
+          <div class="card__body">
+            <span class="badge">Sans hébergement</span>
+            <h3>Journée à la ferme</h3>
+            <p>Une sortie à la journée ou à la demi-journée, de la maternelle au lycée, et la traite animée en fin de journée.</p>
+            <div class="card__foot"><span class="price"><small>dès</small> 100 € <small>la demi-journée, par groupe</small></span></div>
+          </div>
+        </a>
+        <a class="card reveal" href="#petite-enfance">
+          <div class="card__body">
+            <span class="badge">0-3 ans</span>
+            <h3>Petite enfance</h3>
+            <p>Pour les crèches et les familles, à la ferme ou dans votre structure : les animaux, le fournil, le jardin.</p>
+            <div class="card__foot"><span class="price">50 € <small>de l’heure, jusqu’à 12 enfants</small></span></div>
+          </div>
+        </a>
+        <a class="card reveal" href="#en-classe">
+          <div class="card__body">
+            <span class="badge badge--bientot">Sur demande</span>
+            <h3>Dans votre école</h3>
+            <p>L’équipe vient en classe pour une demi-journée : les animaux de la ferme, la farine, le fromage, l’hôtel à insectes.</p>
+            <div class="card__foot"><span class="price">8 € <small>par enfant, tarif 2020 à confirmer</small></span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 01 · La classe découverte -->
+  <section class="section section--alt" id="classe" aria-labelledby="t-classe">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>01</b> La classe découverte</p>
+          <h2 id="t-classe">Trois à cinq jours pour vivre la ferme.</h2>
+        </div>
+        <p class="lead">Toute l’année, et en classe de neige l’hiver. Une ferme pédagogique et productive, en agriculture biologique, en moyenne montagne : vos élèves y travaillent à côté des paysan·nes, avec l’équipe d’animation.</p>
+      </div>
+
+      <div class="feature">
+        <figure class="feature__img reveal">
+          <img src="img/traite-etable.jpg" alt="Des enfants en bonnets et en bottes, de dos, face à la rangée de vaches montbéliardes pendant la traite dans l’étable." width="1920" height="1280" loading="lazy">
+          <figcaption>La traite, à l’étable. Photo : Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <h3>La ferme, dans chaque programme.</h3>
+          <ul class="ticks">
+            <li>Chaque planning comprend la thématique « ferme » : les soins aux animaux et une traite animée.</li>
+            <li>Selon la durée, vous choisissez 2 ou 3 thématiques : fournil, fromagerie, biodiversité et jardin, forêt, patrimoine.</li>
+            <li>Une veillée est comprise dès 3 jours.</li>
+            <li>Nos animateur·rices encadrent la moitié de la classe ; l’autre moitié travaille en autonomie avec vous, avec le matériel pédagogique que nous fournissons.</li>
+            <li>L’hiver, classe de neige : ski alpin, ski de fond, raquettes, chiens de traîneau, avec des moniteurs brevetés d’État.</li>
+          </ul>
+          <blockquote class="quote" style="margin-top:24px">
+            <p>« Deux éducatrices à l’environnement encadrent les animations. »</p>
+            <cite>L’équipe de la Batailleuse</cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="figures gap-top">
+        <div class="figure reveal"><strong>3 à 5</strong><span>jours de séjour, avec une veillée comprise</span></div>
+        <div class="figure reveal"><strong>1</strong><span>animateur·rice par classe pour les temps pédagogiques</span></div>
+        <div class="figure reveal"><strong>21</strong><span>ateliers en 7 rubriques, des cycles 1 à 3</span></div>
+        <div class="figure reveal"><strong>62</strong><span>places au Souleret, enfants et adultes confondus</span></div>
+      </div>
+
+      <div class="feature feature--reverse gap-top">
+        <figure class="feature__img reveal">
+          <img src="img/souleret-chambre.jpg" alt="Une chambre du Souleret baignée de soleil : lits superposés en bois, deux lits simples, sol rouge et grande fenêtre ouverte sur les arbres." width="1200" height="900" loading="lazy">
+          <figcaption>Une chambre du Chalet du Souleret.</figcaption>
+        </figure>
+        <div class="reveal">
+          <h3>Au Souleret, la classe vit ensemble.</h3>
+          <p>Le Chalet du Souleret est au centre du village de Rochejean : 62 places, en dortoirs de 2 à 11 lits, avec sanitaires et douches communes. À table, une cuisine familiale avec les produits de la ferme (pain au levain, fromage de chèvre, lait de vache, légumes du potager) et de producteurs locaux, surtout en bio.</p>
+          <p>L’accueil est participatif : chaque classe s’organise pour que tout le monde mette la table, débarrasse, fasse la vaisselle et nettoie la salle après le repas. Nous vous envoyons le planning des tâches avant le séjour.</p>
+          <a class="link-arrow" href="chalet.html">Découvrir le Chalet du Souleret</a>
+        </div>
+      </div>
+
+      <div class="grid grid--2 gap-top">
+        <div class="aside reveal">
+          <h3>Vos interlocutrices</h3>
+          <p><b>Ambre</b> et <b>Laura</b>, co-responsables pédagogiques, vous accompagnent avant, pendant et après le séjour. Elles adaptent les contenus à l’âge de vos élèves et au projet de votre classe.</p>
+          <p><a href="mailto:animation@claj-batailleuse.fr">animation@claj-batailleuse.fr</a> · <a href="tel:+33381499184">03 81 49 91 84</a> <span class="muted small">(la ligne du Chalet du Souleret)</span></p>
+        </div>
+        <div class="aside aside--bordeaux reveal">
+          <h3>Un centre agréé</h3>
+          <p>La Batailleuse est un « centre agréé par Jeunesse &amp; Sport et Éducation Nationale ». Depuis 2017, nous participons aussi au dispositif « Classes environnement » de la Région Bourgogne-Franche-Comté.</p>
+          <p><a class="link-arrow" href="#aide-region">L’aide de la Région pour votre classe</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 02 · Semaine type -->
+  <section class="section section--sapin" id="programme" aria-labelledby="t-semaine">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>02</b> Le programme</p>
+          <h2 id="t-semaine">Une semaine à la ferme, jour par jour.</h2>
+        </div>
+        <p class="lead">Voici notre proposition de planning sur 5 jours. Vous nous envoyez vos thématiques préférées, et nous construisons le planning avec vous.</p>
+      </div>
+
+      <div class="grid grid--2" style="align-items:start">
+        <ol class="timeline reveal">
+          <li><time>Lundi</time><p>Arrivée, pot d’accueil, installation dans les chambres et visite de la ferme. L’après-midi, une moitié des groupes aux soins aux animaux, l’autre au jeu de l’oie. Puis la traite animée : 6 enfants aux vaches, 6 aux chèvres.</p></li>
+          <li><time>Mardi</time><p>Soins aux animaux pour les autres groupes. L’après-midi, une sortie si vous le souhaitez, en supplément : Maison de la Réserve, source du Doubs, cave d’affinage du fort Saint-Antoine…</p></li>
+          <li><time>Mercredi</time><p>Les thématiques que vous avez choisies, en groupes. La traite en fin de journée.</p></li>
+          <li><time>Jeudi</time><p>Thématiques, traite animée et pizzaïolos (14 enfants au plus). Le soir, repas à la ferme et veillée.</p></li>
+          <li><time>Vendredi</time><p>Chambres vidées après le petit-déjeuner, derniers ateliers le matin. L’après-midi, restitution et grand jeu de l’oie, puis départ.</p></li>
+        </ol>
+
+        <div class="reveal">
+          <h3>Combien de thématiques ?</h3>
+          <ul class="meta">
+            <li><b>3 jours</b><span>2 thématiques</span></li>
+            <li><b>4 jours</b><span>2 thématiques</span></li>
+            <li><b>5 jours</b><span>3 thématiques, dont une sur une seule séance</span></li>
+          </ul>
+          <p>Chaque thématique compte 2 ou 3 séances. L’une d’elles se fait en autonomie, sous votre responsabilité ; les autres sont encadrées par un·e animateur·rice.</p>
+
+          <h3 style="margin-top:28px">Le rythme de la journée</h3>
+          <ul class="meta">
+            <li><b>8h30</b><span>petit-déjeuner</span></li>
+            <li><b>10h-11h30</b><span>ateliers du matin</span></li>
+            <li><b>12h30</b><span>déjeuner</span></li>
+            <li><b>14h30-16h</b><span>ateliers de l’après-midi</span></li>
+            <li><b>16h30</b><span>goûter</span></li>
+            <li><b>17h30-18h45</b><span>la traite, et les pizzaïolos le jeudi</span></li>
+            <li><b>19h30</b><span>dîner</span></li>
+            <li><b>Soirée</b><span>veillée, selon le programme</span></li>
+          </ul>
+
+          <h3>Les groupes</h3>
+          <ul class="ticks">
+            <li>Une classe forme 2 groupes ; deux classes, 3 ou 4 groupes.</li>
+            <li>La traite animée se fait par créneaux de 12 enfants.</li>
+            <li>Les soirs sans veillée prévue, une veillée supplémentaire est possible.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--sapin-deep)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 03 · Les ateliers -->
+  <section class="section" id="ateliers" aria-labelledby="t-ateliers">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>03</b> Les ateliers</p>
+          <h2 id="t-ateliers">21 ateliers, au fil des saisons.</h2>
+        </div>
+        <p class="lead">Ils sont tirés de notre brochure « Nos activités 2025-2026 », pensée pour les cycles 1, 2 et 3. Pour choisir vos thématiques, regardez le cycle de vos élèves et le mois de votre séjour.</p>
+      </div>
+
+      <ul class="legend-dots">
+        <li>Avec un·e animateur·rice</li>
+        <li class="auto">En autonomie, avec l’enseignant·e et notre matériel</li>
+      </ul>
+
+      <div class="grid grid--3">
+        <article class="card rubrique--ferme reveal">
+          <div class="card__body">
+            <span class="badge badge--ok">Dans chaque programme</span>
+            <h3>La ferme</h3>
+            <p>Les soins aux animaux et la traite ouvrent le séjour, le jeu de l’oie le referme.</p>
+            <ul class="ateliers">
+              <li><b>Soins aux animaux</b><span>Cycles 1, 2, 3 · toute l’année · idéalement le matin</span></li>
+              <li><b>Traite animée</b><span>Cycles 1, 2, 3 · toute l’année · à 17h30, 12 enfants par créneau</span></li>
+              <li class="auto"><b>Jeu de l’oie</b><span>Grand jeu de restitution en fin de séjour · cycles 1, 2, 3 · par tout temps</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Toute l’année</span>
+            <h3>Le fournil</h3>
+            <p>Là où cuit le pain au levain de la ferme, au four à bois.</p>
+            <ul class="ateliers">
+              <li class="auto"><b>Le monde de la farine</b><span>Cycles 1, 2, 3 · par tout temps</span></li>
+              <li><b>Ça chauffe au fournil</b><span>Cycles 1, 2, 3 · le mardi matin et le jeudi</span></li>
+              <li><b>Pizzaïolos</b><span>Séance supplémentaire · cycles 2, 3 · uniquement le jeudi soir, 14 enfants au plus</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Toute l’année</span>
+            <h3>La fromagerie</h3>
+            <p>Le lait des chèvres y devient fromage, chaque matin de mars à octobre.</p>
+            <ul class="ateliers">
+              <li class="auto"><b>L’univers du fromage</b><span>Cycles 1, 2, 3 · par tout temps</span></li>
+              <li><b>Fromager·es en herbe</b><span>Cycles 1, 2, 3 · par tout temps</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--bientot">De mars à novembre</span>
+            <h3>Biodiversité et jardin</h3>
+            <p>Au jardin pédagogique, autour du compost et des petites bêtes.</p>
+            <ul class="ateliers">
+              <li class="auto"><b>Chasse aux petites bêtes</b><span>Cycles 1, 2, 3 · de mai à juin · par beau temps</span></li>
+              <li><b>Le compost et ses petites bêtes</b><span>Cycles 2, 3 · de mars à novembre · par beau temps</span></li>
+              <li><b>Cuisinons nos plantes oubliées</b><span>Cycles 1, 2, 3 · de mai à octobre · par beau temps</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Par beau temps</span>
+            <h3>La forêt</h3>
+            <p>Dans les forêts jurassiennes, pour sentir, observer et suivre les traces.</p>
+            <ul class="ateliers">
+              <li class="auto"><b>Balade sensorielle</b><span>Cycles 1, 2, 3 · toute l’année</span></li>
+              <li><b>Sur les traces des animaux</b><span>Cycles 1, 2, 3 · de mars à novembre</span></li>
+              <li><b>À la découverte de nos forêts jurassiennes</b><span>Cycle 3 · de mai à octobre</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Cycles 2 et 3</span>
+            <h3>Le patrimoine</h3>
+            <p>Le village de Rochejean et les paysages du Haut-Doubs.</p>
+            <ul class="ateliers">
+              <li class="auto"><b>Rallye photo dans le village de Rochejean</b><span>Toute l’année · par beau temps</span></li>
+              <li><b>Que nous dit le paysage ?</b><span>De mars à novembre · par beau temps</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="card rubrique--wide reveal">
+          <div class="card__body">
+            <span class="badge badge--ok">Une veillée comprise dès 3 jours</span>
+            <h3>Les veillées</h3>
+            <p>Les veillées en autonomie sont gratuites : nous fournissons le matériel.</p>
+            <ul class="ateliers">
+              <li><b>Paulette la Poulette</b><span>Théâtre d’ombres · cycles 1, 2, 3</span></li>
+              <li><b>Initiation aux danses folkloriques</b><span>Cycles 1, 2, 3</span></li>
+              <li class="auto"><b>Kamishibaï</b><span>Cycles 1, 2, 3</span></li>
+              <li class="auto"><b>Les chants et cris des animaux</b><span>Cycles 1, 2, 3</span></li>
+              <li><b>Enquêtons sur les animaux de la nuit</b><span>Cycles 2, 3</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <p class="note">Vous venez avec un collège ou un lycée ? Notre brochure couvre les cycles 1 à 3 : le programme se construit avec l’équipe, selon l’âge et le projet de vos élèves. <a href="https://claj-batailleuse.fr/wp-content/uploads/2026/06/Nos-activites-2025-2026.pdf" rel="noopener">La brochure complète (PDF, 12 pages)</a>.</p>
+    </div>
+  </section>
+
+  <!-- 04 · Tarifs -->
+  <section class="section section--alt" id="tarifs" aria-labelledby="t-tarifs">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>04</b> Tarifs de la classe découverte</p>
+          <h2 id="t-tarifs">Votre budget, avant même de nous écrire.</h2>
+        </div>
+        <p class="lead">Des prix par jour et par enfant, en pension complète, avec l’encadrement des temps pédagogiques à raison d’un·e animateur·rice par classe.</p>
+      </div>
+
+      <div class="grid grid--2" style="align-items:start">
+        <div>
+          <div class="table-wrap reveal">
+            <table class="prices prices--compact">
+              <caption>Classe découverte, pension complète<small>Par jour et par enfant, prix « à partir de ».</small></caption>
+              <thead>
+                <tr><th scope="col">Niveau</th><th scope="col" class="n">À partir de</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Classe maternelle<small>moins de 6 ans</small></th><td class="n">43 €</td></tr>
+                <tr><th scope="row">Classe élémentaire<small>moins de 12 ans</small></th><td class="n">47 €</td></tr>
+                <tr><th scope="row">Collège et lycée<small>moins de 16 ans</small></th><td class="n">48 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="meta reveal" style="margin-top:20px">
+            <li><b>Adhésion</b><span>forfait de 50 € pour la classe, d’après notre grille 2026-2027</span></li>
+            <li><b>Adultes</b><span>tarif des accompagnateurs à voir avec l’équipe</span></li>
+            <li><b>Options</b><span>plein air, visites et transport en supplément, voir plus bas</span></li>
+          </ul>
+
+          <div class="aside aside--bordeaux reveal" id="aide-region" style="margin-top:26px">
+            <h3>L’aide de la Région</h3>
+            <p>Depuis 2017, nous participons au dispositif « Classes environnement » de la Région Bourgogne-Franche-Comté. Il allège le budget de votre classe :</p>
+            <ul class="meta">
+              <li><b>15 €</b><span>par jour et par enfant, sur les 3 premiers jours (avec nuitées)</span></li>
+              <li><b>25 €</b><span>par jour et par enfant si votre école est en REP, REP+, ZFRR ou ZFRR+ : ces écoles sont prioritaires pour la demander</span></li>
+            </ul>
+            <p style="margin-top:12px">Vous comptez la demander ? Cochez la case dans votre pré-réservation, et parlons-en ensemble.</p>
+          </div>
+        </div>
+
+        <div class="demande budget reveal" id="budget">
+          <div class="demande__head"><h3>Estimer le budget de la classe</h3><p>Un premier calcul avec nos prix « à partir de », pour préparer votre budget ou votre demande à la mairie.</p></div>
+          <div class="fields">
+            <div class="field field--full"><label for="b-niveau">Niveau</label>
+              <select id="b-niveau">
+                <option value="43">Classe maternelle (moins de 6 ans)</option>
+                <option value="47" selected>Classe élémentaire (moins de 12 ans)</option>
+                <option value="48">Collège et lycée (moins de 16 ans)</option>
+              </select>
+            </div>
+            <div class="field"><label for="b-eleves">Nombre d’élèves</label><input id="b-eleves" type="number" min="1" value="25" inputmode="numeric"></div>
+            <div class="field"><label for="b-jours">Durée du séjour</label>
+              <select id="b-jours">
+                <option value="3">3 jours</option>
+                <option value="4">4 jours</option>
+                <option value="5" selected>5 jours</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <div class="choices">
+                <label class="choice"><input type="checkbox" id="b-rep"><span>Notre école est en REP, REP+, ZFRR ou ZFRR+<small>aide de la Région à 25 € par jour et par enfant</small></span></label>
+              </div>
+            </div>
+          </div>
+          <div class="estimate" data-budget-out aria-live="polite">
+            <span>Séjour de 5 jours pour 25 élèves, à partir de</span>
+            <strong>5 875 €</strong>
+            <span>+ 50 € d’adhésion de la classe à l’association</span>
+            <span>− 1 125 € d’aide de la Région, si elle vous est accordée (15 € × 3 jours × 25 élèves)</span>
+            <span>Soit à partir de <b>4 800 €</b> pour la classe, aide déduite.</span>
+            <span>Hors adultes accompagnateurs, plein air, visites et transport.</span>
+          </div>
+          <p class="note">Calcul indicatif, fait avec les prix « à partir de » publiés et l’aide comptée sur les 3 premiers jours avec nuitées. Le devis vient de l’équipe.</p>
+        </div>
+      </div>
+
+      <div class="section__head section__head--split gap-top" style="margin-bottom:28px">
+        <div>
+          <h3 style="margin:0">Plein air et visites, en option</h3>
+        </div>
+        <p class="muted" style="margin:0">Avec nos partenaires sportifs, moniteurs brevetés d’État. Ces options s’ajoutent au tarif de base : leur montant est à voir avec l’équipe.</p>
+      </div>
+      <div class="grid grid--3">
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">L’hiver</span>
+            <h3>Sorties de neige</h3>
+            <p>Raquettes, ski de fond, ski alpin, biathlon, chiens de traîneau.</p>
+            <div class="card__foot"><span class="small muted">En plus : encadrement, transport sur site, location du matériel</span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--ok">L’été</span>
+            <h3>Sorties d’été</h3>
+            <p>VTT, accrobranche, escalade, escalade dans les arbres, canoë, voile, spéléologie.</p>
+            <div class="card__foot"><span class="small muted">En plus : encadrement, transport sur site, location du matériel</span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--bientot">En option</span>
+            <h3>Visites guidées</h3>
+            <p>Maison de la Réserve à Labergement-Sainte-Marie, caves d’affinage du fort Saint-Antoine, tourbières de Frasne, château de Joux, écomusée Maison Michaud à Chapelle-des-Bois ; sorties au lac de Remoray et à la source du Doubs.</p>
+            <div class="card__foot"><span class="small muted">En plus : le tarif de la visite et le transport</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Journée à la ferme -->
+  <section class="section" id="journee" aria-labelledby="t-journee">
+    <div class="wrap">
+      <div class="grid grid--2" style="align-items:start">
+        <div class="reveal">
+          <p class="kicker"><b>05</b> Journée à la ferme</p>
+          <h2 id="t-journee">Une sortie à la journée ou à la demi-journée.</h2>
+          <p class="lead">Pour vos sorties scolaires et extrascolaires, de la maternelle au lycée : du savoir-faire paysan et de l’éducation à l’environnement, selon les saisons. Nous construisons le programme avec vous.</p>
+          <ul class="ticks">
+            <li>Nous encadrons en demi-groupe, jusqu’à 12 : le reste du groupe fait une activité en autonomie avec ses accompagnateur·rices.</li>
+            <li>Les ateliers sont ceux des classes découvertes, adaptés à trois tranches d’âge : 3-5 ans, 6-8 ans, 9 ans et plus.</li>
+            <li>En fin de journée, la traite animée, de 17h30 à 18h30.</li>
+          </ul>
+          <p><a class="link-arrow" href="#ateliers">Voir les ateliers</a></p>
+        </div>
+        <div style="display:grid;gap:20px">
+          <div class="table-wrap reveal">
+            <table class="prices prices--compact">
+              <caption>Journée et demi-journée<small>Prix pour le groupe, selon son effectif.</small></caption>
+              <thead>
+                <tr><th scope="col">Formule</th><th scope="col" class="n">2 à 15 personnes</th><th scope="col" class="n">16 à 30 personnes</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Demi-journée<small>10h-12h ou 14h-16h</small></th><td class="n">100 €</td><td class="n">200 €</td></tr>
+                <tr><th scope="row">Journée</th><td class="n">200 €</td><td class="n">350 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-wrap reveal">
+            <table class="prices prices--compact">
+              <caption>Traite animée<small>De 17h30 à 18h30.</small></caption>
+              <tbody>
+                <tr><th scope="row">Groupe de 6 à 10 personnes</th><td class="n">75 €</td></tr>
+                <tr><th scope="row">À partir de 12 personnes</th><td class="n">traite en observation</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note" style="margin-top:0">S’ajoute l’adhésion de la structure à l’association : son montant est à confirmer avec l’équipe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · Petite enfance -->
+  <section class="section section--alt" id="petite-enfance" aria-labelledby="t-petite">
+    <div class="wrap">
+      <div class="feature feature--reverse">
+        <figure class="feature__img reveal">
+          <img src="img/lapin-paille.jpg" alt="Un lapin blotti dans la paille contre les jambes d’un enfant en ciré rouge." width="1200" height="800" loading="lazy">
+          <figcaption>Un lapin de la ferme. Photo : Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>06</b> Petite enfance, 0-3 ans</p>
+          <h2 id="t-petite">Les tout-petits, à la ferme ou chez vous.</h2>
+          <p class="lead">Pour les professionnel·les de la petite enfance et pour les familles : les chèvres, les vaches, les lapins, les cochons, les poules, et un temps de soin des animaux.</p>
+          <ul class="meta">
+            <li><b>Quand</b><span>en période scolaire, ou en semaine pendant les vacances</span></li>
+            <li><b>Durée</b><span>une demi-journée ou une journée, entre 9h-12h et 14h-17h</span></li>
+            <li><b>Où</b><span>à la ferme, ou dans votre structure</span></li>
+            <li><b>Encadrement</b><span>jusqu’à 12 enfants, avec 1 adulte accompagnateur pour 5 enfants</span></li>
+            <li><b>Sur place</b><span>tout le matériel pédagogique est fourni ; une salle peut être mise à disposition</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid--2 gap-top" style="align-items:start">
+        <div class="table-wrap reveal">
+          <table class="prices prices--compact">
+            <caption>Tarifs petite enfance<small>Par groupe ou par famille.</small></caption>
+            <tbody>
+              <tr><th scope="row">Professionnel·les de la petite enfance<small>groupe jusqu’à 12 enfants</small></th><td class="n">50 € de l’heure</td></tr>
+              <tr><th scope="row">Déplacement dans votre structure</th><td class="n">sur devis</td></tr>
+              <tr><th scope="row">Adhésion de la structure à l’association</th><td class="n">à confirmer</td></tr>
+              <tr><th scope="row">Familles<small>1 adulte pour 5 enfants au plus, 4 familles minimum</small></th><td class="n">12 € par famille</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap reveal">
+          <table class="prices prices--compact">
+            <caption>Les ateliers<small>Selon la saison et le temps qu’il fait.</small></caption>
+            <thead>
+              <tr><th scope="col">Atelier</th><th scope="col">Quand</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Découverte des animaux<small>nourriture fournie</small></th><td>Toute l’année, idéalement le matin</td></tr>
+              <tr><th scope="row">Le monde du fournil<small>dans le fournil, par tout temps</small></th><td>Toute l’année, le mardi et le jeudi</td></tr>
+              <tr><th scope="row">Au jardin<small>dans la serre et le jardin</small></th><td>De mai à octobre, par beau temps</td></tr>
+              <tr><th scope="row">Dans les prairies<small>à côté de la ferme</small></th><td>De mai à octobre, par beau temps</td></tr>
+              <tr><th scope="row">En forêt<small>à côté de la ferme</small></th><td>De mai à octobre, par beau temps</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · Dans votre école -->
+  <section class="section section--tight" id="en-classe" aria-labelledby="t-en-classe">
+    <div class="wrap">
+      <div class="grid grid--2" style="align-items:center">
+        <div class="reveal">
+          <p class="kicker"><b>07</b> Dans votre école</p>
+          <h2 id="t-en-classe">Et si la ferme venait en classe ?</h2>
+          <p>Nous pouvons mener certaines animations directement dans votre école, à la demi-journée et en demi-groupe. Une journée à la ferme peut suivre, pour prolonger.</p>
+          <div class="pair">
+            <div>
+              <h3 style="font-size:1.15rem">En classe</h3>
+              <ul class="ticks">
+                <li>Les animaux de la ferme</li>
+                <li>Le monde de la farine</li>
+                <li>L’univers du fromage</li>
+                <li>L’hôtel à insectes</li>
+              </ul>
+            </div>
+            <div>
+              <h3 style="font-size:1.15rem">Pour compléter, à la ferme</h3>
+              <ul class="ticks">
+                <li>Soins aux animaux</li>
+                <li>Fromager en herbe, à la ferme ou en classe</li>
+                <li>Chasse aux petites bêtes, en classe s’il y a un espace vert à côté</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="aside aside--bordeaux reveal">
+          <p class="price" style="margin-bottom:6px">8 € <small>par enfant, la demi-journée</small></p>
+          <p>Plus les frais de déplacement au-delà de 20 km.</p>
+          <p class="muted small">Tarif publié en novembre 2020 : à confirmer avec l’équipe pour 2026-2027.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · Pré-réservation -->
+  <section class="section section--alt" aria-labelledby="t-demande">
+    <div class="wrap">
+      <div class="split">
+        <div class="split__side reveal">
+          <p class="kicker"><b>08</b> Pré-réservation</p>
+          <h2 id="t-demande">Une demande complète, du premier coup.</h2>
+          <p class="lead">Quatre étapes : l’établissement, la classe, le projet, vos questions. Tout ce qu’il faut à l’équipe pour vous répondre sans allers-retours.</p>
+          <ol class="timeline timeline--tight" style="margin-top:24px">
+            <li><time>1</time><p>Vous envoyez votre pré-réservation, avec vos semaines et vos rubriques préférées.</p></li>
+            <li><time>2</time><p>L’équipe d’animation revient vers vous pour les dates, le programme et le devis.</p></li>
+            <li><time>3</time><p>Vous construisez le planning ensemble, selon l’âge et le projet de vos élèves.</p></li>
+            <li><time>4</time><p>Avant le séjour, vous recevez le planning des tâches : mise de table, vaisselle, nettoyage.</p></li>
+          </ol>
+          <div class="aside">
+            <h3>Vous préférez écrire ou appeler ?</h3>
+            <p><a href="mailto:animation@claj-batailleuse.fr">animation@claj-batailleuse.fr</a><br><a href="tel:+33381499184">03 81 49 91 84</a>, la ligne du Chalet du Souleret</p>
+          </div>
+          <div class="aside aside--bordeaux">
+            <p>Sur le vrai site, les semaines encore libres pour les classes en 2026-2027 s’afficheraient ici, tenues à jour par l’équipe, avec un bouton pour pré-réserver la semaine choisie.</p>
+          </div>
+        </div>
+
+        <form class="demande" id="demande" novalidate
+              data-to="animation@claj-batailleuse.fr"
+              data-subject="Pré-réservation — {etablissement} ({effectif} élèves)"
+              data-submit="Envoyer ma pré-réservation">
+          <div class="demande__head"><h3>Pré-réserver une classe ou une animation</h3><p>Elle part à l’équipe d’animation, qui revient vers vous pour les dates, le programme et le devis.</p></div>
+
+          <fieldset class="step" data-short="L’établissement">
+            <legend>L’établissement et l’enseignant·e</legend>
+            <div class="fields">
+              <div class="field field--full"><label for="etablissement">Nom de l’établissement <span class="req">*</span></label><input id="etablissement" name="etablissement" type="text" required autocomplete="organization" placeholder="École, collège, crèche, accueil de loisirs…"></div>
+              <div class="field"><label for="commune">Commune <span class="req">*</span></label><input id="commune" name="commune" type="text" required autocomplete="address-level2"></div>
+              <div class="field"><label for="nom">Enseignant·e ou responsable <span class="req">*</span></label><input id="nom" name="nom" type="text" required autocomplete="name"></div>
+              <div class="field"><label for="email">E-mail <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email"></div>
+              <div class="field"><label for="telephone">Téléphone</label><input id="telephone" name="telephone" type="tel" autocomplete="tel"><p class="hint">Un numéro où vous joindre en journée.</p></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" data-short="La classe">
+            <legend>La classe ou le groupe</legend>
+            <div class="fields">
+              <div class="field field--full"><span class="label">Niveau <span class="req">*</span></span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="niveau" value="petite" required><span>Petite enfance<small>0-3 ans</small></span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="maternelle"><span>Maternelle<small>cycle 1</small></span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="cycle2"><span>CP, CE1, CE2<small>cycle 2</small></span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="cycle3"><span>CM1, CM2<small>cycle 3</small></span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="multi"><span>Classe à plusieurs niveaux</span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="college"><span>Collège</span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="lycee"><span>Lycée</span></label>
+                  <label class="choice"><input type="radio" name="niveau" value="autre"><span>Autre groupe<small>accueil de loisirs, structure jeunesse…</small></span></label>
+                </div>
+              </div>
+              <div class="field field--full" data-show-if="niveau=multi|autre"><label for="niveaux">Précisez les niveaux ou les âges <span class="req">*</span></label><input id="niveaux" name="niveaux" type="text" required placeholder="Par exemple : GS-CP, ou 8-11 ans"></div>
+              <div class="field"><label for="effectif">Nombre d’élèves <span class="req">*</span></label><input id="effectif" name="effectif" type="number" min="1" max="200" required inputmode="numeric"></div>
+              <div class="field"><label for="adultes">Adultes accompagnateurs <span class="req">*</span></label><input id="adultes" name="adultes" type="number" min="0" max="60" required inputmode="numeric"><p class="hint">Enseignant·es compris. Petite enfance : 1 adulte pour 5 enfants.</p></div>
+              <div class="field field--full" data-label="Besoins particuliers"><label for="besoins">Besoins particuliers <span class="muted small">(facultatif)</span></label><textarea id="besoins" name="besoins" rows="3" placeholder="Allergies, PAI, régimes alimentaires, mobilité réduite, élèves à besoins particuliers…"></textarea></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" data-short="Le projet">
+            <legend>Votre projet</legend>
+            <div class="fields">
+              <div class="field field--full"><span class="label">Vous souhaitez <span class="req">*</span></span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="formule" value="classe" required><span>Une classe découverte<small>3 à 5 jours, avec hébergement au Souleret</small></span></label>
+                  <label class="choice"><input type="radio" name="formule" value="journee"><span>Une journée à la ferme<small>sans hébergement</small></span></label>
+                  <label class="choice"><input type="radio" name="formule" value="demi"><span>Une demi-journée à la ferme<small>10h-12h ou 14h-16h</small></span></label>
+                  <label class="choice"><input type="radio" name="formule" value="ecole"><span>Une animation dans votre école<small>à la demi-journée</small></span></label>
+                  <label class="choice"><input type="radio" name="formule" value="petite"><span>Une animation petite enfance<small>0-3 ans, à la ferme ou chez vous</small></span></label>
+                </div>
+              </div>
+
+              <div class="field field--full" data-show-if="formule=classe"><span class="label">Durée du séjour <span class="req">*</span></span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="duree" value="3" required><span>3 jours<small>2 thématiques</small></span></label>
+                  <label class="choice"><input type="radio" name="duree" value="4"><span>4 jours<small>2 thématiques</small></span></label>
+                  <label class="choice"><input type="radio" name="duree" value="5"><span>5 jours<small>3 thématiques</small></span></label>
+                </div>
+              </div>
+              <div class="field field--full" data-show-if="formule=classe"><label for="semaines">Semaines souhaitées <span class="req">*</span></label><input id="semaines" name="semaines" type="text" required placeholder="Par exemple : deux semaines possibles en mai"><p class="hint">Donnez plusieurs possibilités si vous le pouvez.</p></div>
+              <div class="field field--full" data-show-if="formule=journee|demi|ecole|petite"><label for="date_souhaitee">Date ou période souhaitée <span class="req">*</span></label><input id="date_souhaitee" name="date_souhaitee" type="text" required placeholder="Une date précise, ou plusieurs possibilités"></div>
+
+              <div class="field field--full" data-show-if="formule=classe|journee|demi"><span class="label">Rubriques d’ateliers souhaitées</span>
+                <p class="hint">En classe découverte, la ferme (soins aux animaux, traite animée) est dans chaque programme.</p>
+                <div class="choices">
+                  <label class="choice" data-show-if="formule=journee|demi"><input type="checkbox" name="rubriques" value="ferme"><span>La ferme<small>soins aux animaux</small></span></label>
+                  <label class="choice"><input type="checkbox" name="rubriques" value="fournil"><span>Le fournil</span></label>
+                  <label class="choice"><input type="checkbox" name="rubriques" value="fromagerie"><span>La fromagerie</span></label>
+                  <label class="choice"><input type="checkbox" name="rubriques" value="jardin"><span>Biodiversité et jardin</span></label>
+                  <label class="choice"><input type="checkbox" name="rubriques" value="foret"><span>La forêt</span></label>
+                  <label class="choice"><input type="checkbox" name="rubriques" value="patrimoine"><span>Le patrimoine<small>cycles 2 et 3</small></span></label>
+                  <label class="choice" data-show-if="formule=classe"><input type="checkbox" name="rubriques" value="veillees"><span>Les veillées</span></label>
+                </div>
+              </div>
+
+              <div class="field field--full" data-show-if="formule=journee|demi"><span class="label">Traite animée</span>
+                <div class="choices">
+                  <label class="choice"><input type="checkbox" name="traite" value="oui"><span>Ajouter la traite animée, de 17h30 à 18h30<small>75 € pour 6 à 10 personnes ; à partir de 12, traite en observation</small></span></label>
+                </div>
+              </div>
+
+              <div class="field field--full" data-show-if="formule=classe"><span class="label">Options souhaitées <span class="muted small">(en supplément)</span></span>
+                <div class="choices">
+                  <label class="choice"><input type="checkbox" name="options" value="hiver"><span>Sorties de neige<small>raquettes, ski, chiens de traîneau…</small></span></label>
+                  <label class="choice"><input type="checkbox" name="options" value="ete"><span>Sorties d’été<small>VTT, escalade, canoë…</small></span></label>
+                  <label class="choice"><input type="checkbox" name="options" value="visites"><span>Visites guidées<small>réserve, fort Saint-Antoine…</small></span></label>
+                </div>
+              </div>
+
+              <div class="field field--full" data-show-if="formule=ecole"><span class="label">Séances souhaitées en classe</span>
+                <div class="choices">
+                  <label class="choice"><input type="checkbox" name="seances" value="animaux"><span>Les animaux de la ferme</span></label>
+                  <label class="choice"><input type="checkbox" name="seances" value="farine"><span>Le monde de la farine</span></label>
+                  <label class="choice"><input type="checkbox" name="seances" value="fromage"><span>L’univers du fromage</span></label>
+                  <label class="choice"><input type="checkbox" name="seances" value="insectes"><span>L’hôtel à insectes</span></label>
+                </div>
+              </div>
+
+              <div class="field field--full" data-show-if="formule=petite"><span class="label">Vous venez <span class="req">*</span></span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="public_pe" value="structure" required><span>Avec une structure<small>crèche, professionnel·les de la petite enfance</small></span></label>
+                  <label class="choice"><input type="radio" name="public_pe" value="familles"><span>En familles<small>4 familles minimum</small></span></label>
+                </div>
+              </div>
+              <div class="field field--full" data-show-if="formule=petite"><span class="label">Lieu <span class="req">*</span></span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="lieu_pe" value="ferme" required><span>À la ferme</span></label>
+                  <label class="choice"><input type="radio" name="lieu_pe" value="structure"><span>Dans notre structure<small>déplacement sur devis</small></span></label>
+                </div>
+              </div>
+              <div class="field field--full" data-show-if="formule=petite"><span class="label">Ateliers souhaités</span>
+                <div class="choices">
+                  <label class="choice"><input type="checkbox" name="ateliers_pe" value="animaux"><span>Découverte des animaux<small>toute l’année</small></span></label>
+                  <label class="choice"><input type="checkbox" name="ateliers_pe" value="fournil"><span>Le monde du fournil<small>le mardi et le jeudi</small></span></label>
+                  <label class="choice"><input type="checkbox" name="ateliers_pe" value="jardin"><span>Au jardin<small>de mai à octobre</small></span></label>
+                  <label class="choice"><input type="checkbox" name="ateliers_pe" value="prairies"><span>Dans les prairies<small>de mai à octobre</small></span></label>
+                  <label class="choice"><input type="checkbox" name="ateliers_pe" value="foret"><span>En forêt<small>de mai à octobre</small></span></label>
+                </div>
+              </div>
+
+              <div class="field field--full" data-label="Projet de classe"><label for="projet">Votre projet de classe <span class="muted small">(facultatif)</span></label><textarea id="projet" name="projet" rows="4" placeholder="Le thème de l’année, ce que vous aimeriez que vos élèves vivent et apprennent à la ferme…"></textarea></div>
+
+              <div class="field field--full" data-show-if="formule=classe"><span class="label">Aide de la Région</span>
+                <div class="choices">
+                  <label class="choice"><input type="checkbox" name="region" value="oui"><span>Nous comptons demander l’aide de la Région<small>dispositif « Classes environnement »</small></span></label>
+                  <label class="choice"><input type="checkbox" name="rep" value="oui"><span>Notre école est en REP, REP+, ZFRR ou ZFRR+</span></label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" data-short="Vos questions">
+            <legend>Vos questions</legend>
+            <div class="fields">
+              <div class="field field--full" data-label="Questions"><label for="questions">Vos questions, vos contraintes <span class="muted small">(facultatif)</span></label><textarea id="questions" name="questions" rows="5" placeholder="Transport, horaires d’arrivée, tarif des accompagnateurs, budget…"></textarea></div>
+              <div class="field field--full"><span class="label">Vous préférez une réponse</span>
+                <div class="choices">
+                  <label class="choice"><input type="radio" name="reponse" value="email" checked><span>Par e-mail</span></label>
+                  <label class="choice"><input type="radio" name="reponse" value="telephone"><span>Par téléphone<small>pensez à laisser votre numéro</small></span></label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <p class="consent">Vos informations servent uniquement à traiter votre demande. Elles ne sont ni revendues ni utilisées pour de la publicité.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 · Questions fréquentes -->
+  <section class="section" id="faq" aria-labelledby="t-faq">
+    <div class="wrap faq-wrap">
+      <p class="kicker"><b>09</b> Questions fréquentes</p>
+      <h2 id="t-faq">Les questions des enseignant·es.</h2>
+      <div class="faq" style="margin-top:28px">
+        <details>
+          <summary>Que comprend le prix d’une classe découverte ?</summary>
+          <div><p>La pension complète au Chalet du Souleret et l’encadrement des temps pédagogiques, à raison d’un·e animateur·rice par classe. Une veillée est comprise dès 3 jours. Nous fournissons le matériel pédagogique pour les temps en autonomie et pour les veillées en autonomie, qui sont gratuites.</p><p>S’y ajoutent l’adhésion de la classe à l’association (forfait de 50 € d’après notre grille 2026-2027) et, si vous les choisissez, les sorties de plein air, les visites et le transport.</p></div>
+        </details>
+        <details>
+          <summary>Quel est le tarif des adultes accompagnateurs ?</summary>
+          <div><p>Il n’est pas publié : il est à voir avec l’équipe. Indiquez le nombre d’adultes dans votre pré-réservation, pour qu’elle puisse vous répondre du premier coup.</p></div>
+        </details>
+        <details>
+          <summary>Comment fonctionne l’aide de la Région ?</summary>
+          <div><p>Depuis 2017, nous participons au dispositif « Classes environnement » de la Région Bourgogne-Franche-Comté : 15 € par jour et par enfant sur les 3 premiers jours (avec nuitées), ou 25 € par jour et par enfant si votre école est en REP, REP+, ZFRR ou ZFRR+. Ces écoles sont prioritaires pour la demander. Cochez la case dans votre pré-réservation et parlons-en ensemble.</p></div>
+        </details>
+        <details>
+          <summary>Qui encadre les élèves pendant les ateliers ?</summary>
+          <div><p>Nos animateur·rices encadrent la moitié de la classe ; l’autre moitié travaille en autonomie, sous la responsabilité de l’enseignant·e, avec le matériel que nous fournissons. « Deux éducatrices à l’environnement encadrent les animations. » Les sorties de plein air sont encadrées par des moniteurs brevetés d’État.</p></div>
+        </details>
+        <details>
+          <summary>Combien de thématiques peut-on choisir ?</summary>
+          <div><p>Pour 3 ou 4 jours, 2 thématiques ; pour 5 jours, 3 thématiques, dont une sur une seule séance. La thématique « ferme », avec les soins aux animaux et la traite animée, est dans chaque planning.</p></div>
+        </details>
+        <details>
+          <summary>Nous venons à deux classes : est-ce possible ?</summary>
+          <div><p>Oui. Une classe forme 2 groupes ; un séjour à deux classes, 3 ou 4 groupes. Le Chalet du Souleret compte 62 places, enfants et adultes confondus.</p></div>
+        </details>
+        <details>
+          <summary>Et pour un collège ou un lycée ?</summary>
+          <div><p>Le tarif collège et lycée part de 48 € par jour et par jeune (moins de 16 ans). Notre brochure d’ateliers est pensée pour les cycles 1 à 3 : pour vos élèves, le programme se construit avec l’équipe, selon leur âge et votre projet.</p></div>
+        </details>
+        <details>
+          <summary>Les élèves participent-ils à la vie du chalet ?</summary>
+          <div><p>Oui, c’est l’accueil participatif : les enfants mettent la table, débarrassent, font la vaisselle et nettoient la salle après le repas. Nous vous envoyons avant le séjour un planning pour répartir les tâches.</p></div>
+        </details>
+        <details>
+          <summary>Le centre est-il agréé ?</summary>
+          <div><p>Oui : la Batailleuse est un « centre agréé par Jeunesse &amp; Sport et Éducation Nationale ».</p></div>
+        </details>
+        <details>
+          <summary>Quelles semaines sont encore libres ?</summary>
+          <div><p>Indiquez plusieurs semaines possibles dans votre pré-réservation : l’équipe regarde ce qui est possible et vous répond. Le planning d’occupation du chalet est aussi consultable sur la page <a href="chalet.html#disponibilites">Le chalet</a>.</p></div>
+        </details>
+        <details>
+          <summary>Pour une journée, toute la classe peut-elle participer à la traite ?</summary>
+          <div><p>La traite animée, de 17h30 à 18h30, se fait avec un groupe de 6 à 10 personnes (75 €). À partir de 12 personnes, la traite se fait en observation.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--sapin section--tight" aria-labelledby="t-appel">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <p class="kicker">Ambre et Laura, co-responsables pédagogiques</p>
+          <h2 id="t-appel">Votre classe à la Bata, on en parle ?</h2>
+          <p class="lead">Envoyez votre pré-réservation : vos semaines, votre effectif et vos envies arrivent en une fois à l’équipe d’animation. Ou écrivez à <a href="mailto:animation@claj-batailleuse.fr">animation@claj-batailleuse.fr</a>.</p>
+        </div>
+        <a class="btn btn--light" href="#demande">Pré-réserver ma classe</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="img/logo.png" alt="Logo du CLAJ la Batailleuse" width="64" height="99" loading="lazy">
+        <p>Le CLAJ de Franche-Comté, association d’éducation populaire autogérée, fait vivre la ferme de la Batailleuse et le Chalet du Souleret à Rochejean.</p>
+      </div>
+      <div>
+        <h2>Nous trouver</h2>
+        <ul>
+          <li><b>Ferme de la Batailleuse</b><br>Route de la Batailleuse, 25370 Rochejean</li>
+          <li><b>Chalet du Souleret</b><br>16 rue de la Fontaine, 25370 Rochejean</li>
+          <li><a href="contact.html#acces">Plan d’accès</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Téléphones</h2>
+        <ul>
+          <li class="footer__phone"><b><a href="tel:+33381499115">03 81 49 91 15</a></b><span>Ferme et boutique</span></li>
+          <li class="footer__phone"><b><a href="tel:+33381499184">03 81 49 91 84</a></b><span>Chalet du Souleret</span></li>
+          <li class="footer__phone"><b><a href="tel:+33781424830">07 81 42 48 30</a></b><span>Fournil, commandes de pain</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Écrire</h2>
+        <ul>
+          <li><a href="mailto:animation@claj-batailleuse.fr">animation@</a> classes, colos, animations</li>
+          <li><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a> Chalet du Souleret</li>
+          <li><a href="mailto:ferme@claj-batailleuse.fr">ferme@</a> ferme et fournil</li>
+          <li><a href="mailto:facturation@claj-batailleuse.fr">facturation@</a> factures</li>
+          <li><a href="mailto:contact@claj-batailleuse.fr">contact@</a> tout le reste</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
+      <span><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a></span>
+      <span>Maquette proposée par Primo, Montperreux · septembre 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Estimation du budget d'une classe découverte : prix « à partir de » publiés
+     (43 / 47 / 48 € par jour et par enfant), adhésion classe 50 €, aide Région
+     15 € (ou 25 € en REP, REP+, ZFRR, ZFRR+) par jour et par enfant sur 3 jours. */
+  (function () {
+    var box = document.getElementById("budget");
+    if (!box) return;
+    var out = box.querySelector("[data-budget-out]");
+    function eur(n) { return n.toLocaleString("fr-FR") + " €"; }
+    function update() {
+      var prix = +box.querySelector("#b-niveau").value;
+      var eleves = Math.max(0, parseInt(box.querySelector("#b-eleves").value, 10) || 0);
+      var jours = +box.querySelector("#b-jours").value;
+      var taux = box.querySelector("#b-rep").checked ? 25 : 15;
+      if (!eleves) { out.innerHTML = "<span>Indiquez le nombre d’élèves pour voir une estimation.</span>"; return; }
+      var sejour = prix * jours * eleves, aide = taux * 3 * eleves, reste = sejour + 50 - aide;
+      out.innerHTML = "<span>Séjour de " + jours + " jours pour " + eleves + " élève" + (eleves > 1 ? "s" : "") + ", à partir de</span>" +
+        "<strong>" + eur(sejour) + "</strong>" +
+        "<span>+ 50 € d’adhésion de la classe à l’association</span>" +
+        "<span>− " + eur(aide) + " d’aide de la Région, si elle vous est accordée (" + taux + " € × 3 jours × " + eleves + " élève" + (eleves > 1 ? "s" : "") + ")</span>" +
+        "<span>Soit à partir de <b>" + eur(reste) + "</b> pour la classe, aide déduite.</span>" +
+        (eleves > 62 ? "<span class=\"budget__warn\">Le chalet compte 62 places, enfants et adultes confondus : au-delà, parlons-en avec l’équipe.</span>" : "") +
+        "<span>Hors adultes accompagnateurs, plein air, visites et transport.</span>";
+    }
+    box.addEventListener("input", update);
+    box.addEventListener("change", update);
+    update();
+  })();
+</script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Venir à la ferme : horaires, visite libre, boutique et pain — La Batailleuse</title>
+<meta name="description" content="Horaires 2026-2027 de la ferme de la Batailleuse à Rochejean, visite libre sur adhésion (2 € la journée, gratuit pour les mineurs), boutique de la ferme, pain au levain bio à précommander et anniversaires à la ferme.">
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* Venir à la ferme : compléments de page (variables de style.css) */
+.statut__now { display: flex; align-items: center; gap: 16px; margin: 0 0 6px; font-size: clamp(1.7rem, 4.4vw, 2.9rem); }
+.statut__dot { width: 14px; height: 14px; border-radius: 50%; flex: none; background: #3E8A55; box-shadow: 0 0 0 6px rgba(62, 138, 85, .18); }
+body:has(.almanach__dot.is-closed) .statut__dot { background: #B08A7A; box-shadow: 0 0 0 6px rgba(176, 138, 122, .2); }
+.statut .figures { margin-top: clamp(24px, 4vw, 40px); }
+.period h3 small { display: block; margin-top: 4px; font: 700 .76rem var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); }
+.period li b { font-weight: 600; color: var(--ink); }
+.section--sapin .quote cite { color: var(--foin-soft); }
+.section--sapin .ticks li::before { border-color: var(--foin-soft); }
+.section--sapin .feature__img figcaption { color: #B9B09F; }
+.section--sapin .note { color: #D8CFBE; }
+.block { margin-top: clamp(40px, 6vw, 72px); }
+.block--sm { margin-top: clamp(24px, 3vw, 36px); }
+.feature .price { display: block; font-size: clamp(1.7rem, 3vw, 2.2rem); margin: 6px 0 18px; }
+table.prices thead tr + tr th { background: var(--paper); font-size: .74rem; }
+table.prices tbody th small { display: block; font-weight: 400; font-size: .86rem; color: var(--ink-mute); }
+table.prices .sep { border-left: 1px solid var(--line); }
+.card__body .meta b { min-width: 6em; }
+.aside .meta { margin-top: 10px; }
+.side-copy h2 { margin-bottom: .4em; }
+@media (min-width: 900px) { .side-copy { position: sticky; top: 100px; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "TouristAttraction"],
+  "@id": "https://primolo.github.io/vitrines/la-batailleuse/#ferme",
+  "name": "Ferme pédagogique La Batailleuse",
+  "url": "https://primolo.github.io/vitrines/la-batailleuse/visiter.html",
+  "description": "Ferme pédagogique et productive en agriculture biologique à Rochejean : visite libre sur adhésion, boutique en accès libre, pain au levain cuit au four à bois, anniversaires à la ferme.",
+  "telephone": "+33381499115",
+  "email": "ferme@claj-batailleuse.fr",
+  "address": { "@type": "PostalAddress", "streetAddress": "Route de la Batailleuse", "postalCode": "25370", "addressLocality": "Rochejean", "addressCountry": "FR" },
+  "image": "https://primolo.github.io/vitrines/la-batailleuse/img/alpage-contemplation.jpg",
+  "isAccessibleForFree": false,
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-01-05", "validThrough": "2026-02-07" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-02-06", "validThrough": "2026-03-07" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-03-08", "validThrough": "2026-04-03" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-04-03", "validThrough": "2026-04-18" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-04-19", "validThrough": "2026-07-03" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-07-04", "validThrough": "2026-08-29" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-08-30", "validThrough": "2026-10-17" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-10-17", "validThrough": "2026-10-31" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-11-02", "validThrough": "2026-12-19" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "16:30", "closes": "19:00", "validFrom": "2026-12-19", "validThrough": "2027-01-02" }
+  ],
+  "specialOpeningHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "opens": "00:00", "closes": "00:00", "validFrom": "2026-12-25", "validThrough": "2026-12-25" },
+    { "@type": "OpeningHoursSpecification", "opens": "00:00", "closes": "00:00", "validFrom": "2027-01-01", "validThrough": "2027-01-01" }
+  ],
+  "makesOffer": [
+    { "@type": "Offer", "name": "Adhésion à la journée (visite libre, adulte de plus de 18 ans)", "price": "2", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Adhésion à l'année (adulte de plus de 18 ans)", "price": "10", "priceCurrency": "EUR" },
+    { "@type": "Offer", "name": "Anniversaire à la ferme (à partir de 8 enfants, 10 € par enfant supplémentaire)", "price": "110", "priceCurrency": "EUR" }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="mockup-note">Maquette proposée à la Batailleuse. Tous les contenus viennent de votre site actuel.</p>
+
+<div class="almanach" data-almanach aria-live="polite">
+  <div class="wrap">Ferme ouverte de 16h30 à 19h selon la période · <a href="visiter.html#horaires">Tous les horaires</a></div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="La Batailleuse, accueil">
+      <img class="brand__mark" src="img/logo.png" alt="" width="30" height="46">
+      <span><span class="brand__name">la <i>Batailleuse</i></span><span class="brand__sub">Ferme pédagogique · Rochejean</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <button class="menu-toggle nav__close" type="button" aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <ul>
+        <li><a href="collectif.html">La ferme</a></li>
+        <li><a href="ecoles.html">Écoles &amp; groupes</a></li>
+        <li><a href="colos.html">Colos</a></li>
+        <li><a href="chalet.html">Le chalet</a></li>
+        <li><a href="visiter.html" aria-current="page">Venir à la ferme</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn--small" href="contact.html#demande">Faire une demande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="hero hero--short" aria-labelledby="titre">
+    <div class="hero__img"><img src="img/alpage-contemplation.jpg" alt="Des vaches rousses et blanches broutent le long d’un muret de pierres sèches, devant une forêt de sapins ; un homme en bob est assis de dos sur le muret." width="1920" height="1279" fetchpriority="high"></div>
+    <div class="wrap">
+      <p class="kicker">Venir à la ferme · Rochejean</p>
+      <h1 id="titre">Passer à la Bata en fin de journée.</h1>
+      <p class="lead">Visite libre, boutique, lait à l’heure de la traite, pain au levain du fournil, anniversaires : tout ce qu’il faut savoir avant de venir, et de quoi commander sans téléphoner.</p>
+      <div class="hero__actions">
+        <a class="btn btn--light" href="#horaires">Horaires et tarifs</a>
+        <a class="btn btn--ghost" style="color:#FFF8EE;border-color:#FFF8EE" href="#precommande">Précommander son pain</a>
+      </div>
+    </div>
+    <p class="hero__credit">Photo : Florian Houdelot</p>
+  </section>
+
+  <section class="section section--tight section--alt statut" aria-labelledby="t-statut">
+    <div class="wrap">
+      <p class="kicker">Aujourd’hui à la Bata</p>
+      <h2 class="statut__now" id="t-statut"><span class="statut__dot" aria-hidden="true"></span><span data-open-status>Ferme ouverte de 16h30 à 19h, selon la période</span></h2>
+      <p class="muted" style="margin:0"><a class="link-arrow" href="#horaires">Voir les trois périodes et toutes les dates</a></p>
+      <div class="figures">
+        <div class="figure reveal"><strong>16h30</strong><span>l’accueil ouvre, jusqu’à 19h, les jours d’ouverture</span></div>
+        <div class="figure reveal"><strong>17h45</strong><span>la traite des vaches : le lait frais se vend jusqu’à 18h15</span></div>
+        <div class="figure reveal"><strong>2&nbsp;€</strong><span>l’adhésion à la journée pour un adulte, gratuit pour les mineurs</span></div>
+        <div class="figure reveal"><strong>3</strong><span>fournées par semaine au fournil : lundi, mercredi, vendredi</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="horaires" aria-labelledby="t-horaires">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>01</b> Horaires 2026-2027</p>
+          <h2 id="t-horaires">De 16h30 à 19h, selon la période.</h2>
+        </div>
+        <p class="lead">Trois rythmes dans l’année, calés sur les vacances scolaires. La période en cours est signalée, les dates passées sont barrées.</p>
+      </div>
+
+      <div class="periods">
+        <div class="period reveal">
+          <h3>Période haute <small>vacances scolaires</small></h3>
+          <p class="days">Du mardi au samedi</p>
+          <ul>
+            <li data-from="2026-02-06" data-to="2026-03-07"><b>Hiver</b> : du 6 février au 7 mars 2026</li>
+            <li data-from="2026-04-03" data-to="2026-04-18"><b>Pâques</b> : du 3 au 18 avril 2026</li>
+            <li data-from="2026-07-04" data-to="2026-08-29"><b>Été</b> : du 4 juillet au 29 août 2026</li>
+            <li data-from="2026-10-17" data-to="2026-10-31"><b>Toussaint</b> : du 17 au 31 octobre 2026</li>
+            <li data-from="2026-12-19" data-to="2027-01-02"><b>Noël</b> : du 19 décembre 2026 au 2 janvier 2027</li>
+          </ul>
+        </div>
+        <div class="period reveal">
+          <h3>Période moyenne <small>entre les vacances</small></h3>
+          <p class="days">Mercredi, vendredi et samedi</p>
+          <ul>
+            <li data-from="2026-03-08" data-to="2026-04-03">du 8 mars au 3 avril 2026</li>
+            <li data-from="2026-04-19" data-to="2026-07-03">du 19 avril au 3 juillet 2026</li>
+            <li data-from="2026-08-30" data-to="2026-10-17">du 30 août au 17 octobre 2026</li>
+          </ul>
+        </div>
+        <div class="period reveal">
+          <h3>Période basse <small>de novembre à février, hors vacances</small></h3>
+          <p class="days">Le mercredi</p>
+          <ul>
+            <li data-from="2026-01-05" data-to="2026-02-07">du 5 janvier au 7 février 2026</li>
+            <li data-from="2026-11-02" data-to="2026-12-19">du 2 novembre au 19 décembre 2026</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid--3 block--sm">
+        <div class="aside aside--bordeaux reveal">
+          <h3>Fermetures exceptionnelles</h3>
+          <p>Le vendredi 25 décembre 2026 et le vendredi 1er janvier 2027. L’accueil n’a jamais lieu le dimanche ni le lundi.</p>
+        </div>
+        <div class="aside reveal">
+          <h3>La traite, de 17h45 à 18h15</h3>
+          <p>C’est le seul moment où nous vendons le lait de vache, les jours d’ouverture.</p>
+        </div>
+        <div class="aside reveal">
+          <h3>Et après le 2 janvier 2027 ?</h3>
+          <p>Les horaires de 2027 ne sont pas encore publiés. Une fermeture imprévue, un jour de neige : l’info du jour s’affiche dans le bandeau en haut de chaque page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--sapin" id="visite" aria-labelledby="t-visite">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>02</b> Visite libre et adhésion</p>
+          <h2 id="t-visite">Depuis le 1er avril 2026, la visite passe par l’adhésion.</h2>
+        </div>
+        <p class="lead">Pendant l’accueil, vous faites le tour de la ferme à votre rythme : les chèvres, les vaches, les cochons, les lapins, les poules et le fournil. Avant, la visite était à prix libre.</p>
+      </div>
+
+      <div class="figures">
+        <div class="figure reveal"><strong>2&nbsp;€</strong><span>par adulte (plus de 18 ans), l’adhésion à la journée</span></div>
+        <div class="figure reveal"><strong>10&nbsp;€</strong><span>par adulte (plus de 18 ans), l’adhésion à l’année</span></div>
+        <div class="figure reveal"><strong>Gratuit</strong><span>pour les mineurs : ils n’ont pas besoin d’adhérer</span></div>
+        <div class="figure reveal"><strong>Libre</strong><span>l’accès à la boutique, gratuit pour tout le monde</span></div>
+      </div>
+
+      <div class="feature block">
+        <figure class="feature__img reveal">
+          <img src="img/sortie-chevres.jpg" alt="Des enfants et des adultes, de dos, accompagnent le troupeau à travers le pré, face à une colline couverte de sapins, dans la lumière d’automne." width="1200" height="800" loading="lazy">
+          <figcaption>Au pré avec le troupeau. Photo : Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <blockquote class="quote">
+            <p>« La visite libre demande du temps et de l’énergie. »</p>
+            <cite>L’équipe de la Batailleuse</cite>
+          </blockquote>
+          <p style="margin-top:22px">Nous avons fait ce choix pour faire grandir la communauté autour de la Bata, faire rayonner le projet de l’association et reconnaître le travail d’accueil. Il tient aussi, disons-le franchement, à un « contexte économique tendu ».</p>
+          <h3 style="margin-top:28px">Ce que comprend l’adhésion</h3>
+          <ul class="ticks">
+            <li>La visite de la ferme pendant l’accueil : chèvres, vaches, cochons, lapins, poules et fournil.</li>
+            <li>À l’année, des réductions sur certains de nos évènements.</li>
+            <li>À l’année toujours, la lettre d’information de la ferme.</li>
+          </ul>
+          <p>Les adhésions se paient à la boutique. Celle à l’année se prend aussi en ligne.</p>
+          <div class="hero__actions" style="margin-top:18px">
+            <a class="btn btn--light" href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">Adhérer en ligne sur HelloAsso</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--sapin-deep)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section" id="boutique" aria-labelledby="t-boutique">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>03</b> La boutique</p>
+          <h2 id="t-boutique">Ce qui sort de la ferme, vendu à la ferme.</h2>
+        </div>
+        <p class="lead">La boutique vous attend aux heures d’ouverture. Son accès reste libre et gratuit : pas besoin d’adhérer pour faire vos courses.</p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card reveal">
+          <div class="card__img"><img src="img/fromagerie.jpg" alt="Une louche verse le caillé dans les faisselles, à la fromagerie de la ferme." width="1200" height="800" loading="lazy"></div>
+          <div class="card__body">
+            <span class="badge badge--ok">Fabriqués de mars à octobre</span>
+            <h3>Fromages de chèvre</h3>
+            <p>Crottins frais, demi-frais et secs, bûches cendrées, cœurs, tomme et faisselles. Le lait de nos chèvres est transformé tous les matins, de mars à octobre.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__img"><img src="img/vache-veau.jpg" alt="Une vache couchée dans la paille avec son veau nouveau-né." width="1200" height="800" loading="lazy"></div>
+          <div class="card__body">
+            <span class="badge badge--bientot">Lait de 17h45 à 18h15</span>
+            <h3>Lait, yaourts et faisselles</h3>
+            <p>Le lait de vache se vend seulement à l’heure de la traite, les jours d’ouverture. Yaourts et faisselles au lait de vache sont faits ici, à la ferme.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__img"><img src="img/coq.jpg" alt="Un coq au plumage roux en contre-jour devant la forêt." width="1200" height="900" loading="lazy"></div>
+          <div class="card__body">
+            <span class="badge">Vente directe</span>
+            <h3>Œufs</h3>
+            <p>Nos poules pondent pour la vente directe. Et au fournil, à deux pas : pains au levain, biscuits et crackers comté-graines.</p>
+            <div class="card__foot"><a class="link-arrow" href="#fournil">Le fournil</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid grid--2 block--sm">
+        <div class="aside reveal">
+          <h3>Et les fromages de nos vaches</h3>
+          <p>La plus grande partie de notre lait de vache part à la fruitière des Pontets, dont la ferme est coopératrice. Il y devient du Comté, du Morbier et, en hiver, du Mont d’Or bio. Nous en revendons à la boutique, avec du miel local, des bières du Jura et, selon la saison, de la charcuterie, des confitures et du pesto.</p>
+        </div>
+        <div class="aside aside--bordeaux reveal">
+          <h3>Bon à savoir</h3>
+          <ul class="meta">
+            <li><b>Paiement</b> La boutique accepte la Pive, la monnaie locale.</li>
+            <li><b>Bio</b> Certifiés par Ecocert depuis 1998 pour les chèvres, 2001 pour les vaches.</li>
+            <li><b>Ailleurs</b> Sur les marchés, à l’AMAP Rilchou de Pontarlier et dans quelques magasins bio de Pontarlier.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--alt" id="fournil" aria-labelledby="t-fournil">
+    <div class="wrap">
+      <div class="feature">
+        <figure class="feature__img reveal">
+          <img src="img/pains.jpg" alt="Des pains au levain du fournil, en boules et moulés, posés sur un plan de travail en inox." width="1200" height="949" loading="lazy">
+          <figcaption>Les pains du fournil, en boule ou moulés.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>04</b> Le fournil</p>
+          <h2 id="t-fournil">Du pain au levain, trois fournées par semaine.</h2>
+          <p class="lead">Des farines bio et régionales, du levain, un four à bois. Le pain du fournil est certifié Agriculture biologique.</p>
+          <ul class="meta">
+            <li><b>Fournées</b> Le lundi, le mercredi et le vendredi.</li>
+            <li><b>Les pains</b> Nature (farine T80), aux graines (lin, tournesol torréfié), aux noix (IGP de Grenoble), blé sarrasin, pur seigle, engrain (petit épeautre).</li>
+            <li><b>Formats</b> Miche de 1 kg ou de 500 g, en boule ou moulée.</li>
+            <li><b>Brioches</b> Au levain, sur la fournée du vendredi.</li>
+            <li><b>Biscuits</b> Noisette, amande, noix, cookies chocolat-raisin, en vrac ou en sachet de 250 g. Crackers comté-graines, en vrac ou en sachet de 150 g.</li>
+            <li><b>Commander</b> La veille avant 17h, au <a href="tel:+33781424830">07 81 42 48 30</a> ou <a href="#precommande">en ligne</a>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="table-wrap reveal">
+          <table class="prices">
+            <caption>Prix des contrats pain 2026<small>Prix par pain. Vous choisissez votre tarif, « juste » ou « solidaire », sur le contrat.</small></caption>
+            <thead>
+              <tr><th scope="col" rowspan="2">Pain</th><th scope="colgroup" colspan="2" class="n sep">Miche de 1 kg</th><th scope="colgroup" colspan="2" class="n sep">Miche de 500 g</th></tr>
+              <tr><th scope="col" class="n sep">Juste</th><th scope="col" class="n">Solidaire</th><th scope="col" class="n sep">Juste</th><th scope="col" class="n">Solidaire</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Nature<small>farine de blé T80</small></th><td class="n sep">5,10&nbsp;€</td><td class="n">6,20&nbsp;€</td><td class="n sep">2,80&nbsp;€</td><td class="n">3,40&nbsp;€</td></tr>
+              <tr><th scope="row">Aux graines<small>lin, tournesol</small></th><td class="n sep">6,20&nbsp;€</td><td class="n">7,50&nbsp;€</td><td class="n sep">3,30&nbsp;€</td><td class="n">4,00&nbsp;€</td></tr>
+              <tr><th scope="row">Blé sarrasin</th><td class="n sep">6,20&nbsp;€</td><td class="n">7,50&nbsp;€</td><td class="n sep">3,30&nbsp;€</td><td class="n">4,00&nbsp;€</td></tr>
+              <tr><th scope="row">Seigle</th><td class="n sep">6,20&nbsp;€</td><td class="n">7,50&nbsp;€</td><td class="n sep">3,30&nbsp;€</td><td class="n">4,00&nbsp;€</td></tr>
+              <tr><th scope="row">Engrain<small>petit épeautre</small></th><td class="n sep">7,80&nbsp;€</td><td class="n">9,40&nbsp;€</td><td class="n sep">3,90&nbsp;€</td><td class="n">4,70&nbsp;€</td></tr>
+              <tr><th scope="row">Aux noix<small>en 500 g seulement</small></th><td class="n sep">—</td><td class="n">—</td><td class="n sep">5,20&nbsp;€</td><td class="n">6,30&nbsp;€</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Brioche au levain de 450 g, le vendredi : 5,60 € au tarif juste, 6,80 € au tarif solidaire. Le contrat de septembre à décembre reprend les mêmes prix, sans les brioches. Le prix du pain acheté hors contrat se voit avec les boulanger·es.</p>
+      </div>
+
+      <div class="grid grid--3 block--sm">
+        <div class="aside reveal">
+          <h3>Juste ou solidaire ?</h3>
+          <p>Depuis le 1er janvier 2026, les contrats pain ont deux tarifs. Le tarif « juste » correspond au prix actuel du pain. Le tarif « solidaire » est le prix juste « + 20% », arrondi aux 10 centimes supérieurs. C’est vous qui choisissez, en l’entourant sur votre contrat.</p>
+        </div>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--ok" data-until="2026-12-31" data-past-text="Terminé">Valable en 2026</span>
+            <h3>Contrat mensuel</h3>
+            <p>Pour le lundi, le mercredi et/ou le vendredi, au mois. Les brioches se commandent sur la fournée du vendredi.</p>
+            <div class="card__foot"><a class="link-arrow" href="https://claj-batailleuse.fr/wp-content/uploads/2025/12/Contrat-pain-Mensuel-2026.pdf" rel="noopener">Le contrat (PDF)</a></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--ok" data-until="2026-12-30" data-past-text="Terminé">En cours</span>
+            <h3>Contrat de septembre à décembre</h3>
+            <p>Pour le pain du mercredi seulement, du 2 septembre au 30 décembre 2026. Pour le rejoindre en cours de route, voyez avec les boulanger·es.</p>
+            <div class="card__foot"><a class="link-arrow" href="https://claj-batailleuse.fr/wp-content/uploads/2026/06/Contrat-pain-Semestriel-Septembre-Decembre-2026.pdf" rel="noopener">Le contrat (PDF)</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid grid--2 block--sm">
+        <div class="reveal">
+          <h3>Souscrire un contrat</h3>
+          <p>Remplissez le contrat, en PDF à imprimer ou en tableur, et envoyez-le à <a href="mailto:ferme@claj-batailleuse.fr">ferme@claj-batailleuse.fr</a>. Les documents sont aussi disponibles au fournil. Vous réglez par chèques à l’ordre du CLAJ, un par mois, tous remis à la signature et débités en fin de mois. Pour changer une quantité, prévenez au moins 24 h à l’avance.</p>
+        </div>
+        <div class="reveal">
+          <h3>Retirer son pain</h3>
+          <p>Le pain des contrats se récupère au fournil de la Batailleuse, à partir de 17h. Si la fournée sort plus tard, les boulanger·es vous préviennent par SMS.</p>
+        </div>
+      </div>
+
+      <div class="grid grid--2 block" style="align-items:start">
+        <div class="side-copy reveal">
+          <p class="kicker">Sans contrat</p>
+          <h2>Précommander son pain</h2>
+          <p class="lead">Pour une fournée, un pain ou dix : dites-nous lesquels, et le fournil vous les met de côté.</p>
+          <ul class="ticks">
+            <li>Fournées le lundi, le mercredi et le vendredi.</li>
+            <li>Commande la veille avant 17h.</li>
+            <li>Brioches au levain sur la fournée du vendredi.</li>
+            <li>Un doute, un changement : <a href="tel:+33781424830">07 81 42 48 30</a>.</li>
+          </ul>
+          <div class="aside aside--bordeaux" style="margin-top:24px">
+            <p>Sur le vrai site, la précommande se fermerait toute seule la veille à 17h, et les boulanger·es recevraient chaque soir le récapitulatif de la fournée suivante, sans décrocher pendant le pétrissage.</p>
+          </div>
+        </div>
+        <div>
+          <form class="demande" id="precommande" novalidate
+                data-to="ferme@claj-batailleuse.fr"
+                data-subject="Précommande de pain — {date_fournee} — {nom}"
+                data-submit="Envoyer ma précommande">
+            <div class="demande__head"><h3>Précommander son pain</h3><p>Votre commande part au fournil, à ferme@claj-batailleuse.fr. Pensez-y la veille avant 17h.</p></div>
+
+            <fieldset class="step" data-short="La fournée">
+              <legend>Pour quelle fournée ?</legend>
+              <div class="fields">
+                <div class="field field--full"><span class="label">Jour de fournée <span class="req">*</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="fournee" value="lundi" required><span>Lundi</span></label>
+                    <label class="choice"><input type="radio" name="fournee" value="mercredi" required><span>Mercredi</span></label>
+                    <label class="choice"><input type="radio" name="fournee" value="vendredi" required><span>Vendredi<small>avec les brioches au levain</small></span></label>
+                  </div>
+                </div>
+                <div class="field field--full"><label for="date_fournee">Date de la fournée <span class="req">*</span></label>
+                  <input id="date_fournee" name="date_fournee" type="date" min="2026-09-26" required>
+                  <p class="hint">Un lundi, un mercredi ou un vendredi. Commande la veille avant 17h.</p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-short="Les pains">
+              <legend>Vos pains</legend>
+              <div class="fields">
+                <div class="field field--full"><span class="label">Quels pains ?</span>
+                  <div class="choices">
+                    <label class="choice"><input type="checkbox" name="pains" value="nature"><span>Nature<small>farine T80</small></span></label>
+                    <label class="choice"><input type="checkbox" name="pains" value="graines"><span>Aux graines<small>lin, tournesol torréfié</small></span></label>
+                    <label class="choice"><input type="checkbox" name="pains" value="noix"><span>Aux noix<small>en 500 g</small></span></label>
+                    <label class="choice"><input type="checkbox" name="pains" value="sarrasin"><span>Blé sarrasin</span></label>
+                    <label class="choice"><input type="checkbox" name="pains" value="seigle"><span>Pur seigle</span></label>
+                    <label class="choice"><input type="checkbox" name="pains" value="engrain"><span>Engrain<small>petit épeautre</small></span></label>
+                  </div>
+                </div>
+                <div class="field" data-show-if="pains=nature"><label for="q_nature_1kg">Nature, miches de 1 kg</label><input id="q_nature_1kg" name="q_nature_1kg" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=nature"><label for="q_nature_500">Nature, miches de 500 g</label><input id="q_nature_500" name="q_nature_500" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=graines"><label for="q_graines_1kg">Aux graines, miches de 1 kg</label><input id="q_graines_1kg" name="q_graines_1kg" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=graines"><label for="q_graines_500">Aux graines, miches de 500 g</label><input id="q_graines_500" name="q_graines_500" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=noix"><label for="q_noix_500">Aux noix, miches de 500 g</label><input id="q_noix_500" name="q_noix_500" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=sarrasin"><label for="q_sarrasin_1kg">Blé sarrasin, miches de 1 kg</label><input id="q_sarrasin_1kg" name="q_sarrasin_1kg" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=sarrasin"><label for="q_sarrasin_500">Blé sarrasin, miches de 500 g</label><input id="q_sarrasin_500" name="q_sarrasin_500" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=seigle"><label for="q_seigle_1kg">Pur seigle, miches de 1 kg</label><input id="q_seigle_1kg" name="q_seigle_1kg" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=seigle"><label for="q_seigle_500">Pur seigle, miches de 500 g</label><input id="q_seigle_500" name="q_seigle_500" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=engrain"><label for="q_engrain_1kg">Engrain, miches de 1 kg</label><input id="q_engrain_1kg" name="q_engrain_1kg" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="pains=engrain"><label for="q_engrain_500">Engrain, miches de 500 g</label><input id="q_engrain_500" name="q_engrain_500" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field" data-show-if="fournee=vendredi"><label for="q_brioche">Brioches au levain de 450 g</label><input id="q_brioche" name="q_brioche" type="number" min="1" max="30" inputmode="numeric"></div>
+                <div class="field field--full"><span class="label">Forme</span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="forme" value="boule"><span>En boule</span></label>
+                    <label class="choice"><input type="radio" name="forme" value="moule"><span>Moulé</span></label>
+                    <label class="choice"><input type="radio" name="forme" value="egal"><span>Peu importe</span></label>
+                  </div>
+                </div>
+                <div class="field field--full"><label for="commande_texte">Ou écrivez simplement votre commande</label>
+                  <textarea id="commande_texte" name="commande_texte" placeholder="Par exemple : un nature de 1 kg et deux seigles de 500 g"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-short="Vous">
+              <legend>Vos coordonnées</legend>
+              <div class="fields">
+                <div class="field"><label for="nom">Nom et prénom <span class="req">*</span></label><input id="nom" name="nom" type="text" required autocomplete="name"></div>
+                <div class="field"><label for="tel">Téléphone <span class="req">*</span></label><input id="tel" name="tel" type="tel" required autocomplete="tel"></div>
+                <div class="field field--full"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email">
+                  <p class="hint">Le pain se retire au fournil de la Batailleuse.</p>
+                </div>
+              </div>
+            </fieldset>
+            <p class="consent">Vos informations servent uniquement à traiter votre demande. Elles ne sont ni revendues ni utilisées pour de la publicité.</p>
+          </form>
+        </div>
+      </div>
+
+      <div class="cta-band block reveal" style="padding-top:clamp(32px,5vw,56px);border-top:1px solid var(--line-strong)">
+        <div>
+          <p class="kicker">Pendant les vacances scolaires</p>
+          <h2>Les pizzas du fournil</h2>
+          <p class="lead">Le fournil se chauffe pendant les vacances scolaires pour des pizzas bio à emporter, cuites au four à bois. Prochaines vacances : la Toussaint, du 17 au 31 octobre. Les jours de vente sont annoncés dans l’agenda.</p>
+        </div>
+        <a class="btn btn--sapin" href="index.html#t-agenda">Voir l’agenda</a>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section" id="anniversaire" aria-labelledby="t-anniv">
+    <div class="wrap">
+      <div class="feature feature--reverse">
+        <figure class="feature__img reveal">
+          <img src="img/lapin-paille.jpg" alt="Un lapin blotti dans la paille contre les jambes d’un enfant en ciré rouge." width="1200" height="800" loading="lazy">
+          <figcaption>Soins aux animaux, dans la paille. Photo : Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>05</b> Anniversaire à la ferme</p>
+          <h2 id="t-anniv">Fêter son anniversaire avec les animaux.</h2>
+          <p class="lead">« Un après-midi plein de surprises avec soin des animaux » : les chèvres, les vaches, les lapins, les cochons et les poules, avec nos animateur·rices. Puis le goûter, dans une salle prévue pour vous.</p>
+          <p class="price">110&nbsp;€ <small>pour 8 enfants, puis 10 € par enfant en plus</small></p>
+          <ul class="meta">
+            <li><b>Quand</b> Le mercredi ou le samedi en période scolaire, en semaine pendant les vacances.</li>
+            <li><b>Durée</b> Un après-midi.</li>
+            <li><b>Le goûter</b> Une salle est mise à votre disposition.</li>
+            <li><b>À caler ensemble</b> L’âge des enfants, l’horaire, le nombre d’enfants et l’organisation du goûter se voient avec l’équipe d’animation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid--2 block" style="align-items:start">
+        <div class="side-copy reveal">
+          <p class="kicker">Anniversaire, fournil, tout-petits</p>
+          <h2>Une seule demande, pour toutes les animations.</h2>
+          <p>Décrivez votre projet : l’équipe d’animation le reçoit complet, par mail, et revient vers vous pour caler la date et le déroulé.</p>
+          <ul class="ticks">
+            <li>Le fournil a un espace pour accueillir des groupes, enfants comme adultes, autour des pizzas et du pain brioché.</li>
+            <li>Pour les tout-petits (0-3 ans), en famille ou avec une crèche, il existe des animations petite enfance.</li>
+            <li>Une classe, une sortie scolaire ? Elles ont leur propre formulaire, sur la page <a href="ecoles.html#demande">Écoles &amp; groupes</a>.</li>
+          </ul>
+        </div>
+        <div>
+          <form class="demande" id="animation" novalidate
+                data-to="animation@claj-batailleuse.fr"
+                data-subject="Demande d’animation — {type} — {date_souhaitee} ({nb_enfants} enfants)"
+                data-submit="Envoyer ma demande">
+            <div class="demande__head"><h3>Demander un anniversaire ou une animation</h3><p>Votre demande part à l’équipe d’animation, qui vous recontacte pour confirmer la date.</p></div>
+
+            <fieldset class="step" data-short="Le projet">
+              <legend>Votre projet</legend>
+              <div class="fields">
+                <div class="field field--full"><span class="label">Type d’animation <span class="req">*</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="type" value="anniversaire" required><span>Anniversaire à la ferme<small>110 € pour 8 enfants, 10 € par enfant en plus</small></span></label>
+                    <label class="choice"><input type="radio" name="type" value="fournil" required><span>Atelier au fournil<small>pizzas ou pain brioché, en groupe</small></span></label>
+                    <label class="choice"><input type="radio" name="type" value="petite_enfance" required><span>Animation petite enfance<small>0-3 ans, en famille ou en structure</small></span></label>
+                    <label class="choice"><input type="radio" name="type" value="autre" required><span>Autre animation<small>vous la décrivez plus loin</small></span></label>
+                  </div>
+                </div>
+                <div class="field field--full" data-show-if="type=anniversaire"><label for="prenom_enfant">Prénom de l’enfant qui fête son anniversaire</label><input id="prenom_enfant" name="prenom_enfant" type="text" autocomplete="off"></div>
+                <div class="field field--full" data-show-if="type=fournil|petite_enfance|autre"><label for="structure">Structure ou groupe</label><input id="structure" name="structure" type="text" autocomplete="organization" placeholder="Crèche, association, famille…"></div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-short="La date">
+              <legend>Date et participant·es</legend>
+              <div class="fields">
+                <div class="field"><label for="date_souhaitee">Date souhaitée <span class="req">*</span></label><input id="date_souhaitee" name="date_souhaitee" type="date" min="2026-09-25" required></div>
+                <div class="field"><label for="date_autre">Autre date possible</label><input id="date_autre" name="date_autre" type="date" min="2026-09-25"></div>
+                <p class="hint field--full" data-show-if="type=anniversaire">Les anniversaires ont lieu le mercredi ou le samedi en période scolaire, et en semaine pendant les vacances.</p>
+                <div class="field"><label for="nb_enfants">Nombre d’enfants <span class="req">*</span></label><input id="nb_enfants" name="nb_enfants" type="number" min="1" inputmode="numeric" required></div>
+                <div class="field"><label for="age">Âge des enfants <span class="req">*</span></label><input id="age" name="age" type="text" required placeholder="Par exemple : 6 et 7 ans"></div>
+                <div class="field"><label for="nb_adultes">Adultes présents</label><input id="nb_adultes" name="nb_adultes" type="number" min="0" inputmode="numeric"></div>
+                <div class="field field--full"><label for="allergies">Allergies, régimes, besoins particuliers</label><textarea id="allergies" name="allergies" placeholder="Une allergie, un enfant qui a besoin d’être accompagné…"></textarea></div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-short="Vos coordonnées">
+              <legend>Vos coordonnées</legend>
+              <div class="fields">
+                <div class="field"><label for="a_nom">Nom et prénom <span class="req">*</span></label><input id="a_nom" name="a_nom" type="text" required autocomplete="name"></div>
+                <div class="field"><label for="a_email">E-mail <span class="req">*</span></label><input id="a_email" name="a_email" type="email" required autocomplete="email"></div>
+                <div class="field"><label for="a_tel">Téléphone</label><input id="a_tel" name="a_tel" type="tel" autocomplete="tel"></div>
+                <div class="field field--full"><label for="a_message">Un mot pour l’équipe</label><textarea id="a_message" name="a_message"></textarea></div>
+              </div>
+            </fieldset>
+            <p class="consent">Vos informations servent uniquement à traiter votre demande. Elles ne sont ni revendues ni utilisées pour de la publicité.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--alt" id="pratique" aria-labelledby="t-pratique">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker">Infos pratiques</p>
+          <h2 id="t-pratique">Trouver la ferme, joindre la bonne personne.</h2>
+        </div>
+        <p class="lead">La ferme est route de la Batailleuse, à Rochejean. Le Chalet du Souleret, 16 rue de la Fontaine, est une autre adresse : c’est celle des séjours, pas de la visite.</p>
+      </div>
+      <div class="who">
+        <div class="who__row reveal">
+          <h3>Visite, boutique, lait et fromages</h3>
+          <p>La ferme de la Batailleuse<br>Route de la Batailleuse, 25370 Rochejean</p>
+          <p><a href="tel:+33381499115">03 81 49 91 15</a><br><a class="small" href="mailto:ferme@claj-batailleuse.fr">ferme@claj-batailleuse.fr</a></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Pain et contrats pain</h3>
+          <p>Le fournil, la veille avant 17h pour une commande</p>
+          <p><a href="tel:+33781424830">07 81 42 48 30</a><br><a class="small" href="#precommande">ou la précommande en ligne</a></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Anniversaires et animations</h3>
+          <p>L’équipe d’animation, par mail</p>
+          <p><a href="mailto:animation@claj-batailleuse.fr">animation@claj-batailleuse.fr</a><br><a class="small" href="#animation">ou le formulaire de demande</a></p>
+        </div>
+      </div>
+      <p style="margin-top:22px"><a class="link-arrow" href="contact.html#acces">Plan d’accès et tous les contacts</a></p>
+
+      <div class="faq block--sm">
+        <details>
+          <summary>Peut-on venir le dimanche ?</summary>
+          <div><p>Non. L’accueil a lieu du mardi au samedi pendant les vacances scolaires, le mercredi, le vendredi et le samedi entre les vacances, et le mercredi seulement de novembre à février. Toujours de 16h30 à 19h.</p></div>
+        </details>
+        <details>
+          <summary>Mes enfants doivent-ils adhérer ?</summary>
+          <div><p>Non. L’adhésion concerne les adultes de plus de 18 ans : pour les mineurs, l’accès est gratuit.</p></div>
+        </details>
+        <details>
+          <summary>Je viens seulement acheter du fromage ou du lait. Faut-il adhérer ?</summary>
+          <div><p>Non, la boutique reste en accès libre et gratuit, aux heures d’ouverture. Le lait de vache se vend de 17h45 à 18h15.</p></div>
+        </details>
+        <details>
+          <summary>Où payer l’adhésion ?</summary>
+          <div><p>À la boutique, pendant l’accueil. L’adhésion à l’année se prend aussi en ligne, sur <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a>.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="img/logo.png" alt="Logo du CLAJ la Batailleuse" width="64" height="99" loading="lazy">
+        <p>Le CLAJ de Franche-Comté, association d’éducation populaire autogérée, fait vivre la ferme de la Batailleuse et le Chalet du Souleret à Rochejean.</p>
+      </div>
+      <div>
+        <h2>Nous trouver</h2>
+        <ul>
+          <li><b>Ferme de la Batailleuse</b><br>Route de la Batailleuse, 25370 Rochejean</li>
+          <li><b>Chalet du Souleret</b><br>16 rue de la Fontaine, 25370 Rochejean</li>
+          <li><a href="contact.html#acces">Plan d’accès</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Téléphones</h2>
+        <ul>
+          <li class="footer__phone"><b><a href="tel:+33381499115">03 81 49 91 15</a></b><span>Ferme et boutique</span></li>
+          <li class="footer__phone"><b><a href="tel:+33381499184">03 81 49 91 84</a></b><span>Chalet du Souleret</span></li>
+          <li class="footer__phone"><b><a href="tel:+33781424830">07 81 42 48 30</a></b><span>Fournil, commandes de pain</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Écrire</h2>
+        <ul>
+          <li><a href="mailto:animation@claj-batailleuse.fr">animation@</a> classes, colos, animations</li>
+          <li><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a> Chalet du Souleret</li>
+          <li><a href="mailto:ferme@claj-batailleuse.fr">ferme@</a> ferme et fournil</li>
+          <li><a href="mailto:facturation@claj-batailleuse.fr">facturation@</a> factures</li>
+          <li><a href="mailto:contact@claj-batailleuse.fr">contact@</a> tout le reste</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
+      <span><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a></span>
+      <span>Maquette proposée par Primo, Montperreux · septembre 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Nous joindre — La Batailleuse, ferme pédagogique à Rochejean</title>
+<meta name="description" content="Qui contacter à la Batailleuse : la ferme, le Chalet du Souleret, le fournil, l’équipe d’animation ou la facturation. Un formulaire qui arrive à la bonne personne, les téléphones, les deux adresses et l’accès.">
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  #qui, #demande, #acces, #questions { scroll-margin-top: 88px; }
+  .contact-top { padding-bottom: clamp(40px, 6vw, 72px); }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .contact-top .actions { margin-bottom: 18px; }
+  .split { display: grid; gap: clamp(28px, 5vw, 56px); align-items: start; }
+  @media (min-width: 980px) {
+    .split--form { grid-template-columns: minmax(0, 1.35fr) minmax(0, .75fr); }
+    .split--faq { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  }
+  .stack { display: grid; gap: 18px; }
+  .links { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 2px; }
+  .links a { min-height: 40px; }
+  .demande .aside { background: var(--paper); padding: 14px 16px; }
+  .demande .aside p { margin: 0; font-size: .96rem; color: var(--ink-soft); }
+  .place img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 22px; }
+  .place .kicker { margin-bottom: .8em; }
+  .place h3 { margin-bottom: 8px; }
+  .place__addr { font-family: var(--serif); font-size: clamp(1.35rem, 2.4vw, 1.75rem); line-height: 1.25; color: #FFF8EE; margin: 0 0 12px; }
+  .place__tel { font-weight: 700; }
+  .place .btn { margin-top: 4px; }
+  .acces-note { margin-top: clamp(28px, 4vw, 44px); padding-top: 20px; border-top: 1px solid rgba(242, 234, 218, .22); font-size: .96rem; }
+  .acces-note p { margin: 0 0 6px; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Nous joindre — La Batailleuse",
+  "url": "https://primolo.github.io/vitrines/la-batailleuse/contact.html",
+  "about": {
+    "@type": "NGO",
+    "@id": "https://primolo.github.io/vitrines/la-batailleuse/#asso",
+    "name": "CLAJ de Franche-Comté — La Batailleuse",
+    "email": "contact@claj-batailleuse.fr",
+    "address": { "@type": "PostalAddress", "streetAddress": "Chalet le Souleret, 16 rue de la Fontaine", "postalCode": "25370", "addressLocality": "Rochejean", "addressCountry": "FR" },
+    "contactPoint": [
+      { "@type": "ContactPoint", "contactType": "Ferme : visite, boutique, lait et fromages", "telephone": "+33381499115", "email": "ferme@claj-batailleuse.fr", "availableLanguage": "French" },
+      { "@type": "ContactPoint", "contactType": "Chalet du Souleret : hébergement", "telephone": "+33381499184", "email": "hebergement@claj-batailleuse.fr", "availableLanguage": "French" },
+      { "@type": "ContactPoint", "contactType": "Fournil : commandes de pain", "telephone": "+33781424830", "availableLanguage": "French" },
+      { "@type": "ContactPoint", "contactType": "Équipe d’animation : classes, colos, anniversaires", "email": "animation@claj-batailleuse.fr", "availableLanguage": "French" },
+      { "@type": "ContactPoint", "contactType": "Facturation", "email": "facturation@claj-batailleuse.fr", "availableLanguage": "French" }
+    ],
+    "sameAs": ["https://www.facebook.com/claj.batailleuse/", "https://www.instagram.com/la_batailleuse/", "https://fr.linkedin.com/company/claj-la-batailleuse", "https://www.helloasso.com/associations/claj-de-franche-comte"]
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="mockup-note">Maquette proposée à la Batailleuse. Tous les contenus viennent de votre site actuel.</p>
+
+<div class="almanach" data-almanach aria-live="polite">
+  <div class="wrap">Ferme ouverte de 16h30 à 19h selon la période · <a href="visiter.html#horaires">Tous les horaires</a></div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="La Batailleuse, accueil">
+      <img class="brand__mark" src="img/logo.png" alt="" width="30" height="46">
+      <span><span class="brand__name">la <i>Batailleuse</i></span><span class="brand__sub">Ferme pédagogique · Rochejean</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <button class="menu-toggle nav__close" type="button" aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <ul>
+        <li><a href="collectif.html">La ferme</a></li>
+        <li><a href="ecoles.html">Écoles &amp; groupes</a></li>
+        <li><a href="colos.html">Colos</a></li>
+        <li><a href="chalet.html">Le chalet</a></li>
+        <li><a href="visiter.html">Venir à la ferme</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li><a class="btn btn--small" href="contact.html#demande">Faire une demande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="section contact-top" aria-labelledby="titre">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker">Contact · la Bata</p>
+          <h1 id="titre">Nous joindre</h1>
+        </div>
+        <p class="lead">Chaque sujet a son interlocuteur : la ferme, le chalet, le fournil, l’équipe d’animation ou la facturation. Le formulaire envoie votre message, déjà complet, à la personne qui s’occupe de votre demande.</p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="#demande">Écrire à l’équipe</a>
+        <a class="btn btn--ghost" href="#qui">Qui contacter pour quoi</a>
+        <a class="btn btn--ghost" href="#acces">Adresses et accès</a>
+      </div>
+      <p class="small muted"><span data-open-status>Ferme ouverte de 16h30 à 19h selon la période</span> · <a href="visiter.html#horaires">tous les horaires</a></p>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--alt" id="qui" aria-labelledby="t-qui">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>01</b> Qui contacter pour quoi</p>
+          <h2 id="t-qui">Le bon interlocuteur, du premier coup.</h2>
+        </div>
+        <p class="lead">Trois téléphones, cinq adresses : chaque demande a sa porte. Le numéro du chalet n’est pas celui de la ferme, et l’équipe d’animation se joint d’abord par écrit.</p>
+      </div>
+
+      <div class="who">
+        <div class="who__row reveal">
+          <h3>Visite, boutique, lait et fromages</h3>
+          <p>La ferme de la Batailleuse<br><span class="who__when">Vaches, chèvres et boutique. Lait en vente à la traite, de 17h45 à 18h15, les jours d’ouverture.</span></p>
+          <p><a href="tel:+33381499115">03 81 49 91 15</a><br><a href="mailto:ferme@claj-batailleuse.fr">ferme@claj-batailleuse.fr</a></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Classes, colos, anniversaires, animations</h3>
+          <p>L’équipe d’animation<br><span class="who__when">Pour les classes : Ambre et Laura, co-responsables pédagogiques. Au téléphone, en second choix : <a href="tel:+33381499184">03 81 49 91 84</a>, la ligne du chalet. L’animation n’a pas de ligne à elle.</span></p>
+          <p><a href="mailto:animation@claj-batailleuse.fr">animation@claj-batailleuse.fr</a><br><span class="small">ou les formulaires <a href="ecoles.html#demande">classes</a> · <a href="colos.html#demande">colos</a> · <a href="visiter.html#animation">anniversaires</a></span></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Séjour au Chalet du Souleret</h3>
+          <p>L’accueil du chalet<br><span class="who__when">Familles et groupes, 62 places.</span></p>
+          <p><a href="tel:+33381499184">03 81 49 91 84</a><br><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@claj-batailleuse.fr</a><br><a class="small" href="chalet.html#demande">ou le formulaire de devis</a></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Commander du pain</h3>
+          <p>Le fournil<br><span class="who__when">Commande la veille avant 17h. Fournées le lundi, le mercredi et le vendredi.</span></p>
+          <p><a href="tel:+33781424830">07 81 42 48 30</a><br><span class="small">Contrats pain : <a href="mailto:ferme@claj-batailleuse.fr">ferme@claj-batailleuse.fr</a></span><br><a class="small" href="visiter.html#precommande">ou la précommande en ligne</a></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Factures, attestations, reçus</h3>
+          <p>La facturation<br><span class="who__when">Séjours, colos, classes et animations.</span></p>
+          <p><a href="mailto:facturation@claj-batailleuse.fr">facturation@claj-batailleuse.fr</a></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Bénévolat et stages</h3>
+          <p>Le collectif<br><span class="who__when">Bénévolat : trois semaines minimum.</span></p>
+          <p><a href="collectif.html#benevolat">Proposer votre venue</a><br><span class="small">Une question : <a href="mailto:contact@claj-batailleuse.fr">contact@claj-batailleuse.fr</a></span></p>
+        </div>
+        <div class="who__row reveal">
+          <h3>Tout le reste</h3>
+          <p>L’association CLAJ de Franche-Comté<br><span class="who__when">Adhésion, vie de l’asso, toute autre question.</span></p>
+          <p><a href="mailto:contact@claj-batailleuse.fr">contact@claj-batailleuse.fr</a></p>
+        </div>
+      </div>
+
+      <div class="aside aside--bordeaux reveal" style="margin-top:28px">
+        <h3>Vous avez trouvé notre numéro sur un annuaire ?</h3>
+        <p>Plusieurs portails touristiques et annuaires affichent le 03 81 49 91 84 pour la ferme. C’est la ligne du chalet. Pour la visite, la boutique, le lait et les fromages, appelez la ferme au <a href="tel:+33381499115">03 81 49 91 15</a>.</p>
+      </div>
+      <p class="note">Sur le vrai site, chaque ligne afficherait ici ses heures de permanence, dès que l’équipe les aura fixées.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-ecrire">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>02</b> Écrire à l’équipe</p>
+          <h2 id="t-ecrire">Un seul formulaire, la bonne personne au bout.</h2>
+        </div>
+        <p class="lead">Pas besoin de connaître nos cinq adresses. Choisissez le sujet : votre message part directement dans la bonne boîte, avec ce qu’il faut pour vous répondre.</p>
+      </div>
+
+      <div class="split split--form">
+        <div>
+          <form class="demande" id="demande" novalidate
+                data-to="contact@claj-batailleuse.fr"
+                data-to-field="sujet"
+                data-to-map='{"classe":"animation@claj-batailleuse.fr","colo":"animation@claj-batailleuse.fr","anniversaire":"animation@claj-batailleuse.fr","chalet":"hebergement@claj-batailleuse.fr","visite":"ferme@claj-batailleuse.fr","boutique":"ferme@claj-batailleuse.fr","pain":"ferme@claj-batailleuse.fr","facture":"facturation@claj-batailleuse.fr","benevolat":"contact@claj-batailleuse.fr","autre":"contact@claj-batailleuse.fr"}'
+                data-subject="{sujet} — {nom}"
+                data-submit="Envoyer mon message">
+            <div class="demande__head">
+              <h3>Écrire à la Bata</h3>
+              <p>Trois étapes. Votre message arrive à la personne qui s’occupe du sujet choisi, pas sur une ligne commune.</p>
+            </div>
+
+            <fieldset class="step" data-short="Le sujet">
+              <legend>Votre demande concerne…</legend>
+              <div class="fields">
+                <div class="field field--full" data-label="Sujet">
+                  <span class="label">Choisissez ce qui correspond le mieux <span class="req">*</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="sujet" value="classe" required><span>Classe ou groupe<small>classe découverte, journée à la ferme, petite enfance</small></span></label>
+                    <label class="choice"><input type="radio" name="sujet" value="colo"><span>Colo<small>séjours de vacances pour enfants et ados</small></span></label>
+                    <label class="choice"><input type="radio" name="sujet" value="anniversaire"><span>Anniversaire à la ferme<small>mercredi ou samedi en période scolaire, en semaine pendant les vacances</small></span></label>
+                    <label class="choice"><input type="radio" name="sujet" value="chalet"><span>Séjour au chalet<small>familles et groupes, 62 places</small></span></label>
+                    <label class="choice"><input type="radio" name="sujet" value="visite"><span>Visite de la ferme<small>visite libre, horaires, adhésion</small></span></label>
+                    <label class="choice"><input type="radio" name="sujet" value="boutique"><span>Boutique et produits<small>fromages, lait, yaourts, œufs</small></span></label>
+                    <label class="choice"><input type="radio" name="sujet" value="pain"><span>Pain du fournil<small>commande, contrat pain</small></span></label>
+                    <label class="choice"><input type="radio" name="sujet" value="facture"><span>Facture ou attestation<small>factures, attestations, reçus</small></span></label>
+                    <label class="choice"><input type="radio" name="sujet" value="benevolat"><span>Bénévolat ou stage<small>bénévolat : trois semaines minimum</small></span></label>
+                    <label class="choice"><input type="radio" name="sujet" value="autre"><span>Autre demande<small>tout le reste</small></span></label>
+                  </div>
+                </div>
+                <div class="field field--full aside" data-show-if="sujet=classe">
+                  <p>Pour une classe ou un groupe, le formulaire dédié pose d’emblée les questions utiles à l’équipe d’animation. <a class="link-arrow" href="ecoles.html#demande">Formulaire Écoles et groupes</a></p>
+                </div>
+                <div class="field field--full aside" data-show-if="sujet=colo">
+                  <p>Pour inscrire un enfant, passez plutôt par le formulaire des colos. <a class="link-arrow" href="colos.html#demande">Formulaire des colos</a></p>
+                </div>
+                <div class="field field--full aside" data-show-if="sujet=anniversaire">
+                  <p>Les anniversaires ont lieu le mercredi ou le samedi en période scolaire, ou en semaine pendant les vacances. <a class="link-arrow" href="visiter.html#animation">Formulaire anniversaire</a></p>
+                </div>
+                <div class="field field--full aside" data-show-if="sujet=chalet">
+                  <p>Pour réserver, le formulaire du chalet prépare votre devis : dates, formule, nombre de personnes. <a class="link-arrow" href="chalet.html#demande">Formulaire de devis du chalet</a></p>
+                </div>
+                <div class="field field--full aside" data-show-if="sujet=visite">
+                  <p><span data-open-status>La ferme vous accueille de 16h30 à 19h selon la période</span>. <a class="link-arrow" href="visiter.html#horaires">Tous les horaires</a></p>
+                </div>
+                <div class="field field--full aside" data-show-if="sujet=pain">
+                  <p>Pour du pain le lendemain, appelez le fournil avant 17h au <a href="tel:+33781424830">07 81 42 48 30</a>. <a class="link-arrow" href="visiter.html#precommande">Précommande en ligne</a></p>
+                </div>
+                <div class="field field--full aside" data-show-if="sujet=benevolat">
+                  <p>La page du collectif présente le bénévolat et les stages, et comment proposer votre venue. <a class="link-arrow" href="collectif.html#benevolat">Proposer votre venue</a></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-short="Le message">
+              <legend>Votre message</legend>
+              <div class="fields">
+                <div class="field field--full">
+                  <label for="objet">Objet <span class="req">*</span></label>
+                  <input id="objet" name="objet" type="text" required maxlength="120">
+                </div>
+                <div class="field field--full">
+                  <label for="message">Message <span class="req">*</span></label>
+                  <p class="hint">Donnez-nous ce qu’il faut pour vous répondre en une fois : dates, nombre de personnes, âge des enfants…</p>
+                  <textarea id="message" name="message" required rows="6"></textarea>
+                </div>
+                <div class="field" data-label="Date concernée" data-show-if="sujet=classe|colo|anniversaire|chalet|visite|boutique|pain|benevolat|autre">
+                  <label for="date">Date concernée</label>
+                  <p class="hint">Facultatif</p>
+                  <input id="date" name="date" type="date" min="2026-09-25">
+                </div>
+                <div class="field field--full" data-label="Séjour ou activité concernés" data-show-if="sujet=facture">
+                  <label for="reference">Séjour ou activité concernés</label>
+                  <p class="hint">Facultatif : les dates et le nom sous lequel vous avez réservé.</p>
+                  <input id="reference" name="reference" type="text">
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-short="Vos coordonnées">
+              <legend>Vos coordonnées</legend>
+              <div class="fields">
+                <div class="field">
+                  <label for="nom">Nom et prénom <span class="req">*</span></label>
+                  <input id="nom" name="nom" type="text" required autocomplete="name">
+                </div>
+                <div class="field" data-label="Structure">
+                  <label for="structure">École, structure ou association</label>
+                  <p class="hint">Facultatif</p>
+                  <input id="structure" name="structure" type="text" autocomplete="organization">
+                </div>
+                <div class="field field--full">
+                  <label for="email">Email <span class="req">*</span></label>
+                  <input id="email" name="email" type="email" required autocomplete="email">
+                </div>
+                <div class="field field--full" data-label="Réponse souhaitée">
+                  <span class="label">Vous préférez une réponse <span class="req">*</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="reponse" value="email" required><span>Par email</span></label>
+                    <label class="choice"><input type="radio" name="reponse" value="telephone"><span>Par téléphone</span></label>
+                  </div>
+                </div>
+                <div class="field field--full" data-show-if="reponse=telephone">
+                  <label for="tel">Téléphone <span class="req">*</span></label>
+                  <input id="tel" name="tel" type="tel" required autocomplete="tel">
+                </div>
+              </div>
+            </fieldset>
+
+            <p class="consent">Vos informations servent uniquement à traiter votre demande. Elles ne sont ni revendues ni utilisées pour de la publicité.</p>
+          </form>
+        </div>
+
+        <div class="stack">
+          <div class="aside reveal">
+            <h3>Où part votre message</h3>
+            <ul class="ticks small">
+              <li>Classe, colo, anniversaire : l’équipe d’animation.</li>
+              <li>Séjour au chalet : l’accueil du Souleret.</li>
+              <li>Visite, boutique, pain : la ferme.</li>
+              <li>Facture, attestation : la facturation.</li>
+              <li>Bénévolat et tout le reste : l’association.</li>
+            </ul>
+          </div>
+          <div class="aside aside--bordeaux reveal">
+            <h3>Pour réserver, le formulaire dédié</h3>
+            <p class="small">Il pose d’emblée les questions utiles à l’équipe. Vous gagnez un aller-retour.</p>
+            <ul class="links">
+              <li><a class="link-arrow" href="ecoles.html#demande">Une classe ou un groupe</a></li>
+              <li><a class="link-arrow" href="colos.html#demande">Une colo</a></li>
+              <li><a class="link-arrow" href="chalet.html#demande">Un séjour au chalet</a></li>
+              <li><a class="link-arrow" href="visiter.html#animation">Un anniversaire</a></li>
+              <li><a class="link-arrow" href="visiter.html#precommande">Du pain</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--sapin" id="acces" aria-labelledby="t-acces">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="kicker"><b>03</b> Venir à la Bata</p>
+          <h2 id="t-acces">Deux adresses à Rochejean, à ne pas confondre.</h2>
+        </div>
+        <p class="lead">La ferme est au lieu-dit la Batailleuse, le chalet dans le village. Certains annuaires mélangent les deux : vérifiez où vous allez avant de prendre la route.</p>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="place reveal">
+          <img src="img/jardin.jpg" alt="Le jardin pédagogique et ses planches de légumes, avec les bâtiments de la ferme de la Batailleuse au fond." width="1200" height="900" loading="lazy">
+          <p class="kicker">Visite, boutique, fournil, anniversaires</p>
+          <h3>La ferme de la Batailleuse</h3>
+          <p class="place__addr">Route de la Batailleuse<br>25370 Rochejean</p>
+          <p>C’est ici qu’on visite la ferme, qu’on achète fromages, lait et pain, et qu’on fête les anniversaires.</p>
+          <p class="place__tel"><a href="tel:+33381499115">03 81 49 91 15</a> · <a href="mailto:ferme@claj-batailleuse.fr">ferme@claj-batailleuse.fr</a></p>
+          <a class="btn btn--light" href="https://www.openstreetmap.org/search?query=Route%20de%20la%20Batailleuse%2C%2025370%20Rochejean" rel="noopener">Voir la ferme sur la carte</a>
+        </div>
+        <div class="place reveal">
+          <img src="img/souleret-facade.jpg" alt="La façade rénovée du Chalet du Souleret, avec son balcon et son escalier en bois." width="1920" height="1440" loading="lazy">
+          <p class="kicker">Séjours, classes découvertes, courrier</p>
+          <h3>Le Chalet du Souleret</h3>
+          <p class="place__addr">16 rue de la Fontaine<br>25370 Rochejean</p>
+          <p>Dans le village. On y séjourne en famille, en groupe ou en classe découverte, et c’est l’adresse postale de l’association.</p>
+          <p class="place__tel"><a href="tel:+33381499184">03 81 49 91 84</a> · <a href="mailto:hebergement@claj-batailleuse.fr">hebergement@claj-batailleuse.fr</a></p>
+          <a class="btn btn--light" href="https://www.openstreetmap.org/search?query=16%20rue%20de%20la%20Fontaine%2C%2025370%20Rochejean" rel="noopener">Voir le chalet sur la carte</a>
+        </div>
+      </div>
+
+      <div class="acces-note">
+        <p><b>Par courrier</b> : Association C.L.A.J de Franche-Comté, Chalet le Souleret, 16 rue de la Fontaine, 25370 Rochejean.</p>
+        <p class="muted">En car ou en transports en commun, voyez l’itinéraire avec l’équipe en préparant votre séjour.</p>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--sapin-deep)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--alt" id="questions" aria-labelledby="t-faq">
+    <div class="wrap">
+      <div class="split split--faq">
+        <div>
+          <p class="kicker"><b>04</b> Questions fréquentes</p>
+          <h2 id="t-faq">Avant d’appeler, la réponse est peut-être là.</h2>
+          <p class="lead">Les questions pratiques qui reviennent, avec leurs réponses.</p>
+          <div class="aside aside--bordeaux" style="margin-top:24px">
+            <h3>Pas trouvé ?</h3>
+            <p>Écrivez-nous avec le <a href="#demande">formulaire</a>, sujet « Autre demande », ou à <a href="mailto:contact@claj-batailleuse.fr">contact@claj-batailleuse.fr</a>.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Et si je n’arrive pas à vous joindre par téléphone ?</summary>
+            <div>
+              <p>Nos lignes n’ont pas encore d’horaires de permanence publiés. Si vous ne nous joignez pas, écrivez-nous : votre message arrive directement à la personne qui s’occupe de votre demande.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Quels sont les horaires de la ferme ?</summary>
+            <div>
+              <p>Nous vous accueillons de 16h30 à 19h, mais pas tous les jours : du mardi au samedi pendant les vacances scolaires, le mercredi, le vendredi et le samedi de mars à début juillet et de fin août à mi-octobre, et le mercredi seulement de novembre à février, hors vacances. La ferme est fermée le 25 décembre 2026 et le 1er janvier 2027.</p>
+              <p><a class="link-arrow" href="visiter.html#horaires">Le calendrier complet</a></p>
+            </div>
+          </details>
+          <details>
+            <summary>Faut-il adhérer pour visiter la ferme ?</summary>
+            <div>
+              <p>Oui, depuis le 1er avril 2026 : la visite libre passe par l’adhésion à l’association, 2 € la journée ou 10 € l’année par adulte. C’est gratuit pour les mineurs, et la boutique reste en accès libre. L’adhésion se règle à la boutique ; celle à l’année peut aussi se prendre en ligne. L’adhésion à l’année donne droit à des réductions sur certains événements et à la lettre d’information.</p>
+              <p>Pour un séjour au chalet, une classe ou un groupe, une adhésion à l’association s’ajoute au prix : voyez les tarifs de chaque accueil.</p>
+              <p><a class="link-arrow" href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">Adhérer en ligne</a></p>
+            </div>
+          </details>
+          <details>
+            <summary>Comment obtenir une facture, une attestation ou un reçu ?</summary>
+            <div>
+              <p>Écrivez à <a href="mailto:facturation@claj-batailleuse.fr">facturation@claj-batailleuse.fr</a>, ou choisissez « Facture ou attestation » dans le <a href="#demande">formulaire</a>. Précisez le séjour ou l’activité, les dates, le nom sous lequel vous avez réservé et, pour une prise en charge (CAF, comité d’entreprise, employeur), le document qu’on vous demande.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Quels moyens de paiement acceptez-vous ?</summary>
+            <div>
+              <p>Cela dépend de ce que vous réglez :</p>
+              <ul class="ticks">
+                <li>Colos : les chèques vacances ANCV, et plusieurs aides (bons vacances CAF, tickets loisirs, Pass’Colo, Colos apprenantes, comités d’entreprise, FNAS…) détaillées sur la <a href="colos.html">page des colos</a>.</li>
+                <li>Séjours familles : nous sommes agréés chèques vacances.</li>
+                <li>Adhésion : en ligne sur HelloAsso, à la boutique, ou par chèque avec le bulletin.</li>
+                <li>Contrats pain : un chèque par mois, à l’ordre du CLAJ.</li>
+                <li>À la ferme, on peut aussi payer en Pive, la monnaie locale.</li>
+              </ul>
+              <p>Pour un autre cas, demandez à l’équipe concernée.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Où suivre l’actualité de la Bata ?</summary>
+            <div>
+              <p>Sur <a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a>, sur <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> et dans la lettre d’information, chaque mois. Les prochains rendez-vous sont aussi dans l’<a href="index.html">agenda de l’accueil</a>.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-suivre">
+    <div class="wrap">
+      <div class="feature">
+        <figure class="feature__img reveal">
+          <img src="img/sortie-chevres.jpg" alt="Des enfants et des adultes, de dos, accompagnent les vaches à travers le pré, face à une colline couverte de sapins." width="1200" height="800" loading="lazy">
+          <figcaption>Au pré avec le troupeau. Photo : Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p class="kicker"><b>05</b> Suivre la Bata</p>
+          <h2 id="t-suivre">Les nouvelles de la ferme, sans décrocher le téléphone.</h2>
+          <p class="lead">Ateliers parents-enfants, projection-débat au chalet, pizzas du fournil pendant les vacances, Fête de la Batailleuse : les rendez-vous passent par nos réseaux et par la lettre d’information.</p>
+          <ul class="meta" style="margin:22px 0 28px">
+            <li><b>Facebook</b><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">claj.batailleuse</a></li>
+            <li><b>Instagram</b><a href="https://www.instagram.com/la_batailleuse/" rel="noopener">@la_batailleuse</a></li>
+            <li><b>LinkedIn</b><a href="https://fr.linkedin.com/company/claj-la-batailleuse" rel="noopener">CLAJ la Batailleuse</a></li>
+            <li><b>La lettre</b><span>chaque mois, notamment pour les adhérent·es</span></li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">Adhérer en ligne</a>
+            <a class="btn btn--ghost" href="https://www.instagram.com/la_batailleuse/" rel="noopener">Nous suivre sur Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="img/logo.png" alt="Logo du CLAJ la Batailleuse" width="64" height="99" loading="lazy">
+        <p>Le CLAJ de Franche-Comté, association d’éducation populaire autogérée, fait vivre la ferme de la Batailleuse et le Chalet du Souleret à Rochejean.</p>
+      </div>
+      <div>
+        <h2>Nous trouver</h2>
+        <ul>
+          <li><b>Ferme de la Batailleuse</b><br>Route de la Batailleuse, 25370 Rochejean</li>
+          <li><b>Chalet du Souleret</b><br>16 rue de la Fontaine, 25370 Rochejean</li>
+          <li><a href="contact.html#acces">Plan d’accès</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Téléphones</h2>
+        <ul>
+          <li class="footer__phone"><b><a href="tel:+33381499115">03 81 49 91 15</a></b><span>Ferme et boutique</span></li>
+          <li class="footer__phone"><b><a href="tel:+33381499184">03 81 49 91 84</a></b><span>Chalet du Souleret</span></li>
+          <li class="footer__phone"><b><a href="tel:+33781424830">07 81 42 48 30</a></b><span>Fournil, commandes de pain</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Écrire</h2>
+        <ul>
+          <li><a href="mailto:animation@claj-batailleuse.fr">animation@</a> classes, colos, animations</li>
+          <li><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a> Chalet du Souleret</li>
+          <li><a href="mailto:ferme@claj-batailleuse.fr">ferme@</a> ferme et fournil</li>
+          <li><a href="mailto:facturation@claj-batailleuse.fr">facturation@</a> factures</li>
+          <li><a href="mailto:contact@claj-batailleuse.fr">contact@</a> tout le reste</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
+      <span><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a></span>
+      <span>Maquette proposée par Primo, Montperreux · septembre 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>
