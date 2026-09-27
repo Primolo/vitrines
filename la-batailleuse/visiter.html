@@ -128,8 +128,8 @@ table.prices .sep { border-left: 1px solid var(--line); }
       <h2 class="statut__now" id="t-statut"><span class="statut__dot" aria-hidden="true"></span><span data-open-status>Ferme ouverte de 16h30 à 19h, selon la période</span></h2>
       <p class="muted" style="margin:0"><a class="link-arrow" href="#horaires">Voir les trois périodes et toutes les dates</a></p>
       <div class="figures">
-        <div class="figure reveal"><strong>16h30</strong><span>l’accueil ouvre, jusqu’à 19h, les jours d’ouverture</span></div>
-        <div class="figure reveal"><strong>17h45</strong><span>la traite des vaches : le lait frais se vend jusqu’à 18h15</span></div>
+        <div class="figure reveal"><strong><span data-h="accueil.de">16h30</span></strong><span>l’accueil ouvre, jusqu’à <span data-h="accueil.a">19h</span>, les jours d’ouverture</span></div>
+        <div class="figure reveal"><strong><span data-h="traite.de">17h45</span></strong><span>la traite des vaches : le lait frais se vend jusqu’à <span data-h="traite.a">18h15</span></span></div>
         <div class="figure reveal"><strong>2&nbsp;€</strong><span>l’adhésion à la journée pour un adulte, gratuit pour les mineurs</span></div>
         <div class="figure reveal"><strong>3</strong><span>fournées par semaine au fournil : lundi, mercredi, vendredi</span></div>
       </div>
@@ -141,7 +141,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
       <div class="section__head section__head--split">
         <div>
           <p class="kicker"><b>01</b> Horaires 2026-2027</p>
-          <h2 id="t-horaires">De 16h30 à 19h, selon la période.</h2>
+          <h2 id="t-horaires">De <span data-h="accueil.de">16h30</span> à <span data-h="accueil.a">19h</span>, selon la période.</h2>
         </div>
         <p class="lead">Trois rythmes dans l’année, calés sur les vacances scolaires. La période en cours est signalée, les dates passées sont barrées.</p>
       </div>
@@ -183,7 +183,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
           <p><span data-fermetures>Le vendredi 25 décembre 2026 et le vendredi 1er janvier 2027.</span> L’accueil n’a jamais lieu le dimanche ni le lundi.</p>
         </div>
         <div class="aside reveal">
-          <h3>La traite, de 17h45 à 18h15</h3>
+          <h3>La traite, de <span data-h="traite.de">17h45</span> à <span data-h="traite.a">18h15</span></h3>
           <p>C’est le seul moment où nous vendons le lait de vache, les jours d’ouverture.</p>
         </div>
         <div class="aside reveal">
@@ -263,7 +263,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
         <article class="card reveal">
           <div class="card__img"><img src="img/vache-veau.jpg" alt="Une vache couchée dans la paille avec son veau nouveau-né." width="1200" height="800" loading="lazy"></div>
           <div class="card__body">
-            <span class="badge badge--bientot">Lait de 17h45 à 18h15</span>
+            <span class="badge badge--bientot">Lait de <span data-h="traite.de">17h45</span> à <span data-h="traite.a">18h15</span></span>
             <h3>Lait, yaourts et faisselles</h3>
             <p>Le lait de vache se vend seulement à l’heure de la traite, les jours d’ouverture. Yaourts et faisselles au lait de vache sont faits ici, à la ferme.</p>
           </div>
@@ -287,9 +287,9 @@ table.prices .sep { border-left: 1px solid var(--line); }
         <div class="aside aside--bordeaux reveal">
           <h3>Bon à savoir</h3>
           <ul class="meta">
-            <li><b>Paiement</b> La boutique accepte la Pive, la monnaie locale.</li>
-            <li><b>Bio</b> Certifiés par Ecocert depuis 1998 pour les chèvres, 2001 pour les vaches.</li>
-            <li><b>Ailleurs</b> Sur les marchés, à l’AMAP Rilchou de Pontarlier et dans quelques magasins bio de Pontarlier.</li>
+            <li><b>Paiement</b> <span class="meta__v">La boutique accepte la Pive, la monnaie locale.</span></li>
+            <li><b>Bio</b> <span class="meta__v">Certifiés par Ecocert depuis 1998 pour les chèvres, 2001 pour les vaches.</span></li>
+            <li><b>Ailleurs</b> <span class="meta__v">Sur les marchés, à l’AMAP Rilchou de Pontarlier et dans quelques magasins bio de Pontarlier.</span></li>
           </ul>
         </div>
       </div>
@@ -310,12 +310,12 @@ table.prices .sep { border-left: 1px solid var(--line); }
           <h2 id="t-fournil">Du pain au levain, trois fournées par semaine.</h2>
           <p class="lead">Des farines bio et régionales, du levain, un four à bois. Le pain du fournil est certifié Agriculture biologique.</p>
           <ul class="meta">
-            <li><b>Fournées</b> Le lundi, le mercredi et le vendredi.</li>
-            <li><b>Les pains</b> Nature (farine T80), aux graines (lin, tournesol torréfié), aux noix (IGP de Grenoble), blé sarrasin, pur seigle, engrain (petit épeautre).</li>
-            <li><b>Formats</b> Miche de 1 kg ou de 500 g, en boule ou moulée.</li>
-            <li><b>Brioches</b> Au levain, sur la fournée du vendredi.</li>
-            <li><b>Biscuits</b> Noisette, amande, noix, cookies chocolat-raisin, en vrac ou en sachet de 250 g. Crackers comté-graines, en vrac ou en sachet de 150 g.</li>
-            <li><b>Commander</b> La veille avant 17h, au <a href="tel:+33781424830">07 81 42 48 30</a> ou <a href="#precommande">en ligne</a>.</li>
+            <li><b>Fournées</b> <span class="meta__v">Le lundi, le mercredi et le vendredi.</span></li>
+            <li><b>Les pains</b> <span class="meta__v">Nature (farine T80), aux graines (lin, tournesol torréfié), aux noix (IGP de Grenoble), blé sarrasin, pur seigle, engrain (petit épeautre).</span></li>
+            <li><b>Formats</b> <span class="meta__v">Miche de 1 kg ou de 500 g, en boule ou moulée.</span></li>
+            <li><b>Brioches</b> <span class="meta__v">Au levain, sur la fournée du vendredi.</span></li>
+            <li><b>Biscuits</b> <span class="meta__v">Noisette, amande, noix, cookies chocolat-raisin, en vrac ou en sachet de 250 g. Crackers comté-graines, en vrac ou en sachet de 150 g.</span></li>
+            <li><b>Commander</b> <span class="meta__v">La veille avant 17h, au <a href="tel:+33781424830">07 81 42 48 30</a> ou <a href="#precommande">en ligne</a>.</span></li>
           </ul>
         </div>
       </div>
@@ -493,10 +493,10 @@ table.prices .sep { border-left: 1px solid var(--line); }
           <p class="lead">« Un après-midi plein de surprises avec soin des animaux » : les chèvres, les vaches, les lapins, les cochons et les poules, avec nos animateur·rices. Puis le goûter, dans une salle prévue pour vous.</p>
           <p class="price">110&nbsp;€ <small>pour 8 enfants, puis 10 € par enfant en plus</small></p>
           <ul class="meta">
-            <li><b>Quand</b> Le mercredi ou le samedi en période scolaire, en semaine pendant les vacances.</li>
-            <li><b>Durée</b> Un après-midi.</li>
-            <li><b>Le goûter</b> Une salle est mise à votre disposition.</li>
-            <li><b>À caler ensemble</b> L’âge des enfants, l’horaire, le nombre d’enfants et l’organisation du goûter se voient avec l’équipe d’animation.</li>
+            <li><b>Quand</b> <span class="meta__v">Le mercredi ou le samedi en période scolaire, en semaine pendant les vacances.</span></li>
+            <li><b>Durée</b> <span class="meta__v">Un après-midi.</span></li>
+            <li><b>Le goûter</b> <span class="meta__v">Une salle est mise à votre disposition.</span></li>
+            <li><b>À caler ensemble</b> <span class="meta__v">L’âge des enfants, l’horaire, le nombre d’enfants et l’organisation du goûter se voient avec l’équipe d’animation.</span></li>
           </ul>
         </div>
       </div>
@@ -595,7 +595,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
       <div class="faq block--sm">
         <details>
           <summary>Peut-on venir le dimanche ?</summary>
-          <div><p>Non. L’accueil a lieu du mardi au samedi pendant les vacances scolaires, le mercredi, le vendredi et le samedi entre les vacances, et le mercredi seulement de novembre à février. Toujours de 16h30 à 19h.</p></div>
+          <div><p>Non. L’accueil a lieu du mardi au samedi pendant les vacances scolaires, le mercredi, le vendredi et le samedi entre les vacances, et le mercredi seulement de novembre à février. Toujours de <span data-h="accueil.de">16h30</span> à <span data-h="accueil.a">19h</span>.</p></div>
         </details>
         <details>
           <summary>Mes enfants doivent-ils adhérer ?</summary>
@@ -603,7 +603,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
         </details>
         <details>
           <summary>Je viens seulement acheter du fromage ou du lait. Faut-il adhérer ?</summary>
-          <div><p>Non, la boutique reste en accès libre et gratuit, aux heures d’ouverture. Le lait de vache se vend de 17h45 à 18h15.</p></div>
+          <div><p>Non, la boutique reste en accès libre et gratuit, aux heures d’ouverture. Le lait de vache se vend de <span data-h="traite.de">17h45</span> à <span data-h="traite.a">18h15</span>.</p></div>
         </details>
         <details>
           <summary>Où payer l’adhésion ?</summary>

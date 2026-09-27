@@ -6,7 +6,7 @@
 
   var API = "api.php";
   var CLE_DEMO = "bata-demo-contenus", CLE_DEMO_J = "bata-demo-journal", CLE_DEMO_H = "bata-demo-historique", CLE_SESSION = "bata-equipe";
-  var S = { demo: false, prenom: "", code: "", contenus: null, journal: [], historique: [], brouillon: null, dirty: false };
+  var S = { demo: false, prenom: "", code: "", contenus: null, journal: [], historique: [] };
   var STATUTS = [["a-venir", "Inscriptions bientôt", "pas encore ouvertes"], ["ouvert", "Inscriptions ouvertes", ""], ["dernieres", "Dernières places", ""], ["complet", "Complet", ""], ["termine", "Terminé", "séjour passé"]];
   var TYPES = { haute: ["Haute", "badge--ok", "du mardi au samedi"], moyenne: ["Moyenne", "badge--bientot", "mer., ven., sam."], basse: ["Basse", "", "le mercredi"] };
   var JOURS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
@@ -129,11 +129,11 @@
     S.contenus = j.contenus;
     S.journal = j.journal || [];
     S.historique = j.historique || [];
-    if (!S.dirty) S.brouillon = copie(S.contenus.horaires);
     tout();
   }
 
-  // relancer(true) renvoie la même action en forçant, une fois que la personne a choisi « remplacer ».
+  // relancer(true, j) renvoie la même action en forçant, une fois que la personne a choisi « remplacer » ;
+  // j porte la version la plus récente du serveur, sur laquelle rejouer l'action.
   function traiter(res, relancer, succes) {
     if (res.s === 200 && res.j.ok) {
       maj(res.j);
@@ -153,8 +153,9 @@
       $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a changé le message du jour " + quand + " :";
       cite = j.actuel && j.actuel.texte ? "« " + esc(j.actuel.texte) + " »" : "(message retiré)";
     } else if (j.section === "horaires") {
-      $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a modifié les horaires " + quand + ". Ses horaires :";
-      cite = (j.actuel.periodes || []).length + " périodes, " + (j.actuel.fermetures || []).length + " fermetures exceptionnelles.";
+      $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a modifié les horaires " + quand + ". Ses heures :";
+      cite = "Accueil de " + esc(heureTxt(j.actuel.accueil.de)) + " à " + esc(heureTxt(j.actuel.accueil.a)) +
+        ", traite de " + esc(heureTxt(j.actuel.traite.de)) + " à " + esc(heureTxt(j.actuel.traite.a)) + ".";
     } else {
       $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a changé le statut de ce séjour " + quand + " :";
       cite = esc(libelleStatut(j.actuel && j.actuel.statut));
@@ -165,19 +166,17 @@
       if (!b) return;
       dlg.close();
       if (b.dataset.choix === "remplacer") {
-        relancer(true);
+        relancer(true, j);
       } else {
-        if (j.section === "horaires") S.dirty = false;
         maj(j);
         toast("C’est sa version qui reste en ligne.");
       }
     };
     dlg.oncancel = function () {
-      if (j.section === "horaires") S.dirty = false;
       maj(j);
       toast("C’est sa version qui reste en ligne.");
     };
-    if (dlg.showModal) dlg.showModal(); else if (confirm("Quelqu’un vient de modifier la même chose. Mettre votre version à la place ?")) relancer(true); else maj(j);
+    if (dlg.showModal) dlg.showModal(); else if (confirm("Quelqu’un vient de modifier la même chose. Mettre votre version à la place ?")) relancer(true, j); else maj(j);
   }
 
   /* ---------- Connexion ---------- */
@@ -270,7 +269,7 @@
   }
 
   function afficherHoraires() {
-    var h = S.brouillon;
+    var h = S.contenus.horaires;
     if (!h) return;
     $("#ho-acc-de").value = h.accueil.de; $("#ho-acc-a").value = h.accueil.a;
     $("#ho-tr-de").value = h.traite.de; $("#ho-tr-a").value = h.traite.a;
@@ -280,12 +279,11 @@
       var etat = p.au < a ? " (passée)" : p.du <= a ? " (en cours)" : "";
       return '<div class="eq-periode"><span class="badge ' + t[1] + '">' + t[0] + "</span><span>" + (p.nom ? "<b>" + esc(p.nom) + "</b> : " : "") +
         "du " + esc(dateTxt(p.du)) + " au " + esc(dateTxt(p.au)) + '<small class="muted">' + etat + "</small></span>" +
-        '<button type="button" class="eq-mini" data-periode="' + esc(p.du + "|" + p.au + "|" + p.type) + '">Retirer</button></div>';
+        '<button type="button" class="eq-mini" data-periode="' + esc(p.du + "|" + p.au + "|" + p.type) + '" aria-label="Retirer la période du ' + esc(dateTxt(p.du)) + '">Retirer</button></div>';
     }).join("");
     $("#ho-fermetures").innerHTML = h.fermetures.length ? h.fermetures.map(function (f) {
       return '<button type="button" class="eq-chip" data-fermeture="' + esc(f) + '" aria-label="Retirer la fermeture du ' + esc(dateTxt(f)) + '">' + esc(dateTxt(f)) + " ×</button>";
     }).join("") : '<span class="muted small">Aucune fermeture exceptionnelle.</span>';
-    $("#ho-dirty").hidden = !S.dirty;
     var fin = h.periodes.reduce(function (m, p) { return p.au > m ? p.au : m; }, "");
     var alerte = $("#ho-alerte");
     alerte.hidden = !(fin && fin < dansJours(45));
@@ -310,22 +308,45 @@
     });
   }
 
-  function envoyerHoraires(forcer) {
-    var h = S.brouillon;
-    h.accueil = { de: $("#ho-acc-de").value, a: $("#ho-acc-a").value };
-    h.traite = { de: $("#ho-tr-de").value, a: $("#ho-tr-a").value };
-    if (!h.accueil.de || !h.accueil.a || h.accueil.de >= h.accueil.a) return toast("Heures d’accueil : la fin doit suivre le début.", true);
-    if (!h.traite.de || !h.traite.a || h.traite.de >= h.traite.a) return toast("Heures de traite : la fin doit suivre le début.", true);
-    if (!h.periodes.length) return toast("Il faut au moins une période d’ouverture.", true);
+  // Horaires : chaque action part tout de suite, comme l'agenda et les colos (rien à « enregistrer » après coup).
+  // operation(h) renvoie les horaires modifiés, ou null si elle n'a plus lieu d'être.
+  // Ajouts et retraits sont « rejouables » : si quelqu'un a changé les horaires entre-temps, on rejoue
+  // l'action sur sa version, sans rien écraser. Les heures d'accueil et de traite passent par la fenêtre de conflit.
+  function changerHoraires(operation, message, rejouable, forcer) {
+    var h = operation(copie(S.contenus.horaires));
+    if (!h) return tout();
     appel("horaires", { horaires: h, version_vue: S.contenus.versions.horaires, forcer: !!forcer }).then(function (res) {
-      if (res.s === 200) S.dirty = false;
-      traiter(res, function () { envoyerHoraires(true); });
+      if (res.s === 409 && rejouable) {
+        var qui = res.j.par || "Quelqu’un";
+        var h2 = operation(copie(res.j.contenus.horaires));
+        if (!h2) { maj(res.j); return toast(qui + " venait de faire ce changement : rien à ajouter."); }
+        return appel("horaires", { horaires: h2, version_vue: res.j.contenus.versions.horaires }).then(function (res2) {
+          if (res2.s === 200 && res2.j.ok) res2.j.info = qui + " venait aussi de modifier les horaires : votre changement s’ajoute au sien. C’est en ligne.";
+          traiter(res2, rejouer);
+        });
+      }
+      if (res.s === 200 && res.j.ok && !res.j.info) res.j.info = message;
+      traiter(res, rejouer);
     });
+    // « Mettre la mienne » : seule l'action de la personne remplace, sur la version la plus récente ;
+    // le reste des changements de l'autre (périodes, fermetures) est gardé.
+    function rejouer(forcer, j) {
+      if (j && j.contenus) S.contenus = j.contenus;
+      changerHoraires(operation, message, false, true);
+    }
   }
 
-  function brouillonModifie() {
-    S.dirty = true;
-    afficherHoraires();
+  function lireHeures() {
+    var acc = { de: $("#ho-acc-de").value, a: $("#ho-acc-a").value }, tr = { de: $("#ho-tr-de").value, a: $("#ho-tr-a").value };
+    if (!acc.de || !acc.a || acc.de >= acc.a) { toast("Heures d’accueil : l’heure de fin doit suivre l’heure de début.", true); return null; }
+    if (!tr.de || !tr.a || tr.de >= tr.a) { toast("Heures de traite : l’heure de fin doit suivre l’heure de début.", true); return null; }
+    return { accueil: acc, traite: tr };
+  }
+
+  // Page restée ouverte (téléphone en veille, onglet oublié) : on relit les contenus en revenant dessus.
+  function rafraichir() {
+    if (S.demo || !S.code || $("#app").hidden || document.visibilityState !== "visible" || document.body.hasAttribute("aria-busy")) return;
+    appelBrut("lire").then(function (res) { if (res.s === 200 && res.j.ok) maj(res.j); });
   }
 
   function onglet(nom) {
@@ -346,11 +367,9 @@
       if (!code || (S.demo && code.length < 4)) { $("#cx-erreur").textContent = S.demo ? "Démonstration : 4 caractères minimum." : "Entrez le code de l’équipe."; $("#cx-erreur").hidden = false; return; }
       entrer(prenom, code, $("#cx-garder").checked);
     });
-    $("#deconnexion").addEventListener("click", function () {
-      if (S.dirty && !confirm("Vos horaires modifiés ne sont pas enregistrés. Se déconnecter quand même ?")) return;
-      S.dirty = false;
-      deconnecter("");
-    });
+    $("#deconnexion").addEventListener("click", function () { deconnecter(""); });
+    document.addEventListener("visibilitychange", rafraichir);
+    setInterval(rafraichir, 120000);
 
     $("#msg-texte").addEventListener("input", function () { $("#msg-n").textContent = this.value.length; });
     $$("[data-phrase]").forEach(function (b) {
@@ -391,41 +410,68 @@
       go(false);
     });
 
-    ["#ho-acc-de", "#ho-acc-a", "#ho-tr-de", "#ho-tr-a"].forEach(function (id) { $(id).addEventListener("change", function () { S.dirty = true; $("#ho-dirty").hidden = false; }); });
+    // Seule l'heure touchée part au serveur : les autres heures, peut-être changées par quelqu'un d'autre, restent.
+    [["#ho-acc-de", "accueil", "de"], ["#ho-acc-a", "accueil", "a"], ["#ho-tr-de", "traite", "de"], ["#ho-tr-a", "traite", "a"]].forEach(function (c) {
+      $(c[0]).addEventListener("change", function () {
+        if (!lireHeures()) return;
+        var v = this.value;
+        if (S.contenus.horaires[c[1]][c[2]] === v) return;
+        changerHoraires(function (x) {
+          x[c[1]][c[2]] = v;
+          return x[c[1]].de < x[c[1]].a ? x : null;
+        }, "Heures enregistrées : elles sont en ligne.", false);
+      });
+    });
     $("#ho-ajouter").addEventListener("click", function () {
       var du = $("#ho-du").value, au = $("#ho-au").value, type = (document.querySelector('[name="ho-type"]:checked') || {}).value;
       if (!du || !au) return toast("Indiquez le début et la fin de la période.", true);
       if (du > au) return toast("La période doit commencer avant de finir.", true);
-      S.brouillon.periodes.push({ type: type, du: du, au: au, nom: $("#ho-nom").value.trim().slice(0, 30) });
+      var p = { type: type, du: du, au: au, nom: $("#ho-nom").value.trim().slice(0, 30) };
+      changerHoraires(function (x) {
+        if (x.periodes.some(function (q) { return q.du === p.du && q.au === p.au && q.type === p.type; })) return null;
+        x.periodes.push(p);
+        return x;
+      }, "Période ajoutée : elle est en ligne.", true);
       $("#ho-du").value = ""; $("#ho-au").value = ""; $("#ho-nom").value = "";
-      brouillonModifie();
-      toast("Période ajoutée. N’oubliez pas « Enregistrer les horaires ».");
+      $("#ho-ajouter").closest("details").open = false;
     });
     $("#ho-periodes").addEventListener("click", function (e) {
       var b = e.target.closest("[data-periode]");
       if (!b) return;
       var k = b.dataset.periode.split("|");
-      S.brouillon.periodes = S.brouillon.periodes.filter(function (p) { return !(p.du === k[0] && p.au === k[1] && p.type === k[2]); });
-      brouillonModifie();
+      if (!confirm("Retirer cette période du site ?")) return;
+      changerHoraires(function (x) {
+        var reste = x.periodes.filter(function (p) { return !(p.du === k[0] && p.au === k[1] && p.type === k[2]); });
+        if (reste.length === x.periodes.length) return null;
+        x.periodes = reste;
+        return x;
+      }, "Période retirée du site.", true);
     });
     $("#ho-ferm").addEventListener("change", function () {
       var v = this.value;
-      if (v && S.brouillon.fermetures.indexOf(v) === -1) { S.brouillon.fermetures.push(v); S.brouillon.fermetures.sort(); brouillonModifie(); }
       this.value = "";
+      if (!v) return;
+      changerHoraires(function (x) {
+        if (x.fermetures.indexOf(v) !== -1) return null;
+        x.fermetures.push(v); x.fermetures.sort();
+        return x;
+      }, "Fermeture du " + dateTxt(v) + " ajoutée : elle est en ligne.", true);
     });
     $("#ho-fermetures").addEventListener("click", function (e) {
       var b = e.target.closest("[data-fermeture]");
       if (!b) return;
-      S.brouillon.fermetures = S.brouillon.fermetures.filter(function (f) { return f !== b.dataset.fermeture; });
-      brouillonModifie();
+      var v = b.dataset.fermeture;
+      changerHoraires(function (x) {
+        if (x.fermetures.indexOf(v) === -1) return null;
+        x.fermetures = x.fermetures.filter(function (f) { return f !== v; });
+        return x;
+      }, "Fermeture du " + dateTxt(v) + " retirée.", true);
     });
-    $("#ho-enregistrer").addEventListener("click", function () { envoyerHoraires(false); });
-    window.addEventListener("beforeunload", function (e) { if (S.dirty) { e.preventDefault(); e.returnValue = ""; } });
 
     $("#hi-liste").addEventListener("click", function (e) {
       var b = e.target.closest("[data-restaurer]");
       if (b && confirm("Revenir à l’état d’avant cette modification ? Tout ce qui a été changé depuis sera annulé (et restera dans l’historique).")) {
-        appel("restaurer", { fichier: b.dataset.restaurer }).then(function (res) { S.dirty = false; traiter(res); });
+        appel("restaurer", { fichier: b.dataset.restaurer }).then(function (res) { traiter(res); });
       }
     });
 

@@ -266,6 +266,8 @@ a.card:hover .card__img img { transform: scale(1.03); }
 .meta { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: .96rem; color: var(--ink-soft); }
 .meta li { display: flex; gap: 10px; align-items: baseline; }
 .meta b { color: var(--ink); font-weight: 700; min-width: 7.5em; flex: none; }
+.meta__v { flex: 1; min-width: 0; }
+.table-hint { font-size: .86rem; color: var(--ink-mute); margin: 0 0 8px; }
 
 .badge {
   display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;

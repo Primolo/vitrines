@@ -106,8 +106,9 @@ switch ($action) {
         avec_verrou('contenus', function () use ($d, $h, $prenom) {
             $doc = charger();
             verifier_version($doc, 'horaires', $d, $doc['horaires']);
+            $resume = resume_horaires($doc['horaires'], $h);
             $doc['horaires'] = $h;
-            succes(enregistrer($doc, 'horaires', 'Horaires modifiés (' . count($h['periodes']) . ' périodes, ' . count($h['fermetures']) . ' fermetures)', $prenom));
+            succes(enregistrer($doc, 'horaires', $resume, $prenom));
         });
 
     case 'boites_reelles':
@@ -171,7 +172,7 @@ function historique(): array
 {
     $fichiers = glob(DOSSIER_ETAT . '/historique/*.json') ?: [];
     rsort($fichiers);
-    return array_map('basename', array_slice($fichiers, 0, 20));
+    return array_map('basename', array_slice($fichiers, 0, 60));
 }
 
 /** Archive l'état actuel, écrit le nouveau, note qui a fait quoi. */
@@ -231,13 +232,13 @@ function conflit(array $doc, string $section, $actuel, string $cle = ''): void
     repondre(409, [
         'erreur' => 'conflit', 'section' => $section, 'actuel' => $actuel,
         'par' => $m['par'] ?? 'quelqu’un de l’équipe', 'quand' => $m['quand'] ?? null,
-        'contenus' => $doc, 'journal' => array_slice(journal(), 0, 20), 'historique' => historique(),
+        'contenus' => $doc, 'journal' => array_slice(journal(), 0, 60), 'historique' => historique(),
     ]);
 }
 
 function succes(array $doc, string $info = ''): void
 {
-    repondre(200, ['ok' => true, 'info' => $info, 'contenus' => $doc, 'journal' => array_slice(journal(), 0, 20), 'historique' => historique(), 'reglages' => infos_reglages()]);
+    repondre(200, ['ok' => true, 'info' => $info, 'contenus' => $doc, 'journal' => array_slice(journal(), 0, 60), 'historique' => historique(), 'reglages' => infos_reglages()]);
 }
 
 function infos_reglages(): array
@@ -249,6 +250,42 @@ function infos_reglages(): array
     $r = reglages();
     return ['interrupteur' => true, 'boites_reelles' => !empty($r['boites_reelles']), 'par' => $r['par'] ?? '', 'quand' => $r['quand'] ?? '',
         'limite' => (int) ($c['limite_jour'] ?? 0), 'expediteur' => (string) $c['expediteur']];
+}
+
+/** Ce qui a changé dans les horaires, en clair, pour l'historique. */
+function resume_horaires(array $avant, array $apres): string
+{
+    $cle = fn(array $p): string => $p['type'] . '|' . $p['du'] . '|' . $p['au'];
+    $jm = fn(string $d): string => substr($d, 8, 2) . '/' . substr($d, 5, 2);
+    $jma = fn(string $d): string => $jm($d) . '/' . substr($d, 0, 4);
+    $h = fn(string $t): string => (int) substr($t, 0, 2) . 'h' . (substr($t, 3, 2) === '00' ? '' : substr($t, 3, 2));
+    $txt = fn(array $p): string => ($p['nom'] !== '' ? $p['nom'] . ', ' : '') . 'du ' . $jma($p['du']) . ' au ' . $jma($p['au']);
+    $av = $ap = [];
+    foreach ($avant['periodes'] ?? [] as $p) {
+        $av[$cle($p)] = $p + ['nom' => ''];
+    }
+    foreach ($apres['periodes'] as $p) {
+        $ap[$cle($p)] = $p;
+    }
+    $parts = [];
+    foreach (array_diff_key($ap, $av) as $p) {
+        $parts[] = 'période ajoutée : ' . $txt($p);
+    }
+    foreach (array_diff_key($av, $ap) as $p) {
+        $parts[] = 'période retirée : ' . $txt($p);
+    }
+    foreach (array_diff($apres['fermetures'], $avant['fermetures'] ?? []) as $f) {
+        $parts[] = 'fermeture ajoutée le ' . $jma($f);
+    }
+    foreach (array_diff($avant['fermetures'] ?? [], $apres['fermetures']) as $f) {
+        $parts[] = 'fermeture retirée le ' . $jma($f);
+    }
+    foreach (['accueil' => 'accueil', 'traite' => 'traite'] as $k => $nom) {
+        if (($avant[$k] ?? null) != $apres[$k]) {
+            $parts[] = $nom . ' de ' . $h($apres[$k]['de']) . ' à ' . $h($apres[$k]['a']);
+        }
+    }
+    return 'Horaires : ' . ($parts ? implode(' ; ', $parts) : 'aucun changement');
 }
 
 function valider_evenement($e): array

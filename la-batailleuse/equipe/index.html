@@ -59,7 +59,6 @@
   .eq-periode { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); font-size: .95rem; }
   .eq-periode .badge { flex: none; }
   .eq-periode span { flex: 1; }
-  .eq-dirty { font-size: .9rem; font-weight: 700; color: var(--bordeaux); }
   .eq-journal li { padding: 12px 0; border-top: 1px solid var(--line); display: grid; gap: 4px; }
   .eq-journal li:first-child { border-top: 0; }
   .eq-journal b { font-weight: 700; }
@@ -199,7 +198,7 @@
     <!-- Horaires -->
     <section class="eq-card" data-panneau="horaires" hidden aria-labelledby="t-ho">
       <h2 id="t-ho">Horaires de la ferme</h2>
-      <p class="muted">Le site calcule seul « ouvert aujourd’hui » à partir de ces périodes. Pensez à saisir la saison suivante avant la fin de la dernière période.</p>
+      <p class="muted">Chaque changement est en ligne tout de suite. Le site calcule seul « ouvert aujourd’hui » à partir de ces périodes : pensez à saisir la saison suivante avant la fin de la dernière période.</p>
       <div class="fields">
         <div class="field"><label for="ho-acc-de">Accueil : de</label><input id="ho-acc-de" type="time" required></div>
         <div class="field"><label for="ho-acc-a">à</label><input id="ho-acc-a" type="time" required></div>
@@ -231,10 +230,6 @@
       <div class="eq-chips" id="ho-fermetures"></div>
       <div class="fields" style="margin-top:8px">
         <div class="field"><label for="ho-ferm">Ajouter une date de fermeture</label><input id="ho-ferm" type="date"></div>
-      </div>
-      <div class="eq-actions" style="align-items:center">
-        <button class="btn" type="button" id="ho-enregistrer">Enregistrer les horaires</button>
-        <span class="eq-dirty" id="ho-dirty" hidden>Modifications non enregistrées</span>
       </div>
     </section>
 

@@ -1,5 +1,5 @@
-/* La Batailleuse — maquette. Aucun envoi réel : les formulaires affichent
-   le récapitulatif que l'équipe recevrait. */
+/* La Batailleuse — site. Les contenus (horaires, agenda, colos, message du jour) viennent de data/contenus.json,
+   tenu à jour par l'équipe ; les formulaires partent par envoi.php (ou affichent un récapitulatif sans serveur). */
 (function () {
   "use strict";
   document.documentElement.classList.remove("no-js");
@@ -134,20 +134,50 @@
     (el.querySelector(".wrap") || el).innerHTML = items.join("");
   }
 
+  // Heures écrites dans les textes (accueil, traite) : suivent celles de l'espace équipe.
+  function renderHeures() {
+    document.querySelectorAll("[data-h]").forEach(function (n) {
+      var k = n.dataset.h.split("."), h = C.horaires[k[0]];
+      if (h && h[k[1]]) n.textContent = heureTxt(h[k[1]]);
+    });
+  }
+
+  // Données lues par Google (JSON-LD) : jours et heures d'ouverture recalculés depuis les contenus.
+  var JOURS_EN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  function renderDonneesGoogle() {
+    var a = C.horaires.accueil;
+    var spec = C.horaires.periodes.filter(function (p) { return p.au >= TODAY; }).map(function (p) {
+      return { "@type": "OpeningHoursSpecification", dayOfWeek: (DAYS[p.type] || []).map(function (j) { return JOURS_EN[j]; }), opens: a.de, closes: a.a, validFrom: p.du, validThrough: p.au };
+    }).concat((C.horaires.fermetures || []).filter(function (f) { return f >= TODAY; }).map(function (f) {
+      return { "@type": "OpeningHoursSpecification", opens: "00:00", closes: "00:00", validFrom: f, validThrough: f };
+    }));
+    function remplacer(o) {
+      if (!o || typeof o !== "object") return;
+      if (Array.isArray(o)) { o.forEach(remplacer); return; }
+      if (o.openingHoursSpecification) o.openingHoursSpecification = spec;
+      Object.keys(o).forEach(function (k) { if (k !== "openingHoursSpecification") remplacer(o[k]); });
+    }
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (sc) {
+      if (sc.textContent.indexOf("openingHoursSpecification") === -1) return;
+      try { var d = JSON.parse(sc.textContent); remplacer(d); sc.textContent = JSON.stringify(d); } catch (e) { /* on garde la version écrite */ }
+    });
+  }
+
   // Page « Venir à la ferme » : les trois périodes et les fermetures, regénérées depuis les contenus.
   function renderPeriodes() {
     document.querySelectorAll("[data-periodes]").forEach(function (box) {
       box.innerHTML = ["haute", "moyenne", "basse"].map(function (type) {
-        var ps = C.horaires.periodes.filter(function (p) { return p.type === type; })
+        // Les périodes terminées disparaissent : le visiteur ne voit que ce qui l'attend.
+        var ps = C.horaires.periodes.filter(function (p) { return p.type === type && p.au >= TODAY; })
           .sort(function (a, b) { return a.du < b.du ? -1 : 1; });
         if (!ps.length) return "";
         return '<div class="period"><h3>' + TYPE_TXT[type][0] + " <small>" + TYPE_TXT[type][1] + '</small></h3><p class="days">' + DAYS_TXT[type] + "</p><ul>" +
           ps.map(function (p) {
             return '<li data-from="' + esc(p.du) + '" data-to="' + esc(p.au) + '">' + (p.nom ? "<b>" + esc(p.nom) + "</b> : " : "") + plageTxt(p.du, p.au) + "</li>";
           }).join("") + "</ul></div>";
-      }).join("");
+      }).join("") || '<p class="muted">Les horaires de la saison prochaine arrivent bientôt.</p>';
     });
-    var f = (C.horaires.fermetures || []).slice().sort();
+    var f = (C.horaires.fermetures || []).filter(function (s) { return s >= TODAY; }).sort();
     document.querySelectorAll("[data-fermetures]").forEach(function (n) {
       if (!f.length) { n.textContent = "Aucune fermeture exceptionnelle annoncée."; return; }
       var l = f.map(function (s) { var d = parse(s); return JOURS[d.getDay()] + " " + jourTxt(d) + " " + MOIS[d.getMonth()] + " " + d.getFullYear(); });
@@ -245,9 +275,29 @@
     document.body.insertBefore(n, document.body.firstChild);
   }
 
+  // Tableau plus large que l'écran (téléphone) : on dit qu'il se fait glisser.
+  function indiquerTableaux() {
+    document.querySelectorAll(".table-wrap").forEach(function (w) {
+      var deborde = w.scrollWidth > w.clientWidth + 2, aide = w.previousElementSibling;
+      var existe = aide && aide.classList.contains("table-hint");
+      if (deborde && !existe) {
+        var p = document.createElement("p");
+        p.className = "table-hint";
+        p.textContent = "Faites glisser le tableau pour voir toutes les colonnes →";
+        w.parentNode.insertBefore(p, w);
+      } else if (!deborde && existe) {
+        aide.remove();
+      }
+    });
+  }
+  window.addEventListener("resize", indiquerTableaux);
+  document.addEventListener("DOMContentLoaded", indiquerTableaux);
+
   function toutAfficher() {
     renderAlmanach();
     renderPeriodes();
+    renderHeures();
+    renderDonneesGoogle();
     markPeriods();
     renderAgendaData();
     renderAgenda();
