@@ -1,173 +1,363 @@
 {
-  "version": 1,
-  "mis_a_jour": "2026-09-26T10:00:00+02:00",
-  "par": "Primo (mise en place)",
-  "message_du_jour": {
-    "texte": "",
-    "jusqu_au": ""
-  },
-  "horaires": {
-    "accueil": {
-      "de": "16:30",
-      "a": "19:00"
+    "version": 1,
+    "mis_a_jour": "2026-09-26T10:00:00+02:00",
+    "par": "Primo (mise en place)",
+    "message_du_jour": {
+        "texte": "",
+        "jusqu_au": ""
     },
-    "traite": {
-      "de": "17:45",
-      "a": "18:15"
+    "horaires": {
+        "accueil": {
+            "de": "16:30",
+            "a": "19:00"
+        },
+        "traite": {
+            "de": "17:45",
+            "a": "18:15"
+        },
+        "periodes": [
+            {
+                "type": "basse",
+                "du": "2026-01-05",
+                "au": "2026-02-07",
+                "nom": ""
+            },
+            {
+                "type": "haute",
+                "du": "2026-02-06",
+                "au": "2026-03-07",
+                "nom": "Hiver"
+            },
+            {
+                "type": "moyenne",
+                "du": "2026-03-08",
+                "au": "2026-04-03",
+                "nom": ""
+            },
+            {
+                "type": "haute",
+                "du": "2026-04-03",
+                "au": "2026-04-18",
+                "nom": "Pâques"
+            },
+            {
+                "type": "moyenne",
+                "du": "2026-04-19",
+                "au": "2026-07-03",
+                "nom": ""
+            },
+            {
+                "type": "haute",
+                "du": "2026-07-04",
+                "au": "2026-08-29",
+                "nom": "Été"
+            },
+            {
+                "type": "moyenne",
+                "du": "2026-08-30",
+                "au": "2026-10-17",
+                "nom": ""
+            },
+            {
+                "type": "haute",
+                "du": "2026-10-17",
+                "au": "2026-10-31",
+                "nom": "Toussaint"
+            },
+            {
+                "type": "basse",
+                "du": "2026-11-02",
+                "au": "2026-12-19",
+                "nom": ""
+            },
+            {
+                "type": "haute",
+                "du": "2026-12-19",
+                "au": "2027-01-02",
+                "nom": "Noël"
+            }
+        ],
+        "fermetures": [
+            "2026-12-25",
+            "2027-01-01"
+        ]
     },
-    "periodes": [
-      {
-        "type": "basse",
-        "du": "2026-01-05",
-        "au": "2026-02-07",
-        "nom": ""
-      },
-      {
-        "type": "haute",
-        "du": "2026-02-06",
-        "au": "2026-03-07",
-        "nom": "Hiver"
-      },
-      {
-        "type": "moyenne",
-        "du": "2026-03-08",
-        "au": "2026-04-03",
-        "nom": ""
-      },
-      {
-        "type": "haute",
-        "du": "2026-04-03",
-        "au": "2026-04-18",
-        "nom": "Pâques"
-      },
-      {
-        "type": "moyenne",
-        "du": "2026-04-19",
-        "au": "2026-07-03",
-        "nom": ""
-      },
-      {
-        "type": "haute",
-        "du": "2026-07-04",
-        "au": "2026-08-29",
-        "nom": "Été"
-      },
-      {
-        "type": "moyenne",
-        "du": "2026-08-30",
-        "au": "2026-10-17",
-        "nom": ""
-      },
-      {
-        "type": "haute",
-        "du": "2026-10-17",
-        "au": "2026-10-31",
-        "nom": "Toussaint"
-      },
-      {
-        "type": "basse",
-        "du": "2026-11-02",
-        "au": "2026-12-19",
-        "nom": ""
-      },
-      {
-        "type": "haute",
-        "du": "2026-12-19",
-        "au": "2027-01-02",
-        "nom": "Noël"
-      }
+    "agenda": [
+        {
+            "id": "e1",
+            "date": "2026-09-18",
+            "heure": "19:30",
+            "titre": "Atelier parentalité : « Comment la parentalité me transforme ? »",
+            "texte": "Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.",
+            "lieu": "À la ferme",
+            "prix": "5 € par famille"
+        },
+        {
+            "id": "e2",
+            "date": "2026-09-25",
+            "heure": "19:30",
+            "titre": "Atelier parentalité : « Écouter mon enfant, qu’est-ce que ça veut dire ? »",
+            "texte": "Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.",
+            "lieu": "À la ferme",
+            "prix": "5 € par famille"
+        },
+        {
+            "id": "e3",
+            "date": "2026-09-26",
+            "heure": "09:30",
+            "titre": "Atelier parents-enfants",
+            "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 9h30 à 11h30.",
+            "lieu": "",
+            "prix": "5 € par famille"
+        },
+        {
+            "id": "e4",
+            "date": "2026-10-07",
+            "heure": "20:00",
+            "titre": "Projection d’un film",
+            "texte": "",
+            "lieu": "Au Chalet du Souleret",
+            "prix": ""
+        },
+        {
+            "id": "e5",
+            "date": "2026-10-09",
+            "heure": "19:30",
+            "titre": "Atelier parentalité : « (Ré)inventer ma parentalité »",
+            "texte": "Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.",
+            "lieu": "À la ferme",
+            "prix": "5 € par famille"
+        },
+        {
+            "id": "e6",
+            "date": "2026-10-10",
+            "heure": "14:30",
+            "titre": "Atelier parents-enfants",
+            "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 14h30 à 16h30.",
+            "lieu": "",
+            "prix": "5 € par famille"
+        },
+        {
+            "id": "e7",
+            "date": "2026-10-14",
+            "heure": "14:30",
+            "titre": "Atelier parents-enfants",
+            "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 14h30 à 16h30.",
+            "lieu": "",
+            "prix": "5 € par famille"
+        }
     ],
-    "fermetures": [
-      "2026-12-25",
-      "2027-01-01"
+    "sejours": [
+        {
+            "id": "apprentis",
+            "nom": "Vacances des apprentis fermiers (6-10 ans)",
+            "statut": "termine",
+            "semaines": [
+                {
+                    "du": "2026-07-05",
+                    "au": "2026-07-11"
+                },
+                {
+                    "du": "2026-07-12",
+                    "au": "2026-07-18"
+                },
+                {
+                    "du": "2026-08-16",
+                    "au": "2026-08-22"
+                }
+            ],
+            "prix": "420 €",
+            "infos_maj": "2026-09-26T10:00:00+02:00"
+        },
+        {
+            "id": "tout-autour",
+            "nom": "Tout autour de la ferme (10-13 ans)",
+            "statut": "termine",
+            "semaines": [
+                {
+                    "du": "2026-07-05",
+                    "au": "2026-07-18"
+                }
+            ],
+            "prix": "570 €",
+            "infos_maj": "2026-09-26T10:00:00+02:00"
+        },
+        {
+            "id": "alpages",
+            "nom": "L’aventure des alpages (14-17 ans)",
+            "statut": "termine",
+            "semaines": [
+                {
+                    "du": "2026-08-09",
+                    "au": "2026-08-22"
+                }
+            ],
+            "prix": "550 €",
+            "infos_maj": "2026-09-26T10:00:00+02:00"
+        }
+    ],
+    "versions": {
+        "message": 1,
+        "agenda": 1,
+        "horaires": 1,
+        "sejours": 1
+    },
+    "documents": {
+        "contrat-pain-mensuel": {
+            "titre": "Contrat pain mensuel",
+            "fichier": "data/docs/contrat-pain-mensuel-2026.pdf",
+            "nom": "Contrat-pain-Mensuel-2026.pdf",
+            "taille": 172464,
+            "maj": "2026-09-26T10:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        "contrat-pain-semestriel": {
+            "titre": "Contrat pain semestriel",
+            "fichier": "data/docs/contrat-pain-semestriel-2026.pdf",
+            "nom": "Contrat-pain-Semestriel-Septembre-Decembre-2026.pdf",
+            "taille": 179389,
+            "maj": "2026-09-26T10:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        "catalogue-activites": {
+            "titre": "Brochure « Nos activités » (écoles et groupes)",
+            "fichier": "data/docs/catalogue-activites-2025-2026.pdf",
+            "nom": "Nos-activites-2025-2026.pdf",
+            "taille": 2956152,
+            "maj": "2026-09-26T10:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        "bulletin-adhesion": {
+            "titre": "Bulletin d’adhésion et de soutien",
+            "fichier": "data/docs/bulletin-adhesion.png",
+            "nom": "bulletin-dadhesion-et-de-soutien-1.png",
+            "taille": 244286,
+            "maj": "2026-09-26T10:00:00+02:00",
+            "par": "Primo (mise en place)"
+        }
+    },
+    "pain": {
+        "lignes": [
+            {
+                "nom": "Nature",
+                "note": "farine de blé T80",
+                "kg_j": "5,10",
+                "kg_s": "6,20",
+                "d_j": "2,80",
+                "d_s": "3,40"
+            },
+            {
+                "nom": "Aux graines",
+                "note": "lin, tournesol",
+                "kg_j": "6,20",
+                "kg_s": "7,50",
+                "d_j": "3,30",
+                "d_s": "4,00"
+            },
+            {
+                "nom": "Blé sarrasin",
+                "note": "",
+                "kg_j": "6,20",
+                "kg_s": "7,50",
+                "d_j": "3,30",
+                "d_s": "4,00"
+            },
+            {
+                "nom": "Seigle",
+                "note": "",
+                "kg_j": "6,20",
+                "kg_s": "7,50",
+                "d_j": "3,30",
+                "d_s": "4,00"
+            },
+            {
+                "nom": "Engrain",
+                "note": "petit épeautre",
+                "kg_j": "7,80",
+                "kg_s": "9,40",
+                "d_j": "3,90",
+                "d_s": "4,70"
+            },
+            {
+                "nom": "Aux noix",
+                "note": "en 500 g seulement",
+                "kg_j": "",
+                "kg_s": "",
+                "d_j": "5,20",
+                "d_s": "6,30"
+            }
+        ],
+        "brioche_j": "5,60",
+        "brioche_s": "6,80"
+    },
+    "offres": [
+        {
+            "id": "vachere2026",
+            "titre": "Nous recrutons un·e paysan·ne vacher·e.",
+            "intro": "Pour le secteur vaches, en binôme : le troupeau de montbéliardes, le lait en Comté bio, les parcelles, et le public qui vient voir la traite.",
+            "missions": [
+                "La gestion du secteur vaches en binôme, et le parcellaire.",
+                "L’animation avec le public : la traite du soir est souvent une « traite animée ».",
+                "L’administratif : PAC, fermage, fiches de paie et référent·e MSA pour les salarié·es de la ferme.",
+                "Les temps collectifs de l’autogestion."
+            ],
+            "details": [
+                {
+                    "label": "Contrat",
+                    "valeur": "CDD de 12 mois, renouvelable en CDI"
+                },
+                {
+                    "label": "Rémunération",
+                    "valeur": "SMIC, temps plein"
+                },
+                {
+                    "label": "Congés",
+                    "valeur": "6 semaines"
+                },
+                {
+                    "label": "Prise de poste",
+                    "valeur": "lundi 2 novembre 2026"
+                },
+                {
+                    "label": "Lieu",
+                    "valeur": "Rochejean (25370)"
+                },
+                {
+                    "label": "Rythme",
+                    "valeur": "5 jours en binôme, week-end le vendredi et le samedi, ou le dimanche et le lundi"
+                },
+                {
+                    "label": "Vie d’équipe",
+                    "valeur": "repas du midi en équipe, logement temporaire possible à prix modéré selon les disponibilités"
+                },
+                {
+                    "label": "La ferme",
+                    "valeur": "74 hectares, foin produit sur la ferme, vaches à cornes, étable entravée avec traite au pipeline, moyenne d’étable entre 6 500 et 6 900 litres"
+                }
+            ],
+            "contact": "ferme.batailleuse@gmail.com",
+            "objet": "Recrutement Vache",
+            "jusqu_au": "2026-11-02",
+            "pdf": {
+                "fichier": "data/docs/offre-vachere-2026.pdf",
+                "taille": 296845,
+                "nom": "Offre-emploi-vachere-2026.pdf"
+            },
+            "maj": "2026-09-26T10:00:00+02:00",
+            "par": "Primo (mise en place)"
+        }
+    ],
+    "actualites": [
+        {
+            "id": "fete2026",
+            "titre": "Fête de la Batailleuse 2026 : plus de 900 personnes",
+            "date": "2026-10-16",
+            "texte": "Encore un grand merci à tous les bénévoles ! Le temps était au rendez-vous malgré du vent pour commencer. Nous remercions les producteurs·trices, artisans·nes et artistes présents·es, ainsi que la Sarbacane, la Commune de Rochejean, le Pôle associatif, la Communauté de Communes Lac et Montagnes du Haut-Doubs et la CAF pour leur soutien.",
+            "lien": "",
+            "lien_texte": "",
+            "photo": null,
+            "maj": "2026-09-26T10:00:00+02:00",
+            "par": "Primo (mise en place)"
+        }
     ]
-  },
-  "agenda": [
-    {
-      "id": "e1",
-      "date": "2026-09-18",
-      "heure": "19:30",
-      "titre": "Atelier parentalité : « Comment la parentalité me transforme ? »",
-      "texte": "Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.",
-      "lieu": "À la ferme",
-      "prix": "5 € par famille"
-    },
-    {
-      "id": "e2",
-      "date": "2026-09-25",
-      "heure": "19:30",
-      "titre": "Atelier parentalité : « Écouter mon enfant, qu’est-ce que ça veut dire ? »",
-      "texte": "Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.",
-      "lieu": "À la ferme",
-      "prix": "5 € par famille"
-    },
-    {
-      "id": "e3",
-      "date": "2026-09-26",
-      "heure": "09:30",
-      "titre": "Atelier parents-enfants",
-      "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 9h30 à 11h30.",
-      "lieu": "",
-      "prix": "5 € par famille"
-    },
-    {
-      "id": "e4",
-      "date": "2026-10-07",
-      "heure": "20:00",
-      "titre": "Projection d’un film",
-      "texte": "",
-      "lieu": "Au Chalet du Souleret",
-      "prix": ""
-    },
-    {
-      "id": "e5",
-      "date": "2026-10-09",
-      "heure": "19:30",
-      "titre": "Atelier parentalité : « (Ré)inventer ma parentalité »",
-      "texte": "Une soirée pour souffler et échanger entre parents, animée par une consultante en parentalité.",
-      "lieu": "À la ferme",
-      "prix": "5 € par famille"
-    },
-    {
-      "id": "e6",
-      "date": "2026-10-10",
-      "heure": "14:30",
-      "titre": "Atelier parents-enfants",
-      "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 14h30 à 16h30.",
-      "lieu": "",
-      "prix": "5 € par famille"
-    },
-    {
-      "id": "e7",
-      "date": "2026-10-14",
-      "heure": "14:30",
-      "titre": "Atelier parents-enfants",
-      "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 14h30 à 16h30.",
-      "lieu": "",
-      "prix": "5 € par famille"
-    }
-  ],
-  "sejours": [
-    {
-      "id": "apprentis",
-      "nom": "Vacances des apprentis fermiers (6-10 ans)",
-      "statut": "termine"
-    },
-    {
-      "id": "tout-autour",
-      "nom": "Tout autour de la ferme (10-13 ans)",
-      "statut": "termine"
-    },
-    {
-      "id": "alpages",
-      "nom": "L’aventure des alpages (14-17 ans)",
-      "statut": "termine"
-    }
-  ],
-  "versions": {
-    "message": 1,
-    "agenda": 1,
-    "horaires": 1,
-    "sejours": 1
-  }
 }

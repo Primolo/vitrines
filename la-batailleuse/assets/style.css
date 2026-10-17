@@ -526,3 +526,8 @@ input:user-invalid, select:user-invalid, textarea:user-invalid { border-color: v
 .recap__banner--ok { background: #E1EDDF; border-color: #BCD3B8; color: var(--sapin-deep); }
 .demande__erreur { margin: 18px 0 0; padding: 12px 14px; border-radius: var(--radius); background: #F3DCD6; border: 1px solid #E2B9AE; color: var(--bordeaux-deep); font-size: .95rem; }
 .demande__erreur a { color: var(--bordeaux-deep); font-weight: 700; }
+
+/* Nouvelles publiées par l'équipe */
+.news { margin-top: 24px; align-items: start; }
+.news__date { font-size: .85rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 6px; }
+.news__item .card__body p + p { margin-top: .6em; }

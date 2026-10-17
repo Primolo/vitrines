@@ -46,7 +46,11 @@
       fermetures: ["2026-12-25", "2027-01-01"]
     },
     agenda: null,
-    sejours: null
+    sejours: null,
+    documents: null,
+    actualites: null,
+    offres: null,
+    pain: null
   };
   var DEMO_KEY = "bata-demo-contenus";
   var DEMO = false;
@@ -81,6 +85,10 @@
     if (h && Array.isArray(h.periodes) && h.periodes.length) C.horaires = h;
     if (Array.isArray(d.agenda)) C.agenda = d.agenda;
     if (Array.isArray(d.sejours)) C.sejours = d.sejours;
+    if (d.documents && typeof d.documents === "object") C.documents = d.documents;
+    if (Array.isArray(d.actualites)) C.actualites = d.actualites;
+    if (Array.isArray(d.offres)) C.offres = d.offres;
+    if (d.pain && Array.isArray(d.pain.lignes)) C.pain = d.pain;
   }
 
   function isOpen(d) {
@@ -260,6 +268,98 @@
     if (resume) document.querySelectorAll("[data-colos-resume]").forEach(function (b) { b.textContent = resume[0]; b.className = "badge " + resume[1]; });
   }
 
+  /* ---------- Documents, nouvelles, offres, dates et prix : publiés par l'équipe ---------- */
+  function sureLien(u) { return /^https?:\/\//i.test(u || "") ? u : ""; }
+  function sureFichier(f) { return /^data\/docs\/[A-Za-z0-9._-]+$/.test(f || "") ? f : ""; }
+  function paras(s) { return String(s || "").split(/\n+/).filter(Boolean).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join(""); }
+  function prixTxt(v) { return v ? v + "\u00a0€" : "—"; }
+  function jourLong(d) { return JOURS[d.getDay()] + " " + jourTxt(d); }
+  function plageJours(a, b) {
+    var A = parse(a), B = parse(b);
+    var debut = "du " + jourLong(A) + (A.getMonth() !== B.getMonth() || A.getFullYear() !== B.getFullYear() ? " " + MOIS[A.getMonth()] : "") + (A.getFullYear() !== B.getFullYear() ? " " + A.getFullYear() : "");
+    return debut + " au " + jourLong(B) + " " + MOIS[B.getMonth()] + (A.getFullYear() !== B.getFullYear() ? " " + B.getFullYear() : "");
+  }
+
+  // Les liens vers les documents suivent les fichiers que l'équipe remplace.
+  function renderDocuments() {
+    if (!C.documents) return;
+    document.querySelectorAll("[data-doc]").forEach(function (a) {
+      var d = C.documents[a.dataset.doc], f = d && sureFichier(d.fichier);
+      if (f) a.setAttribute("href", f);
+    });
+  }
+
+  function renderActualites() {
+    var sec = document.querySelector("[data-actualites]");
+    if (!sec || !Array.isArray(C.actualites)) return;
+    var liste = C.actualites.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).slice(0, 6);
+    sec.hidden = !liste.length;
+    sec.querySelector("[data-actualites-liste]").innerHTML = liste.map(function (a) {
+      var d = parse(a.date), ph = a.photo && sureFichier(a.photo.fichier), lien = sureLien(a.lien);
+      return '<article class="card news__item">' +
+        (ph ? '<div class="card__img"><img src="' + esc(ph) + '" alt="' + esc(a.photo.alt || "") + '" loading="lazy"></div>' : "") +
+        '<div class="card__body"><p class="news__date">' + jourTxt(d) + " " + MOIS[d.getMonth()] + " " + d.getFullYear() + "</p><h3>" + esc(a.titre) + "</h3>" + paras(a.texte) +
+        (lien ? '<p><a class="link-arrow" href="' + esc(lien) + '" rel="noopener">' + esc(a.lien_texte || "En savoir plus") + "</a></p>" : "") + "</div></article>";
+    }).join("");
+  }
+
+  // Recrutement : les offres publiées remplacent celle écrite dans la page ; sans offre, on le dit.
+  function renderOffres() {
+    var sec = document.querySelector("[data-offres]");
+    if (!sec || !Array.isArray(C.offres)) return;
+    var offres = C.offres.filter(function (o) { return !o.jusqu_au || TODAY <= o.jusqu_au; });
+    var wrap = sec.querySelector(".wrap");
+    if (!offres.length) {
+      wrap.innerHTML = '<p class="kicker"><b>09</b> Recrutement</p><h2 id="t-recrutement">Pas d’offre d’emploi pour le moment.</h2>' +
+        '<p class="lead">Une candidature spontanée est toujours la bienvenue : écrivez-nous à <a href="mailto:contact@claj-batailleuse.fr">contact@claj-batailleuse.fr</a>.</p>';
+      return;
+    }
+    wrap.innerHTML = offres.map(function (o, i) {
+      var sujet = o.objet ? "?subject=" + encodeURIComponent(o.objet) : "", mail = "mailto:" + esc(o.contact) + sujet, pdf = o.pdf && sureFichier(o.pdf.fichier);
+      return '<div class="grid grid--2" style="align-items:start' + (i ? ";margin-top:56px" : "") + '"><div>' +
+        (i === 0 ? '<p class="kicker"><b>09</b> Recrutement</p>' : "") + "<h2" + (i === 0 ? ' id="t-recrutement"' : "") + ">" + esc(o.titre) + "</h2>" +
+        '<p><span class="badge badge--ok">Recrutement en cours</span></p>' + (o.intro ? '<p class="lead">' + esc(o.intro) + "</p>" : "") +
+        (o.missions && o.missions.length ? '<ul class="ticks">' + o.missions.map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("") + "</ul>" : "") +
+        '</div><div class="panel">' +
+        (o.details && o.details.length ? '<ul class="meta">' + o.details.map(function (x) { return "<li><b>" + esc(x.label) + '</b> <span class="meta__v"><span>' + esc(x.valeur) + "</span></span></li>"; }).join("") + "</ul>" : "") +
+        '<p style="margin:22px 0 18px">Pour postuler&nbsp;: CV et lettre de motivation à <a href="' + mail + '">' + esc(o.contact) + "</a>" + (o.objet ? ", avec l’objet «&nbsp;" + esc(o.objet) + "&nbsp;»" : "") + ".</p>" +
+        '<div class="actions"><a class="btn btn--light" href="' + mail + '">Envoyer ma candidature</a>' +
+        (pdf ? '<a class="btn btn--ghost btn--on-dark" href="' + esc(pdf) + '" rel="noopener">L’offre complète (PDF)</a>' : "") + "</div></div></div>";
+    }).join("");
+  }
+
+  // Colos : dates des sessions et prix, tels que l'équipe les a saisis.
+  function renderInfosSejours() {
+    if (!C.sejours) return;
+    C.sejours.forEach(function (s) {
+      var w = Array.isArray(s.semaines) ? s.semaines : null;
+      if (w && w.length) {
+        var ul = document.querySelector('[data-sejour-dates="' + s.id + '"]');
+        if (ul) ul.innerHTML = w.map(function (x) { return '<li data-from="' + esc(x.du) + '" data-to="' + esc(x.au) + '">' + esc(plageJours(x.du, x.au)) + "</li>"; }).join("");
+        var A = parse(w[0].du), Z = parse(w[w.length - 1].au), annee = A.getFullYear() === Z.getFullYear() ? String(A.getFullYear()) : A.getFullYear() + "-" + Z.getFullYear();
+        var semaines = w.every(function (x) { return Math.round((parse(x.au) - parse(x.du)) / 864e5) === 6; });
+        document.querySelectorAll('[data-sejour-label="' + s.id + '"]').forEach(function (n) {
+          n.textContent = "Dates " + annee + (w.length > 1 ? " · " + w.length + (semaines ? " semaines" : " sessions") + " au choix" : "");
+        });
+        document.querySelectorAll('[data-sejour="' + s.id + '"][data-until]').forEach(function (b) { b.dataset.until = w[w.length - 1].au; });
+        document.querySelectorAll("[data-sejour-annee]").forEach(function (n) {
+          if (n.closest(".price") && n.closest(".price").querySelector('[data-sejour-prix="' + s.id + '"]')) n.textContent = "le séjour en " + annee;
+        });
+      }
+      if (s.prix) document.querySelectorAll('[data-sejour-prix="' + s.id + '"]').forEach(function (n) { n.textContent = String(s.prix).replace(/\s*€/, "\u00a0€"); });
+    });
+  }
+
+  function renderPain() {
+    if (!C.pain) return;
+    var tb = document.querySelector("[data-pain-lignes]");
+    if (tb) tb.innerHTML = C.pain.lignes.map(function (l) {
+      return '<tr><th scope="row">' + esc(l.nom) + (l.note ? "<small>" + esc(l.note) + "</small>" : "") + '</th><td class="n sep">' + prixTxt(l.kg_j) + '</td><td class="n">' + prixTxt(l.kg_s) +
+        '</td><td class="n sep">' + prixTxt(l.d_j) + '</td><td class="n">' + prixTxt(l.d_s) + "</td></tr>";
+    }).join("");
+    document.querySelectorAll("[data-pain-brioche]").forEach(function (n) { var v = C.pain["brioche_" + n.dataset.painBrioche]; if (v) n.textContent = v; });
+  }
+
   function bandeauDemo() {
     if (!DEMO) return;
     var n = document.createElement("div");
@@ -298,6 +398,11 @@
     renderPeriodes();
     renderHeures();
     renderDonneesGoogle();
+    renderDocuments();
+    renderActualites();
+    renderOffres();
+    renderInfosSejours();
+    renderPain();
     markPeriods();
     renderAgendaData();
     renderAgenda();

@@ -7,7 +7,11 @@ require __DIR__ . '/../prive/commun.php';
 
 exiger_post();
 $c = config();
-$d = corps_json(200000);
+// Un fichier (PDF, photo) arrive en base64 dans le corps : on ne lit un corps volumineux qu'une fois le code vérifié.
+const ACTIONS_FICHIERS = ['document_envoyer', 'actualite_enregistrer', 'offre_enregistrer'];
+const OCTETS_FICHIER = 5 * 1024 * 1024;
+$gros = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0) > 200000;
+$d = $gros ? [] : corps_json(200000);
 $action = texte($d['action'] ?? '', 30);
 
 if ($action === 'ping') {
@@ -25,6 +29,13 @@ if ($code === '' || $c['code_equipe_hash'] === '' || !password_verify($code, $c[
     sleep(1);
     repondre(401, ['erreur' => 'Code incorrect.']);
 }
+if ($gros) {
+    $d = corps_json((int) (OCTETS_FICHIER * 4 / 3) + 300000);
+    $action = texte($d['action'] ?? '', 30);
+    if (!in_array($action, ACTIONS_FICHIERS, true)) {
+        repondre(413, ['erreur' => 'Demande trop volumineuse.']);
+    }
+}
 $prenom = texte(rawurldecode((string) ($_SERVER['HTTP_X_PRENOM'] ?? '')), 30);
 if ($prenom === '') {
     repondre(400, ['erreur' => 'Indiquez votre prénom : il apparaît dans l’historique des modifications.']);
@@ -32,6 +43,15 @@ if ($prenom === '') {
 
 const STATUTS = ['a-venir' => 'inscriptions bientôt', 'ouvert' => 'inscriptions ouvertes', 'dernieres' => 'dernières places', 'complet' => 'complet', 'termine' => 'terminé'];
 const TYPES = ['haute', 'moyenne', 'basse'];
+
+// Emplacements de documents : l'équipe remplace le fichier, le lien du site suit tout seul.
+const DOCUMENTS = [
+    'contrat-pain-mensuel' => ['Contrat pain mensuel', ['pdf']],
+    'contrat-pain-semestriel' => ['Contrat pain semestriel', ['pdf']],
+    'catalogue-activites' => ['Brochure « Nos activités » (écoles et groupes)', ['pdf']],
+    'bulletin-adhesion' => ['Bulletin d’adhésion et de soutien', ['pdf', 'png', 'jpg']],
+];
+
 
 switch ($action) {
     case 'lire':
@@ -111,6 +131,151 @@ switch ($action) {
             succes(enregistrer($doc, 'horaires', $resume, $prenom));
         });
 
+    case 'document_envoyer':
+        $cle = texte($d['cle'] ?? '', 40);
+        if (!isset(DOCUMENTS[$cle])) {
+            repondre(400, ['erreur' => 'Emplacement de document inconnu.']);
+        }
+        $nom_fichier = texte($d['nom'] ?? '', 80);
+        avec_verrou('contenus', function () use ($d, $cle, $nom_fichier, $prenom) {
+            $doc = charger();
+            $actuel = $doc['documents'][$cle] ?? null;
+            if (empty($d['forcer']) && (string) ($d['maj_vue'] ?? '') !== (string) ($actuel['maj'] ?? '')) {
+                conflit($doc, 'documents', $actuel ?? ['titre' => DOCUMENTS[$cle][0]], $cle);
+            }
+            $f = enregistrer_fichier($cle, $d['contenu'] ?? '', DOCUMENTS[$cle][1]);
+            $doc['documents'][$cle] = ['titre' => DOCUMENTS[$cle][0], 'fichier' => $f['fichier'], 'nom' => $nom_fichier, 'taille' => $f['taille'], 'maj' => date('c'), 'par' => $prenom];
+            succes(enregistrer($doc, 'documents', DOCUMENTS[$cle][0] . ' : nouveau fichier' . ($nom_fichier !== '' ? ' (' . $nom_fichier . ')' : ''), $prenom, $cle));
+        });
+
+    case 'actualite_enregistrer':
+        $a = valider_actualite($d);
+        avec_verrou('contenus', function () use ($d, $a, $prenom) {
+            $doc = charger();
+            $liste = $doc['actualites'] ?? [];
+            $i = null;
+            foreach ($liste as $k => $x) {
+                if (($x['id'] ?? '') === $a['id']) {
+                    $i = $k;
+                }
+            }
+            if ($i !== null && empty($d['forcer']) && (string) ($d['maj_vue'] ?? '') !== (string) ($liste[$i]['maj'] ?? '')) {
+                conflit($doc, 'actualites', $liste[$i], $a['id']);
+            }
+            if ($i === null && count($liste) >= 40) {
+                repondre(400, ['erreur' => 'Il y a déjà 40 actualités : retirez les plus anciennes avant d’en ajouter.']);
+            }
+            $ancien = $i === null ? [] : $liste[$i];
+            $photo = $ancien['photo'] ?? null;
+            if (!empty($d['retirer_photo'])) {
+                $photo = null;
+            }
+            if (!empty($d['photo']['contenu'])) {
+                $f = enregistrer_fichier('actu-' . $a['id'], $d['photo']['contenu'], ['jpg', 'png', 'webp']);
+                $photo = ['fichier' => $f['fichier']];
+            }
+            if ($photo) {
+                $photo['alt'] = $a['titre'];
+            }
+            $a = array_merge($a, ['photo' => $photo, 'maj' => date('c'), 'par' => $prenom]);
+            if ($i === null) {
+                $liste[] = $a;
+            } else {
+                $liste[$i] = $a;
+            }
+            usort($liste, fn($x, $y) => strcmp((string) $y['date'], (string) $x['date']));
+            $doc['actualites'] = array_values($liste);
+            succes(enregistrer($doc, 'actualites', ($i === null ? 'Actualité publiée : ' : 'Actualité modifiée : ') . $a['titre'], $prenom, $a['id']));
+        });
+
+    case 'actualite_supprimer':
+        $id = texte($d['id'] ?? '', 20);
+        avec_verrou('contenus', function () use ($id, $prenom) {
+            $doc = charger();
+            foreach ($doc['actualites'] ?? [] as $i => $x) {
+                if (($x['id'] ?? '') === $id) {
+                    array_splice($doc['actualites'], $i, 1);
+                    succes(enregistrer($doc, 'actualites', 'Actualité retirée : ' . $x['titre'], $prenom, $id));
+                }
+            }
+            succes($doc, 'Cette actualité avait déjà été retirée' . par_qui('actualites') . '.');
+        });
+
+    case 'offre_enregistrer':
+        $o = valider_offre($d);
+        avec_verrou('contenus', function () use ($d, $o, $prenom) {
+            $doc = charger();
+            $liste = $doc['offres'] ?? [];
+            $i = null;
+            foreach ($liste as $k => $x) {
+                if (($x['id'] ?? '') === $o['id']) {
+                    $i = $k;
+                }
+            }
+            if ($i !== null && empty($d['forcer']) && (string) ($d['maj_vue'] ?? '') !== (string) ($liste[$i]['maj'] ?? '')) {
+                conflit($doc, 'offres', $liste[$i], $o['id']);
+            }
+            if ($i === null && count($liste) >= 10) {
+                repondre(400, ['erreur' => 'Il y a déjà 10 offres : retirez-en avant d’en ajouter.']);
+            }
+            $pdf = $i === null ? null : ($liste[$i]['pdf'] ?? null);
+            if (!empty($d['retirer_pdf'])) {
+                $pdf = null;
+            }
+            if (!empty($d['pdf']['contenu'])) {
+                $f = enregistrer_fichier('offre-' . $o['id'], $d['pdf']['contenu'], ['pdf']);
+                $pdf = ['fichier' => $f['fichier'], 'taille' => $f['taille'], 'nom' => texte($d['pdf']['nom'] ?? '', 80)];
+            }
+            $o = array_merge($o, ['pdf' => $pdf, 'maj' => date('c'), 'par' => $prenom]);
+            if ($i === null) {
+                $liste[] = $o;
+            } else {
+                $liste[$i] = $o;
+            }
+            $doc['offres'] = array_values($liste);
+            succes(enregistrer($doc, 'offres', ($i === null ? 'Offre publiée : ' : 'Offre modifiée : ') . $o['titre'], $prenom, $o['id']));
+        });
+
+    case 'offre_supprimer':
+        $id = texte($d['id'] ?? '', 20);
+        avec_verrou('contenus', function () use ($id, $prenom) {
+            $doc = charger();
+            foreach ($doc['offres'] ?? [] as $i => $x) {
+                if (($x['id'] ?? '') === $id) {
+                    array_splice($doc['offres'], $i, 1);
+                    succes(enregistrer($doc, 'offres', 'Offre retirée : ' . $x['titre'], $prenom, $id));
+                }
+            }
+            succes($doc, 'Cette offre avait déjà été retirée' . par_qui('offres') . '.');
+        });
+
+    case 'sejour_infos':
+        $id = texte($d['id'] ?? '', 40);
+        $infos = valider_infos_sejour($d);
+        avec_verrou('contenus', function () use ($d, $id, $infos, $prenom) {
+            $doc = charger();
+            foreach ($doc['sejours'] ?? [] as $i => $s) {
+                if (($s['id'] ?? '') !== $id) {
+                    continue;
+                }
+                if (empty($d['forcer']) && (string) ($d['maj_vue'] ?? '') !== (string) ($s['infos_maj'] ?? '')) {
+                    conflit($doc, 'sejours', ['id' => $id, 'infos' => true, 'prix' => $s['prix'] ?? '', 'semaines' => $s['semaines'] ?? []], $id);
+                }
+                $doc['sejours'][$i] = array_merge($s, $infos, ['infos_maj' => date('c')]);
+                succes(enregistrer($doc, 'sejours', $s['nom'] . ' : dates et prix modifiés (' . count($infos['semaines']) . ' semaine' . (count($infos['semaines']) > 1 ? 's' : '') . ', ' . $infos['prix'] . ')', $prenom, $id));
+            }
+            repondre(404, ['erreur' => 'Séjour introuvable.']);
+        });
+
+    case 'pain_prix':
+        $pain = valider_pain($d['pain'] ?? null);
+        avec_verrou('contenus', function () use ($d, $pain, $prenom) {
+            $doc = charger();
+            verifier_version($doc, 'pain', $d, $doc['pain'] ?? null);
+            $doc['pain'] = $pain;
+            succes(enregistrer($doc, 'pain', 'Prix du pain modifiés (' . count($pain['lignes']) . ' pains)', $prenom));
+        });
+
     case 'boites_reelles':
         if (!interrupteur_disponible($c)) {
             repondre(400, ['erreur' => 'Ce réglage n’existe que sur la démonstration.']);
@@ -136,6 +301,11 @@ switch ($action) {
                 repondre(500, ['erreur' => 'Version illisible.']);
             }
             $actuel = charger();
+            foreach (['documents', 'actualites', 'offres', 'pain'] as $k) {
+                if (!isset($ancien[$k]) && isset($actuel[$k])) {
+                    $ancien[$k] = $actuel[$k];
+                }
+            }
             $ancien['versions'] = $actuel['versions'];
             foreach (array_keys($ancien['versions']) as $s) {
                 $ancien['versions'][$s]++;
@@ -159,7 +329,7 @@ function charger(): array
     if (!is_array($doc)) {
         repondre(500, ['erreur' => 'Le fichier des contenus est illisible. Prévenez Primo.']);
     }
-    $doc['versions'] = ($doc['versions'] ?? []) + ['message' => 0, 'agenda' => 0, 'horaires' => 0, 'sejours' => 0];
+    $doc['versions'] = ($doc['versions'] ?? []) + ['message' => 0, 'agenda' => 0, 'horaires' => 0, 'sejours' => 0, 'documents' => 0, 'actualites' => 0, 'offres' => 0, 'pain' => 0];
     return $doc;
 }
 
@@ -351,4 +521,189 @@ function valider_horaires($h): array
     $fermetures = array_values(array_unique($fermetures));
     sort($fermetures);
     return $plages + ['periodes' => $periodes, 'fermetures' => $fermetures];
+}
+
+
+/** Enregistre un fichier envoyé en base64 : type reconnu à son contenu (pas à son nom), nom généré. */
+function enregistrer_fichier(string $cle, $b64, array $types): array
+{
+    if (!is_string($b64) || $b64 === '') {
+        repondre(400, ['erreur' => 'Aucun fichier reçu.']);
+    }
+    $bin = base64_decode($b64, true);
+    if ($bin === false || $bin === '') {
+        repondre(400, ['erreur' => 'Fichier illisible.']);
+    }
+    if (strlen($bin) > OCTETS_FICHIER) {
+        repondre(413, ['erreur' => 'Ce fichier est trop lourd (5 Mo au maximum).']);
+    }
+    $ext = null;
+    if (strncmp($bin, '%PDF-', 5) === 0) {
+        $ext = 'pdf';
+    } elseif (strncmp($bin, "\x89PNG\r\n\x1a\n", 8) === 0) {
+        $ext = 'png';
+    } elseif (strncmp($bin, "\xFF\xD8\xFF", 3) === 0) {
+        $ext = 'jpg';
+    } elseif (strncmp($bin, 'RIFF', 4) === 0 && substr($bin, 8, 4) === 'WEBP') {
+        $ext = 'webp';
+    }
+    if ($ext === null || !in_array($ext, $types, true)) {
+        repondre(400, ['erreur' => 'Format non accepté ici. Formats possibles : ' . strtoupper(implode(', ', $types)) . '.']);
+    }
+    if ($ext !== 'pdf' && @getimagesizefromstring($bin) === false) {
+        repondre(400, ['erreur' => 'Cette image est illisible.']);
+    }
+    $dossier = dirname(FICHIER_CONTENUS) . '/docs';
+    if (!is_dir($dossier) && !mkdir($dossier, 0755, true) && !is_dir($dossier)) {
+        repondre(500, ['erreur' => 'Impossible de créer le dossier des documents. Prévenez Primo.']);
+    }
+    $slug = preg_replace('/[^a-z0-9-]/', '', strtolower($cle));
+    $nom = $slug . '-' . date('Ymd') . '-' . bin2hex(random_bytes(3)) . '.' . $ext;
+    if (file_put_contents($dossier . '/' . $nom, $bin, LOCK_EX) === false) {
+        repondre(500, ['erreur' => 'Le fichier n’a pas pu être enregistré. Prévenez Primo.']);
+    }
+    @chmod($dossier . '/' . $nom, 0644);
+    // On garde les 5 versions les plus récentes de cet emplacement (la restauration de l'historique peut en avoir besoin).
+    $anciens = glob($dossier . '/' . $slug . '-[0-9]*-*.*') ?: [];
+    rsort($anciens);
+    foreach (array_slice($anciens, 5) as $f) {
+        @unlink($f);
+    }
+    return ['fichier' => 'data/docs/' . $nom, 'ext' => $ext, 'taille' => strlen($bin)];
+}
+
+function lien_valide(string $u): bool
+{
+    return $u !== '' && strlen($u) <= 300 && preg_match('#^https?://[^\s<>"\']+$#i', $u) === 1 && filter_var($u, FILTER_VALIDATE_URL) !== false;
+}
+
+function valider_actualite(array $d): array
+{
+    $titre = texte($d['titre'] ?? '', 100);
+    if ($titre === '') {
+        repondre(400, ['erreur' => 'Donnez un titre à cette actualité.']);
+    }
+    $date = (string) ($d['date'] ?? '');
+    if ($date === '') {
+        $date = date('Y-m-d');
+    }
+    if (!date_valide($date)) {
+        repondre(400, ['erreur' => 'La date est incorrecte.']);
+    }
+    $lien = texte($d['lien'] ?? '', 300);
+    if ($lien !== '' && !lien_valide($lien)) {
+        repondre(400, ['erreur' => 'Le lien doit commencer par https:// (copiez-le depuis la barre d’adresse).']);
+    }
+    $id = texte($d['id'] ?? '', 20);
+    return [
+        'id' => $id !== '' ? $id : 'a' . bin2hex(random_bytes(4)),
+        'titre' => $titre,
+        'date' => $date,
+        'texte' => texte($d['texte'] ?? '', 1500, true),
+        'lien' => $lien,
+        'lien_texte' => $lien === '' ? '' : (texte($d['lien_texte'] ?? '', 40) ?: 'En savoir plus'),
+    ];
+}
+
+function lignes_texte($v, int $max_lignes, int $max_car): array
+{
+    $sortie = [];
+    foreach (is_array($v) ? $v : [] as $l) {
+        $s = texte($l, $max_car);
+        if ($s !== '') {
+            $sortie[] = $s;
+        }
+    }
+    return array_slice($sortie, 0, $max_lignes);
+}
+
+function valider_offre(array $d): array
+{
+    $titre = texte($d['titre'] ?? '', 100);
+    if ($titre === '') {
+        repondre(400, ['erreur' => 'Donnez un titre à cette offre.']);
+    }
+    $contact = texte($d['contact'] ?? '', 120);
+    if (!adresse_valide($contact)) {
+        repondre(400, ['erreur' => 'Indiquez l’adresse e-mail où envoyer les candidatures.']);
+    }
+    $jusqu = (string) ($d['jusqu_au'] ?? '');
+    if ($jusqu !== '' && !date_valide($jusqu)) {
+        repondre(400, ['erreur' => 'La date de fin de l’offre est incorrecte.']);
+    }
+    $details = [];
+    foreach (is_array($d['details'] ?? null) ? $d['details'] : [] as $l) {
+        $label = texte($l['label'] ?? '', 40);
+        $valeur = texte($l['valeur'] ?? '', 300);
+        if ($label !== '' && $valeur !== '') {
+            $details[] = ['label' => $label, 'valeur' => $valeur];
+        }
+    }
+    $id = texte($d['id'] ?? '', 20);
+    return [
+        'id' => $id !== '' ? $id : 'o' . bin2hex(random_bytes(4)),
+        'titre' => $titre,
+        'intro' => texte($d['intro'] ?? '', 600, true),
+        'missions' => lignes_texte($d['missions'] ?? [], 8, 220),
+        'details' => array_slice($details, 0, 12),
+        'contact' => $contact,
+        'objet' => texte($d['objet'] ?? '', 100),
+        'jusqu_au' => $jusqu,
+    ];
+}
+
+function valider_infos_sejour(array $d): array
+{
+    $prix = texte($d['prix'] ?? '', 20);
+    if ($prix === '') {
+        repondre(400, ['erreur' => 'Indiquez le prix du séjour (ex. : 420 €).']);
+    }
+    $semaines = [];
+    foreach (is_array($d['semaines'] ?? null) ? $d['semaines'] : [] as $s) {
+        $du = (string) ($s['du'] ?? '');
+        $au = (string) ($s['au'] ?? '');
+        if (!date_valide($du) || !date_valide($au) || $du > $au) {
+            repondre(400, ['erreur' => 'Une des dates est incorrecte : la fin doit suivre le début.']);
+        }
+        $semaines[] = ['du' => $du, 'au' => $au];
+    }
+    if (count($semaines) > 8) {
+        repondre(400, ['erreur' => '8 sessions au maximum.']);
+    }
+    usort($semaines, fn($a, $b) => strcmp($a['du'], $b['du']));
+    return ['prix' => $prix, 'semaines' => $semaines];
+}
+
+function prix_pain($v): string
+{
+    $s = trim(str_replace(['€', ' ', "\u{00A0}"], '', (string) $v));
+    if ($s === '' || $s === '-' || $s === '—') {
+        return '';
+    }
+    if (preg_match('/^\d{1,3}([.,]\d{1,2})?$/', $s) !== 1) {
+        repondre(400, ['erreur' => 'Un prix n’est pas valide : écrivez par exemple 5,10.']);
+    }
+    $n = (float) str_replace(',', '.', $s);
+    return number_format($n, 2, ',', '');
+}
+
+function valider_pain($p): array
+{
+    if (!is_array($p) || !is_array($p['lignes'] ?? null)) {
+        repondre(400, ['erreur' => 'Prix illisibles.']);
+    }
+    $lignes = [];
+    foreach ($p['lignes'] as $l) {
+        $nom = texte($l['nom'] ?? '', 40);
+        if ($nom === '') {
+            repondre(400, ['erreur' => 'Chaque pain doit avoir un nom.']);
+        }
+        $lignes[] = ['nom' => $nom, 'note' => texte($l['note'] ?? '', 40),
+            'kg_j' => prix_pain($l['kg_j'] ?? ''), 'kg_s' => prix_pain($l['kg_s'] ?? ''),
+            'd_j' => prix_pain($l['d_j'] ?? ''), 'd_s' => prix_pain($l['d_s'] ?? '')];
+    }
+    if (!$lignes || count($lignes) > 12) {
+        repondre(400, ['erreur' => 'Entre 1 et 12 pains.']);
+    }
+    return ['lignes' => $lignes, 'brioche_j' => prix_pain($p['brioche_j'] ?? ''), 'brioche_s' => prix_pain($p['brioche_s'] ?? '')];
 }

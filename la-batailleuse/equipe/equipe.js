@@ -6,15 +6,15 @@
 
   var API = "api.php";
   var CLE_DEMO = "bata-demo-contenus", CLE_DEMO_J = "bata-demo-journal", CLE_DEMO_H = "bata-demo-historique", CLE_SESSION = "bata-equipe";
-  var S = { demo: false, prenom: "", code: "", contenus: null, journal: [], historique: [] };
+  var S = { infosTimers: {}, ouverts: {}, painTimer: null,  demo: false, prenom: "", code: "", contenus: null, journal: [], historique: [] };
   var STATUTS = [["a-venir", "Inscriptions bientôt", "pas encore ouvertes"], ["ouvert", "Inscriptions ouvertes", ""], ["dernieres", "Dernières places", ""], ["complet", "Complet", ""], ["termine", "Terminé", "séjour passé"]];
   var TYPES = { haute: ["Haute", "badge--ok", "du mardi au samedi"], moyenne: ["Moyenne", "badge--bientot", "mer., ven., sam."], basse: ["Basse", "", "le mercredi"] };
   var JOURS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
   var MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
   var MOIS_COURT = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
 
-  function $(s) { return document.querySelector(s); }
-  function $$(s) { return Array.prototype.slice.call(document.querySelectorAll(s)); }
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
   function parse(s) { return new Date(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)); }
@@ -77,6 +77,9 @@
 
   // La démonstration applique les mêmes opérations que le serveur, sur une copie gardée dans ce navigateur.
   function demo(action, d) {
+    if (["document_envoyer", "actualite_enregistrer", "actualite_supprimer", "offre_enregistrer", "offre_supprimer", "sejour_infos", "pain_prix"].indexOf(action) !== -1) {
+      return { s: 400, j: { erreur: "Cette fonction ne marche que sur le vrai site, pas dans la maquette de démonstration." } };
+    }
     var c = copie(S.contenus), j = lireLocal(CLE_DEMO_J, []), h = lireLocal(CLE_DEMO_H, []), section = "", resume = "";
     function archiver() { h.unshift({ fichier: "demo-" + Date.now().toString(36), doc: S.contenus }); h = h.slice(0, 20); }
     if (action === "lire") return { s: 200, j: { ok: true, contenus: c, journal: j, historique: h.map(function (x) { return x.fichier; }) } };
@@ -156,6 +159,18 @@
       $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a modifié les horaires " + quand + ". Ses heures :";
       cite = "Accueil de " + esc(heureTxt(j.actuel.accueil.de)) + " à " + esc(heureTxt(j.actuel.accueil.a)) +
         ", traite de " + esc(heureTxt(j.actuel.traite.de)) + " à " + esc(heureTxt(j.actuel.traite.a)) + ".";
+    } else if (j.section === "documents") {
+      $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a remplacé « " + esc((j.actuel && j.actuel.titre) || "ce document") + " » " + quand + " :";
+      cite = esc((j.actuel && j.actuel.nom) || "un nouveau fichier");
+    } else if (j.section === "actualites" || j.section === "offres") {
+      $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a modifié " + (j.section === "offres" ? "cette offre" : "cette nouvelle") + " " + quand + " :";
+      cite = esc((j.actuel && j.actuel.titre) || "");
+    } else if (j.section === "pain") {
+      $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a modifié les prix du pain " + quand + ".";
+      cite = "Ses prix sont en ligne. Gardez-les, ou remplacez-les par ceux que vous venez de saisir.";
+    } else if (j.actuel && j.actuel.infos) {
+      $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a changé les dates ou le prix de ce séjour " + quand + " :";
+      cite = esc(j.actuel.prix || "") + " · " + (j.actuel.semaines || []).length + " session(s)";
     } else {
       $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a changé le statut de ce séjour " + quand + " :";
       cite = esc(libelleStatut(j.actuel && j.actuel.statut));
@@ -218,8 +233,12 @@
     $("#derniere").textContent = dernier ? "Dernière modification : " + dernier.resume + ", par " + dernier.par + " " + quandTxt(dernier.quand) + "." : "";
     afficherMessage();
     afficherAgenda();
+    afficherActualites();
     afficherColos();
     afficherHoraires();
+    afficherDocuments();
+    afficherPain();
+    afficherOffres();
     afficherHistorique();
     afficherReglages();
   }
@@ -261,11 +280,27 @@
   }
 
   function afficherColos() {
+    // Pas de redessin pendant qu'on saisit des dates ou un prix (ils s'enregistrent tout seuls).
+    var actif = document.activeElement;
+    if (Object.keys(S.infosTimers).length || (actif && actif.tagName === "INPUT" && actif.closest("#co-liste") && actif.type !== "radio")) return;
+    $$("#co-liste details[data-infos]").forEach(function (d) { S.ouverts[d.dataset.infos] = d.open; });
     $("#co-liste").innerHTML = (S.contenus.sejours || []).map(function (s) {
+      var id = esc(s.id);
       return '<div class="eq-sejour"><h3>' + esc(s.nom) + '</h3><div class="choices">' + STATUTS.map(function (st) {
-        return '<label class="choice"><input type="radio" name="co-' + esc(s.id) + '" value="' + st[0] + '" data-sejour="' + esc(s.id) + '"' + (s.statut === st[0] ? " checked" : "") + "><span>" + st[1] + (st[2] ? "<small>" + st[2] + "</small>" : "") + "</span></label>";
-      }).join("") + "</div></div>";
+        return '<label class="choice"><input type="radio" name="co-' + id + '" value="' + st[0] + '" data-sejour="' + id + '"' + (s.statut === st[0] ? " checked" : "") + "><span>" + st[1] + (st[2] ? "<small>" + st[2] + "</small>" : "") + "</span></label>";
+      }).join("") + "</div>" +
+        '<details class="eq-details" data-infos="' + id + '"' + (S.ouverts[s.id] ? " open" : "") + "><summary>Dates et prix</summary>" +
+        '<div class="field"><label>Prix du séjour</label><input data-si-prix="' + id + '" maxlength="20" value="' + esc(s.prix || "") + '" placeholder="420 €"></div>' +
+        '<p class="label" style="margin:12px 0 6px">Sessions</p><div data-si-semaines="' + id + '">' + (s.semaines || []).map(ligneSession).join("") + "</div>" +
+        '<button type="button" class="eq-mini" data-si-ajout="' + id + '">Ajouter une session</button>' +
+        '<p class="eq-auto" data-si-etat="' + id + '" role="status">Enregistrement automatique.</p></details></div>';
     }).join("");
+  }
+
+  function ligneSession(w) {
+    return '<div class="eq-sess"><div class="field"><label>Du</label><input type="date" data-si-du value="' + esc(w.du || "") + '"></div>' +
+      '<div class="field"><label>Au</label><input type="date" data-si-au value="' + esc(w.au || "") + '"></div>' +
+      '<button type="button" class="eq-mini" data-si-retirer aria-label="Retirer cette session">✕</button></div>';
   }
 
   function afficherHoraires() {
@@ -296,6 +331,195 @@
       return "<li><span><b>" + esc(e.par) + "</b> · " + esc(e.resume) + "</span><small>" + esc(quandTxt(e.quand)) + "</small>" +
         (possible ? '<span><button type="button" class="eq-mini" data-restaurer="' + esc(e.avant) + '">Revenir avant cette modification</button></span>' : "") + "</li>";
     }).join("") : '<li class="muted">Aucune modification pour l’instant.</li>';
+  }
+
+  /* ---------- Documents, prix du pain, nouvelles, offres ---------- */
+  var DOCS = [
+    ["contrat-pain-mensuel", "Contrat pain mensuel", "application/pdf"],
+    ["contrat-pain-semestriel", "Contrat pain semestriel", "application/pdf"],
+    ["catalogue-activites", "Brochure « Nos activités » (écoles et groupes)", "application/pdf"],
+    ["bulletin-adhesion", "Bulletin d’adhésion et de soutien", "application/pdf,image/png,image/jpeg"]
+  ];
+  function tailleTxt(n) { return n > 1048576 ? (n / 1048576).toFixed(1).replace(".", ",") + " Mo" : Math.max(1, Math.round(n / 1024)) + " Ko"; }
+  function lien(f) { return "../" + esc(f); }
+
+  // Lit un fichier choisi : une photo est réduite (1600 px), un PDF part tel quel (5 Mo maximum).
+  function lireFichier(fichier, reduire) {
+    return new Promise(function (ok, non) {
+      if (!fichier) return ok(null);
+      if (reduire && /^image\//.test(fichier.type)) {
+        var url = URL.createObjectURL(fichier), img = new Image();
+        img.onload = function () {
+          var k = Math.min(1, 1600 / Math.max(img.width, img.height)), c = document.createElement("canvas");
+          c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+          c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+          URL.revokeObjectURL(url);
+          ok({ contenu: c.toDataURL("image/jpeg", 0.85).split(",")[1], nom: fichier.name.replace(/\.[^.]+$/, "") + ".jpg" });
+        };
+        img.onerror = function () { URL.revokeObjectURL(url); non(new Error("Cette image est illisible.")); };
+        img.src = url;
+        return;
+      }
+      if (fichier.size > 5 * 1024 * 1024) return non(new Error("Ce fichier est trop lourd (5 Mo au maximum)."));
+      var r = new FileReader();
+      r.onload = function () { ok({ contenu: String(r.result).split(",")[1], nom: fichier.name }); };
+      r.onerror = function () { non(new Error("Ce fichier est illisible.")); };
+      r.readAsDataURL(fichier);
+    });
+  }
+
+  function afficherDocuments() {
+    var docs = S.contenus.documents || {};
+    $("#do-liste").innerHTML = DOCS.map(function (d) {
+      var x = docs[d[0]];
+      return '<li class="eq-item eq-item--simple"><div><h3>' + esc(d[1]) + "</h3><p>" +
+        (x ? esc(x.nom || "fichier") + " · " + tailleTxt(x.taille || 0) + " · en ligne " + esc(quandTxt(x.maj)) + (x.par ? ", par " + esc(x.par) : "") : "Aucun fichier") + "</p></div>" +
+        '<div class="btns">' + (x ? '<a class="eq-mini" href="' + lien(x.fichier) + '" target="_blank" rel="noopener">Voir</a>' : "") +
+        '<label class="eq-mini">Remplacer<input type="file" accept="' + d[2] + '" data-doc="' + d[0] + '"></label></div></li>';
+    }).join("");
+  }
+
+  function envoyerDocument(cle, p, forcer) {
+    var x = (S.contenus.documents || {})[cle];
+    appel("document_envoyer", { cle: cle, nom: p.nom, contenu: p.contenu, maj_vue: x ? x.maj : "", forcer: !!forcer }).then(function (res) {
+      if (res.s === 200 && res.j.ok && !res.j.info) res.j.info = "Nouveau fichier en ligne : le lien du site est à jour.";
+      traiter(res, function () { envoyerDocument(cle, p, true); });
+    });
+  }
+
+  /* Prix du pain : enregistrement tout seul, une seconde après la dernière touche */
+  function afficherPain(force) {
+    var p = S.contenus.pain;
+    if (!p) return;
+    var actif = document.activeElement;
+    if (!force && (S.painTimer || (actif && actif.tagName === "INPUT" && (actif.dataset.p !== undefined || actif.dataset.pain)))) return;
+    var champ = function (k, i, lib, v) { return '<div class="field"><label>' + lib + '</label><input inputmode="decimal" data-p="' + k + '" value="' + esc(v || "") + '"></div>'; };
+    $("#pa-lignes").innerHTML = p.lignes.map(function (l, i) {
+      return '<div class="eq-pain" data-pl="' + i + '"><div class="top"><div class="field"><label>Pain</label><input data-p="nom" maxlength="40" value="' + esc(l.nom) + '"></div>' +
+        '<div class="field"><label>Précision</label><input data-p="note" maxlength="40" value="' + esc(l.note || "") + '"></div>' +
+        '<button type="button" class="eq-mini" data-pain-retirer="' + i + '" aria-label="Retirer ' + esc(l.nom) + '">✕</button></div>' +
+        '<div class="row2">' + champ("kg_j", i, "Miche 1 kg · juste (€)", l.kg_j) + champ("kg_s", i, "Miche 1 kg · solidaire (€)", l.kg_s) +
+        champ("d_j", i, "500 g · juste (€)", l.d_j) + champ("d_s", i, "500 g · solidaire (€)", l.d_s) + "</div></div>";
+    }).join("");
+    $("#pa-bj").value = p.brioche_j || ""; $("#pa-bs").value = p.brioche_s || "";
+  }
+
+  function lirePain() {
+    return {
+      lignes: $$("#pa-lignes .eq-pain").map(function (r) {
+        var o = {};
+        $$("[data-p]", r).forEach(function (i) { o[i.dataset.p] = i.value.trim(); });
+        return o;
+      }),
+      brioche_j: $("#pa-bj").value.trim(), brioche_s: $("#pa-bs").value.trim()
+    };
+  }
+
+  function programmerPain() {
+    clearTimeout(S.painTimer);
+    $("#pa-etat").textContent = "Modification en cours…";
+    S.painTimer = setTimeout(function () { S.painTimer = null; envoyerPain(false); }, 1200);
+  }
+
+  function envoyerPain(forcer, pain) {
+    pain = pain || lirePain();
+    if (pain.lignes.some(function (l) { return !l.nom; })) { $("#pa-etat").textContent = "Donnez un nom au pain pour l’enregistrer."; return; }
+    appel("pain_prix", { pain: pain, version_vue: S.contenus.versions.pain, forcer: !!forcer }).then(function (res) {
+      if (res.s === 200 && res.j.ok) { res.j.info = "Prix du pain enregistrés : ils sont en ligne."; }
+      traiter(res, function () { envoyerPain(true, pain); });
+      var n = new Date(), ok = res.s === 200 && res.j.ok;
+      $("#pa-etat").textContent = ok ? "Enregistré à " + n.getHours() + "h" + String(n.getMinutes()).padStart(2, "0") + "." : "";
+      if (!ok) afficherPain(true);
+    });
+  }
+
+  /* Nouvelles */
+  function afficherActualites() {
+    var l = S.contenus.actualites || [];
+    $("#ac-liste").innerHTML = l.length ? l.map(function (a) {
+      return '<li class="eq-item eq-item--simple"><div><h3>' + esc(a.titre) + "</h3><p>" + esc(dateTxt(a.date)) + (a.photo ? " · photo" : "") + (a.lien ? " · lien" : "") + "</p></div>" +
+        '<div class="btns"><button type="button" class="eq-mini" data-ac-modifier="' + esc(a.id) + '">Modifier</button><button type="button" class="eq-mini" data-ac-retirer="' + esc(a.id) + '">Retirer</button></div></li>';
+    }).join("") : '<li class="muted">Aucune nouvelle pour l’instant. Publiez la première ci-dessous.</li>';
+  }
+
+  function formActualite(a) {
+    $("#ac-id").value = a ? a.id : ""; $("#ac-maj").value = a ? a.maj || "" : "";
+    $("#ac-titre").value = a ? a.titre : ""; $("#ac-date").value = a ? a.date : aujourdhui();
+    $("#ac-texte").value = a ? a.texte || "" : ""; $("#ac-lien").value = a ? a.lien || "" : ""; $("#ac-lien-texte").value = a ? a.lien_texte || "" : "";
+    $("#ac-photo").value = ""; $("#ac-photo-retirer").checked = false;
+    $("#ac-photo-retirer-l").hidden = !(a && a.photo);
+    $("#ac-photo-etat").textContent = a && a.photo ? "Une photo est en ligne. Choisissez-en une autre pour la remplacer." : "Facultative. Elle est réduite automatiquement.";
+    $("#ac-titre-form").textContent = a ? "Modifier la nouvelle" : "Publier une nouvelle";
+    $("#ac-envoyer").textContent = a ? "Enregistrer les modifications" : "Publier";
+    $("#ac-annuler").hidden = !a;
+    if (a) $("#form-ac").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function envoyerActualite(data, forcer) {
+    appel("actualite_enregistrer", Object.assign({}, data, { forcer: !!forcer })).then(function (res) {
+      traiter(res, function () { envoyerActualite(data, true); }, function () { formActualite(null); });
+    });
+  }
+
+  /* Offres d'emploi */
+  function afficherOffres() {
+    var l = S.contenus.offres || [], a = aujourdhui();
+    $("#of-liste").innerHTML = l.length ? l.map(function (o) {
+      var finie = o.jusqu_au && o.jusqu_au < a;
+      return '<li class="eq-item eq-item--simple"><div><h3>' + esc(o.titre) + "</h3><p>" +
+        (finie ? "Terminée le " + esc(dateTxt(o.jusqu_au)) + " : plus visible sur le site" : o.jusqu_au ? "Visible jusqu’au " + esc(dateTxt(o.jusqu_au)) : "Visible sans date de fin") + (o.pdf ? " · PDF" : "") + "</p></div>" +
+        '<div class="btns"><button type="button" class="eq-mini" data-of-modifier="' + esc(o.id) + '">Modifier</button><button type="button" class="eq-mini" data-of-retirer="' + esc(o.id) + '">Retirer</button></div></li>';
+    }).join("") : '<li class="muted">Aucune offre : le site invite aux candidatures spontanées.</li>';
+  }
+
+  function formOffre(o) {
+    $("#of-id").value = o ? o.id : ""; $("#of-maj").value = o ? o.maj || "" : "";
+    $("#of-titre").value = o ? o.titre : ""; $("#of-intro").value = o ? o.intro || "" : "";
+    $("#of-missions").value = o ? (o.missions || []).join("\n") : "";
+    $("#of-details").value = o ? (o.details || []).map(function (x) { return x.label + " : " + x.valeur; }).join("\n") : "";
+    $("#of-contact").value = o ? o.contact : ""; $("#of-objet").value = o ? o.objet || "" : ""; $("#of-jusqu").value = o ? o.jusqu_au || "" : "";
+    $("#of-pdf").value = ""; $("#of-pdf-retirer").checked = false;
+    $("#of-pdf-retirer-l").hidden = !(o && o.pdf);
+    $("#of-pdf-etat").textContent = o && o.pdf ? "Un PDF est en ligne. Choisissez-en un autre pour le remplacer." : "Facultatif, 5 Mo maximum.";
+    $("#of-titre-form").textContent = o ? "Modifier l’offre" : "Publier une offre";
+    $("#of-envoyer").textContent = o ? "Enregistrer les modifications" : "Publier l’offre";
+    $("#of-annuler").hidden = !o;
+    if (o) $("#form-of").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function envoyerOffre(data, forcer) {
+    appel("offre_enregistrer", Object.assign({}, data, { forcer: !!forcer })).then(function (res) {
+      traiter(res, function () { envoyerOffre(data, true); }, function () { formOffre(null); });
+    });
+  }
+
+  /* Colos : dates et prix, enregistrés tout seuls quand tout est rempli */
+  function programmerInfos(id) {
+    clearTimeout(S.infosTimers[id]);
+    var etat = document.querySelector('[data-si-etat="' + id + '"]');
+    if (etat) etat.textContent = "Modification en cours…";
+    S.infosTimers[id] = setTimeout(function () { delete S.infosTimers[id]; envoyerInfos(id, false); }, 1200);
+  }
+
+  function envoyerInfos(id, forcer, donnees) {
+    var etat = document.querySelector('[data-si-etat="' + id + '"]'), s = (S.contenus.sejours || []).filter(function (x) { return x.id === id; })[0];
+    if (!donnees) {
+      var zone = document.querySelector('[data-si-semaines="' + id + '"]');
+      donnees = {
+        prix: document.querySelector('[data-si-prix="' + id + '"]').value.trim(),
+        semaines: $$(".eq-sess", zone).map(function (r) { return { du: $("[data-si-du]", r).value, au: $("[data-si-au]", r).value }; })
+      };
+      var ko = !donnees.prix ? "Indiquez le prix pour enregistrer."
+        : donnees.semaines.some(function (w) { return !w.du || !w.au; }) ? "Remplissez le début et la fin de chaque session pour enregistrer."
+        : donnees.semaines.some(function (w) { return w.du > w.au; }) ? "Une session finit avant de commencer : corrigez pour enregistrer." : "";
+      if (ko) { if (etat) etat.textContent = ko; return; }
+    }
+    appel("sejour_infos", { id: id, prix: donnees.prix, semaines: donnees.semaines, maj_vue: s ? s.infos_maj || "" : "", forcer: !!forcer }).then(function (res) {
+      if (res.s === 200 && res.j.ok) res.j.info = "Dates et prix enregistrés : ils sont en ligne.";
+      traiter(res, function () { envoyerInfos(id, true, donnees); });
+      var e2 = document.querySelector('[data-si-etat="' + id + '"]');
+      if (e2 && res.s === 200 && res.j.ok) e2.textContent = "Enregistré.";
+    });
   }
 
   /* ---------- Actions ---------- */
@@ -466,6 +690,114 @@
         x.fermetures = x.fermetures.filter(function (f) { return f !== v; });
         return x;
       }, "Fermeture du " + dateTxt(v) + " retirée.", true);
+    });
+
+    /* Documents */
+    $("#do-liste").addEventListener("change", function (e) {
+      var inp = e.target.closest("[data-doc]");
+      if (!inp) return;
+      var f = inp.files[0], cle = inp.dataset.doc;
+      inp.value = "";
+      if (!f) return;
+      document.body.setAttribute("aria-busy", "true");
+      lireFichier(f, false).then(function (p) { document.body.removeAttribute("aria-busy"); envoyerDocument(cle, p, false); },
+        function (err) { document.body.removeAttribute("aria-busy"); toast(err.message, true); });
+    });
+
+    /* Prix du pain */
+    $("#pa-lignes").addEventListener("input", programmerPain);
+    $("#pa-bj").addEventListener("input", programmerPain);
+    $("#pa-bs").addEventListener("input", programmerPain);
+    $("#pa-lignes").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-pain-retirer]");
+      if (!b) return;
+      var p = lirePain(), i = +b.dataset.painRetirer;
+      if (!confirm("Retirer « " + (p.lignes[i] && p.lignes[i].nom) + " » du tableau ?")) return;
+      p.lignes.splice(i, 1);
+      if (!p.lignes.length) return toast("Gardez au moins un pain.", true);
+      clearTimeout(S.painTimer); S.painTimer = null;
+      envoyerPain(false, p);
+    });
+    $("#pa-ajouter").addEventListener("click", function () {
+      var p = lirePain();
+      if (p.lignes.length >= 12) return toast("12 pains au maximum.", true);
+      p.lignes.push({ nom: "", note: "", kg_j: "", kg_s: "", d_j: "", d_s: "" });
+      S.contenus.pain = p;
+      afficherPain(true);
+      var champs = $$("#pa-lignes [data-p=nom]");
+      champs[champs.length - 1].focus();
+      $("#pa-etat").textContent = "Donnez un nom au nouveau pain pour l’enregistrer.";
+    });
+
+    /* Nouvelles */
+    $("#form-ac").addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!$("#ac-titre").value.trim()) return $("#ac-titre").reportValidity();
+      document.body.setAttribute("aria-busy", "true");
+      lireFichier($("#ac-photo").files[0], true).then(function (ph) {
+        document.body.removeAttribute("aria-busy");
+        envoyerActualite({ id: $("#ac-id").value, maj_vue: $("#ac-maj").value, titre: $("#ac-titre").value.trim(), date: $("#ac-date").value, texte: $("#ac-texte").value.trim(),
+          lien: $("#ac-lien").value.trim(), lien_texte: $("#ac-lien-texte").value.trim(), photo: ph, retirer_photo: $("#ac-photo-retirer").checked }, false);
+      }, function (err) { document.body.removeAttribute("aria-busy"); toast(err.message, true); });
+    });
+    $("#ac-annuler").addEventListener("click", function () { formActualite(null); });
+    $("#ac-liste").addEventListener("click", function (e) {
+      var m = e.target.closest("[data-ac-modifier]"), r = e.target.closest("[data-ac-retirer]");
+      var id = m ? m.dataset.acModifier : r ? r.dataset.acRetirer : null;
+      var a = (S.contenus.actualites || []).filter(function (x) { return x.id === id; })[0];
+      if (!a) return;
+      if (m) return formActualite(a);
+      if (confirm("Retirer « " + a.titre + " » du site ?")) appel("actualite_supprimer", { id: a.id }).then(function (res) { traiter(res); });
+    });
+    $("#ac-date").value = aujourdhui();
+
+    /* Offres */
+    $("#form-of").addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!$("#of-titre").value.trim()) return $("#of-titre").reportValidity();
+      if (!$("#of-contact").value.trim() || !$("#of-contact").checkValidity()) return $("#of-contact").reportValidity();
+      var details = [], mal = null;
+      $("#of-details").value.split("\n").forEach(function (l) {
+        if (!l.trim()) return;
+        var i = l.indexOf(":");
+        if (i < 1 || !l.slice(i + 1).trim()) { mal = l; return; }
+        details.push({ label: l.slice(0, i).trim(), valeur: l.slice(i + 1).trim() });
+      });
+      if (mal) return toast("Chaque condition s’écrit « Libellé : valeur ». À corriger : « " + mal.trim().slice(0, 40) + " ».", true);
+      document.body.setAttribute("aria-busy", "true");
+      lireFichier($("#of-pdf").files[0], false).then(function (pdf) {
+        document.body.removeAttribute("aria-busy");
+        envoyerOffre({ id: $("#of-id").value, maj_vue: $("#of-maj").value, titre: $("#of-titre").value.trim(), intro: $("#of-intro").value.trim(),
+          missions: $("#of-missions").value.split("\n").map(function (x) { return x.trim(); }).filter(Boolean), details: details,
+          contact: $("#of-contact").value.trim(), objet: $("#of-objet").value.trim(), jusqu_au: $("#of-jusqu").value, pdf: pdf, retirer_pdf: $("#of-pdf-retirer").checked }, false);
+      }, function (err) { document.body.removeAttribute("aria-busy"); toast(err.message, true); });
+    });
+    $("#of-annuler").addEventListener("click", function () { formOffre(null); });
+    $("#of-liste").addEventListener("click", function (e) {
+      var m = e.target.closest("[data-of-modifier]"), r = e.target.closest("[data-of-retirer]");
+      var id = m ? m.dataset.ofModifier : r ? r.dataset.ofRetirer : null;
+      var o = (S.contenus.offres || []).filter(function (x) { return x.id === id; })[0];
+      if (!o) return;
+      if (m) return formOffre(o);
+      if (confirm("Retirer l’offre « " + o.titre + " » du site ?")) appel("offre_supprimer", { id: o.id }).then(function (res) { traiter(res); });
+    });
+
+    /* Colos : dates et prix */
+    function idDe(el) { var z = el.closest("[data-infos]"); return z ? z.dataset.infos : null; }
+    $("#co-liste").addEventListener("input", function (e) { var id = idDe(e.target); if (id && e.target.type !== "radio") programmerInfos(id); });
+    $("#co-liste").addEventListener("click", function (e) {
+      var aj = e.target.closest("[data-si-ajout]"), re = e.target.closest("[data-si-retirer]");
+      if (aj) {
+        var zone = document.querySelector('[data-si-semaines="' + aj.dataset.siAjout + '"]');
+        zone.insertAdjacentHTML("beforeend", ligneSession({}));
+        $$("[data-si-du]", zone).pop().focus();
+        var etat = document.querySelector('[data-si-etat="' + aj.dataset.siAjout + '"]');
+        if (etat) etat.textContent = "Remplissez le début et la fin de la session pour l’enregistrer.";
+      } else if (re) {
+        var id = idDe(re);
+        re.closest(".eq-sess").remove();
+        programmerInfos(id);
+      }
     });
 
     $("#hi-liste").addEventListener("click", function (e) {

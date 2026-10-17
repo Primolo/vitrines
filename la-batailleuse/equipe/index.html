@@ -30,7 +30,7 @@
   .eq-hello button { margin-left: auto; font: 600 .92rem var(--sans); background: none; border: 0; color: var(--bordeaux); text-decoration: underline; cursor: pointer; min-height: 44px; }
   .eq-last { width: 100%; font-size: .9rem; color: var(--ink-mute); }
   .eq-tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--white); border-top: 1px solid var(--line); display: flex; padding-bottom: env(safe-area-inset-bottom); box-shadow: 0 -6px 20px rgba(33, 28, 23, .08); }
-  .eq-tabs button { flex: 1; min-height: 64px; border: 0; background: none; font: 700 .8rem var(--sans); color: var(--ink-mute); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .eq-tabs button { flex: 1; min-width: 0; min-height: 64px; padding: 0 2px; border: 0; background: none; font: 700 .74rem var(--sans); color: var(--ink-mute); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
   .eq-tabs button svg { width: 22px; height: 22px; }
   .eq-tabs button[aria-selected="true"] { color: var(--bordeaux); box-shadow: inset 0 3px 0 var(--bordeaux); }
   @media (min-width: 760px) {
@@ -76,6 +76,20 @@
   body[aria-busy="true"] .btn, body[aria-busy="true"] .eq-mini, body[aria-busy="true"] .choice { opacity: .55; pointer-events: none; }
   #form-cx .fields { grid-template-columns: 1fr; max-width: 420px; }
   #form-cx .choice { display: block; max-width: 420px; margin-top: 18px !important; }
+  .eq-item--simple { grid-template-columns: 1fr auto; }
+  .eq-item .btns { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+  .eq-item .tag { display: inline-block; font-size: .75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line-strong); color: var(--ink-mute); margin-right: 4px; }
+  label.eq-mini { display: inline-flex; align-items: center; cursor: pointer; }
+  label.eq-mini input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  label.eq-mini:focus-within { outline: 3px solid var(--foin); outline-offset: 2px; }
+  @media (max-width: 520px) { .eq-item--simple { grid-template-columns: 1fr; } .eq-item .btns { justify-content: flex-start; } .eq-pain .top { grid-template-columns: 1fr auto; } .eq-pain .top .field:nth-child(2) { grid-column: 1 / -1; grid-row: 2; } }
+  .eq-details { margin-top: 12px; border-top: 1px dashed var(--line-strong); padding-top: 10px; }
+  .eq-details > summary { cursor: pointer; font-weight: 700; color: var(--bordeaux); min-height: 44px; display: flex; align-items: center; }
+  .eq-sess { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: end; margin-bottom: 8px; }
+  .eq-pain { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; margin-bottom: 10px; display: grid; gap: 8px; }
+  .eq-pain .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .eq-pain .top { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: end; }
+  .eq-auto { font-size: .85rem; color: var(--ink-mute); min-height: 1.3em; }
   [hidden] { display: none !important; }
 </style>
 </head>
@@ -121,6 +135,7 @@
       <button type="button" role="tab" aria-selected="false" data-onglet="agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Agenda</button>
       <button type="button" role="tab" aria-selected="false" data-onglet="colos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3.5 21 14 3M20.5 21 10 3M15.5 21 12 15l-3.5 6M2 21h20"/></svg>Colos</button>
       <button type="button" role="tab" aria-selected="false" data-onglet="horaires"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Horaires</button>
+      <button type="button" role="tab" aria-selected="false" data-onglet="documents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Documents</button>
       <button type="button" role="tab" aria-selected="false" data-onglet="historique"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 3"/></svg>Historique</button>
     </nav>
 
@@ -188,6 +203,29 @@
       </form>
     </section>
 
+    <!-- Actualités -->
+    <section class="eq-card" data-panneau="agenda" hidden aria-labelledby="t-ac">
+      <h2 id="t-ac">Nouvelles de la ferme</h2>
+      <p class="muted">Un mot, un lien vers un article, une photo : les six dernières s’affichent sur l’accueil du site, sous l’agenda.</p>
+      <ul class="eq-list" id="ac-liste"></ul>
+    </section>
+    <section class="eq-card" data-panneau="agenda" hidden aria-labelledby="t-ac2">
+      <h2 id="t-ac2" style="font-size:1.3rem"><span id="ac-titre-form">Publier une nouvelle</span></h2>
+      <form id="form-ac" novalidate>
+        <input type="hidden" id="ac-id"><input type="hidden" id="ac-maj">
+        <div class="fields">
+          <div class="field field--full"><label for="ac-titre">Titre <span class="req">*</span></label><input id="ac-titre" maxlength="100" required placeholder="Ex. : Merci pour la fête !"></div>
+          <div class="field"><label for="ac-date">Date</label><input id="ac-date" type="date"></div>
+          <div class="field field--full"><label for="ac-texte">Texte</label><textarea id="ac-texte" maxlength="1500" rows="5" placeholder="Quelques lignes. Sautez une ligne pour faire un nouveau paragraphe."></textarea></div>
+          <div class="field"><label for="ac-lien">Lien (article, vidéo…)</label><input id="ac-lien" type="url" maxlength="300" placeholder="https://…"></div>
+          <div class="field"><label for="ac-lien-texte">Texte du lien</label><input id="ac-lien-texte" maxlength="40" placeholder="Lire l’article"></div>
+          <div class="field field--full"><label for="ac-photo">Photo</label><input id="ac-photo" type="file" accept="image/jpeg,image/png,image/webp"><p class="hint" id="ac-photo-etat">Facultative. Elle est réduite automatiquement.</p>
+            <label class="choice" id="ac-photo-retirer-l" hidden style="margin-top:8px"><input type="checkbox" id="ac-photo-retirer"><span>Retirer la photo actuelle</span></label></div>
+        </div>
+        <div class="eq-actions"><button class="btn" type="submit" id="ac-envoyer">Publier</button><button class="btn btn--ghost" type="button" id="ac-annuler" hidden>Annuler la modification</button></div>
+      </form>
+    </section>
+
     <!-- Colos -->
     <section class="eq-card" data-panneau="colos" hidden aria-labelledby="t-co">
       <h2 id="t-co">Colos : où en sont les inscriptions ?</h2>
@@ -234,6 +272,45 @@
     </section>
 
     <!-- Historique -->
+    <!-- Documents, prix du pain, offres d'emploi -->
+    <section class="eq-card" data-panneau="documents" hidden aria-labelledby="t-do">
+      <h2 id="t-do">Documents à télécharger</h2>
+      <p class="muted">Remplacez un fichier : le lien du site pointe tout de suite vers le nouveau. Formats acceptés : PDF (5 Mo maximum).</p>
+      <ul class="eq-list" id="do-liste"></ul>
+    </section>
+    <section class="eq-card" data-panneau="documents" hidden aria-labelledby="t-pa">
+      <h2 id="t-pa" style="font-size:1.4rem">Prix du pain</h2>
+      <p class="muted">Page « Venir à la ferme ». Les changements s’enregistrent tout seuls, une seconde après la dernière touche.</p>
+      <div id="pa-lignes"></div>
+      <div class="fields"><div class="field"><label for="pa-bj">Brioche 450 g : tarif juste (€)</label><input id="pa-bj" inputmode="decimal" data-pain="brioche_j"></div>
+        <div class="field"><label for="pa-bs">Brioche 450 g : tarif solidaire (€)</label><input id="pa-bs" inputmode="decimal" data-pain="brioche_s"></div></div>
+      <div class="eq-actions"><button class="btn btn--ghost" type="button" id="pa-ajouter">Ajouter un pain</button></div>
+      <p class="eq-auto" id="pa-etat" role="status"></p>
+    </section>
+    <section class="eq-card" data-panneau="documents" hidden aria-labelledby="t-of">
+      <h2 id="t-of" style="font-size:1.4rem">Offres d’emploi</h2>
+      <p class="muted">Elles s’affichent dans la rubrique « Recrutement » de la page Collectif. Une offre disparaît toute seule à sa date de fin ; sans offre, la page invite aux candidatures spontanées.</p>
+      <ul class="eq-list" id="of-liste"></ul>
+    </section>
+    <section class="eq-card" data-panneau="documents" hidden aria-labelledby="t-of2">
+      <h2 id="t-of2" style="font-size:1.3rem"><span id="of-titre-form">Publier une offre</span></h2>
+      <form id="form-of" novalidate>
+        <input type="hidden" id="of-id"><input type="hidden" id="of-maj">
+        <div class="fields">
+          <div class="field field--full"><label for="of-titre">Intitulé <span class="req">*</span></label><input id="of-titre" maxlength="100" required placeholder="Ex. : Nous recrutons un·e animateur·trice"></div>
+          <div class="field field--full"><label for="of-intro">Présentation</label><textarea id="of-intro" maxlength="600" rows="3"></textarea></div>
+          <div class="field field--full"><label for="of-missions">Les missions (une par ligne)</label><textarea id="of-missions" rows="4" placeholder="La traite et les soins au troupeau&#10;L’animation avec le public"></textarea></div>
+          <div class="field field--full"><label for="of-details">Les conditions (une par ligne, sous la forme « Libellé : valeur »)</label><textarea id="of-details" rows="5" placeholder="Contrat : CDD de 12 mois&#10;Rémunération : SMIC, temps plein&#10;Lieu : Rochejean (25370)"></textarea></div>
+          <div class="field"><label for="of-contact">Adresse pour postuler <span class="req">*</span></label><input id="of-contact" type="email" maxlength="120" required placeholder="ferme.batailleuse@gmail.com"></div>
+          <div class="field"><label for="of-objet">Objet du mail</label><input id="of-objet" maxlength="100" placeholder="Recrutement Vache"></div>
+          <div class="field"><label for="of-jusqu">Affichée jusqu’au</label><input id="of-jusqu" type="date"><p class="hint">Facultatif. Après cette date, l’offre disparaît du site.</p></div>
+          <div class="field field--full"><label for="of-pdf">Offre complète (PDF)</label><input id="of-pdf" type="file" accept="application/pdf"><p class="hint" id="of-pdf-etat">Facultatif, 5 Mo maximum.</p>
+            <label class="choice" id="of-pdf-retirer-l" hidden style="margin-top:8px"><input type="checkbox" id="of-pdf-retirer"><span>Retirer le PDF actuel</span></label></div>
+        </div>
+        <div class="eq-actions"><button class="btn" type="submit" id="of-envoyer">Publier l’offre</button><button class="btn btn--ghost" type="button" id="of-annuler" hidden>Annuler la modification</button></div>
+      </form>
+    </section>
+
     <section class="eq-card" data-panneau="historique" hidden aria-labelledby="t-hi">
       <h2 id="t-hi">Historique</h2>
       <p class="muted">Qui a changé quoi, et quand. En cas d’erreur, revenez à l’état d’avant une modification.</p>

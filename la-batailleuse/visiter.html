@@ -322,13 +322,13 @@ table.prices .sep { border-left: 1px solid var(--line); }
 
       <div class="block">
         <div class="table-wrap reveal">
-          <table class="prices">
+          <table class="prices" data-pain>
             <caption>Prix des contrats pain 2026<small>Prix par pain. Vous choisissez votre tarif, « juste » ou « solidaire », sur le contrat.</small></caption>
             <thead>
               <tr><th scope="col" rowspan="2">Pain</th><th scope="colgroup" colspan="2" class="n sep">Miche de 1 kg</th><th scope="colgroup" colspan="2" class="n sep">Miche de 500 g</th></tr>
               <tr><th scope="col" class="n sep">Juste</th><th scope="col" class="n">Solidaire</th><th scope="col" class="n sep">Juste</th><th scope="col" class="n">Solidaire</th></tr>
             </thead>
-            <tbody>
+            <tbody data-pain-lignes>
               <tr><th scope="row">Nature<small>farine de blé T80</small></th><td class="n sep">5,10&nbsp;€</td><td class="n">6,20&nbsp;€</td><td class="n sep">2,80&nbsp;€</td><td class="n">3,40&nbsp;€</td></tr>
               <tr><th scope="row">Aux graines<small>lin, tournesol</small></th><td class="n sep">6,20&nbsp;€</td><td class="n">7,50&nbsp;€</td><td class="n sep">3,30&nbsp;€</td><td class="n">4,00&nbsp;€</td></tr>
               <tr><th scope="row">Blé sarrasin</th><td class="n sep">6,20&nbsp;€</td><td class="n">7,50&nbsp;€</td><td class="n sep">3,30&nbsp;€</td><td class="n">4,00&nbsp;€</td></tr>
@@ -338,7 +338,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
             </tbody>
           </table>
         </div>
-        <p class="note">Brioche au levain de 450 g, le vendredi : 5,60 € au tarif juste, 6,80 € au tarif solidaire. Le contrat de septembre à décembre reprend les mêmes prix, sans les brioches. Le prix du pain acheté hors contrat se voit avec les boulanger·es.</p>
+        <p class="note">Brioche au levain de 450 g, le vendredi : <span data-pain-brioche="j">5,60</span> € au tarif juste, <span data-pain-brioche="s">6,80</span> € au tarif solidaire. Le contrat de septembre à décembre reprend les mêmes prix, sans les brioches. Le prix du pain acheté hors contrat se voit avec les boulanger·es.</p>
       </div>
 
       <div class="grid grid--3 block--sm">
@@ -351,7 +351,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
             <span class="badge badge--ok" data-until="2026-12-31" data-past-text="Terminé">Valable en 2026</span>
             <h3>Contrat mensuel</h3>
             <p>Pour le lundi, le mercredi et/ou le vendredi, au mois. Les brioches se commandent sur la fournée du vendredi.</p>
-            <div class="card__foot"><a class="link-arrow" href="https://claj-batailleuse.fr/wp-content/uploads/2025/12/Contrat-pain-Mensuel-2026.pdf" rel="noopener">Le contrat (PDF)</a></div>
+            <div class="card__foot"><a class="link-arrow" href="data/docs/contrat-pain-mensuel-2026.pdf" data-doc="contrat-pain-mensuel" rel="noopener">Le contrat (PDF)</a></div>
           </div>
         </article>
         <article class="card reveal">
@@ -359,7 +359,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
             <span class="badge badge--ok" data-until="2026-12-30" data-past-text="Terminé">En cours</span>
             <h3>Contrat de septembre à décembre</h3>
             <p>Pour le pain du mercredi seulement, du 2 septembre au 30 décembre 2026. Pour le rejoindre en cours de route, voyez avec les boulanger·es.</p>
-            <div class="card__foot"><a class="link-arrow" href="https://claj-batailleuse.fr/wp-content/uploads/2026/06/Contrat-pain-Semestriel-Septembre-Decembre-2026.pdf" rel="noopener">Le contrat (PDF)</a></div>
+            <div class="card__foot"><a class="link-arrow" href="data/docs/contrat-pain-semestriel-2026.pdf" data-doc="contrat-pain-semestriel" rel="noopener">Le contrat (PDF)</a></div>
           </div>
         </article>
       </div>
