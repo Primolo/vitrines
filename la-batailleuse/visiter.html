@@ -130,7 +130,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
       <div class="figures">
         <div class="figure reveal"><strong><span data-h="accueil.de">16h30</span></strong><span>l’accueil ouvre, jusqu’à <span data-h="accueil.a">19h</span>, les jours d’ouverture</span></div>
         <div class="figure reveal"><strong><span data-h="traite.de">17h45</span></strong><span>la traite des vaches : le lait frais se vend jusqu’à <span data-h="traite.a">18h15</span></span></div>
-        <div class="figure reveal"><strong>2&nbsp;€</strong><span>l’adhésion à la journée pour un adulte, gratuit pour les mineurs</span></div>
+        <div class="figure reveal"><strong><span data-tarif="visite.journee">2&nbsp;€</span></strong><span>l’adhésion à la journée pour un adulte, gratuit pour les mineurs</span></div>
         <div class="figure reveal"><strong>3</strong><span>fournées par semaine au fournil : lundi, mercredi, vendredi</span></div>
       </div>
     </div>
@@ -207,8 +207,8 @@ table.prices .sep { border-left: 1px solid var(--line); }
       </div>
 
       <div class="figures">
-        <div class="figure reveal"><strong>2&nbsp;€</strong><span>par adulte (plus de 18 ans), l’adhésion à la journée</span></div>
-        <div class="figure reveal"><strong>10&nbsp;€</strong><span>par adulte (plus de 18 ans), l’adhésion à l’année</span></div>
+        <div class="figure reveal"><strong><span data-tarif="visite.journee">2&nbsp;€</span></strong><span>par adulte (plus de 18 ans), l’adhésion à la journée</span></div>
+        <div class="figure reveal"><strong><span data-tarif="visite.annee">10&nbsp;€</span></strong><span>par adulte (plus de 18 ans), l’adhésion à l’année</span></div>
         <div class="figure reveal"><strong>Gratuit</strong><span>pour les mineurs : ils n’ont pas besoin d’adhérer</span></div>
         <div class="figure reveal"><strong>Libre</strong><span>l’accès à la boutique, gratuit pour tout le monde</span></div>
       </div>
@@ -491,7 +491,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
           <p class="kicker"><b>05</b> Anniversaire à la ferme</p>
           <h2 id="t-anniv">Fêter son anniversaire avec les animaux.</h2>
           <p class="lead">« Un après-midi plein de surprises avec soin des animaux » : les chèvres, les vaches, les lapins, les cochons et les poules, avec nos animateur·rices. Puis le goûter, dans une salle prévue pour vous.</p>
-          <p class="price">110&nbsp;€ <small>pour 8 enfants, puis 10 € par enfant en plus</small></p>
+          <p class="price"><span data-tarif="anniv.base">110&nbsp;€</span> <small>pour 8 enfants, puis <span data-tarif="anniv.sup">10 €</span> par enfant en plus</small></p>
           <ul class="meta">
             <li><b>Quand</b> <span class="meta__v">Le mercredi ou le samedi en période scolaire, en semaine pendant les vacances.</span></li>
             <li><b>Durée</b> <span class="meta__v">Un après-midi.</span></li>
@@ -524,7 +524,7 @@ table.prices .sep { border-left: 1px solid var(--line); }
               <div class="fields">
                 <div class="field field--full"><span class="label">Type d’animation <span class="req">*</span></span>
                   <div class="choices">
-                    <label class="choice"><input type="radio" name="type" value="anniversaire" required><span>Anniversaire à la ferme<small>110 € pour 8 enfants, 10 € par enfant en plus</small></span></label>
+                    <label class="choice"><input type="radio" name="type" value="anniversaire" required><span>Anniversaire à la ferme<small><span data-tarif="anniv.base">110 €</span> pour 8 enfants, <span data-tarif="anniv.sup">10 €</span> par enfant en plus</small></span></label>
                     <label class="choice"><input type="radio" name="type" value="fournil" required><span>Atelier au fournil<small>pizzas ou pain brioché, en groupe</small></span></label>
                     <label class="choice"><input type="radio" name="type" value="petite_enfance" required><span>Animation petite enfance<small>0-3 ans, en famille ou en structure</small></span></label>
                     <label class="choice"><input type="radio" name="type" value="autre" required><span>Autre animation<small>vous la décrivez plus loin</small></span></label>

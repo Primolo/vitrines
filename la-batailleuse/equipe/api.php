@@ -49,6 +49,8 @@ const DOCUMENTS = [
     'contrat-pain-mensuel' => ['Contrat pain mensuel', ['pdf']],
     'contrat-pain-semestriel' => ['Contrat pain semestriel', ['pdf']],
     'catalogue-activites' => ['Brochure « Nos activités » (écoles et groupes)', ['pdf']],
+    'catalogue-petite-enfance' => ['Brochure « Activités petite enfance » (0-3 ans)', ['pdf']],
+    'catalogue-domicile' => ['Brochure « Animations à domicile » (en classe)', ['pdf']],
     'bulletin-adhesion' => ['Bulletin d’adhésion et de soutien', ['pdf', 'png', 'jpg']],
 ];
 
@@ -276,6 +278,42 @@ switch ($action) {
             succes(enregistrer($doc, 'pain', 'Prix du pain modifiés (' . count($pain['lignes']) . ' pains)', $prenom));
         });
 
+    case 'tarifs_modifier':
+        $changements = is_array($d['changements'] ?? null) ? $d['changements'] : [];
+        if (!$changements || count($changements) > 80) {
+            repondre(400, ['erreur' => 'Aucun tarif à enregistrer.']);
+        }
+        $nouveaux = [];
+        foreach ($changements as $k => $c) {
+            $v = texte($c['nouveau'] ?? '', 40);
+            if ($v === '' || preg_match('/\d/', $v) !== 1) {
+                repondre(400, ['erreur' => 'Un tarif doit contenir un chiffre (ex. : 50 €).']);
+            }
+            $nouveaux[texte($k, 60)] = ['v' => $v, 'vu' => texte($c['vu'] ?? '', 40)];
+        }
+        avec_verrou('contenus', function () use ($d, $nouveaux, $prenom) {
+            $doc = charger();
+            $liste = [];
+            foreach ($nouveaux as $k => $n) {
+                if (!isset($doc['tarifs'][$k])) {
+                    repondre(400, ['erreur' => 'Tarif inconnu : ' . $k . '.']);
+                }
+                $actuel = $doc['tarifs'][$k];
+                if (empty($d['forcer']) && $n['vu'] !== $actuel['v']) {
+                    conflit($doc, 'tarifs', ['cle' => $k, 'libelle' => $actuel['l'], 'v' => $actuel['v']], $k);
+                }
+                if ($actuel['v'] !== $n['v']) {
+                    $liste[] = $actuel['l'] . ' : ' . $n['v'] . ' (avant ' . $actuel['v'] . ')';
+                    $doc['tarifs'][$k]['v'] = $n['v'];
+                }
+            }
+            if (!$liste) {
+                succes($doc, 'Rien n’a changé.');
+            }
+            $resume = 'Tarifs : ' . implode(' ; ', array_slice($liste, 0, 2)) . (count($liste) > 2 ? ' ; + ' . (count($liste) - 2) . ' autres' : '');
+            succes(enregistrer($doc, 'tarifs', $resume, $prenom, array_key_first($nouveaux)));
+        });
+
     case 'boites_reelles':
         if (!interrupteur_disponible($c)) {
             repondre(400, ['erreur' => 'Ce réglage n’existe que sur la démonstration.']);
@@ -301,7 +339,7 @@ switch ($action) {
                 repondre(500, ['erreur' => 'Version illisible.']);
             }
             $actuel = charger();
-            foreach (['documents', 'actualites', 'offres', 'pain'] as $k) {
+            foreach (['documents', 'actualites', 'offres', 'pain', 'tarifs'] as $k) {
                 if (!isset($ancien[$k]) && isset($actuel[$k])) {
                     $ancien[$k] = $actuel[$k];
                 }
@@ -329,7 +367,7 @@ function charger(): array
     if (!is_array($doc)) {
         repondre(500, ['erreur' => 'Le fichier des contenus est illisible. Prévenez Primo.']);
     }
-    $doc['versions'] = ($doc['versions'] ?? []) + ['message' => 0, 'agenda' => 0, 'horaires' => 0, 'sejours' => 0, 'documents' => 0, 'actualites' => 0, 'offres' => 0, 'pain' => 0];
+    $doc['versions'] = ($doc['versions'] ?? []) + ['message' => 0, 'agenda' => 0, 'horaires' => 0, 'sejours' => 0, 'documents' => 0, 'actualites' => 0, 'offres' => 0, 'pain' => 0, 'tarifs' => 0];
     return $doc;
 }
 

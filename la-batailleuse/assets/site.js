@@ -50,7 +50,8 @@
     documents: null,
     actualites: null,
     offres: null,
-    pain: null
+    pain: null,
+    tarifs: null
   };
   var DEMO_KEY = "bata-demo-contenus";
   var DEMO = false;
@@ -89,6 +90,7 @@
     if (Array.isArray(d.actualites)) C.actualites = d.actualites;
     if (Array.isArray(d.offres)) C.offres = d.offres;
     if (d.pain && Array.isArray(d.pain.lignes)) C.pain = d.pain;
+    if (d.tarifs && typeof d.tarifs === "object") C.tarifs = d.tarifs;
   }
 
   function isOpen(d) {
@@ -360,6 +362,34 @@
     document.querySelectorAll("[data-pain-brioche]").forEach(function (n) { var v = C.pain["brioche_" + n.dataset.painBrioche]; if (v) n.textContent = v; });
   }
 
+  // Tarifs : chaque prix du site est relié à une clé que l'équipe peut modifier (espace équipe → Documents).
+  function nombre(v) {
+    var m = String(v || "").replace(/\u00a0/g, " ").match(/\d[\d ]*(?:[.,]\d+)?/);
+    return m ? parseFloat(m[0].replace(/ /g, "").replace(",", ".")) : NaN;
+  }
+  function nb(n) { return Number.isInteger(n) ? String(n) : n.toFixed(2).replace(".", ","); }
+  function renderTarifs() {
+    var T = C.tarifs;
+    if (!T) return;
+    document.querySelectorAll("[data-tarif]").forEach(function (n) {
+      var t = T[n.dataset.tarif];
+      if (t && t.v) n.textContent = String(t.v).replace(/ /g, "\u00a0");
+    });
+    function valeurs(prefixe) {
+      return Object.keys(T).filter(function (k) { return k.indexOf(prefixe) === 0; }).map(function (k) { return nombre(T[k].v); }).filter(function (x) { return !isNaN(x); });
+    }
+    document.querySelectorAll("[data-tarif-min]").forEach(function (n) {
+      var v = valeurs(n.dataset.tarifMin);
+      if (v.length) n.textContent = nb(Math.min.apply(null, v)) + "\u00a0€";
+    });
+    document.querySelectorAll("[data-tarif-plage]").forEach(function (n) {
+      var v = valeurs(n.dataset.tarifPlage);
+      if (v.length) n.textContent = nb(Math.min.apply(null, v)) + " à " + nb(Math.max.apply(null, v)) + "\u00a0€";
+    });
+    window.BATA_TARIFS = T;
+    document.dispatchEvent(new Event("bata-tarifs"));
+  }
+
   function bandeauDemo() {
     if (!DEMO) return;
     var n = document.createElement("div");
@@ -403,6 +433,7 @@
     renderOffres();
     renderInfosSejours();
     renderPain();
+    renderTarifs();
     markPeriods();
     renderAgendaData();
     renderAgenda();

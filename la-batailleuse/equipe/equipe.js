@@ -6,7 +6,7 @@
 
   var API = "api.php";
   var CLE_DEMO = "bata-demo-contenus", CLE_DEMO_J = "bata-demo-journal", CLE_DEMO_H = "bata-demo-historique", CLE_SESSION = "bata-equipe";
-  var S = { infosTimers: {}, ouverts: {}, painTimer: null,  demo: false, prenom: "", code: "", contenus: null, journal: [], historique: [] };
+  var S = { tarifTimer: null, forcerTarifs: false, infosTimers: {}, ouverts: {}, painTimer: null,  demo: false, prenom: "", code: "", contenus: null, journal: [], historique: [] };
   var STATUTS = [["a-venir", "Inscriptions bientôt", "pas encore ouvertes"], ["ouvert", "Inscriptions ouvertes", ""], ["dernieres", "Dernières places", ""], ["complet", "Complet", ""], ["termine", "Terminé", "séjour passé"]];
   var TYPES = { haute: ["Haute", "badge--ok", "du mardi au samedi"], moyenne: ["Moyenne", "badge--bientot", "mer., ven., sam."], basse: ["Basse", "", "le mercredi"] };
   var JOURS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
@@ -77,7 +77,7 @@
 
   // La démonstration applique les mêmes opérations que le serveur, sur une copie gardée dans ce navigateur.
   function demo(action, d) {
-    if (["document_envoyer", "actualite_enregistrer", "actualite_supprimer", "offre_enregistrer", "offre_supprimer", "sejour_infos", "pain_prix"].indexOf(action) !== -1) {
+    if (["document_envoyer", "actualite_enregistrer", "actualite_supprimer", "offre_enregistrer", "offre_supprimer", "sejour_infos", "pain_prix", "tarifs_modifier"].indexOf(action) !== -1) {
       return { s: 400, j: { erreur: "Cette fonction ne marche que sur le vrai site, pas dans la maquette de démonstration." } };
     }
     var c = copie(S.contenus), j = lireLocal(CLE_DEMO_J, []), h = lireLocal(CLE_DEMO_H, []), section = "", resume = "";
@@ -165,6 +165,10 @@
     } else if (j.section === "actualites" || j.section === "offres") {
       $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a modifié " + (j.section === "offres" ? "cette offre" : "cette nouvelle") + " " + quand + " :";
       cite = esc((j.actuel && j.actuel.titre) || "");
+    } else if (j.section === "tarifs") {
+      $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a changé « " + esc((j.actuel && j.actuel.libelle) || "ce tarif") + " » " + quand + " :";
+      cite = esc((j.actuel && j.actuel.v) || "");
+      S.forcerTarifs = true;
     } else if (j.section === "pain") {
       $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a modifié les prix du pain " + quand + ".";
       cite = "Ses prix sont en ligne. Gardez-les, ou remplacez-les par ceux que vous venez de saisir.";
@@ -238,6 +242,7 @@
     afficherHoraires();
     afficherDocuments();
     afficherPain();
+    afficherTarifs();
     afficherOffres();
     afficherHistorique();
     afficherReglages();
@@ -338,6 +343,8 @@
     ["contrat-pain-mensuel", "Contrat pain mensuel", "application/pdf"],
     ["contrat-pain-semestriel", "Contrat pain semestriel", "application/pdf"],
     ["catalogue-activites", "Brochure « Nos activités » (écoles et groupes)", "application/pdf"],
+    ["catalogue-petite-enfance", "Brochure « Activités petite enfance » (0-3 ans)", "application/pdf"],
+    ["catalogue-domicile", "Brochure « Animations à domicile » (en classe)", "application/pdf"],
     ["bulletin-adhesion", "Bulletin d’adhésion et de soutien", "application/pdf,image/png,image/jpeg"]
   ];
   function tailleTxt(n) { return n > 1048576 ? (n / 1048576).toFixed(1).replace(".", ",") + " Mo" : Math.max(1, Math.round(n / 1024)) + " Ko"; }
@@ -430,6 +437,47 @@
       var n = new Date(), ok = res.s === 200 && res.j.ok;
       $("#pa-etat").textContent = ok ? "Enregistré à " + n.getHours() + "h" + String(n.getMinutes()).padStart(2, "0") + "." : "";
       if (!ok) afficherPain(true);
+    });
+  }
+
+  /* Tarifs : un champ par prix, enregistrés tout seuls (seuls les prix touchés partent) */
+  function afficherTarifs(force) {
+    var T = S.contenus.tarifs;
+    if (!T) { $("#ta-groupes").innerHTML = ""; return; }
+    var actif = document.activeElement;
+    if (!force && !S.forcerTarifs && (S.tarifTimer || (actif && actif.dataset && actif.dataset.tarif))) return;
+    S.forcerTarifs = false;
+    $$("#ta-groupes details").forEach(function (d) { S.ouverts["t:" + d.dataset.g] = d.open; });
+    var groupes = {}, ordre = [];
+    Object.keys(T).forEach(function (k) { var g = T[k].g; if (!groupes[g]) { groupes[g] = []; ordre.push(g); } groupes[g].push(k); });
+    $("#ta-groupes").innerHTML = ordre.map(function (g, i) {
+      return '<details class="eq-details" data-g="' + esc(g) + '"' + (S.ouverts["t:" + g] ? " open" : "") + "><summary>" + esc(g) + ' <small class="muted">(' + groupes[g].length + ")</small></summary>" +
+        groupes[g].map(function (k, j) {
+          return '<div class="field"><label for="ta-' + i + "-" + j + '">' + esc(T[k].l) + '</label><input id="ta-' + i + "-" + j + '" data-tarif="' + esc(k) + '" maxlength="40" value="' + esc(T[k].v) + '"></div>';
+        }).join("") + "</details>";
+    }).join("");
+  }
+
+  function envoyerTarifs(forcer, changements) {
+    var T = S.contenus.tarifs, etat = $("#ta-etat");
+    if (!changements) {
+      changements = {};
+      var mal = "";
+      $$("#ta-groupes [data-tarif]").forEach(function (i) {
+        var k = i.dataset.tarif, v = i.value.trim();
+        if (T[k] && v !== T[k].v) {
+          if (!/\d/.test(v)) mal = "Un tarif doit contenir un chiffre (ex. : 50 €) : « " + T[k].l + " ».";
+          changements[k] = { vu: T[k].v, nouveau: v };
+        }
+      });
+      if (mal) { etat.textContent = mal; return; }
+      if (!Object.keys(changements).length) return;
+    }
+    appel("tarifs_modifier", { changements: changements, forcer: !!forcer }).then(function (res) {
+      if (res.s === 200 && res.j.ok && !res.j.info) res.j.info = "Tarifs enregistrés : ils sont changés partout sur le site.";
+      traiter(res, function () { envoyerTarifs(true, changements); });
+      var n = new Date();
+      etat.textContent = res.s === 200 && res.j.ok ? "Enregistré à " + n.getHours() + "h" + String(n.getMinutes()).padStart(2, "0") + "." : "";
     });
   }
 
@@ -727,6 +775,14 @@
       var champs = $$("#pa-lignes [data-p=nom]");
       champs[champs.length - 1].focus();
       $("#pa-etat").textContent = "Donnez un nom au nouveau pain pour l’enregistrer.";
+    });
+
+    /* Tarifs */
+    $("#ta-groupes").addEventListener("input", function (e) {
+      if (!e.target.dataset.tarif) return;
+      clearTimeout(S.tarifTimer);
+      $("#ta-etat").textContent = "Modification en cours…";
+      S.tarifTimer = setTimeout(function () { S.tarifTimer = null; envoyerTarifs(false); }, 1200);
     });
 
     /* Nouvelles */

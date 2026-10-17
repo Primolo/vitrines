@@ -117,7 +117,7 @@
             <span class="badge badge--ok">Toute l’année</span>
             <h3>Classe découverte</h3>
             <p>3, 4 ou 5 jours en pension complète au Chalet du Souleret, avec les ateliers à la ferme et une veillée.</p>
-            <div class="card__foot"><span class="price"><small>dès</small> 43 € <small>/ jour / enfant</small></span></div>
+            <div class="card__foot"><span class="price"><small>dès</small> <span data-tarif-min="ecoles.classe.">43 €</span> <small>/ jour / enfant</small></span></div>
           </div>
         </a>
         <a class="card reveal" href="#journee">
@@ -125,7 +125,7 @@
             <span class="badge">Sans hébergement</span>
             <h3>Journée à la ferme</h3>
             <p>Une sortie à la journée ou à la demi-journée, de la maternelle au lycée, et la traite animée en fin de journée.</p>
-            <div class="card__foot"><span class="price"><small>dès</small> 100 € <small>la demi-journée, par groupe</small></span></div>
+            <div class="card__foot"><span class="price"><small>dès</small> <span data-tarif-min="ecoles.demi.">100 €</span> <small>la demi-journée, par groupe</small></span></div>
           </div>
         </a>
         <a class="card reveal" href="#petite-enfance">
@@ -133,7 +133,7 @@
             <span class="badge">0-3 ans</span>
             <h3>Petite enfance</h3>
             <p>Pour les crèches et les familles, à la ferme ou dans votre structure : les animaux, le fournil, le jardin.</p>
-            <div class="card__foot"><span class="price">50 € <small>de l’heure, jusqu’à 12 enfants</small></span></div>
+            <div class="card__foot"><span class="price"><span data-tarif="ecoles.pe.heure">50 €</span> <small>de l’heure, jusqu’à 12 enfants</small></span></div>
           </div>
         </a>
         <a class="card reveal" href="#en-classe">
@@ -141,7 +141,7 @@
             <span class="badge badge--bientot">Sur demande</span>
             <h3>Dans votre école</h3>
             <p>L’équipe vient en classe pour une demi-journée : les animaux de la ferme, la farine, le fromage, l’hôtel à insectes.</p>
-            <div class="card__foot"><span class="price">8 € <small>par enfant, tarif 2020 à confirmer</small></span></div>
+            <div class="card__foot"><span class="price"><span data-tarif="ecoles.domicile">8 €</span> <small>par enfant, tarif 2020 à confirmer</small></span></div>
           </div>
         </a>
       </div>
@@ -399,14 +399,14 @@
                 <tr><th scope="col">Niveau</th><th scope="col" class="n">À partir de</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Classe maternelle<small>moins de 6 ans</small></th><td class="n">43 €</td></tr>
-                <tr><th scope="row">Classe élémentaire<small>moins de 12 ans</small></th><td class="n">47 €</td></tr>
-                <tr><th scope="row">Collège et lycée<small>moins de 16 ans</small></th><td class="n">48 €</td></tr>
+                <tr><th scope="row">Classe maternelle<small>moins de 6 ans</small></th><td class="n"><span data-tarif="ecoles.classe.mat">43 €</span></td></tr>
+                <tr><th scope="row">Classe élémentaire<small>moins de 12 ans</small></th><td class="n"><span data-tarif="ecoles.classe.elem">47 €</span></td></tr>
+                <tr><th scope="row">Collège et lycée<small>moins de 16 ans</small></th><td class="n"><span data-tarif="ecoles.classe.college">48 €</span></td></tr>
               </tbody>
             </table>
           </div>
           <ul class="meta reveal" style="margin-top:20px">
-            <li><b>Adhésion</b><span>forfait de 50 € pour la classe, d’après notre grille 2026-2027</span></li>
+            <li><b>Adhésion</b><span>forfait de <span data-tarif="adh.classe">50 €</span> pour la classe, d’après notre grille 2026-2027</span></li>
             <li><b>Adultes</b><span>tarif des accompagnateurs à voir avec l’équipe</span></li>
             <li><b>Options</b><span>plein air, visites et transport en supplément, voir plus bas</span></li>
           </ul>
@@ -415,8 +415,8 @@
             <h3>L’aide de la Région</h3>
             <p>Depuis 2017, nous participons au dispositif « Classes environnement » de la Région Bourgogne-Franche-Comté. Il allège le budget de votre classe :</p>
             <ul class="meta">
-              <li><b>15 €</b> <span class="meta__v"><span>par jour et par enfant, sur les 3 premiers jours (avec nuitées)</span></span></li>
-              <li><b>25 €</b> <span class="meta__v"><span>par jour et par enfant si votre école est en REP, REP+, ZFRR ou ZFRR+ : ces écoles sont prioritaires pour la demander</span></span></li>
+              <li><b><span data-tarif="region.aide">15 €</span></b> <span class="meta__v"><span>par jour et par enfant, sur les 3 premiers jours (avec nuitées)</span></span></li>
+              <li><b><span data-tarif="region.aide-rep">25 €</span></b> <span class="meta__v"><span>par jour et par enfant si votre école est en REP, REP+, ZFRR ou ZFRR+ : ces écoles sont prioritaires pour la demander</span></span></li>
             </ul>
             <p style="margin-top:12px">Vous comptez la demander ? Cochez la case dans votre pré-réservation, et parlons-en ensemble.</p>
           </div>
@@ -442,7 +442,7 @@
             </div>
             <div class="field field--full">
               <div class="choices">
-                <label class="choice"><input type="checkbox" id="b-rep"><span>Notre école est en REP, REP+, ZFRR ou ZFRR+<small>aide de la Région à 25 € par jour et par enfant</small></span></label>
+                <label class="choice"><input type="checkbox" id="b-rep"><span>Notre école est en REP, REP+, ZFRR ou ZFRR+<small>aide de la Région à <span data-tarif="region.aide-rep">25 €</span> par jour et par enfant</small></span></label>
               </div>
             </div>
           </div>
@@ -516,8 +516,8 @@
                 <tr><th scope="col">Formule</th><th scope="col" class="n">2 à 15 personnes</th><th scope="col" class="n">16 à 30 personnes</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Demi-journée<small>10h-12h ou 14h-16h</small></th><td class="n">100 €</td><td class="n">200 €</td></tr>
-                <tr><th scope="row">Journée</th><td class="n">200 €</td><td class="n">350 €</td></tr>
+                <tr><th scope="row">Demi-journée<small>10h-12h ou 14h-16h</small></th><td class="n"><span data-tarif="ecoles.demi.petit">100 €</span></td><td class="n"><span data-tarif="ecoles.demi.grand">200 €</span></td></tr>
+                <tr><th scope="row">Journée</th><td class="n"><span data-tarif="ecoles.jour.petit">200 €</span></td><td class="n"><span data-tarif="ecoles.jour.grand">350 €</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -525,7 +525,7 @@
             <table class="prices prices--compact">
               <caption>Traite animée<small>De 17h30 à 18h30.</small></caption>
               <tbody>
-                <tr><th scope="row">Groupe de 6 à 10 personnes</th><td class="n">75 €</td></tr>
+                <tr><th scope="row">Groupe de 6 à 10 personnes</th><td class="n"><span data-tarif="ecoles.traite">75 €</span></td></tr>
                 <tr><th scope="row">À partir de 12 personnes</th><td class="n">traite en observation</td></tr>
               </tbody>
             </table>
@@ -548,6 +548,7 @@
           <p class="kicker"><b>06</b> Petite enfance, 0-3 ans</p>
           <h2 id="t-petite">Les tout-petits, à la ferme ou chez vous.</h2>
           <p class="lead">Pour les professionnel·les de la petite enfance et pour les familles : les chèvres, les vaches, les lapins, les cochons, les poules, et un temps de soin des animaux.</p>
+          <p><a class="link-arrow" href="data/docs/catalogue-petite-enfance.pdf" data-doc="catalogue-petite-enfance" rel="noopener">Toutes les animations pour les tout-petits (brochure PDF)</a></p>
           <ul class="meta">
             <li><b>Quand</b> <span class="meta__v"><span>en période scolaire, ou en semaine pendant les vacances</span></span></li>
             <li><b>Durée</b> <span class="meta__v"><span>une demi-journée ou une journée, entre 9h-12h et 14h-17h</span></span></li>
@@ -563,10 +564,10 @@
           <table class="prices prices--compact">
             <caption>Tarifs petite enfance<small>Par groupe ou par famille.</small></caption>
             <tbody>
-              <tr><th scope="row">Professionnel·les de la petite enfance<small>groupe jusqu’à 12 enfants</small></th><td class="n">50 € de l’heure</td></tr>
+              <tr><th scope="row">Professionnel·les de la petite enfance<small>groupe jusqu’à 12 enfants</small></th><td class="n"><span data-tarif="ecoles.pe.heure">50 €</span> de l’heure</td></tr>
               <tr><th scope="row">Déplacement dans votre structure</th><td class="n">sur devis</td></tr>
               <tr><th scope="row">Adhésion de la structure à l’association</th><td class="n">à confirmer</td></tr>
-              <tr><th scope="row">Familles<small>1 adulte pour 5 enfants au plus, 4 familles minimum</small></th><td class="n">12 € par famille</td></tr>
+              <tr><th scope="row">Familles<small>1 adulte pour 5 enfants au plus, 4 familles minimum</small></th><td class="n"><span data-tarif="ecoles.pe.famille">12 €</span> par famille</td></tr>
             </tbody>
           </table>
         </div>
@@ -618,8 +619,9 @@
           </div>
         </div>
         <div class="aside aside--bordeaux reveal">
-          <p class="price" style="margin-bottom:6px">8 € <small>par enfant, la demi-journée</small></p>
+          <p class="price" style="margin-bottom:6px"><span data-tarif="ecoles.domicile">8 €</span> <small>par enfant, la demi-journée</small></p>
           <p>Plus les frais de déplacement au-delà de 20 km.</p>
+          <p><a class="link-arrow" href="data/docs/catalogue-domicile.pdf" data-doc="catalogue-domicile" rel="noopener">La liste des animations en classe (PDF)</a></p>
           <p class="muted small">Tarif publié en novembre 2020 : à confirmer avec l’équipe pour 2026-2027.</p>
         </div>
       </div>
@@ -726,7 +728,7 @@
 
               <div class="field field--full" data-show-if="formule=journee|demi"><span class="label">Traite animée</span>
                 <div class="choices">
-                  <label class="choice"><input type="checkbox" name="traite" value="oui"><span>Ajouter la traite animée, de 17h30 à 18h30<small>75 € pour 6 à 10 personnes ; à partir de 12, traite en observation</small></span></label>
+                  <label class="choice"><input type="checkbox" name="traite" value="oui"><span>Ajouter la traite animée, de 17h30 à 18h30<small><span data-tarif="ecoles.traite">75 €</span> pour 6 à 10 personnes ; à partir de 12, traite en observation</small></span></label>
                 </div>
               </div>
 
@@ -807,7 +809,7 @@
       <div class="faq" style="margin-top:28px">
         <details>
           <summary>Que comprend le prix d’une classe découverte ?</summary>
-          <div><p>La pension complète au Chalet du Souleret et l’encadrement des temps pédagogiques, à raison d’un·e animateur·rice par classe. Une veillée est comprise dès 3 jours. Nous fournissons le matériel pédagogique pour les temps en autonomie et pour les veillées en autonomie, qui sont gratuites.</p><p>S’y ajoutent l’adhésion de la classe à l’association (forfait de 50 € d’après notre grille 2026-2027) et, si vous les choisissez, les sorties de plein air, les visites et le transport.</p></div>
+          <div><p>La pension complète au Chalet du Souleret et l’encadrement des temps pédagogiques, à raison d’un·e animateur·rice par classe. Une veillée est comprise dès 3 jours. Nous fournissons le matériel pédagogique pour les temps en autonomie et pour les veillées en autonomie, qui sont gratuites.</p><p>S’y ajoutent l’adhésion de la classe à l’association (forfait de <span data-tarif="adh.classe">50 €</span> d’après notre grille 2026-2027) et, si vous les choisissez, les sorties de plein air, les visites et le transport.</p></div>
         </details>
         <details>
           <summary>Quel est le tarif des adultes accompagnateurs ?</summary>
@@ -815,7 +817,7 @@
         </details>
         <details>
           <summary>Comment fonctionne l’aide de la Région ?</summary>
-          <div><p>Depuis 2017, nous participons au dispositif « Classes environnement » de la Région Bourgogne-Franche-Comté : 15 € par jour et par enfant sur les 3 premiers jours (avec nuitées), ou 25 € par jour et par enfant si votre école est en REP, REP+, ZFRR ou ZFRR+. Ces écoles sont prioritaires pour la demander. Cochez la case dans votre pré-réservation et parlons-en ensemble.</p></div>
+          <div><p>Depuis 2017, nous participons au dispositif « Classes environnement » de la Région Bourgogne-Franche-Comté : <span data-tarif="region.aide">15 €</span> par jour et par enfant sur les 3 premiers jours (avec nuitées), ou <span data-tarif="region.aide-rep">25 €</span> par jour et par enfant si votre école est en REP, REP+, ZFRR ou ZFRR+. Ces écoles sont prioritaires pour la demander. Cochez la case dans votre pré-réservation et parlons-en ensemble.</p></div>
         </details>
         <details>
           <summary>Qui encadre les élèves pendant les ateliers ?</summary>
@@ -831,7 +833,7 @@
         </details>
         <details>
           <summary>Et pour un collège ou un lycée ?</summary>
-          <div><p>Le tarif collège et lycée part de 48 € par jour et par jeune (moins de 16 ans). Notre brochure d’ateliers est pensée pour les cycles 1 à 3 : pour vos élèves, le programme se construit avec l’équipe, selon leur âge et votre projet.</p></div>
+          <div><p>Le tarif collège et lycée part de <span data-tarif="ecoles.classe.college">48 €</span> par jour et par jeune (moins de 16 ans). Notre brochure d’ateliers est pensée pour les cycles 1 à 3 : pour vos élèves, le programme se construit avec l’équipe, selon leur âge et votre projet.</p></div>
         </details>
         <details>
           <summary>Les élèves participent-ils à la vie du chalet ?</summary>
@@ -847,7 +849,7 @@
         </details>
         <details>
           <summary>Pour une journée, toute la classe peut-elle participer à la traite ?</summary>
-          <div><p>La traite animée, de 17h30 à 18h30, se fait avec un groupe de 6 à 10 personnes (75 €). À partir de 12 personnes, la traite se fait en observation.</p></div>
+          <div><p>La traite animée, de 17h30 à 18h30, se fait avec un groupe de 6 à 10 personnes (<span data-tarif="ecoles.traite">75 €</span>). À partir de 12 personnes, la traite se fait en observation.</p></div>
         </details>
       </div>
     </div>
@@ -921,16 +923,25 @@
     if (!box) return;
     var out = box.querySelector("[data-budget-out]");
     function eur(n) { return n.toLocaleString("fr-FR") + " €"; }
+    // Les prix viennent des tarifs que l'équipe peut modifier (site.js) ; ceux écrits ici ne servent que de secours.
+    function tarif(cle, secours) {
+      var t = window.BATA_TARIFS && window.BATA_TARIFS[cle], m = t && String(t.v).match(/\d[\d  ]*(?:[.,]\d+)?/);
+      return m ? parseFloat(m[0].replace(/[  ]/g, "").replace(",", ".")) : secours;
+    }
+    function prixNiveaux() {
+      var cles = ["ecoles.classe.mat", "ecoles.classe.elem", "ecoles.classe.college"];
+      box.querySelectorAll("#b-niveau option").forEach(function (o, i) { o.value = tarif(cles[i], +o.value); });
+    }
     function update() {
       var prix = +box.querySelector("#b-niveau").value;
       var eleves = Math.max(0, parseInt(box.querySelector("#b-eleves").value, 10) || 0);
       var jours = +box.querySelector("#b-jours").value;
-      var taux = box.querySelector("#b-rep").checked ? 25 : 15;
+      var taux = box.querySelector("#b-rep").checked ? tarif("region.aide-rep", 25) : tarif("region.aide", 15), adh = tarif("adh.classe", 50);
       if (!eleves) { out.innerHTML = "<span>Indiquez le nombre d’élèves pour voir une estimation.</span>"; return; }
-      var sejour = prix * jours * eleves, aide = taux * 3 * eleves, reste = sejour + 50 - aide;
+      var sejour = prix * jours * eleves, aide = taux * 3 * eleves, reste = sejour + adh - aide;
       out.innerHTML = "<span>Séjour de " + jours + " jours pour " + eleves + " élève" + (eleves > 1 ? "s" : "") + ", à partir de</span>" +
         "<strong>" + eur(sejour) + "</strong>" +
-        "<span>+ 50 € d’adhésion de la classe à l’association</span>" +
+        "<span>+ " + eur(adh) + " d’adhésion de la classe à l’association</span>" +
         "<span>− " + eur(aide) + " d’aide de la Région, si elle vous est accordée (" + taux + " € × 3 jours × " + eleves + " élève" + (eleves > 1 ? "s" : "") + ")</span>" +
         "<span>Soit à partir de <b>" + eur(reste) + "</b> pour la classe, aide déduite.</span>" +
         (eleves > 62 ? "<span class=\"budget__warn\">Le chalet compte 62 places, enfants et adultes confondus : au-delà, parlons-en avec l’équipe.</span>" : "") +
@@ -938,6 +949,7 @@
     }
     box.addEventListener("input", update);
     box.addEventListener("change", update);
+    document.addEventListener("bata-tarifs", function () { prixNiveaux(); update(); });
     update();
   })();
 </script>

@@ -195,7 +195,7 @@
             <span class="badge badge--ok">Repas compris</span>
             <h3>Pension complète</h3>
             <p>L’hébergement et les repas, en cuisine familiale avec les produits de la ferme. Chacun·e participe au service et à la vaisselle.</p>
-            <div class="card__foot"><span class="price">34 à 54 € <small>par personne selon l’âge</small></span></div>
+            <div class="card__foot"><span class="price"><span data-tarif-plage="chalet.pc.">34 à 54 €</span> <small>par personne selon l’âge</small></span></div>
           </div>
         </article>
         <article class="card reveal">
@@ -203,15 +203,15 @@
             <span class="badge">Une partie des repas</span>
             <h3>Demi-pension</h3>
             <p>L’hébergement avec une partie des repas. Lesquels : à caler avec l’équipe, selon votre programme de la journée.</p>
-            <div class="card__foot"><span class="price">29 à 45 € <small>par personne selon l’âge</small></span></div>
+            <div class="card__foot"><span class="price"><span data-tarif-plage="chalet.dp.">29 à 45 €</span> <small>par personne selon l’âge</small></span></div>
           </div>
         </article>
         <article class="card reveal">
           <div class="card__body">
             <span class="badge">À l’unité</span>
             <h3>Nuitée</h3>
-            <p>La nuit seule. Le petit-déjeuner (de 4 à 7 €) et les repas (de 9 à 14,50 €) s’ajoutent à l’unité, selon vos envies.</p>
-            <div class="card__foot"><span class="price">15 à 23 € <small>par personne selon l’âge</small></span></div>
+            <p>La nuit seule. Le petit-déjeuner (de <span data-tarif-plage="chalet.pdj.">4 à 7 €</span>) et les repas (de <span data-tarif-plage="chalet.repas.">9 à 14,50 €</span>) s’ajoutent à l’unité, selon vos envies.</p>
+            <div class="card__foot"><span class="price"><span data-tarif-plage="chalet.nuit.">15 à 23 €</span> <small>par personne selon l’âge</small></span></div>
           </div>
         </article>
         <article class="card reveal">
@@ -219,7 +219,7 @@
             <span class="badge badge--bientot">Forfait week-end</span>
             <h3>Gestion libre</h3>
             <p>Un forfait, avec la cuisine équipée et sa vaisselle à disposition. Vous cuisinez vous-mêmes, et le ménage est à votre charge.</p>
-            <div class="card__foot"><span class="price">1&nbsp;000 € <small>la première nuit</small></span></div>
+            <div class="card__foot"><span class="price"><span data-tarif="chalet.gl.nuit1">1&nbsp;000 €</span> <small>la première nuit</small></span></div>
           </div>
         </article>
       </div>
@@ -256,10 +256,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr><th scope="row">Adultes</th><td class="n">50 €</td><td class="n">54 €</td><td class="n">41 €</td><td class="n">45 €</td></tr>
-              <tr><th scope="row">Moins de 16 ans</th><td class="n">41 €</td><td class="n">43 €</td><td class="n">35 €</td><td class="n">37 €</td></tr>
-              <tr><th scope="row">Moins de 12 ans</th><td class="n">39 €</td><td class="n">40 €</td><td class="n">33 €</td><td class="n">34 €</td></tr>
-              <tr><th scope="row">Moins de 6 ans</th><td class="n">34 €</td><td class="n">35 €</td><td class="n">29 €</td><td class="n">29 €</td></tr>
+              <tr><th scope="row">Adultes</th><td class="n"><span data-tarif="chalet.pc.sem.adulte">50 €</span></td><td class="n"><span data-tarif="chalet.pc.we.adulte">54 €</span></td><td class="n"><span data-tarif="chalet.dp.sem.adulte">41 €</span></td><td class="n"><span data-tarif="chalet.dp.we.adulte">45 €</span></td></tr>
+              <tr><th scope="row">Moins de 16 ans</th><td class="n"><span data-tarif="chalet.pc.sem.m16">41 €</span></td><td class="n"><span data-tarif="chalet.pc.we.m16">43 €</span></td><td class="n"><span data-tarif="chalet.dp.sem.m16">35 €</span></td><td class="n"><span data-tarif="chalet.dp.we.m16">37 €</span></td></tr>
+              <tr><th scope="row">Moins de 12 ans</th><td class="n"><span data-tarif="chalet.pc.sem.m12">39 €</span></td><td class="n"><span data-tarif="chalet.pc.we.m12">40 €</span></td><td class="n"><span data-tarif="chalet.dp.sem.m12">33 €</span></td><td class="n"><span data-tarif="chalet.dp.we.m12">34 €</span></td></tr>
+              <tr><th scope="row">Moins de 6 ans</th><td class="n"><span data-tarif="chalet.pc.sem.m6">34 €</span></td><td class="n"><span data-tarif="chalet.pc.we.m6">35 €</span></td><td class="n"><span data-tarif="chalet.dp.sem.m6">29 €</span></td><td class="n"><span data-tarif="chalet.dp.we.m6">29 €</span></td></tr>
               <tr><th scope="row">Moins de 3 ans</th><td class="free" colspan="4">Gratuit</td></tr>
             </tbody>
           </table>
@@ -273,10 +273,10 @@
                 <tr><th scope="col">Âge</th><th scope="col" class="n">Nuit</th><th scope="col" class="n">Petit-déjeuner</th><th scope="col" class="n">Repas</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Adultes</th><td class="n">23 €</td><td class="n">7 €</td><td class="n">14,50 €</td></tr>
-                <tr><th scope="row">Moins de 16 ans</th><td class="n">20 €</td><td class="n">6 €</td><td class="n">13 €</td></tr>
-                <tr><th scope="row">Moins de 12 ans</th><td class="n">18 €</td><td class="n">5 €</td><td class="n">11,50 €</td></tr>
-                <tr><th scope="row">Moins de 6 ans</th><td class="n">15 €</td><td class="n">4 €</td><td class="n">9 €</td></tr>
+                <tr><th scope="row">Adultes</th><td class="n"><span data-tarif="chalet.nuit.adulte">23 €</span></td><td class="n"><span data-tarif="chalet.pdj.adulte">7 €</span></td><td class="n"><span data-tarif="chalet.repas.adulte">14,50 €</span></td></tr>
+                <tr><th scope="row">Moins de 16 ans</th><td class="n"><span data-tarif="chalet.nuit.m16">20 €</span></td><td class="n"><span data-tarif="chalet.pdj.m16">6 €</span></td><td class="n"><span data-tarif="chalet.repas.m16">13 €</span></td></tr>
+                <tr><th scope="row">Moins de 12 ans</th><td class="n"><span data-tarif="chalet.nuit.m12">18 €</span></td><td class="n"><span data-tarif="chalet.pdj.m12">5 €</span></td><td class="n"><span data-tarif="chalet.repas.m12">11,50 €</span></td></tr>
+                <tr><th scope="row">Moins de 6 ans</th><td class="n"><span data-tarif="chalet.nuit.m6">15 €</span></td><td class="n"><span data-tarif="chalet.pdj.m6">4 €</span></td><td class="n"><span data-tarif="chalet.repas.m6">9 €</span></td></tr>
                 <tr><th scope="row">Moins de 3 ans</th><td class="free" colspan="3">Gratuit</td></tr>
               </tbody>
             </table>
@@ -288,11 +288,11 @@
                 <tr><th scope="col">Vous êtes</th><th scope="col" class="n">Adhésion</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Une famille</th><td class="n">5 €</td></tr>
-                <tr><th scope="row">Un groupe de moins de 20 personnes</th><td class="n">25 €</td></tr>
-                <tr><th scope="row">Un groupe de plus de 20 personnes</th><td class="n">50 €</td></tr>
-                <tr><th scope="row">Une classe</th><td class="n">50 € <small class="muted">forfait</small></td></tr>
-                <tr><th scope="row">Une personne seule</th><td class="n">3 €</td></tr>
+                <tr><th scope="row">Une famille</th><td class="n"><span data-tarif="adh.famille">5 €</span></td></tr>
+                <tr><th scope="row">Un groupe de moins de 20 personnes</th><td class="n"><span data-tarif="adh.groupe20">25 €</span></td></tr>
+                <tr><th scope="row">Un groupe de plus de 20 personnes</th><td class="n"><span data-tarif="adh.groupe">50 €</span></td></tr>
+                <tr><th scope="row">Une classe</th><td class="n"><span data-tarif="adh.classe">50 €</span> <small class="muted">forfait</small></td></tr>
+                <tr><th scope="row">Une personne seule</th><td class="n"><span data-tarif="adh.seul">3 €</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -302,8 +302,8 @@
           <div class="aside reveal">
             <h3>À prévoir en plus</h3>
             <ul class="meta">
-              <li><b>Taxe de séjour</b> <span class="meta__v"><span>pour les adultes seulement, 0,83 € par nuit*</span></span></li>
-              <li><b>Draps</b> <span class="meta__v"><span>en location, 4 € par personne*</span></span></li>
+              <li><b>Taxe de séjour</b> <span class="meta__v"><span>pour les adultes seulement, <span data-tarif="chalet.taxe">0,83 €</span> par nuit*</span></span></li>
+              <li><b>Draps</b> <span class="meta__v"><span>en location, <span data-tarif="chalet.draps">4 €</span> par personne*</span></span></li>
               <li><b>Ménage</b> <span class="meta__v"><span>à votre charge en gestion libre</span></span></li>
               <li><b>Paiement</b> <span class="meta__v"><span>chèques vacances acceptés*</span></span></li>
               <li><b>Animaux</b> <span class="meta__v"><span>non admis au chalet*</span></span></li>
@@ -334,16 +334,16 @@
       </div>
 
       <div class="figures">
-        <div class="figure reveal"><strong>1&nbsp;000&nbsp;€</strong><span>la première nuit, week-end normal ou spécial</span></div>
-        <div class="figure reveal"><strong>300&nbsp;€</strong><span>par nuit supplémentaire, week-end normal</span></div>
-        <div class="figure reveal"><strong>450&nbsp;€</strong><span>par nuit supplémentaire, week-end spécial</span></div>
-        <div class="figure reveal"><strong>50&nbsp;€</strong><span>d’adhésion à l’association, en plus du forfait</span></div>
+        <div class="figure reveal"><strong><span data-tarif="chalet.gl.nuit1">1&nbsp;000&nbsp;€</span></strong><span>la première nuit, week-end normal ou spécial</span></div>
+        <div class="figure reveal"><strong><span data-tarif="chalet.gl.sup">300&nbsp;€</span></strong><span>par nuit supplémentaire, week-end normal</span></div>
+        <div class="figure reveal"><strong><span data-tarif="chalet.gl.sup-special">450&nbsp;€</span></strong><span>par nuit supplémentaire, week-end spécial</span></div>
+        <div class="figure reveal"><strong><span data-tarif="chalet.gl.adhesion">50&nbsp;€</span></strong><span>d’adhésion à l’association, en plus du forfait</span></div>
       </div>
 
       <div class="grid grid--2 gap-top">
         <div class="reveal">
           <h3>Les week-ends spéciaux</h3>
-          <p>La nuit supplémentaire passe à 450 € pour les week-ends de fête :</p>
+          <p>La nuit supplémentaire passe à <span data-tarif="chalet.gl.sup-special">450 €</span> pour les week-ends de fête :</p>
           <ul class="pills">
             <li>Noël</li>
             <li>Jour de l’An</li>
@@ -433,7 +433,7 @@
             <div class="fields">
               <div class="field field--full"><span class="label">Vous venez en <span class="req">*</span></span>
                 <div class="choices">
-                  <label class="choice"><input type="radio" name="type_sejour" value="famille" required><span>Famille<small>adhésion famille : 5 €</small></span></label>
+                  <label class="choice"><input type="radio" name="type_sejour" value="famille" required><span>Famille<small>adhésion famille : <span data-tarif="adh.famille">5 €</span></small></span></label>
                   <label class="choice"><input type="radio" name="type_sejour" value="groupe"><span>Groupe<small>association, club, amis, classe…</small></span></label>
                 </div>
               </div>
@@ -461,7 +461,7 @@
               <div class="field field--full" data-show-if="formule=nuit"><span class="label">Petit-déjeuner</span>
                 <input type="hidden" name="petitdej" value="" data-skip>
                 <div class="choices">
-                  <label class="choice"><input type="checkbox" name="petitdej" value="oui"><span>Ajouter le petit-déjeuner<small>de 4 à 7 € par personne selon l’âge</small></span></label>
+                  <label class="choice"><input type="checkbox" name="petitdej" value="oui"><span>Ajouter le petit-déjeuner<small>de <span data-tarif-plage="chalet.pdj.">4 à 7 €</span> par personne selon l’âge</small></span></label>
                 </div>
               </div>
             </div>
@@ -564,7 +564,7 @@
       <div class="faq" style="margin-top:28px">
         <details>
           <summary>Faut-il adhérer à l’association pour dormir au chalet ?</summary>
-          <div><p>Oui. « En tant qu’association, une adhésion est obligatoire pour être hébergé chez nous. » Elle vaut pour une année : 5 € pour une famille, 25 € pour un groupe de moins de 20 personnes, 50 € au-delà, 3 € pour une personne seule.</p></div>
+          <div><p>Oui. « En tant qu’association, une adhésion est obligatoire pour être hébergé chez nous. » Elle vaut pour une année : <span data-tarif="adh.famille">5 €</span> pour une famille, <span data-tarif="adh.groupe20">25 €</span> pour un groupe de moins de 20 personnes, <span data-tarif="adh.groupe">50 €</span> au-delà, <span data-tarif="adh.seul">3 €</span> pour une personne seule.</p></div>
         </details>
         <details>
           <summary>Le chalet est-il accessible aux personnes à mobilité réduite ?</summary>
@@ -576,11 +576,11 @@
         </details>
         <details>
           <summary>Faut-il apporter ses draps ?</summary>
-          <div><p>Vous pouvez en louer sur place : 4 € par personne d’après notre annonce Grands Gîtes. Précisez-le dans votre demande.</p></div>
+          <div><p>Vous pouvez en louer sur place : <span data-tarif="chalet.draps">4 €</span> par personne d’après notre annonce Grands Gîtes. Précisez-le dans votre demande.</p></div>
         </details>
         <details>
           <summary>Je randonne seul·e : puis-je dormir une nuit au Souleret ?</summary>
-          <div><p>La grille prévoit la nuitée (23 € pour un adulte), le petit-déjeuner (7 €) et une adhésion individuelle à 3 €. Appelez le chalet au <a href="tel:+33381499184">03 81 49 91 84</a> pour savoir s’il reste de la place à vos dates.</p></div>
+          <div><p>La grille prévoit la nuitée (<span data-tarif="chalet.nuit.adulte">23 €</span> pour un adulte), le petit-déjeuner (<span data-tarif="chalet.pdj.adulte">7 €</span>) et une adhésion individuelle à <span data-tarif="adh.seul">3 €</span>. Appelez le chalet au <a href="tel:+33381499184">03 81 49 91 84</a> pour savoir s’il reste de la place à vos dates.</p></div>
         </details>
         <details>
           <summary>Quelles sont les conditions de réservation ?</summary>

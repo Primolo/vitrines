@@ -278,17 +278,17 @@
               </thead>
               <tbody>
                 <tr><th scope="colgroup" colspan="2" class="group">Prix des séjours 2026</th></tr>
-                <tr><th scope="row">Vacances des apprentis fermiers<small>6-10 ans · 7 jours</small></th><td class="n">420&nbsp;€</td></tr>
-                <tr><th scope="row">Tout autour de la ferme<small>10-13 ans · 14 jours</small></th><td class="n">570&nbsp;€</td></tr>
-                <tr><th scope="row">L’aventure des alpages<small>14-17 ans · 14 jours</small></th><td class="n">550&nbsp;€</td></tr>
+                <tr><th scope="row">Vacances des apprentis fermiers<small>6-10 ans · 7 jours</small></th><td class="n"><span data-sejour-prix="apprentis">420&nbsp;€</span></td></tr>
+                <tr><th scope="row">Tout autour de la ferme<small>10-13 ans · 14 jours</small></th><td class="n"><span data-sejour-prix="tout-autour">570&nbsp;€</span></td></tr>
+                <tr><th scope="row">L’aventure des alpages<small>14-17 ans · 14 jours</small></th><td class="n"><span data-sejour-prix="alpages">550&nbsp;€</span></td></tr>
               </tbody>
               <tbody>
                 <tr><th scope="colgroup" colspan="2" class="group">Règlement</th></tr>
-                <tr><th scope="row">Acompte<small>pour valider l’inscription</small></th><td class="n">100&nbsp;€</td></tr>
+                <tr><th scope="row">Acompte<small>pour valider l’inscription</small></th><td class="n"><span data-tarif="colos.acompte">100&nbsp;€</span></td></tr>
                 <tr><th scope="row">Solde<small>au plus tard 15 jours avant le début du séjour</small></th><td class="n">le reste</td></tr>
-                <tr><th scope="row">Réduction fratrie<small>à partir de la deuxième inscription</small></th><td class="n">−&nbsp;10&nbsp;€</td></tr>
-                <tr><th scope="row">Désistement jusqu’à 30 jours avant<small>frais de dossier retenus</small></th><td class="n">30&nbsp;€</td></tr>
-                <tr><th scope="row">Désistement à moins de 30 jours<small>somme retenue</small></th><td class="n">100&nbsp;€</td></tr>
+                <tr><th scope="row">Réduction fratrie<small>à partir de la deuxième inscription</small></th><td class="n">−&nbsp;<span data-tarif="colos.fratrie">10&nbsp;€</span></td></tr>
+                <tr><th scope="row">Désistement jusqu’à 30 jours avant<small>frais de dossier retenus</small></th><td class="n"><span data-tarif="colos.dossier">30&nbsp;€</span></td></tr>
+                <tr><th scope="row">Désistement à moins de 30 jours<small>somme retenue</small></th><td class="n"><span data-tarif="colos.desistement">100&nbsp;€</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -401,7 +401,7 @@
                   </div></div>
                 <div class="field field--full"><span class="label">Des frères et sœurs intéressé·es aussi ? <span class="req">*</span></span>
                   <div class="choices">
-                    <label class="choice"><input type="radio" name="fratrie" value="oui" required><span>Oui<small>en 2026 : 10 € de réduction dès la 2e inscription</small></span></label>
+                    <label class="choice"><input type="radio" name="fratrie" value="oui" required><span>Oui<small>en 2026 : <span data-tarif="colos.fratrie">10 €</span> de réduction dès la 2e inscription</small></span></label>
                     <label class="choice"><input type="radio" name="fratrie" value="non" required><span>Non</span></label>
                   </div></div>
                 <div class="field field--full" data-show-if="fratrie=oui"><label for="fratrie_detail">Leurs prénoms et leurs âges</label><input id="fratrie_detail" name="fratrie_detail" type="text"></div>
@@ -459,15 +459,15 @@
           </details>
           <details>
             <summary>Comment se règle le séjour ?</summary>
-            <div><p>En 2026, un acompte de 100 € validait l’inscription. La totalité du séjour était à régler au plus tard 15 jours avant le départ. Le moyen de paiement de l’acompte est à voir avec l’équipe.</p></div>
+            <div><p>En 2026, un acompte de <span data-tarif="colos.acompte">100 €</span> validait l’inscription. La totalité du séjour était à régler au plus tard 15 jours avant le départ. Le moyen de paiement de l’acompte est à voir avec l’équipe.</p></div>
           </details>
           <details>
             <summary>Y a-t-il une réduction pour les frères et sœurs ?</summary>
-            <div><p>Oui : 10 € de réduction à partir de la deuxième inscription d’une même fratrie.</p></div>
+            <div><p>Oui : <span data-tarif="colos.fratrie">10 €</span> de réduction à partir de la deuxième inscription d’une même fratrie.</p></div>
           </details>
           <details>
             <summary>Et si nous devons annuler ?</summary>
-            <div><p>Jusqu’à 30 jours avant le début du séjour, nous retenons 30 € de frais de dossier. À moins de 30 jours, nous retenons 100 €.</p><p>Rien n’est retenu en cas de force majeure, sur justificatif : maladie ou accident de l’enfant, décès d’un proche, licenciement économique des parents.</p></div>
+            <div><p>Jusqu’à 30 jours avant le début du séjour, nous retenons <span data-tarif="colos.dossier">30 €</span> de frais de dossier. À moins de 30 jours, nous retenons <span data-tarif="colos.desistement">100 €</span>.</p><p>Rien n’est retenu en cas de force majeure, sur justificatif : maladie ou accident de l’enfant, décès d’un proche, licenciement économique des parents.</p></div>
           </details>
           <div class="aside aside--bordeaux">
             <h3>Une autre question ?</h3>
@@ -484,7 +484,7 @@
         <div>
           <p class="kicker">En attendant l’été</p>
           <h2 id="t-attendant">Venez voir les animaux avec vos enfants.</h2>
-          <p class="lead"><span data-open-status>La ferme est ouverte de 16h30 à 19h selon la période</span>. La visite libre passe par l’adhésion : 2 € la journée ou 10 € l’année par adulte, gratuite pour les mineurs.</p>
+          <p class="lead"><span data-open-status>La ferme est ouverte de 16h30 à 19h selon la période</span>. La visite libre passe par l’adhésion : <span data-tarif="visite.journee">2 €</span> la journée ou <span data-tarif="visite.annee">10 €</span> l’année par adulte, gratuite pour les mineurs.</p>
         </div>
         <a class="btn" href="visiter.html#horaires">Horaires et visite libre</a>
       </div>

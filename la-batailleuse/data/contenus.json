@@ -234,6 +234,22 @@
             "taille": 244286,
             "maj": "2026-09-26T10:00:00+02:00",
             "par": "Primo (mise en place)"
+        },
+        "catalogue-petite-enfance": {
+            "titre": "Brochure « Activités petite enfance » (0-3 ans)",
+            "fichier": "data/docs/catalogue-petite-enfance.pdf",
+            "nom": "Activites-Petite-Enfance.pdf",
+            "taille": 514265,
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        "catalogue-domicile": {
+            "titre": "Brochure « Animations à domicile » (en classe)",
+            "fichier": "data/docs/catalogue-domicile.pdf",
+            "nom": "Anim-a-domicile-min.pdf",
+            "taille": 135534,
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
         }
     },
     "pain": {
@@ -359,5 +375,312 @@
             "maj": "2026-09-26T10:00:00+02:00",
             "par": "Primo (mise en place)"
         }
-    ]
+    ],
+    "tarifs": {
+        "chalet.pc.sem.adulte": {
+            "v": "50 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Adultes · Pension complète, semaine"
+        },
+        "chalet.pc.we.adulte": {
+            "v": "54 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Adultes · Pension complète, week-end"
+        },
+        "chalet.dp.sem.adulte": {
+            "v": "41 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Adultes · Demi-pension, semaine"
+        },
+        "chalet.dp.we.adulte": {
+            "v": "45 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Adultes · Demi-pension, week-end"
+        },
+        "chalet.pc.sem.m16": {
+            "v": "41 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 16 ans · Pension complète, semaine"
+        },
+        "chalet.pc.we.m16": {
+            "v": "43 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 16 ans · Pension complète, week-end"
+        },
+        "chalet.dp.sem.m16": {
+            "v": "35 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 16 ans · Demi-pension, semaine"
+        },
+        "chalet.dp.we.m16": {
+            "v": "37 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 16 ans · Demi-pension, week-end"
+        },
+        "chalet.pc.sem.m12": {
+            "v": "39 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 12 ans · Pension complète, semaine"
+        },
+        "chalet.pc.we.m12": {
+            "v": "40 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 12 ans · Pension complète, week-end"
+        },
+        "chalet.dp.sem.m12": {
+            "v": "33 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 12 ans · Demi-pension, semaine"
+        },
+        "chalet.dp.we.m12": {
+            "v": "34 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 12 ans · Demi-pension, week-end"
+        },
+        "chalet.pc.sem.m6": {
+            "v": "34 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 6 ans · Pension complète, semaine"
+        },
+        "chalet.pc.we.m6": {
+            "v": "35 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 6 ans · Pension complète, week-end"
+        },
+        "chalet.dp.sem.m6": {
+            "v": "29 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 6 ans · Demi-pension, semaine"
+        },
+        "chalet.dp.we.m6": {
+            "v": "29 €",
+            "g": "Chalet : pension complète et demi-pension (par personne et par nuit)",
+            "l": "Moins de 6 ans · Demi-pension, week-end"
+        },
+        "chalet.nuit.adulte": {
+            "v": "23 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Adultes · Nuit"
+        },
+        "chalet.pdj.adulte": {
+            "v": "7 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Adultes · Petit-déjeuner"
+        },
+        "chalet.repas.adulte": {
+            "v": "14,50 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Adultes · Repas"
+        },
+        "chalet.nuit.m16": {
+            "v": "20 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Moins de 16 ans · Nuit"
+        },
+        "chalet.pdj.m16": {
+            "v": "6 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Moins de 16 ans · Petit-déjeuner"
+        },
+        "chalet.repas.m16": {
+            "v": "13 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Moins de 16 ans · Repas"
+        },
+        "chalet.nuit.m12": {
+            "v": "18 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Moins de 12 ans · Nuit"
+        },
+        "chalet.pdj.m12": {
+            "v": "5 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Moins de 12 ans · Petit-déjeuner"
+        },
+        "chalet.repas.m12": {
+            "v": "11,50 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Moins de 12 ans · Repas"
+        },
+        "chalet.nuit.m6": {
+            "v": "15 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Moins de 6 ans · Nuit"
+        },
+        "chalet.pdj.m6": {
+            "v": "4 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Moins de 6 ans · Petit-déjeuner"
+        },
+        "chalet.repas.m6": {
+            "v": "9 €",
+            "g": "Chalet : nuit, petit-déjeuner et repas à l’unité (par personne)",
+            "l": "Moins de 6 ans · Repas"
+        },
+        "adh.famille": {
+            "v": "5 €",
+            "g": "Adhésion à l’association",
+            "l": "Une famille (par an)"
+        },
+        "adh.groupe20": {
+            "v": "25 €",
+            "g": "Adhésion à l’association",
+            "l": "Un groupe de moins de 20 personnes"
+        },
+        "adh.groupe": {
+            "v": "50 €",
+            "g": "Adhésion à l’association",
+            "l": "Un groupe de plus de 20 personnes"
+        },
+        "adh.classe": {
+            "v": "50 €",
+            "g": "Adhésion à l’association",
+            "l": "Une classe (forfait)"
+        },
+        "adh.seul": {
+            "v": "3 €",
+            "g": "Adhésion à l’association",
+            "l": "Une personne seule"
+        },
+        "chalet.taxe": {
+            "v": "0,83 €",
+            "g": "Chalet : à prévoir en plus",
+            "l": "Taxe de séjour, par adulte et par nuit"
+        },
+        "chalet.draps": {
+            "v": "4 €",
+            "g": "Chalet : à prévoir en plus",
+            "l": "Location de draps, par personne"
+        },
+        "chalet.gl.nuit1": {
+            "v": "1 000 €",
+            "g": "Chalet : gestion libre, forfait week-end",
+            "l": "Première nuit (week-end normal ou spécial)"
+        },
+        "chalet.gl.sup": {
+            "v": "300 €",
+            "g": "Chalet : gestion libre, forfait week-end",
+            "l": "Nuit supplémentaire, week-end normal"
+        },
+        "chalet.gl.sup-special": {
+            "v": "450 €",
+            "g": "Chalet : gestion libre, forfait week-end",
+            "l": "Nuit supplémentaire, week-end spécial"
+        },
+        "chalet.gl.adhesion": {
+            "v": "50 €",
+            "g": "Chalet : gestion libre, forfait week-end",
+            "l": "Adhésion à l’association, en plus du forfait"
+        },
+        "ecoles.classe.mat": {
+            "v": "43 €",
+            "g": "Classes découverte (par jour et par enfant)",
+            "l": "Classe maternelle (moins de 6 ans)"
+        },
+        "ecoles.classe.elem": {
+            "v": "47 €",
+            "g": "Classes découverte (par jour et par enfant)",
+            "l": "Classe élémentaire (moins de 12 ans)"
+        },
+        "ecoles.classe.college": {
+            "v": "48 €",
+            "g": "Classes découverte (par jour et par enfant)",
+            "l": "Collège et lycée (moins de 16 ans)"
+        },
+        "ecoles.demi.petit": {
+            "v": "100 €",
+            "g": "Groupes, petite enfance, traite et école",
+            "l": "Demi-journée, 2 à 15 personnes"
+        },
+        "ecoles.demi.grand": {
+            "v": "200 €",
+            "g": "Groupes, petite enfance, traite et école",
+            "l": "Demi-journée, 16 à 30 personnes"
+        },
+        "ecoles.jour.petit": {
+            "v": "200 €",
+            "g": "Groupes, petite enfance, traite et école",
+            "l": "Journée, 2 à 15 personnes"
+        },
+        "ecoles.jour.grand": {
+            "v": "350 €",
+            "g": "Groupes, petite enfance, traite et école",
+            "l": "Journée, 16 à 30 personnes"
+        },
+        "ecoles.traite": {
+            "v": "75 €",
+            "g": "Groupes, petite enfance, traite et école",
+            "l": "Traite animée, groupe de 6 à 10 personnes"
+        },
+        "ecoles.pe.heure": {
+            "v": "50 €",
+            "g": "Groupes, petite enfance, traite et école",
+            "l": "Petite enfance : professionnel·les, de l’heure"
+        },
+        "ecoles.pe.famille": {
+            "v": "12 €",
+            "g": "Groupes, petite enfance, traite et école",
+            "l": "Petite enfance : par famille"
+        },
+        "ecoles.domicile": {
+            "v": "8 €",
+            "g": "Groupes, petite enfance, traite et école",
+            "l": "Animation dans votre école, par enfant et par demi-journée"
+        },
+        "region.aide": {
+            "v": "15 €",
+            "g": "Aide de la Région pour les classes",
+            "l": "Aide de la Région, par jour et par enfant"
+        },
+        "region.aide-rep": {
+            "v": "25 €",
+            "g": "Aide de la Région pour les classes",
+            "l": "Aide de la Région en REP, REP+, ZFRR, ZFRR+"
+        },
+        "anniv.base": {
+            "v": "110 €",
+            "g": "Anniversaire à la ferme",
+            "l": "Anniversaire pour 8 enfants"
+        },
+        "anniv.sup": {
+            "v": "10 €",
+            "g": "Anniversaire à la ferme",
+            "l": "Par enfant en plus"
+        },
+        "visite.journee": {
+            "v": "2 €",
+            "g": "Visite libre (adhésion, par adulte)",
+            "l": "Adhésion à la journée"
+        },
+        "visite.annee": {
+            "v": "10 €",
+            "g": "Visite libre (adhésion, par adulte)",
+            "l": "Adhésion à l’année"
+        },
+        "colos.acompte": {
+            "v": "100 €",
+            "g": "Colos : conditions",
+            "l": "Acompte pour valider l’inscription"
+        },
+        "colos.fratrie": {
+            "v": "10 €",
+            "g": "Colos : conditions",
+            "l": "Réduction fratrie (à partir de la 2e inscription)"
+        },
+        "colos.dossier": {
+            "v": "30 €",
+            "g": "Colos : conditions",
+            "l": "Frais de dossier retenus (désistement jusqu’à 30 jours avant)"
+        },
+        "colos.desistement": {
+            "v": "100 €",
+            "g": "Colos : conditions",
+            "l": "Somme retenue (désistement à moins de 30 jours)"
+        },
+        "livre": {
+            "v": "15 €",
+            "g": "Livre",
+            "l": "Le livre sur l’histoire de la Batailleuse"
+        }
+    }
 }
