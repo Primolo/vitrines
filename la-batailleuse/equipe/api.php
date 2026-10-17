@@ -45,7 +45,7 @@ const STATUTS = ['a-venir' => 'inscriptions bientôt', 'ouvert' => 'inscriptions
 const TYPES = ['haute', 'moyenne', 'basse'];
 
 // Pages du site : nom lisible pour l'historique et l'espace équipe.
-const PAGES_SITE = ['index' => 'Accueil', 'collectif' => 'La ferme et le collectif', 'pied' => 'Pied de page (toutes les pages)', 'ecoles' => 'Écoles et groupes', 'colos' => 'Colos', 'chalet' => 'Le chalet',
+const PAGES_SITE = ['index' => 'Accueil', 'collectif' => 'La ferme et le collectif', 'pied' => 'Pied de page (toutes les pages)', 'menu' => 'Menu (toutes les pages)', 'ecoles' => 'Écoles et groupes', 'colos' => 'Colos', 'chalet' => 'Le chalet',
     'visiter' => 'Venir à la ferme', 'contact' => 'Contact', 'decouvrir' => 'Découvrir', 'ferme' => 'Agriculture et productions', 'fournil' => 'Le fournil',
     'histoire' => 'Notre histoire', 'hiver' => 'Activités d’hiver', 'photos' => 'Photos'];
 const BALISES_DATA = ['data-tarif', 'data-tarif-min', 'data-tarif-plage', 'data-sejour-prix', 'data-pain-brioche', 'data-h'];
