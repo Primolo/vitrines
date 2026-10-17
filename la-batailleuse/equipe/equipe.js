@@ -948,6 +948,8 @@
     brancher();
     var dernierOnglet = "message";
     try { dernierOnglet = sessionStorage.getItem("bata-onglet") || "message"; } catch (e) { /* rien */ }
+    var viaLien = location.hash.replace("#", "");
+    if (viaLien && document.querySelector('[data-onglet="' + viaLien + '"]')) dernierOnglet = viaLien;
     onglet(dernierOnglet);
     detecter().then(function (mode) {
       if (mode === "panne") {

@@ -240,7 +240,7 @@
     document.body.classList.add("bata-ed");
     bandeau = document.createElement("div");
     bandeau.id = "bata-ed-bandeau";
-    bandeau.innerHTML = "<b>Mode modification</b><span>Touchez un texte ou une photo pour le changer. Tout s’enregistre en quittant le bloc, et c’est en ligne tout de suite.</span><a href=\"equipe/\">Espace équipe</a><button type=\"button\" id=\"bata-ed-fin\">Terminer</button>";
+    bandeau.innerHTML = "<b>Mode modification</b><span>Touchez un texte ou une photo pour le changer. Tout s’enregistre en quittant le bloc, et c’est en ligne tout de suite.</span><a href=\"equipe/#pages\">Espace équipe</a><button type=\"button\" id=\"bata-ed-fin\">Terminer</button>";
     document.body.appendChild(bandeau);
     barre = document.createElement("div");
     barre.id = "bata-ed-barre"; barre.hidden = true;
@@ -266,7 +266,8 @@
     });
     $("#bata-ed-fin").addEventListener("click", function () {
       if (S.enCours && !window.confirm("Un enregistrement est en cours. Quitter quand même ?")) return;
-      var u = new URL(location.href); u.searchParams.delete("modifier"); location.href = u.toString();
+      try { sessionStorage.setItem("bata-onglet", "pages"); } catch (x) { /* rien */ }
+      location.href = "equipe/#pages";
     });
 
     // Les liens et boutons de la page ne naviguent pas pendant la modification (sauf ceux du bandeau).
