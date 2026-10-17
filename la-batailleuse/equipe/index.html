@@ -343,6 +343,14 @@
       <p class="muted">Qui a changé quoi, et quand. En cas d’erreur, revenez à l’état d’avant une modification.</p>
       <ul class="eq-list eq-journal" id="hi-liste" style="gap:0"></ul>
     </section>
+    <section class="eq-card" data-panneau="historique" hidden aria-labelledby="t-cd">
+      <h2 id="t-cd" style="font-size:1.3rem">Code de l’équipe</h2>
+      <p class="muted">Le code qui ouvre cet espace. Choisissez-en un facile à retenir (6 caractères minimum). Les autres personnes devront entrer le nouveau code à leur prochaine visite.</p>
+      <form id="form-cd" novalidate>
+        <div class="field"><label for="cd-nouveau">Nouveau code</label><input id="cd-nouveau" type="text" autocomplete="off" maxlength="60"></div>
+        <div class="eq-actions"><button class="btn" type="submit">Changer le code</button></div>
+      </form>
+    </section>
   </div>
 </main>
 

@@ -24,7 +24,9 @@ if (!limiter($cle, 8, 900, false)) {
     repondre(429, ['erreur' => 'Trop de codes incorrects. Réessayez dans 15 minutes.']);
 }
 $code = (string) ($_SERVER['HTTP_X_CODE_EQUIPE'] ?? '');
-if ($code === '' || $c['code_equipe_hash'] === '' || !password_verify($code, $c['code_equipe_hash'])) {
+// Le code choisi par l'équipe elle-même (espace équipe → Historique) remplace celui de la configuration.
+$empreinte = (string) (lire_json(DOSSIER_ETAT . '/code.json', [])['hash'] ?? $c['code_equipe_hash']);
+if ($code === '' || $empreinte === '' || !password_verify($code, $empreinte)) {
     limiter($cle, 8, 900, true);
     sleep(1);
     repondre(401, ['erreur' => 'Code incorrect.']);
@@ -448,6 +450,22 @@ switch ($action) {
                 }
             }
             succes($doc, 'Cette photo avait déjà été retirée.');
+        });
+
+    case 'code_changer':
+        $nouveau = (string) ($d['nouveau'] ?? '');
+        if (mb_strlen($nouveau) < 6 || mb_strlen($nouveau) > 60 || trim($nouveau) !== $nouveau) {
+            repondre(400, ['erreur' => 'Le code doit faire entre 6 et 60 caractères, sans espace au début ni à la fin.']);
+        }
+        if ($nouveau === $code) {
+            repondre(400, ['erreur' => 'C’est déjà le code actuel.']);
+        }
+        avec_verrou('contenus', function () use ($nouveau, $prenom) {
+            ecrire_json(DOSSIER_ETAT . '/code.json', ['hash' => password_hash($nouveau, PASSWORD_DEFAULT), 'par' => $prenom, 'quand' => date('c')]);
+            $j = journal();
+            array_unshift($j, ['quand' => date('c'), 'par' => $prenom, 'section' => 'reglages', 'cle' => '', 'resume' => 'Code de l’équipe changé', 'avant' => '']);
+            ecrire_json(DOSSIER_ETAT . '/journal.json', array_slice($j, 0, 200));
+            succes(charger(), 'Code changé. Les autres personnes devront entrer le nouveau code.');
         });
 
     case 'boites_reelles':

@@ -77,7 +77,7 @@
 
   // La démonstration applique les mêmes opérations que le serveur, sur une copie gardée dans ce navigateur.
   function demo(action, d) {
-    if (["document_envoyer", "actualite_enregistrer", "actualite_supprimer", "offre_enregistrer", "offre_supprimer", "sejour_infos", "pain_prix", "tarifs_modifier", "texte_enregistrer", "texte_reinitialiser", "image_enregistrer", "image_reinitialiser", "photo_ajouter", "photo_modifier", "photo_supprimer"].indexOf(action) !== -1) {
+    if (["document_envoyer", "actualite_enregistrer", "actualite_supprimer", "offre_enregistrer", "offre_supprimer", "sejour_infos", "pain_prix", "tarifs_modifier", "texte_enregistrer", "texte_reinitialiser", "image_enregistrer", "image_reinitialiser", "photo_ajouter", "photo_modifier", "photo_supprimer", "code_changer"].indexOf(action) !== -1) {
       return { s: 400, j: { erreur: "Cette fonction ne marche que sur le vrai site, pas dans la maquette de démonstration." } };
     }
     var c = copie(S.contenus), j = lireLocal(CLE_DEMO_J, []), h = lireLocal(CLE_DEMO_H, []), section = "", resume = "";
@@ -815,6 +815,23 @@
       var champs = $$("#pa-lignes [data-p=nom]");
       champs[champs.length - 1].focus();
       $("#pa-etat").textContent = "Donnez un nom au nouveau pain pour l’enregistrer.";
+    });
+
+    /* Code de l'équipe */
+    $("#form-cd").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var n = $("#cd-nouveau").value;
+      if (S.demo) return toast("Dans la démonstration sans serveur, le code n’a pas d’importance.", true);
+      if (n.length < 6) return toast("Le code doit faire 6 caractères au minimum.", true);
+      if (!confirm("Changer le code de l’équipe ? Les autres personnes devront entrer le nouveau code.")) return;
+      appel("code_changer", { nouveau: n }).then(function (res) {
+        if (res.s === 200 && res.j.ok) {
+          S.code = n;
+          if (lireLocal(CLE_SESSION, null)) ecrireLocal(CLE_SESSION, { prenom: S.prenom, code: n });
+          $("#form-cd").reset();
+        }
+        traiter(res);
+      });
     });
 
     /* Galerie */
