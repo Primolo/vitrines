@@ -8,7 +8,7 @@ require __DIR__ . '/../prive/commun.php';
 exiger_post();
 $c = config();
 // Un fichier (PDF, photo) arrive en base64 dans le corps : on ne lit un corps volumineux qu'une fois le code vérifié.
-const ACTIONS_FICHIERS = ['document_envoyer', 'actualite_enregistrer', 'offre_enregistrer'];
+const ACTIONS_FICHIERS = ['document_envoyer', 'actualite_enregistrer', 'offre_enregistrer', 'image_enregistrer', 'photo_ajouter'];
 const OCTETS_FICHIER = 5 * 1024 * 1024;
 $gros = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0) > 200000;
 $d = $gros ? [] : corps_json(200000);
@@ -44,11 +44,22 @@ if ($prenom === '') {
 const STATUTS = ['a-venir' => 'inscriptions bientôt', 'ouvert' => 'inscriptions ouvertes', 'dernieres' => 'dernières places', 'complet' => 'complet', 'termine' => 'terminé'];
 const TYPES = ['haute', 'moyenne', 'basse'];
 
+// Pages du site : nom lisible pour l'historique et l'espace équipe.
+const PAGES_SITE = ['index' => 'Accueil', 'collectif' => 'La ferme et le collectif', 'pied' => 'Pied de page (toutes les pages)', 'ecoles' => 'Écoles et groupes', 'colos' => 'Colos', 'chalet' => 'Le chalet',
+    'visiter' => 'Venir à la ferme', 'contact' => 'Contact', 'decouvrir' => 'Découvrir', 'ferme' => 'Agriculture et productions', 'fournil' => 'Le fournil',
+    'histoire' => 'Notre histoire', 'hiver' => 'Activités d’hiver', 'photos' => 'Photos'];
+const BALISES_DATA = ['data-tarif', 'data-tarif-min', 'data-tarif-plage', 'data-sejour-prix', 'data-pain-brioche', 'data-h'];
+
+
 // Emplacements de documents : l'équipe remplace le fichier, le lien du site suit tout seul.
 const DOCUMENTS = [
     'contrat-pain-mensuel' => ['Contrat pain mensuel', ['pdf']],
     'contrat-pain-semestriel' => ['Contrat pain semestriel', ['pdf']],
     'catalogue-activites' => ['Brochure « Nos activités » (écoles et groupes)', ['pdf']],
+    'bulletin-inscription-colos' => ['Bulletin d’inscription aux colos', ['pdf']],
+    'projet-educatif' => ['Projet éducatif d’accueil', ['pdf']],
+    'catalogue-groupes' => ['Brochure « Nos activités groupes » (journée et demi-journée)', ['pdf']],
+    'certificat-bio' => ['Certificat Agriculture biologique', ['pdf']],
     'catalogue-petite-enfance' => ['Brochure « Activités petite enfance » (0-3 ans)', ['pdf']],
     'catalogue-domicile' => ['Brochure « Animations à domicile » (en classe)', ['pdf']],
     'bulletin-adhesion' => ['Bulletin d’adhésion et de soutien', ['pdf', 'png', 'jpg']],
@@ -314,6 +325,131 @@ switch ($action) {
             succes(enregistrer($doc, 'tarifs', $resume, $prenom, array_key_first($nouveaux)));
         });
 
+    case 'texte_enregistrer':
+        $id = texte($d['id'] ?? '', 40);
+        if (!id_bloc_valide($id)) {
+            repondre(400, ['erreur' => 'Bloc de texte inconnu.']);
+        }
+        $h = nettoyer_html((string) ($d['html'] ?? ''));
+        if ($h === '') {
+            repondre(400, ['erreur' => 'Le texte est vide ou trop long. Pour retirer vos changements, choisissez « Texte d’origine ».']);
+        }
+        avec_verrou('contenus', function () use ($d, $id, $h, $prenom) {
+            $doc = charger();
+            $actuel = $doc['textes'][$id] ?? null;
+            if (empty($d['forcer']) && (string) ($d['maj_vue'] ?? '') !== (string) ($actuel['maj'] ?? '')) {
+                conflit($doc, 'textes', ['id' => $id, 'h' => $actuel['h'] ?? null], $id);
+            }
+            if ($actuel === null && count($doc['textes'] ?? []) >= 2500) {
+                repondre(400, ['erreur' => 'Trop de textes modifiés : prévenez Primo.']);
+            }
+            if (($actuel['h'] ?? null) === $h) {
+                succes($doc, 'Rien n’a changé.');
+            }
+            $doc['textes'][$id] = ['h' => $h, 'maj' => date('c'), 'par' => $prenom];
+            succes(enregistrer($doc, 'textes', 'Page « ' . nom_page($id) . ' » : « ' . extrait_texte($h) . ' »', $prenom, $id));
+        });
+
+    case 'texte_reinitialiser':
+        $id = texte($d['id'] ?? '', 40);
+        avec_verrou('contenus', function () use ($id, $prenom) {
+            $doc = charger();
+            if (!isset($doc['textes'][$id])) {
+                succes($doc, 'Ce texte est déjà celui d’origine.');
+            }
+            unset($doc['textes'][$id]);
+            succes(enregistrer($doc, 'textes', 'Page « ' . nom_page($id) . ' » : retour au texte d’origine', $prenom, $id));
+        });
+
+    case 'image_enregistrer':
+        $id = texte($d['id'] ?? '', 40);
+        if (!id_bloc_valide($id)) {
+            repondre(400, ['erreur' => 'Image inconnue.']);
+        }
+        $alt = texte($d['alt'] ?? '', 200);
+        avec_verrou('contenus', function () use ($d, $id, $alt, $prenom) {
+            $doc = charger();
+            $actuel = $doc['images'][$id] ?? null;
+            if (empty($d['forcer']) && (string) ($d['maj_vue'] ?? '') !== (string) ($actuel['maj'] ?? '')) {
+                conflit($doc, 'images', ['id' => $id], $id);
+            }
+            $nouveau = ['maj' => date('c'), 'par' => $prenom];
+            if (!empty($d['contenu'])) {
+                $f = enregistrer_fichier('img-' . $id, $d['contenu'], ['jpg', 'png', 'webp']);
+                $nouveau['fichier'] = $f['fichier'];
+            } elseif (isset($actuel['fichier'])) {
+                $nouveau['fichier'] = $actuel['fichier'];
+            }
+            if ($alt !== '') {
+                $nouveau['alt'] = $alt;
+            } elseif (isset($actuel['alt'])) {
+                $nouveau['alt'] = $actuel['alt'];
+            }
+            if (count($nouveau) <= 2) {
+                repondre(400, ['erreur' => 'Choisissez une photo ou écrivez sa description.']);
+            }
+            $doc['images'][$id] = $nouveau;
+            succes(enregistrer($doc, 'images', 'Page « ' . nom_page($id) . ' » : ' . (!empty($d['contenu']) ? 'photo remplacée' : 'description de la photo modifiée'), $prenom, $id));
+        });
+
+    case 'image_reinitialiser':
+        $id = texte($d['id'] ?? '', 40);
+        avec_verrou('contenus', function () use ($id, $prenom) {
+            $doc = charger();
+            if (!isset($doc['images'][$id])) {
+                succes($doc, 'Cette photo est déjà celle d’origine.');
+            }
+            unset($doc['images'][$id]);
+            succes(enregistrer($doc, 'images', 'Page « ' . nom_page($id) . ' » : retour à la photo d’origine', $prenom, $id));
+        });
+
+    case 'photo_ajouter':
+        $legende = texte($d['legende'] ?? '', 120);
+        avec_verrou('contenus', function () use ($d, $legende, $prenom) {
+            $doc = charger();
+            $liste = $doc['galerie'] ?? [];
+            if (count($liste) >= 400) {
+                repondre(400, ['erreur' => 'La galerie compte déjà 400 photos : retirez-en avant d’en ajouter.']);
+            }
+            $id = 'p' . bin2hex(random_bytes(4));
+            $f = enregistrer_fichier('photo-' . $id, $d['contenu'] ?? '', ['jpg', 'png', 'webp']);
+            array_unshift($liste, ['id' => $id, 'fichier' => $f['fichier'], 'legende' => $legende, 'maj' => date('c'), 'par' => $prenom]);
+            $doc['galerie'] = $liste;
+            succes(enregistrer($doc, 'galerie', 'Photo ajoutée à la galerie' . ($legende !== '' ? ' : ' . $legende : ''), $prenom, $id));
+        });
+
+    case 'photo_modifier':
+        $id = texte($d['id'] ?? '', 20);
+        $legende = texte($d['legende'] ?? '', 120);
+        avec_verrou('contenus', function () use ($d, $id, $legende, $prenom) {
+            $doc = charger();
+            foreach ($doc['galerie'] ?? [] as $i => $p) {
+                if (($p['id'] ?? '') !== $id) {
+                    continue;
+                }
+                if (empty($d['forcer']) && (string) ($d['maj_vue'] ?? '') !== (string) ($p['maj'] ?? '')) {
+                    conflit($doc, 'galerie', $p, $id);
+                }
+                $doc['galerie'][$i]['legende'] = $legende;
+                $doc['galerie'][$i]['maj'] = date('c');
+                succes(enregistrer($doc, 'galerie', 'Légende de photo modifiée : ' . ($legende !== '' ? $legende : '(vide)'), $prenom, $id));
+            }
+            succes($doc, 'Cette photo avait déjà été retirée.');
+        });
+
+    case 'photo_supprimer':
+        $id = texte($d['id'] ?? '', 20);
+        avec_verrou('contenus', function () use ($id, $prenom) {
+            $doc = charger();
+            foreach ($doc['galerie'] ?? [] as $i => $p) {
+                if (($p['id'] ?? '') === $id) {
+                    array_splice($doc['galerie'], $i, 1);
+                    succes(enregistrer($doc, 'galerie', 'Photo retirée de la galerie' . (($p['legende'] ?? '') !== '' ? ' : ' . $p['legende'] : ''), $prenom, $id));
+                }
+            }
+            succes($doc, 'Cette photo avait déjà été retirée.');
+        });
+
     case 'boites_reelles':
         if (!interrupteur_disponible($c)) {
             repondre(400, ['erreur' => 'Ce réglage n’existe que sur la démonstration.']);
@@ -339,7 +475,7 @@ switch ($action) {
                 repondre(500, ['erreur' => 'Version illisible.']);
             }
             $actuel = charger();
-            foreach (['documents', 'actualites', 'offres', 'pain', 'tarifs'] as $k) {
+            foreach (['documents', 'actualites', 'offres', 'pain', 'tarifs', 'textes', 'images', 'galerie'] as $k) {
                 if (!isset($ancien[$k]) && isset($actuel[$k])) {
                     $ancien[$k] = $actuel[$k];
                 }
@@ -367,7 +503,7 @@ function charger(): array
     if (!is_array($doc)) {
         repondre(500, ['erreur' => 'Le fichier des contenus est illisible. Prévenez Primo.']);
     }
-    $doc['versions'] = ($doc['versions'] ?? []) + ['message' => 0, 'agenda' => 0, 'horaires' => 0, 'sejours' => 0, 'documents' => 0, 'actualites' => 0, 'offres' => 0, 'pain' => 0, 'tarifs' => 0];
+    $doc['versions'] = ($doc['versions'] ?? []) + ['message' => 0, 'agenda' => 0, 'horaires' => 0, 'sejours' => 0, 'documents' => 0, 'actualites' => 0, 'offres' => 0, 'pain' => 0, 'tarifs' => 0, 'textes' => 0, 'images' => 0, 'galerie' => 0];
     return $doc;
 }
 
@@ -602,9 +738,9 @@ function enregistrer_fichier(string $cle, $b64, array $types): array
     }
     @chmod($dossier . '/' . $nom, 0644);
     // On garde les 5 versions les plus récentes de cet emplacement (la restauration de l'historique peut en avoir besoin).
-    $anciens = glob($dossier . '/' . $slug . '-[0-9]*-*.*') ?: [];
-    rsort($anciens);
-    foreach (array_slice($anciens, 5) as $f) {
+    $anciens = array_filter(glob($dossier . '/' . $slug . '-[0-9]*-*.*') ?: [], fn($f) => basename($f) !== $nom);
+    usort($anciens, fn($a, $b) => filemtime($b) <=> filemtime($a) ?: strcmp($b, $a));
+    foreach (array_slice($anciens, 4) as $f) {   // le nouveau + les 4 plus récents
         @unlink($f);
     }
     return ['fichier' => 'data/docs/' . $nom, 'ext' => $ext, 'taille' => strlen($bin)];
@@ -744,4 +880,108 @@ function valider_pain($p): array
         repondre(400, ['erreur' => 'Entre 1 et 12 pains.']);
     }
     return ['lignes' => $lignes, 'brioche_j' => prix_pain($p['brioche_j'] ?? ''), 'brioche_s' => prix_pain($p['brioche_s'] ?? '')];
+}
+
+
+function id_bloc_valide(string $id): bool
+{
+    return preg_match('/^([a-z]{3,12})\.([0-9]{1,4})$/', $id, $m) === 1 && isset(PAGES_SITE[$m[1]]);
+}
+
+function nom_page(string $id): string
+{
+    return PAGES_SITE[explode('.', $id)[0]] ?? $id;
+}
+
+function extrait_texte(string $h): string
+{
+    $s = trim(preg_replace('/\s+/u', ' ', html_entity_decode(strip_tags(str_replace('<br>', ' ', $h)), ENT_QUOTES, 'UTF-8')) ?? '');
+    return mb_strlen($s) > 70 ? mb_substr($s, 0, 70) . '…' : $s;
+}
+
+function lien_autorise(string $u): bool
+{
+    return preg_match('~^(https?://[^\s"\'<>]{3,300}|mailto:[^\s"\'<>]{3,200}|tel:\+?[0-9 ]{6,20}|[a-z0-9._-]+\.html(#[a-z0-9_-]+)?|#[a-z0-9_-]+|data/docs/[A-Za-z0-9._-]+)$~', $u) === 1;
+}
+
+/** Ne garde que gras, italique, retours à la ligne, liens sûrs et les petites balises de prix/horaires reliées au site. Tout le reste devient du texte simple. */
+function nettoyer_html(string $h): string
+{
+    $h = trim(str_replace(["\r\n", "\r"], "\n", $h));
+    if ($h === '' || strlen($h) > 8000) {
+        return '';
+    }
+    $dom = new DOMDocument();
+    libxml_use_internal_errors(true);
+    $dom->loadHTML('<?xml encoding="utf-8"?><body><div id="r">' . $h . '</div></body>', LIBXML_HTML_NODEFDTD);
+    libxml_clear_errors();
+    $racine = $dom->getElementById('r');
+    if (!$racine) {
+        return '';
+    }
+    $s = enfants_propres($racine);
+    $s = preg_replace('/[ \t\n]+/u', ' ', $s) ?? '';
+    $s = preg_replace('/(<br>\s*){3,}/', '<br><br>', $s) ?? '';
+    $s = trim(preg_replace('/^(\s|<br>)+|(\s|<br>)+$/', '', $s) ?? '');
+    return strlen(strip_tags($s)) === 0 ? '' : $s;
+}
+
+function enfants_propres(DOMNode $n): string
+{
+    $s = '';
+    foreach ($n->childNodes as $c) {
+        if ($c instanceof DOMText) {
+            $s .= htmlspecialchars(str_replace("\u{00A0}", ' ', $c->nodeValue), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+        } elseif ($c instanceof DOMElement) {
+            $s .= balise_propre($c);
+        }
+    }
+    return $s;
+}
+
+function classe_propre(DOMElement $e): string
+{
+    $c = trim($e->getAttribute('class'));
+    return $c !== '' && preg_match('/^[A-Za-z0-9_ -]{1,60}$/', $c) === 1 ? ' class="' . $c . '"' : '';
+}
+
+function balise_propre(DOMElement $e): string
+{
+    $t = strtolower($e->nodeName);
+    if (in_array($t, ['script', 'style', 'iframe', 'object', 'embed', 'svg', 'form', 'input', 'textarea', 'select', 'button'], true)) {
+        return '';
+    }
+    $dedans = enfants_propres($e);
+    switch ($t) {
+        case 'b':
+        case 'strong':
+            return $dedans === '' ? '' : '<b' . classe_propre($e) . '>' . $dedans . '</b>';
+        case 'small':
+            return $dedans === '' ? '' : '<small' . classe_propre($e) . '>' . $dedans . '</small>';
+        case 'i':
+        case 'em':
+            return $dedans === '' ? '' : '<i' . classe_propre($e) . '>' . $dedans . '</i>';
+        case 'br':
+            return '<br>';
+        case 'a':
+            $href = trim($e->getAttribute('href'));
+            if (!lien_autorise($href) || $dedans === '') {
+                return $dedans;
+            }
+            $doc = $e->getAttribute('data-doc');
+            return '<a href="' . htmlspecialchars($href, ENT_QUOTES) . '" rel="noopener"' . classe_propre($e) . (preg_match('/^[a-z0-9-]{2,40}$/', $doc) === 1 ? ' data-doc="' . $doc . '"' : '') . '>' . $dedans . '</a>';
+        case 'span':
+            foreach (BALISES_DATA as $a) {
+                $v = $e->getAttribute($a);
+                if ($e->hasAttribute($a) && preg_match('/^[A-Za-z0-9._:-]{1,60}$/', $v) === 1) {
+                    return '<span ' . $a . '="' . $v . '"' . classe_propre($e) . '>' . $dedans . '</span>';
+                }
+            }
+            return $e->getAttribute('class') !== '' ? '<span' . classe_propre($e) . '>' . $dedans . '</span>' : $dedans;
+        case 'div':
+        case 'p':
+            return $dedans . ($e->nextSibling ? '<br>' : '');
+        default:
+            return $dedans;
+    }
 }

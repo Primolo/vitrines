@@ -531,3 +531,15 @@ input:user-invalid, select:user-invalid, textarea:user-invalid { border-color: v
 .news { margin-top: 24px; align-items: start; }
 .news__date { font-size: .85rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 6px; }
 .news__item .card__body p + p { margin-top: .6em; }
+
+/* Galerie photos (gérée par l'équipe) */
+.galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 12px; margin: 24px 0; }
+.galerie__photo { margin: 0; }
+.galerie__ouvrir { display: block; width: 100%; padding: 0; border: 0; background: var(--paper-2); border-radius: var(--radius); overflow: hidden; cursor: zoom-in; aspect-ratio: 4 / 3; }
+.galerie__ouvrir img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s; }
+.galerie__ouvrir:hover img { transform: scale(1.04); }
+.galerie__photo figcaption { font-size: .85rem; color: var(--ink-mute); margin-top: 4px; }
+dialog.visionneuse { border: 0; padding: 12px; background: var(--white); border-radius: var(--radius-lg); max-width: min(96vw, 1100px); max-height: 94vh; }
+dialog.visionneuse::backdrop { background: rgba(20, 16, 12, .8); }
+dialog.visionneuse img { max-width: 100%; max-height: 78vh; width: auto; margin: 0 auto; border-radius: var(--radius); }
+dialog.visionneuse figcaption { padding: 8px 2px; color: var(--ink-soft); }

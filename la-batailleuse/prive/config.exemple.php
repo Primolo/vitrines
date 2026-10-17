@@ -21,6 +21,7 @@ return [
         'visiter/precommande' => 'ferme@claj-batailleuse.fr',
         'visiter/animation' => 'animation@claj-batailleuse.fr',
         'collectif/demande' => 'contact@claj-batailleuse.fr',
+        'collectif/newsletter' => 'contact@claj-batailleuse.fr',
         // Le formulaire de contact aiguille selon le sujet choisi.
         'contact/demande' => [
             'valeurs' => [

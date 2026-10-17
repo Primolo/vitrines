@@ -250,6 +250,38 @@
             "taille": 135534,
             "maj": "2026-10-17T14:00:00+02:00",
             "par": "Primo (mise en place)"
+        },
+        "bulletin-inscription-colos": {
+            "titre": "Bulletin d’inscription aux colos",
+            "fichier": "data/docs/bulletin-inscription-colos-2026.pdf",
+            "nom": "Bulletin-dinscription-4.pdf",
+            "taille": 413658,
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        "projet-educatif": {
+            "titre": "Projet éducatif d’accueil",
+            "fichier": "data/docs/projet-educatif.pdf",
+            "nom": "projet-éducatif-accueil-batailleuse.pdf",
+            "taille": 125421,
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        "catalogue-groupes": {
+            "titre": "Brochure « Nos activités groupes » (journée et demi-journée)",
+            "fichier": "data/docs/catalogue-groupes.pdf",
+            "nom": "Nos-activites-groupes.pdf",
+            "taille": 2602522,
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        "certificat-bio": {
+            "titre": "Certificat Agriculture biologique",
+            "fichier": "data/docs/certificat-bio.pdf",
+            "nom": "Certificat-Batailleuse.pdf",
+            "taille": 61930,
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
         }
     },
     "pain": {
@@ -373,6 +405,61 @@
             "lien_texte": "",
             "photo": null,
             "maj": "2026-09-26T10:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "estete2026",
+            "titre": "La Batailleuse dans l’Est Républicain cet été",
+            "date": "2026-08-18",
+            "texte": "Nous sommes passés dans l’Est Républicain cet été pour tous les séjours que nous organisons.",
+            "lien": "https://www.estrepublicain.fr/culture-loisirs/2026/08/18/la-ferme-de-la-batailleuse-se-transforme-en-auberge-de-jeunesse-pendant-l-ete",
+            "lien_texte": "Lire l’article",
+            "photo": null,
+            "maj": "2026-10-17T15:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "estasc2026",
+            "titre": "Nos chantiers participatifs de l’Ascension dans l’Est Républicain",
+            "date": "2026-05-26",
+            "texte": "Nous sommes passés dans l’Est Républicain pour nos chantiers participatifs de l’Ascension.",
+            "lien": "https://www.estrepublicain.fr/culture-loisirs/2026/05/26/la-batailleuse-un-chantier-participatif-pour-continuer-une-aventure-de-45-ans",
+            "lien_texte": "Lire l’article",
+            "photo": null,
+            "maj": "2026-10-17T15:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "visitelibre",
+            "titre": "La visite libre de la ferme évolue (à partir du 1er avril 2026)",
+            "date": "2026-04-01",
+            "texte": "À partir du 1er avril 2026, la visite libre de la ferme est accessible via une adhésion (l’accès à la boutique reste libre et gratuit). Auparavant, elle était possible avec un prix libre.\nPourquoi ce changement ? Faire grandir la communauté : accueillir plus d’adhérent·e·s, renforcer les liens et encourager l’implication bénévole. Faire rayonner notre projet : partager et défendre notre modèle associatif. Valoriser l’accueil à la ferme : la visite libre demande du temps et de l’énergie, et nous voulons lui donner toute sa valeur.\nEt aussi, soyons transparents : ce choix s’inscrit dans un contexte économique tendu, et nous aide à assurer un minimum de ressources pour continuer à faire vivre la Batailleuse.",
+            "lien": "",
+            "lien_texte": "",
+            "photo": null,
+            "maj": "2026-10-17T15:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "noel2025",
+            "titre": "Retour en images sur notre marché de Noël",
+            "date": "2025-12-20",
+            "texte": "Le samedi 20 décembre, on s’est retrouvé à la Batailleuse pour le traditionnel marché de Noël. Producteurs et artisans locaux, buvette bien épicée (bière, vin chaud, jus de pomme chaud) et petite restauration faite avec amour et farine (galettes et crêpes) sont partis comme des petits pains.",
+            "lien": "",
+            "lien_texte": "",
+            "photo": null,
+            "maj": "2026-10-17T15:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "balfolk2025",
+            "titre": "Retour sur notre bal folk d’automne 2025",
+            "date": "2025-11-01",
+            "texte": "Pour ce bal folk, deux groupes ont fait vibrer le parquet : Snailprod, pour envoyer de l’électro-trad qui donne envie de taper du pied très fort, et Antirouille, pour dérouiller les jambes et faire tourner les rondes comme il faut.\nAu programme : danser beaucoup, se tromper de sens (c’est normal), apprendre des pas grâce à des temps d’initiation, attraper des mains inconnues et se retrouver à danser ensemble cinq minutes plus tard. Bref, tout ce qu’on peut faire dans un bal folk digne de ce nom !",
+            "lien": "",
+            "lien_texte": "",
+            "photo": null,
+            "maj": "2026-10-17T15:00:00+02:00",
             "par": "Primo (mise en place)"
         }
     ],
@@ -682,5 +769,450 @@
             "g": "Livre",
             "l": "Le livre sur l’histoire de la Batailleuse"
         }
-    }
+    },
+    "galerie": [
+        {
+            "id": "g01",
+            "fichier": "img/galerie/photo-01.jpg",
+            "legende": "Fête de la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g02",
+            "fichier": "img/galerie/photo-02.jpg",
+            "legende": "Fête de la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g03",
+            "fichier": "img/galerie/photo-03.jpg",
+            "legende": "Fête de la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g04",
+            "fichier": "img/galerie/photo-04.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g05",
+            "fichier": "img/galerie/photo-05.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g06",
+            "fichier": "img/galerie/photo-06.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g07",
+            "fichier": "img/galerie/photo-07.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g08",
+            "fichier": "img/galerie/photo-08.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g09",
+            "fichier": "img/galerie/photo-09.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g10",
+            "fichier": "img/galerie/photo-10.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g11",
+            "fichier": "img/galerie/photo-11.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g12",
+            "fichier": "img/galerie/photo-12.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g13",
+            "fichier": "img/galerie/photo-13.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g14",
+            "fichier": "img/galerie/photo-14.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g15",
+            "fichier": "img/galerie/photo-15.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g16",
+            "fichier": "img/galerie/photo-16.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g17",
+            "fichier": "img/galerie/photo-17.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g18",
+            "fichier": "img/galerie/photo-18.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g19",
+            "fichier": "img/galerie/photo-19.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g20",
+            "fichier": "img/galerie/photo-20.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g21",
+            "fichier": "img/galerie/photo-21.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g22",
+            "fichier": "img/galerie/photo-22.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g23",
+            "fichier": "img/galerie/photo-23.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g24",
+            "fichier": "img/galerie/photo-24.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g25",
+            "fichier": "img/galerie/photo-25.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g26",
+            "fichier": "img/galerie/photo-26.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g27",
+            "fichier": "img/galerie/photo-27.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g28",
+            "fichier": "img/galerie/photo-28.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g29",
+            "fichier": "img/galerie/photo-29.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g30",
+            "fichier": "img/galerie/photo-30.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g31",
+            "fichier": "img/galerie/photo-31.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g32",
+            "fichier": "img/galerie/photo-32.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g33",
+            "fichier": "img/galerie/photo-33.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g34",
+            "fichier": "img/galerie/photo-34.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g35",
+            "fichier": "img/galerie/photo-35.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g36",
+            "fichier": "img/galerie/photo-36.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g37",
+            "fichier": "img/galerie/photo-37.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g38",
+            "fichier": "img/galerie/photo-38.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g39",
+            "fichier": "img/galerie/photo-39.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g40",
+            "fichier": "img/galerie/photo-40.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g41",
+            "fichier": "img/galerie/photo-41.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g42",
+            "fichier": "img/galerie/photo-42.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g43",
+            "fichier": "img/galerie/photo-43.jpg",
+            "legende": "Les séjours de vacances à la Batailleuse",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g44",
+            "fichier": "img/galerie/photo-44.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g45",
+            "fichier": "img/galerie/photo-45.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g46",
+            "fichier": "img/galerie/photo-46.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g47",
+            "fichier": "img/galerie/photo-47.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g48",
+            "fichier": "img/galerie/photo-48.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g49",
+            "fichier": "img/galerie/photo-49.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g50",
+            "fichier": "img/galerie/photo-50.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g51",
+            "fichier": "img/galerie/photo-51.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g52",
+            "fichier": "img/galerie/photo-52.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g53",
+            "fichier": "img/galerie/photo-53.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g54",
+            "fichier": "img/galerie/photo-54.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g55",
+            "fichier": "img/galerie/photo-55.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g56",
+            "fichier": "img/galerie/photo-56.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g57",
+            "fichier": "img/galerie/photo-57.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g58",
+            "fichier": "img/galerie/photo-58.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g59",
+            "fichier": "img/galerie/photo-59.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g60",
+            "fichier": "img/galerie/photo-60.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g61",
+            "fichier": "img/galerie/photo-61.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g62",
+            "fichier": "img/galerie/photo-62.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "g63",
+            "fichier": "img/galerie/photo-63.jpg",
+            "legende": "Les classes à la ferme",
+            "maj": "2026-10-17T14:00:00+02:00",
+            "par": "Primo (mise en place)"
+        }
+    ],
+    "textes": {},
+    "images": {}
 }

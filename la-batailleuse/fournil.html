@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Le fournil : pain au levain, biscuits et pizzas au feu de bois · La Batailleuse</title>
+<meta name="description" content="Le fournil de la Batailleuse à Rochejean : pain bio au levain cuit au four à bois, fournées du lundi, du mercredi et du vendredi, biscuits, crackers, pizzas à emporter, animations et histoire du nouveau fournil.">
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* Compléments de page (variables de style.css uniquement) */
+  main [id] { scroll-margin-top: 88px; }
+  .top { padding-bottom: clamp(40px, 6vw, 72px); }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .top .actions { margin-bottom: 18px; }
+  .feature__img, .animal, .wide, .gallery figure, .letters figure, .side-fig { margin: 0; }
+  .gap-top { margin-top: clamp(40px, 6vw, 72px); }
+  .block { margin-top: clamp(40px, 6vw, 72px); }
+  .block--sm { margin-top: clamp(24px, 3vw, 36px); }
+  .section--sapin .ticks li::before { border-color: var(--foin-soft); }
+  .btn--on-dark { color: #FFF8EE; border-color: #FFF8EE; } .btn--on-dark:hover { background: #FFF8EE; border-color: #FFF8EE; color: var(--ink); }
+  .aside .ticks + p { margin-top: 14px; }
+  .meta li b { min-width: 6.5em; }
+  @media (max-width: 520px) { .meta li { flex-direction: column; gap: 0; } }
+  .wide img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-lg); }
+  .wide figcaption, .gallery figcaption, .letters figcaption, .side-fig figcaption { font-size: .82rem; color: var(--ink-mute); margin-top: 8px; font-style: italic; }
+  .gallery { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+  .gallery--5 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); }
+  .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-lg); }
+  .gallery--5 img { aspect-ratio: 1 / 1; }
+  .split { display: grid; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  @media (min-width: 980px) { .split { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); } .split__side { position: sticky; top: 100px; } }
+  .side-fig { margin-top: 26px; }
+  .side-fig img { width: 100%; height: auto; border-radius: var(--radius-lg); }
+  .timeline li:last-child { padding-bottom: 0; }
+  .letters { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  .letters img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="mockup-note">Maquette proposée à la Batailleuse. Tous les contenus viennent de votre site actuel.</p>
+
+<div class="almanach" data-almanach aria-live="polite">
+  <div class="wrap">Ferme ouverte de 16h30 à 19h selon la période · <a href="visiter.html#horaires">Tous les horaires</a></div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="La Batailleuse, accueil">
+      <img class="brand__mark" src="img/logo.png" alt="" width="30" height="46">
+      <span><span class="brand__name">la <i>Batailleuse</i></span><span class="brand__sub">Ferme pédagogique · Rochejean</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <button class="menu-toggle nav__close" type="button" aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <ul>
+        <li><a href="collectif.html">La ferme</a></li>
+        <li><a href="ecoles.html">Écoles &amp; groupes</a></li>
+        <li><a href="colos.html">Colos</a></li>
+        <li><a href="chalet.html">Le chalet</a></li>
+        <li><a href="visiter.html">Venir à la ferme</a></li>
+        <li><a href="decouvrir.html">Découvrir</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn--small" href="contact.html#demande">Faire une demande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="section top" aria-labelledby="titre">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p data-ed="fournil.1" class="kicker">Découvrir · le fournil</p>
+          <h1 data-ed="fournil.2" id="titre">Le fournil de la Batailleuse.</h1>
+        </div>
+        <p data-ed="fournil.3" class="lead">Du pain au levain cuit au four à bois, des biscuits et des pizzas, tout en bio. Le fournil est installé juste derrière la ferme, et vous y êtes les bienvenu·es.</p>
+      </div>
+      <div class="actions">
+        <a data-ed="fournil.4" class="btn" href="visiter.html#precommande">Précommander son pain</a>
+        <a data-ed="fournil.5" class="btn btn--ghost" href="#pains">Les pains</a>
+        <a data-ed="fournil.6" class="btn btn--ghost" href="visiter.html#fournil">Les contrats pain</a>
+      </div>
+      <p data-ed="fournil.7" class="small muted">Fournées le lundi, le mercredi et le vendredi · commande la veille avant 17h au <a href="tel:+33781424830">07 81 42 48 30</a></p>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--alt" id="fournees" aria-labelledby="t-fournees">
+    <div class="wrap">
+      <div class="feature">
+        <figure class="feature__img reveal">
+          <img data-ed-img="fournil.1" src="img/fournil-gamme-pains.jpg" alt="Des pains au levain du fournil, en boules, en miches ovales et moulés, posés sur un plan de travail en inox." width="1100" height="869" loading="lazy">
+          <figcaption data-ed="fournil.8">Les pains du fournil, en boule ou moulés.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p data-ed="fournil.9" class="kicker"><b>01</b> Les fournées</p>
+          <h2 data-ed="fournil.10" id="t-fournees">Trois fournées par semaine.</h2>
+          <p data-ed="fournil.11" class="lead">Les fournées de pain ont lieu le lundi, le mercredi et le vendredi, de 60&nbsp;kg chacune.</p>
+          <ul class="meta">
+            <li data-ed="fournil.12"><b>Commander</b> <span class="meta__v">La veille avant 17h, au <a href="tel:+33781424830">07 81 42 48 30</a>, ou <a href="visiter.html#precommande">en ligne</a>.</span></li>
+            <li data-ed="fournil.13"><b>Brioches</b> <span class="meta__v">Des brioches au levain, sur la fournée du vendredi.</span></li>
+            <li data-ed="fournil.14"><b>Contrats</b> <span class="meta__v">Un contrat pain mensuel (lundi, mercredi et/ou vendredi) ou un contrat de septembre à décembre (mercredi). Les contrats, leurs prix et la précommande sont sur la page <a href="visiter.html#fournil">Venir à la ferme</a>.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid--2 block">
+        <div class="aside reveal">
+          <h3 data-ed="fournil.15">Pourquoi des prix différenciés ?</h3>
+          <p data-ed="fournil.16">Un système de prix différenciés, c’est tout simplement un système où, pour un produit, il existe plusieurs prix. Au fournil, nous avons décidé d’en proposer pour deux raisons&nbsp;: garder des prix accessibles, et assurer la pérennité économique de notre structure.</p>
+          <p data-ed="fournil.17">Cette démarche s’inscrit dans une promotion de la Sécurité sociale de l’alimentation. Pour en savoir plus&nbsp;: <a href="https://securite-sociale-alimentation.org/" rel="noopener">securite-sociale-alimentation.org</a>.</p>
+        </div>
+        <div class="aside aside--bordeaux reveal">
+          <h3 data-ed="fournil.18">Une première expérimentation</h3>
+          <p data-ed="fournil.19">Depuis janvier 2026, nous la testons avec nos fidèles client·es «&nbsp;contrat pain&nbsp;». On peut aussi nous laisser un mot sur la feuille du contrat, pour nous faire part de ses commentaires, de ses idées d’amélioration ou de ses retours.</p>
+          <p data-ed="fournil.20"><a data-ed="fournil.21" class="link-arrow" href="visiter.html#fournil">Les contrats et leurs tarifs</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section" id="pains" aria-labelledby="t-pains">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p data-ed="fournil.22" class="kicker"><b>02</b> Les pains</p>
+          <h2 data-ed="fournil.23" id="t-pains">Du pain au levain, bio et régional.</h2>
+        </div>
+        <p data-ed="fournil.24" class="lead">Tous nos produits sont labellisés «&nbsp;Agriculture biologique&nbsp;» (FR-BIO-01). Des farines et des graines de la région, du levain, et du bois des forêts voisines pour le four.</p>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="reveal">
+          <h3 data-ed="fournil.25">Les pains de la semaine</h3>
+          <ul class="meta">
+            <li data-ed="fournil.26"><b>Nature</b> <span class="meta__v">Pain semi-complet, en farine de blé T80.</span></li>
+            <li data-ed="fournil.27"><b>Aux graines</b> <span class="meta__v">Pain semi-complet aux graines de lin et de tournesol.</span></li>
+            <li data-ed="fournil.28"><b>Aux noix</b> <span class="meta__v">Pain semi-complet aux noix de Grenoble (IGP).</span></li>
+            <li data-ed="fournil.29"><b>Blé sarrasin</b> <span class="meta__v">Un pain au sarrasin, au levain comme les autres.</span></li>
+            <li data-ed="fournil.30"><b>Engrain</b> <span class="meta__v">100&nbsp;% farine d’engrain, aussi appelé «&nbsp;petit épeautre&nbsp;». Reconnu pour sa faible teneur en gluten, il est plus facile à digérer.</span></li>
+            <li data-ed="fournil.31"><b>Seigle</b> <span class="meta__v">Pain 100&nbsp;% farine de seigle.</span></li>
+            <li data-ed="fournil.32"><b>Formats</b> <span class="meta__v">Miche de 1&nbsp;kg ou de 500&nbsp;g, en boule ou moulée.</span></li>
+          </ul>
+        </div>
+        <div class="aside reveal">
+          <h3 data-ed="fournil.33">Ce qu’il y a dedans</h3>
+          <ul class="ticks">
+            <li data-ed="fournil.34">Des farines produites dans la région, moulues sur meules de pierre et issues de l’agriculture biologique.</li>
+            <li data-ed="fournil.35">Des graines de Bourgogne-Franche-Comté.</li>
+            <li data-ed="fournil.36">Du sel gros de Guérande et de l’eau.</li>
+            <li data-ed="fournil.37">Des levains entretenus par nos soins depuis plus de quinze ans. Le levain développe les arômes et conserve bien mieux le pain, sur plusieurs jours, qu’une pâte à la levure.</li>
+            <li data-ed="fournil.38">Une cuisson au four à bois, avec du bois des forêts autour de nous, dans le Haut-Doubs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="gallery block">
+        <figure class="reveal"><img data-ed-img="fournil.2" src="img/fournil-pain-semi-complet.jpg" alt="Une miche ovale de pain semi-complet à la croûte dorée et farinée, sur un plan de travail en inox." width="1200" height="800" loading="lazy"><figcaption data-ed="fournil.39">Pain semi-complet</figcaption></figure>
+        <figure class="reveal"><img data-ed-img="fournil.3" src="img/fournil-pain-graines.jpg" alt="Une miche de pain dont la croûte est couverte de graines de lin et de tournesol." width="1200" height="800" loading="lazy"><figcaption data-ed="fournil.40">Pain aux graines de lin et de tournesol</figcaption></figure>
+        <figure class="reveal"><img data-ed-img="fournil.4" src="img/fournil-pain-moule-1.jpg" alt="Un pain moulé à la croûte brune, entaillée en biais." width="1200" height="800" loading="lazy"><figcaption data-ed="fournil.41">Pain moulé</figcaption></figure>
+        <figure class="reveal"><img data-ed-img="fournil.5" src="img/fournil-pain-moule-2.jpg" alt="Un pain moulé à la croûte fendue, saupoudré de farine." width="1200" height="800" loading="lazy"><figcaption data-ed="fournil.42">Pain moulé, fariné</figcaption></figure>
+        <figure class="reveal"><img data-ed-img="fournil.6" src="img/fournil-pain-moule-3.jpg" alt="Un pain moulé à la croûte dorée et lisse." width="1200" height="800" loading="lazy"><figcaption data-ed="fournil.43">Pain moulé doré</figcaption></figure>
+        <figure class="reveal"><img data-ed-img="fournil.7" src="img/fournil-patons.jpg" alt="Des pâtons ronds de tailles différentes, alignés dans les plis d’un tissu de lin fariné, avant la cuisson." width="1200" height="900" loading="lazy"><figcaption data-ed="fournil.44">Les pâtons, avant la cuisson</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--alt" id="biscuits" aria-labelledby="t-biscuits">
+    <div class="wrap">
+      <div class="feature feature--reverse">
+        <figure class="feature__img reveal">
+          <img data-ed-img="fournil.8" src="img/fournil-biscuits-fabrication.jpg" alt="Sur la table en inox du fournil, une bassine de pâte à biscuits, un boudin de pâte et une plaque de petits sablés prêts à cuire." width="1200" height="900" loading="lazy">
+          <figcaption data-ed="fournil.45">La pâte à biscuits, au fournil.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p data-ed="fournil.46" class="kicker"><b>03</b> Biscuits et crackers</p>
+          <h2 data-ed="fournil.47" id="t-biscuits">Des biscuits cuits au feu de bois.</h2>
+          <p data-ed="fournil.48" class="lead">Nous vendons aussi des biscuits, en vrac ou en sachet de 250&nbsp;g.</p>
+          <ul class="meta">
+            <li data-ed="fournil.49"><b>Noisette</b> <span class="meta__v">Biscuits à la poudre de noisette, originaire du Piémont, en Italie.</span></li>
+            <li data-ed="fournil.50"><b>Amande</b> <span class="meta__v">Biscuits à la poudre d’amande, originaire de Sicile, en Italie aussi.</span></li>
+            <li data-ed="fournil.51"><b>Noix</b> <span class="meta__v">Biscuits à la poudre de noix IGP de Grenoble, avec des cerneaux de noix entiers achetés directement à un producteur IGP de Grenoble.</span></li>
+            <li data-ed="fournil.52"><b>Cookies</b> <span class="meta__v">Chocolat-raisin, avec des pépites de chocolat et des raisins sultan.</span></li>
+            <li data-ed="fournil.53"><b>Salés</b> <span class="meta__v">Des crackers comté-graines, avec des graines de lin et de tournesol, du comté, de l’huile d’olive… Des biscuits d’apéritif, en vrac ou en sachet de 150&nbsp;g.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid--2 block" style="align-items:start">
+        <div class="aside reveal">
+          <h3 data-ed="fournil.54">Ce qu’il y a dedans</h3>
+          <ul class="ticks">
+            <li data-ed="fournil.55">Du beurre de la fruitière biologique de Chapelle des Bois.</li>
+            <li data-ed="fournil.56">De la farine de blé T55 cultivée dans la région et moulue au moulin de Val d’Amour, un des rares moulins hydrauliques encore en fonctionnement.</li>
+            <li data-ed="fournil.57">Des poudres de noisette, d’amande et de noix transformées en Saône-et-Loire.</li>
+            <li data-ed="fournil.58">Du sucre de betterave français et bio, dans une démarche d’approvisionnement local.</li>
+          </ul>
+        </div>
+        <figure class="wide reveal">
+          <img data-ed-img="fournil.9" src="img/fournil-cookies.jpg" alt="Un tas de cookies chocolat-raisin tout juste cuits." width="900" height="903" loading="lazy">
+          <figcaption data-ed="fournil.59">Les cookies chocolat-raisin.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section" id="pizzas" aria-labelledby="t-pizzas">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p data-ed="fournil.60" class="kicker"><b>04</b> Pizzas et animations</p>
+          <h2 data-ed="fournil.61" id="t-pizzas">Des pizzas, et du pain à pétrir avec nous.</h2>
+        </div>
+        <p data-ed="fournil.62" class="lead">Pendant les vacances scolaires, le fournil se chauffe pour vous proposer des pizzas bio à emporter, cuites au four à bois.</p>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="reveal">
+          <h3 data-ed="fournil.63">Les pizzas à emporter</h3>
+          <p data-ed="fournil.64">Les jours de vente et les pizzas proposées sont publiés dans l’<a href="index.html">agenda de la page d’accueil</a>, dès qu’ils sont fixés. Les pizzas se préparent aussi avec les enfants que nous accueillons.</p>
+        </div>
+        <div class="reveal">
+          <h3 data-ed="fournil.65">Un espace pour les groupes</h3>
+          <p data-ed="fournil.66">Le fournil dispose d’un espace qui peut accueillir des groupes d’enfants comme d’adultes, pour partager des temps d’activité autour des pizzas et du pain brioché. Pour en parler, voyez <a href="visiter.html#anniversaire">les animations à la ferme</a> ou la page <a href="ecoles.html">Écoles et groupes</a>.</p>
+        </div>
+      </div>
+
+      <div class="aside block--sm reveal">
+        <h3 data-ed="fournil.67">Venir voir les boulanger·es</h3>
+        <p data-ed="fournil.68">Le fournil est situé juste derrière la ferme, là où vous aurez plaisir à croiser vaches, chèvres, lapins et poules. Il a un vestiaire, où vous êtes les bienvenu·es pour observer nos boulangers à l’œuvre, même pendant les temps de fournée.</p>
+      </div>
+
+      <div class="gallery gallery--5 block">
+        <figure class="reveal"><img data-ed-img="fournil.10" src="img/fournil-boulanger-four.jpg" alt="Un jeune boulanger en tablier, devant le four à bois, à côté d’une plaque de petits pains tout juste sortis." width="1000" height="993" loading="lazy"><figcaption data-ed="fournil.69">Après la fournée. Photo&nbsp;: Florian Houdelot.</figcaption></figure>
+        <figure class="reveal"><img data-ed-img="fournil.11" src="img/fournil-pate-rouleau.jpg" alt="Des mains étalent une pâte au rouleau sur un plan de travail fariné, près de pâtons ronds et d’un moule à cake." width="998" height="1000" loading="lazy"><figcaption data-ed="fournil.70">La pâte, au rouleau. Photo&nbsp;: Florian Houdelot.</figcaption></figure>
+        <figure class="reveal"><img data-ed-img="fournil.12" src="img/fournil-equipe-boulangers.jpg" alt="Trois boulanger·es, deux en charlotte et une en bonnet, en tablier, qui pétrissent en riant." width="998" height="1000" loading="lazy"><figcaption data-ed="fournil.71">L’équipe au travail. Photo&nbsp;: Florian Houdelot.</figcaption></figure>
+        <figure class="reveal"><img data-ed-img="fournil.13" src="img/fournil-pizza-garnie.jpg" alt="Une pizza rectangulaire garnie de légumes, de lardons, d’olives et de champignons, avec une louche au premier plan." width="998" height="1000" loading="lazy"><figcaption data-ed="fournil.72">Une pizza avant la cuisson.</figcaption></figure>
+        <figure class="reveal"><img data-ed-img="fournil.14" src="img/fournil-enfournement.jpg" alt="Une personne en charlotte enfourne à la longue pelle devant la bouche du four à bois." width="983" height="1000" loading="lazy"><figcaption data-ed="fournil.73">À l’enfournement.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--alt" id="histoire" aria-labelledby="t-histoire">
+    <div class="wrap">
+      <div class="split">
+        <div class="split__side reveal">
+          <p data-ed="fournil.74" class="kicker"><b>05</b> Le nouveau fournil</p>
+          <h2 data-ed="fournil.75" id="t-histoire">Un fournil spacieux, lumineux, et rose.</h2>
+          <p data-ed="fournil.76" class="lead">C’est dans ce fournil que nos deux boulangers confectionnent aujourd’hui les pains et les biscuits. Il a été inauguré le 8&nbsp;novembre 2019.</p>
+          <figure class="side-fig">
+            <img data-ed-img="fournil.15" src="img/fournil-nouveau-local.jpg" alt="L’intérieur du nouveau fournil : murs roses, table de travail en inox, chariot de bassines blanches, et le four à bois rouge au fond." width="1200" height="900" loading="lazy">
+            <figcaption data-ed="fournil.77">Le nouveau fournil et son four à bois.</figcaption>
+          </figure>
+        </div>
+
+        <div class="reveal">
+          <ol class="timeline">
+            <li><time datetime="2016">2016</time><p data-ed="fournil.78">Le fournil continue à produire du pain bio au levain, des pizzas avec les enfants accueillis, des pizzas bio à emporter pendant les vacances scolaires et des biscuits cuits au feu de bois. L’équipe de boulangers et de boulangères se passe le relais dans un local étroit et peu ergonomique, pour valoriser au mieux l’outil en l’état. Des travaux deviennent de plus en plus nécessaires, et bientôt obligatoires. L’équipe réaffirme sa volonté de maintenir les activités et l’animation autour des fabrications boulangères&nbsp;: elle travaille au projet d’un nouveau fournil, plus grand, adapté pour recevoir du public, équipé pour les animations avec les enfants et pour la production.</p></li>
+            <li><time datetime="2019-01">Janvier 2019</time><p data-ed="fournil.79">Le four a lâché en octobre 2018. Il se dégradait de plus en plus, et laissait tomber du sable et des graviers de mortier sur le pain. Un four à bois mobile, installé dans un Algeco, prend le relais pour la production. Un nouveau four est commandé, il doit arriver en octobre 2019&nbsp;: un four de 2&nbsp;mètres de diamètre, pour le pain, les biscuits et les pizzas, dans un local beaucoup plus spacieux, aux normes et adapté aux animations.</p></li>
+            <li><time datetime="2019-05">Mai 2019</time><p data-ed="fournil.80">Début avril, le fournil a été démoli, grâce à un beau chantier collectif. Merci à tous les bénévoles d’ici ou d’ailleurs qui ont participé à l’aventure&nbsp;! La production continue malgré les travaux, depuis l’Algeco et une petite pièce en plus&nbsp;: les conditions sont difficiles, mais on tient bon. Fin des travaux espérée début août, au moment où arrivera le nouveau four.</p></li>
+            <li><time datetime="2019-11-08">8&nbsp;novembre 2019</time><p data-ed="fournil.81">Inauguration du nouveau fournil. Les boulangers remercient les donateurs, les boulanger·es, les collègues, les bénévoles, l’entreprise BLAM&nbsp;35, les membres du conseil d’administration, et bien d’autres.</p></li>
+          </ol>
+
+          <div class="faq block--sm">
+            <details>
+              <summary data-ed="fournil.82">Relire les lettres d’information du fournil</summary>
+              <div>
+                <p data-ed="fournil.83">Deux lettres de 2019, écrites pendant le chantier&nbsp;: janvier, puis mai.</p>
+                <div class="letters">
+                  <figure><img data-ed-img="fournil.16" src="img/fournil-lettre-2019-01.jpg" alt="Lettre d’information du fournil, janvier 2019 : le four a lâché en octobre, un four à bois mobile prend le relais, un nouveau four est commandé pour octobre 2019." width="713" height="1000" loading="lazy"><figcaption data-ed="fournil.84">Janvier 2019</figcaption></figure>
+                  <figure><img data-ed-img="fournil.17" src="img/fournil-lettre-2019-05.jpg" alt="Lettre d’information du fournil, mai 2019 : le fournil a été démoli début avril par un chantier collectif, la production continue pendant les travaux, fin du chantier espérée début août." width="707" height="1000" loading="lazy"><figcaption data-ed="fournil.85">Mai 2019</figcaption></figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <section class="section section--sapin" id="commander" aria-labelledby="t-commander">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p data-ed="fournil.86" class="kicker"><b>06</b> Commander</p>
+          <h2 data-ed="fournil.87" id="t-commander">Du pain la veille avant 17h.</h2>
+        </div>
+        <p data-ed="fournil.88" class="lead">Il est possible de commander du pain la veille avant 17h, par téléphone ou en ligne. Pour un contrat pain, mensuel ou de septembre à décembre, tout est sur la page Venir à la ferme.</p>
+      </div>
+      <div class="actions">
+        <a data-ed="fournil.89" class="btn btn--light" href="tel:+33781424830">07 81 42 48 30</a>
+        <a data-ed="fournil.90" class="btn btn--ghost btn--on-dark" href="visiter.html#precommande">Précommander en ligne</a>
+        <a data-ed="fournil.91" class="btn btn--ghost btn--on-dark" href="visiter.html#fournil">Les contrats pain</a>
+        <a data-ed="fournil.92" class="btn btn--ghost btn--on-dark" href="ferme.html">La ferme</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="img/logo.png" alt="Logo du CLAJ la Batailleuse" width="64" height="99" loading="lazy">
+        <p data-ed="pied.1">Le CLAJ de Franche-Comté, association d’éducation populaire autogérée, fait vivre la ferme de la Batailleuse et le Chalet du Souleret à Rochejean.</p>
+      </div>
+      <div>
+        <h2 data-ed="pied.2">Nous trouver</h2>
+        <ul>
+          <li data-ed="pied.3"><b>Ferme de la Batailleuse</b><br>Route de la Batailleuse, 25370 Rochejean</li>
+          <li data-ed="pied.4"><b>Chalet du Souleret</b><br>16 rue de la Fontaine, 25370 Rochejean</li>
+          <li data-ed="pied.5"><a href="contact.html#acces">Plan d’accès</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-ed="pied.6">Téléphones</h2>
+        <ul>
+          <li data-ed="pied.7" class="footer__phone"><b><a href="tel:+33381499115">03 81 49 91 15</a></b><span>Ferme et boutique</span></li>
+          <li data-ed="pied.8" class="footer__phone"><b><a href="tel:+33381499184">03 81 49 91 84</a></b><span>Chalet du Souleret</span></li>
+          <li data-ed="pied.9" class="footer__phone"><b><a href="tel:+33781424830">07 81 42 48 30</a></b><span>Fournil, commandes de pain</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-ed="pied.10">Écrire</h2>
+        <ul>
+          <li data-ed="pied.11"><a href="mailto:animation@claj-batailleuse.fr">animation@</a> classes, colos, animations</li>
+          <li data-ed="pied.12"><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a> Chalet du Souleret</li>
+          <li data-ed="pied.13"><a href="mailto:ferme@claj-batailleuse.fr">ferme@</a> ferme et fournil</li>
+          <li data-ed="pied.14"><a href="mailto:facturation@claj-batailleuse.fr">facturation@</a> factures</li>
+          <li data-ed="pied.15"><a href="mailto:contact@claj-batailleuse.fr">contact@</a> tout le reste</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
+      <span><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a></span>
+      <span>Site réalisé par Primo Locatelli, Montperreux</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

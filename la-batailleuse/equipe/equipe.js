@@ -77,7 +77,7 @@
 
   // La démonstration applique les mêmes opérations que le serveur, sur une copie gardée dans ce navigateur.
   function demo(action, d) {
-    if (["document_envoyer", "actualite_enregistrer", "actualite_supprimer", "offre_enregistrer", "offre_supprimer", "sejour_infos", "pain_prix", "tarifs_modifier"].indexOf(action) !== -1) {
+    if (["document_envoyer", "actualite_enregistrer", "actualite_supprimer", "offre_enregistrer", "offre_supprimer", "sejour_infos", "pain_prix", "tarifs_modifier", "texte_enregistrer", "texte_reinitialiser", "image_enregistrer", "image_reinitialiser", "photo_ajouter", "photo_modifier", "photo_supprimer"].indexOf(action) !== -1) {
       return { s: 400, j: { erreur: "Cette fonction ne marche que sur le vrai site, pas dans la maquette de démonstration." } };
     }
     var c = copie(S.contenus), j = lireLocal(CLE_DEMO_J, []), h = lireLocal(CLE_DEMO_H, []), section = "", resume = "";
@@ -165,6 +165,9 @@
     } else if (j.section === "actualites" || j.section === "offres") {
       $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a modifié " + (j.section === "offres" ? "cette offre" : "cette nouvelle") + " " + quand + " :";
       cite = esc((j.actuel && j.actuel.titre) || "");
+    } else if (j.section === "galerie") {
+      $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a modifié la légende de cette photo " + quand + " :";
+      cite = esc((j.actuel && j.actuel.legende) || "(sans légende)");
     } else if (j.section === "tarifs") {
       $("#conflit-texte").innerHTML = "<b>" + qui + "</b> a changé « " + esc((j.actuel && j.actuel.libelle) || "ce tarif") + " » " + quand + " :";
       cite = esc((j.actuel && j.actuel.v) || "");
@@ -244,6 +247,8 @@
     afficherPain();
     afficherTarifs();
     afficherOffres();
+    afficherPages();
+    afficherGalerie();
     afficherHistorique();
     afficherReglages();
   }
@@ -343,6 +348,10 @@
     ["contrat-pain-mensuel", "Contrat pain mensuel", "application/pdf"],
     ["contrat-pain-semestriel", "Contrat pain semestriel", "application/pdf"],
     ["catalogue-activites", "Brochure « Nos activités » (écoles et groupes)", "application/pdf"],
+    ["bulletin-inscription-colos", "Bulletin d’inscription aux colos", "application/pdf"],
+    ["projet-educatif", "Projet éducatif d’accueil", "application/pdf"],
+    ["catalogue-groupes", "Brochure « Nos activités groupes » (journée et demi-journée)", "application/pdf"],
+    ["certificat-bio", "Certificat Agriculture biologique", "application/pdf"],
     ["catalogue-petite-enfance", "Brochure « Activités petite enfance » (0-3 ans)", "application/pdf"],
     ["catalogue-domicile", "Brochure « Animations à domicile » (en classe)", "application/pdf"],
     ["bulletin-adhesion", "Bulletin d’adhésion et de soutien", "application/pdf,image/png,image/jpeg"]
@@ -478,6 +487,37 @@
       traiter(res, function () { envoyerTarifs(true, changements); });
       var n = new Date();
       etat.textContent = res.s === 200 && res.j.ok ? "Enregistré à " + n.getHours() + "h" + String(n.getMinutes()).padStart(2, "0") + "." : "";
+    });
+  }
+
+  /* Pages du site : modification des textes et photos dans les pages, galerie */
+  var PAGES = [["index", "Accueil"], ["collectif", "La ferme et le collectif"], ["ecoles", "Écoles et groupes"], ["colos", "Colos"], ["chalet", "Le chalet"], ["visiter", "Venir à la ferme"],
+    ["contact", "Contact"], ["decouvrir", "Découvrir"], ["ferme", "Agriculture et productions"], ["fournil", "Le fournil"], ["histoire", "Notre histoire"], ["hiver", "Activités d’hiver"], ["photos", "Photos"]];
+
+  function afficherPages() {
+    var n = {};
+    Object.keys(S.contenus.textes || {}).forEach(function (k) { var p = k.split(".")[0]; n[p] = (n[p] || 0) + 1; });
+    $("#pg-liste").innerHTML = PAGES.map(function (p) {
+      return '<li class="eq-item eq-item--simple"><div><h3>' + esc(p[1]) + "</h3>" + (n[p[0]] ? "<p>" + n[p[0]] + " texte" + (n[p[0]] > 1 ? "s" : "") + " modifié" + (n[p[0]] > 1 ? "s" : "") + "</p>" : "") + "</div>" +
+        '<div class="btns"><a class="eq-mini" href="../' + p[0] + '.html?modifier=1" data-modifier="' + p[0] + '">Modifier</a><a class="eq-mini" href="../' + p[0] + '.html" target="_blank" rel="noopener">Voir</a></div></li>';
+    }).join("");
+  }
+
+  function afficherGalerie() {
+    var actif = document.activeElement;
+    if (actif && actif.dataset && actif.dataset.photoLegende !== undefined) return;
+    var l = S.contenus.galerie || [];
+    $("#ga-liste").innerHTML = l.length ? l.map(function (p) {
+      return '<li class="eq-item eq-item--simple"><div style="display:flex;gap:10px;align-items:center;min-width:0"><img src="../' + esc(p.fichier) + '" alt="" width="72" height="72" loading="lazy" style="object-fit:cover;border-radius:6px;flex:none">' +
+        '<input data-photo-legende="' + esc(p.id) + '" data-maj="' + esc(p.maj || "") + '" maxlength="120" value="' + esc(p.legende || "") + '" placeholder="Légende (facultative)" aria-label="Légende de la photo" style="min-width:0;flex:1"></div>' +
+        '<div class="btns"><button type="button" class="eq-mini" data-photo-retirer="' + esc(p.id) + '">Retirer</button></div></li>';
+    }).join("") : '<li class="muted">Aucune photo pour l’instant.</li>';
+  }
+
+  function envoyerLegende(id, legende, vue, forcer) {
+    appel("photo_modifier", { id: id, legende: legende, maj_vue: vue, forcer: !!forcer }).then(function (res) {
+      if (res.s === 200 && res.j.ok && !res.j.info) res.j.info = "Légende enregistrée.";
+      traiter(res, function () { envoyerLegende(id, legende, vue, true); });
     });
   }
 
@@ -775,6 +815,34 @@
       var champs = $$("#pa-lignes [data-p=nom]");
       champs[champs.length - 1].focus();
       $("#pa-etat").textContent = "Donnez un nom au nouveau pain pour l’enregistrer.";
+    });
+
+    /* Galerie */
+    $("#form-ga").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var fichiers = Array.prototype.slice.call($("#ga-fichiers").files), legende = $("#ga-legende").value.trim(), etat = $("#ga-etat");
+      if (!fichiers.length) return toast("Choisissez d’abord une ou plusieurs photos.", true);
+      var i = 0;
+      document.body.setAttribute("aria-busy", "true");
+      (function suivante() {
+        if (i >= fichiers.length) { document.body.removeAttribute("aria-busy"); etat.textContent = fichiers.length + " photo" + (fichiers.length > 1 ? "s ajoutées" : " ajoutée") + "."; $("#form-ga").reset(); return; }
+        etat.textContent = "Envoi de la photo " + (i + 1) + " sur " + fichiers.length + "…";
+        lireFichier(fichiers[i], true).then(function (p) {
+          return appelBrut("photo_ajouter", { contenu: p.contenu, nom: p.nom, legende: legende });
+        }).then(function (res) {
+          if (res.s === 200 && res.j.ok) { maj(res.j); i++; suivante(); }
+          else { document.body.removeAttribute("aria-busy"); toast(res.j.erreur || "Une photo n’a pas pu être ajoutée.", true); etat.textContent = i + " photo(s) ajoutée(s) avant l’erreur."; }
+        }, function (err) { document.body.removeAttribute("aria-busy"); toast(err.message, true); });
+      })();
+    });
+    $("#ga-liste").addEventListener("change", function (e) {
+      var i = e.target;
+      if (i.dataset.photoLegende === undefined) return;
+      envoyerLegende(i.dataset.photoLegende, i.value.trim(), i.dataset.maj, false);
+    });
+    $("#ga-liste").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-photo-retirer]");
+      if (b && confirm("Retirer cette photo de la galerie ?")) appel("photo_supprimer", { id: b.dataset.photoRetirer }).then(function (res) { traiter(res); });
     });
 
     /* Tarifs */

@@ -30,7 +30,7 @@
   .eq-hello button { margin-left: auto; font: 600 .92rem var(--sans); background: none; border: 0; color: var(--bordeaux); text-decoration: underline; cursor: pointer; min-height: 44px; }
   .eq-last { width: 100%; font-size: .9rem; color: var(--ink-mute); }
   .eq-tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--white); border-top: 1px solid var(--line); display: flex; padding-bottom: env(safe-area-inset-bottom); box-shadow: 0 -6px 20px rgba(33, 28, 23, .08); }
-  .eq-tabs button { flex: 1; min-width: 0; min-height: 64px; padding: 0 2px; border: 0; background: none; font: 700 .74rem var(--sans); color: var(--ink-mute); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .eq-tabs button { flex: 1; min-width: 0; min-height: 64px; padding: 0 2px; border: 0; background: none; font: 700 .7rem var(--sans); color: var(--ink-mute); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
   .eq-tabs button svg { width: 22px; height: 22px; }
   .eq-tabs button[aria-selected="true"] { color: var(--bordeaux); box-shadow: inset 0 3px 0 var(--bordeaux); }
   @media (min-width: 760px) {
@@ -136,6 +136,7 @@
       <button type="button" role="tab" aria-selected="false" data-onglet="colos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3.5 21 14 3M20.5 21 10 3M15.5 21 12 15l-3.5 6M2 21h20"/></svg>Colos</button>
       <button type="button" role="tab" aria-selected="false" data-onglet="horaires"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Horaires</button>
       <button type="button" role="tab" aria-selected="false" data-onglet="documents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Documents</button>
+      <button type="button" role="tab" aria-selected="false" data-onglet="pages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Pages</button>
       <button type="button" role="tab" aria-selected="false" data-onglet="historique"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 3"/></svg>Historique</button>
     </nav>
 
@@ -315,6 +316,26 @@
         </div>
         <div class="eq-actions"><button class="btn" type="submit" id="of-envoyer">Publier l’offre</button><button class="btn btn--ghost" type="button" id="of-annuler" hidden>Annuler la modification</button></div>
       </form>
+    </section>
+
+    <!-- Pages : modifier les textes et photos du site, galerie -->
+    <section class="eq-card" data-panneau="pages" hidden aria-labelledby="t-pg">
+      <h2 id="t-pg">Modifier les pages du site</h2>
+      <p class="muted">« Modifier » ouvre la page avec une barre verte : touchez un texte (ou une photo) pour le changer. Tout s’enregistre en quittant le texte, et c’est en ligne tout de suite. Le bouton « Texte d’origine » annule vos changements sur un bloc.</p>
+      <ul class="eq-list" id="pg-liste"></ul>
+    </section>
+    <section class="eq-card" data-panneau="pages" hidden aria-labelledby="t-ga">
+      <h2 id="t-ga" style="font-size:1.4rem">Galerie photos</h2>
+      <p class="muted">Les photos de la page « Photos », la plus récente en premier. Elles sont réduites automatiquement.</p>
+      <form id="form-ga" novalidate>
+        <div class="fields">
+          <div class="field field--full"><label for="ga-fichiers">Ajouter des photos</label><input id="ga-fichiers" type="file" accept="image/jpeg,image/png,image/webp" multiple></div>
+          <div class="field field--full"><label for="ga-legende">Légende (facultative, la même pour toutes les photos choisies)</label><input id="ga-legende" maxlength="120" placeholder="Ex. : La fête de la Batailleuse 2026"></div>
+        </div>
+        <div class="eq-actions"><button class="btn" type="submit" id="ga-envoyer">Ajouter à la galerie</button></div>
+        <p class="eq-auto" id="ga-etat" role="status"></p>
+      </form>
+      <ul class="eq-list" id="ga-liste" style="margin-top:16px"></ul>
     </section>
 
     <section class="eq-card" data-panneau="historique" hidden aria-labelledby="t-hi">

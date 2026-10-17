@@ -51,7 +51,10 @@
     actualites: null,
     offres: null,
     pain: null,
-    tarifs: null
+    tarifs: null,
+    textes: null,
+    images: null,
+    galerie: null
   };
   var DEMO_KEY = "bata-demo-contenus";
   var DEMO = false;
@@ -91,6 +94,9 @@
     if (Array.isArray(d.offres)) C.offres = d.offres;
     if (d.pain && Array.isArray(d.pain.lignes)) C.pain = d.pain;
     if (d.tarifs && typeof d.tarifs === "object") C.tarifs = d.tarifs;
+    if (d.textes && typeof d.textes === "object") C.textes = d.textes;
+    if (d.images && typeof d.images === "object") C.images = d.images;
+    if (Array.isArray(d.galerie)) C.galerie = d.galerie;
   }
 
   function isOpen(d) {
@@ -272,7 +278,7 @@
 
   /* ---------- Documents, nouvelles, offres, dates et prix : publiés par l'équipe ---------- */
   function sureLien(u) { return /^https?:\/\//i.test(u || "") ? u : ""; }
-  function sureFichier(f) { return /^data\/docs\/[A-Za-z0-9._-]+$/.test(f || "") ? f : ""; }
+  function sureFichier(f) { return /^(data\/docs|img\/galerie)\/[A-Za-z0-9._-]+$/.test(f || "") ? f : ""; }
   function paras(s) { return String(s || "").split(/\n+/).filter(Boolean).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join(""); }
   function prixTxt(v) { return v ? v + "\u00a0€" : "—"; }
   function jourLong(d) { return JOURS[d.getDay()] + " " + jourTxt(d); }
@@ -390,6 +396,89 @@
     document.dispatchEvent(new Event("bata-tarifs"));
   }
 
+  /* ---------- Textes et photos modifiés par l'équipe (blocs data-ed, images data-ed-img), galerie ---------- */
+  var LIEN_OK = /^(https?:\/\/[^\s"'<>]{3,300}|mailto:[^\s"'<>]{3,200}|tel:\+?[0-9 ]{6,20}|[a-z0-9._-]+\.html(#[a-z0-9_-]+)?|#[a-z0-9_-]+|data\/docs\/[A-Za-z0-9._-]+)$/;
+  var SPANS = ["data-tarif", "data-tarif-min", "data-tarif-plage", "data-sejour-prix", "data-pain-brioche", "data-h"];
+  // Même filtre que le serveur : gras, italique, retours à la ligne, liens sûrs, petites balises de prix. Tout le reste devient du texte.
+  function propre(html) {
+    var doc = new DOMParser().parseFromString("<body>" + html, "text/html");
+    function enfants(n) {
+      var s = "";
+      n.childNodes.forEach(function (c) { s += c.nodeType === 3 ? esc(c.nodeValue) : c.nodeType === 1 ? balise(c) : ""; });
+      return s;
+    }
+    function classe(e) {
+      var c = (e.getAttribute("class") || "").trim();
+      return /^[A-Za-z0-9_ -]{1,60}$/.test(c) ? ' class="' + c + '"' : "";
+    }
+    function balise(e) {
+      var t = e.nodeName.toLowerCase(), dedans;
+      if (["script", "style", "iframe", "object", "embed", "svg", "form", "input", "textarea", "select", "button"].indexOf(t) !== -1) return "";
+      dedans = enfants(e);
+      if (t === "b" || t === "strong") return dedans && "<b" + classe(e) + ">" + dedans + "</b>";
+      if (t === "i" || t === "em") return dedans && "<i" + classe(e) + ">" + dedans + "</i>";
+      if (t === "small") return dedans && "<small" + classe(e) + ">" + dedans + "</small>";
+      if (t === "br") return "<br>";
+      if (t === "a") {
+        var h = (e.getAttribute("href") || "").trim();
+        return LIEN_OK.test(h) && dedans ? '<a href="' + esc(h) + '" rel="noopener"' + classe(e) + ">" + dedans + "</a>" : dedans;
+      }
+      if (t === "span") {
+        for (var i = 0; i < SPANS.length; i++) {
+          var v = e.getAttribute(SPANS[i]);
+          if (v !== null && /^[A-Za-z0-9._:-]{1,60}$/.test(v)) return "<span " + SPANS[i] + '="' + v + '"' + classe(e) + ">" + dedans + "</span>";
+        }
+        return classe(e) ? "<span" + classe(e) + ">" + dedans + "</span>" : dedans;
+      }
+      return dedans;
+    }
+    return enfants(doc.body);
+  }
+  window.BATA_PROPRE = propre;
+
+  function appliquerTextes() {
+    document.querySelectorAll("[data-ed]").forEach(function (n) {
+      if (n.__origine === undefined) n.__origine = n.innerHTML;
+      var t = C.textes && C.textes[n.dataset.ed];
+      if (t && typeof t.h === "string") n.innerHTML = propre(t.h);
+    });
+    document.querySelectorAll("[data-ed-img]").forEach(function (img) {
+      if (img.__origine === undefined) img.__origine = { src: img.getAttribute("src"), alt: img.getAttribute("alt") || "", w: img.getAttribute("width"), h: img.getAttribute("height") };
+      var o = C.images && C.images[img.dataset.edImg];
+      if (!o) return;
+      if (o.fichier && sureFichier(o.fichier)) { img.removeAttribute("srcset"); img.setAttribute("src", o.fichier); img.removeAttribute("width"); img.removeAttribute("height"); }
+      if (typeof o.alt === "string" && o.alt) img.setAttribute("alt", o.alt);
+    });
+  }
+
+  function renderGalerie() {
+    var zone = document.querySelector("[data-galerie]");
+    if (!zone || !Array.isArray(C.galerie)) return;
+    zone.innerHTML = C.galerie.map(function (p, i) {
+      var f = sureFichier(p.fichier);
+      return f ? '<figure class="galerie__photo"><button type="button" class="galerie__ouvrir" data-i="' + i + '" aria-label="Agrandir la photo' + (p.legende ? " : " + esc(p.legende) : "") + '">' +
+        '<img src="' + esc(f) + '" alt="' + esc(p.legende || "Photo de la ferme de la Batailleuse") + '" loading="lazy"></button>' + (p.legende ? "<figcaption>" + esc(p.legende) + "</figcaption>" : "") + "</figure>" : "";
+    }).join("");
+    var vide = document.querySelector("[data-galerie-vide]");
+    if (vide) vide.hidden = C.galerie.length > 0;
+    if (zone.__branche) return;
+    zone.__branche = true;
+    zone.addEventListener("click", function (e) {
+      var b = e.target.closest(".galerie__ouvrir");
+      if (!b) return;
+      var dlg = document.getElementById("visionneuse"), p = C.galerie[+b.dataset.i];
+      if (!dlg || !p) return;
+      dlg.querySelector("img").src = sureFichier(p.fichier);
+      dlg.querySelector("img").alt = p.legende || "Photo de la ferme de la Batailleuse";
+      dlg.querySelector("figcaption").textContent = p.legende || "";
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var d = document.getElementById("visionneuse");
+    if (d && (e.target === d || e.target.closest("[data-fermer-visionneuse]"))) d.close ? d.close() : d.removeAttribute("open");
+  });
+
   function bandeauDemo() {
     if (!DEMO) return;
     var n = document.createElement("div");
@@ -424,6 +513,9 @@
   document.addEventListener("DOMContentLoaded", indiquerTableaux);
 
   function toutAfficher() {
+    window.BATA_CONTENUS = C;
+    appliquerTextes();
+    renderGalerie();
     renderAlmanach();
     renderPeriodes();
     renderHeures();
@@ -435,6 +527,11 @@
     renderPain();
     renderTarifs();
     markPeriods();
+    if (/[?&]modifier=1/.test(location.search) && !document.getElementById("bata-edition")) {
+      var s = document.createElement("script");
+      s.id = "bata-edition"; s.src = "assets/edition.js"; s.defer = true;
+      document.head.appendChild(s);
+    }
     renderAgendaData();
     renderAgenda();
     renderSejours();

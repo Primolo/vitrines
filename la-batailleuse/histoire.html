@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Notre histoire — du relais de la jeunesse à la ferme de Rochejean · La Batailleuse</title>
+<meta name="description" content="L’histoire du CLAJ de Franche-Comté et de la ferme de la Batailleuse : les relais de la jeunesse des années 1950, le Souleret de Rochejean, l’association d’aujourd’hui, l’équipe autogérée et le réseau de partenaires.">
+<meta name="theme-color" content="#143321">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,50;1,9..144,400..600,50&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* Notre histoire : compléments de page (variables de style.css uniquement) */
+  main [id] { scroll-margin-top: 88px; }
+  .histoire-top { padding-bottom: clamp(40px, 6vw, 72px); }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .histoire-top .actions { margin-bottom: 18px; }
+  .gap-top { margin-top: clamp(40px, 6vw, 72px); }
+  .feature__img, .archive { margin: 0; }
+  .archive figcaption { font-size: .82rem; color: var(--ink-mute); margin-top: 8px; font-style: italic; }
+  .archive img { width: 100%; height: auto; border-radius: var(--radius-lg); }
+  .split { display: grid; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  @media (min-width: 980px) { .split { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); } .split__side { position: sticky; top: 100px; } }
+  .timeline li:last-child { padding-bottom: 0; }
+  .principles > div { padding: 18px 0; border-top: 1px solid rgba(242, 234, 218, .2); }
+  .principles h3 { font-size: 1.2rem; margin-bottom: 4px; } .principles p { margin: 0; color: #D8CFBE; }
+  .section--sapin .ticks li::before { border-color: var(--foin-soft); }
+  .btn--on-dark { color: #FFF8EE; border-color: #FFF8EE; } .btn--on-dark:hover { background: #FFF8EE; border-color: #FFF8EE; color: var(--ink); }
+  .liens { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 2px; }
+  .liens li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; }
+  .liens a { display: inline-flex; align-items: center; min-height: 40px; font-weight: 700; }
+  .liens span { color: var(--ink-mute); font-size: .92rem; }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="mockup-note">Maquette proposée à la Batailleuse. Tous les contenus viennent de votre site actuel.</p>
+
+<div class="almanach" data-almanach aria-live="polite">
+  <div class="wrap">Ferme ouverte de 16h30 à 19h selon la période · <a href="visiter.html#horaires">Tous les horaires</a></div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="La Batailleuse, accueil">
+      <img class="brand__mark" src="img/logo.png" alt="" width="30" height="46">
+      <span><span class="brand__name">la <i>Batailleuse</i></span><span class="brand__sub">Ferme pédagogique · Rochejean</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <button class="menu-toggle nav__close" type="button" aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <ul>
+        <li><a href="collectif.html">La ferme</a></li>
+        <li><a href="ecoles.html">Écoles &amp; groupes</a></li>
+        <li><a href="colos.html">Colos</a></li>
+        <li><a href="chalet.html">Le chalet</a></li>
+        <li><a href="visiter.html">Venir à la ferme</a></li>
+        <li><a href="decouvrir.html" aria-current="page">Découvrir</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn--small" href="contact.html#demande">Faire une demande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="section histoire-top" aria-labelledby="titre">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p data-ed="histoire.1" class="kicker">Notre histoire · CLAJ de Franche-Comté</p>
+          <h1 data-ed="histoire.2" id="titre">Notre histoire</h1>
+        </div>
+        <p data-ed="histoire.3" class="lead">Le CLAJ de Franche-Comté, Club de Loisirs et d’Action de la Jeunesse, est une structure autogérée par les personnes qui y travaillent. Voici d’où il vient, ce qu’il est devenu, et qui l’entoure.</p>
+      </div>
+      <div class="actions">
+        <a data-ed="histoire.4" class="btn" href="#debuts">Les décennies</a>
+        <a data-ed="histoire.5" class="btn btn--ghost" href="#asso">L’association</a>
+        <a data-ed="histoire.6" class="btn btn--ghost" href="#equipe">L’équipe</a>
+        <a data-ed="histoire.7" class="btn btn--ghost" href="#reseau">Le réseau</a>
+      </div>
+      <p data-ed="histoire.8" class="small muted">Un résumé en dates est aussi sur <a href="collectif.html#histoire">la page de la ferme</a>, et toute l’histoire est racontée dans <a href="collectif.html#livre">le livre</a>.</p>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 01 · Les débuts -->
+  <section class="section section--alt" id="debuts" aria-labelledby="t-debuts">
+    <div class="wrap">
+      <div class="grid grid--2" style="align-items:start">
+        <div class="reveal">
+          <p data-ed="histoire.9" class="kicker"><b>01</b> Les débuts</p>
+          <h2 data-ed="histoire.10" id="t-debuts">Des relais de la jeunesse, des années 1950 aux années 1970.</h2>
+          <h3 data-ed="histoire.11">Années 1950 : naissance des CLAJ</h3>
+          <p data-ed="histoire.12">Sans un sou, en s’appuyant sur des souscriptions et des tombolas, des groupes de jeunes Niçois rachètent des villas sur la Côte d’Azur et dans les Alpes&nbsp;: Cap d’Ail, Nice, Antibes, Allos, Valberg… Ils les transforment en Relais de la Jeunesse, pour accueillir des apprentis travailleurs venus de toute la France découvrir la région. Leur devise&nbsp;: «&nbsp;Le soleil brille pour tout le monde&nbsp;!&nbsp;» Des bénévoles en prennent la gestion.</p>
+          <h3 data-ed="histoire.13" style="margin-top:28px">Années 1960 et 1970 : une fédération nationale</h3>
+          <p data-ed="histoire.14">Des Relais de la Jeunesse s’ouvrent dans toute la France&nbsp;: Poissy (78), Grenoble, Pénestin (56), Métabief (25), Calvi (Corse). Des sections CLAJ se créent dans de nombreuses villes. Elles militent pour le droit aux vacances, à l’air pur, aux voyages, et aussi pour comprendre la société dans laquelle nous vivons&nbsp;: des universités populaires réunissent intellectuels et manuels, qui se retrouvent autour de repas conviviaux et de matchs de football.</p>
+          <p data-ed="histoire.15">Les CLAJ se constituent alors en une Fédération nationale d’éducation populaire et obtiennent l’agrément Jeunesse et Sport.</p>
+        </div>
+        <figure class="archive reveal">
+          <img data-ed-img="histoire.1" src="img/histoire-article-presse-1973.jpg" alt="Page de journal de début 1973 titrée « Des jeunes construisaient peut-être un autre monde » : une photo montre des jeunes au travail sur la façade d’un chalet en chantier, une autre un groupe de jeunes qui chantent ensemble." width="684" height="1580" loading="lazy">
+          <figcaption data-ed="histoire.16">Article de presse de début 1973 : la construction des «&nbsp;Sapins de l’Amitié&nbsp;», premier site des CLAJ en Franche-Comté, à Métabief.</figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid--2 gap-top" style="align-items:end">
+        <figure class="archive reveal" style="max-width:340px">
+          <img data-ed-img="histoire.2" src="img/histoire-article-presse-1978.jpg" alt="Coupure de presse de 1978 titrée « Le Club de Loisirs et d’Action de la Jeunesse a bien commencé l’année », avec la photo d’un groupe de jeunes attablés." width="434" height="592" loading="lazy">
+          <figcaption data-ed="histoire.17">Article de presse, 1978.</figcaption>
+        </figure>
+        <figure class="archive reveal">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end">
+            <img data-ed-img="histoire.3" src="img/histoire-chantier-1.jpg" alt="Photo en noir et blanc d’un chantier : des jeunes déblaient des planches et des pierres devant un bâtiment." width="361" height="259" loading="lazy">
+            <img data-ed-img="histoire.4" src="img/histoire-chantier-2.jpg" alt="Photo en noir et blanc : deux enfants debout sur un coffrage de béton, devant un mur en construction." width="240" height="351" loading="lazy">
+            <img data-ed-img="histoire.5" src="img/histoire-chantier-3.jpg" alt="Photo en noir et blanc : des jeunes se rassemblent autour d’une table de chantier, en plein air devant une ferme." width="361" height="250" loading="lazy">
+          </div>
+          <figcaption data-ed="histoire.18">Photos de chantier. Peut-être y étiez-vous&nbsp;?…</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 02 · Le Souleret et la Batailleuse -->
+  <section class="section" id="souleret" aria-labelledby="t-souleret">
+    <div class="wrap">
+      <div class="split">
+        <div class="split__side reveal">
+          <p data-ed="histoire.19" class="kicker"><b>02</b> Années 1980</p>
+          <h2 data-ed="histoire.20" id="t-souleret">Naissance du Souleret et de la ferme de la Batailleuse.</h2>
+          <p data-ed="histoire.21" class="lead">La Fédération nationale éclate en de nombreuses fédérations régionales, autonomes. Les sections locales se regroupent autour des Relais.</p>
+          <div class="aside">
+            <h3 data-ed="histoire.22">Le Souleret aujourd’hui</h3>
+            <p data-ed="histoire.23">L’ancienne ferme est devenue le Chalet du Souleret, rouvert en 2023 après des travaux.</p>
+            <p data-ed="histoire.24"><a data-ed="histoire.25" class="link-arrow" href="chalet.html">Le chalet</a></p>
+          </div>
+        </div>
+
+        <ol class="timeline reveal">
+          <li><time datetime="1980">1980</time><p data-ed="histoire.26">La Fédération de Franche-Comté achète par souscription une ancienne ferme, le Souleret, à Rochejean dans le Haut-Doubs, à quelques kilomètres de Métabief. L’objectif&nbsp;: installer une équipe à l’année, avec une activité productive en plus de l’accueil de vacanciers et de séjours d’enfants.</p></li>
+          <li><time>Les chantiers bénévoles</time><p data-ed="histoire.27">Comme dans d’autres CLAJ, des chantiers bénévoles restaurent le bâtiment et y installent des dortoirs. Chèvres et vaches viennent habiter les écuries jusque-là désaffectées. C’est l’apprentissage de la vie de paysan.</p></li>
+          <li><time datetime="1986">1986</time><p data-ed="histoire.28">Un terrible incendie ravage le Souleret et fait une victime. Un formidable élan de vie et de solidarité soutient l’équipe restée sur place&nbsp;: le Souleret est reconstruit et devient une structure d’hébergement de 50 places.</p></li>
+          <li><time>La Batailleuse</time><p data-ed="histoire.29">Un nouveau projet est lancé, celui de la Batailleuse, du nom du lieu-dit où la ferme est reconstruite. Cette fois, des troupeaux de vaches et de chèvres y élisent résidence. On passe de la «&nbsp;Ferme des Copains&nbsp;», bénévole, à des structures capables de supporter les salaires d’une partie de l’équipe.</p></li>
+        </ol>
+      </div>
+
+      <div class="grid grid--3 gap-top" style="align-items:start">
+        <figure class="archive reveal">
+          <img data-ed-img="histoire.6" src="img/histoire-souleret-1981.jpg" alt="Le Souleret en 1981 : une grande ferme comtoise aux toits de tuiles rouges et à la façade de bois, sur un versant herbeux." width="301" height="207" loading="lazy">
+          <figcaption data-ed="histoire.30">Le Souleret en 1981.</figcaption>
+        </figure>
+        <figure class="archive reveal">
+          <img data-ed-img="histoire.7" src="img/histoire-souleret-reconstruction.jpg" alt="Le Souleret en reconstruction : des murs de parpaings à moitié montés, avec un tracteur et des planches au premier plan." width="397" height="247" loading="lazy">
+          <figcaption data-ed="histoire.31">Le Souleret en reconstruction.</figcaption>
+        </figure>
+        <figure class="archive reveal">
+          <img data-ed-img="histoire.8" src="img/histoire-ferme-construction.jpg" alt="La charpente de bois de la nouvelle ferme, en construction, avec une grue rouge derrière." width="347" height="262" loading="lazy">
+          <figcaption data-ed="histoire.32">La ferme en construction.</figcaption>
+        </figure>
+        <figure class="archive reveal">
+          <img data-ed-img="histoire.9" src="img/histoire-ferme-1989.jpg" alt="La ferme achevée, vue de loin : un long bâtiment au toit rouge posé dans un grand pré." width="421" height="286" loading="lazy">
+          <figcaption data-ed="histoire.33">La ferme achevée. Photo d’août 1989.</figcaption>
+        </figure>
+        <figure class="archive reveal">
+          <img data-ed-img="histoire.10" src="img/histoire-ferme-neige.jpg" alt="La ferme sous la neige : un groupe d’enfants lève la main devant le bâtiment à la grande toiture enneigée." width="423" height="283" loading="lazy">
+          <figcaption data-ed="histoire.34">La ferme sous la neige.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 03 · Des années 1990 à aujourd'hui -->
+  <section class="section section--alt" id="aujourdhui" aria-labelledby="t-aujourdhui">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p data-ed="histoire.35" class="kicker"><b>03</b> Des années 1990 à aujourd’hui</p>
+          <h2 data-ed="histoire.36" id="t-aujourdhui">Un travail acharné, puis de nouvelles perspectives.</h2>
+        </div>
+        <p data-ed="histoire.37" class="lead">Le travail agricole et l’accueil de groupes occupent grandement l’équipe. Puis la ferme choisit ses combats&nbsp;: le bio, la vente directe et l’éducation populaire par l’accueil.</p>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Années 1990</span>
+            <h3 data-ed="histoire.38">Un foisonnement d’activités</h3>
+            <p data-ed="histoire.39">Au travail agricole et à l’accueil de groupes s’ajoutent&nbsp;:</p>
+            <ul class="ticks">
+              <li data-ed="histoire.40">l’ouverture d’une permanence à Besançon, pour renouer le lien avec les quartiers (un centre aéré le mercredi)&nbsp;;</li>
+              <li data-ed="histoire.41">les études du mouvement social&nbsp;;</li>
+              <li data-ed="histoire.42">l’implication, pendant deux ans, dans le développement d’une ferme internationale de jeunes au Bénin.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--ok">Années 2000</span>
+            <h3 data-ed="histoire.43">De nouveaux objectifs</h3>
+            <p data-ed="histoire.44">Forte de presque vingt ans d’expérience, l’équipe du CLAJ et de la ferme, formée d’anciens et de nouveaux en recherche d’un mode de vie alternatif, se fixe de nouveaux objectifs en accord avec l’évolution de la société&nbsp;: agriculture biologique (certification AB pour les deux élevages, bovin et caprin), vente directe, lutte anti-OGM et, surtout, éducation populaire grâce à l’accueil.</p>
+            <p data-ed="histoire.45">Le centre d’accueil et la ferme sont autant de supports éducatifs pour les enfants en séjour&nbsp;: soins aux animaux, traite, sensibilisation à l’écoute, à la communication et au respect de chacun. Telles sont les préoccupations principales du CLAJ de Franche-Comté.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="feature gap-top">
+        <div class="reveal">
+          <p data-ed="histoire.46" class="kicker">Aujourd’hui</p>
+          <h3 data-ed="histoire.47" style="font-size:clamp(1.5rem,2.6vw,2.1rem)">Un investissement local toujours plus fort.</h3>
+          <p data-ed="histoire.48">Au fil des années, le CLAJ s’est construit un réseau de sympathisants, toujours plus nombreux. Ils viennent de séjours passés à Rochejean, de personnes qui y ont travaillé, ou des réseaux amis (CLAJ, REPAS). Ils sont toujours présents et soutiennent l’association&nbsp;: chantiers bénévoles, réflexions sur la démarche et les projets, promotion du lieu…</p>
+          <p data-ed="histoire.49">Dans une société où la ruralité s’effrite, où de plus en plus d’exploitations agricoles disparaissent et où les villages se transforment en dortoirs, nous nous investissons autant que possible pour maintenir du lien entre les personnes, notamment par l’activité économique et l’emploi que nous créons.</p>
+          <p data-ed="histoire.50">Notre objectif&nbsp;: maintenir un collectif d’hommes et de femmes qui vivent et travaillent à la campagne, avec des valeurs communes de coopération, de solidarité, d’équité et d’égalité, en partageant les responsabilités, et ouvert sur la société. La Batailleuse est un outil de travail qui ne demande qu’à être le support d’activités nouvelles.</p>
+        </div>
+        <figure class="feature__img reveal">
+          <img data-ed-img="histoire.11" src="img/histoire-financement-participatif-2022.jpg" alt="Le Souleret en travaux, façade crépie et balcon de bois, avec le message « Financement participatif Le Souleret : 53 000 merci, c’est énorme et ça va nous permettre de continuer à faire de l’accueil éducation populaire de qualité »." width="940" height="788" loading="lazy" style="aspect-ratio:auto;height:auto">
+          <figcaption data-ed="histoire.51">Fin du financement participatif pour la rénovation du Souleret, en 2022.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--sapin" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--paper-2)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 04 · L'association -->
+  <section class="section section--sapin" id="asso" aria-labelledby="t-asso">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p data-ed="histoire.52" class="kicker"><b>04</b> L’association</p>
+          <h2 data-ed="histoire.53" id="t-asso">Une association d’éducation populaire, au creux du Jura.</h2>
+        </div>
+        <p data-ed="histoire.54" class="lead">Le CLAJ de Franche-Comté est une association loi 1901 basée à Rochejean, petit village du Haut-Doubs niché au creux des reliefs jurassiens. Née d’un mouvement d’éducation populaire dans les années 1980, elle offre aux enfants et aux adultes un lieu propice à l’écoute, aux rencontres, aux activités de la ferme et à la découverte du milieu montagnard rural.</p>
+      </div>
+
+      <div class="grid grid--2" style="align-items:start">
+        <div class="principles reveal">
+          <div><h3 data-ed="histoire.55">Un engagement dans le territoire</h3><p data-ed="histoire.56">Pour développer cet engagement, tout en s’inscrivant dans le développement territorial, les membres de l’association, fondateurs et bénévoles unis, ont édifié un centre d’accueil, le Souleret, et se sont lancés dans une expérience agricole atypique avec la ferme de la Batailleuse.</p></div>
+          <div><h3 data-ed="histoire.57">Le Chalet du Souleret</h3><p data-ed="histoire.58">C’est l’hébergement du CLAJ, avec un accueil simple, convivial et coopératif. Tout le monde participe aux actions du quotidien. L’équipe vous accompagne et vous propose une cuisine familiale et régionale, avec beaucoup d’imagination pour accommoder les produits de la ferme.</p></div>
+          <div><h3 data-ed="histoire.59">Une ferme pédagogique et productive</h3><p data-ed="histoire.60">Gérée collectivement, elle a accueilli au fil des années de nombreuses initiatives de production. Aujourd’hui, on y mène un troupeau de vaches et un troupeau de chèvres, on y accueille des lapins, des poules et des cochons, et on y fabrique du pain au levain, du fromage de chèvre, des yaourts…</p></div>
+        </div>
+        <div class="principles reveal">
+          <div><h3 data-ed="histoire.61">Des pratiques paysannes</h3><p data-ed="histoire.62">Nous tenons à valoriser les pratiques agricoles paysannes, et notre ferme est certifiée biologique. Elle soutient un programme d’animations axé sur la connaissance et le respect des animaux, sur l’initiation aux productions fermières (comment fabrique-t-on du beurre&nbsp;? Suivons le chemin du lait…) et sur le patrimoine naturel et culturel du Haut-Doubs.</p></div>
+          <div><h3 data-ed="histoire.63">Une vocation éducative, été comme hiver</h3><p data-ed="histoire.64">Nous accompagnons et animons des classes de découverte, des familles et des groupes divers. Nous organisons aussi des séjours de vacances pour les enfants, qui mettent en avant l’apprentissage de la vie collective et de la coopération.</p></div>
+          <div><h3 data-ed="histoire.65">Un lieu de formation et de rencontres</h3><p data-ed="histoire.66">Bénévoles, stagiaires en formation agricole ou en animation, volontaires&nbsp;: beaucoup de curieux s’y forment. Le lieu accueille aussi des chantiers de bénévoles, des journées et des soirées festives, et des rencontres sur des sujets de société en lien avec nos activités.</p></div>
+        </div>
+      </div>
+
+      <div class="actions gap-top">
+        <a data-ed="histoire.67" class="btn btn--light" href="ecoles.html">Les classes et les groupes</a>
+        <a data-ed="histoire.68" class="btn btn--ghost btn--on-dark" href="colos.html">Les colos</a>
+        <a data-ed="histoire.69" class="btn btn--ghost btn--on-dark" href="collectif.html#benevolat">Bénévolat et stages</a>
+        <a data-ed="histoire.70" class="btn btn--ghost btn--on-dark" href="index.html">Les prochains rendez-vous</a>
+      </div>
+      <p data-ed="histoire.71" class="muted" style="margin-top:24px">Si nos actions vous intéressent, n’hésitez pas à <a href="contact.html">nous contacter</a> ou à passer nous voir à la ferme pendant les heures d’ouverture. Pour voir la ferme en vidéo et l’entendre à la radio, <a href="visiter.html#boutique">c’est par ici</a>.</p>
+    </div>
+  </section>
+
+  <svg class="ridge ridge--paper" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="background:var(--sapin-deep)"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 05 · L'équipe -->
+  <section class="section" id="equipe" aria-labelledby="t-equipe">
+    <div class="wrap">
+      <div class="feature feature--reverse">
+        <figure class="feature__img reveal">
+          <img data-ed-img="histoire.12" src="img/histoire-equipe-2026.jpg" alt="Douze membres de l’équipe de la Batailleuse posent en groupe, en deux rangs, sur des bancs de bois recouverts de neige." width="800" height="533" loading="lazy">
+          <figcaption data-ed="histoire.72">L’équipe de la Batailleuse, début 2026. Photo&nbsp;: Florian Houdelot.</figcaption>
+        </figure>
+        <div class="reveal">
+          <p data-ed="histoire.73" class="kicker"><b>05</b> L’équipe</p>
+          <h2 data-ed="histoire.74" id="t-equipe">Douze salarié·es, tous décideurs.</h2>
+          <p data-ed="histoire.75" class="lead">Nous sommes douze, de divers horizons, aujourd’hui liés au CLAJ. La Batailleuse est un collectif de travail où nous sommes tous décideurs&nbsp;: nous avons opté pour un système de direction alternatif et collégial, l’autogestion.</p>
+          <p data-ed="histoire.76">Nous accueillons aussi très régulièrement des stagiaires et des bénévoles, intéressé·es par l’agriculture que nous pratiquons, par l’animation tournée vers la nature, l’environnement et l’action participative, ou par notre fonctionnement collectif autogéré. Le bénévolat se fait sur trois semaines minimum.</p>
+          <p data-ed="histoire.77"><a data-ed="histoire.78" class="link-arrow" href="collectif.html#collectif">Les prénoms de l’équipe et le conseil d’administration</a><br><a data-ed="histoire.79" class="link-arrow" href="collectif.html#benevolat">Venir en bénévole ou en stage</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V58l90-10 70 6 110-26 80 12 60-20 120 30 90-8 100 14 80-34 70 10 110-22 90 18 120-4 90 14 70-8 90 20V80z"/></svg>
+
+  <!-- 06 · Le réseau -->
+  <section class="section section--alt" id="reseau" aria-labelledby="t-reseau">
+    <div class="wrap">
+      <div class="section__head section__head--split">
+        <div>
+          <p data-ed="histoire.80" class="kicker"><b>06</b> Le réseau et les partenaires</p>
+          <h2 data-ed="histoire.81" id="t-reseau">Autour de la ferme, des gens qui comptent.</h2>
+        </div>
+        <p data-ed="histoire.82" class="lead">Ceux qui vendent nos produits, ceux qui parlent de nous, les autres CLAJ, les réseaux paysans et solidaires, et ceux qui nous soutiennent.</p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge badge--ok">Circuits courts</span>
+            <h3 data-ed="histoire.83">Ils vendent nos produits</h3>
+            <ul class="liens">
+              <li data-ed="histoire.84"><a href="https://www.facebook.com/lespaniersdelabergeronnette" rel="noopener">AMAP La Bergeronnette</a> <span>Labergement-Sainte-Marie</span></li>
+              <li data-ed="histoire.85"><a href="https://amaprilchou.wordpress.com/" rel="noopener">AMAP Rilchou de Pontarlier</a> <span>Association pour le maintien de l’agriculture paysanne</span></li>
+              <li data-ed="histoire.86"><b>Ruch’bio</b> <span>Pontarlier</span></li>
+              <li data-ed="histoire.87"><a href="http://semilla25.free.fr/" rel="noopener">La Semilla</a> <span>Les Fourgs</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Tourisme</span>
+            <h3 data-ed="histoire.88">Ils parlent de nous</h3>
+            <ul class="liens">
+              <li data-ed="histoire.89"><a href="http://www.tourisme-metabief.com/" rel="noopener">Office du tourisme du Haut-Doubs</a> <span>Pontarlier</span></li>
+              <li data-ed="histoire.90"><a href="http://www.besancon-tourisme.com/" rel="noopener">Office du tourisme de Besançon</a></li>
+            </ul>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Mouvement</span>
+            <h3 data-ed="histoire.91">Les associations CLAJ en France</h3>
+            <ul class="liens">
+              <li data-ed="histoire.92"><a href="http://www.clajsud.fr/" rel="noopener">Côte d’Azur</a></li>
+              <li data-ed="histoire.93"><a href="http://www.sapinsamitie.com/" rel="noopener">Métabief</a></li>
+              <li data-ed="histoire.94"><a href="http://www.clajpenestin.onlc.eu/0-Index.html" rel="noopener">Pénestin – La Mine d’Or</a></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <h3 data-ed="histoire.95" class="gap-top">Nos partenaires</h3>
+      <div class="grid grid--2" style="margin-top:18px">
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Réseau</span>
+            <h3 data-ed="histoire.96">REPAS</h3>
+            <p data-ed="histoire.97">Réseau d’Échanges et de Pratiques Alternatives et Solidaires. C’est un réseau en France qui se reconnaît dans le champ de l’économie alternative et solidaire. Nous y expérimentons de nouveaux rapports au travail, des comportements financiers plus éthiques et plus humains, de nouvelles relations entre producteurs et consommateurs, et des présences engagées sur nos territoires.</p>
+            <div class="card__foot"><a data-ed="histoire.98" class="link-arrow small" href="http://www.reseaurepas.free.fr/" rel="noopener">Le site du réseau</a></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Réseau</span>
+            <h3 data-ed="histoire.99">Accueil Paysan</h3>
+            <p data-ed="histoire.100">C’est à travers ses valeurs paysannes de convivialité, de solidarité, de respect de l’environnement, proches du mouvement d’éducation populaire, que la Batailleuse s’associe à ce réseau.</p>
+            <div class="card__foot"><a data-ed="histoire.101" class="link-arrow small" href="https://www.accueil-paysan.com/" rel="noopener">Accueil Paysan</a> <a data-ed="histoire.102" class="link-arrow small" href="http://www.accueil-paysan-jura.com/" rel="noopener">Le réseau dans le Jura</a></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Réseau paysan</span>
+            <h3 data-ed="histoire.103">Confédération paysanne</h3>
+            <div class="card__foot"><a data-ed="histoire.104" class="link-arrow small" href="http://www.confederationpaysanne.fr/" rel="noopener">Le site national</a></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="card__body">
+            <span class="badge">Réseau paysan</span>
+            <h3 data-ed="histoire.105">Association des Bergers du Jura</h3>
+            <div class="card__foot"><a data-ed="histoire.106" class="link-arrow small" href="http://www.bergersdujura.org/" rel="noopener">bergersdujura.org</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="aside reveal gap-top">
+        <h3 data-ed="histoire.107">Ils nous soutiennent</h3>
+        <p data-ed="histoire.108">La Région Bourgogne-Franche-Comté, la Communauté de communes des Lacs et Montagnes du Haut-Doubs, la CAF du Doubs et le Département.</p>
+      </div>
+      <p data-ed="histoire.109" class="note">Cette liste n’est pas exhaustive et ne demande qu’à être complétée. Écrivez-nous à <a href="mailto:contact@claj-batailleuse.fr">contact@claj-batailleuse.fr</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="img/logo.png" alt="Logo du CLAJ la Batailleuse" width="64" height="99" loading="lazy">
+        <p data-ed="pied.1">Le CLAJ de Franche-Comté, association d’éducation populaire autogérée, fait vivre la ferme de la Batailleuse et le Chalet du Souleret à Rochejean.</p>
+      </div>
+      <div>
+        <h2 data-ed="pied.2">Nous trouver</h2>
+        <ul>
+          <li data-ed="pied.3"><b>Ferme de la Batailleuse</b><br>Route de la Batailleuse, 25370 Rochejean</li>
+          <li data-ed="pied.4"><b>Chalet du Souleret</b><br>16 rue de la Fontaine, 25370 Rochejean</li>
+          <li data-ed="pied.5"><a href="contact.html#acces">Plan d’accès</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-ed="pied.6">Téléphones</h2>
+        <ul>
+          <li data-ed="pied.7" class="footer__phone"><b><a href="tel:+33381499115">03 81 49 91 15</a></b><span>Ferme et boutique</span></li>
+          <li data-ed="pied.8" class="footer__phone"><b><a href="tel:+33381499184">03 81 49 91 84</a></b><span>Chalet du Souleret</span></li>
+          <li data-ed="pied.9" class="footer__phone"><b><a href="tel:+33781424830">07 81 42 48 30</a></b><span>Fournil, commandes de pain</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2 data-ed="pied.10">Écrire</h2>
+        <ul>
+          <li data-ed="pied.11"><a href="mailto:animation@claj-batailleuse.fr">animation@</a> classes, colos, animations</li>
+          <li data-ed="pied.12"><a href="mailto:hebergement@claj-batailleuse.fr">hebergement@</a> Chalet du Souleret</li>
+          <li data-ed="pied.13"><a href="mailto:ferme@claj-batailleuse.fr">ferme@</a> ferme et fournil</li>
+          <li data-ed="pied.14"><a href="mailto:facturation@claj-batailleuse.fr">facturation@</a> factures</li>
+          <li data-ed="pied.15"><a href="mailto:contact@claj-batailleuse.fr">contact@</a> tout le reste</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
+      <span><a href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a></span>
+      <span>Site réalisé par Primo Locatelli, Montperreux</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>
