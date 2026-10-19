@@ -262,7 +262,7 @@
       ? "Activé" + (r.par ? " par " + r.par + " " + quandTxt(r.quand) : "") + " : envoyez un formulaire depuis le site, la demande arrive dans la boîte concernée."
       : "";
     $("#fd-limites").textContent = "Pendant la démo : " + (r.limite ? r.limite + " formulaires par jour au maximum, et " : "") +
-      "les emails partent de l’adresse " + (r.expediteur || "de la démo") + " (pensez à regarder dans les indésirables). " +
+      "les emails arrivent de « Site de la Batailleuse » (pensez à regarder dans les indésirables). " +
       "Une fois le site installé chez vous, ils partiront de votre propre adresse" + (r.limite ? ", sans ce plafond." : ".");
   }
 
