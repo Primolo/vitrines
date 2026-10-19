@@ -245,7 +245,7 @@
     document.body.appendChild(bandeau);
     // Les zones remplies depuis l'espace équipe ne se modifient pas ici : une étiquette renvoie vers le bon onglet.
     [["[data-agenda]", "agenda", "Les événements se gèrent dans l’onglet Agenda de l’espace équipe."],
-     ["[data-actualites]", "agenda", "Les nouvelles publiées se gèrent dans l’onglet Agenda de l’espace équipe ; le fil Facebook vient de leur page Facebook."],
+     ["[data-actualites]", "agenda", "Les nouvelles se gèrent dans l’onglet Agenda de l’espace équipe."],
      ["[data-offres]", "documents", "Les offres d’emploi se gèrent dans l’onglet Documents de l’espace équipe."],
      ["[data-pain-lignes]", "documents", "Les prix du pain se gèrent dans l’onglet Documents de l’espace équipe."],
      ["[data-galerie]", "pages", "Les photos de la galerie se gèrent dans l’onglet Pages (Galerie photos) de l’espace équipe."],
