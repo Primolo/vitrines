@@ -1,0 +1,7 @@
+# Pages, styles et scripts se revérifient à chaque visite (le navigateur ne garde pas l'ancienne version) :
+# une mise à jour du site est visible tout de suite, sans « vider le cache ».
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
