@@ -303,8 +303,9 @@
     var sec = document.querySelector("[data-actualites]");
     if (!sec || !Array.isArray(C.actualites)) return;
     var liste = C.actualites.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).slice(0, 6);
-    sec.hidden = !liste.length;
-    sec.querySelector("[data-actualites-liste]").innerHTML = liste.map(function (a) {
+    var zone = sec.querySelector("[data-actualites-liste]");
+    zone.hidden = !liste.length;
+    zone.innerHTML = liste.map(function (a) {
       var d = parse(a.date), ph = a.photo && sureFichier(a.photo.fichier), lien = sureLien(a.lien);
       return '<article class="card news__item">' +
         (ph ? '<div class="card__img"><img src="' + esc(ph) + '" alt="' + esc(a.photo.alt || "") + '" loading="lazy"></div>' : "") +
@@ -894,5 +895,18 @@
     initReveal();
     document.querySelectorAll("form.demande").forEach(function (f) { initForm(f); });
     document.querySelectorAll("form[data-estimateur]").forEach(initEstimate);
+    // Fil Facebook : chargé seulement après un clic du visiteur
+    document.querySelectorAll("[data-fb-charger]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var zone = b.closest("[data-fb-zone]");
+        var f = document.createElement("iframe");
+        f.title = "Dernières publications Facebook de la Batailleuse";
+        f.loading = "lazy";
+        f.src = "https://www.facebook.com/plugins/page.php?href=" + encodeURIComponent("https://www.facebook.com/claj.batailleuse/") +
+          "&tabs=timeline&width=500&height=640&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&lang=fr_FR";
+        zone.innerHTML = "";
+        zone.appendChild(f);
+      });
+    });
   });
 })();

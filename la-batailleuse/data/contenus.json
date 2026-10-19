@@ -145,6 +145,15 @@
             "texte": "Explorations et créativité à vivre en duo ou en famille, pour les 5-12 ans. De 14h30 à 16h30.",
             "lieu": "",
             "prix": "5 € par famille"
+        },
+        {
+            "id": "e8",
+            "date": "2026-11-06",
+            "heure": "18:00",
+            "titre": "Bal folk aux Vallières, avec le Duo Cougny Millet",
+            "texte": "À 18h : initiation au bal folk ou théâtre d’improvisation (gratuit). Vers 19h : repas bio à réserver. À 20h30 : bal folk avec le Duo Cougny Millet. Une fête commune avec les 10 ans du festival de la Tarte.",
+            "lieu": "Aux Vallières",
+            "prix": ""
         }
     ],
     "sejours": [

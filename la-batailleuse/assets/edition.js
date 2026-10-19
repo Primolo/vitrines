@@ -27,6 +27,7 @@
     "[data-ed]:hover{outline-color:#C8902F;background:rgba(241,221,180,.28)}" +
     "[data-ed]:focus{outline:3px solid #7A1F1F;background:rgba(241,221,180,.4)}" +
     "[data-ed].bata-modifie{outline-style:solid;outline-color:#1F4A2E}" +
+    ".bata-ed-ailleurs{margin:8px auto;max-width:900px;padding:10px 14px;border-radius:10px;background:#F1DDB4;color:#2A1E05;border:2px solid #C8902F;font:600 .95rem/1.4 system-ui}.bata-ed-ailleurs a{color:#7A1F1F;font-weight:800}" +
     "[data-ed-img]{outline:3px dashed rgba(200,144,47,.9);outline-offset:-3px;cursor:pointer}" +
     "#bata-ed-barre{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:100;background:#211C17;color:#fff;border-radius:999px;padding:6px;display:flex;gap:4px;box-shadow:0 8px 28px rgba(0,0,0,.35)}" +
     "#bata-ed-barre[hidden]{display:none}" +
@@ -240,8 +241,23 @@
     document.body.classList.add("bata-ed");
     bandeau = document.createElement("div");
     bandeau.id = "bata-ed-bandeau";
-    bandeau.innerHTML = "<b>Mode modification</b><span>Touchez un texte ou une photo pour le changer. Tout s’enregistre en quittant le bloc, et c’est en ligne tout de suite.</span><a href=\"equipe/#pages\">Espace équipe</a><button type=\"button\" id=\"bata-ed-fin\">Terminer</button>";
+    bandeau.innerHTML = "<b>Mode modification</b><span>Touchez un texte ou une photo pour le changer. Tout s’enregistre en quittant le bloc, et c’est en ligne tout de suite. Pour ajouter un événement, une nouvelle, une offre ou un prix, passez par l’espace équipe.</span><a href=\"equipe/#pages\">Espace équipe</a><button type=\"button\" id=\"bata-ed-fin\">Terminer</button>";
     document.body.appendChild(bandeau);
+    // Les zones remplies depuis l'espace équipe ne se modifient pas ici : une étiquette renvoie vers le bon onglet.
+    [["[data-agenda]", "agenda", "Les événements se gèrent dans l’onglet Agenda de l’espace équipe."],
+     ["[data-actualites]", "agenda", "Les nouvelles publiées se gèrent dans l’onglet Agenda de l’espace équipe ; le fil Facebook vient de leur page Facebook."],
+     ["[data-offres]", "documents", "Les offres d’emploi se gèrent dans l’onglet Documents de l’espace équipe."],
+     ["[data-pain-lignes]", "documents", "Les prix du pain se gèrent dans l’onglet Documents de l’espace équipe."],
+     ["[data-galerie]", "pages", "Les photos de la galerie se gèrent dans l’onglet Pages (Galerie photos) de l’espace équipe."],
+     ["[data-message-du-jour]", "message", "Le message du jour se gère dans l’onglet Message de l’espace équipe."]
+    ].forEach(function (z) {
+      $$(z[0]).forEach(function (el) {
+        var e = document.createElement("p");
+        e.className = "bata-ed-ailleurs";
+        e.innerHTML = esc(z[2]) + ' <a href="equipe/#' + z[1] + '">Y aller</a>';
+        el.insertAdjacentElement("beforebegin", e);
+      });
+    });
     barre = document.createElement("div");
     barre.id = "bata-ed-barre"; barre.hidden = true;
     barre.innerHTML = '<button type="button" data-cmd="gras" aria-label="Gras"><b>G</b></button><button type="button" data-cmd="lien">Lien</button><button type="button" data-cmd="delien">Sans lien</button><button type="button" data-cmd="origine">Texte d’origine</button>';

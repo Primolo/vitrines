@@ -327,12 +327,20 @@ Photos : Florian Houdelot et l'équipe (site actuel). Aucune photo d'enfant iden
     </div>
   </section>
 
-  <!-- Nouvelles de la ferme : publiées par l'équipe dans l'espace équipe (section masquée tant qu'il n'y en a pas) -->
-  <section class="section" id="nouvelles" data-actualites hidden aria-labelledby="t-nouvelles">
+  <!-- Nouvelles de la ferme : celles publiées par l'équipe dans l'espace équipe, plus le fil Facebook (chargé sur clic : rien n'est envoyé à Meta avant) -->
+  <section class="section" id="nouvelles" data-actualites aria-labelledby="t-nouvelles">
     <div class="wrap">
       <p class="kicker">Nouvelles</p>
       <h2 id="t-nouvelles">Des nouvelles de la ferme</h2>
+      <p class="lead">Les nouvelles sont publiées ici par l’équipe, et au jour le jour sur Facebook et Instagram.</p>
       <div class="grid grid--2 news" data-actualites-liste></div>
+      <div class="reseaux" data-reseaux>
+        <div class="reseaux__fb" data-fb-zone>
+          <button class="btn" type="button" data-fb-charger>Afficher les dernières publications Facebook</button>
+          <p class="muted small">En cliquant, vous chargez le contenu de Facebook (Meta), qui peut déposer des cookies. Tant que vous ne cliquez pas, rien n’est envoyé.</p>
+        </div>
+        <p class="reseaux__liens"><a class="btn btn--sapin" href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> <a class="btn btn--sapin" href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a></p>
+      </div>
     </div>
   </section>
 
@@ -444,7 +452,7 @@ Photos : Florian Houdelot et l'équipe (site actuel). Aucune photo d'enfant iden
     <div class="footer__bottom">
       <span data-ed="pied.16">© CLAJ de Franche-Comté · Photos : Florian Houdelot et l’équipe de la Batailleuse</span>
       <span><a data-ed="pied.17" href="https://www.facebook.com/claj.batailleuse/" rel="noopener">Facebook</a> · <a data-ed="pied.18" href="https://www.instagram.com/la_batailleuse/" rel="noopener">Instagram</a> · <a data-ed="pied.19" href="https://www.helloasso.com/associations/claj-de-franche-comte" rel="noopener">HelloAsso</a> <span data-avis hidden>· <a data-ed="pied.20" data-avis-lien href="#" rel="noopener">Donner votre avis</a></span></span>
-      <span>Site réalisé par Primo Locatelli, Montperreux</span>
+      <span>Site réalisé par Primo Locatelli</span>
     </div>
   </div>
 </footer>
