@@ -307,8 +307,29 @@
     var tout = C.actualites.map(function (a) { return { site: true, date: a.date, a: a }; })
       .concat((C.reseaux || []).filter(function (p) { return p && /^\d{4}-\d{2}-\d{2}$/.test(p.date) && NOM_RESEAU[p.source] && sureLien(p.lien); })
         .map(function (p) { return { site: false, date: p.date, p: p }; }));
-    var liste = tout.sort(function (x, y) { return x.date < y.date ? 1 : -1; }).slice(0, 6);
-    sec.hidden = !liste.length;
+    tout.sort(function (x, y) { return x.date < y.date ? 1 : -1; });
+    // Une nouvelle réduite à une affiche (sans titre) va dans le bandeau « affiches » : vignettes alignées, un clic l'agrandit.
+    var estAffiche = function (it) { return it.site && !it.a.titre && it.a.photo && sureFichier(it.a.photo.fichier); };
+    var affiches = tout.filter(estAffiche).slice(0, 4);
+    var liste = tout.filter(function (it) { return !estAffiche(it); }).slice(0, 6);
+    sec.hidden = !liste.length && !affiches.length;
+    var bandeau = document.querySelector("[data-affiches]"), secA = document.getElementById("affiches");
+    if (secA) secA.hidden = !affiches.length;
+    if (bandeau) {
+      bandeau.hidden = !affiches.length;
+      bandeau.innerHTML = affiches.map(function (it) {
+        var a = it.a, d = parse(a.date), f = sureFichier(a.photo.fichier), alt = a.photo.alt || "Affiche";
+        return '<figure class="affiche"><button type="button" data-affiche="' + esc(f) + '" data-alt="' + esc(alt) + '" aria-label="Agrandir l’affiche du ' + jourTxt(d) + " " + MOIS[d.getMonth()] + '">' +
+          '<img src="' + esc(f) + '" alt="' + esc(alt) + '" loading="lazy"></button><figcaption>' + jourTxt(d) + " " + MOIS[d.getMonth()] + "</figcaption></figure>";
+      }).join("");
+      if (!bandeau.__branche) {
+        bandeau.__branche = true;
+        bandeau.addEventListener("click", function (e) {
+          var b = e.target.closest("[data-affiche]");
+          if (b) ouvrirVisionneuse(b.dataset.affiche, b.dataset.alt || "Affiche", "");
+        });
+      }
+    }
     sec.querySelector("[data-actualites-liste]").innerHTML = liste.map(function (it) {
       if (!it.site) {
         var p = it.p, dr = parse(p.date), im = sureFichier(p.image), nom = NOM_RESEAU[p.source];
@@ -488,13 +509,17 @@
     zone.addEventListener("click", function (e) {
       var b = e.target.closest(".galerie__ouvrir");
       if (!b) return;
-      var dlg = document.getElementById("visionneuse"), p = C.galerie[+b.dataset.i];
-      if (!dlg || !p) return;
-      dlg.querySelector("img").src = sureFichier(p.fichier);
-      dlg.querySelector("img").alt = p.legende || "Photo de la ferme de la Batailleuse";
-      dlg.querySelector("figcaption").textContent = p.legende || "";
-      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+      var p = C.galerie[+b.dataset.i];
+      if (p) ouvrirVisionneuse(sureFichier(p.fichier), p.legende || "Photo de la ferme de la Batailleuse", p.legende || "");
     });
+  }
+  function ouvrirVisionneuse(src, alt, legende) {
+    var dlg = document.getElementById("visionneuse");
+    if (!dlg || !src) return;
+    dlg.querySelector("img").src = src;
+    dlg.querySelector("img").alt = alt;
+    dlg.querySelector("figcaption").textContent = legende;
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
   }
   document.addEventListener("click", function (e) {
     var d = document.getElementById("visionneuse");

@@ -532,7 +532,7 @@
   function afficherActualites() {
     var l = S.contenus.actualites || [];
     $("#ac-liste").innerHTML = l.length ? l.map(function (a) {
-      return '<li class="eq-item eq-item--simple"><div><h3>' + esc(a.titre) + "</h3><p>" + esc(dateTxt(a.date)) + (a.photo ? " · photo" : "") + (a.lien ? " · lien" : "") + "</p></div>" +
+      return '<li class="eq-item eq-item--simple"><div><h3>' + esc(a.titre || "Affiche") + "</h3><p>" + esc(dateTxt(a.date)) + (a.photo ? (a.titre ? " · photo" : " · image seule") : "") + (a.lien ? " · lien" : "") + "</p></div>" +
         '<div class="btns"><button type="button" class="eq-mini" data-ac-modifier="' + esc(a.id) + '">Modifier</button><button type="button" class="eq-mini" data-ac-retirer="' + esc(a.id) + '">Retirer</button></div></li>';
     }).join("") : '<li class="muted">Aucune nouvelle pour l’instant. Publiez la première ci-dessous.</li>';
   }
@@ -543,7 +543,7 @@
     $("#ac-texte").value = a ? a.texte || "" : ""; $("#ac-lien").value = a ? a.lien || "" : ""; $("#ac-lien-texte").value = a ? a.lien_texte || "" : "";
     $("#ac-photo").value = ""; $("#ac-photo-retirer").checked = false;
     $("#ac-photo-retirer-l").hidden = !(a && a.photo);
-    $("#ac-photo-etat").textContent = a && a.photo ? "Une photo est en ligne. Choisissez-en une autre pour la remplacer." : "Facultative. Elle est réduite automatiquement.";
+    $("#ac-photo-etat").textContent = a && a.photo ? "Une photo est en ligne. Choisissez-en une autre pour la remplacer." : "Une affiche suffit : déposez-la telle quelle, sans titre ni texte. Elle est réduite automatiquement.";
     $("#ac-titre-form").textContent = a ? "Modifier la nouvelle" : "Publier une nouvelle";
     $("#ac-envoyer").textContent = a ? "Enregistrer les modifications" : "Publier";
     $("#ac-annuler").hidden = !a;
@@ -890,7 +890,9 @@
     /* Nouvelles */
     $("#form-ac").addEventListener("submit", function (e) {
       e.preventDefault();
-      if (!$("#ac-titre").value.trim()) return $("#ac-titre").reportValidity();
+      // Une affiche (ou une photo) suffit : le titre n'est obligatoire que sans image.
+      var aImage = $("#ac-photo").files[0] || (!$("#ac-photo-retirer-l").hidden && !$("#ac-photo-retirer").checked);
+      if (!$("#ac-titre").value.trim() && !aImage) return toast("Mettez un titre, ou déposez une affiche ou une photo.", true);
       document.body.setAttribute("aria-busy", "true");
       lireFichier($("#ac-photo").files[0], true).then(function (ph) {
         document.body.removeAttribute("aria-busy");

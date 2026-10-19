@@ -189,8 +189,11 @@ switch ($action) {
                 $f = enregistrer_fichier('actu-' . $a['id'], $d['photo']['contenu'], ['jpg', 'png', 'webp']);
                 $photo = ['fichier' => $f['fichier']];
             }
+            if ($a['titre'] === '' && !$photo) {
+                repondre(400, ['erreur' => 'Mettez un titre, ou déposez une affiche ou une photo.']);
+            }
             if ($photo) {
-                $photo['alt'] = $a['titre'];
+                $photo['alt'] = $a['titre'] !== '' ? $a['titre'] : 'Affiche';
             }
             $a = array_merge($a, ['photo' => $photo, 'maj' => date('c'), 'par' => $prenom]);
             if ($i === null) {
@@ -200,7 +203,7 @@ switch ($action) {
             }
             usort($liste, fn($x, $y) => strcmp((string) $y['date'], (string) $x['date']));
             $doc['actualites'] = array_values($liste);
-            succes(enregistrer($doc, 'actualites', ($i === null ? 'Actualité publiée : ' : 'Actualité modifiée : ') . $a['titre'], $prenom, $a['id']));
+            succes(enregistrer($doc, 'actualites', ($i === null ? 'Actualité publiée : ' : 'Actualité modifiée : ') . ($a['titre'] !== '' ? $a['titre'] : 'affiche'), $prenom, $a['id']));
         });
 
     case 'actualite_supprimer':
@@ -782,10 +785,8 @@ function lien_valide(string $u): bool
 
 function valider_actualite(array $d): array
 {
+    // Le titre est facultatif : une affiche déposée telle quelle suffit (vérifié dans le cas « actualite_enregistrer »).
     $titre = texte($d['titre'] ?? '', 100);
-    if ($titre === '') {
-        repondre(400, ['erreur' => 'Donnez un titre à cette actualité.']);
-    }
     $date = (string) ($d['date'] ?? '');
     if ($date === '') {
         $date = date('Y-m-d');

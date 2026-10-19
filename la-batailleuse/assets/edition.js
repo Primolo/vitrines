@@ -246,6 +246,7 @@
     // Les zones remplies depuis l'espace équipe ne se modifient pas ici : une étiquette renvoie vers le bon onglet.
     [["[data-agenda]", "agenda", "Les événements se gèrent dans l’onglet Agenda de l’espace équipe."],
      ["[data-actualites]", "agenda", "Les nouvelles se gèrent dans l’onglet Agenda de l’espace équipe."],
+     ["[data-affiches]", "agenda", "Les affiches se gèrent dans l’onglet Agenda (Publier une nouvelle) de l’espace équipe."],
      ["[data-offres]", "documents", "Les offres d’emploi se gèrent dans l’onglet Documents de l’espace équipe."],
      ["[data-pain-lignes]", "documents", "Les prix du pain se gèrent dans l’onglet Documents de l’espace équipe."],
      ["[data-galerie]", "pages", "Les photos de la galerie se gèrent dans l’onglet Pages (Galerie photos) de l’espace équipe."],

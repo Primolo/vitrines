@@ -216,12 +216,12 @@
       <form id="form-ac" novalidate>
         <input type="hidden" id="ac-id"><input type="hidden" id="ac-maj">
         <div class="fields">
-          <div class="field field--full"><label for="ac-titre">Titre <span class="req">*</span></label><input id="ac-titre" maxlength="100" required placeholder="Ex. : Merci pour la fête !"></div>
+          <div class="field field--full"><label for="ac-titre">Titre <span class="hint">(facultatif si vous déposez une affiche)</span></label><input id="ac-titre" maxlength="100" placeholder="Ex. : Merci pour la fête !"></div>
           <div class="field"><label for="ac-date">Date</label><input id="ac-date" type="date"></div>
           <div class="field field--full"><label for="ac-texte">Texte</label><textarea id="ac-texte" maxlength="1500" rows="5" placeholder="Quelques lignes. Sautez une ligne pour faire un nouveau paragraphe."></textarea></div>
           <div class="field"><label for="ac-lien">Lien (article, vidéo…)</label><input id="ac-lien" type="url" maxlength="300" placeholder="https://…"></div>
           <div class="field"><label for="ac-lien-texte">Texte du lien</label><input id="ac-lien-texte" maxlength="40" placeholder="Lire l’article"></div>
-          <div class="field field--full"><label for="ac-photo">Photo</label><input id="ac-photo" type="file" accept="image/jpeg,image/png,image/webp"><p class="hint" id="ac-photo-etat">Facultative. Elle est réduite automatiquement.</p>
+          <div class="field field--full"><label for="ac-photo">Photo ou affiche</label><input id="ac-photo" type="file" accept="image/jpeg,image/png,image/webp"><p class="hint" id="ac-photo-etat">Une affiche suffit : déposez-la telle quelle, sans titre ni texte. Elle est réduite automatiquement.</p>
             <label class="choice" id="ac-photo-retirer-l" hidden style="margin-top:8px"><input type="checkbox" id="ac-photo-retirer"><span>Retirer la photo actuelle</span></label></div>
         </div>
         <div class="eq-actions"><button class="btn" type="submit" id="ac-envoyer">Publier</button><button class="btn btn--ghost" type="button" id="ac-annuler" hidden>Annuler la modification</button></div>

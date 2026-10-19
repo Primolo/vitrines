@@ -127,6 +127,15 @@ Photos : Florian Houdelot et l'équipe (site actuel). Aucune photo d'enfant iden
     <p data-ed="index.6" class="hero__credit">Photo : Florian Houdelot</p>
   </section>
 
+  <!-- À l'affiche : les affiches déposées par l'équipe (onglet Agenda > Nouvelles), tout en haut pour qu'on les voie tout de suite. Masqué tant qu'il n'y en a pas. -->
+  <section class="section section--tight" id="affiches" hidden aria-labelledby="t-affiches">
+    <div class="wrap">
+      <p data-ed="index.103" class="kicker">À l’affiche</p>
+      <h2 data-ed="index.104" id="t-affiches">Ce qui se passe à la Bata</h2>
+      <div class="affiches" data-affiches></div>
+    </div>
+  </section>
+
   <section class="section" id="vous-etes" aria-labelledby="t-vous">
     <div class="wrap">
       <div class="section__head section__head--split">
@@ -449,6 +458,10 @@ Photos : Florian Houdelot et l'équipe (site actuel). Aucune photo d'enfant iden
   </div>
 </footer>
 
+<dialog id="visionneuse" class="visionneuse" aria-label="Affiche agrandie">
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button type="button" class="btn btn--small" data-fermer-visionneuse>Fermer</button>
+</dialog>
 <script src="assets/site.js" defer></script>
 </body>
 </html>
