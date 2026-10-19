@@ -91,6 +91,26 @@
   .eq-pain .top { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: end; }
   .eq-auto { font-size: .85rem; color: var(--ink-mute); min-height: 1.3em; }
   [hidden] { display: none !important; }
+
+  /* Ordinateur (grand écran) : menu à gauche, contenu sur deux colonnes. Le téléphone et la tablette ne changent pas. */
+  @media (min-width: 1100px) {
+    .eq-top .wrap { max-width: 1320px; }
+    .eq-main { max-width: 1320px; padding-left: 28px; padding-right: 28px; }
+    #app { display: grid; grid-template-columns: 230px minmax(0, 1fr) minmax(0, 1fr); gap: 0 22px; align-items: start; }
+    #app > .eq-hello { grid-column: 1 / -1; }
+    #app > .eq-tabs { grid-column: 1; grid-row: 2 / span 40; position: sticky; top: 16px; margin: 0; flex-direction: column; padding: 6px; max-width: none; }
+    #app > .eq-tabs button { flex: none; flex-direction: row; justify-content: flex-start; gap: 12px; min-height: 52px; padding: 0 14px; font-size: .98rem; border-radius: var(--radius); }
+    #app > .eq-tabs button svg { flex: none; }
+    #app > .eq-tabs button:hover { background: var(--paper); }
+    #app > .eq-tabs button[aria-selected="true"] { background: var(--paper); box-shadow: inset 4px 0 0 var(--bordeaux); }
+    #app > .eq-card, #app > div[data-panneau] { grid-column: auto; margin-bottom: 22px; }
+    #app > div[data-panneau] { grid-column: 2 / -1; }
+    /* Les cartes longues ou à tableaux prennent toute la largeur */
+    #app > .eq-card[aria-labelledby="t-ta"], #app > .eq-card[aria-labelledby="t-ga"], #app > .eq-card[aria-labelledby="t-ho"],
+    #app > .eq-card[aria-labelledby="t-co"], #app > .eq-card[aria-labelledby="t-hi"], #app > .eq-card[aria-labelledby="t-pg"],
+    #app > .eq-card[aria-labelledby="t-do"], #app > .eq-card[aria-labelledby="t-pa"], #app > .eq-card[aria-labelledby="t-msg"] { grid-column: 2 / -1; }
+    .eq-toast { bottom: 28px; }
+  }
 </style>
 </head>
 <body class="eq">
