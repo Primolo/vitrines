@@ -452,6 +452,17 @@ switch ($action) {
             succes($doc, 'Cette photo avait déjà été retirée.');
         });
 
+    case 'avis_lien':
+        $u = texte($d['google'] ?? '', 300);
+        if ($u !== '' && !preg_match('~^https://([a-z0-9-]+\.)*(google\.[a-z.]+|g\.page|goo\.gl|share\.google)(/[^\s"\'<>]*)?$~i', $u)) {
+            repondre(400, ['erreur' => 'Ce lien ne vient pas de Google. Copiez-le depuis votre fiche Google (« Demander des avis »).']);
+        }
+        avec_verrou('contenus', function () use ($u, $prenom) {
+            $doc = charger();
+            $doc['avis'] = ['google' => $u];
+            succes(enregistrer($doc, 'avis', $u === '' ? 'Lien pour les avis Google retiré' : 'Lien pour les avis Google enregistré', $prenom));
+        });
+
     case 'code_changer':
         $nouveau = (string) ($d['nouveau'] ?? '');
         if (mb_strlen($nouveau) < 6 || mb_strlen($nouveau) > 60 || trim($nouveau) !== $nouveau) {
@@ -493,7 +504,7 @@ switch ($action) {
                 repondre(500, ['erreur' => 'Version illisible.']);
             }
             $actuel = charger();
-            foreach (['documents', 'actualites', 'offres', 'pain', 'tarifs', 'textes', 'images', 'galerie'] as $k) {
+            foreach (['documents', 'actualites', 'offres', 'pain', 'tarifs', 'textes', 'images', 'galerie', 'avis'] as $k) {
                 if (!isset($ancien[$k]) && isset($actuel[$k])) {
                     $ancien[$k] = $actuel[$k];
                 }
@@ -521,7 +532,7 @@ function charger(): array
     if (!is_array($doc)) {
         repondre(500, ['erreur' => 'Le fichier des contenus est illisible. Prévenez Primo.']);
     }
-    $doc['versions'] = ($doc['versions'] ?? []) + ['message' => 0, 'agenda' => 0, 'horaires' => 0, 'sejours' => 0, 'documents' => 0, 'actualites' => 0, 'offres' => 0, 'pain' => 0, 'tarifs' => 0, 'textes' => 0, 'images' => 0, 'galerie' => 0];
+    $doc['versions'] = ($doc['versions'] ?? []) + ['message' => 0, 'agenda' => 0, 'horaires' => 0, 'sejours' => 0, 'documents' => 0, 'actualites' => 0, 'offres' => 0, 'pain' => 0, 'tarifs' => 0, 'textes' => 0, 'images' => 0, 'galerie' => 0, 'avis' => 0];
     return $doc;
 }
 

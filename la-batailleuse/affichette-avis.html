@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Affichette « Laissez-nous un avis » · La Batailleuse</title>
+<link rel="icon" href="img/logo.png">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F5EFE3; color: #211C17; font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif; }
+  .feuille { width: min(100%, 210mm); min-height: 100vh; margin: 0 auto; padding: 16mm 16mm 12mm; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8mm; background: #FFFDF8; }
+  img.logo { width: 28mm; height: auto; }
+  h1 { font: 700 clamp(28px, 7vw, 40pt)/1.1 Georgia, "Iowan Old Style", serif; color: #7A1F1F; margin: 0; }
+  p { margin: 0; font-size: clamp(16px, 3.4vw, 17pt); line-height: 1.4; color: #4F463C; }
+  #qr { width: min(78vw, 110mm); }
+  #qr svg { width: 100%; height: auto; display: block; }
+  .nom { font: 700 clamp(18px, 4vw, 20pt) Georgia, serif; color: #1F4A2E; }
+  .outils { margin-top: 4mm; }
+  button { min-height: 44px; padding: 0 22px; border-radius: 999px; border: 0; background: #7A1F1F; color: #fff; font: 700 1rem system-ui; cursor: pointer; }
+  .vide { background: #FFF1D6; border: 2px dashed #C8902F; padding: 14px; border-radius: 10px; max-width: 460px; }
+  @media print { body { background: #fff; } .outils { display: none; } .feuille { min-height: 297mm; } }
+</style>
+</head>
+<body data-no-edit>
+<main class="feuille">
+  <img class="logo" src="img/logo.png" alt="Logo de la Batailleuse" width="112" height="173">
+  <h1>Votre avis nous aide</h1>
+  <p>Vous avez aimé la ferme, le chalet ou la visite ?<br>Dites-le en 30 secondes.</p>
+  <div id="qr" role="img" aria-label="QR code pour laisser un avis"></div>
+  <p id="aide">Scannez ce code avec l’appareil photo de votre téléphone.</p>
+  <p class="nom">La Batailleuse · Rochejean</p>
+  <div class="outils"><button type="button" onclick="window.print()">Imprimer cette affichette</button></div>
+</main>
+<script src="assets/qrcode.js"></script>
+<script>
+  (function () {
+    fetch("data/contenus.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
+      var u = d.avis && d.avis.google, zone = document.getElementById("qr");
+      if (!/^https:\/\/[^\s"'<>]{8,300}$/.test(u || "")) {
+        zone.className = "vide";
+        zone.innerHTML = "Le lien pour laisser un avis n’est pas encore enregistré. Dans l’espace équipe, onglet Pages, section « Avis Google », collez le lien de votre fiche Google, puis rouvrez cette page.";
+        document.getElementById("aide").hidden = true;
+        return;
+      }
+      var q = qrcode(0, "M");
+      q.addData(u);
+      q.make();
+      zone.innerHTML = q.createSvgTag({ scalable: true, margin: 2 });
+    });
+  })();
+</script>
+</body>
+</html>

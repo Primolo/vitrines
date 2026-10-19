@@ -54,7 +54,8 @@
     tarifs: null,
     textes: null,
     images: null,
-    galerie: null
+    galerie: null,
+    avis: null
   };
   var DEMO_KEY = "bata-demo-contenus";
   var DEMO = false;
@@ -97,6 +98,7 @@
     if (d.textes && typeof d.textes === "object") C.textes = d.textes;
     if (d.images && typeof d.images === "object") C.images = d.images;
     if (Array.isArray(d.galerie)) C.galerie = d.galerie;
+    if (d.avis && typeof d.avis === "object") C.avis = d.avis;
   }
 
   function isOpen(d) {
@@ -479,6 +481,14 @@
     if (d && (e.target === d || e.target.closest("[data-fermer-visionneuse]"))) d.close ? d.close() : d.removeAttribute("open");
   });
 
+  // Lien « Donner votre avis » : visible seulement quand l'équipe a saisi le lien de sa fiche Google.
+  function renderAvis() {
+    var u = C.avis && C.avis.google;
+    if (!/^https:\/\/[^\s"'<>]{8,300}$/.test(u || "")) return;
+    document.querySelectorAll("[data-avis-lien]").forEach(function (a) { a.setAttribute("href", u); });
+    document.querySelectorAll("[data-avis]").forEach(function (n) { n.hidden = false; });
+  }
+
   function bandeauDemo() {
     if (!DEMO) return;
     var n = document.createElement("div");
@@ -526,6 +536,7 @@
     renderInfosSejours();
     renderPain();
     renderTarifs();
+    renderAvis();
     markPeriods();
     if (/[?&]modifier=1/.test(location.search) && !document.getElementById("bata-edition")) {
       var s = document.createElement("script");

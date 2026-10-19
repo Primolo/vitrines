@@ -77,7 +77,7 @@
 
   // La démonstration applique les mêmes opérations que le serveur, sur une copie gardée dans ce navigateur.
   function demo(action, d) {
-    if (["document_envoyer", "actualite_enregistrer", "actualite_supprimer", "offre_enregistrer", "offre_supprimer", "sejour_infos", "pain_prix", "tarifs_modifier", "texte_enregistrer", "texte_reinitialiser", "image_enregistrer", "image_reinitialiser", "photo_ajouter", "photo_modifier", "photo_supprimer", "code_changer"].indexOf(action) !== -1) {
+    if (["document_envoyer", "actualite_enregistrer", "actualite_supprimer", "offre_enregistrer", "offre_supprimer", "sejour_infos", "pain_prix", "tarifs_modifier", "texte_enregistrer", "texte_reinitialiser", "image_enregistrer", "image_reinitialiser", "photo_ajouter", "photo_modifier", "photo_supprimer", "code_changer", "avis_lien"].indexOf(action) !== -1) {
       return { s: 400, j: { erreur: "Cette fonction ne marche que sur le vrai site, pas dans la maquette de démonstration." } };
     }
     var c = copie(S.contenus), j = lireLocal(CLE_DEMO_J, []), h = lireLocal(CLE_DEMO_H, []), section = "", resume = "";
@@ -249,6 +249,7 @@
     afficherOffres();
     afficherPages();
     afficherGalerie();
+    afficherAvis();
     afficherHistorique();
     afficherReglages();
   }
@@ -519,6 +520,12 @@
       if (res.s === 200 && res.j.ok && !res.j.info) res.j.info = "Légende enregistrée.";
       traiter(res, function () { envoyerLegende(id, legende, vue, true); });
     });
+  }
+
+  function afficherAvis() {
+    var champ = $("#av-lien");
+    if (document.activeElement === champ) return;
+    champ.value = (S.contenus.avis && S.contenus.avis.google) || "";
   }
 
   /* Nouvelles */
@@ -831,6 +838,16 @@
           $("#form-cd").reset();
         }
         traiter(res);
+      });
+    });
+
+    /* Avis Google */
+    $("#av-lien").addEventListener("change", function () {
+      var u = this.value.trim();
+      appel("avis_lien", { google: u }).then(function (res) {
+        if (res.s === 200 && res.j.ok) res.j.info = u ? "Lien enregistré : « Donner votre avis » apparaît en bas des pages." : "Lien retiré.";
+        traiter(res);
+        $("#av-etat").textContent = res.s === 200 && res.j.ok ? "" : (res.j.erreur || "");
       });
     });
 
