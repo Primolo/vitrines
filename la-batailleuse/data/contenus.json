@@ -451,6 +451,48 @@
     ],
     "actualites": [
         {
+            "id": "affiche-bal-folk",
+            "titre": "",
+            "date": "2026-10-18",
+            "texte": "",
+            "lien": "",
+            "lien_texte": "",
+            "photo": {
+                "fichier": "data/docs/affiche-bal-folk-2026.jpg",
+                "alt": "Affiche du bal folk du 6 novembre 2026"
+            },
+            "maj": "2026-10-19T12:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "affiche-petits-fermiers",
+            "titre": "",
+            "date": "2026-10-17",
+            "texte": "",
+            "lien": "",
+            "lien_texte": "",
+            "photo": {
+                "fichier": "data/docs/affiche-petits-fermiers-automne.jpg",
+                "alt": "Affiche des après-midis petits fermiers, 19 et 26 octobre"
+            },
+            "maj": "2026-10-19T12:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
+            "id": "affiche-pizzas-octobre",
+            "titre": "",
+            "date": "2026-10-16",
+            "texte": "",
+            "lien": "",
+            "lien_texte": "",
+            "photo": {
+                "fichier": "data/docs/affiche-pizzas-octobre-2026.jpg",
+                "alt": "Affiche pizzas et animations d’octobre 2026"
+            },
+            "maj": "2026-10-19T12:00:00+02:00",
+            "par": "Primo (mise en place)"
+        },
+        {
             "id": "fete2026",
             "titre": "Fête de la Batailleuse 2026 : plus de 900 personnes",
             "date": "2026-10-16",
