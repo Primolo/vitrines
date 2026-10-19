@@ -48,6 +48,14 @@ return [
     // Plafond de formulaires par jour pour tout le site (0 = sans plafond). Utile si le quota d'envoi est partagé.
     'limite_jour' => 0,
 
+    // Publications Facebook et Instagram reprises toutes seules dans « Des nouvelles de la ferme ».
+    // Vide = rien n'est repris. Mode d'emploi : MODE-EMPLOI-RESEAUX.md. Le jeton ne se publie JAMAIS.
+    'reseaux' => [
+        'page_id' => '',        // numéro de la page Facebook
+        'page_token' => '',     // jeton de page (longue durée) donné par Meta
+        'instagram_id' => '',   // numéro du compte Instagram professionnel relié à la page (facultatif)
+    ],
+
     // Pied de l'accusé de réception envoyé au demandeur.
     'contacts' => 'La ferme : 03 81 49 91 15 · Le Chalet du Souleret : 03 81 49 91 84 · Le fournil : 07 81 42 48 30',
 ];

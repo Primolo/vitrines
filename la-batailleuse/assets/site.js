@@ -280,7 +280,7 @@
 
   /* ---------- Documents, nouvelles, offres, dates et prix : publiés par l'équipe ---------- */
   function sureLien(u) { return /^https?:\/\//i.test(u || "") ? u : ""; }
-  function sureFichier(f) { return /^(data\/docs|img\/galerie)\/[A-Za-z0-9._-]+$/.test(f || "") ? f : ""; }
+  function sureFichier(f) { return /^(data\/docs|img\/galerie|data\/reseaux)\/[A-Za-z0-9._-]+$/.test(f || "") ? f : ""; }
   function paras(s) { return String(s || "").split(/\n+/).filter(Boolean).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join(""); }
   function prixTxt(v) { return v ? v + "\u00a0€" : "—"; }
   function jourLong(d) { return JOURS[d.getDay()] + " " + jourTxt(d); }
@@ -299,18 +299,38 @@
     });
   }
 
+  // Nouvelles : celles publiées par l'équipe + les publications Facebook/Instagram (reseaux.php), de la plus récente à la plus ancienne.
+  var NOM_RESEAU = { facebook: "Facebook", instagram: "Instagram" };
   function renderActualites() {
     var sec = document.querySelector("[data-actualites]");
     if (!sec || !Array.isArray(C.actualites)) return;
-    var liste = C.actualites.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).slice(0, 6);
+    var tout = C.actualites.map(function (a) { return { site: true, date: a.date, a: a }; })
+      .concat((C.reseaux || []).filter(function (p) { return p && /^\d{4}-\d{2}-\d{2}$/.test(p.date) && NOM_RESEAU[p.source] && sureLien(p.lien); })
+        .map(function (p) { return { site: false, date: p.date, p: p }; }));
+    var liste = tout.sort(function (x, y) { return x.date < y.date ? 1 : -1; }).slice(0, 6);
     sec.hidden = !liste.length;
-    sec.querySelector("[data-actualites-liste]").innerHTML = liste.map(function (a) {
-      var d = parse(a.date), ph = a.photo && sureFichier(a.photo.fichier), lien = sureLien(a.lien);
+    sec.querySelector("[data-actualites-liste]").innerHTML = liste.map(function (it) {
+      if (!it.site) {
+        var p = it.p, dr = parse(p.date), im = sureFichier(p.image), nom = NOM_RESEAU[p.source];
+        var texte = String(p.texte || ""), court = texte.length > 320 ? texte.slice(0, 320).replace(/\s+\S*$/, "") + "…" : texte;
+        return '<article class="card news__item news__item--reseau">' +
+          (im ? '<div class="card__img"><img src="' + esc(im) + '" alt="Photo de la publication du ' + jourTxt(dr) + " " + MOIS[dr.getMonth()] + '" loading="lazy"></div>' : "") +
+          '<div class="card__body"><p class="news__date">' + jourTxt(dr) + " " + MOIS[dr.getMonth()] + " " + dr.getFullYear() + ' · <span class="badge">' + nom + "</span></p>" + paras(court) +
+          '<p><a class="link-arrow" href="' + esc(sureLien(p.lien)) + '" rel="noopener">Voir sur ' + nom + "</a></p></div></article>";
+      }
+      var a = it.a, d = parse(a.date), ph = a.photo && sureFichier(a.photo.fichier), lien = sureLien(a.lien);
       return '<article class="card news__item">' +
         (ph ? '<div class="card__img"><img src="' + esc(ph) + '" alt="' + esc(a.photo.alt || "") + '" loading="lazy"></div>' : "") +
         '<div class="card__body"><p class="news__date">' + jourTxt(d) + " " + MOIS[d.getMonth()] + " " + d.getFullYear() + "</p><h3>" + esc(a.titre) + "</h3>" + paras(a.texte) +
         (lien ? '<p><a class="link-arrow" href="' + esc(lien) + '" rel="noopener">' + esc(a.lien_texte || "En savoir plus") + "</a></p>" : "") + "</div></article>";
     }).join("");
+  }
+  // Lit les publications des réseaux sans retarder l'affichage ; sans jeton configuré, le serveur répond « rien » et rien ne change.
+  function chargerReseaux() {
+    if (!document.querySelector("[data-actualites]") || DEMO) return;
+    fetch("reseaux.php", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+      if (d && Array.isArray(d.posts) && d.posts.length) { C.reseaux = d.posts; renderActualites(); }
+    }).catch(function () { /* hors ligne ou pas configuré : on garde les nouvelles de l'équipe */ });
   }
 
   // Recrutement : les offres publiées remplacent celle écrite dans la page ; sans offre, on le dit.
@@ -545,6 +565,7 @@
     }
     renderAgendaData();
     renderAgenda();
+    chargerReseaux();
     renderSejours();
     bandeauDemo();
   }
